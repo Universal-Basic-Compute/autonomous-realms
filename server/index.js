@@ -40,6 +40,10 @@ async function init() {
     logger.info('Server initializing...');
     await ensureDirectories();
     
+    // Debug API key (showing only first 4 chars for security)
+    logger.debug(`Using API key: ${config.IDEOGRAM_API_KEY.substring(0, 4)}... (${config.IDEOGRAM_API_KEY ? 'provided' : 'missing'})`);
+    logger.debug(`Fallback tiles enabled: ${config.USE_FALLBACK_TILES}`);
+    
     // Set up routes
     app.use('/api/tiles', tileRoutes);
     

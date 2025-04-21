@@ -9,6 +9,6 @@ module.exports = {
   TILE_WIDTH: 512,
   TILE_HEIGHT: 512,
   LOG_LEVEL: process.env.LOG_LEVEL || 'info',
-  USE_FALLBACK_TILES: process.env.USE_FALLBACK_TILES === 'true' || false,
+  USE_FALLBACK_TILES: process.env.USE_FALLBACK_TILES === 'true' || true,
   MAX_RETRIES: 3
 };

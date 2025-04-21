@@ -2,19 +2,26 @@ const fetch = require('node-fetch');
 const { createCanvas, loadImage } = require('canvas');
 const fs = require('fs').promises;
 const path = require('path');
+const FormData = require('form-data');
 const config = require('../config');
 
-// Constants
-const TILE_WIDTH = 512;
-const TILE_HEIGHT = 512;
+// Set up logging
+const logger = require('../utils/logger');
 
-// Cache for generated tiles
-const tileCache = new Map();
+// Constants
+const TILE_WIDTH = config.TILE_WIDTH;
+const TILE_HEIGHT = config.TILE_HEIGHT;
+
+// API request queue for rate limiting
+const apiQueue = [];
+let processingQueue = false;
 
 /**
  * Generates a horizontal tile based on a previous tile
  */
 async function generateNextHorizontalTile(previousTilePath, position) {
+  logger.info(`Generating horizontal tile at position ${JSON.stringify(position)}`);
+  
   try {
     // Load the previous tile image
     const previousTile = await loadImage(previousTilePath);
@@ -45,43 +52,305 @@ async function generateNextHorizontalTile(previousTilePath, position) {
     await fs.writeFile(expandedImagePath, expandedCanvas.toBuffer('image/png'));
     await fs.writeFile(maskImagePath, maskCanvas.toBuffer('image/png'));
     
-    // Create form data for API request
-    const formData = new FormData();
-    formData.append('image_file', await fs.readFile(expandedImagePath));
-    formData.append('mask', await fs.readFile(maskImagePath));
-    formData.append('model', 'V_2');
-    formData.append('prompt', `Isometric game terrain tile continuing seamlessly from the left side. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`);
+    logger.debug('Created expanded image and mask for API request');
     
-    // Make API request
-    const response = await fetch('https://api.ideogram.ai/edit', {
-      method: 'POST',
-      headers: {
-        'Api-Key': config.IDEOGRAM_API_KEY
-      },
-      body: formData
+    // Queue the API request to respect rate limits
+    const newTilePath = await queueApiRequest(async () => {
+      // Create form data for API request
+      const formData = new FormData();
+      formData.append('image_file', await fs.readFile(expandedImagePath));
+      formData.append('mask', await fs.readFile(maskImagePath));
+      formData.append('model', 'V_2');
+      formData.append('prompt', `Isometric game terrain tile continuing seamlessly from the left side. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`);
+      
+      logger.debug('Sending API request to Ideogram');
+      
+      // Make API request
+      const response = await fetch('https://api.ideogram.ai/edit', {
+        method: 'POST',
+        headers: {
+          'Api-Key': config.IDEOGRAM_API_KEY
+        },
+        body: formData
+      });
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`API request failed with status ${response.status}: ${errorText}`);
+      }
+      
+      const data = await response.json();
+      
+      if (!data.data || !data.data[0] || !data.data[0].url) {
+        throw new Error('Invalid response from Ideogram API: ' + JSON.stringify(data));
+      }
+      
+      logger.debug('Received successful response from Ideogram API');
+      
+      // Clean up temp files
+      await fs.unlink(expandedImagePath).catch(err => logger.warn(`Failed to delete temp file: ${err.message}`));
+      await fs.unlink(maskImagePath).catch(err => logger.warn(`Failed to delete temp file: ${err.message}`));
+      
+      // Download the generated image
+      const generatedImageUrl = data.data[0].url;
+      const generatedImage = await downloadImage(generatedImageUrl);
+      
+      // Crop and save the new tile
+      const newTilePath = path.join(
+        config.TILES_DIR, 
+        `${position.regionX}_${position.regionY}_${position.x}_${position.y}.png`
+      );
+      
+      await cropAndSaveRightSide(generatedImage, newTilePath);
+      
+      return newTilePath;
     });
     
-    const data = await response.json();
+    logger.info(`Successfully generated horizontal tile at ${newTilePath}`);
+    return newTilePath;
     
-    // Clean up temp files
-    await fs.unlink(expandedImagePath);
-    await fs.unlink(maskImagePath);
+  } catch (error) {
+    logger.error(`Error generating horizontal tile: ${error.message}`, { position, error });
     
-    // Download the generated image
-    const generatedImageUrl = data.data[0].url;
-    const generatedImage = await downloadImage(generatedImageUrl);
+    // Generate fallback tile if needed
+    if (config.USE_FALLBACK_TILES) {
+      logger.warn('Generating fallback tile');
+      return generateFallbackTile(position);
+    }
     
-    // Crop and save the new tile
-    const newTilePath = path.join(
-      config.TILES_DIR, 
-      `${position.regionX}_${position.regionY}_${position.x}_${position.y}.png`
+    throw error;
+  }
+}
+
+/**
+ * Generates a vertical tile based on a bottom tile
+ */
+async function generateNextVerticalTile(bottomTilePath, position) {
+  logger.info(`Generating vertical tile at position ${JSON.stringify(position)}`);
+  
+  try {
+    // Load the bottom tile image
+    const bottomTile = await loadImage(bottomTilePath);
+    
+    // Create expanded canvas
+    const expandedCanvas = createCanvas(bottomTile.width, bottomTile.height * 1.5);
+    const ctx = expandedCanvas.getContext('2d');
+    
+    // Draw the bottom tile at the bottom
+    ctx.drawImage(bottomTile, 0, expandedCanvas.height - bottomTile.height);
+    
+    // Create mask canvas
+    const maskCanvas = createCanvas(expandedCanvas.width, expandedCanvas.height);
+    const maskCtx = maskCanvas.getContext('2d');
+    
+    // Fill the entire mask with black (keep original)
+    maskCtx.fillStyle = 'black';
+    maskCtx.fillRect(0, 0, maskCanvas.width, maskCanvas.height);
+    
+    // Fill the top 50% with white (area to generate)
+    maskCtx.fillStyle = 'white';
+    maskCtx.fillRect(0, 0, bottomTile.width, bottomTile.height * 0.5);
+    
+    // Save temporary files for API upload
+    const expandedImagePath = path.join(config.TEMP_DIR, `expanded_${Date.now()}.png`);
+    const maskImagePath = path.join(config.TEMP_DIR, `mask_${Date.now()}.png`);
+    
+    await fs.writeFile(expandedImagePath, expandedCanvas.toBuffer('image/png'));
+    await fs.writeFile(maskImagePath, maskCanvas.toBuffer('image/png'));
+    
+    logger.debug('Created expanded image and mask for API request');
+    
+    // Queue the API request to respect rate limits
+    const newTilePath = await queueApiRequest(async () => {
+      // Create form data for API request
+      const formData = new FormData();
+      formData.append('image_file', await fs.readFile(expandedImagePath));
+      formData.append('mask', await fs.readFile(maskImagePath));
+      formData.append('model', 'V_2');
+      formData.append('prompt', `Isometric game terrain tile continuing seamlessly from the bottom side. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`);
+      
+      // Make API request
+      const response = await fetch('https://api.ideogram.ai/edit', {
+        method: 'POST',
+        headers: {
+          'Api-Key': config.IDEOGRAM_API_KEY
+        },
+        body: formData
+      });
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`API request failed with status ${response.status}: ${errorText}`);
+      }
+      
+      const data = await response.json();
+      
+      if (!data.data || !data.data[0] || !data.data[0].url) {
+        throw new Error('Invalid response from Ideogram API: ' + JSON.stringify(data));
+      }
+      
+      // Clean up temp files
+      await fs.unlink(expandedImagePath).catch(err => logger.warn(`Failed to delete temp file: ${err.message}`));
+      await fs.unlink(maskImagePath).catch(err => logger.warn(`Failed to delete temp file: ${err.message}`));
+      
+      // Download the generated image
+      const generatedImageUrl = data.data[0].url;
+      const generatedImage = await downloadImage(generatedImageUrl);
+      
+      // Crop and save the new tile
+      const newTilePath = path.join(
+        config.TILES_DIR, 
+        `${position.regionX}_${position.regionY}_${position.x}_${position.y}.png`
+      );
+      
+      await cropAndSaveTopSide(generatedImage, newTilePath);
+      
+      return newTilePath;
+    });
+    
+    logger.info(`Successfully generated vertical tile at ${newTilePath}`);
+    return newTilePath;
+    
+  } catch (error) {
+    logger.error(`Error generating vertical tile: ${error.message}`, { position, error });
+    
+    // Generate fallback tile if needed
+    if (config.USE_FALLBACK_TILES) {
+      logger.warn('Generating fallback tile');
+      return generateFallbackTile(position);
+    }
+    
+    throw error;
+  }
+}
+
+/**
+ * Generates an interior tile based on left and bottom tiles
+ */
+async function generateInteriorTile(leftTilePath, bottomTilePath, position) {
+  logger.info(`Generating interior tile at position ${JSON.stringify(position)}`);
+  
+  try {
+    // Load the left and bottom tiles
+    const leftTile = await loadImage(leftTilePath);
+    const bottomTile = await loadImage(bottomTilePath);
+    
+    // Create composite canvas
+    const compositeCanvas = createCanvas(leftTile.width + bottomTile.width / 3, bottomTile.height + leftTile.height / 3);
+    const ctx = compositeCanvas.getContext('2d');
+    
+    // Draw the bottom tile
+    ctx.drawImage(
+      bottomTile,
+      0,                        // Source X
+      0,                        // Source Y
+      bottomTile.width,         // Source Width
+      bottomTile.height,        // Source Height
+      0,                        // Destination X
+      compositeCanvas.height - bottomTile.height, // Destination Y
+      bottomTile.width,         // Destination Width
+      bottomTile.height         // Destination Height
     );
     
-    await cropAndSaveRightSide(generatedImage, newTilePath);
+    // Draw the left tile
+    ctx.drawImage(
+      leftTile,
+      0,                        // Source X
+      0,                        // Source Y
+      leftTile.width,           // Source Width
+      leftTile.height,          // Source Height
+      0,                        // Destination X
+      0,                        // Destination Y
+      leftTile.width,           // Destination Width
+      leftTile.height           // Destination Height
+    );
     
+    // Create mask showing only the area to be generated
+    const maskCanvas = createCanvas(compositeCanvas.width, compositeCanvas.height);
+    const maskCtx = maskCanvas.getContext('2d');
+    
+    // Fill with black (keep original)
+    maskCtx.fillStyle = 'black';
+    maskCtx.fillRect(0, 0, maskCanvas.width, maskCanvas.height);
+    
+    // Fill the top-right quadrant with white (area to generate)
+    maskCtx.fillStyle = 'white';
+    maskCtx.fillRect(
+      leftTile.width * 2/3,        // X position (2/3 of the way through left tile)
+      0,                            // Y position
+      compositeCanvas.width - leftTile.width * 2/3,  // Width
+      compositeCanvas.height - bottomTile.height * 2/3   // Height
+    );
+    
+    // Save temporary files for API upload
+    const compositeImagePath = path.join(config.TEMP_DIR, `composite_${Date.now()}.png`);
+    const maskImagePath = path.join(config.TEMP_DIR, `mask_${Date.now()}.png`);
+    
+    await fs.writeFile(compositeImagePath, compositeCanvas.toBuffer('image/png'));
+    await fs.writeFile(maskImagePath, maskCanvas.toBuffer('image/png'));
+    
+    logger.debug('Created composite image and mask for API request');
+    
+    // Queue the API request to respect rate limits
+    const newTilePath = await queueApiRequest(async () => {
+      // Create form data for API request
+      const formData = new FormData();
+      formData.append('image_file', await fs.readFile(compositeImagePath));
+      formData.append('mask', await fs.readFile(maskImagePath));
+      formData.append('model', 'V_2');
+      formData.append('prompt', `Isometric game terrain tile continuing seamlessly from the left and bottom sides. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`);
+      
+      // Make API request
+      const response = await fetch('https://api.ideogram.ai/edit', {
+        method: 'POST',
+        headers: {
+          'Api-Key': config.IDEOGRAM_API_KEY
+        },
+        body: formData
+      });
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`API request failed with status ${response.status}: ${errorText}`);
+      }
+      
+      const data = await response.json();
+      
+      if (!data.data || !data.data[0] || !data.data[0].url) {
+        throw new Error('Invalid response from Ideogram API: ' + JSON.stringify(data));
+      }
+      
+      // Clean up temp files
+      await fs.unlink(compositeImagePath).catch(err => logger.warn(`Failed to delete temp file: ${err.message}`));
+      await fs.unlink(maskImagePath).catch(err => logger.warn(`Failed to delete temp file: ${err.message}`));
+      
+      // Download the generated image
+      const generatedImageUrl = data.data[0].url;
+      const generatedImage = await downloadImage(generatedImageUrl);
+      
+      // Crop and save the new tile
+      const newTilePath = path.join(
+        config.TILES_DIR, 
+        `${position.regionX}_${position.regionY}_${position.x}_${position.y}.png`
+      );
+      
+      await cropAndSaveTopRightQuadrant(generatedImage, newTilePath);
+      
+      return newTilePath;
+    });
+    
+    logger.info(`Successfully generated interior tile at ${newTilePath}`);
     return newTilePath;
+    
   } catch (error) {
-    console.error('Error generating next horizontal tile:', error);
+    logger.error(`Error generating interior tile: ${error.message}`, { position, error });
+    
+    // Generate fallback tile if needed
+    if (config.USE_FALLBACK_TILES) {
+      logger.warn('Generating fallback tile');
+      return generateFallbackTile(position);
+    }
+    
     throw error;
   }
 }
@@ -90,40 +359,139 @@ async function generateNextHorizontalTile(previousTilePath, position) {
  * Downloads an image from a URL
  */
 async function downloadImage(url) {
-  const response = await fetch(url);
-  const buffer = await response.buffer();
-  const tempPath = path.join(config.TEMP_DIR, `download_${Date.now()}.png`);
-  await fs.writeFile(tempPath, buffer);
-  return tempPath;
+  logger.debug(`Downloading image from ${url}`);
+  
+  try {
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      throw new Error(`Failed to download image: ${response.status} ${response.statusText}`);
+    }
+    
+    const buffer = await response.buffer();
+    const tempPath = path.join(config.TEMP_DIR, `download_${Date.now()}.png`);
+    await fs.writeFile(tempPath, buffer);
+    
+    logger.debug(`Image downloaded to ${tempPath}`);
+    return tempPath;
+  } catch (error) {
+    logger.error(`Error downloading image: ${error.message}`);
+    throw error;
+  }
 }
 
 /**
  * Crops the right side of an image and saves it
  */
 async function cropAndSaveRightSide(imagePath, outputPath) {
-  const image = await loadImage(imagePath);
-  const canvas = createCanvas(TILE_WIDTH, TILE_HEIGHT);
-  const ctx = canvas.getContext('2d');
+  logger.debug(`Cropping right side of image ${imagePath} to ${outputPath}`);
   
-  // Draw only the right 66.6% of the generated image
-  ctx.drawImage(
-    image,
-    image.width / 3,  // Source X (start from 1/3 of the way)
-    0,                // Source Y
-    image.width * 2/3,// Source Width (take 2/3 of the image)
-    image.height,     // Source Height
-    0,                // Destination X
-    0,                // Destination Y
-    canvas.width,     // Destination Width
-    canvas.height     // Destination Height
-  );
+  try {
+    const image = await loadImage(imagePath);
+    const canvas = createCanvas(TILE_WIDTH, TILE_HEIGHT);
+    const ctx = canvas.getContext('2d');
+    
+    // Draw only the right 66.6% of the generated image
+    ctx.drawImage(
+      image,
+      image.width / 3,  // Source X (start from 1/3 of the way)
+      0,                // Source Y
+      image.width * 2/3,// Source Width (take 2/3 of the image)
+      image.height,     // Source Height
+      0,                // Destination X
+      0,                // Destination Y
+      canvas.width,     // Destination Width
+      canvas.height     // Destination Height
+    );
+    
+    await fs.writeFile(outputPath, canvas.toBuffer('image/png'));
+    
+    // Clean up temp file
+    await fs.unlink(imagePath).catch(err => logger.warn(`Failed to delete temp file: ${err.message}`));
+    
+    return outputPath;
+  } catch (error) {
+    logger.error(`Error cropping image: ${error.message}`);
+    throw error;
+  }
+}
+
+/**
+ * Crops the top side of an image and saves it
+ */
+async function cropAndSaveTopSide(imagePath, outputPath) {
+  logger.debug(`Cropping top side of image ${imagePath} to ${outputPath}`);
   
-  await fs.writeFile(outputPath, canvas.toBuffer('image/png'));
+  try {
+    const image = await loadImage(imagePath);
+    const canvas = createCanvas(TILE_WIDTH, TILE_HEIGHT);
+    const ctx = canvas.getContext('2d');
+    
+    // Draw only the top 66.6% of the generated image
+    ctx.drawImage(
+      image,
+      0,                // Source X
+      0,                // Source Y
+      image.width,      // Source Width
+      image.height * 2/3,// Source Height (take 2/3 of the image)
+      0,                // Destination X
+      0,                // Destination Y
+      canvas.width,     // Destination Width
+      canvas.height     // Destination Height
+    );
+    
+    await fs.writeFile(outputPath, canvas.toBuffer('image/png'));
+    
+    // Clean up temp file
+    await fs.unlink(imagePath).catch(err => logger.warn(`Failed to delete temp file: ${err.message}`));
+    
+    return outputPath;
+  } catch (error) {
+    logger.error(`Error cropping image: ${error.message}`);
+    throw error;
+  }
+}
+
+/**
+ * Crops the top-right quadrant of an image and saves it
+ */
+async function cropAndSaveTopRightQuadrant(imagePath, outputPath) {
+  logger.debug(`Cropping top-right quadrant of image ${imagePath} to ${outputPath}`);
   
-  // Clean up temp file
-  await fs.unlink(imagePath);
-  
-  return outputPath;
+  try {
+    const image = await loadImage(imagePath);
+    const canvas = createCanvas(TILE_WIDTH, TILE_HEIGHT);
+    const ctx = canvas.getContext('2d');
+    
+    // Calculate the position of the top-right quadrant
+    const sourceX = image.width * 2/3;
+    const sourceY = 0;
+    const sourceWidth = image.width / 3;
+    const sourceHeight = image.height * 2/3;
+    
+    // Draw only the top-right quadrant
+    ctx.drawImage(
+      image,
+      sourceX,          // Source X
+      sourceY,          // Source Y
+      sourceWidth,      // Source Width
+      sourceHeight,     // Source Height
+      0,                // Destination X
+      0,                // Destination Y
+      canvas.width,     // Destination Width
+      canvas.height     // Destination Height
+    );
+    
+    await fs.writeFile(outputPath, canvas.toBuffer('image/png'));
+    
+    // Clean up temp file
+    await fs.unlink(imagePath).catch(err => logger.warn(`Failed to delete temp file: ${err.message}`));
+    
+    return outputPath;
+  } catch (error) {
+    logger.error(`Error cropping image: ${error.message}`);
+    throw error;
+  }
 }
 
 /**
@@ -188,15 +556,156 @@ function getTerrainPromptDetails(position) {
 }
 
 /**
- * Gets terrain code for a position (placeholder implementation)
+ * Gets terrain code for a position
  */
 function getTerrainCodeForPosition(position) {
   // This would normally come from a database or terrain generation algorithm
-  // For now, return a default terrain type
-  return "P-LUS|E-FLT";
+  // For now, use a simple deterministic approach based on position
+  
+  // Use position to seed a simple terrain type
+  const sum = position.x + position.y + position.regionX * 10 + position.regionY * 10;
+  
+  // Base terrain types
+  const baseTypes = ["P-LUS", "F-OAK", "W-RIV"];
+  const baseType = baseTypes[sum % baseTypes.length];
+  
+  // Elevation modifiers
+  const elevations = ["E-FLT", "E-SLI"];
+  const elevation = elevations[(sum * 3) % elevations.length];
+  
+  // Feature modifiers
+  const features = ["X-TRE", "X-RCK", ""];
+  const feature = features[(sum * 7) % features.length];
+  
+  // Combine modifiers
+  let terrainCode = baseType + "|" + elevation;
+  if (feature) {
+    terrainCode += "|" + feature;
+  }
+  
+  logger.debug(`Generated terrain code ${terrainCode} for position ${JSON.stringify(position)}`);
+  return terrainCode;
+}
+
+/**
+ * Generates a fallback tile when API generation fails
+ */
+async function generateFallbackTile(position) {
+  logger.info(`Generating fallback tile for position ${JSON.stringify(position)}`);
+  
+  try {
+    // Create a basic canvas
+    const canvas = createCanvas(TILE_WIDTH, TILE_HEIGHT);
+    const ctx = canvas.getContext('2d');
+    
+    // Get base color from terrain type
+    const terrainCode = getTerrainCodeForPosition(position);
+    const baseColor = getTerrainBaseColor(terrainCode);
+    
+    // Fill with base color
+    ctx.fillStyle = baseColor;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Add position text for debugging
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+    ctx.font = '20px Arial';
+    ctx.fillText(`Region: ${position.regionX},${position.regionY}`, 20, 30);
+    ctx.fillText(`Tile: ${position.x},${position.y}`, 20, 60);
+    ctx.fillText(`Terrain: ${terrainCode}`, 20, 90);
+    
+    // Save the fallback tile
+    const tilePath = path.join(
+      config.TILES_DIR, 
+      `${position.regionX}_${position.regionY}_${position.x}_${position.y}.png`
+    );
+    
+    await fs.writeFile(tilePath, canvas.toBuffer('image/png'));
+    
+    logger.info(`Fallback tile saved to ${tilePath}`);
+    return tilePath;
+  } catch (error) {
+    logger.error(`Error generating fallback tile: ${error.message}`);
+    throw error;
+  }
+}
+
+/**
+ * Gets a base color for a terrain type
+ */
+function getTerrainBaseColor(terrainCode) {
+  const baseType = terrainCode.split('|')[0];
+  
+  switch (baseType) {
+    case "P-LUS":
+      return '#4CAF50';  // Green
+    case "F-OAK":
+      return '#2E7D32';  // Dark green
+    case "W-RIV":
+      return '#2196F3';  // Blue
+    default:
+      return '#8BC34A';  // Light green
+  }
+}
+
+/**
+ * Queues an API request to respect rate limits
+ */
+async function queueApiRequest(requestFunction) {
+  return new Promise((resolve, reject) => {
+    apiQueue.push({
+      requestFunction,
+      resolve,
+      reject,
+      timestamp: Date.now()
+    });
+    
+    if (!processingQueue) {
+      processQueue();
+    }
+  });
+}
+
+/**
+ * Processes the API request queue
+ */
+async function processQueue() {
+  if (apiQueue.length === 0) {
+    processingQueue = false;
+    return;
+  }
+  
+  processingQueue = true;
+  const { requestFunction, resolve, reject, timestamp } = apiQueue.shift();
+  
+  try {
+    // Calculate time to wait based on rate limit
+    const now = Date.now();
+    const timeElapsed = now - timestamp;
+    const timeToWait = Math.max(0, 1000 / config.API_RATE_LIMIT - timeElapsed);
+    
+    if (timeToWait > 0) {
+      logger.debug(`Rate limiting: waiting ${timeToWait}ms before next API request`);
+      await new Promise(resolve => setTimeout(resolve, timeToWait));
+    }
+    
+    // Execute the request
+    const result = await requestFunction();
+    resolve(result);
+  } catch (error) {
+    logger.error(`API request failed: ${error.message}`);
+    reject(error);
+  } finally {
+    // Continue with queue even on error
+    setTimeout(() => {
+      processQueue();
+    }, 100);
+  }
 }
 
 module.exports = {
   generateNextHorizontalTile,
-  // Add other functions as needed
+  generateNextVerticalTile,
+  generateInteriorTile,
+  generateFallbackTile,
+  getTerrainCodeForPosition
 };

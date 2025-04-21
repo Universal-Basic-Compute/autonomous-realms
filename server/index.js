@@ -50,6 +50,54 @@ async function init() {
       res.json({ status: 'ok', timestamp: new Date().toISOString() });
     });
     
+    // Root route
+    app.get('/', (req, res) => {
+      res.send(`
+        <html>
+          <head>
+            <title>Autonomous Realms Tile Generator</title>
+            <style>
+              body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+              h1 { color: #333; }
+              pre { background: #f4f4f4; padding: 10px; border-radius: 5px; }
+              .endpoint { margin-bottom: 20px; }
+            </style>
+          </head>
+          <body>
+            <h1>Autonomous Realms Tile Generator</h1>
+            <p>This server generates terrain tiles for the Autonomous Realms game using Ideogram AI.</p>
+            
+            <h2>Available Endpoints:</h2>
+            
+            <div class="endpoint">
+              <h3>Get a Tile</h3>
+              <pre>GET /api/tiles/:regionX/:regionY/:x/:y</pre>
+              <p>Returns a PNG image of the requested tile.</p>
+            </div>
+            
+            <div class="endpoint">
+              <h3>Get Tile Info</h3>
+              <pre>GET /api/tiles/:regionX/:regionY/:x/:y/info</pre>
+              <p>Returns JSON metadata about the requested tile.</p>
+            </div>
+            
+            <div class="endpoint">
+              <h3>Health Check</h3>
+              <pre>GET /health</pre>
+              <p>Returns server status information.</p>
+            </div>
+            
+            <h2>Example:</h2>
+            <p>To get the tile at region (0,0), position (0,0):</p>
+            <pre>GET /api/tiles/0/0/0/0</pre>
+            
+            <p>To get information about this tile:</p>
+            <pre>GET /api/tiles/0/0/0/0/info</pre>
+          </body>
+        </html>
+      `);
+    });
+    
     // Start server
     app.listen(PORT, () => {
       logger.info(`Server running on port ${PORT}`);

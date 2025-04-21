@@ -40,7 +40,7 @@ router.get('/api-test', async (req, res) => {
     const formData = new FormData();
     formData.append('image_file', await fs.readFile(testImagePath));
     formData.append('mask', await fs.readFile(testMaskPath));
-    formData.append('model', 'V_2');
+    formData.append('model', 'V_2'); // Required parameter for edit endpoint
     formData.append('prompt', 'Simple test image with grass texture. Clash Royale style.');
     
     // Make API request
@@ -51,9 +51,11 @@ router.get('/api-test', async (req, res) => {
       const response = await fetch('https://api.ideogram.ai/edit', {
         method: 'POST',
         headers: {
-          'Api-Key': config.IDEOGRAM_API_KEY
+          'Api-Key': config.IDEOGRAM_API_KEY,
+          'Accept': 'application/json'
         },
-        body: formData
+        body: formData,
+        timeout: 30000 // 30 second timeout
       });
       
       const responseTime = Date.now() - startTime;

@@ -10,5 +10,6 @@ module.exports = {
   TILE_HEIGHT: 512,
   LOG_LEVEL: process.env.LOG_LEVEL || 'info',
   USE_FALLBACK_TILES: process.env.USE_FALLBACK_TILES === 'true' || true,
-  MAX_RETRIES: 3
+  MAX_RETRIES: 3,
+  API_TIMEOUT: 30000 // 30 seconds timeout for API requests
 };

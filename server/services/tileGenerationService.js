@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+// Note: Make sure to install node-fetch@2 with: npm install node-fetch@2
 const { createCanvas, loadImage } = require('canvas');
 const fs = require('fs').promises;
 const path = require('path');

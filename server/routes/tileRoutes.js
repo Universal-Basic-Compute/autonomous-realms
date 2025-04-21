@@ -21,20 +21,35 @@ router.get('/api-test', async (req, res) => {
     ctx.fillStyle = '#4CAF50';
     ctx.fillRect(0, 0, 256, 256);
     
-    // Create a simple mask
-    const maskCanvas = createCanvas(256, 256);
-    const maskCtx = maskCanvas.getContext('2d');
-    maskCtx.fillStyle = 'black';
-    maskCtx.fillRect(0, 0, 256, 256);
-    maskCtx.fillStyle = 'white';
-    maskCtx.fillRect(128, 0, 128, 256);
+    // Check if a test mask already exists
+    const testMaskPath = path.join(config.MASKS_DIR, 'api_test_mask.png');
+    let maskCanvas;
     
-    // Save temporary files
+    try {
+      // Check if the mask already exists
+      await fs.access(testMaskPath);
+      logger.debug(`Using existing API test mask`);
+      maskCanvas = await loadImage(testMaskPath);
+    } catch (err) {
+      // Mask doesn't exist, create it
+      logger.debug('Creating new API test mask');
+      
+      // Create a simple mask
+      maskCanvas = createCanvas(256, 256);
+      const maskCtx = maskCanvas.getContext('2d');
+      maskCtx.fillStyle = 'black';
+      maskCtx.fillRect(0, 0, 256, 256);
+      maskCtx.fillStyle = 'white';
+      maskCtx.fillRect(128, 0, 128, 256);
+      
+      // Save the mask
+      await fs.mkdir(config.MASKS_DIR, { recursive: true });
+      await fs.writeFile(testMaskPath, maskCanvas.toBuffer('image/png'));
+    }
+    
+    // Save temporary test image
     const testImagePath = path.join(config.TEMP_DIR, `api_test_image_${Date.now()}.png`);
-    const testMaskPath = path.join(config.TEMP_DIR, `api_test_mask_${Date.now()}.png`);
-    
     await fs.writeFile(testImagePath, canvas.toBuffer('image/png'));
-    await fs.writeFile(testMaskPath, maskCanvas.toBuffer('image/png'));
     
     // Create form data
     const formData = new FormData();

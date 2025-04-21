@@ -34,24 +34,43 @@ async function generateNextHorizontalTile(previousTilePath, position) {
     // Draw the previous tile on the left side
     ctx.drawImage(previousTile, 0, 0);
     
-    // Create mask canvas
-    const maskCanvas = createCanvas(expandedCanvas.width, expandedCanvas.height);
-    const maskCtx = maskCanvas.getContext('2d');
+    // Check if a mask already exists for this type of operation
+    const maskFilename = `horizontal_mask_${TILE_WIDTH}x${TILE_HEIGHT}.png`;
+    const maskPath = path.join(config.MASKS_DIR, maskFilename);
     
-    // Fill the entire mask with black (keep original)
-    maskCtx.fillStyle = 'black';
-    maskCtx.fillRect(0, 0, maskCanvas.width, maskCanvas.height);
+    let maskImagePath;
     
-    // Fill the right 50% with white (area to generate)
-    maskCtx.fillStyle = 'white';
-    maskCtx.fillRect(previousTile.width, 0, previousTile.width * 0.5, previousTile.height);
+    try {
+      // Check if the mask already exists
+      await fs.access(maskPath);
+      logger.debug(`Using existing horizontal mask from ${maskPath}`);
+      maskImagePath = maskPath;
+    } catch (err) {
+      // Mask doesn't exist, create it
+      logger.debug('Creating new horizontal mask');
+      
+      // Create mask canvas
+      const maskCanvas = createCanvas(expandedCanvas.width, expandedCanvas.height);
+      const maskCtx = maskCanvas.getContext('2d');
+      
+      // Fill the entire mask with black (keep original)
+      maskCtx.fillStyle = 'black';
+      maskCtx.fillRect(0, 0, maskCanvas.width, maskCanvas.height);
+      
+      // Fill the right 50% with white (area to generate)
+      maskCtx.fillStyle = 'white';
+      maskCtx.fillRect(previousTile.width, 0, previousTile.width * 0.5, previousTile.height);
+      
+      // Save the mask for future use
+      await fs.mkdir(config.MASKS_DIR, { recursive: true });
+      await fs.writeFile(maskPath, maskCanvas.toBuffer('image/png'));
+      
+      maskImagePath = maskPath;
+    }
     
-    // Save temporary files for API upload
+    // Save temporary file for API upload
     const expandedImagePath = path.join(config.TEMP_DIR, `expanded_${Date.now()}.png`);
-    const maskImagePath = path.join(config.TEMP_DIR, `mask_${Date.now()}.png`);
-    
     await fs.writeFile(expandedImagePath, expandedCanvas.toBuffer('image/png'));
-    await fs.writeFile(maskImagePath, maskCanvas.toBuffer('image/png'));
     
     logger.debug('Created expanded image and mask for API request');
     
@@ -180,24 +199,43 @@ async function generateNextVerticalTile(bottomTilePath, position) {
     // Draw the bottom tile at the bottom
     ctx.drawImage(bottomTile, 0, expandedCanvas.height - bottomTile.height);
     
-    // Create mask canvas
-    const maskCanvas = createCanvas(expandedCanvas.width, expandedCanvas.height);
-    const maskCtx = maskCanvas.getContext('2d');
+    // Check if a mask already exists for this type of operation
+    const maskFilename = `vertical_mask_${TILE_WIDTH}x${TILE_HEIGHT}.png`;
+    const maskPath = path.join(config.MASKS_DIR, maskFilename);
     
-    // Fill the entire mask with black (keep original)
-    maskCtx.fillStyle = 'black';
-    maskCtx.fillRect(0, 0, maskCanvas.width, maskCanvas.height);
+    let maskImagePath;
     
-    // Fill the top 50% with white (area to generate)
-    maskCtx.fillStyle = 'white';
-    maskCtx.fillRect(0, 0, bottomTile.width, bottomTile.height * 0.5);
+    try {
+      // Check if the mask already exists
+      await fs.access(maskPath);
+      logger.debug(`Using existing vertical mask from ${maskPath}`);
+      maskImagePath = maskPath;
+    } catch (err) {
+      // Mask doesn't exist, create it
+      logger.debug('Creating new vertical mask');
+      
+      // Create mask canvas
+      const maskCanvas = createCanvas(expandedCanvas.width, expandedCanvas.height);
+      const maskCtx = maskCanvas.getContext('2d');
+      
+      // Fill the entire mask with black (keep original)
+      maskCtx.fillStyle = 'black';
+      maskCtx.fillRect(0, 0, maskCanvas.width, maskCanvas.height);
+      
+      // Fill the top 50% with white (area to generate)
+      maskCtx.fillStyle = 'white';
+      maskCtx.fillRect(0, 0, bottomTile.width, bottomTile.height * 0.5);
+      
+      // Save the mask for future use
+      await fs.mkdir(config.MASKS_DIR, { recursive: true });
+      await fs.writeFile(maskPath, maskCanvas.toBuffer('image/png'));
+      
+      maskImagePath = maskPath;
+    }
     
-    // Save temporary files for API upload
+    // Save temporary file for API upload
     const expandedImagePath = path.join(config.TEMP_DIR, `expanded_${Date.now()}.png`);
-    const maskImagePath = path.join(config.TEMP_DIR, `mask_${Date.now()}.png`);
-    
     await fs.writeFile(expandedImagePath, expandedCanvas.toBuffer('image/png'));
-    await fs.writeFile(maskImagePath, maskCanvas.toBuffer('image/png'));
     
     logger.debug('Created expanded image and mask for API request');
     
@@ -318,29 +356,48 @@ async function generateInteriorTile(leftTilePath, bottomTilePath, position) {
       leftTile.height           // Destination Height
     );
     
-    // Create mask showing only the area to be generated
-    const maskCanvas = createCanvas(compositeCanvas.width, compositeCanvas.height);
-    const maskCtx = maskCanvas.getContext('2d');
+    // Check if a mask already exists for this type of operation
+    const maskFilename = `interior_mask_${TILE_WIDTH}x${TILE_HEIGHT}.png`;
+    const maskPath = path.join(config.MASKS_DIR, maskFilename);
     
-    // Fill with black (keep original)
-    maskCtx.fillStyle = 'black';
-    maskCtx.fillRect(0, 0, maskCanvas.width, maskCanvas.height);
+    let maskImagePath;
     
-    // Fill the top-right quadrant with white (area to generate)
-    maskCtx.fillStyle = 'white';
-    maskCtx.fillRect(
-      leftTile.width * 2/3,        // X position (2/3 of the way through left tile)
-      0,                            // Y position
-      compositeCanvas.width - leftTile.width * 2/3,  // Width
-      compositeCanvas.height - bottomTile.height * 2/3   // Height
-    );
+    try {
+      // Check if the mask already exists
+      await fs.access(maskPath);
+      logger.debug(`Using existing interior mask from ${maskPath}`);
+      maskImagePath = maskPath;
+    } catch (err) {
+      // Mask doesn't exist, create it
+      logger.debug('Creating new interior mask');
+      
+      // Create mask showing only the area to be generated
+      const maskCanvas = createCanvas(compositeCanvas.width, compositeCanvas.height);
+      const maskCtx = maskCanvas.getContext('2d');
+      
+      // Fill with black (keep original)
+      maskCtx.fillStyle = 'black';
+      maskCtx.fillRect(0, 0, maskCanvas.width, maskCanvas.height);
+      
+      // Fill the top-right quadrant with white (area to generate)
+      maskCtx.fillStyle = 'white';
+      maskCtx.fillRect(
+        leftTile.width * 2/3,        // X position (2/3 of the way through left tile)
+        0,                            // Y position
+        compositeCanvas.width - leftTile.width * 2/3,  // Width
+        compositeCanvas.height - bottomTile.height * 2/3   // Height
+      );
+      
+      // Save the mask for future use
+      await fs.mkdir(config.MASKS_DIR, { recursive: true });
+      await fs.writeFile(maskPath, maskCanvas.toBuffer('image/png'));
+      
+      maskImagePath = maskPath;
+    }
     
-    // Save temporary files for API upload
+    // Save temporary file for API upload
     const compositeImagePath = path.join(config.TEMP_DIR, `composite_${Date.now()}.png`);
-    const maskImagePath = path.join(config.TEMP_DIR, `mask_${Date.now()}.png`);
-    
     await fs.writeFile(compositeImagePath, compositeCanvas.toBuffer('image/png'));
-    await fs.writeFile(maskImagePath, maskCanvas.toBuffer('image/png'));
     
     logger.debug('Created composite image and mask for API request');
     

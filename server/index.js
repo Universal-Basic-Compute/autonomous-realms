@@ -21,7 +21,7 @@ app.use((req, res, next) => {
 
 // Ensure directories exist
 async function ensureDirectories() {
-  const dirs = [config.TEMP_DIR, config.TILES_DIR, config.LOGS_DIR];
+  const dirs = [config.TEMP_DIR, config.TILES_DIR, config.LOGS_DIR, config.MASKS_DIR];
   
   for (const dir of dirs) {
     try {

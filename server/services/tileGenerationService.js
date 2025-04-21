@@ -66,24 +66,62 @@ async function generateNextHorizontalTile(previousTilePath, position) {
       
       logger.debug('Sending API request to Ideogram');
       
-      // Make API request
-      const response = await fetch('https://api.ideogram.ai/edit', {
-        method: 'POST',
-        headers: {
-          'Api-Key': config.IDEOGRAM_API_KEY
-        },
-        body: formData
-      });
+      // Make API request with retry logic
+      let response;
+      let retryCount = 0;
+      let errorText = '';
       
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`API request failed with status ${response.status}: ${errorText}`);
+      while (retryCount < config.MAX_RETRIES) {
+        try {
+          logger.debug(`API request attempt ${retryCount + 1}/${config.MAX_RETRIES}`);
+          
+          response = await fetch('https://api.ideogram.ai/edit', {
+            method: 'POST',
+            headers: {
+              'Api-Key': config.IDEOGRAM_API_KEY
+            },
+            body: formData
+          });
+          
+          if (response.ok) {
+            break; // Success, exit retry loop
+          }
+          
+          errorText = await response.text();
+          logger.warn(`API request failed (attempt ${retryCount + 1}/${config.MAX_RETRIES}): Status ${response.status}: ${errorText}`);
+          
+          // Wait before retrying (exponential backoff)
+          const backoffTime = Math.min(1000 * Math.pow(2, retryCount), 10000);
+          await new Promise(resolve => setTimeout(resolve, backoffTime));
+          
+          retryCount++;
+        } catch (fetchError) {
+          logger.error(`Network error during API request (attempt ${retryCount + 1}/${config.MAX_RETRIES}): ${fetchError.message}`);
+          retryCount++;
+          
+          // Wait before retrying
+          const backoffTime = Math.min(1000 * Math.pow(2, retryCount), 10000);
+          await new Promise(resolve => setTimeout(resolve, backoffTime));
+        }
       }
       
-      const data = await response.json();
+      if (!response || !response.ok) {
+        throw new Error(`API request failed after ${config.MAX_RETRIES} attempts. Last status: ${response?.status}, Error: ${errorText}`);
+      }
       
-      if (!data.data || !data.data[0] || !data.data[0].url) {
-        throw new Error('Invalid response from Ideogram API: ' + JSON.stringify(data));
+      let data;
+      try {
+        data = await response.json();
+        
+        // Log the full response for debugging
+        logger.debug(`API response: ${JSON.stringify(data)}`);
+        
+        if (!data.data || !data.data[0] || !data.data[0].url) {
+          throw new Error('Invalid response from Ideogram API: ' + JSON.stringify(data));
+        }
+      } catch (jsonError) {
+        logger.error(`Error parsing API response: ${jsonError.message}`);
+        throw new Error(`Failed to parse API response: ${jsonError.message}`);
       }
       
       logger.debug('Received successful response from Ideogram API');

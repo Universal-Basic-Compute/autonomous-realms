@@ -81,6 +81,12 @@ async function init() {
             </div>
             
             <div class="endpoint">
+              <h3>API Diagnostic Test</h3>
+              <pre>GET /api/tiles/api-test</pre>
+              <p>Tests the Ideogram API connection and returns diagnostic information.</p>
+            </div>
+            
+            <div class="endpoint">
               <h3>Get Tile Info</h3>
               <pre>GET /api/tiles/:regionX/:regionY/:x/:y/info</pre>
               <p>Returns JSON metadata about the requested tile.</p>

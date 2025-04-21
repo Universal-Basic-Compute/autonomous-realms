@@ -34,7 +34,7 @@ router.get('/:regionX/:regionY/:x/:y', async (req, res) => {
       // Tile doesn't exist, need to generate it
       logger.info(`Tile not found, generating new tile at position ${JSON.stringify(position)}`);
       
-      // For the first tile (0,0), use a base tile
+      // For the first tile (0,0), use a base tile or generate a fallback
       if (position.x === 0 && position.y === 0) {
         const baseTilePath = path.join(config.TILES_DIR, 'base_tile.png');
         try {
@@ -44,8 +44,10 @@ router.get('/:regionX/:regionY/:x/:y', async (req, res) => {
           await fs.copyFile(baseTilePath, tilePath);
           return res.sendFile(tilePath);
         } catch (baseErr) {
-          logger.error(`Base tile not found at ${baseTilePath}`);
-          return res.status(404).json({ error: 'Base tile not found' });
+          logger.info(`Base tile not found at ${baseTilePath}, generating fallback tile`);
+          // Generate a fallback tile for the base position
+          const fallbackTilePath = await tileService.generateFallbackTile(position);
+          return res.sendFile(fallbackTilePath);
         }
       }
       

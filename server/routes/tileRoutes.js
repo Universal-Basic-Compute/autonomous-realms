@@ -40,7 +40,7 @@ router.get('/api-test', async (req, res) => {
     const formData = new FormData();
     formData.append('image_file', await fs.readFile(testImagePath));
     formData.append('mask', await fs.readFile(testMaskPath));
-    formData.append('model', 'V_2'); // Required parameter for edit endpoint
+    formData.append('model', 'V_2A'); // Using V_2A model instead of V_2
     formData.append('prompt', 'Simple test image with grass texture. Clash Royale style.');
     
     // Make API request
@@ -55,7 +55,7 @@ router.get('/api-test', async (req, res) => {
           'Accept': 'application/json'
         },
         body: formData,
-        timeout: 30000 // 30 second timeout
+        timeout: config.API_TIMEOUT // Use the timeout from config
       });
       
       const responseTime = Date.now() - startTime;

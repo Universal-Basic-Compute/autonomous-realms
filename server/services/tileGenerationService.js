@@ -61,7 +61,7 @@ async function generateNextHorizontalTile(previousTilePath, position) {
       const formData = new FormData();
       formData.append('image_file', await fs.readFile(expandedImagePath));
       formData.append('mask', await fs.readFile(maskImagePath));
-      formData.append('model', 'V_2'); // Required parameter for edit endpoint
+      formData.append('model', 'V_2A'); // Using V_2A model instead of V_2
       formData.append('num_images', '1'); // Only need one image
       formData.append('prompt', `Isometric game terrain tile continuing seamlessly from the left side. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`);
       
@@ -81,7 +81,8 @@ async function generateNextHorizontalTile(previousTilePath, position) {
             headers: {
               'Api-Key': config.IDEOGRAM_API_KEY
             },
-            body: formData
+            body: formData,
+            timeout: config.API_TIMEOUT // Use the timeout from config
           });
           
           if (response.ok) {
@@ -206,7 +207,7 @@ async function generateNextVerticalTile(bottomTilePath, position) {
       const formData = new FormData();
       formData.append('image_file', await fs.readFile(expandedImagePath));
       formData.append('mask', await fs.readFile(maskImagePath));
-      formData.append('model', 'V_2');
+      formData.append('model', 'V_2A'); // Using V_2A model instead of V_2
       formData.append('prompt', `Isometric game terrain tile continuing seamlessly from the bottom side. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`);
       
       // Make API request
@@ -217,7 +218,7 @@ async function generateNextVerticalTile(bottomTilePath, position) {
           'Accept': 'application/json'
         },
         body: formData,
-        timeout: 30000 // 30 second timeout
+        timeout: config.API_TIMEOUT // Use the timeout from config
       });
       
       // Get response as text first to ensure we can see error messages
@@ -349,7 +350,7 @@ async function generateInteriorTile(leftTilePath, bottomTilePath, position) {
       const formData = new FormData();
       formData.append('image_file', await fs.readFile(compositeImagePath));
       formData.append('mask', await fs.readFile(maskImagePath));
-      formData.append('model', 'V_2');
+      formData.append('model', 'V_2A'); // Using V_2A model instead of V_2
       formData.append('prompt', `Isometric game terrain tile continuing seamlessly from the left and bottom sides. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`);
       
       // Make API request
@@ -358,7 +359,8 @@ async function generateInteriorTile(leftTilePath, bottomTilePath, position) {
         headers: {
           'Api-Key': config.IDEOGRAM_API_KEY
         },
-        body: formData
+        body: formData,
+        timeout: config.API_TIMEOUT // Use the timeout from config
       });
       
       if (!response.ok) {

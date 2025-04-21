@@ -11,5 +11,5 @@ module.exports = {
   LOG_LEVEL: process.env.LOG_LEVEL || 'info',
   USE_FALLBACK_TILES: process.env.USE_FALLBACK_TILES === 'true' || true,
   MAX_RETRIES: 3,
-  API_TIMEOUT: 30000 // 30 seconds timeout for API requests
+  API_TIMEOUT: 60000 // 60 seconds timeout for API requests
 };

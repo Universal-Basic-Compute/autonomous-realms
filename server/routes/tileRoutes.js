@@ -74,8 +74,7 @@ router.get('/api-test', async (req, res) => {
         method: 'POST',
         headers: {
           'Api-Key': config.IDEOGRAM_API_KEY,
-          'Accept': 'application/json',
-          'Content-Type': 'multipart/form-data'
+          'Accept': 'application/json'
         },
         body: formData,
         timeout: config.API_TIMEOUT // Use the timeout from config

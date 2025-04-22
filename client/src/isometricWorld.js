@@ -299,18 +299,34 @@ function loadTile(regionX, regionY, x, y) {
     imgElement.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgZmlsbD0iI2VlZWVlZSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjI0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmaWxsPSIjOTk5OTk5Ij5Mb2FkaW5nLi4uPC90ZXh0Pjwvc3ZnPg==';
     
     // Load the actual tile image - use the islands endpoint instead of the regular tiles
-    const actualImage = new Image();
-    actualImage.onload = () => {
-        console.log(`Successfully loaded tile image for ${x},${y}`);
-        imgElement.src = actualImage.src;
-    };
-    actualImage.onerror = (e) => {
-        console.error(`Failed to load tile image for ${x},${y}:`, e);
-        imgElement.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgZmlsbD0iI2ZmZWVlZSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjI0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmaWxsPSIjY2M1NTU1Ij5FcnJvcjwvdGV4dD48L3N2Zz4=';
-    };
     const tileUrl = `${config.serverUrl}/api/tiles/islands/${x}/${y}`;
     console.log(`Requesting tile from: ${tileUrl}`);
-    actualImage.src = tileUrl;
+    
+    // Use fetch instead of Image object to properly handle 404 responses
+    fetch(tileUrl)
+        .then(response => {
+            if (!response.ok) {
+                if (response.status === 404) {
+                    // If tile doesn't exist, remove the tile element from DOM
+                    tileElement.remove();
+                    state.loadedTiles.delete(tileKey);
+                    console.log(`No tile exists at ${x},${y}, not displaying anything`);
+                    throw new Error('Tile not found');
+                }
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.blob();
+        })
+        .then(blob => {
+            const objectURL = URL.createObjectURL(blob);
+            imgElement.src = objectURL;
+            console.log(`Successfully loaded tile image for ${x},${y}`);
+        })
+        .catch(error => {
+            if (error.message !== 'Tile not found') {
+                console.error(`Failed to load tile image for ${x},${y}:`, error);
+            }
+        });
     
     // Add click event to show tile info
     tileElement.addEventListener('click', () => {

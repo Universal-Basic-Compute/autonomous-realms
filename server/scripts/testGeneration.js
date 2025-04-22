@@ -1,6 +1,7 @@
 const fs = require('fs').promises;
 const path = require('path');
 const fetch = require('node-fetch');
+require('dotenv').config({ path: path.join(__dirname, '../.env') });
 const config = require('../config');
 const logger = require('../utils/logger');
 
@@ -80,6 +81,8 @@ async function generateTestImage() {
       }
     };
     
+    logger.info(`API Key length: ${config.IDEOGRAM_API_KEY ? config.IDEOGRAM_API_KEY.length : 0}`);
+    logger.info(`API Key first few chars: ${config.IDEOGRAM_API_KEY ? config.IDEOGRAM_API_KEY.substring(0, 4) + '...' : 'none'}`);
     logger.debug(`Using API key: ${config.IDEOGRAM_API_KEY.substring(0, 8)}...`);
     logger.debug(`Request data: ${JSON.stringify(requestData)}`);
     

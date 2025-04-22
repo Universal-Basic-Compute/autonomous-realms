@@ -80,9 +80,16 @@ async function generateNextHorizontalTile(previousTilePath, position) {
       const formData = new FormData();
       formData.append('image_file', await fs.readFile(expandedImagePath));
       formData.append('mask', await fs.readFile(maskImagePath));
-      formData.append('model', 'V_2_TURBO'); // Using V_2_TURBO model
+      formData.append('model', config.IDEOGRAM_MODEL || 'V_2_TURBO'); // Use configurable model
       formData.append('num_images', '1'); // Only need one image
       formData.append('prompt', `Isometric game terrain tile continuing seamlessly from the left side. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`);
+      
+      // Log the request details for debugging
+      logger.debug(`API request details: 
+        - Model: ${config.IDEOGRAM_MODEL || 'V_2_TURBO'}
+        - Image size: ${await getFileSize(expandedImagePath)} bytes
+        - Mask size: ${await getFileSize(maskImagePath)} bytes
+        - Prompt length: ${(`Isometric game terrain tile continuing seamlessly from the left side. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`).length} chars`);
       
       logger.debug('Sending API request to Ideogram');
       

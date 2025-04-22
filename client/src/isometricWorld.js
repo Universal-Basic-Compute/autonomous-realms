@@ -54,8 +54,8 @@ function setupEventListeners() {
     document.addEventListener('mouseup', endDrag);
     
     // Touch events for mobile
-    worldContainer.addEventListener('touchstart', handleTouchStart);
-    document.addEventListener('touchmove', handleTouchMove);
+    worldContainer.addEventListener('touchstart', handleTouchStart, { passive: false });
+    document.addEventListener('touchmove', handleTouchMove, { passive: false });
     document.addEventListener('touchend', handleTouchEnd);
     
     // Zoom controls

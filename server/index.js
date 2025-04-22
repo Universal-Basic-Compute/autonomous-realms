@@ -47,6 +47,7 @@ async function init() {
     // Set up routes
     app.use('/api/tiles', tileRoutes);
     app.use('/api/icons', require('./routes/iconRoutes'));
+    app.use('/api/data', require('./routes/dataRoutes'));
     
     // Serve static files
     app.use('/assets', express.static(path.join(__dirname, 'assets')));

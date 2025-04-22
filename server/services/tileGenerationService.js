@@ -86,7 +86,7 @@ async function generateNextHorizontalTile(previousTilePath, position) {
       
       // Build the cURL command - escape quotes in the prompt
       const escapedPrompt = prompt.replace(/"/g, '\\"');
-      const curlCommand = `curl -X POST "https://api.ideogram.ai/reframe" -H "Api-Key: ${config.IDEOGRAM_API_KEY}" -F "image_file=@${expandedImagePath}" -F "resolution=RESOLUTION_960_1024" -F "model=${config.IDEOGRAM_MODEL}" -F "prompt=${escapedPrompt}" -o "${responseFilePath}"`;
+      const curlCommand = `curl -X POST "https://api.ideogram.ai/reframe" -H "Api-Key: ${config.IDEOGRAM_API_KEY}" -F "image_file=@${expandedImagePath}" -F "resolution=RESOLUTION_1536_768" -F "model=${config.IDEOGRAM_MODEL}" -F "prompt=${escapedPrompt}" -o "${responseFilePath}"`;
       
       // Log the request details for debugging
       logger.debug(`API request details: 
@@ -257,7 +257,7 @@ async function generateNextVerticalTile(bottomTilePath, position) {
       
       // Build the cURL command - escape quotes in the prompt
       const escapedPrompt = prompt.replace(/"/g, '\\"');
-      const curlCommand = `curl -X POST "https://api.ideogram.ai/reframe" -H "Api-Key: ${config.IDEOGRAM_API_KEY}" -F "image_file=@${expandedImagePath}" -F "resolution=RESOLUTION_1024_960" -F "model=${config.IDEOGRAM_MODEL}" -F "prompt=${escapedPrompt}" -o "${responseFilePath}"`;
+      const curlCommand = `curl -X POST "https://api.ideogram.ai/reframe" -H "Api-Key: ${config.IDEOGRAM_API_KEY}" -F "image_file=@${expandedImagePath}" -F "resolution=RESOLUTION_768_1536" -F "model=${config.IDEOGRAM_MODEL}" -F "prompt=${escapedPrompt}" -o "${responseFilePath}"`;
       
       // Log the request details for debugging
       logger.debug(`API request details: 

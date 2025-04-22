@@ -5,9 +5,72 @@ const fs = require('fs').promises;
 const fetch = require('node-fetch');
 const FormData = require('form-data');
 const { createCanvas } = require('canvas');
+const { exec } = require('child_process');
 const tileService = require('../services/tileGenerationService');
 const config = require('../config');
 const logger = require('../utils/logger');
+
+// Add a route for cURL diagnostics
+router.get('/curl-test', async (req, res) => {
+  try {
+    logger.info('Running cURL diagnostic test');
+    
+    // Create a simple test image
+    const canvas = createCanvas(256, 256);
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#4CAF50';
+    ctx.fillRect(0, 0, 256, 256);
+    
+    // Save temporary test image
+    const testImagePath = path.join(config.TEMP_DIR, `curl_test_image_${Date.now()}.png`);
+    await fs.writeFile(testImagePath, canvas.toBuffer('image/png'));
+    
+    // Generate a shell command for cURL
+    const curlCommand = `curl -X POST https://api.ideogram.ai/reframe \\
+     -H "Api-Key: ${config.IDEOGRAM_API_KEY}" \\
+     -F "image_file=@${testImagePath}" \\
+     -F "resolution=RESOLUTION_960_1024" \\
+     -F "model=${config.IDEOGRAM_MODEL}"`;
+    
+    // Execute the cURL command
+    exec(curlCommand, { maxBuffer: 1024 * 1024 * 10 }, async (error, stdout, stderr) => {
+      // Clean up temp file
+      await fs.unlink(testImagePath).catch(() => {});
+      
+      if (error) {
+        logger.error(`cURL execution error: ${error.message}`);
+        return res.status(500).json({
+          success: false,
+          error: error.message,
+          stderr: stderr,
+          apiKeyProvided: !!config.IDEOGRAM_API_KEY,
+          apiKeyFirstChars: config.IDEOGRAM_API_KEY ? config.IDEOGRAM_API_KEY.substring(0, 8) + '...' : 'none'
+        });
+      }
+      
+      // Try to parse the response as JSON
+      let responseData;
+      try {
+        responseData = JSON.parse(stdout);
+      } catch (e) {
+        responseData = null;
+      }
+      
+      return res.json({
+        success: true,
+        curlCommand: curlCommand.replace(config.IDEOGRAM_API_KEY, config.IDEOGRAM_API_KEY.substring(0, 8) + '...'),
+        stdout: stdout.substring(0, 1000) + (stdout.length > 1000 ? '...(truncated)' : ''),
+        stderr: stderr,
+        responseData: responseData,
+        apiKeyProvided: !!config.IDEOGRAM_API_KEY,
+        apiKeyFirstChars: config.IDEOGRAM_API_KEY ? config.IDEOGRAM_API_KEY.substring(0, 8) + '...' : 'none'
+      });
+    });
+  } catch (error) {
+    logger.error(`Error setting up cURL test: ${error.message}`);
+    res.status(500).json({ error: 'Failed to run cURL test', details: error.message });
+  }
+});
 
 // Get a tile by coordinates
 // Add a route for API diagnostics
@@ -106,7 +169,8 @@ router.get('/api-test', async (req, res) => {
         responseTime: `${responseTime}ms`,
         headers: Object.fromEntries([...response.headers]),
         apiKeyProvided: !!config.IDEOGRAM_API_KEY,
-        apiKeyFirstChars: config.IDEOGRAM_API_KEY ? config.IDEOGRAM_API_KEY.substring(0, 4) + '...' : 'none',
+        apiKeyFirstChars: config.IDEOGRAM_API_KEY ? config.IDEOGRAM_API_KEY.substring(0, 8) + '...' : 'none',
+        apiKeyLength: config.IDEOGRAM_API_KEY ? config.IDEOGRAM_API_KEY.length : 0,
         responseData: responseData,
         rawResponse: responseText.substring(0, 1000) + (responseText.length > 1000 ? '...(truncated)' : '')
       });
@@ -122,7 +186,8 @@ router.get('/api-test', async (req, res) => {
         error: error.message,
         stack: error.stack,
         apiKeyProvided: !!config.IDEOGRAM_API_KEY,
-        apiKeyFirstChars: config.IDEOGRAM_API_KEY ? config.IDEOGRAM_API_KEY.substring(0, 4) + '...' : 'none'
+        apiKeyFirstChars: config.IDEOGRAM_API_KEY ? config.IDEOGRAM_API_KEY.substring(0, 8) + '...' : 'none',
+        apiKeyLength: config.IDEOGRAM_API_KEY ? config.IDEOGRAM_API_KEY.length : 0
       });
     }
   } catch (error) {

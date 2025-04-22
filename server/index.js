@@ -40,8 +40,8 @@ async function init() {
     logger.info('Server initializing...');
     await ensureDirectories();
     
-    // Debug API key (showing only first 4 chars for security)
-    logger.debug(`Using API key: ${config.IDEOGRAM_API_KEY.substring(0, 4)}... (${config.IDEOGRAM_API_KEY ? 'provided' : 'missing'})`);
+    // Debug API key (showing only first 8 chars for security)
+    logger.debug(`Using API key: ${config.IDEOGRAM_API_KEY.substring(0, 8)}... (${config.IDEOGRAM_API_KEY ? 'provided' : 'missing'}, length: ${config.IDEOGRAM_API_KEY ? config.IDEOGRAM_API_KEY.length : 0})`);
     logger.debug(`Fallback tiles enabled: ${config.USE_FALLBACK_TILES}`);
     
     // Set up routes
@@ -84,6 +84,12 @@ async function init() {
               <h3>API Diagnostic Test</h3>
               <pre>GET /api/tiles/api-test</pre>
               <p>Tests the Ideogram API connection and returns diagnostic information.</p>
+            </div>
+            
+            <div class="endpoint">
+              <h3>cURL Diagnostic Test</h3>
+              <pre>GET /api/tiles/curl-test</pre>
+              <p>Tests the Ideogram API using cURL and returns diagnostic information.</p>
             </div>
             
             <div class="endpoint">

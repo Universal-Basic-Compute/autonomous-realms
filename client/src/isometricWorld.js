@@ -218,8 +218,8 @@ function gridToIso(x, y) {
     // Apply isometric projection
     const isoX = (x - y) * (config.tileWidth / 2);
     
-    // Updated code with 67% vertical overlap (more compressed view):
-    const isoY = (x + y) * (config.tileHeight / 3); // Changed from /2 to /3 for 67% overlap
+    // Updated to use 0% vertical overlap (no compression)
+    const isoY = (x + y) * (config.tileHeight / 1); // Changed from /3 to /1 for 0% overlap
     
     return { x: isoX, y: isoY };
 }

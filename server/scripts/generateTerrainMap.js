@@ -275,9 +275,6 @@ async function generateIslandImage(island, index) {
     const outputPath = path.join(__dirname, `../output/terrain_map/islands/island_${island.coordinates.x}_${island.coordinates.y}.png`);
     await downloadImage(imageUrl, outputPath);
     
-    // Process the image to remove background
-    await removeBackground(outputPath);
-    
     // Save metadata
     const metadataPath = path.join(__dirname, `../output/terrain_map/metadata/island_${island.coordinates.x}_${island.coordinates.y}.json`);
     await fs.writeFile(metadataPath, JSON.stringify({

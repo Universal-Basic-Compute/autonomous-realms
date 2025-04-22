@@ -104,14 +104,28 @@ Example:
 
     // Extract the JSON array from Claude's response
     const contentText = responseData.content[0].text;
-    const jsonMatch = contentText.match(/\[\s*\{.*\}\s*\]/s);
-    
-    if (!jsonMatch) {
+    logger.debug(`Claude response received: ${contentText.substring(0, 200)}...`);
+
+    // Find the first { and the last } to extract the JSON
+    const firstBrace = contentText.indexOf('[');
+    const lastBrace = contentText.lastIndexOf(']');
+
+    if (firstBrace === -1 || lastBrace === -1 || firstBrace >= lastBrace) {
       throw new Error('Could not extract valid JSON from Claude response');
     }
-    
-    const jsonText = jsonMatch[0];
-    const terrainMap = JSON.parse(jsonText);
+
+    const jsonText = contentText.substring(firstBrace, lastBrace + 1);
+    logger.debug(`Extracted JSON: ${jsonText.substring(0, 200)}...`);
+
+    let terrainMap;
+    try {
+      terrainMap = JSON.parse(jsonText);
+      logger.info(`Successfully parsed terrain map with ${terrainMap.length} entries`);
+    } catch (parseError) {
+      logger.error(`Failed to parse extracted JSON: ${parseError.message}`);
+      logger.debug(`Problematic JSON: ${jsonText}`);
+      throw new Error('Failed to parse JSON from Claude response: ' + parseError.message);
+    }
     
     // Save the terrain map to a file
     const mapFilePath = path.join(__dirname, '../output/terrain_map/map.json');

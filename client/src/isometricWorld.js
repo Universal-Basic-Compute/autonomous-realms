@@ -53,10 +53,10 @@ function setupEventListeners() {
     document.addEventListener('mousemove', drag);
     document.addEventListener('mouseup', endDrag);
     
-    // Touch events for mobile
+    // Touch events for mobile - make sure we're using the correct options
     worldContainer.addEventListener('touchstart', handleTouchStart, { passive: false });
     document.addEventListener('touchmove', handleTouchMove, { passive: false });
-    document.addEventListener('touchend', handleTouchEnd);
+    document.addEventListener('touchend', handleTouchEnd, { passive: true });
     
     // Zoom controls
     zoomInButton.addEventListener('click', zoomIn);
@@ -64,7 +64,7 @@ function setupEventListeners() {
     resetViewButton.addEventListener('click', resetView);
     
     // Mouse wheel zoom
-    document.addEventListener('wheel', handleWheel);
+    document.addEventListener('wheel', handleWheel, { passive: false });
     
     // Window resize
     window.addEventListener('resize', handleResize);
@@ -207,7 +207,9 @@ function updateWorldTransform() {
 function gridToIso(x, y) {
     // Apply isometric projection
     const isoX = (x - y) * (config.tileWidth / 2);
-    const isoY = (x + y) * config.tileHeight; // Remove the division by 4 to eliminate overlap
+    
+    // Updated code with 50% vertical overlap (better balance):
+    const isoY = (x + y) * (config.tileHeight / 2);
     
     return { x: isoX, y: isoY };
 }
@@ -262,6 +264,7 @@ function loadVisibleTiles() {
 // Load a single tile
 function loadTile(regionX, regionY, x, y) {
     const tileKey = `${x}_${y}`;
+    console.log(`Loading tile at ${x},${y}`);
     
     // Create tile element
     const tileElement = document.createElement('div');
@@ -288,12 +291,16 @@ function loadTile(regionX, regionY, x, y) {
     // Load the actual tile image - use the islands endpoint instead of the regular tiles
     const actualImage = new Image();
     actualImage.onload = () => {
+        console.log(`Successfully loaded tile image for ${x},${y}`);
         imgElement.src = actualImage.src;
     };
-    actualImage.onerror = () => {
+    actualImage.onerror = (e) => {
+        console.error(`Failed to load tile image for ${x},${y}:`, e);
         imgElement.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgZmlsbD0iI2ZmZWVlZSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjI0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmaWxsPSIjY2M1NTU1Ij5FcnJvcjwvdGV4dD48L3N2Zz4=';
     };
-    actualImage.src = `${config.serverUrl}/api/tiles/islands/${x}/${y}`;
+    const tileUrl = `${config.serverUrl}/api/tiles/islands/${x}/${y}`;
+    console.log(`Requesting tile from: ${tileUrl}`);
+    actualImage.src = tileUrl;
     
     // Add click event to show tile info
     tileElement.addEventListener('click', () => {

@@ -49,6 +49,7 @@ async function init() {
     
     // Serve static files
     app.use('/assets', express.static(path.join(__dirname, 'assets')));
+    app.use('/output', express.static(path.join(__dirname, 'output')));
     
     // Health check endpoint
     app.get('/health', (req, res) => {

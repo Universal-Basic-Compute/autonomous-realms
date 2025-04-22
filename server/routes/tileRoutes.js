@@ -38,12 +38,19 @@ router.get('/islands/:x/:y', async (req, res) => {
       logger.warn(`Island not found at position (${x}, ${y})`);
       
       // Return a placeholder or fallback
-      const fallbackPath = path.join(config.TILES_DIR, 'base_tile.png');
+      const fallbackPath = path.join(__dirname, '../output/terrain_map/islands', 'base_island.png');
       try {
         await fs.access(fallbackPath);
         return res.sendFile(fallbackPath);
       } catch (baseErr) {
-        return res.status(404).json({ error: 'Island not found and no fallback available' });
+        // If base_island.png doesn't exist, try the base_tile.png
+        const baseTilePath = path.join(config.TILES_DIR, 'base_tile.png');
+        try {
+          await fs.access(baseTilePath);
+          return res.sendFile(baseTilePath);
+        } catch (tileErr) {
+          return res.status(404).json({ error: 'Island not found and no fallback available' });
+        }
       }
     }
   } catch (error) {

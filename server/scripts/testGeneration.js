@@ -59,119 +59,46 @@ async function downloadImage(url, outputPath) {
   }
 }
 
-// Remove background and shadows from image
+// Remove background using remove.bg API
 async function removeBackground(imagePath) {
   try {
-    logger.info(`Removing background from image: ${imagePath}`);
+    logger.info(`Removing background from image using remove.bg API: ${imagePath}`);
     
-    // Load the image
-    const { createCanvas, loadImage } = require('canvas');
-    const image = await loadImage(imagePath);
+    // Read the image file
+    const imageBuffer = await fs.readFile(imagePath);
     
-    // Create a new canvas with the same dimensions
-    const canvas = createCanvas(image.width, image.height);
-    const ctx = canvas.getContext('2d');
+    // Create form data for the API request
+    const FormData = require('form-data');
+    const formData = new FormData();
+    formData.append('size', 'auto');
+    formData.append('image_file', imageBuffer, { filename: path.basename(imagePath) });
     
-    // Draw the original image
-    ctx.drawImage(image, 0, 0);
+    // Make the API request to remove.bg
+    logger.debug(`Sending request to remove.bg API`);
+    const response = await fetch('https://api.remove.bg/v1.0/removebg', {
+      method: 'POST',
+      headers: {
+        'X-Api-Key': process.env.REMOVE_BG_API_KEY || config.REMOVE_BG_API_KEY
+      },
+      body: formData
+    });
     
-    // Get image data to process pixels
-    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const data = imageData.data;
-    
-    // Define what we consider "white" or "near white" for background
-    const isWhiteOrNearWhite = (r, g, b) => {
-      // Check if the color is close to white (allowing some variation)
-      return r > 240 && g > 240 && b > 240;
-    };
-    
-    // Detect background color from corners (sampling multiple points)
-    const cornerSamples = [
-      { x: 0, y: 0 },                                  // Top-left
-      { x: canvas.width - 1, y: 0 },                   // Top-right
-      { x: 0, y: canvas.height - 1 },                  // Bottom-left
-      { x: canvas.width - 1, y: canvas.height - 1 },   // Bottom-right
-      { x: 5, y: 5 },                                  // Near top-left
-      { x: canvas.width - 6, y: 5 },                   // Near top-right
-      { x: 5, y: canvas.height - 6 },                  // Near bottom-left
-      { x: canvas.width - 6, y: canvas.height - 6 }    // Near bottom-right
-    ];
-    
-    // Sample colors from corners to determine background color
-    let backgroundColors = [];
-    for (const point of cornerSamples) {
-      const idx = (point.y * canvas.width + point.x) * 4;
-      backgroundColors.push({
-        r: data[idx],
-        g: data[idx + 1],
-        b: data[idx + 2],
-        a: data[idx + 3]
-      });
+    // Check if the request was successful
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`remove.bg API request failed with status ${response.status}: ${errorText}`);
     }
     
-    // Filter out non-white colors from our background samples
-    backgroundColors = backgroundColors.filter(color => 
-      isWhiteOrNearWhite(color.r, color.g, color.b)
-    );
+    // Get the processed image with transparent background
+    const buffer = await response.buffer();
     
-    // If we don't have enough white samples, use a default white
-    const defaultBackground = { r: 255, g: 255, b: 255 };
-    const backgroundColor = backgroundColors.length > 3 
-      ? backgroundColors[0] 
-      : defaultBackground;
-    
-    logger.debug(`Detected background color: RGB(${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b})`);
-    
-    // Process the image - remove shadows and ensure transparent background
-    for (let i = 0; i < data.length; i += 4) {
-      const r = data[i];
-      const g = data[i + 1];
-      const b = data[i + 2];
-      const a = data[i + 3];
-      
-      // Check if this pixel is likely part of the background or shadow
-      // 1. If it's very close to white, make it transparent
-      if (isWhiteOrNearWhite(r, g, b)) {
-        data[i] = 0;       // R (doesn't matter for transparent pixels)
-        data[i + 1] = 0;   // G (doesn't matter for transparent pixels)
-        data[i + 2] = 0;   // B (doesn't matter for transparent pixels)
-        data[i + 3] = 0;   // A (0 = fully transparent)
-        continue;
-      }
-      
-      // 2. Check for shadows (grayish colors with similar RGB values)
-      const isGray = Math.abs(r - g) < 15 && Math.abs(g - b) < 15 && Math.abs(r - b) < 15;
-      const isBrightGray = isGray && (r + g + b) / 3 > 200;
-      
-      if (isBrightGray) {
-        // This is likely a shadow - make it transparent
-        data[i] = 0;       // R
-        data[i + 1] = 0;   // G
-        data[i + 2] = 0;   // B
-        data[i + 3] = 0;   // A (fully transparent)
-        continue;
-      }
-      
-      // 3. For semi-transparent pixels that are light, make them fully transparent
-      if (a < 240 && (r + g + b) / 3 > 220) {
-        // Light semi-transparent pixel - make it transparent
-        data[i] = 0;       // R
-        data[i + 1] = 0;   // G
-        data[i + 2] = 0;   // B
-        data[i + 3] = 0;   // A (fully transparent)
-      }
-    }
-    
-    // Put the processed image data back
-    ctx.putImageData(imageData, 0, 0);
-    
-    // Save the processed image
-    await fs.writeFile(imagePath, canvas.toBuffer('image/png'));
-    logger.info(`Background removed successfully from ${imagePath} (made transparent)`);
+    // Save the processed image back to the original path
+    await fs.writeFile(imagePath, buffer);
+    logger.info(`Background removed successfully using remove.bg API: ${imagePath}`);
     
     return imagePath;
   } catch (error) {
-    logger.error(`Error removing background: ${error.message}`);
+    logger.error(`Error removing background with remove.bg API: ${error.message}`);
     // Return the original image path if processing fails
     return imagePath;
   }

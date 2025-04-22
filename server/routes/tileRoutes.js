@@ -143,6 +143,23 @@ router.get('/curl-test', async (req, res) => {
   }
 });
 
+// Add a route to monitor the queue status
+router.get('/queue-status', (req, res) => {
+  try {
+    const queueStatus = {
+      queueLength: tileService.apiQueue.length,
+      activeBatchCount: tileService.activeBatchCount,
+      isProcessing: tileService.apiQueue.length > 0,
+      batchSize: tileService.BATCH_SIZE
+    };
+    
+    res.json(queueStatus);
+  } catch (error) {
+    logger.error(`Error getting queue status: ${error.message}`);
+    res.status(500).json({ error: 'Failed to get queue status' });
+  }
+});
+
 // Get a tile by coordinates
 // Add a route for API diagnostics
 router.get('/api-test', async (req, res) => {

@@ -16,6 +16,8 @@ const TILE_HEIGHT = config.TILE_HEIGHT;
 // API request queue for rate limiting
 const apiQueue = [];
 let processingQueue = false;
+const BATCH_SIZE = 4; // Process 4 API calls at a time
+let activeBatchCount = 0; // Track how many batches are currently processing
 
 /**
  * Generates a horizontal tile based on a previous tile
@@ -986,12 +988,16 @@ function getTerrainBaseColor(terrainCode) {
  */
 async function queueApiRequest(requestFunction) {
   return new Promise((resolve, reject) => {
+    const queuePosition = apiQueue.length + 1;
+    
     apiQueue.push({
       requestFunction,
       resolve,
       reject,
       timestamp: Date.now()
     });
+    
+    logger.debug(`Added request to queue (position ${queuePosition})`);
     
     if (!processingQueue) {
       processQueue();
@@ -1000,7 +1006,7 @@ async function queueApiRequest(requestFunction) {
 }
 
 /**
- * Processes the API request queue
+ * Processes the API request queue in batches
  */
 async function processQueue() {
   if (apiQueue.length === 0) {
@@ -1009,31 +1015,53 @@ async function processQueue() {
   }
   
   processingQueue = true;
-  const { requestFunction, resolve, reject, timestamp } = apiQueue.shift();
   
-  try {
-    // Calculate time to wait based on rate limit
-    const now = Date.now();
-    const timeElapsed = now - timestamp;
-    const timeToWait = Math.max(0, 1000 / config.API_RATE_LIMIT - timeElapsed);
-    
-    if (timeToWait > 0) {
-      logger.debug(`Rate limiting: waiting ${timeToWait}ms before next API request`);
-      await new Promise(resolve => setTimeout(resolve, timeToWait));
-    }
-    
-    // Execute the request
-    const result = await requestFunction();
-    resolve(result);
-  } catch (error) {
-    logger.error(`API request failed: ${error.message}`);
-    reject(error);
-  } finally {
-    // Continue with queue even on error
+  // If we're already processing the maximum number of batches, wait
+  if (activeBatchCount >= 1) {
     setTimeout(() => {
       processQueue();
-    }, 100);
+    }, 500);
+    return;
   }
+  
+  // Increase the active batch count
+  activeBatchCount++;
+  
+  // Take up to BATCH_SIZE requests from the queue
+  const batchSize = Math.min(BATCH_SIZE, apiQueue.length);
+  const batch = apiQueue.splice(0, batchSize);
+  
+  logger.info(`Processing batch of ${batchSize} API requests (${apiQueue.length} remaining in queue)`);
+  
+  // Process all requests in the batch concurrently
+  const batchPromises = batch.map(async (request, index) => {
+    try {
+      // Add a small delay between requests in the same batch to avoid overwhelming the API
+      const staggerDelay = index * 250; // 250ms between each request in the batch
+      if (staggerDelay > 0) {
+        await new Promise(resolve => setTimeout(resolve, staggerDelay));
+      }
+      
+      // Execute the request
+      const result = await request.requestFunction();
+      request.resolve(result);
+    } catch (error) {
+      logger.error(`API request in batch failed: ${error.message}`);
+      request.reject(error);
+    }
+  });
+  
+  // Wait for all requests in the batch to complete
+  await Promise.all(batchPromises)
+    .catch(err => logger.error(`Error processing batch: ${err.message}`));
+  
+  // Decrease the active batch count
+  activeBatchCount--;
+  
+  // Add a delay before processing the next batch to respect rate limits
+  setTimeout(() => {
+    processQueue();
+  }, 1000); // 1 second between batches
 }
 
 module.exports = {
@@ -1041,5 +1069,9 @@ module.exports = {
   generateNextVerticalTile,
   generateInteriorTile,
   generateFallbackTile,
-  getTerrainCodeForPosition
+  getTerrainCodeForPosition,
+  // Add these exports
+  apiQueue,
+  activeBatchCount,
+  BATCH_SIZE
 };

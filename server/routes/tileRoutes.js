@@ -55,8 +55,15 @@ router.get('/api-test', async (req, res) => {
     const formData = new FormData();
     formData.append('image_file', await fs.readFile(testImagePath));
     formData.append('mask', await fs.readFile(testMaskPath));
-    formData.append('model', 'V_2_TURBO'); // Using V_2_TURBO model
+    formData.append('model', config.IDEOGRAM_MODEL || 'V_2_TURBO'); // Use configurable model
     formData.append('prompt', 'Simple test image with grass texture. Clash Royale style.');
+    
+    // Log the request details for debugging
+    logger.debug(`API test request details: 
+      - Model: ${config.IDEOGRAM_MODEL || 'V_2_TURBO'}
+      - API Key first chars: ${config.IDEOGRAM_API_KEY ? config.IDEOGRAM_API_KEY.substring(0, 4) + '...' : 'none'}
+      - Image size: ${(await fs.stat(testImagePath)).size} bytes
+      - Mask size: ${(await fs.stat(testMaskPath)).size} bytes`);
     
     // Make API request
     logger.info('Sending test request to Ideogram API');
@@ -67,7 +74,8 @@ router.get('/api-test', async (req, res) => {
         method: 'POST',
         headers: {
           'Api-Key': config.IDEOGRAM_API_KEY,
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Content-Type': 'multipart/form-data'
         },
         body: formData,
         timeout: config.API_TIMEOUT // Use the timeout from config

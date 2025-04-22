@@ -245,8 +245,15 @@ async function generateNextVerticalTile(bottomTilePath, position) {
       const formData = new FormData();
       formData.append('image_file', await fs.readFile(expandedImagePath));
       formData.append('mask', await fs.readFile(maskImagePath));
-      formData.append('model', 'V_2_TURBO'); // Using V_2_TURBO model
+      formData.append('model', config.IDEOGRAM_MODEL || 'V_2_TURBO'); // Use configurable model
       formData.append('prompt', `Isometric game terrain tile continuing seamlessly from the bottom side. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`);
+      
+      // Log the request details for debugging
+      logger.debug(`API request details: 
+        - Model: ${config.IDEOGRAM_MODEL || 'V_2_TURBO'}
+        - Image size: ${await getFileSize(expandedImagePath)} bytes
+        - Mask size: ${await getFileSize(maskImagePath)} bytes
+        - Prompt length: ${(`Isometric game terrain tile continuing seamlessly from the bottom side. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`).length} chars`);
       
       // Make API request
       const response = await fetch('https://api.ideogram.ai/edit', {
@@ -407,25 +414,44 @@ async function generateInteriorTile(leftTilePath, bottomTilePath, position) {
       const formData = new FormData();
       formData.append('image_file', await fs.readFile(compositeImagePath));
       formData.append('mask', await fs.readFile(maskImagePath));
-      formData.append('model', 'V_2_TURBO'); // Using V_2_TURBO model
+      formData.append('model', config.IDEOGRAM_MODEL || 'V_2_TURBO'); // Use configurable model
       formData.append('prompt', `Isometric game terrain tile continuing seamlessly from the left and bottom sides. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`);
+      
+      // Log the request details for debugging
+      logger.debug(`API request details: 
+        - Model: ${config.IDEOGRAM_MODEL || 'V_2_TURBO'}
+        - Image size: ${await getFileSize(compositeImagePath)} bytes
+        - Mask size: ${await getFileSize(maskImagePath)} bytes
+        - Prompt length: ${(`Isometric game terrain tile continuing seamlessly from the left and bottom sides. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`).length} chars`);
       
       // Make API request
       const response = await fetch('https://api.ideogram.ai/edit', {
         method: 'POST',
         headers: {
-          'Api-Key': config.IDEOGRAM_API_KEY
+          'Api-Key': config.IDEOGRAM_API_KEY,
+          'Accept': 'application/json'
         },
         body: formData,
         timeout: config.API_TIMEOUT // Use the timeout from config
       });
       
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`API request failed with status ${response.status}: ${errorText}`);
+      // Get response as text first to ensure we can see error messages
+      const responseText = await response.text();
+      logger.debug(`API response text: ${responseText.substring(0, 500)}${responseText.length > 500 ? '...(truncated)' : ''}`);
+      
+      // Try to parse as JSON
+      let data;
+      try {
+        data = JSON.parse(responseText);
+      } catch (e) {
+        logger.error(`Failed to parse API response as JSON: ${e.message}`);
+        throw new Error(`API request failed with status ${response.status}: Invalid JSON response`);
       }
       
-      const data = await response.json();
+      if (!response.ok) {
+        logger.error(`API request failed with status ${response.status}: ${JSON.stringify(data)}`);
+        throw new Error(`API request failed with status ${response.status}: ${data.error || 'Unknown error'}`);
+      }
       
       if (!data.data || !data.data[0] || !data.data[0].url) {
         throw new Error('Invalid response from Ideogram API: ' + JSON.stringify(data));
@@ -602,6 +628,19 @@ async function cropAndSaveTopRightQuadrant(imagePath, outputPath) {
   } catch (error) {
     logger.error(`Error cropping image: ${error.message}`);
     throw error;
+  }
+}
+
+/**
+ * Helper function to get file size
+ */
+async function getFileSize(filePath) {
+  try {
+    const stats = await fs.stat(filePath);
+    return stats.size;
+  } catch (error) {
+    logger.error(`Error getting file size: ${error.message}`);
+    return 'unknown';
   }
 }
 

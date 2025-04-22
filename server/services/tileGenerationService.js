@@ -80,7 +80,7 @@ async function generateNextHorizontalTile(previousTilePath, position) {
       const formData = new FormData();
       formData.append('image_file', await fs.readFile(expandedImagePath));
       formData.append('model', config.IDEOGRAM_MODEL || 'V_2'); // Use configurable model
-      formData.append('resolution', 'RESOLUTION_1024_1024');
+      formData.append('resolution', 'RESOLUTION_1536_512'); // 3:1 aspect ratio, wider than tall
       formData.append('num_images', '1'); // Only need one image
       formData.append('style_type', 'REALISTIC');
       formData.append('prompt', `Isometric game terrain tile continuing seamlessly from the left side. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`);
@@ -254,7 +254,7 @@ async function generateNextVerticalTile(bottomTilePath, position) {
       const formData = new FormData();
       formData.append('image_file', await fs.readFile(expandedImagePath));
       formData.append('model', config.IDEOGRAM_MODEL || 'V_2'); // Use configurable model
-      formData.append('resolution', 'RESOLUTION_1024_1024');
+      formData.append('resolution', 'RESOLUTION_512_1536'); // 1:3 aspect ratio, taller than wide
       formData.append('style_type', 'REALISTIC');
       formData.append('prompt', `Isometric game terrain tile continuing seamlessly from the bottom side. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`);
       
@@ -424,7 +424,7 @@ async function generateInteriorTile(leftTilePath, bottomTilePath, position) {
       const formData = new FormData();
       formData.append('image_file', await fs.readFile(compositeImagePath));
       formData.append('model', config.IDEOGRAM_MODEL || 'V_2'); // Use configurable model
-      formData.append('resolution', 'RESOLUTION_1024_1024');
+      formData.append('resolution', 'RESOLUTION_1024_1024'); // Keep square for interior tiles
       formData.append('style_type', 'REALISTIC');
       formData.append('prompt', `Isometric game terrain tile continuing seamlessly from the left and bottom sides. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`);
       

@@ -379,8 +379,20 @@ async function processTerrainMap() {
     // Ensure directories exist
     await ensureDirectories();
     
-    // Generate terrain map
-    const terrainMap = await generateTerrainMap();
+    // Check if terrain map already exists
+    const mapFilePath = path.join(__dirname, '../output/terrain_map/map.json');
+    let terrainMap;
+    
+    try {
+      // Try to read the existing map file
+      const mapContent = await fs.readFile(mapFilePath, 'utf8');
+      terrainMap = JSON.parse(mapContent);
+      logger.info(`Using existing terrain map with ${terrainMap.length} islands from ${mapFilePath}`);
+    } catch (err) {
+      // If file doesn't exist or can't be parsed, generate a new map
+      logger.info('No existing terrain map found, generating new map');
+      terrainMap = await generateTerrainMap();
+    }
     
     // Process each island with rate limiting
     logger.info(`Processing ${terrainMap.length} islands`);
@@ -389,6 +401,20 @@ async function processTerrainMap() {
       const island = terrainMap[i];
       
       try {
+        // Check if island image already exists
+        const islandImagePath = path.join(
+          __dirname, 
+          `../output/terrain_map/islands/island_${island.coordinates.x}_${island.coordinates.y}.png`
+        );
+        
+        try {
+          await fs.access(islandImagePath);
+          logger.info(`Island image already exists for ${island.coordinates.x},${island.coordinates.y}, skipping generation`);
+          continue; // Skip to next island
+        } catch (imageErr) {
+          // Image doesn't exist, generate it
+        }
+        
         // Add delay between requests to respect rate limits
         if (i > 0) {
           const delay = 2000; // 2 seconds between requests
@@ -407,7 +433,7 @@ async function processTerrainMap() {
     return {
       success: true,
       islandCount: terrainMap.length,
-      mapPath: path.join(__dirname, '../output/terrain_map/map.json')
+      mapPath: mapFilePath
     };
   } catch (error) {
     logger.error(`Error processing terrain map: ${error.message}`);

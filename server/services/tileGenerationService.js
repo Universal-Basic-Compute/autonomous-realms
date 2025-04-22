@@ -1,9 +1,9 @@
-const fetch = require('node-fetch');
-// Note: Make sure to install node-fetch@2 with: npm install node-fetch@2
 const { createCanvas, loadImage } = require('canvas');
 const fs = require('fs').promises;
 const path = require('path');
-const FormData = require('form-data');
+const { exec } = require('child_process');
+const util = require('util');
+const execPromise = util.promisify(exec);
 const config = require('../config');
 
 // Set up logging
@@ -76,91 +76,90 @@ async function generateNextHorizontalTile(previousTilePath, position) {
     
     // Queue the API request to respect rate limits
     const newTilePath = await queueApiRequest(async () => {
-      // Create form data for API request
-      const formData = new FormData();
-      formData.append('image_file', await fs.readFile(expandedImagePath));
-      formData.append('model', config.IDEOGRAM_MODEL); // Use configurable model
-      formData.append('resolution', 'RESOLUTION_960_1024'); // Updated resolution for horizontal tiles
-      formData.append('prompt', `Isometric game terrain tile continuing seamlessly from the left side. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`);
+      // Create a temporary directory for the response
+      const responseDir = path.join(config.TEMP_DIR, 'responses');
+      await fs.mkdir(responseDir, { recursive: true });
+      const responseFilePath = path.join(responseDir, `response_${Date.now()}.json`);
+      
+      // Prepare the prompt
+      const prompt = `Isometric game terrain tile continuing seamlessly from the left side. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`;
+      
+      // Build the cURL command - escape quotes in the prompt
+      const escapedPrompt = prompt.replace(/"/g, '\\"');
+      const curlCommand = `curl -X POST "https://api.ideogram.ai/reframe" -H "Api-Key: ${config.IDEOGRAM_API_KEY}" -F "image_file=@${expandedImagePath}" -F "resolution=RESOLUTION_960_1024" -F "model=${config.IDEOGRAM_MODEL}" -F "prompt=${escapedPrompt}" -o "${responseFilePath}"`;
       
       // Log the request details for debugging
       logger.debug(`API request details: 
         - Model: ${config.IDEOGRAM_MODEL || 'V_2_TURBO'}
         - Image size: ${await getFileSize(expandedImagePath)} bytes
         - Mask size: ${await getFileSize(maskImagePath)} bytes
-        - Prompt length: ${(`Isometric game terrain tile continuing seamlessly from the left side. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`).length} chars`);
+        - Prompt length: ${prompt.length} chars`);
       
-      logger.debug('Sending API request to Ideogram');
+      logger.debug(`Executing cURL command: ${curlCommand.replace(config.IDEOGRAM_API_KEY, config.IDEOGRAM_API_KEY.substring(0, 8) + '...')}`);
       
-      // Make API request with retry logic
-      let response;
+      // Execute the cURL command with retry logic
       let retryCount = 0;
+      let curlResult;
       let errorText = '';
       
       while (retryCount < config.MAX_RETRIES) {
         try {
           logger.debug(`API request attempt ${retryCount + 1}/${config.MAX_RETRIES}`);
           
-          response = await fetch('https://api.ideogram.ai/reframe', {
-            method: 'POST',
-            headers: {
-              'Api-Key': config.IDEOGRAM_API_KEY,
-              'Accept': 'application/json'
-            },
-            body: formData,
-            timeout: config.API_TIMEOUT // Use the timeout from config
-          });
+          // Execute the cURL command
+          curlResult = await execPromise(curlCommand, { maxBuffer: 1024 * 1024 * 10 });
           
-          if (response.ok) {
-            break; // Success, exit retry loop
+          // Check if the response file exists and has content
+          const stats = await fs.stat(responseFilePath);
+          if (stats.size === 0) {
+            throw new Error('Empty response file');
           }
           
-          errorText = await response.text();
-          logger.warn(`API request failed (attempt ${retryCount + 1}/${config.MAX_RETRIES}): Status ${response.status}: ${errorText}`);
+          // Read the response file
+          const responseText = await fs.readFile(responseFilePath, 'utf8');
+          
+          // Parse the response
+          const data = JSON.parse(responseText);
+          
+          // Log the full response for debugging
+          logger.debug(`API response: ${JSON.stringify(data)}`);
+          
+          if (!data.data || !data.data[0] || !data.data[0].url) {
+            throw new Error('Invalid response from Ideogram API: ' + JSON.stringify(data));
+          }
+          
+          logger.debug('Received successful response from Ideogram API');
+          
+          // Clean up temp files
+          await fs.unlink(expandedImagePath).catch(err => logger.warn(`Failed to delete temp file: ${err.message}`));
+          await fs.unlink(responseFilePath).catch(err => logger.warn(`Failed to delete temp file: ${err.message}`));
+          
+          // Download the generated image
+          const generatedImageUrl = data.data[0].url;
+          const generatedImage = await downloadImage(generatedImageUrl);
+          
+          // Crop and save the new tile
+          const newTilePath = path.join(
+            config.TILES_DIR, 
+            `${position.regionX}_${position.regionY}_${position.x}_${position.y}.png`
+          );
+          
+          await cropAndSaveRightSide(generatedImage, newTilePath);
+          
+          return newTilePath;
+        } catch (error) {
+          logger.warn(`API request failed (attempt ${retryCount + 1}/${config.MAX_RETRIES}): ${error.message}`);
+          errorText = error.message;
           
           // Wait before retrying (exponential backoff)
           const backoffTime = Math.min(1000 * Math.pow(2, retryCount), 10000);
           await new Promise(resolve => setTimeout(resolve, backoffTime));
           
           retryCount++;
-        } catch (fetchError) {
-          logger.error(`Network error during API request (attempt ${retryCount + 1}/${config.MAX_RETRIES}): ${fetchError.message}`);
-          retryCount++;
-          
-          // Wait before retrying
-          const backoffTime = Math.min(1000 * Math.pow(2, retryCount), 10000);
-          await new Promise(resolve => setTimeout(resolve, backoffTime));
         }
       }
       
-      if (!response || !response.ok) {
-        throw new Error(`API request failed after ${config.MAX_RETRIES} attempts. Last status: ${response?.status}, Error: ${errorText}`);
-      }
-      
-      let data;
-      try {
-        data = await response.json();
-        
-        // Log the full response for debugging
-        logger.debug(`API response: ${JSON.stringify(data)}`);
-        
-        if (!data.data || !data.data[0] || !data.data[0].url) {
-          throw new Error('Invalid response from Ideogram API: ' + JSON.stringify(data));
-        }
-      } catch (jsonError) {
-        logger.error(`Error parsing API response: ${jsonError.message}`);
-        throw new Error(`Failed to parse API response: ${jsonError.message}`);
-      }
-      
-      logger.debug('Received successful response from Ideogram API');
-      
-      // Clean up temp files
-      await fs.unlink(expandedImagePath).catch(err => logger.warn(`Failed to delete temp file: ${err.message}`));
-      await fs.unlink(maskImagePath).catch(err => logger.warn(`Failed to delete temp file: ${err.message}`));
-      
-      // Download the generated image
-      const generatedImageUrl = data.data[0].url;
-      const generatedImage = await downloadImage(generatedImageUrl);
+      throw new Error(`API request failed after ${config.MAX_RETRIES} attempts. Last error: ${errorText}`);
       
       // Crop and save the new tile
       const newTilePath = path.join(
@@ -248,59 +247,89 @@ async function generateNextVerticalTile(bottomTilePath, position) {
     
     // Queue the API request to respect rate limits
     const newTilePath = await queueApiRequest(async () => {
-      // Create form data for API request
-      const formData = new FormData();
-      formData.append('image_file', await fs.readFile(expandedImagePath));
-      formData.append('model', config.IDEOGRAM_MODEL); // Use configurable model
-      formData.append('resolution', 'RESOLUTION_1024_960'); // Updated resolution for vertical tiles
-      formData.append('prompt', `Isometric game terrain tile continuing seamlessly from the bottom side. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`);
+      // Create a temporary directory for the response
+      const responseDir = path.join(config.TEMP_DIR, 'responses');
+      await fs.mkdir(responseDir, { recursive: true });
+      const responseFilePath = path.join(responseDir, `response_${Date.now()}.json`);
+      
+      // Prepare the prompt
+      const prompt = `Isometric game terrain tile continuing seamlessly from the bottom side. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`;
+      
+      // Build the cURL command - escape quotes in the prompt
+      const escapedPrompt = prompt.replace(/"/g, '\\"');
+      const curlCommand = `curl -X POST "https://api.ideogram.ai/reframe" -H "Api-Key: ${config.IDEOGRAM_API_KEY}" -F "image_file=@${expandedImagePath}" -F "resolution=RESOLUTION_1024_960" -F "model=${config.IDEOGRAM_MODEL}" -F "prompt=${escapedPrompt}" -o "${responseFilePath}"`;
       
       // Log the request details for debugging
       logger.debug(`API request details: 
         - Model: ${config.IDEOGRAM_MODEL || 'V_2_TURBO'}
         - Image size: ${await getFileSize(expandedImagePath)} bytes
         - Mask size: ${await getFileSize(maskImagePath)} bytes
-        - Prompt length: ${(`Isometric game terrain tile continuing seamlessly from the bottom side. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`).length} chars`);
+        - Prompt length: ${prompt.length} chars`);
       
-      // Make API request
-      const response = await fetch('https://api.ideogram.ai/reframe', {
-        method: 'POST',
-        headers: {
-          'Api-Key': config.IDEOGRAM_API_KEY,
-          'Accept': 'application/json'
-        },
-        body: formData,
-        timeout: config.API_TIMEOUT // Use the timeout from config
-      });
+      logger.debug(`Executing cURL command: ${curlCommand.replace(config.IDEOGRAM_API_KEY, config.IDEOGRAM_API_KEY.substring(0, 8) + '...')}`);
       
-      // Get response as text first to ensure we can see error messages
-      const responseText = await response.text();
+      // Execute the cURL command with retry logic
+      let retryCount = 0;
+      let errorText = '';
       
-      // Try to parse as JSON
-      let data;
-      try {
-        data = JSON.parse(responseText);
-      } catch (e) {
-        logger.error(`Failed to parse API response as JSON: ${responseText.substring(0, 500)}`);
-        throw new Error(`API request failed with status ${response.status}: Invalid JSON response`);
+      while (retryCount < config.MAX_RETRIES) {
+        try {
+          logger.debug(`API request attempt ${retryCount + 1}/${config.MAX_RETRIES}`);
+          
+          // Execute the cURL command
+          await execPromise(curlCommand, { maxBuffer: 1024 * 1024 * 10 });
+          
+          // Check if the response file exists and has content
+          const stats = await fs.stat(responseFilePath);
+          if (stats.size === 0) {
+            throw new Error('Empty response file');
+          }
+          
+          // Read the response file
+          const responseText = await fs.readFile(responseFilePath, 'utf8');
+          
+          // Parse the response
+          const data = JSON.parse(responseText);
+          
+          // Log the full response for debugging
+          logger.debug(`API response: ${JSON.stringify(data)}`);
+          
+          if (!data.data || !data.data[0] || !data.data[0].url) {
+            throw new Error('Invalid response from Ideogram API: ' + JSON.stringify(data));
+          }
+          
+          logger.debug('Received successful response from Ideogram API');
+          
+          // Clean up temp files
+          await fs.unlink(expandedImagePath).catch(err => logger.warn(`Failed to delete temp file: ${err.message}`));
+          await fs.unlink(responseFilePath).catch(err => logger.warn(`Failed to delete temp file: ${err.message}`));
+          
+          // Download the generated image
+          const generatedImageUrl = data.data[0].url;
+          const generatedImage = await downloadImage(generatedImageUrl);
+          
+          // Crop and save the new tile
+          const newTilePath = path.join(
+            config.TILES_DIR, 
+            `${position.regionX}_${position.regionY}_${position.x}_${position.y}.png`
+          );
+          
+          await cropAndSaveTopSide(generatedImage, newTilePath);
+          
+          return newTilePath;
+        } catch (error) {
+          logger.warn(`API request failed (attempt ${retryCount + 1}/${config.MAX_RETRIES}): ${error.message}`);
+          errorText = error.message;
+          
+          // Wait before retrying (exponential backoff)
+          const backoffTime = Math.min(1000 * Math.pow(2, retryCount), 10000);
+          await new Promise(resolve => setTimeout(resolve, backoffTime));
+          
+          retryCount++;
+        }
       }
       
-      if (!response.ok) {
-        logger.error(`API request failed with status ${response.status}: ${JSON.stringify(data)}`);
-        throw new Error(`API request failed with status ${response.status}: ${data.error || 'Unknown error'}`);
-      }
-      
-      if (!data.data || !data.data[0] || !data.data[0].url) {
-        throw new Error('Invalid response from Ideogram API: ' + JSON.stringify(data));
-      }
-      
-      // Clean up temp files
-      await fs.unlink(expandedImagePath).catch(err => logger.warn(`Failed to delete temp file: ${err.message}`));
-      await fs.unlink(maskImagePath).catch(err => logger.warn(`Failed to delete temp file: ${err.message}`));
-      
-      // Download the generated image
-      const generatedImageUrl = data.data[0].url;
-      const generatedImage = await downloadImage(generatedImageUrl);
+      throw new Error(`API request failed after ${config.MAX_RETRIES} attempts. Last error: ${errorText}`);
       
       // Crop and save the new tile
       const newTilePath = path.join(
@@ -417,60 +446,87 @@ async function generateInteriorTile(leftTilePath, bottomTilePath, position) {
     
     // Queue the API request to respect rate limits
     const newTilePath = await queueApiRequest(async () => {
-      // Create form data for API request
-      const formData = new FormData();
-      formData.append('image_file', await fs.readFile(compositeImagePath));
-      formData.append('model', config.IDEOGRAM_MODEL); // Use configurable model
-      formData.append('resolution', 'RESOLUTION_1024_1024'); // Keep square for interior tiles
-      formData.append('prompt', `Isometric game terrain tile continuing seamlessly from the left and bottom sides. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`);
+      // Create a temporary directory for the response
+      const responseDir = path.join(config.TEMP_DIR, 'responses');
+      await fs.mkdir(responseDir, { recursive: true });
+      const responseFilePath = path.join(responseDir, `response_${Date.now()}.json`);
+      
+      // Prepare the prompt
+      const prompt = `Isometric game terrain tile continuing seamlessly from the left and bottom sides. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`;
+      
+      // Build the cURL command - escape quotes in the prompt
+      const escapedPrompt = prompt.replace(/"/g, '\\"');
+      const curlCommand = `curl -X POST "https://api.ideogram.ai/reframe" -H "Api-Key: ${config.IDEOGRAM_API_KEY}" -F "image_file=@${compositeImagePath}" -F "resolution=RESOLUTION_1024_1024" -F "model=${config.IDEOGRAM_MODEL}" -F "prompt=${escapedPrompt}" -o "${responseFilePath}"`;
       
       // Log the request details for debugging
       logger.debug(`API request details: 
         - Model: ${config.IDEOGRAM_MODEL || 'V_2_TURBO'}
         - Image size: ${await getFileSize(compositeImagePath)} bytes
         - Mask size: ${await getFileSize(maskImagePath)} bytes
-        - Prompt length: ${(`Isometric game terrain tile continuing seamlessly from the left and bottom sides. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`).length} chars`);
+        - Prompt length: ${prompt.length} chars`);
       
-      // Make API request
-      const response = await fetch('https://api.ideogram.ai/reframe', {
-        method: 'POST',
-        headers: {
-          'Api-Key': config.IDEOGRAM_API_KEY,
-          'Accept': 'application/json'
-        },
-        body: formData,
-        timeout: config.API_TIMEOUT // Use the timeout from config
-      });
+      logger.debug(`Executing cURL command: ${curlCommand.replace(config.IDEOGRAM_API_KEY, config.IDEOGRAM_API_KEY.substring(0, 8) + '...')}`);
       
-      // Get response as text first to ensure we can see error messages
-      const responseText = await response.text();
-      logger.debug(`API response text: ${responseText.substring(0, 500)}${responseText.length > 500 ? '...(truncated)' : ''}`);
+      // Execute the cURL command with retry logic
+      let retryCount = 0;
+      let errorText = '';
       
-      // Try to parse as JSON
-      let data;
-      try {
-        data = JSON.parse(responseText);
-      } catch (e) {
-        logger.error(`Failed to parse API response as JSON: ${e.message}`);
-        throw new Error(`API request failed with status ${response.status}: Invalid JSON response`);
+      while (retryCount < config.MAX_RETRIES) {
+        try {
+          logger.debug(`API request attempt ${retryCount + 1}/${config.MAX_RETRIES}`);
+          
+          // Execute the cURL command
+          await execPromise(curlCommand, { maxBuffer: 1024 * 1024 * 10 });
+          
+          // Check if the response file exists and has content
+          const stats = await fs.stat(responseFilePath);
+          if (stats.size === 0) {
+            throw new Error('Empty response file');
+          }
+          
+          // Read the response file
+          const responseText = await fs.readFile(responseFilePath, 'utf8');
+          logger.debug(`API response text: ${responseText.substring(0, 500)}${responseText.length > 500 ? '...(truncated)' : ''}`);
+          
+          // Parse the response
+          const data = JSON.parse(responseText);
+          
+          if (!data.data || !data.data[0] || !data.data[0].url) {
+            throw new Error('Invalid response from Ideogram API: ' + JSON.stringify(data));
+          }
+          
+          logger.debug('Received successful response from Ideogram API');
+          
+          // Clean up temp files
+          await fs.unlink(compositeImagePath).catch(err => logger.warn(`Failed to delete temp file: ${err.message}`));
+          await fs.unlink(responseFilePath).catch(err => logger.warn(`Failed to delete temp file: ${err.message}`));
+          
+          // Download the generated image
+          const generatedImageUrl = data.data[0].url;
+          const generatedImage = await downloadImage(generatedImageUrl);
+          
+          // Crop and save the new tile
+          const newTilePath = path.join(
+            config.TILES_DIR, 
+            `${position.regionX}_${position.regionY}_${position.x}_${position.y}.png`
+          );
+          
+          await cropAndSaveTopRightQuadrant(generatedImage, newTilePath);
+          
+          return newTilePath;
+        } catch (error) {
+          logger.warn(`API request failed (attempt ${retryCount + 1}/${config.MAX_RETRIES}): ${error.message}`);
+          errorText = error.message;
+          
+          // Wait before retrying (exponential backoff)
+          const backoffTime = Math.min(1000 * Math.pow(2, retryCount), 10000);
+          await new Promise(resolve => setTimeout(resolve, backoffTime));
+          
+          retryCount++;
+        }
       }
       
-      if (!response.ok) {
-        logger.error(`API request failed with status ${response.status}: ${JSON.stringify(data)}`);
-        throw new Error(`API request failed with status ${response.status}: ${data.error || 'Unknown error'}`);
-      }
-      
-      if (!data.data || !data.data[0] || !data.data[0].url) {
-        throw new Error('Invalid response from Ideogram API: ' + JSON.stringify(data));
-      }
-      
-      // Clean up temp files
-      await fs.unlink(compositeImagePath).catch(err => logger.warn(`Failed to delete temp file: ${err.message}`));
-      await fs.unlink(maskImagePath).catch(err => logger.warn(`Failed to delete temp file: ${err.message}`));
-      
-      // Download the generated image
-      const generatedImageUrl = data.data[0].url;
-      const generatedImage = await downloadImage(generatedImageUrl);
+      throw new Error(`API request failed after ${config.MAX_RETRIES} attempts. Last error: ${errorText}`);
       
       // Crop and save the new tile
       const newTilePath = path.join(
@@ -500,21 +556,19 @@ async function generateInteriorTile(leftTilePath, bottomTilePath, position) {
 }
 
 /**
- * Downloads an image from a URL
+ * Downloads an image from a URL using cURL
  */
 async function downloadImage(url) {
   logger.debug(`Downloading image from ${url}`);
   
   try {
-    const response = await fetch(url);
-    
-    if (!response.ok) {
-      throw new Error(`Failed to download image: ${response.status} ${response.statusText}`);
-    }
-    
-    const buffer = await response.buffer();
     const tempPath = path.join(config.TEMP_DIR, `download_${Date.now()}.png`);
-    await fs.writeFile(tempPath, buffer);
+    
+    // Build the cURL command
+    const curlCommand = `curl -s "${url}" -o "${tempPath}"`;
+    
+    // Execute the cURL command
+    await execPromise(curlCommand);
     
     logger.debug(`Image downloaded to ${tempPath}`);
     return tempPath;

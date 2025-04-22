@@ -25,12 +25,9 @@ router.get('/curl-test', async (req, res) => {
     const testImagePath = path.join(config.TEMP_DIR, `curl_test_image_${Date.now()}.png`);
     await fs.writeFile(testImagePath, canvas.toBuffer('image/png'));
     
-    // Generate a shell command for cURL
-    const curlCommand = `curl -X POST https://api.ideogram.ai/reframe \\
-     -H "Api-Key: ${config.IDEOGRAM_API_KEY}" \\
-     -F "image_file=@${testImagePath}" \\
-     -F "resolution=RESOLUTION_960_1024" \\
-     -F "model=${config.IDEOGRAM_MODEL}"`;
+    // Generate a shell command for cURL - fix for Windows
+    // Use double quotes for the whole command and single quotes for values
+    const curlCommand = `curl -X POST "https://api.ideogram.ai/reframe" -H "Api-Key: ${config.IDEOGRAM_API_KEY}" -F "image_file=@${testImagePath}" -F "resolution=RESOLUTION_960_1024" -F "model=${config.IDEOGRAM_MODEL}"`;
     
     // Execute the cURL command
     exec(curlCommand, { maxBuffer: 1024 * 1024 * 10 }, async (error, stdout, stderr) => {
@@ -44,7 +41,8 @@ router.get('/curl-test', async (req, res) => {
           error: error.message,
           stderr: stderr,
           apiKeyProvided: !!config.IDEOGRAM_API_KEY,
-          apiKeyFirstChars: config.IDEOGRAM_API_KEY ? config.IDEOGRAM_API_KEY.substring(0, 8) + '...' : 'none'
+          apiKeyFirstChars: config.IDEOGRAM_API_KEY ? config.IDEOGRAM_API_KEY.substring(0, 8) + '...' : 'none',
+          command: curlCommand.replace(config.IDEOGRAM_API_KEY, config.IDEOGRAM_API_KEY.substring(0, 8) + '...')
         });
       }
       

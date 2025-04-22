@@ -27,7 +27,7 @@ router.get('/curl-test', async (req, res) => {
     
     // Generate a shell command for cURL - fix for Windows
     // Use double quotes for the whole command and single quotes for values
-    const curlCommand = `curl -X POST "https://api.ideogram.ai/reframe" -H "Api-Key: ${config.IDEOGRAM_API_KEY}" -F "image_file=@${testImagePath}" -F "resolution=RESOLUTION_1024_768" -F "model=${config.IDEOGRAM_MODEL}"`;
+    const curlCommand = `curl -X POST "https://api.ideogram.ai/reframe" -H "Api-Key: ${config.IDEOGRAM_API_KEY}" -F "image_file=@${testImagePath}" -F "resolution=RESOLUTION_1152_864" -F "model=${config.IDEOGRAM_MODEL}"`;
     
     // Execute the cURL command
     exec(curlCommand, { maxBuffer: 1024 * 1024 * 10 }, async (error, stdout, stderr) => {
@@ -116,7 +116,7 @@ router.get('/api-test', async (req, res) => {
     const formData = new FormData();
     formData.append('image_file', await fs.readFile(testImagePath));
     formData.append('model', config.IDEOGRAM_MODEL || 'V_2_TURBO'); // Use configurable model
-    formData.append('resolution', 'RESOLUTION_1024_768'); // For testing horizontal expansion
+    formData.append('resolution', 'RESOLUTION_1152_864'); // For testing horizontal expansion
     formData.append('style_type', 'REALISTIC');
     formData.append('prompt', 'Simple test image with grass texture. Clash Royale style.');
     

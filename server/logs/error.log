@@ -29,3 +29,210 @@
 {"error":{},"level":"error","message":"Error generating horizontal tile: API request failed after 3 attempts. Last error: Invalid response from Ideogram API: {\"error\":\"Reframe is currently only supported by Model 2.0 and 2.0 Turbo\"}","position":{"regionX":0,"regionY":0,"x":1,"y":0},"service":"tile-generator","timestamp":"2025-04-22 17:48:31"}
 {"level":"error","message":"Error generating test image: API request failed with status 401: {\"message\": \"Access denied. Please verify your API Token is valid.\"}","service":"tile-generator","timestamp":"2025-04-22 18:49:22"}
 {"level":"error","message":"Error generating test image: API request failed with status 401: {\"message\": \"Access denied. Please verify your API Token is valid.\"}","service":"tile-generator","timestamp":"2025-04-22 18:51:54"}
+{"level":"error","message":"Error generating terrain map: Claude API request failed with status 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"invalid x-api-key\"}}","service":"tile-generator","timestamp":"2025-04-22 20:08:49"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Required adjacent tiles not found for interior tile generation","service":"tile-generator","timestamp":"2025-04-22 20:18:42"}
+{"level":"error","message":"Error removing background with remove.bg API: remove.bg API request failed with status 402: {\"errors\":[{\"title\":\"Insufficient credits\",\"code\":\"insufficient_credits\"}]}","service":"tile-generator","timestamp":"2025-04-22 21:10:46"}
+{"level":"error","message":"Error removing background with remove.bg API: remove.bg API request failed with status 402: {\"errors\":[{\"title\":\"Insufficient credits\",\"code\":\"insufficient_credits\"}]}","service":"tile-generator","timestamp":"2025-04-22 21:10:55"}
+{"level":"error","message":"Error removing background with remove.bg API: remove.bg API request failed with status 402: {\"errors\":[{\"title\":\"Insufficient credits\",\"code\":\"insufficient_credits\"}]}","service":"tile-generator","timestamp":"2025-04-22 21:11:03"}
+{"level":"error","message":"Error removing background with remove.bg API: remove.bg API request failed with status 402: {\"errors\":[{\"title\":\"Insufficient credits\",\"code\":\"insufficient_credits\"}]}","service":"tile-generator","timestamp":"2025-04-22 21:11:12"}
+{"level":"error","message":"Error removing background with remove.bg API: remove.bg API request failed with status 402: {\"errors\":[{\"title\":\"Insufficient credits\",\"code\":\"insufficient_credits\"}]}","service":"tile-generator","timestamp":"2025-04-22 21:11:20"}
+{"level":"error","message":"Error removing background with remove.bg API: remove.bg API request failed with status 402: {\"errors\":[{\"title\":\"Insufficient credits\",\"code\":\"insufficient_credits\"}]}","service":"tile-generator","timestamp":"2025-04-22 21:11:28"}
+{"level":"error","message":"Error removing background with remove.bg API: remove.bg API request failed with status 402: {\"errors\":[{\"title\":\"Insufficient credits\",\"code\":\"insufficient_credits\"}]}","service":"tile-generator","timestamp":"2025-04-22 21:11:37"}
+{"level":"error","message":"Error removing background with remove.bg API: remove.bg API request failed with status 402: {\"errors\":[{\"title\":\"Insufficient credits\",\"code\":\"insufficient_credits\"}]}","service":"tile-generator","timestamp":"2025-04-23 00:58:02"}
+{"level":"error","message":"Error removing background with remove.bg API: remove.bg API request failed with status 402: {\"errors\":[{\"title\":\"Insufficient credits\",\"code\":\"insufficient_credits\"}]}","service":"tile-generator","timestamp":"2025-04-23 00:58:11"}
+{"level":"error","message":"Error removing background with remove.bg API: remove.bg API request failed with status 402: {\"errors\":[{\"title\":\"Insufficient credits\",\"code\":\"insufficient_credits\"}]}","service":"tile-generator","timestamp":"2025-04-23 00:58:20"}
+{"level":"error","message":"Error removing background with remove.bg API: remove.bg API request failed with status 402: {\"errors\":[{\"title\":\"Insufficient credits\",\"code\":\"insufficient_credits\"}]}","service":"tile-generator","timestamp":"2025-04-23 00:58:28"}
+{"level":"error","message":"Error removing background with remove.bg API: remove.bg API request failed with status 402: {\"errors\":[{\"title\":\"Insufficient credits\",\"code\":\"insufficient_credits\"}]}","service":"tile-generator","timestamp":"2025-04-23 00:58:36"}
+{"level":"error","message":"Error removing background with remove.bg API: remove.bg API request failed with status 402: {\"errors\":[{\"title\":\"Insufficient credits\",\"code\":\"insufficient_credits\"}]}","service":"tile-generator","timestamp":"2025-04-23 00:58:45"}
+{"level":"error","message":"Error removing background with remove.bg API: remove.bg API request failed with status 402: {\"errors\":[{\"title\":\"Insufficient credits\",\"code\":\"insufficient_credits\"}]}","service":"tile-generator","timestamp":"2025-04-23 00:58:54"}
+{"level":"error","message":"Error removing background with remove.bg API: remove.bg API request failed with status 402: {\"errors\":[{\"title\":\"Insufficient credits\",\"code\":\"insufficient_credits\"}]}","service":"tile-generator","timestamp":"2025-04-23 00:59:02"}
+{"level":"error","message":"Error removing background with remove.bg API: remove.bg API request failed with status 402: {\"errors\":[{\"title\":\"Insufficient credits\",\"code\":\"insufficient_credits\"}]}","service":"tile-generator","timestamp":"2025-04-23 00:59:11"}
+{"level":"error","message":"Error removing background with remove.bg API: remove.bg API request failed with status 402: {\"errors\":[{\"title\":\"Insufficient credits\",\"code\":\"insufficient_credits\"}]}","service":"tile-generator","timestamp":"2025-04-23 00:59:20"}
+{"level":"error","message":"Error removing background with remove.bg API: remove.bg API request failed with status 402: {\"errors\":[{\"title\":\"Insufficient credits\",\"code\":\"insufficient_credits\"}]}","service":"tile-generator","timestamp":"2025-04-23 00:59:28"}
+{"level":"error","message":"Error removing background with remove.bg API: remove.bg API request failed with status 402: {\"errors\":[{\"title\":\"Insufficient credits\",\"code\":\"insufficient_credits\"}]}","service":"tile-generator","timestamp":"2025-04-23 00:59:36"}
+{"level":"error","message":"Error removing background with remove.bg API: remove.bg API request failed with status 402: {\"errors\":[{\"title\":\"Insufficient credits\",\"code\":\"insufficient_credits\"}]}","service":"tile-generator","timestamp":"2025-04-23 00:59:45"}
+{"level":"error","message":"Error removing background with remove.bg API: remove.bg API request failed with status 402: {\"errors\":[{\"title\":\"Insufficient credits\",\"code\":\"insufficient_credits\"}]}","service":"tile-generator","timestamp":"2025-04-23 00:59:54"}
+{"level":"error","message":"Error removing background with remove.bg API: remove.bg API request failed with status 402: {\"errors\":[{\"title\":\"Insufficient credits\",\"code\":\"insufficient_credits\"}]}","service":"tile-generator","timestamp":"2025-04-23 01:00:02"}
+{"level":"error","message":"Error removing background with remove.bg API: remove.bg API request failed with status 402: {\"errors\":[{\"title\":\"Insufficient credits\",\"code\":\"insufficient_credits\"}]}","service":"tile-generator","timestamp":"2025-04-23 01:00:11"}
+{"level":"error","message":"Error removing background with remove.bg API: remove.bg API request failed with status 402: {\"errors\":[{\"title\":\"Insufficient credits\",\"code\":\"insufficient_credits\"}]}","service":"tile-generator","timestamp":"2025-04-23 01:00:19"}
+{"level":"error","message":"Error generating terrain map: Could not extract valid JSON from Claude response","service":"tile-generator","timestamp":"2025-04-23 01:12:19"}
+{"level":"error","message":"Error generating terrain map: Could not extract valid JSON from Claude response","service":"tile-generator","timestamp":"2025-04-23 01:14:16"}
+{"level":"error","message":"Error generating terrain map: Could not extract valid JSON from Claude response","service":"tile-generator","timestamp":"2025-04-23 01:17:34"}
+{"level":"error","message":"Error generating terrain map: Could not extract valid JSON from Claude response","service":"tile-generator","timestamp":"2025-04-23 01:20:18"}
+{"level":"error","message":"Saved problematic Claude response to C:\\Users\\reyno\\autonomous-realms\\server\\logs\\claude_error_response.txt","service":"tile-generator","timestamp":"2025-04-23 01:38:18"}

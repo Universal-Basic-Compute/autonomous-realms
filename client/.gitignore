@@ -1,0 +1,5 @@
+.aider*
+.env*
+temp/
+
+node_modules/

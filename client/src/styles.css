@@ -6,8 +6,26 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #87CEEB; /* Fallback sky blue color */
     overflow: hidden;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+/* Fullscreen background */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    background-image: url('/assets/clouds.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 #game-container {
@@ -24,6 +42,7 @@ body {
     transform: translate(-50%, -50%);
     transform-origin: center center;
     cursor: grab;
+    z-index: 1; /* Ensure it's above the background */
 }
 
 #isometric-world.grabbing {

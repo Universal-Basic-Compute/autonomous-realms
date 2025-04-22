@@ -207,7 +207,7 @@ function updateWorldTransform() {
 function gridToIso(x, y) {
     // Apply isometric projection
     const isoX = (x - y) * (config.tileWidth / 2);
-    const isoY = (x + y) * (config.tileHeight / 4);
+    const isoY = (x + y) * config.tileHeight; // Remove the division by 4 to eliminate overlap
     
     return { x: isoX, y: isoY };
 }

@@ -139,7 +139,7 @@ async function generateIslandImage(island, index) {
         prompt: prompt,
         model: "V_2A_TURBO",
         aspect_ratio: "ASPECT_1_1", // Square aspect ratio for game tiles
-        style_type: "GENERAL"
+        style_type: "REALISTIC"
       }
     };
     

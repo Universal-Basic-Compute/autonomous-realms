@@ -190,7 +190,7 @@ router.get('/api-test', async (req, res) => {
     formData.append('image_file', await fs.readFile(testImagePath));
     formData.append('model', config.IDEOGRAM_MODEL || 'V_2_TURBO'); // Use configurable model
     formData.append('resolution', 'RESOLUTION_1152_864'); // For testing horizontal expansion
-    formData.append('style_type', 'REALISTIC');
+    formData.append('style_type', 'REALISTIC'); // Already set to REALISTIC
     formData.append('prompt', 'Simple test image with grass texture. Clash Royale style.');
     
     // Log the request details for debugging

@@ -75,7 +75,8 @@ async function generateTestImage() {
       image_request: {
         prompt: "isometric small medieval cottage, thatched roof, wooden beams, single-story, white background, clearly defined tile edges, clean lines, Clash Royale style, game asset, no shadows, flat colors, isolated isometric game tile",
         model: "V_2A_TURBO",
-        aspect_ratio: "ASPECT_1_1" // Square aspect ratio for game tiles
+        aspect_ratio: "ASPECT_1_1", // Square aspect ratio for game tiles
+        style_type: "GENERAL"  // Add style type parameter
       }
     };
     

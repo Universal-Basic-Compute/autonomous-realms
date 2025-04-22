@@ -79,9 +79,10 @@ async function generateNextHorizontalTile(previousTilePath, position) {
       // Create form data for API request
       const formData = new FormData();
       formData.append('image_file', await fs.readFile(expandedImagePath));
-      formData.append('mask', await fs.readFile(maskImagePath));
-      formData.append('model', config.IDEOGRAM_MODEL || 'V_2_TURBO'); // Use configurable model
+      formData.append('model', config.IDEOGRAM_MODEL || 'V_2'); // Use configurable model
+      formData.append('resolution', 'RESOLUTION_1024_1024');
       formData.append('num_images', '1'); // Only need one image
+      formData.append('style_type', 'REALISTIC');
       formData.append('prompt', `Isometric game terrain tile continuing seamlessly from the left side. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`);
       
       // Log the request details for debugging
@@ -102,10 +103,11 @@ async function generateNextHorizontalTile(previousTilePath, position) {
         try {
           logger.debug(`API request attempt ${retryCount + 1}/${config.MAX_RETRIES}`);
           
-          response = await fetch('https://api.ideogram.ai/edit', {
+          response = await fetch('https://api.ideogram.ai/reframe', {
             method: 'POST',
             headers: {
-              'Api-Key': config.IDEOGRAM_API_KEY
+              'Api-Key': config.IDEOGRAM_API_KEY,
+              'Accept': 'application/json'
             },
             body: formData,
             timeout: config.API_TIMEOUT // Use the timeout from config
@@ -251,8 +253,9 @@ async function generateNextVerticalTile(bottomTilePath, position) {
       // Create form data for API request
       const formData = new FormData();
       formData.append('image_file', await fs.readFile(expandedImagePath));
-      formData.append('mask', await fs.readFile(maskImagePath));
-      formData.append('model', config.IDEOGRAM_MODEL || 'V_2_TURBO'); // Use configurable model
+      formData.append('model', config.IDEOGRAM_MODEL || 'V_2'); // Use configurable model
+      formData.append('resolution', 'RESOLUTION_1024_1024');
+      formData.append('style_type', 'REALISTIC');
       formData.append('prompt', `Isometric game terrain tile continuing seamlessly from the bottom side. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`);
       
       // Log the request details for debugging
@@ -263,7 +266,7 @@ async function generateNextVerticalTile(bottomTilePath, position) {
         - Prompt length: ${(`Isometric game terrain tile continuing seamlessly from the bottom side. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`).length} chars`);
       
       // Make API request
-      const response = await fetch('https://api.ideogram.ai/edit', {
+      const response = await fetch('https://api.ideogram.ai/reframe', {
         method: 'POST',
         headers: {
           'Api-Key': config.IDEOGRAM_API_KEY,
@@ -420,8 +423,9 @@ async function generateInteriorTile(leftTilePath, bottomTilePath, position) {
       // Create form data for API request
       const formData = new FormData();
       formData.append('image_file', await fs.readFile(compositeImagePath));
-      formData.append('mask', await fs.readFile(maskImagePath));
-      formData.append('model', config.IDEOGRAM_MODEL || 'V_2_TURBO'); // Use configurable model
+      formData.append('model', config.IDEOGRAM_MODEL || 'V_2'); // Use configurable model
+      formData.append('resolution', 'RESOLUTION_1024_1024');
+      formData.append('style_type', 'REALISTIC');
       formData.append('prompt', `Isometric game terrain tile continuing seamlessly from the left and bottom sides. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`);
       
       // Log the request details for debugging
@@ -432,7 +436,7 @@ async function generateInteriorTile(leftTilePath, bottomTilePath, position) {
         - Prompt length: ${(`Isometric game terrain tile continuing seamlessly from the left and bottom sides. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`).length} chars`);
       
       // Make API request
-      const response = await fetch('https://api.ideogram.ai/edit', {
+      const response = await fetch('https://api.ideogram.ai/reframe', {
         method: 'POST',
         headers: {
           'Api-Key': config.IDEOGRAM_API_KEY,

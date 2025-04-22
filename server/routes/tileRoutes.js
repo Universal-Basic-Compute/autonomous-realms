@@ -54,8 +54,9 @@ router.get('/api-test', async (req, res) => {
     // Create form data
     const formData = new FormData();
     formData.append('image_file', await fs.readFile(testImagePath));
-    formData.append('mask', await fs.readFile(testMaskPath));
-    formData.append('model', config.IDEOGRAM_MODEL || 'V_2_TURBO'); // Use configurable model
+    formData.append('model', config.IDEOGRAM_MODEL || 'V_2'); // Use configurable model
+    formData.append('resolution', 'RESOLUTION_1024_1024');
+    formData.append('style_type', 'REALISTIC');
     formData.append('prompt', 'Simple test image with grass texture. Clash Royale style.');
     
     // Log the request details for debugging
@@ -70,7 +71,7 @@ router.get('/api-test', async (req, res) => {
     const startTime = Date.now();
     
     try {
-      const response = await fetch('https://api.ideogram.ai/edit', {
+      const response = await fetch('https://api.ideogram.ai/reframe', {
         method: 'POST',
         headers: {
           'Api-Key': config.IDEOGRAM_API_KEY,

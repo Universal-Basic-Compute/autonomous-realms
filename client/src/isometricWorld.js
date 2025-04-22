@@ -1,0 +1,381 @@
+// Configuration
+const config = {
+    tileWidth: 512,
+    tileHeight: 512,
+    initialZoom: 0.5,
+    minZoom: 0.2,
+    maxZoom: 2.0,
+    zoomStep: 0.1,
+    serverUrl: 'http://localhost:3000',
+    gridSize: 16, // Size of the terrain map (16x16)
+    visibleRadius: 5, // How many tiles to load around the center
+    isometricAngle: 30 // Degrees for isometric projection
+};
+
+// State
+const state = {
+    zoom: config.initialZoom,
+    offsetX: 0,
+    offsetY: 0,
+    isDragging: false,
+    dragStartX: 0,
+    dragStartY: 0,
+    lastOffsetX: 0,
+    lastOffsetY: 0,
+    loadedTiles: new Map(), // Map to track loaded tiles
+    selectedTile: null,
+    isLoading: false
+};
+
+// DOM Elements
+const worldContainer = document.getElementById('isometric-world');
+const zoomInButton = document.getElementById('zoom-in');
+const zoomOutButton = document.getElementById('zoom-out');
+const resetViewButton = document.getElementById('reset-view');
+const tileInfoElement = document.getElementById('tile-info');
+
+// Initialize the world
+function initWorld() {
+    // Set initial transform
+    updateWorldTransform();
+    
+    // Add event listeners
+    setupEventListeners();
+    
+    // Load initial tiles
+    loadVisibleTiles();
+}
+
+// Set up event listeners
+function setupEventListeners() {
+    // Mouse drag events
+    worldContainer.addEventListener('mousedown', startDrag);
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('mouseup', endDrag);
+    
+    // Touch events for mobile
+    worldContainer.addEventListener('touchstart', handleTouchStart);
+    document.addEventListener('touchmove', handleTouchMove);
+    document.addEventListener('touchend', handleTouchEnd);
+    
+    // Zoom controls
+    zoomInButton.addEventListener('click', zoomIn);
+    zoomOutButton.addEventListener('click', zoomOut);
+    resetViewButton.addEventListener('click', resetView);
+    
+    // Mouse wheel zoom
+    document.addEventListener('wheel', handleWheel);
+    
+    // Window resize
+    window.addEventListener('resize', handleResize);
+}
+
+// Start dragging
+function startDrag(e) {
+    if (e.button !== 0) return; // Only left mouse button
+    
+    state.isDragging = true;
+    state.dragStartX = e.clientX;
+    state.dragStartY = e.clientY;
+    state.lastOffsetX = state.offsetX;
+    state.lastOffsetY = state.offsetY;
+    
+    worldContainer.classList.add('grabbing');
+    e.preventDefault();
+}
+
+// Handle dragging
+function drag(e) {
+    if (!state.isDragging) return;
+    
+    const dx = e.clientX - state.dragStartX;
+    const dy = e.clientY - state.dragStartY;
+    
+    state.offsetX = state.lastOffsetX + dx;
+    state.offsetY = state.lastOffsetY + dy;
+    
+    updateWorldTransform();
+    e.preventDefault();
+}
+
+// End dragging
+function endDrag() {
+    if (!state.isDragging) return;
+    
+    state.isDragging = false;
+    worldContainer.classList.remove('grabbing');
+    
+    // Load new tiles after dragging stops
+    loadVisibleTiles();
+}
+
+// Handle touch start
+function handleTouchStart(e) {
+    if (e.touches.length !== 1) return;
+    
+    state.isDragging = true;
+    state.dragStartX = e.touches[0].clientX;
+    state.dragStartY = e.touches[0].clientY;
+    state.lastOffsetX = state.offsetX;
+    state.lastOffsetY = state.offsetY;
+    
+    worldContainer.classList.add('grabbing');
+    e.preventDefault();
+}
+
+// Handle touch move
+function handleTouchMove(e) {
+    if (!state.isDragging || e.touches.length !== 1) return;
+    
+    const dx = e.touches[0].clientX - state.dragStartX;
+    const dy = e.touches[0].clientY - state.dragStartY;
+    
+    state.offsetX = state.lastOffsetX + dx;
+    state.offsetY = state.lastOffsetY + dy;
+    
+    updateWorldTransform();
+    e.preventDefault();
+}
+
+// Handle touch end
+function handleTouchEnd() {
+    if (!state.isDragging) return;
+    
+    state.isDragging = false;
+    worldContainer.classList.remove('grabbing');
+    
+    // Load new tiles after touch ends
+    loadVisibleTiles();
+}
+
+// Zoom in
+function zoomIn() {
+    state.zoom = Math.min(config.maxZoom, state.zoom + config.zoomStep);
+    updateWorldTransform();
+    loadVisibleTiles();
+}
+
+// Zoom out
+function zoomOut() {
+    state.zoom = Math.max(config.minZoom, state.zoom - config.zoomStep);
+    updateWorldTransform();
+    loadVisibleTiles();
+}
+
+// Reset view
+function resetView() {
+    state.zoom = config.initialZoom;
+    state.offsetX = 0;
+    state.offsetY = 0;
+    updateWorldTransform();
+    loadVisibleTiles();
+}
+
+// Handle mouse wheel for zooming
+function handleWheel(e) {
+    e.preventDefault();
+    
+    // Determine zoom direction
+    if (e.deltaY < 0) {
+        // Zoom in
+        state.zoom = Math.min(config.maxZoom, state.zoom + config.zoomStep);
+    } else {
+        // Zoom out
+        state.zoom = Math.max(config.minZoom, state.zoom - config.zoomStep);
+    }
+    
+    updateWorldTransform();
+    
+    // Debounce loading tiles during rapid wheel events
+    clearTimeout(state.wheelTimeout);
+    state.wheelTimeout = setTimeout(() => {
+        loadVisibleTiles();
+    }, 200);
+}
+
+// Handle window resize
+function handleResize() {
+    loadVisibleTiles();
+}
+
+// Update the world container transform
+function updateWorldTransform() {
+    worldContainer.style.transform = `translate(${state.offsetX}px, ${state.offsetY}px) scale(${state.zoom})`;
+}
+
+// Convert grid coordinates to isometric screen coordinates
+function gridToIso(x, y) {
+    // Apply isometric projection
+    const isoX = (x - y) * (config.tileWidth / 2);
+    const isoY = (x + y) * (config.tileHeight / 4);
+    
+    return { x: isoX, y: isoY };
+}
+
+// Load visible tiles based on current view
+function loadVisibleTiles() {
+    // Show loading indicator
+    showLoading();
+    
+    // Calculate center tile based on viewport
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    
+    // Center of the grid
+    const centerX = Math.floor(config.gridSize / 2);
+    const centerY = Math.floor(config.gridSize / 2);
+    
+    // Track which tiles should be visible
+    const visibleTileKeys = new Set();
+    
+    // Load tiles in a radius around the center
+    for (let y = 0; y < config.gridSize; y++) {
+        for (let x = 0; x < config.gridSize; x++) {
+            // Calculate distance from center
+            const distance = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
+            
+            // Skip tiles outside our visible radius
+            if (distance > config.visibleRadius * 1.5) continue;
+            
+            const tileKey = `${x}_${y}`;
+            visibleTileKeys.add(tileKey);
+            
+            // Check if we already loaded this tile
+            if (!state.loadedTiles.has(tileKey)) {
+                loadTile(0, 0, x, y);
+            }
+        }
+    }
+    
+    // Remove tiles that are no longer visible
+    for (const [key, tileElement] of state.loadedTiles.entries()) {
+        if (!visibleTileKeys.has(key)) {
+            tileElement.remove();
+            state.loadedTiles.delete(key);
+        }
+    }
+    
+    // Hide loading indicator
+    hideLoading();
+}
+
+// Load a single tile
+function loadTile(regionX, regionY, x, y) {
+    const tileKey = `${x}_${y}`;
+    
+    // Create tile element
+    const tileElement = document.createElement('div');
+    tileElement.className = 'tile';
+    tileElement.dataset.regionX = regionX;
+    tileElement.dataset.regionY = regionY;
+    tileElement.dataset.x = x;
+    tileElement.dataset.y = y;
+    
+    // Position the tile using isometric coordinates
+    const position = gridToIso(x, y);
+    tileElement.style.left = `${position.x}px`;
+    tileElement.style.top = `${position.y}px`;
+    
+    // Create image element
+    const imgElement = document.createElement('img');
+    imgElement.width = config.tileWidth;
+    imgElement.height = config.tileHeight;
+    imgElement.draggable = false;
+    
+    // Set a loading placeholder
+    imgElement.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgZmlsbD0iI2VlZWVlZSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjI0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmaWxsPSIjOTk5OTk5Ij5Mb2FkaW5nLi4uPC90ZXh0Pjwvc3ZnPg==';
+    
+    // Load the actual tile image
+    const actualImage = new Image();
+    actualImage.onload = () => {
+        imgElement.src = actualImage.src;
+    };
+    actualImage.onerror = () => {
+        imgElement.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgZmlsbD0iI2ZmZWVlZSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjI0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmaWxsPSIjY2M1NTU1Ij5FcnJvcjwvdGV4dD48L3N2Zz4=';
+    };
+    actualImage.src = `${config.serverUrl}/api/tiles/${regionX}/${regionY}/${x}/${y}`;
+    
+    // Add click event to show tile info
+    tileElement.addEventListener('click', () => {
+        // Deselect previous tile
+        if (state.selectedTile) {
+            state.selectedTile.classList.remove('selected');
+        }
+        
+        // Select this tile
+        tileElement.classList.add('selected');
+        state.selectedTile = tileElement;
+        
+        // Show loading in the info panel
+        tileInfoElement.innerHTML = 'Loading tile information...';
+        
+        // Fetch tile info
+        fetch(`${config.serverUrl}/api/tiles/${regionX}/${regionY}/${x}/${y}/info`)
+            .then(response => response.json())
+            .then(data => {
+                // Display tile info
+                let infoHtml = `
+                    <p><strong>Position:</strong> (${x}, ${y})</p>
+                    <p><strong>Region:</strong> (${regionX}, ${regionY})</p>
+                `;
+                
+                if (data.terrainCode) {
+                    infoHtml += `<p><strong>Terrain:</strong> ${data.terrainCode}</p>`;
+                }
+                
+                if (data.exists) {
+                    infoHtml += `
+                        <p><strong>Size:</strong> ${formatFileSize(data.size)}</p>
+                        <p><strong>Created:</strong> ${new Date(data.created).toLocaleString()}</p>
+                    `;
+                } else {
+                    infoHtml += `<p><em>Tile not yet generated</em></p>`;
+                }
+                
+                tileInfoElement.innerHTML = infoHtml;
+            })
+            .catch(error => {
+                tileInfoElement.innerHTML = `<p>Error loading tile info: ${error.message}</p>`;
+            });
+    });
+    
+    // Add the image to the tile
+    tileElement.appendChild(imgElement);
+    
+    // Add the tile to the world container
+    worldContainer.appendChild(tileElement);
+    
+    // Store the tile element for later reference
+    state.loadedTiles.set(tileKey, tileElement);
+}
+
+// Format file size in bytes to human-readable format
+function formatFileSize(bytes) {
+    if (bytes < 1024) return bytes + ' bytes';
+    else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+    else return (bytes / 1048576).toFixed(1) + ' MB';
+}
+
+// Show loading indicator
+function showLoading() {
+    if (state.isLoading) return;
+    
+    state.isLoading = true;
+    const loadingElement = document.createElement('div');
+    loadingElement.className = 'loading-indicator';
+    loadingElement.id = 'loading-indicator';
+    loadingElement.textContent = 'Loading tiles...';
+    document.body.appendChild(loadingElement);
+}
+
+// Hide loading indicator
+function hideLoading() {
+    state.isLoading = false;
+    const loadingElement = document.getElementById('loading-indicator');
+    if (loadingElement) {
+        loadingElement.remove();
+    }
+}
+
+// Initialize the world when the page loads
+window.addEventListener('load', initWorld);

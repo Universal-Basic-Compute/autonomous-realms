@@ -59,7 +59,7 @@ For each island, provide:
 2. A brief description (30-50 words) of the island's features, including terrain type, structures, and unique elements
 3. A terrain code using the format from the terrain reference document (e.g., "F-OAK|E-SLI|X-RUI")
 
-Make each island unique and interesting. Some islands should be connected by bridges or magical pathways. Include various terrain types like forests, mountains, plains, magical areas, etc.
+Make each island unique and interesting. Include various terrain types like forests, mountains, plains, magical areas, etc. Each island should be isolated and self-contained with no bridges or connections between them.
 
 Format the response as a JSON array of objects with properties: coordinates, description, and terrainCode.
 

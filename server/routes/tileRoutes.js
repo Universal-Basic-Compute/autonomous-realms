@@ -10,6 +10,87 @@ const tileService = require('../services/tileGenerationService');
 const config = require('../config');
 const logger = require('../utils/logger');
 
+// Get a generated island tile
+router.get('/islands/:x/:y', async (req, res) => {
+  try {
+    const { x, y } = req.params;
+    const position = { 
+      x: parseInt(x), 
+      y: parseInt(y)
+    };
+    
+    logger.info(`Island tile requested at position (${x}, ${y})`);
+    
+    // Check if island tile exists
+    const islandPath = path.join(
+      __dirname, 
+      '../output/terrain_map/islands', 
+      `island_${position.x}_${position.y}.png`
+    );
+    
+    try {
+      await fs.access(islandPath);
+      // Island exists, return it
+      logger.debug(`Island found at ${islandPath}, serving existing file`);
+      return res.sendFile(islandPath);
+    } catch (err) {
+      // Island doesn't exist
+      logger.warn(`Island not found at position (${x}, ${y})`);
+      
+      // Return a placeholder or fallback
+      const fallbackPath = path.join(config.TILES_DIR, 'base_tile.png');
+      try {
+        await fs.access(fallbackPath);
+        return res.sendFile(fallbackPath);
+      } catch (baseErr) {
+        return res.status(404).json({ error: 'Island not found and no fallback available' });
+      }
+    }
+  } catch (error) {
+    logger.error(`Error handling island request: ${error.message}`, { error });
+    res.status(500).json({ error: 'Failed to process island request' });
+  }
+});
+
+// Get information about an island
+router.get('/islands/:x/:y/info', async (req, res) => {
+  try {
+    const { x, y } = req.params;
+    const position = { 
+      x: parseInt(x), 
+      y: parseInt(y)
+    };
+    
+    // Check if island metadata exists
+    const metadataPath = path.join(
+      __dirname, 
+      '../output/terrain_map/metadata', 
+      `island_${position.x}_${position.y}.json`
+    );
+    
+    try {
+      const metadataContent = await fs.readFile(metadataPath, 'utf8');
+      const metadata = JSON.parse(metadataContent);
+      
+      res.json({
+        position,
+        exists: true,
+        description: metadata.description,
+        terrainCode: metadata.terrainCode,
+        coordinates: metadata.coordinates
+      });
+    } catch (err) {
+      res.json({
+        position,
+        exists: false
+      });
+    }
+  } catch (error) {
+    logger.error(`Error getting island info: ${error.message}`);
+    res.status(500).json({ error: 'Failed to get island information' });
+  }
+});
+
 // Add a route for cURL diagnostics
 router.get('/curl-test', async (req, res) => {
   try {

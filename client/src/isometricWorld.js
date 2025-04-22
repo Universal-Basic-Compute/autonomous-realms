@@ -285,7 +285,7 @@ function loadTile(regionX, regionY, x, y) {
     // Set a loading placeholder
     imgElement.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgZmlsbD0iI2VlZWVlZSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjI0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmaWxsPSIjOTk5OTk5Ij5Mb2FkaW5nLi4uPC90ZXh0Pjwvc3ZnPg==';
     
-    // Load the actual tile image
+    // Load the actual tile image - use the islands endpoint instead of the regular tiles
     const actualImage = new Image();
     actualImage.onload = () => {
         imgElement.src = actualImage.src;
@@ -293,7 +293,7 @@ function loadTile(regionX, regionY, x, y) {
     actualImage.onerror = () => {
         imgElement.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgZmlsbD0iI2ZmZWVlZSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjI0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmaWxsPSIjY2M1NTU1Ij5FcnJvcjwvdGV4dD48L3N2Zz4=';
     };
-    actualImage.src = `${config.serverUrl}/api/tiles/${regionX}/${regionY}/${x}/${y}`;
+    actualImage.src = `${config.serverUrl}/api/tiles/islands/${x}/${y}`;
     
     // Add click event to show tile info
     tileElement.addEventListener('click', () => {
@@ -309,27 +309,22 @@ function loadTile(regionX, regionY, x, y) {
         // Show loading in the info panel
         tileInfoElement.innerHTML = 'Loading tile information...';
         
-        // Fetch tile info
-        fetch(`${config.serverUrl}/api/tiles/${regionX}/${regionY}/${x}/${y}/info`)
+        // Fetch tile info - use the islands info endpoint
+        fetch(`${config.serverUrl}/api/tiles/islands/${x}/${y}/info`)
             .then(response => response.json())
             .then(data => {
                 // Display tile info
                 let infoHtml = `
                     <p><strong>Position:</strong> (${x}, ${y})</p>
-                    <p><strong>Region:</strong> (${regionX}, ${regionY})</p>
                 `;
-                
-                if (data.terrainCode) {
-                    infoHtml += `<p><strong>Terrain:</strong> ${data.terrainCode}</p>`;
-                }
                 
                 if (data.exists) {
                     infoHtml += `
-                        <p><strong>Size:</strong> ${formatFileSize(data.size)}</p>
-                        <p><strong>Created:</strong> ${new Date(data.created).toLocaleString()}</p>
+                        <p><strong>Description:</strong> ${data.description}</p>
+                        <p><strong>Terrain Code:</strong> ${data.terrainCode}</p>
                     `;
                 } else {
-                    infoHtml += `<p><em>Tile not yet generated</em></p>`;
+                    infoHtml += `<p><em>Island not yet generated</em></p>`;
                 }
                 
                 tileInfoElement.innerHTML = infoHtml;

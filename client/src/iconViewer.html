@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terrain Icon Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .icon-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .icon-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .icon-image {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        .icon-code {
+            font-weight: bold;
+            margin: 10px 0 5px;
+        }
+        .icon-description {
+            font-size: 12px;
+            color: #666;
+        }
+        .category-section {
+            margin-top: 30px;
+        }
+        .category-title {
+            background-color: #4a6fa5;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 18px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>Terrain Icon Viewer</h1>
+    
+    <div id="content">
+        <div class="loading">Loading terrain icons...</div>
+    </div>
+    
+    <script>
+        // Fetch terrain icons from the API
+        async function fetchTerrainIcons() {
+            try {
+                const response = await fetch('http://localhost:3000/api/icons/terrain');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch icons');
+                }
+                
+                const data = await response.json();
+                return data.icons;
+            } catch (error) {
+                console.error('Error fetching icons:', error);
+                return [];
+            }
+        }
+        
+        // Fetch terrain reference data
+        async function fetchTerrainReference() {
+            try {
+                const response = await fetch('http://localhost:3000/docs/terrrain_reference.md');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch terrain reference');
+                }
+                
+                const text = await response.text();
+                return parseTerrainReference(text);
+            } catch (error) {
+                console.error('Error fetching terrain reference:', error);
+                return {};
+            }
+        }
+        
+        // Parse terrain reference markdown
+        function parseTerrainReference(markdown) {
+            const terrainData = {};
+            
+            // Extract terrain codes and descriptions
+            const codeRegex = /`([A-Z]-[A-Z]{3})`:\s*(.*?)$/gm;
+            let match;
+            
+            while ((match = codeRegex.exec(markdown)) !== null) {
+                const code = match[1];
+                const description = match[2].trim();
+                terrainData[code] = { description };
+            }
+            
+            // Extract categories
+            const categoryRegex = /### ([^(]+) \(([A-Z])\)/g;
+            let categoryMatch;
+            
+            while ((categoryMatch = categoryRegex.exec(markdown)) !== null) {
+                const categoryName = categoryMatch[1].trim();
+                const prefix = categoryMatch[2];
+                
+                // Find all codes with this prefix
+                Object.keys(terrainData).forEach(code => {
+                    if (code.startsWith(prefix + '-')) {
+                        terrainData[code].category = categoryName;
+                    }
+                });
+            }
+            
+            return terrainData;
+        }
+        
+        // Render icons by category
+        function renderIconsByCategory(icons, terrainData) {
+            const contentElement = document.getElementById('content');
+            contentElement.innerHTML = '';
+            
+            // Group icons by category
+            const categories = {};
+            
+            icons.forEach(icon => {
+                const code = icon.code;
+                const terrainInfo = terrainData[code] || { 
+                    category: 'Unknown', 
+                    description: 'No description available' 
+                };
+                
+                if (!categories[terrainInfo.category]) {
+                    categories[terrainInfo.category] = [];
+                }
+                
+                categories[terrainInfo.category].push({
+                    ...icon,
+                    description: terrainInfo.description
+                });
+            });
+            
+            // Sort categories
+            const sortedCategories = Object.keys(categories).sort();
+            
+            // Render each category
+            sortedCategories.forEach(category => {
+                const categoryIcons = categories[category];
+                
+                const categorySection = document.createElement('div');
+                categorySection.className = 'category-section';
+                
+                const categoryTitle = document.createElement('h2');
+                categoryTitle.className = 'category-title';
+                categoryTitle.textContent = category;
+                categorySection.appendChild(categoryTitle);
+                
+                const iconGrid = document.createElement('div');
+                iconGrid.className = 'icon-grid';
+                
+                // Sort icons by code
+                categoryIcons.sort((a, b) => a.code.localeCompare(b.code));
+                
+                // Create icon cards
+                categoryIcons.forEach(icon => {
+                    const iconCard = document.createElement('div');
+                    iconCard.className = 'icon-card';
+                    
+                    const iconImage = document.createElement('img');
+                    iconImage.className = 'icon-image';
+                    iconImage.src = `http://localhost:3000${icon.url}`;
+                    iconImage.alt = icon.code;
+                    iconCard.appendChild(iconImage);
+                    
+                    const iconCode = document.createElement('div');
+                    iconCode.className = 'icon-code';
+                    iconCode.textContent = icon.code;
+                    iconCard.appendChild(iconCode);
+                    
+                    const iconDescription = document.createElement('div');
+                    iconDescription.className = 'icon-description';
+                    iconDescription.textContent = icon.description;
+                    iconCard.appendChild(iconDescription);
+                    
+                    iconGrid.appendChild(iconCard);
+                });
+                
+                categorySection.appendChild(iconGrid);
+                contentElement.appendChild(categorySection);
+            });
+            
+            // Show message if no icons
+            if (sortedCategories.length === 0) {
+                contentElement.innerHTML = `
+                    <div style="text-align: center; padding: 50px;">
+                        <p>No terrain icons found. Generate icons first using the API.</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Initialize
+        async function init() {
+            const icons = await fetchTerrainIcons();
+            const terrainData = await fetchTerrainReference();
+            renderIconsByCategory(icons, terrainData);
+        }
+        
+        // Run on page load
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>

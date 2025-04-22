@@ -122,7 +122,7 @@ async function removeBackground(imagePath) {
     
     logger.debug(`Detected background color: RGB(${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b})`);
     
-    // Process the image - remove shadows and ensure white background
+    // Process the image - remove shadows and ensure transparent background
     for (let i = 0; i < data.length; i += 4) {
       const r = data[i];
       const g = data[i + 1];
@@ -130,12 +130,12 @@ async function removeBackground(imagePath) {
       const a = data[i + 3];
       
       // Check if this pixel is likely part of the background or shadow
-      // 1. If it's very close to white, make it pure white
+      // 1. If it's very close to white, make it transparent
       if (isWhiteOrNearWhite(r, g, b)) {
-        data[i] = 255;     // R
-        data[i + 1] = 255; // G
-        data[i + 2] = 255; // B
-        data[i + 3] = 255; // A
+        data[i] = 0;       // R (doesn't matter for transparent pixels)
+        data[i + 1] = 0;   // G (doesn't matter for transparent pixels)
+        data[i + 2] = 0;   // B (doesn't matter for transparent pixels)
+        data[i + 3] = 0;   // A (0 = fully transparent)
         continue;
       }
       
@@ -144,21 +144,21 @@ async function removeBackground(imagePath) {
       const isBrightGray = isGray && (r + g + b) / 3 > 200;
       
       if (isBrightGray) {
-        // This is likely a shadow - make it white
-        data[i] = 255;     // R
-        data[i + 1] = 255; // G
-        data[i + 2] = 255; // B
-        data[i + 3] = 255; // A
+        // This is likely a shadow - make it transparent
+        data[i] = 0;       // R
+        data[i + 1] = 0;   // G
+        data[i + 2] = 0;   // B
+        data[i + 3] = 0;   // A (fully transparent)
         continue;
       }
       
-      // 3. For semi-transparent pixels that are light, make them either fully transparent or fully opaque
+      // 3. For semi-transparent pixels that are light, make them fully transparent
       if (a < 240 && (r + g + b) / 3 > 220) {
-        // Light semi-transparent pixel - make it white
-        data[i] = 255;     // R
-        data[i + 1] = 255; // G
-        data[i + 2] = 255; // B
-        data[i + 3] = 255; // A
+        // Light semi-transparent pixel - make it transparent
+        data[i] = 0;       // R
+        data[i + 1] = 0;   // G
+        data[i + 2] = 0;   // B
+        data[i + 3] = 0;   // A (fully transparent)
       }
     }
     
@@ -167,7 +167,7 @@ async function removeBackground(imagePath) {
     
     // Save the processed image
     await fs.writeFile(imagePath, canvas.toBuffer('image/png'));
-    logger.info(`Background removed successfully from ${imagePath}`);
+    logger.info(`Background removed successfully from ${imagePath} (made transparent)`);
     
     return imagePath;
   } catch (error) {

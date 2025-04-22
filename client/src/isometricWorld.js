@@ -321,6 +321,15 @@ function loadTile(regionX, regionY, x, y) {
             const objectURL = URL.createObjectURL(blob);
             imgElement.src = objectURL;
             console.log(`Successfully loaded tile image for ${x},${y}`);
+            
+            // Add floating animation - use a deterministic but seemingly random pattern
+            // based on the coordinates to ensure the same island always has the same animation
+            const animationSeed = (x * 7 + y * 13) % 3 + 1;
+            tileElement.classList.add(`float-animation-${animationSeed}`);
+            
+            // Add a slight delay to the animation based on position to make them look less synchronized
+            const delayFactor = ((x * 3 + y * 5) % 10) / 10;
+            tileElement.style.animationDelay = `${delayFactor}s`;
         })
         .catch(error => {
             if (error.message !== 'Tile not found') {

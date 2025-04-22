@@ -51,9 +51,26 @@ body::before {
 
 .tile {
     position: absolute;
-    transition: transform 0.1s ease-out;
+    transition: transform 0.1s ease-out, filter 0.2s ease;
     user-select: none;
     -webkit-user-drag: none;
+}
+
+/* Add these new classes for the different floating animations */
+.tile img {
+    transition: filter 0.2s ease;
+}
+
+.float-animation-1 {
+    animation: float1 4s ease-in-out infinite;
+}
+
+.float-animation-2 {
+    animation: float2 5s ease-in-out infinite;
+}
+
+.float-animation-3 {
+    animation: float3 6s ease-in-out infinite;
 }
 
 .tile:hover {
@@ -124,4 +141,23 @@ body::before {
     padding: 10px 20px;
     border-radius: 5px;
     z-index: 200;
+}
+
+/* Add these animation keyframes for floating islands */
+@keyframes float1 {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes float2 {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-7px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes float3 {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-3px); }
+  100% { transform: translateY(0px); }
 }

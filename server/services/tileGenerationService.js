@@ -80,7 +80,7 @@ async function generateNextHorizontalTile(previousTilePath, position) {
       const formData = new FormData();
       formData.append('image_file', await fs.readFile(expandedImagePath));
       formData.append('mask', await fs.readFile(maskImagePath));
-      formData.append('model', 'V_2A'); // Using V_2A model instead of V_2
+      formData.append('model', 'V_2_TURBO'); // Using V_2_TURBO model
       formData.append('num_images', '1'); // Only need one image
       formData.append('prompt', `Isometric game terrain tile continuing seamlessly from the left side. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`);
       
@@ -245,7 +245,7 @@ async function generateNextVerticalTile(bottomTilePath, position) {
       const formData = new FormData();
       formData.append('image_file', await fs.readFile(expandedImagePath));
       formData.append('mask', await fs.readFile(maskImagePath));
-      formData.append('model', 'V_2A'); // Using V_2A model instead of V_2
+      formData.append('model', 'V_2_TURBO'); // Using V_2_TURBO model
       formData.append('prompt', `Isometric game terrain tile continuing seamlessly from the bottom side. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`);
       
       // Make API request
@@ -407,7 +407,7 @@ async function generateInteriorTile(leftTilePath, bottomTilePath, position) {
       const formData = new FormData();
       formData.append('image_file', await fs.readFile(compositeImagePath));
       formData.append('mask', await fs.readFile(maskImagePath));
-      formData.append('model', 'V_2A'); // Using V_2A model instead of V_2
+      formData.append('model', 'V_2_TURBO'); // Using V_2_TURBO model
       formData.append('prompt', `Isometric game terrain tile continuing seamlessly from the left and bottom sides. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`);
       
       // Make API request

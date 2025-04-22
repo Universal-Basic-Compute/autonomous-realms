@@ -55,7 +55,7 @@ router.get('/api-test', async (req, res) => {
     const formData = new FormData();
     formData.append('image_file', await fs.readFile(testImagePath));
     formData.append('mask', await fs.readFile(testMaskPath));
-    formData.append('model', 'V_2A'); // Using V_2A model instead of V_2
+    formData.append('model', 'V_2_TURBO'); // Using V_2_TURBO model
     formData.append('prompt', 'Simple test image with grass texture. Clash Royale style.');
     
     // Make API request

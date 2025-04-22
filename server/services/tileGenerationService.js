@@ -82,7 +82,7 @@ async function generateNextHorizontalTile(previousTilePath, position) {
       const responseFilePath = path.join(responseDir, `response_${Date.now()}.json`);
       
       // Prepare the prompt
-      const prompt = `Isometric game terrain tile continuing seamlessly from the left side. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`;
+      const prompt = `Isometric game terrain tile with continuous, seamless connection from the left side. ${getTerrainPromptDetails(position)}. Ensure perfect continuity at the edges. Clash Royale style, clean colors, transparent background.`;
       
       // Build the cURL command - escape quotes in the prompt
       const escapedPrompt = prompt.replace(/"/g, '\\"');
@@ -253,7 +253,7 @@ async function generateNextVerticalTile(bottomTilePath, position) {
       const responseFilePath = path.join(responseDir, `response_${Date.now()}.json`);
       
       // Prepare the prompt
-      const prompt = `Isometric game terrain tile continuing seamlessly from the bottom side. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`;
+      const prompt = `Isometric game terrain tile with continuous, seamless connection from the bottom side. ${getTerrainPromptDetails(position)}. Ensure perfect continuity at the edges. Clash Royale style, clean colors, transparent background.`;
       
       // Build the cURL command - escape quotes in the prompt
       const escapedPrompt = prompt.replace(/"/g, '\\"');
@@ -452,7 +452,7 @@ async function generateInteriorTile(leftTilePath, bottomTilePath, position) {
       const responseFilePath = path.join(responseDir, `response_${Date.now()}.json`);
       
       // Prepare the prompt
-      const prompt = `Isometric game terrain tile continuing seamlessly from the left and bottom sides. ${getTerrainPromptDetails(position)}. Clash Royale style, clean colors, transparent background.`;
+      const prompt = `Isometric game terrain tile with continuous, seamless connection from the left and bottom sides. ${getTerrainPromptDetails(position)}. Ensure perfect continuity at all edges. Clash Royale style, clean colors, transparent background.`;
       
       // Build the cURL command - escape quotes in the prompt
       const escapedPrompt = prompt.replace(/"/g, '\\"');

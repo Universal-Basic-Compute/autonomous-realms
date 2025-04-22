@@ -22,7 +22,7 @@ body::before {
     width: 100%;
     height: 100%;
     z-index: -10;
-    background-image: url('/assets/clouds.png');
+    background-image: url('http://localhost:3000/assets/clouds.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

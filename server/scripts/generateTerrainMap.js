@@ -83,7 +83,7 @@ Example:
       },
       body: JSON.stringify({
         model: "claude-3-7-sonnet-latest",
-        max_tokens: 4000,
+        max_tokens: 64000, // Increased from 4000 to 64000
         system: systemPrompt,
         messages: [
           {

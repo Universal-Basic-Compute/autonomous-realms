@@ -592,10 +592,133 @@ async function downloadImage(url) {
     await execPromise(curlCommand);
     
     logger.debug(`Image downloaded to ${tempPath}`);
+    
+    // Process the image to remove background and shadows
+    await removeBackground(tempPath);
+    
     return tempPath;
   } catch (error) {
     logger.error(`Error downloading image: ${error.message}`);
     throw error;
+  }
+}
+
+/**
+ * Remove background and shadows from image
+ */
+async function removeBackground(imagePath) {
+  try {
+    logger.info(`Removing background from image: ${imagePath}`);
+    
+    // Load the image
+    const image = await loadImage(imagePath);
+    
+    // Create a new canvas with the same dimensions
+    const canvas = createCanvas(image.width, image.height);
+    const ctx = canvas.getContext('2d');
+    
+    // Draw the original image
+    ctx.drawImage(image, 0, 0);
+    
+    // Get image data to process pixels
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const data = imageData.data;
+    
+    // Define what we consider "white" or "near white" for background
+    const isWhiteOrNearWhite = (r, g, b) => {
+      // Check if the color is close to white (allowing some variation)
+      return r > 240 && g > 240 && b > 240;
+    };
+    
+    // Detect background color from corners (sampling multiple points)
+    const cornerSamples = [
+      { x: 0, y: 0 },                                  // Top-left
+      { x: canvas.width - 1, y: 0 },                   // Top-right
+      { x: 0, y: canvas.height - 1 },                  // Bottom-left
+      { x: canvas.width - 1, y: canvas.height - 1 },   // Bottom-right
+      { x: 5, y: 5 },                                  // Near top-left
+      { x: canvas.width - 6, y: 5 },                   // Near top-right
+      { x: 5, y: canvas.height - 6 },                  // Near bottom-left
+      { x: canvas.width - 6, y: canvas.height - 6 }    // Near bottom-right
+    ];
+    
+    // Sample colors from corners to determine background color
+    let backgroundColors = [];
+    for (const point of cornerSamples) {
+      const idx = (point.y * canvas.width + point.x) * 4;
+      backgroundColors.push({
+        r: data[idx],
+        g: data[idx + 1],
+        b: data[idx + 2],
+        a: data[idx + 3]
+      });
+    }
+    
+    // Filter out non-white colors from our background samples
+    backgroundColors = backgroundColors.filter(color => 
+      isWhiteOrNearWhite(color.r, color.g, color.b)
+    );
+    
+    // If we don't have enough white samples, use a default white
+    const defaultBackground = { r: 255, g: 255, b: 255 };
+    const backgroundColor = backgroundColors.length > 3 
+      ? backgroundColors[0] 
+      : defaultBackground;
+    
+    logger.debug(`Detected background color: RGB(${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b})`);
+    
+    // Process the image - remove shadows and ensure white background
+    for (let i = 0; i < data.length; i += 4) {
+      const r = data[i];
+      const g = data[i + 1];
+      const b = data[i + 2];
+      const a = data[i + 3];
+      
+      // Check if this pixel is likely part of the background or shadow
+      // 1. If it's very close to white, make it pure white
+      if (isWhiteOrNearWhite(r, g, b)) {
+        data[i] = 255;     // R
+        data[i + 1] = 255; // G
+        data[i + 2] = 255; // B
+        data[i + 3] = 255; // A
+        continue;
+      }
+      
+      // 2. Check for shadows (grayish colors with similar RGB values)
+      const isGray = Math.abs(r - g) < 15 && Math.abs(g - b) < 15 && Math.abs(r - b) < 15;
+      const isBrightGray = isGray && (r + g + b) / 3 > 200;
+      
+      if (isBrightGray) {
+        // This is likely a shadow - make it white
+        data[i] = 255;     // R
+        data[i + 1] = 255; // G
+        data[i + 2] = 255; // B
+        data[i + 3] = 255; // A
+        continue;
+      }
+      
+      // 3. For semi-transparent pixels that are light, make them either fully transparent or fully opaque
+      if (a < 240 && (r + g + b) / 3 > 220) {
+        // Light semi-transparent pixel - make it white
+        data[i] = 255;     // R
+        data[i + 1] = 255; // G
+        data[i + 2] = 255; // B
+        data[i + 3] = 255; // A
+      }
+    }
+    
+    // Put the processed image data back
+    ctx.putImageData(imageData, 0, 0);
+    
+    // Save the processed image
+    await fs.writeFile(imagePath, canvas.toBuffer('image/png'));
+    logger.info(`Background removed successfully from ${imagePath}`);
+    
+    return imagePath;
+  } catch (error) {
+    logger.error(`Error removing background: ${error.message}`);
+    // Return the original image path if processing fails
+    return imagePath;
   }
 }
 

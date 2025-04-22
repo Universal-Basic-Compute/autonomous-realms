@@ -82,7 +82,7 @@ Example:
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: "claude-3-sonnet-20240229",
+        model: "claude-3-7-sonnet-latest",
         max_tokens: 4000,
         system: systemPrompt,
         messages: [

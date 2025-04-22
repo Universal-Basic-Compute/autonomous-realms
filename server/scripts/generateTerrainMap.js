@@ -52,14 +52,14 @@ Use the following terrain reference guide to create appropriate terrain codes:
 ${terrainReference}`;
     
     // Prepare the user prompt
-    const userPrompt = `Generate a ${size}x${size} terrain map of floating islands for an isometric game in the style of Clash Royale.
+    const userPrompt = `Generate a ${size}x${size} terrain map of isolated realistic terrain tiles for an isometric game.
 
-For each island, provide:
+For each tile, provide:
 1. Coordinates (x,y) from 0,0 to ${size-1},${size-1}
-2. A brief description (30-50 words) of the island's natural features, including terrain type, vegetation, geological formations, and unique elements. DO NOT include any human constructions, settlements, buildings, or artificial structures.
+2. A brief description (30-50 words) of the terrain's natural features, including terrain type, vegetation, geological formations, and unique elements. DO NOT include any human constructions, settlements, buildings, or artificial structures.
 3. A terrain code using the format from the terrain reference document (e.g., "F-OAK|E-SLI|X-RUI")
 
-Make each island unique and interesting. Include various natural terrain types like forests, mountains, plains, magical areas, etc. Each island should be isolated and self-contained with no bridges or connections between them. Focus exclusively on natural landscapes without any signs of civilization.
+Make each terrain tile unique and detailed with realistic features. Include various natural terrain types like forests, mountains, plains, magical areas, etc. Each tile should be isolated and self-contained. Focus exclusively on natural landscapes without any signs of civilization.
 
 Format the response as a JSON array of objects with properties: coordinates, description, and terrainCode.
 
@@ -67,8 +67,8 @@ Example:
 [
   {
     "coordinates": {"x": 3, "y": 5},
-    "description": "Small floating island with lush grass, a natural spring, and ancient rock formations. Wild flowers grow in patches, and a small waterfall cascades off the eastern edge into the void below.",
-    "terrainCode": "P-LUS|E-FLT|X-RCK|S-FLT"
+    "description": "Dense pine forest with needle-covered ground and exposed granite outcroppings. Moss covers the north-facing rocks, and a small natural clearing reveals rich dark soil with ferns.",
+    "terrainCode": "F-PIN|E-SLI|X-RCK|R-GRN"
   },
   ...
 ]`;
@@ -128,10 +128,11 @@ Example:
 // Generate an image for a single island
 async function generateIslandImage(island, index) {
   try {
-    logger.info(`Generating image for island at ${island.coordinates.x},${island.coordinates.y}`);
+    logger.info(`Generating image for terrain at ${island.coordinates.x},${island.coordinates.y}`);
     
     // Create a prompt for Ideogram based on the island description
-    const prompt = `isometric floating island with ${island.description}, white background, clearly defined edges, Clash Royale style, vibrant colors, game asset, no shadows, isolated game tile`;
+    // Updated to request isolated realistic terrain tiles instead of floating islands
+    const prompt = `isolated realistic terrain tile with ${island.description}, white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile`;
     
     // Prepare request data
     const requestData = {

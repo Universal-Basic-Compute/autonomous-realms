@@ -3,6 +3,7 @@ const path = require('path');
 module.exports = {
   IDEOGRAM_API_KEY: process.env.IDEOGRAM_API_KEY || 'your-api-key',
   REMOVE_BG_API_KEY: process.env.REMOVE_BG_API_KEY || 'your-remove-bg-api-key',
+  PIXELCUT_API_KEY: process.env.PIXELCUT_API_KEY || 'your-pixelcut-api-key',
   CLAUDE_API_KEY: process.env.CLAUDE_API_KEY || 'your-claude-api-key',
   IDEOGRAM_MODEL: process.env.IDEOGRAM_MODEL || 'V_2_TURBO', // Configurable model for Reframe API
   IDEOGRAM_STYLE_TYPE: process.env.IDEOGRAM_STYLE_TYPE || 'REALISTIC', // Configurable style type

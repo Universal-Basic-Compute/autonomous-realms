@@ -59,26 +59,31 @@ async function downloadImage(url, outputPath) {
   }
 }
 
-// Remove background using remove.bg API
+// Remove background using Pixelcut API
 async function removeBackground(imagePath) {
   try {
-    logger.info(`Removing background from image using remove.bg API: ${imagePath}`);
+    logger.info(`Removing background from image using Pixelcut API: ${imagePath}`);
     
-    // Read the image file
+    // First, we need to upload the image to a temporary URL or use a file upload approach
+    // For this implementation, we'll read the file and convert it to base64
     const imageBuffer = await fs.readFile(imagePath);
+    
+    // Create a temporary file URL using a service like ImgBB or similar
+    // For now, we'll use a direct file upload approach with the Pixelcut API
     
     // Create form data for the API request
     const FormData = require('form-data');
     const formData = new FormData();
-    formData.append('size', 'auto');
-    formData.append('image_file', imageBuffer, { filename: path.basename(imagePath) });
+    formData.append('image', imageBuffer, { filename: path.basename(imagePath) });
+    formData.append('format', 'png');
     
-    // Make the API request to remove.bg
-    logger.debug(`Sending request to remove.bg API`);
-    const response = await fetch('https://api.remove.bg/v1.0/removebg', {
+    // Make the API request to Pixelcut
+    logger.debug(`Sending request to Pixelcut API`);
+    const response = await fetch('https://api.developer.pixelcut.ai/v1/remove-background', {
       method: 'POST',
       headers: {
-        'X-Api-Key': process.env.REMOVE_BG_API_KEY || config.REMOVE_BG_API_KEY
+        'X-API-KEY': process.env.PIXELCUT_API_KEY || config.PIXELCUT_API_KEY,
+        'Accept': 'application/json'
       },
       body: formData
     });
@@ -86,19 +91,34 @@ async function removeBackground(imagePath) {
     // Check if the request was successful
     if (!response.ok) {
       const errorText = await response.text();
-      throw new Error(`remove.bg API request failed with status ${response.status}: ${errorText}`);
+      throw new Error(`Pixelcut API request failed with status ${response.status}: ${errorText}`);
+    }
+    
+    // Get the response with the URL to the processed image
+    const data = await response.json();
+    
+    if (!data.result_url) {
+      throw new Error('Invalid response from Pixelcut API: No result URL found');
+    }
+    
+    // Download the processed image
+    logger.debug(`Downloading processed image from ${data.result_url}`);
+    const processedImageResponse = await fetch(data.result_url);
+    
+    if (!processedImageResponse.ok) {
+      throw new Error(`Failed to download processed image: ${processedImageResponse.status}`);
     }
     
     // Get the processed image with transparent background
-    const buffer = await response.buffer();
+    const buffer = await processedImageResponse.buffer();
     
     // Save the processed image back to the original path
     await fs.writeFile(imagePath, buffer);
-    logger.info(`Background removed successfully using remove.bg API: ${imagePath}`);
+    logger.info(`Background removed successfully using Pixelcut API: ${imagePath}`);
     
     return imagePath;
   } catch (error) {
-    logger.error(`Error removing background with remove.bg API: ${error.message}`);
+    logger.error(`Error removing background with Pixelcut API: ${error.message}`);
     // Return the original image path if processing fails
     return imagePath;
   }

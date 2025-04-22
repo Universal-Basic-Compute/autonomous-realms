@@ -589,17 +589,17 @@ async function cropAndSaveRightSide(imagePath, outputPath) {
     const canvas = createCanvas(TILE_WIDTH, TILE_HEIGHT);
     const ctx = canvas.getContext('2d');
     
-    // Draw only the right 66.6% of the generated image
+    // Draw only the right 1/3 of the generated image (the newly generated part)
     ctx.drawImage(
       image,
-      image.width / 3,  // Source X (start from 1/3 of the way)
-      0,                // Source Y
-      image.width * 2/3,// Source Width (take 2/3 of the image)
-      image.height,     // Source Height
-      0,                // Destination X
-      0,                // Destination Y
-      canvas.width,     // Destination Width
-      canvas.height     // Destination Height
+      image.width * 2/3,  // Source X (start from 2/3 of the way)
+      0,                  // Source Y
+      image.width / 3,    // Source Width (take 1/3 of the image)
+      image.height,       // Source Height
+      0,                  // Destination X
+      0,                  // Destination Y
+      canvas.width,       // Destination Width
+      canvas.height       // Destination Height
     );
     
     await fs.writeFile(outputPath, canvas.toBuffer('image/png'));
@@ -625,17 +625,17 @@ async function cropAndSaveTopSide(imagePath, outputPath) {
     const canvas = createCanvas(TILE_WIDTH, TILE_HEIGHT);
     const ctx = canvas.getContext('2d');
     
-    // Draw only the top 66.6% of the generated image
+    // Draw only the top 1/3 of the generated image (the newly generated part)
     ctx.drawImage(
       image,
-      0,                // Source X
-      0,                // Source Y
-      image.width,      // Source Width
-      image.height * 2/3,// Source Height (take 2/3 of the image)
-      0,                // Destination X
-      0,                // Destination Y
-      canvas.width,     // Destination Width
-      canvas.height     // Destination Height
+      0,                  // Source X
+      0,                  // Source Y
+      image.width,        // Source Width
+      image.height / 3,   // Source Height (take 1/3 of the image)
+      0,                  // Destination X
+      0,                  // Destination Y
+      canvas.width,       // Destination Width
+      canvas.height       // Destination Height
     );
     
     await fs.writeFile(outputPath, canvas.toBuffer('image/png'));

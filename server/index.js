@@ -46,10 +46,12 @@ async function init() {
     
     // Set up routes
     app.use('/api/tiles', tileRoutes);
+    app.use('/api/icons', require('./routes/iconRoutes'));
     
     // Serve static files
     app.use('/assets', express.static(path.join(__dirname, 'assets')));
     app.use('/output', express.static(path.join(__dirname, 'output')));
+    app.use('/docs', express.static(path.join(__dirname, '../docs')));
     
     // Health check endpoint
     app.get('/health', (req, res) => {

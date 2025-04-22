@@ -72,6 +72,13 @@ async function generateNextHorizontalTile(previousTilePath, position) {
     const expandedImagePath = path.join(config.TEMP_DIR, `expanded_${Date.now()}.png`);
     await fs.writeFile(expandedImagePath, expandedCanvas.toBuffer('image/png'));
     
+    // Save the expanded image for debugging
+    const debugDir = path.join(config.TEMP_DIR, 'debug');
+    await fs.mkdir(debugDir, { recursive: true });
+    const expandedImageDebugPath = path.join(debugDir, `expanded_${position.regionX}_${position.regionY}_${position.x}_${position.y}.png`);
+    await fs.copyFile(expandedImagePath, expandedImageDebugPath);
+    logger.debug(`Saved expanded image to ${expandedImageDebugPath}`);
+    
     logger.debug('Created expanded image and mask for API request');
     
     // Queue the API request to respect rate limits
@@ -242,6 +249,13 @@ async function generateNextVerticalTile(bottomTilePath, position) {
     // Save temporary file for API upload
     const expandedImagePath = path.join(config.TEMP_DIR, `expanded_${Date.now()}.png`);
     await fs.writeFile(expandedImagePath, expandedCanvas.toBuffer('image/png'));
+    
+    // Save the expanded image for debugging
+    const debugDir = path.join(config.TEMP_DIR, 'debug');
+    await fs.mkdir(debugDir, { recursive: true });
+    const expandedImageDebugPath = path.join(debugDir, `expanded_vertical_${position.regionX}_${position.regionY}_${position.x}_${position.y}.png`);
+    await fs.copyFile(expandedImagePath, expandedImageDebugPath);
+    logger.debug(`Saved expanded image to ${expandedImageDebugPath}`);
     
     logger.debug('Created expanded image and mask for API request');
     
@@ -441,6 +455,13 @@ async function generateInteriorTile(leftTilePath, bottomTilePath, position) {
     // Save temporary file for API upload
     const compositeImagePath = path.join(config.TEMP_DIR, `composite_${Date.now()}.png`);
     await fs.writeFile(compositeImagePath, compositeCanvas.toBuffer('image/png'));
+    
+    // Save the composite image for debugging
+    const debugDir = path.join(config.TEMP_DIR, 'debug');
+    await fs.mkdir(debugDir, { recursive: true });
+    const compositeImageDebugPath = path.join(debugDir, `composite_${position.regionX}_${position.regionY}_${position.x}_${position.y}.png`);
+    await fs.copyFile(compositeImagePath, compositeImageDebugPath);
+    logger.debug(`Saved composite image to ${compositeImageDebugPath}`);
     
     logger.debug('Created composite image and mask for API request');
     

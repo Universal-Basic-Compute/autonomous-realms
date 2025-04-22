@@ -48,13 +48,13 @@ function initWorld() {
 
 // Set up event listeners
 function setupEventListeners() {
-    // Mouse drag events
-    worldContainer.addEventListener('mousedown', startDrag);
+    // Mouse drag events - attach to document instead of worldContainer
+    document.addEventListener('mousedown', startDrag);
     document.addEventListener('mousemove', drag);
     document.addEventListener('mouseup', endDrag);
     
-    // Touch events for mobile - make sure we're using the correct options
-    worldContainer.addEventListener('touchstart', handleTouchStart, { passive: false });
+    // Touch events for mobile - attach to document instead of worldContainer
+    document.addEventListener('touchstart', handleTouchStart, { passive: false });
     document.addEventListener('touchmove', handleTouchMove, { passive: false });
     document.addEventListener('touchend', handleTouchEnd, { passive: true });
     
@@ -72,6 +72,11 @@ function setupEventListeners() {
 
 // Start dragging
 function startDrag(e) {
+    // Don't start dragging if we clicked on a button or control
+    if (e.target.closest('#controls') || e.target.closest('#info-panel')) {
+        return;
+    }
+    
     if (e.button !== 0) return; // Only left mouse button
     
     state.isDragging = true;
@@ -80,7 +85,7 @@ function startDrag(e) {
     state.lastOffsetX = state.offsetX;
     state.lastOffsetY = state.offsetY;
     
-    worldContainer.classList.add('grabbing');
+    document.body.style.cursor = 'grabbing';
     e.preventDefault();
 }
 
@@ -103,7 +108,7 @@ function endDrag() {
     if (!state.isDragging) return;
     
     state.isDragging = false;
-    worldContainer.classList.remove('grabbing');
+    document.body.style.cursor = '';
     
     // Load new tiles after dragging stops
     loadVisibleTiles();
@@ -111,6 +116,11 @@ function endDrag() {
 
 // Handle touch start
 function handleTouchStart(e) {
+    // Don't start dragging if we touched a button or control
+    if (e.target.closest('#controls') || e.target.closest('#info-panel')) {
+        return;
+    }
+    
     if (e.touches.length !== 1) return;
     
     state.isDragging = true;
@@ -119,7 +129,7 @@ function handleTouchStart(e) {
     state.lastOffsetX = state.offsetX;
     state.lastOffsetY = state.offsetY;
     
-    worldContainer.classList.add('grabbing');
+    document.body.style.cursor = 'grabbing';
     e.preventDefault();
 }
 
@@ -142,7 +152,7 @@ function handleTouchEnd() {
     if (!state.isDragging) return;
     
     state.isDragging = false;
-    worldContainer.classList.remove('grabbing');
+    document.body.style.cursor = '';
     
     // Load new tiles after touch ends
     loadVisibleTiles();

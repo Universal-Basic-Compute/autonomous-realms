@@ -231,6 +231,33 @@
 - `X-MND`: Mound
 - `X-BRW`: Burrow
 
+### Animal Modifiers (A)
+- `A-DEE`: Deer
+- `A-RAB`: Rabbits
+- `A-FOX`: Foxes
+- `A-WOL`: Wolves
+- `A-BEA`: Bears
+- `A-BOA`: Wild boars
+- `A-BIR`: Birds/songbirds
+- `A-EAG`: Eagles
+- `A-HAW`: Hawks
+- `A-OWL`: Owls
+- `A-SQU`: Squirrels
+- `A-BAT`: Bats
+- `A-BEE`: Bees/beehives
+- `A-BUT`: Butterflies
+- `A-FIS`: Fish (in water)
+- `A-FRO`: Frogs
+- `A-TUR`: Turtles
+- `A-SNA`: Snakes
+- `A-LIZ`: Lizards
+- `A-CRO`: Crocodiles (in swamps)
+- `A-ELK`: Elk/moose
+- `A-GOA`: Mountain goats
+- `A-FAL`: Falcons
+- `A-CRA`: Crabs (coastal)
+- `A-SEA`: Seabirds (coastal)
+
 ### Weather Effect Modifiers (W)
 - `W-FOG`: Frequently foggy
 - `W-WIN`: Windy
@@ -270,6 +297,9 @@
 6. `A-WHT|H-NRM|F-RIC|W-RAI`: Wheat field with normal moisture, rich soil, and rainy conditions
 7. `S-CRY|E-HIG|H-DRY|C-SAC`: Crystal formation at high elevation with dry conditions on sacred ground
 8. `T-SNO|E-VRY|W-BLZ|X-CVE`: Snow field at very high elevation, blizzard-prone with cave entrances
+9. `F-OAK|E-FLT|A-DEE|A-BIR`: Oak forest on flat terrain with deer and songbirds
+10. `P-LUS|H-WET|A-FRO|A-BUT`: Lush grassland with wet conditions, frogs, and butterflies
+11. `M-HIG|R-ORE|A-GOA|A-EAG`: High mountains with ore deposits, mountain goats, and eagles
 
 ## Using the Codes for AI Generation
 

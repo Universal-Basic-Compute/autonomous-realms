@@ -1,0 +1,13 @@
+{
+  "created": "2025-04-22T16:52:50.516081+00:00",
+  "data": [
+    {
+      "is_image_safe": true,
+      "prompt": "isometric small medieval cottage, thatched roof, wooden beams, single-story, white background, clearly defined tile edges, clean lines, Clash Royale style, game asset, no shadows, flat colors, isolated isometric game tile",
+      "resolution": "1024x1024",
+      "seed": 910639591,
+      "style_type": "GENERAL",
+      "url": "https://ideogram.ai/api/images/ephemeral/9dlclqNBQnyawnC9WhqC3g.png?exp=1745427176&sig=12c958ae3df216486902c196f4919062eac36eef61e09e1729228519399177b6"
+    }
+  ]
+}

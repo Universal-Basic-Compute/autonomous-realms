@@ -259,3 +259,63 @@
 {"level":"info","message":"Starting test image generation","service":"tile-generator","timestamp":"2025-04-22 18:49:22"}
 {"level":"info","message":"Creating output directory: C:\\Users\\reyno\\autonomous-realms\\server\\output","service":"tile-generator","timestamp":"2025-04-22 18:49:22"}
 {"level":"error","message":"Error generating test image: API request failed with status 401: {\"message\": \"Access denied. Please verify your API Token is valid.\"}","service":"tile-generator","timestamp":"2025-04-22 18:49:22"}
+{"level":"info","message":"Starting test image generation","service":"tile-generator","timestamp":"2025-04-22 18:51:54"}
+{"level":"error","message":"Error generating test image: API request failed with status 401: {\"message\": \"Access denied. Please verify your API Token is valid.\"}","service":"tile-generator","timestamp":"2025-04-22 18:51:54"}
+{"level":"info","message":"Starting test image generation","service":"tile-generator","timestamp":"2025-04-22 18:52:50"}
+{"level":"info","message":"API Key length: 86","service":"tile-generator","timestamp":"2025-04-22 18:52:50"}
+{"level":"info","message":"API Key first few chars: 5ryS...","service":"tile-generator","timestamp":"2025-04-22 18:52:50"}
+{"level":"info","message":"Image downloaded successfully to C:\\Users\\reyno\\autonomous-realms\\server\\output\\generated_1.png","service":"tile-generator","timestamp":"2025-04-22 18:52:57"}
+{"level":"info","message":"Successfully generated image #1","service":"tile-generator","timestamp":"2025-04-22 18:52:57"}
+{"level":"info","message":"Image saved to: C:\\Users\\reyno\\autonomous-realms\\server\\output\\generated_1.png","service":"tile-generator","timestamp":"2025-04-22 18:52:57"}
+{"level":"info","message":"Metadata saved to: C:\\Users\\reyno\\autonomous-realms\\server\\output\\generated_1_metadata.json","service":"tile-generator","timestamp":"2025-04-22 18:52:57"}
+{"level":"info","message":"Test image generation completed successfully","service":"tile-generator","timestamp":"2025-04-22 18:52:57"}
+{"level":"info","message":"Starting test image generation","service":"tile-generator","timestamp":"2025-04-22 18:55:44"}
+{"level":"info","message":"API Key length: 86","service":"tile-generator","timestamp":"2025-04-22 18:55:44"}
+{"level":"info","message":"API Key first few chars: 5ryS...","service":"tile-generator","timestamp":"2025-04-22 18:55:44"}
+{"level":"info","message":"Image downloaded successfully to C:\\Users\\reyno\\autonomous-realms\\server\\output\\generated_2.png","service":"tile-generator","timestamp":"2025-04-22 18:55:50"}
+{"level":"info","message":"Removing background from image: C:\\Users\\reyno\\autonomous-realms\\server\\output\\generated_2.png","service":"tile-generator","timestamp":"2025-04-22 18:55:50"}
+{"level":"info","message":"Background removed successfully from C:\\Users\\reyno\\autonomous-realms\\server\\output\\generated_2.png","service":"tile-generator","timestamp":"2025-04-22 18:55:50"}
+{"level":"info","message":"Successfully generated image #2","service":"tile-generator","timestamp":"2025-04-22 18:55:50"}
+{"level":"info","message":"Image saved to: C:\\Users\\reyno\\autonomous-realms\\server\\output\\generated_2.png","service":"tile-generator","timestamp":"2025-04-22 18:55:50"}
+{"level":"info","message":"Metadata saved to: C:\\Users\\reyno\\autonomous-realms\\server\\output\\generated_2_metadata.json","service":"tile-generator","timestamp":"2025-04-22 18:55:50"}
+{"level":"info","message":"Test image generation completed successfully","service":"tile-generator","timestamp":"2025-04-22 18:55:50"}
+{"level":"info","message":"Starting test image generation","service":"tile-generator","timestamp":"2025-04-22 18:57:39"}
+{"level":"info","message":"API Key length: 86","service":"tile-generator","timestamp":"2025-04-22 18:57:39"}
+{"level":"info","message":"API Key first few chars: 5ryS...","service":"tile-generator","timestamp":"2025-04-22 18:57:39"}
+{"level":"info","message":"Image downloaded successfully to C:\\Users\\reyno\\autonomous-realms\\server\\output\\generated_3.png","service":"tile-generator","timestamp":"2025-04-22 18:57:45"}
+{"level":"info","message":"Removing background from image: C:\\Users\\reyno\\autonomous-realms\\server\\output\\generated_3.png","service":"tile-generator","timestamp":"2025-04-22 18:57:45"}
+{"level":"info","message":"Background removed successfully from C:\\Users\\reyno\\autonomous-realms\\server\\output\\generated_3.png (made transparent)","service":"tile-generator","timestamp":"2025-04-22 18:57:46"}
+{"level":"info","message":"Successfully generated image #3","service":"tile-generator","timestamp":"2025-04-22 18:57:46"}
+{"level":"info","message":"Image saved to: C:\\Users\\reyno\\autonomous-realms\\server\\output\\generated_3.png","service":"tile-generator","timestamp":"2025-04-22 18:57:46"}
+{"level":"info","message":"Metadata saved to: C:\\Users\\reyno\\autonomous-realms\\server\\output\\generated_3_metadata.json","service":"tile-generator","timestamp":"2025-04-22 18:57:46"}
+{"level":"info","message":"Test image generation completed successfully","service":"tile-generator","timestamp":"2025-04-22 18:57:46"}
+{"level":"info","message":"Starting test image generation","service":"tile-generator","timestamp":"2025-04-22 19:00:29"}
+{"level":"info","message":"API Key length: 86","service":"tile-generator","timestamp":"2025-04-22 19:00:29"}
+{"level":"info","message":"API Key first few chars: 5ryS...","service":"tile-generator","timestamp":"2025-04-22 19:00:29"}
+{"level":"info","message":"Image downloaded successfully to C:\\Users\\reyno\\autonomous-realms\\server\\output\\generated_4.png","service":"tile-generator","timestamp":"2025-04-22 19:00:35"}
+{"level":"info","message":"Removing background from image: C:\\Users\\reyno\\autonomous-realms\\server\\output\\generated_4.png","service":"tile-generator","timestamp":"2025-04-22 19:00:35"}
+{"level":"info","message":"Background removed successfully from C:\\Users\\reyno\\autonomous-realms\\server\\output\\generated_4.png (made transparent)","service":"tile-generator","timestamp":"2025-04-22 19:00:36"}
+{"level":"info","message":"Successfully generated image #4","service":"tile-generator","timestamp":"2025-04-22 19:00:36"}
+{"level":"info","message":"Image saved to: C:\\Users\\reyno\\autonomous-realms\\server\\output\\generated_4.png","service":"tile-generator","timestamp":"2025-04-22 19:00:36"}
+{"level":"info","message":"Metadata saved to: C:\\Users\\reyno\\autonomous-realms\\server\\output\\generated_4_metadata.json","service":"tile-generator","timestamp":"2025-04-22 19:00:36"}
+{"level":"info","message":"Test image generation completed successfully","service":"tile-generator","timestamp":"2025-04-22 19:00:36"}
+{"level":"info","message":"Starting test image generation","service":"tile-generator","timestamp":"2025-04-22 19:01:47"}
+{"level":"info","message":"API Key length: 86","service":"tile-generator","timestamp":"2025-04-22 19:01:47"}
+{"level":"info","message":"API Key first few chars: 5ryS...","service":"tile-generator","timestamp":"2025-04-22 19:01:47"}
+{"level":"info","message":"Image downloaded successfully to C:\\Users\\reyno\\autonomous-realms\\server\\output\\generated_5.png","service":"tile-generator","timestamp":"2025-04-22 19:01:53"}
+{"level":"info","message":"Removing background from image: C:\\Users\\reyno\\autonomous-realms\\server\\output\\generated_5.png","service":"tile-generator","timestamp":"2025-04-22 19:01:53"}
+{"level":"info","message":"Background removed successfully from C:\\Users\\reyno\\autonomous-realms\\server\\output\\generated_5.png (made transparent)","service":"tile-generator","timestamp":"2025-04-22 19:01:53"}
+{"level":"info","message":"Successfully generated image #5","service":"tile-generator","timestamp":"2025-04-22 19:01:53"}
+{"level":"info","message":"Image saved to: C:\\Users\\reyno\\autonomous-realms\\server\\output\\generated_5.png","service":"tile-generator","timestamp":"2025-04-22 19:01:53"}
+{"level":"info","message":"Metadata saved to: C:\\Users\\reyno\\autonomous-realms\\server\\output\\generated_5_metadata.json","service":"tile-generator","timestamp":"2025-04-22 19:01:53"}
+{"level":"info","message":"Test image generation completed successfully","service":"tile-generator","timestamp":"2025-04-22 19:01:53"}
+{"level":"info","message":"Starting test image generation","service":"tile-generator","timestamp":"2025-04-22 19:54:10"}
+{"level":"info","message":"API Key length: 86","service":"tile-generator","timestamp":"2025-04-22 19:54:10"}
+{"level":"info","message":"API Key first few chars: 5ryS...","service":"tile-generator","timestamp":"2025-04-22 19:54:10"}
+{"level":"info","message":"Image downloaded successfully to C:\\Users\\reyno\\autonomous-realms\\server\\output\\generated_6.png","service":"tile-generator","timestamp":"2025-04-22 19:54:16"}
+{"level":"info","message":"Removing background from image using remove.bg API: C:\\Users\\reyno\\autonomous-realms\\server\\output\\generated_6.png","service":"tile-generator","timestamp":"2025-04-22 19:54:16"}
+{"level":"info","message":"Background removed successfully using remove.bg API: C:\\Users\\reyno\\autonomous-realms\\server\\output\\generated_6.png","service":"tile-generator","timestamp":"2025-04-22 19:54:18"}
+{"level":"info","message":"Successfully generated image #6","service":"tile-generator","timestamp":"2025-04-22 19:54:18"}
+{"level":"info","message":"Image saved to: C:\\Users\\reyno\\autonomous-realms\\server\\output\\generated_6.png","service":"tile-generator","timestamp":"2025-04-22 19:54:18"}
+{"level":"info","message":"Metadata saved to: C:\\Users\\reyno\\autonomous-realms\\server\\output\\generated_6_metadata.json","service":"tile-generator","timestamp":"2025-04-22 19:54:18"}
+{"level":"info","message":"Test image generation completed successfully","service":"tile-generator","timestamp":"2025-04-22 19:54:18"}

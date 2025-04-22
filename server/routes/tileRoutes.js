@@ -296,18 +296,31 @@ router.get('/:regionX/:regionY/:x/:y', async (req, res) => {
       
       // For the first tile (0,0), use a base tile or generate a fallback
       if (position.x === 0 && position.y === 0) {
-        const baseTilePath = path.join(config.TILES_DIR, 'base_tile.png');
+        // Use a deterministic "random" selection based on region coordinates
+        // This ensures the same base tile is always used for the same region
+        const seed = (position.regionX * 100 + position.regionY) % 4 + 1;
+        const baseTilePath = path.join(config.TILES_DIR, `base_tile_${seed}.png`);
+        
         try {
           await fs.access(baseTilePath);
           // Copy base tile to the new position
-          logger.debug(`Using base tile for position (0,0)`);
+          logger.debug(`Using base tile ${seed} for position (0,0)`);
           await fs.copyFile(baseTilePath, tilePath);
           return res.sendFile(tilePath);
         } catch (baseErr) {
-          logger.info(`Base tile not found at ${baseTilePath}, generating fallback tile`);
-          // Generate a fallback tile for the base position
-          const fallbackTilePath = await tileService.generateFallbackTile(position);
-          return res.sendFile(fallbackTilePath);
+          // Try the default base tile as fallback
+          const defaultBaseTilePath = path.join(config.TILES_DIR, 'base_tile.png');
+          try {
+            await fs.access(defaultBaseTilePath);
+            logger.debug(`Base tile ${seed} not found, using default base tile`);
+            await fs.copyFile(defaultBaseTilePath, tilePath);
+            return res.sendFile(tilePath);
+          } catch (defaultBaseErr) {
+            logger.info(`No base tiles found, generating fallback tile`);
+            // Generate a fallback tile for the base position
+            const fallbackTilePath = await tileService.generateFallbackTile(position);
+            return res.sendFile(fallbackTilePath);
+          }
         }
       }
       

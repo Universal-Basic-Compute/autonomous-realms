@@ -88,7 +88,7 @@ Example:
         messages: [
           {
             role: "user",
-            content: userPrompt
+            content: userPrompt + "\n\nIMPORTANT: Respond ONLY with the JSON array. Do not include any explanations, markdown formatting, or additional text before or after the JSON array."
           }
         ]
       })
@@ -102,29 +102,116 @@ Example:
     const responseData = await response.json();
     logger.debug(`Claude response received`);
 
+    // Log the full response for debugging
+    logger.debug(`Claude full response: ${JSON.stringify(responseData)}`);
+
     // Extract the JSON array from Claude's response
     const contentText = responseData.content[0].text;
-    logger.debug(`Claude response received: ${contentText.substring(0, 200)}...`);
+    logger.info(`Claude response length: ${contentText.length} characters`);
+    logger.debug(`Claude response first 500 chars: ${contentText.substring(0, 500)}...`);
+    logger.debug(`Claude response last 500 chars: ...${contentText.substring(contentText.length - 500)}`);
 
-    // Find the first { and the last } to extract the JSON
-    const firstBrace = contentText.indexOf('[');
-    const lastBrace = contentText.lastIndexOf(']');
+    // Try to find JSON in the response using multiple approaches
+    let jsonText = null;
+    let terrainMap = null;
 
-    if (firstBrace === -1 || lastBrace === -1 || firstBrace >= lastBrace) {
-      throw new Error('Could not extract valid JSON from Claude response');
+    // Approach 1: Find the first [ and the last ]
+    try {
+      const firstBrace = contentText.indexOf('[');
+      const lastBrace = contentText.lastIndexOf(']');
+      
+      if (firstBrace !== -1 && lastBrace !== -1 && firstBrace < lastBrace) {
+        jsonText = contentText.substring(firstBrace, lastBrace + 1);
+        logger.debug(`Approach 1 - JSON extraction found text of length: ${jsonText.length}`);
+        terrainMap = JSON.parse(jsonText);
+        logger.info(`Successfully parsed terrain map with ${terrainMap.length} entries using approach 1`);
+      } else {
+        logger.warn('Approach 1 failed: Could not find valid JSON brackets');
+      }
+    } catch (parseError) {
+      logger.warn(`Approach 1 failed to parse JSON: ${parseError.message}`);
     }
 
-    const jsonText = contentText.substring(firstBrace, lastBrace + 1);
-    logger.debug(`Extracted JSON: ${jsonText.substring(0, 200)}...`);
+    // Approach 2: Use regex to find JSON array
+    if (!terrainMap) {
+      try {
+        const jsonRegex = /\[\s*\{\s*"coordinates"/s;
+        const match = contentText.match(jsonRegex);
+        
+        if (match) {
+          const startIndex = match.index;
+          let bracketCount = 0;
+          let endIndex = startIndex;
+          
+          // Find the matching closing bracket by counting opening and closing brackets
+          for (let i = startIndex; i < contentText.length; i++) {
+            if (contentText[i] === '[') bracketCount++;
+            if (contentText[i] === ']') bracketCount--;
+            
+            if (bracketCount === 0 && contentText[i] === ']') {
+              endIndex = i + 1;
+              break;
+            }
+          }
+          
+          if (endIndex > startIndex) {
+            jsonText = contentText.substring(startIndex, endIndex);
+            logger.debug(`Approach 2 - JSON extraction found text of length: ${jsonText.length}`);
+            terrainMap = JSON.parse(jsonText);
+            logger.info(`Successfully parsed terrain map with ${terrainMap.length} entries using approach 2`);
+          } else {
+            logger.warn('Approach 2 failed: Could not find matching closing bracket');
+          }
+        } else {
+          logger.warn('Approach 2 failed: Could not find JSON array pattern');
+        }
+      } catch (parseError) {
+        logger.warn(`Approach 2 failed to parse JSON: ${parseError.message}`);
+      }
+    }
 
-    let terrainMap;
-    try {
-      terrainMap = JSON.parse(jsonText);
-      logger.info(`Successfully parsed terrain map with ${terrainMap.length} entries`);
-    } catch (parseError) {
-      logger.error(`Failed to parse extracted JSON: ${parseError.message}`);
-      logger.debug(`Problematic JSON: ${jsonText}`);
-      throw new Error('Failed to parse JSON from Claude response: ' + parseError.message);
+    // Approach 3: Try to extract any JSON array from the response
+    if (!terrainMap) {
+      try {
+        // Look for any JSON array in the text
+        const possibleJsons = contentText.match(/\[[\s\S]*?\]/g);
+        
+        if (possibleJsons && possibleJsons.length > 0) {
+          // Try each possible JSON array, starting with the longest one
+          const sortedJsons = possibleJsons.sort((a, b) => b.length - a.length);
+          
+          for (const possibleJson of sortedJsons) {
+            try {
+              if (possibleJson.includes('"coordinates"')) {
+                jsonText = possibleJson;
+                logger.debug(`Approach 3 - JSON extraction found text of length: ${jsonText.length}`);
+                terrainMap = JSON.parse(jsonText);
+                logger.info(`Successfully parsed terrain map with ${terrainMap.length} entries using approach 3`);
+                break;
+              }
+            } catch (e) {
+              // Continue to the next possible JSON
+              continue;
+            }
+          }
+        }
+        
+        if (!terrainMap) {
+          logger.warn('Approach 3 failed: Could not find valid JSON array');
+        }
+      } catch (parseError) {
+        logger.warn(`Approach 3 failed: ${parseError.message}`);
+      }
+    }
+
+    // If all approaches failed, throw an error
+    if (!terrainMap) {
+      // Save the problematic response to a file for analysis
+      const errorResponsePath = path.join(__dirname, '../logs/claude_error_response.txt');
+      await fs.writeFile(errorResponsePath, contentText);
+      logger.error(`Saved problematic Claude response to ${errorResponsePath}`);
+      
+      throw new Error('Could not extract valid JSON from Claude response. Response saved to logs for analysis.');
     }
     
     // Save the terrain map to a file

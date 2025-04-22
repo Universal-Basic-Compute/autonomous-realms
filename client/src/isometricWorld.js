@@ -327,9 +327,15 @@ function loadTile(regionX, regionY, x, y) {
             const animationSeed = (x * 7 + y * 13) % 3 + 1;
             tileElement.classList.add(`float-animation-${animationSeed}`);
             
-            // Add a slight delay to the animation based on position to make them look less synchronized
-            const delayFactor = ((x * 3 + y * 5) % 10) / 10;
-            tileElement.style.animationDelay = `${delayFactor}s`;
+            // Create a more randomized delay based on coordinates
+            // This ensures the same island always gets the same delay, but with more variation
+            // Use a decimal between 0 and 1 based on a hash of the coordinates
+            const hashValue = Math.abs((x * 31) ^ (y * 17)) % 100;
+            const delayFactor = hashValue / 100; // Convert to a value between 0 and 1
+            
+            // Apply a delay between 0 and 3 seconds
+            const delay = delayFactor * 3;
+            tileElement.style.animationDelay = `${delay}s`;
         })
         .catch(error => {
             if (error.message !== 'Tile not found') {

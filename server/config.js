@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   IDEOGRAM_API_KEY: process.env.IDEOGRAM_API_KEY || 'your-api-key',
-  IDEOGRAM_MODEL: process.env.IDEOGRAM_MODEL || 'V_2', // Configurable model for Reframe API
+  IDEOGRAM_MODEL: process.env.IDEOGRAM_MODEL || 'V_2_TURBO', // Configurable model for Reframe API
   TEMP_DIR: path.join(__dirname, 'temp'),
   TILES_DIR: path.join(__dirname, 'assets', 'tiles'),
   MASKS_DIR: path.join(__dirname, 'assets', 'masks'),

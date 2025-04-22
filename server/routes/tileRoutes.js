@@ -54,8 +54,8 @@ router.get('/api-test', async (req, res) => {
     // Create form data
     const formData = new FormData();
     formData.append('image_file', await fs.readFile(testImagePath));
-    formData.append('model', config.IDEOGRAM_MODEL || 'V_2'); // Use configurable model
-    formData.append('resolution', 'RESOLUTION_1536_512'); // For testing horizontal expansion
+    formData.append('model', config.IDEOGRAM_MODEL || 'V_2_TURBO'); // Use configurable model
+    formData.append('resolution', 'RESOLUTION_960_1024'); // For testing horizontal expansion
     formData.append('style_type', 'REALISTIC');
     formData.append('prompt', 'Simple test image with grass texture. Clash Royale style.');
     

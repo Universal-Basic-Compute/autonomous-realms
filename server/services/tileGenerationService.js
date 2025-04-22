@@ -589,6 +589,16 @@ async function cropAndSaveRightSide(imagePath, outputPath) {
     const canvas = createCanvas(TILE_WIDTH, TILE_HEIGHT);
     const ctx = canvas.getContext('2d');
     
+    // Save the uncropped image for debugging
+    const debugDir = path.join(config.TEMP_DIR, 'debug');
+    await fs.mkdir(debugDir, { recursive: true });
+    const uncropeedFilename = path.basename(outputPath).replace('.png', '_uncropped.png');
+    const uncropeedPath = path.join(debugDir, uncropeedFilename);
+    
+    // Copy the original image to the debug directory
+    await fs.copyFile(imagePath, uncropeedPath);
+    logger.debug(`Saved uncropped image to ${uncropeedPath}`);
+    
     // Draw only the right 1/3 of the generated image (the newly generated part)
     ctx.drawImage(
       image,
@@ -602,7 +612,14 @@ async function cropAndSaveRightSide(imagePath, outputPath) {
       canvas.height       // Destination Height
     );
     
+    // Save the cropped image
     await fs.writeFile(outputPath, canvas.toBuffer('image/png'));
+    
+    // Also save a copy of the cropped image to the debug directory
+    const croppedFilename = path.basename(outputPath).replace('.png', '_cropped.png');
+    const croppedPath = path.join(debugDir, croppedFilename);
+    await fs.writeFile(croppedPath, canvas.toBuffer('image/png'));
+    logger.debug(`Saved cropped image to ${croppedPath}`);
     
     // Clean up temp file
     await fs.unlink(imagePath).catch(err => logger.warn(`Failed to delete temp file: ${err.message}`));
@@ -625,6 +642,16 @@ async function cropAndSaveTopSide(imagePath, outputPath) {
     const canvas = createCanvas(TILE_WIDTH, TILE_HEIGHT);
     const ctx = canvas.getContext('2d');
     
+    // Save the uncropped image for debugging
+    const debugDir = path.join(config.TEMP_DIR, 'debug');
+    await fs.mkdir(debugDir, { recursive: true });
+    const uncropeedFilename = path.basename(outputPath).replace('.png', '_uncropped.png');
+    const uncropeedPath = path.join(debugDir, uncropeedFilename);
+    
+    // Copy the original image to the debug directory
+    await fs.copyFile(imagePath, uncropeedPath);
+    logger.debug(`Saved uncropped image to ${uncropeedPath}`);
+    
     // Draw only the top 1/3 of the generated image (the newly generated part)
     ctx.drawImage(
       image,
@@ -638,7 +665,14 @@ async function cropAndSaveTopSide(imagePath, outputPath) {
       canvas.height       // Destination Height
     );
     
+    // Save the cropped image
     await fs.writeFile(outputPath, canvas.toBuffer('image/png'));
+    
+    // Also save a copy of the cropped image to the debug directory
+    const croppedFilename = path.basename(outputPath).replace('.png', '_cropped.png');
+    const croppedPath = path.join(debugDir, croppedFilename);
+    await fs.writeFile(croppedPath, canvas.toBuffer('image/png'));
+    logger.debug(`Saved cropped image to ${croppedPath}`);
     
     // Clean up temp file
     await fs.unlink(imagePath).catch(err => logger.warn(`Failed to delete temp file: ${err.message}`));
@@ -661,6 +695,16 @@ async function cropAndSaveTopRightQuadrant(imagePath, outputPath) {
     const canvas = createCanvas(TILE_WIDTH, TILE_HEIGHT);
     const ctx = canvas.getContext('2d');
     
+    // Save the uncropped image for debugging
+    const debugDir = path.join(config.TEMP_DIR, 'debug');
+    await fs.mkdir(debugDir, { recursive: true });
+    const uncropeedFilename = path.basename(outputPath).replace('.png', '_uncropped.png');
+    const uncropeedPath = path.join(debugDir, uncropeedFilename);
+    
+    // Copy the original image to the debug directory
+    await fs.copyFile(imagePath, uncropeedPath);
+    logger.debug(`Saved uncropped image to ${uncropeedPath}`);
+    
     // Calculate the position of the top-right quadrant
     const sourceX = image.width * 2/3;
     const sourceY = 0;
@@ -680,7 +724,14 @@ async function cropAndSaveTopRightQuadrant(imagePath, outputPath) {
       canvas.height     // Destination Height
     );
     
+    // Save the cropped image
     await fs.writeFile(outputPath, canvas.toBuffer('image/png'));
+    
+    // Also save a copy of the cropped image to the debug directory
+    const croppedFilename = path.basename(outputPath).replace('.png', '_cropped.png');
+    const croppedPath = path.join(debugDir, croppedFilename);
+    await fs.writeFile(croppedPath, canvas.toBuffer('image/png'));
+    logger.debug(`Saved cropped image to ${croppedPath}`);
     
     // Clean up temp file
     await fs.unlink(imagePath).catch(err => logger.warn(`Failed to delete temp file: ${err.message}`));

@@ -276,11 +276,16 @@ function createLanguageInitScreen(colonyName) {
     introContainer.id = 'tribe-intro-screen';
     introContainer.className = 'fullscreen-overlay';
     
+    // Create a centered content wrapper
+    const contentWrapper = document.createElement('div');
+    contentWrapper.className = 'centered-content';
+    introContainer.appendChild(contentWrapper);
+    
     // Add title
     const title = document.createElement('h2');
     title.textContent = colonyName;
     title.className = 'intro-title';
-    introContainer.appendChild(title);
+    contentWrapper.appendChild(title);
     
     // Add tribe image if available
     const tribeImageUrl = localStorage.getItem('tribeImageUrl');
@@ -312,14 +317,14 @@ function createLanguageInitScreen(colonyName) {
       };
       
       imageContainer.appendChild(tribeImage);
-      introContainer.appendChild(imageContainer);
+      contentWrapper.appendChild(imageContainer);
     }
     
     // Add intro text
     const introTextElement = document.createElement('p');
     introTextElement.className = 'intro-text';
     introTextElement.textContent = introText;
-    introContainer.appendChild(introTextElement);
+    contentWrapper.appendChild(introTextElement);
     
     // Add continue button
     const continueButton = document.createElement('button');
@@ -331,7 +336,7 @@ function createLanguageInitScreen(colonyName) {
       // Now show the language screen
       showLanguageScreen();
     });
-    introContainer.appendChild(continueButton);
+    contentWrapper.appendChild(continueButton);
     
     document.body.appendChild(introContainer);
     

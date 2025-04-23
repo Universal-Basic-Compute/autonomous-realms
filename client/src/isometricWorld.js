@@ -637,6 +637,31 @@ function loadTile(regionX, regionY, x, y) {
                         .then(actions => {
                             state.availableActions = actions;
                             showActionMenu(actions);
+                        })
+                        .catch(error => {
+                            // If there's an error, show an error message in the action menu
+                            const errorMenu = document.createElement('div');
+                            errorMenu.id = 'action-menu';
+                            errorMenu.className = 'action-menu';
+                            errorMenu.innerHTML = `
+                                <h3>Available Actions</h3>
+                                <p class="error-message">Error loading actions: ${error.message}</p>
+                                <button class="close-button">Close</button>
+                            `;
+                            
+                            // Add close button functionality
+                            const closeButton = errorMenu.querySelector('.close-button');
+                            closeButton.addEventListener('click', () => {
+                                errorMenu.remove();
+                                state.actionMenuVisible = false;
+                            });
+                            
+                            // Replace the loading menu with the error menu
+                            const loadingMenu = document.getElementById('action-menu');
+                            if (loadingMenu) {
+                                loadingMenu.remove();
+                            }
+                            document.body.appendChild(errorMenu);
                         });
                     
                     // Fetch and play narration for this terrain
@@ -669,16 +694,6 @@ function loadTile(regionX, regionY, x, y) {
                             console.error('Error handling narration:', error);
                             showErrorNotification(`Error handling narration: ${error.message}`);
                         });
-                        .catch(error => {
-                            // If there's an error, show an error message in the action menu
-                            const errorMenu = document.createElement('div');
-                            errorMenu.id = 'action-menu';
-                            errorMenu.className = 'action-menu';
-                            errorMenu.innerHTML = `
-                                <h3>Available Actions</h3>
-                                <p class="error-message">Error loading actions: ${error.message}</p>
-                                <button class="close-button">Close</button>
-                            `;
                             
                             // Add close button functionality
                             const closeButton = errorMenu.querySelector('.close-button');

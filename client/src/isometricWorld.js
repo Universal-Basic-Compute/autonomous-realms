@@ -426,86 +426,287 @@ function showLanguageMenu() {
   const menuContent = document.createElement('div');
   menuContent.className = 'submenu-content';
   
-  // Check if we have language development data in localStorage
-  const languageData = localStorage.getItem('languageDevelopment');
-  
-  if (languageData) {
-    try {
-      const parsedData = JSON.parse(languageData);
-      
-      // Display current language development
-      const currentDev = document.createElement('div');
-      currentDev.innerHTML = `
-        <h4>Current Development</h4>
-        <p><strong>Stage:</strong> ${parsedData.stage || 'Basic'}</p>
-        <p><strong>Vocabulary:</strong> ${parsedData.vocabulary || 'Limited'}</p>
-        <p><strong>Features:</strong> ${parsedData.features || 'Simple communication'}</p>
-      `;
-      menuContent.appendChild(currentDev);
-      
-      // Add language evolution form
-      const evolutionForm = document.createElement('div');
-      evolutionForm.className = 'language-evolution-form';
-      evolutionForm.innerHTML = `
-        <h4>Evolve Your Language</h4>
-        <p>Describe how you want your language to develop next:</p>
-        <textarea id="language-evolution-input" rows="4" placeholder="Example: I want to develop more complex verbs to describe hunting activities..."></textarea>
-        <button id="evolve-language-button">Evolve Language</button>
-        <div id="language-evolution-loading" class="hidden">Processing language evolution...</div>
-      `;
-      menuContent.appendChild(evolutionForm);
-      
-      // Add event listener for the evolve button
-      setTimeout(() => {
-        const evolveButton = document.getElementById('evolve-language-button');
-        if (evolveButton) {
-          evolveButton.addEventListener('click', evolveLanguage);
-        }
-      }, 0);
-      
-    } catch (error) {
-      console.error('Error parsing language data:', error);
-      menuContent.innerHTML = '<p>Error loading language development data.</p>';
-    }
-  } else {
-    // No language development yet
-    menuContent.innerHTML = `
-      <p class="no-development">Your tribe hasn't developed a formal language yet.</p>
-      <div class="language-evolution-form">
-        <h4>Begin Language Development</h4>
-        <p>Describe how you want your language to start developing:</p>
-        <textarea id="language-evolution-input" rows="4" placeholder="Example: I want to develop basic words for important resources like water, food, and shelter..."></textarea>
-        <button id="evolve-language-button">Start Language</button>
-        <div id="language-evolution-loading" class="hidden">Processing language development...</div>
-      </div>
-    `;
-    
-    // Add event listener for the evolve button
-    setTimeout(() => {
-      const evolveButton = document.getElementById('evolve-language-button');
-      if (evolveButton) {
-        evolveButton.addEventListener('click', evolveLanguage);
-      }
-    }, 0);
-  }
+  // Add loading indicator
+  const loadingElement = document.createElement('div');
+  loadingElement.className = 'loading-language';
+  loadingElement.textContent = 'Retrieving language information...';
+  menuContent.appendChild(loadingElement);
   
   languageMenu.appendChild(menuContent);
   
   // Add to document body
   document.body.appendChild(languageMenu);
   
-  // Position the menu next to the edge menu
-  const edgeMenu = document.getElementById('circular-menu');
-  if (edgeMenu) {
-    const edgeMenuRect = edgeMenu.getBoundingClientRect();
-    languageMenu.style.left = `${edgeMenuRect.right + 20}px`;
-    languageMenu.style.top = `${edgeMenuRect.top}px`;
-  } else {
-    // Default to center of screen if edge menu is not found
-    languageMenu.style.left = '50%';
-    languageMenu.style.top = '50%';
-    languageMenu.style.transform = 'translate(-50%, -50%)';
+  // Fetch current language details from KinOS
+  fetchLanguageDetails(menuContent, loadingElement);
+}
+
+// Function to fetch language details from KinOS
+async function fetchLanguageDetails(menuContent, loadingElement) {
+  try {
+    // Get the colony name and kin name from localStorage
+    const colonyName = localStorage.getItem('colonyName') || 'Your Colony';
+    const kinName = localStorage.getItem('kinName') || 'defaultcolony';
+    
+    // Prepare the message for KinOS
+    const messageContent = `
+Please provide a detailed analysis of the current state of the language for the tribe "${colonyName}".
+
+Include:
+1. A summary of the language's current development stage
+2. Key grammatical features that have emerged
+3. A comprehensive list of known words with their meanings
+4. Any cultural implications of the language development
+
+Format the word list in a way that's easy to display in a UI, with the tribe's word and its meaning in English.
+`;
+
+    // Make request to KinOS
+    const response = await fetch(`http://localhost:3000/api/kinos/kins/${kinName}/messages`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        content: messageContent,
+        model: "claude-3-7-sonnet-latest",
+        history_length: 25,
+        mode: "language_analysis",
+        addSystem: "You are a linguistic anthropologist analyzing the development of a tribe's language. Provide a detailed, structured analysis of their current language state, including a comprehensive word list. Format your response in a way that's easy to parse and display in a UI."
+      })
+    });
+    
+    if (!response.ok) {
+      throw new Error(`KinOS API request failed with status ${response.status}: ${response.statusText}`);
+    }
+    
+    const responseData = await response.json();
+    
+    // Remove loading indicator
+    loadingElement.remove();
+    
+    // Parse and display the language details
+    displayLanguageDetails(menuContent, responseData.content);
+    
+    // Also display the language evolution form
+    addLanguageEvolutionForm(menuContent);
+    
+  } catch (error) {
+    console.error('Error fetching language details:', error);
+    
+    // Remove loading indicator and show error
+    loadingElement.remove();
+    
+    const errorElement = document.createElement('div');
+    errorElement.className = 'evolution-error';
+    errorElement.textContent = `Error: ${error.message}`;
+    menuContent.appendChild(errorElement);
+    
+    // Still show the language evolution form even if there was an error
+    addLanguageEvolutionForm(menuContent);
   }
+}
+
+// Function to parse and display language details
+function displayLanguageDetails(menuContent, responseText) {
+  // Create language details container
+  const detailsContainer = document.createElement('div');
+  detailsContainer.className = 'language-details';
+  
+  // Try to extract structured information from the response
+  const sections = parseLanguageResponse(responseText);
+  
+  // Add title
+  const title = document.createElement('h4');
+  title.textContent = 'Current Language Status';
+  detailsContainer.appendChild(title);
+  
+  // Add development stage section
+  if (sections.stage) {
+    const stageSection = document.createElement('div');
+    stageSection.className = 'language-section';
+    
+    const stageTitle = document.createElement('h5');
+    stageTitle.textContent = 'Development Stage';
+    stageSection.appendChild(stageTitle);
+    
+    const stageText = document.createElement('p');
+    stageText.textContent = sections.stage;
+    stageSection.appendChild(stageText);
+    
+    detailsContainer.appendChild(stageSection);
+  }
+  
+  // Add grammar section
+  if (sections.grammar) {
+    const grammarSection = document.createElement('div');
+    grammarSection.className = 'language-section';
+    
+    const grammarTitle = document.createElement('h5');
+    grammarTitle.textContent = 'Grammatical Features';
+    grammarSection.appendChild(grammarTitle);
+    
+    const grammarText = document.createElement('p');
+    grammarText.textContent = sections.grammar;
+    grammarSection.appendChild(grammarText);
+    
+    detailsContainer.appendChild(grammarSection);
+  }
+  
+  // Add cultural implications section
+  if (sections.cultural) {
+    const culturalSection = document.createElement('div');
+    culturalSection.className = 'language-section';
+    
+    const culturalTitle = document.createElement('h5');
+    culturalTitle.textContent = 'Cultural Implications';
+    culturalSection.appendChild(culturalTitle);
+    
+    const culturalText = document.createElement('p');
+    culturalText.textContent = sections.cultural;
+    culturalSection.appendChild(culturalText);
+    
+    detailsContainer.appendChild(culturalSection);
+  }
+  
+  // Add word list section
+  if (sections.words && sections.words.length > 0) {
+    const wordSection = document.createElement('div');
+    wordSection.className = 'language-section';
+    
+    const wordTitle = document.createElement('h5');
+    wordTitle.textContent = 'Vocabulary';
+    wordSection.appendChild(wordTitle);
+    
+    const wordList = document.createElement('div');
+    wordList.className = 'word-list';
+    
+    sections.words.forEach(word => {
+      const wordItem = document.createElement('div');
+      wordItem.className = 'word-item';
+      
+      const nativeWord = document.createElement('div');
+      nativeWord.className = 'native';
+      nativeWord.textContent = word.native;
+      wordItem.appendChild(nativeWord);
+      
+      const meaning = document.createElement('div');
+      meaning.className = 'meaning';
+      meaning.textContent = word.meaning;
+      wordItem.appendChild(meaning);
+      
+      wordList.appendChild(wordItem);
+    });
+    
+    wordSection.appendChild(wordList);
+    detailsContainer.appendChild(wordSection);
+  }
+  
+  // If no structured data was extracted, just show the raw text
+  if (Object.keys(sections).length === 0) {
+    const rawText = document.createElement('p');
+    rawText.textContent = responseText;
+    detailsContainer.appendChild(rawText);
+  }
+  
+  // Add to menu content
+  menuContent.appendChild(detailsContainer);
+}
+
+// Function to parse language response into structured sections
+function parseLanguageResponse(responseText) {
+  const sections = {};
+  
+  // Try to extract development stage
+  const stageMatch = responseText.match(/(?:Development Stage|Current Stage|Language Stage):\s*([^\n]+)/i);
+  if (stageMatch) {
+    sections.stage = stageMatch[1].trim();
+  }
+  
+  // Try to extract grammatical features
+  const grammarMatch = responseText.match(/(?:Grammatical Features|Grammar|Key Features):\s*([^\n]+(?:\n(?!\n)[^\n]+)*)/i);
+  if (grammarMatch) {
+    sections.grammar = grammarMatch[1].trim();
+  }
+  
+  // Try to extract cultural implications
+  const culturalMatch = responseText.match(/(?:Cultural Implications|Cultural Impact|Cultural Significance):\s*([^\n]+(?:\n(?!\n)[^\n]+)*)/i);
+  if (culturalMatch) {
+    sections.cultural = culturalMatch[1].trim();
+  }
+  
+  // Try to extract word list
+  sections.words = [];
+  
+  // Look for word list patterns
+  const wordListMatch = responseText.match(/(?:Word List|Vocabulary|Known Words):\s*([\s\S]+?)(?:\n\n|$)/i);
+  if (wordListMatch) {
+    const wordListText = wordListMatch[1];
+    
+    // Try to match different word list formats
+    const wordLines = wordListText.split('\n');
+    wordLines.forEach(line => {
+      // Skip empty lines
+      if (!line.trim()) return;
+      
+      // Try different patterns for word entries
+      const patterns = [
+        /^[\*\-•]?\s*"?([^":\-–—]+)"?\s*[:–—-]\s*"?([^"]+)"?$/,  // Format: Word - Meaning
+        /^[\*\-•]?\s*([^:]+):\s*(.+)$/,                          // Format: Word: Meaning
+        /^[\*\-•]?\s*([^\(]+)\s*\(([^\)]+)\)$/                   // Format: Word (Meaning)
+      ];
+      
+      for (const pattern of patterns) {
+        const match = line.match(pattern);
+        if (match) {
+          sections.words.push({
+            native: match[1].trim(),
+            meaning: match[2].trim()
+          });
+          return;
+        }
+      }
+      
+      // If no pattern matched but the line has content, try a simple split
+      if (line.includes('-') || line.includes('–') || line.includes('—')) {
+        const parts = line.split(/[-–—]/);
+        if (parts.length >= 2) {
+          sections.words.push({
+            native: parts[0].trim(),
+            meaning: parts.slice(1).join('-').trim()
+          });
+        }
+      }
+    });
+  }
+  
+  return sections;
+}
+
+// Function to add the language evolution form
+function addLanguageEvolutionForm(menuContent) {
+  // Check if we have language development data in localStorage
+  const languageData = localStorage.getItem('languageDevelopment');
+  
+  // Create the evolution form
+  const evolutionForm = document.createElement('div');
+  evolutionForm.className = 'language-evolution-form';
+  evolutionForm.innerHTML = `
+    <h4>Evolve Your Language</h4>
+    <p>Describe how you want your language to develop next:</p>
+    <textarea id="language-evolution-input" rows="4" placeholder="Example: I want to develop more complex verbs to describe hunting activities..."></textarea>
+    <button id="evolve-language-button">Evolve Language</button>
+    <div id="language-evolution-loading" class="hidden">Processing language evolution...</div>
+  `;
+  menuContent.appendChild(evolutionForm);
+  
+  // Add event listener for the evolve button
+  setTimeout(() => {
+    const evolveButton = document.getElementById('evolve-language-button');
+    if (evolveButton) {
+      evolveButton.addEventListener('click', evolveLanguage);
+    }
+  }, 0);
 }
 
 // Function to handle language evolution

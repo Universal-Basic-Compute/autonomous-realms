@@ -921,15 +921,22 @@ body::before {
 
 /* Language Menu Styles */
 .submenu {
-    position: absolute;
+    position: fixed; /* Change from absolute to fixed */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center it */
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    padding: 15px;
+    padding: 20px;
     z-index: 210;
-    width: 300px;
-    max-height: 400px;
+    width: 80%; /* Much wider */
+    height: 80%; /* Much taller */
+    max-width: 1200px; /* Add maximum width */
+    max-height: 800px; /* Add maximum height */
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .submenu-header {
@@ -954,8 +961,69 @@ body::before {
     color: #666;
 }
 
+/* Add styles for the submenu content to fill the space */
 .submenu-content {
     font-size: 14px;
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Add styles for the language details section */
+.language-details {
+    background-color: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.language-details h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.language-section {
+    margin-bottom: 15px;
+}
+
+.language-section h5 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #4CAF50;
+}
+
+.word-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.word-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 13px;
+}
+
+.word-item .native {
+    font-weight: bold;
+    color: #333;
+}
+
+.word-item .meaning {
+    color: #666;
+    font-style: italic;
+}
+
+.loading-language {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-style: italic;
 }
 
 .no-development {

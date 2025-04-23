@@ -1271,7 +1271,9 @@ I want to develop the ${categoryKey} aspect of my tribe "${colonyName}" by focus
 Current cultural state:
 ${JSON.stringify(cultureData, null, 2)}
 
-Please update the cultural data to reflect this development. Return the complete updated culture data as a JSON object with the same structure, showing how this development affects the ${categoryKey} category and potentially other related categories.
+Please provide:
+1. The complete updated culture data as a JSON object with the same structure, showing how this development affects the ${categoryKey} category and potentially other related categories.
+2. A vivid narration (3-5 sentences) describing how this cultural development unfolds in the tribe, suitable for text-to-speech.
 
 Make sure the progress values increase appropriately and new nextSteps are provided where relevant.
 `;
@@ -1287,7 +1289,7 @@ Make sure the progress values increase appropriately and new nextSteps are provi
         model: "claude-3-7-sonnet-latest",
         history_length: 25,
         mode: "culture_development",
-        addSystem: "You are a cultural anthropologist helping to develop a realistic cultural evolution for a prehistoric tribe. Update the cultural data based on the user's development choice, providing a plausible progression. Return only valid JSON that matches the original structure but with updated values."
+        addSystem: "You are a cultural anthropologist helping to develop a realistic cultural evolution for a prehistoric tribe. Update the cultural data based on the user's development choice, providing a plausible progression. Return valid JSON that matches the original structure but with updated values, followed by a vivid narration of how this cultural development unfolds in the tribe."
       })
     });
     
@@ -1299,6 +1301,7 @@ Make sure the progress values increase appropriately and new nextSteps are provi
     
     // Try to extract JSON from the response
     let updatedCultureData = null;
+    let narration = "";
     
     // Check for the content in either response or content field
     const responseContent = responseData.response || responseData.content;
@@ -1309,6 +1312,12 @@ Make sure the progress values increase appropriately and new nextSteps are provi
       const jsonMatch = responseContent.match(/\{[\s\S]*\}/);
       if (jsonMatch) {
         updatedCultureData = JSON.parse(jsonMatch[0]);
+        
+        // Extract narration - it should be after the JSON
+        const jsonEndIndex = responseContent.indexOf('}', responseContent.lastIndexOf('}')) + 1;
+        if (jsonEndIndex < responseContent.length) {
+          narration = responseContent.substring(jsonEndIndex).trim();
+        }
       } else {
         throw new Error('No JSON object found in response');
       }
@@ -1320,8 +1329,55 @@ Make sure the progress values increase appropriately and new nextSteps are provi
     // Store updated culture data
     localStorage.setItem('cultureData', JSON.stringify(updatedCultureData));
     
+    // Generate TTS for the narration
+    let audioUrl = null;
+    if (narration) {
+      try {
+        const ttsResponse = await fetch(`${config.serverUrl}/api/data/actions/ai/tts`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            text: narration
+          })
+        });
+        
+        if (ttsResponse.ok) {
+          const ttsData = await ttsResponse.json();
+          audioUrl = ttsData.audio_url;
+          
+          // Play the narration
+          if (audioUrl) {
+            const fullAudioUrl = audioUrl.startsWith('/') 
+              ? `${config.serverUrl}${audioUrl}` 
+              : audioUrl;
+            
+            const audio = new Audio(fullAudioUrl);
+            audio.play().catch(err => console.warn('Could not play narration audio:', err));
+          }
+        }
+      } catch (ttsError) {
+        console.error('Error generating TTS for culture narration:', ttsError);
+      }
+    }
+    
     // Remove loading indicator
     loadingIndicator.remove();
+    
+    // Show narration notification
+    if (narration) {
+      const notification = document.createElement('div');
+      notification.className = 'narration-notification';
+      notification.textContent = narration;
+      document.body.appendChild(notification);
+      
+      // Remove notification after a delay
+      setTimeout(() => {
+        notification.classList.add('fade-out');
+        setTimeout(() => notification.remove(), 1000);
+      }, 10000); // Longer display time for cultural narration
+    }
     
     // Show success notification
     const notification = document.createElement('div');

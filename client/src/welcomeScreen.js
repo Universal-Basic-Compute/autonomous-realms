@@ -637,30 +637,86 @@ Format your response as a language initialization report that I can share with m
   }
 }
 
-// Generate a random name
+// Generate a random name with improved variety
 function generateRandomName(type) {
+  // Leader first names - expanded with more diverse options
   const leaderFirstNames = [
+    // Fantasy/Mythic names
     'Aria', 'Thorne', 'Elara', 'Kael', 'Lyra', 'Orion', 'Seraphina', 'Rowan',
     'Nova', 'Galen', 'Freya', 'Talon', 'Isolde', 'Caspian', 'Elowen', 'Alaric',
     'Octavia', 'Finnian', 'Thalia', 'Darian', 'Maeve', 'Evander', 'Aurelia', 'Silas',
-    'Liora', 'Kieran', 'Ember', 'Lysander', 'Selene', 'Gareth', 'Zephyr', 'Rhiannon'
+    'Liora', 'Kieran', 'Ember', 'Lysander', 'Selene', 'Gareth', 'Zephyr', 'Rhiannon',
+    // Historical/Traditional names
+    'Adira', 'Bram', 'Calista', 'Darius', 'Eleanor', 'Felix', 'Gwendolyn', 'Henrik',
+    'Imogen', 'Jasper', 'Kira', 'Leif', 'Matilda', 'Nikolai', 'Ophelia', 'Perseus',
+    'Quinn', 'Roland', 'Soren', 'Theodora', 'Ulric', 'Vivienne', 'Wren', 'Xander',
+    // Nature-inspired names
+    'Aspen', 'Brook', 'Cedar', 'Dawn', 'Fern', 'Hazel', 'Iris', 'Juniper',
+    'Lark', 'Moss', 'Raven', 'Sage', 'Terra', 'Willow', 'Yarrow', 'Zephyr'
   ];
   
+  // Leader last names - expanded with more thematic options
   const leaderLastNames = [
+    // Elemental/Nature surnames
     'Blackwood', 'Silverstone', 'Thornfield', 'Nightshade', 'Ravencrest', 'Stormwind',
     'Ironheart', 'Winterfall', 'Sunhaven', 'Moonshadow', 'Starforge', 'Oakenshield',
-    'Fireheart', 'Wolfsbane', 'Dawnbreaker', 'Shadowvale', 'Lightbringer', 'Frostpeak'
+    'Fireheart', 'Wolfsbane', 'Dawnbreaker', 'Shadowvale', 'Lightbringer', 'Frostpeak',
+    // Geographic surnames
+    'Highcliff', 'Deepvale', 'Riverstone', 'Mistridge', 'Stonebrook', 'Wildmoor',
+    'Greenfield', 'Northcrest', 'Westwind', 'Eastbrook', 'Southmeadow', 'Clearwater',
+    // Profession/Trait surnames
+    'Fletcher', 'Smith', 'Hunter', 'Shepherd', 'Thatcher', 'Mason', 'Weaver', 'Fisher',
+    'Swift', 'Strong', 'Wise', 'Keen', 'Brave', 'Hardy', 'Sharp', 'Bright',
+    // Compound surnames
+    'Goldenhawk', 'Proudfoot', 'Swiftarrow', 'Strongheart', 'Trueheart', 'Longstrider',
+    'Fairwind', 'Brightwater', 'Wildrunner', 'Silverthorn', 'Darkwater', 'Fireforge'
   ];
   
+  // Colony name prefixes - expanded with more descriptive options
   const colonyPrefixes = [
-    'New', 'Fort', 'Haven', 'Port', 'Mount', 'North', 'South', 'East', 'West',
-    'Upper', 'Lower', 'Great', 'Little', 'Old', 'High', 'Far', 'Deep', 'Golden'
+    // Directional
+    'North', 'South', 'East', 'West', 'Upper', 'Lower', 'Far', 'High', 'Deep',
+    // Descriptive
+    'New', 'Old', 'Great', 'Little', 'Fair', 'Golden', 'Silver', 'Crystal', 'Emerald',
+    'Bright', 'Shadow', 'Hidden', 'Sacred', 'Ancient', 'Eternal', 'Wild', 'Free',
+    // Protective
+    'Fort', 'Haven', 'Refuge', 'Sanctuary', 'Bastion', 'Citadel', 'Stronghold', 'Shield',
+    // Water-related
+    'Port', 'Harbor', 'Bay', 'Tide', 'River', 'Lake', 'Spring', 'Mist',
+    // Elevated
+    'Mount', 'Peak', 'Ridge', 'Hill', 'Crest', 'Summit', 'Highland', 'Mesa'
   ];
   
+  // Colony name roots - expanded with more diverse terrain features
   const colonyRoots = [
+    // Natural features
     'Haven', 'Ridge', 'Vale', 'Creek', 'Harbor', 'Glen', 'Field', 'Wood', 'Stone',
     'River', 'Lake', 'Hill', 'Dale', 'Forge', 'Bridge', 'Crest', 'Hollow', 'Meadow',
-    'Spring', 'Falls', 'Grove', 'Glade', 'Reach', 'Crossing', 'Landing', 'Rest'
+    'Spring', 'Falls', 'Grove', 'Glade', 'Reach', 'Crossing', 'Landing', 'Rest',
+    // Additional natural features
+    'Canyon', 'Prairie', 'Marsh', 'Cliff', 'Coast', 'Delta', 'Dune', 'Forest',
+    'Gorge', 'Island', 'Jungle', 'Mesa', 'Oasis', 'Plateau', 'Reef', 'Tundra',
+    // Settlement types
+    'Village', 'Hamlet', 'Outpost', 'Camp', 'Keep', 'Refuge', 'Homestead', 'Settlement',
+    'Colony', 'Enclave', 'Bastion', 'Sanctuary', 'Stronghold', 'Township', 'Hearth',
+    // Aspirational names
+    'Hope', 'Faith', 'Unity', 'Harmony', 'Bounty', 'Plenty', 'Fortune', 'Destiny',
+    'Promise', 'Prospect', 'Venture', 'Liberty', 'Solace', 'Serenity', 'Triumph'
+  ];
+  
+  // Additional colony name patterns
+  const compoundColonyNames = [
+    'Stonebridge', 'Oakvale', 'Highgarden', 'Deephollow', 'Fairhaven', 'Winterhold',
+    'Sunspire', 'Ravenwood', 'Silverstream', 'Ironforge', 'Goldcrest', 'Stormwatch',
+    'Brightwater', 'Shadowfen', 'Frostpeak', 'Greenmeadow', 'Redcliff', 'Bluewater',
+    'Blackstone', 'Whitehill', 'Greywood', 'Wildwood', 'Clearwater', 'Darkhollow'
+  ];
+  
+  // Thematic colony names
+  const thematicColonyNames = [
+    'Newbeginning', 'Firstlight', 'Hopesend', 'Laststand', 'Safehold', 'Freehaven',
+    'Homecoming', 'Journeysend', 'Starfall', 'Moonrise', 'Sunrest', 'Dawnbreak',
+    'Twilighthaven', 'Morningstar', 'Eveningtide', 'Dayspring', 'Nighthaven'
   ];
   
   if (type === 'leader') {
@@ -668,14 +724,23 @@ function generateRandomName(type) {
     const lastName = leaderLastNames[Math.floor(Math.random() * leaderLastNames.length)];
     return `${firstName} ${lastName}`;
   } else if (type === 'colony') {
-    // 50% chance to use a prefix
-    if (Math.random() > 0.5) {
-      const prefix = colonyPrefixes[Math.floor(Math.random() * colonyPrefixes.length)];
-      const root = colonyRoots[Math.floor(Math.random() * colonyRoots.length)];
-      return `${prefix} ${root}`;
-    } else {
-      const root = colonyRoots[Math.floor(Math.random() * colonyRoots.length)];
-      return root;
+    // Choose from multiple colony name patterns
+    const namePattern = Math.floor(Math.random() * 4); // 0-3 for four different patterns
+    
+    switch (namePattern) {
+      case 0: // Prefix + Root (e.g., "New Haven")
+        const prefix = colonyPrefixes[Math.floor(Math.random() * colonyPrefixes.length)];
+        const root = colonyRoots[Math.floor(Math.random() * colonyRoots.length)];
+        return `${prefix} ${root}`;
+        
+      case 1: // Single Root (e.g., "Meadow")
+        return colonyRoots[Math.floor(Math.random() * colonyRoots.length)];
+        
+      case 2: // Compound Name (e.g., "Stonebridge")
+        return compoundColonyNames[Math.floor(Math.random() * compoundColonyNames.length)];
+        
+      case 3: // Thematic Name (e.g., "Newbeginning")
+        return thematicColonyNames[Math.floor(Math.random() * thematicColonyNames.length)];
     }
   }
   

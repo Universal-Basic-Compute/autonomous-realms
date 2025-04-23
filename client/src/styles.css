@@ -1080,6 +1080,15 @@ body::before {
     transition: all 0.3s ease;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(5px);
+    /* Add these properties to center it and limit width */
+    width: 85%; /* Take up 85% of the screen width */
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    /* Add rounded corners at the bottom */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .resource-categories {

@@ -1,4 +1,3 @@
-
 class AudioPlayer {
   constructor() {
     this.audioElement = null;
@@ -28,7 +27,7 @@ class AudioPlayer {
 
   async fetchMusicList() {
     try {
-      const response = await fetch('http://localhost:3000/api/data/audio/music/list');
+      const response = await fetch('http://localhost:3000/api/tiles/audio/music/list');
       if (!response.ok) {
         console.error('Failed to fetch music list:', response.statusText);
         return;
@@ -108,6 +107,6 @@ class AudioPlayer {
   }
 }
 
-// Create a singleton instance
+// Create and export a singleton instance
 const audioPlayer = new AudioPlayer();
 export default audioPlayer;

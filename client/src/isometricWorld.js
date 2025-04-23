@@ -2332,6 +2332,17 @@ Please provide ONLY the JSON response with no additional text, markdown formatti
     });
     
     if (!response.ok) {
+      // Check if this is a 402 Payment Required error (insufficient COMPUTE)
+      if (response.status === 402) {
+        // Show a friendly notification about insufficient COMPUTE
+        showInsufficientComputeNotification();
+        
+        // Return a specific error object that the calling function can check
+        return { 
+          error: 'insufficient_compute',
+          message: 'Insufficient COMPUTE balance to perform this action'
+        };
+      }
       throw new Error(`KinOS API request failed with status ${response.status}: ${response.statusText}`);
     }
     
@@ -2393,6 +2404,20 @@ Please provide ONLY the JSON response with no additional text, markdown formatti
     }
   } catch (error) {
     console.error('Error sending message to KinOS:', error);
+    
+    // Check if this is a 402 Payment Required error (insufficient COMPUTE)
+    if (error.message && error.message.includes('402')) {
+      // Show a friendly notification about insufficient COMPUTE
+      showInsufficientComputeNotification();
+      
+      // Return a specific error object that the calling function can check
+      return { 
+        error: 'insufficient_compute',
+        message: 'Insufficient COMPUTE balance to perform this action'
+      };
+    }
+    
+    // Return the original error for other types of errors
     return { error: error.message };
   }
 }
@@ -2515,8 +2540,51 @@ async function performAction(action) {
         loadingNotification.remove();
         
         if (kinOSResponse.error) {
-            // Show error in the dialog
-            responseContainer.innerHTML = `<p class="error-message">The settlers encountered a problem: ${kinOSResponse.error}</p>`;
+            // Check for the specific insufficient_compute error
+            if (kinOSResponse.error === 'insufficient_compute') {
+                // Show a more detailed message in the dialog
+                responseContainer.innerHTML = `
+                    <p class="error-message">
+                        <strong>Insufficient COMPUTE Balance</strong><br>
+                        Your settlers cannot complete this task because you need more COMPUTE tokens.
+                    </p>
+                    <p>
+                        Connect your wallet and transfer COMPUTE tokens to continue using AI features.
+                    </p>
+                    <p>
+                        <button id="connect-wallet-button" class="primary-button">Connect Wallet</button>
+                    </p>
+                `;
+                
+                // Add event listener to the connect wallet button
+                setTimeout(() => {
+                    const connectButton = document.getElementById('connect-wallet-button');
+                    if (connectButton) {
+                        connectButton.addEventListener('click', () => {
+                            // Import and use the showComputeTransferDialog function
+                            import('./welcomeScreen.js').then(module => {
+                                const walletAddress = localStorage.getItem('walletAddress');
+                                if (walletAddress) {
+                                    module.showComputeTransferDialog(walletAddress);
+                                } else {
+                                    // If no wallet is connected, this will handle the connection first
+                                    const connectWalletHandler = () => {
+                                        module.connectWallet().then(address => {
+                                            if (address) {
+                                                module.showComputeTransferDialog(address);
+                                            }
+                                        });
+                                    };
+                                    connectWalletHandler();
+                                }
+                            });
+                        });
+                    }
+                }, 0);
+            } else {
+                // Show regular error in the dialog
+                responseContainer.innerHTML = `<p class="error-message">The settlers encountered a problem: ${kinOSResponse.error}</p>`;
+            }
             resultContainer.style.display = 'block';
             closeButton.style.display = 'block';
             return;

@@ -525,14 +525,56 @@ function handleTouchEnd() {
 
 // Zoom in
 function zoomIn() {
+    // Store the old zoom level
+    const oldZoom = state.zoom;
+    
+    // Calculate the center of the viewport in screen coordinates
+    const viewportCenterX = window.innerWidth / 2;
+    const viewportCenterY = window.innerHeight / 2;
+    
+    // Calculate the center of the viewport in world coordinates (before zoom)
+    const worldCenterX = (viewportCenterX - state.offsetX) / oldZoom;
+    const worldCenterY = (viewportCenterY - state.offsetY) / oldZoom;
+    
+    // Update zoom level
     state.zoom = Math.min(config.maxZoom, state.zoom + config.zoomStep);
+    
+    // Calculate where the center point would end up after the zoom
+    const newScreenX = worldCenterX * state.zoom;
+    const newScreenY = worldCenterY * state.zoom;
+    
+    // Adjust the offset to keep the center point in the same position
+    state.offsetX = viewportCenterX - newScreenX;
+    state.offsetY = viewportCenterY - newScreenY;
+    
     updateWorldTransform();
     loadVisibleTiles();
 }
 
 // Zoom out
 function zoomOut() {
+    // Store the old zoom level
+    const oldZoom = state.zoom;
+    
+    // Calculate the center of the viewport in screen coordinates
+    const viewportCenterX = window.innerWidth / 2;
+    const viewportCenterY = window.innerHeight / 2;
+    
+    // Calculate the center of the viewport in world coordinates (before zoom)
+    const worldCenterX = (viewportCenterX - state.offsetX) / oldZoom;
+    const worldCenterY = (viewportCenterY - state.offsetY) / oldZoom;
+    
+    // Update zoom level
     state.zoom = Math.max(config.minZoom, state.zoom - config.zoomStep);
+    
+    // Calculate where the center point would end up after the zoom
+    const newScreenX = worldCenterX * state.zoom;
+    const newScreenY = worldCenterY * state.zoom;
+    
+    // Adjust the offset to keep the center point in the same position
+    state.offsetX = viewportCenterX - newScreenX;
+    state.offsetY = viewportCenterY - newScreenY;
+    
     updateWorldTransform();
     loadVisibleTiles();
 }
@@ -550,6 +592,17 @@ function resetView() {
 function handleWheel(e) {
     e.preventDefault();
     
+    // Store the old zoom level
+    const oldZoom = state.zoom;
+    
+    // Calculate the center of the viewport in screen coordinates
+    const viewportCenterX = window.innerWidth / 2;
+    const viewportCenterY = window.innerHeight / 2;
+    
+    // Calculate the center of the viewport in world coordinates (before zoom)
+    const worldCenterX = (viewportCenterX - state.offsetX) / oldZoom;
+    const worldCenterY = (viewportCenterY - state.offsetY) / oldZoom;
+    
     // Determine zoom direction
     if (e.deltaY < 0) {
         // Zoom in
@@ -558,6 +611,14 @@ function handleWheel(e) {
         // Zoom out
         state.zoom = Math.max(config.minZoom, state.zoom - config.zoomStep);
     }
+    
+    // Calculate where the center point would end up after the zoom
+    const newScreenX = worldCenterX * state.zoom;
+    const newScreenY = worldCenterY * state.zoom;
+    
+    // Adjust the offset to keep the center point in the same position
+    state.offsetX = viewportCenterX - newScreenX;
+    state.offsetY = viewportCenterY - newScreenY;
     
     updateWorldTransform();
     

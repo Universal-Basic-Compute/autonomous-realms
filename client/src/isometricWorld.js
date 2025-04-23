@@ -405,6 +405,69 @@ function setupEventListeners() {
     window.addEventListener('resize', () => {
         hideContextMenu();
     });
+    
+    // Burger menu functionality
+    const burgerMenuIcon = document.getElementById('burger-menu-icon');
+    const sideMenu = document.getElementById('side-menu');
+    const closeMenuButton = document.getElementById('close-menu');
+
+    // Open menu when burger icon is clicked
+    burgerMenuIcon.addEventListener('click', () => {
+        sideMenu.classList.add('visible');
+    });
+
+    // Close menu when close button is clicked
+    closeMenuButton.addEventListener('click', () => {
+        sideMenu.classList.remove('visible');
+    });
+
+    // Close menu when clicking outside of it
+    document.addEventListener('click', (e) => {
+        if (sideMenu.classList.contains('visible') && 
+            !sideMenu.contains(e.target) && 
+            !burgerMenuIcon.contains(e.target)) {
+            sideMenu.classList.remove('visible');
+        }
+    });
+
+    // Menu button functionality
+    document.getElementById('menu-reset-view').addEventListener('click', () => {
+        resetView();
+        sideMenu.classList.remove('visible');
+    });
+
+    document.getElementById('menu-toggle-music').addEventListener('click', () => {
+        const isMuted = audioPlayer.toggleMute();
+        document.getElementById('menu-toggle-music').textContent = isMuted ? 'Enable Music' : 'Disable Music';
+        sideMenu.classList.remove('visible');
+    });
+
+    document.getElementById('menu-toggle-debug').addEventListener('click', () => {
+        toggleDebugMode();
+        sideMenu.classList.remove('visible');
+    });
+
+    document.getElementById('menu-about').addEventListener('click', () => {
+        // Show about dialog
+        const aboutDialog = document.createElement('div');
+        aboutDialog.className = 'dialog';
+        aboutDialog.innerHTML = `
+            <div class="dialog-content">
+                <h2>About Autonomous Realms</h2>
+                <p>An AI-powered isometric world exploration game.</p>
+                <p>Version: 0.1.0</p>
+                <button class="close-button">Close</button>
+            </div>
+        `;
+        document.body.appendChild(aboutDialog);
+        
+        // Add close functionality
+        aboutDialog.querySelector('.close-button').addEventListener('click', () => {
+            aboutDialog.remove();
+        });
+        
+        sideMenu.classList.remove('visible');
+    });
 }
 
 // Start dragging

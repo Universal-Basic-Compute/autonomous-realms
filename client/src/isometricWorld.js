@@ -370,7 +370,7 @@ Please provide guidance on how this action might unfold in this environment, any
     };
     
     // Make the API request with updated blueprint and kin
-    const response = await fetch('http://localhost:5000/v2/blueprints/autonomousrealms/kins/defaultcolony/messages', {
+    const response = await fetch('http://localhost:3000/api/kinos/kins/defaultcolony/messages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

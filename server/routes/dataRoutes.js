@@ -234,7 +234,8 @@ ${actionsDoc}`;
     const response = await fetch('http://localhost:5000/v2/blueprints/autonomousrealms/kins/defaultcolony/analysis', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.KINOS_API_KEY || config.KINOS_API_KEY}`
       },
       body: JSON.stringify({
         message: userPrompt,
@@ -439,7 +440,8 @@ Modifiers: ${modifiers.join(', ')}`;
     const response = await fetch('http://localhost:5000/v2/blueprints/autonomousrealms/kins/defaultcolony/analysis', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.KINOS_API_KEY || config.KINOS_API_KEY}`
       },
       body: JSON.stringify({
         message: prompt,

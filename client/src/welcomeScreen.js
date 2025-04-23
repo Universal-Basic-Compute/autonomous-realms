@@ -434,7 +434,7 @@ function createLanguageInitScreen(colonyName) {
 // Function to create a new kin in KinOS
 async function createKinOSKin(kinName, leaderName, colonyName, dream, appearance) {
   try {
-    const response = await fetch('http://localhost:5000/v2/blueprints/autonomousrealms/kins', {
+    const response = await fetch('http://localhost:3000/api/kinos/kins', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -488,7 +488,7 @@ ${appearance}
 Please create an epic, inspiring introduction for this tribe that captures their appearance and ambitious dreams. Make it dramatic and cinematic - something that would make an amazing opening narration for their story. This will be read aloud to the player, so make it sound great when spoken.
 `;
 
-    const response = await fetch(`http://localhost:5000/v2/blueprints/autonomousrealms/kins/${kinName}/messages`, {
+    const response = await fetch(`http://localhost:3000/api/kinos/kins/${kinName}/messages`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -515,7 +515,7 @@ Please create an epic, inspiring introduction for this tribe that captures their
     // Generate TTS for the introduction
     try {
       console.log("Generating TTS for tribe introduction");
-      const ttsResponse = await fetch('http://localhost:5000/v2/tts?format=mp3', {
+      const ttsResponse = await fetch('http://localhost:3000/api/kinos/tts?format=mp3', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -554,7 +554,7 @@ Please create an epic, inspiring introduction for this tribe that captures their
       // Create a prompt for the image based on tribe information
       const imagePrompt = `Epic cinematic portrait of a primitive tribe: ${appearance}. They are standing together as a group in their natural environment, looking determined and hopeful. Their dream is: ${dream}. Dramatic lighting, detailed, realistic style, high quality.`;
       
-      const imageResponse = await fetch(`http://localhost:5000/v2/blueprints/autonomousrealms/kins/${kinName}/images`, {
+      const imageResponse = await fetch(`http://localhost:3000/api/kinos/kins/${kinName}/images`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -612,7 +612,7 @@ Please analyze this approach and provide:
 Format your response as a language initialization report that I can share with my settlers.
 `;
 
-    const response = await fetch(`http://localhost:5000/v2/blueprints/autonomousrealms/kins/${kinName}/messages`, {
+    const response = await fetch(`http://localhost:3000/api/kinos/kins/${kinName}/messages`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

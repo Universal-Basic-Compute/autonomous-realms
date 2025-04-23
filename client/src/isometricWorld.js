@@ -126,7 +126,14 @@ function playNarration(audioData) {
         // Set the source to the audio data
         if (audioData.audio_url) {
             console.log('Playing audio from URL:', audioData.audio_url);
-            audioElement.src = `http://localhost:3000${audioData.audio_url}`;
+            // Check if it's a relative or absolute URL
+            if (audioData.audio_url.startsWith('/')) {
+                // It's a server path, prepend the server URL
+                audioElement.src = `http://localhost:3000${audioData.audio_url}`;
+            } else {
+                // It's already a full URL
+                audioElement.src = audioData.audio_url;
+            }
         } else if (audioData.result_url) {
             console.log('Playing audio from result URL:', audioData.result_url);
             audioElement.src = audioData.result_url;

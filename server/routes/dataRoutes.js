@@ -387,7 +387,7 @@ router.get('/actions/ai/:terrainCode/narration', async (req, res) => {
     const narration = await generateAINarrationForTerrain(terrainCode);
     
     // Call the TTS API to convert the narration to speech
-    const ttsResponse = await generateTTS(narration);
+    const ttsResponse = await generateTTS(narration, terrainCode);
     
     // Check if there was an error with TTS
     if (ttsResponse.error) {
@@ -528,9 +528,31 @@ function getTerrainDescription(baseTerrainCode) {
 }
 
 // Add this function to generate TTS using the KinOS API
-async function generateTTS(text) {
+async function generateTTS(text, terrainCode) {
   try {
     logger.info(`Generating TTS for text: "${text.substring(0, 50)}..."`);
+    
+    // First check if we already have a cached narration for this terrain
+    const narrationDir = path.join(__dirname, '../assets/audio/narration');
+    const narrationFilename = `narration_${terrainCode.replace(/\|/g, '_')}.mp3`;
+    const narrationPath = path.join(narrationDir, narrationFilename);
+    
+    // Check if the narration file already exists
+    try {
+      await fs.access(narrationPath);
+      logger.info(`Using cached narration audio for ${terrainCode}`);
+      
+      // Return the path to the cached audio file
+      return {
+        audio_url: `/assets/audio/narration/${narrationFilename}`
+      };
+    } catch (err) {
+      // File doesn't exist, generate new audio
+      logger.debug(`No cached narration found for ${terrainCode}, generating new audio`);
+    }
+    
+    // Make sure the narration directory exists
+    await fs.mkdir(narrationDir, { recursive: true });
     
     const response = await fetch('https://api.kinos-engine.ai/v2/tts?format=json', {
       method: 'POST',
@@ -556,6 +578,30 @@ async function generateTTS(text) {
     
     const data = await response.json();
     logger.info(`Successfully generated TTS, received audio URL: ${data.audio_url ? 'Yes' : 'No'}`);
+    
+    // If we have an audio URL, download and save the file
+    if (data.audio_url || data.result_url) {
+      try {
+        const audioUrl = data.audio_url || data.result_url;
+        const audioResponse = await fetch(audioUrl);
+        
+        if (!audioResponse.ok) {
+          throw new Error(`Failed to download audio: ${audioResponse.status}`);
+        }
+        
+        const audioBuffer = await audioResponse.buffer();
+        await fs.writeFile(narrationPath, audioBuffer);
+        
+        logger.info(`Saved narration audio to ${narrationPath}`);
+        
+        // Update the response to use our local path
+        data.audio_url = `/assets/audio/narration/${narrationFilename}`;
+      } catch (downloadError) {
+        logger.error(`Error saving audio file: ${downloadError.message}`);
+        // Continue with the original response even if saving fails
+      }
+    }
+    
     return data;
   } catch (error) {
     logger.error(`Error generating TTS: ${error.message}`, { error });

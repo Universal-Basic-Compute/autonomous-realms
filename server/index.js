@@ -51,6 +51,7 @@ async function init() {
     
     // Serve static files
     app.use('/assets', express.static(path.join(__dirname, 'assets')));
+    app.use('/assets/audio', express.static(path.join(__dirname, 'assets/audio')));
     app.use('/output', express.static(path.join(__dirname, 'output')));
     app.use('/docs', express.static(path.join(__dirname, '../docs')));
     

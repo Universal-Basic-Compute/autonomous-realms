@@ -244,106 +244,158 @@ function createColonyNamingScreen() {
 
 // Create the language initialization screen
 function createLanguageInitScreen(colonyName) {
-  // Create container
-  const languageContainer = document.createElement('div');
-  languageContainer.id = 'language-init-screen';
-  languageContainer.className = 'fullscreen-overlay';
+  // Check if we have a tribe intro
+  const introText = localStorage.getItem('tribeIntroText');
+  const introAudio = localStorage.getItem('tribeIntroAudio');
   
-  // Add title
-  const title = document.createElement('h2');
-  title.textContent = 'Language Development';
-  title.className = 'language-title';
-  languageContainer.appendChild(title);
-  
-  // Add explanation
-  const explanation = document.createElement('p');
-  explanation.className = 'language-explanation';
-  explanation.innerHTML = `Your settlers in <strong>${colonyName}</strong> don't yet know how to communicate effectively. 
-    As their leader, you need to guide the initial development of their language. 
-    How will your people begin to form words and meaning?`;
-  languageContainer.appendChild(explanation);
-  
-  // Add input area
-  const inputLabel = document.createElement('label');
-  inputLabel.textContent = 'How will you start developing your colony\'s language?';
-  inputLabel.htmlFor = 'language-input';
-  inputLabel.className = 'language-input-label';
-  languageContainer.appendChild(inputLabel);
-  
-  const inputArea = document.createElement('textarea');
-  inputArea.id = 'language-input';
-  inputArea.className = 'language-input';
-  inputArea.placeholder = 'Describe how your settlers will begin to communicate. For example: "They will start by using simple gestures and sounds to identify important resources like water and food..."';
-  inputArea.rows = 6;
-  languageContainer.appendChild(inputArea);
-  
-  // Add buttons
-  const buttonContainer = document.createElement('div');
-  buttonContainer.className = 'button-container';
-  
-  // Back button
-  const backButton = document.createElement('button');
-  backButton.textContent = 'Back';
-  backButton.className = 'secondary-button';
-  backButton.addEventListener('click', () => {
-    languageContainer.remove();
-    createColonyNamingScreen();
-  });
-  buttonContainer.appendChild(backButton);
-  
-  // Continue button
-  const continueButton = document.createElement('button');
-  continueButton.textContent = 'Establish Language';
-  continueButton.className = 'primary-button';
-  continueButton.addEventListener('click', async () => {
-    const languageDescription = inputArea.value.trim();
+  // If we have an intro, show it before proceeding to language screen
+  if (introText) {
+    // Create intro container
+    const introContainer = document.createElement('div');
+    introContainer.id = 'tribe-intro-screen';
+    introContainer.className = 'fullscreen-overlay';
     
-    if (!languageDescription) {
-      alert('Please describe how your settlers will begin to communicate.');
-      return;
+    // Add title
+    const title = document.createElement('h2');
+    title.textContent = colonyName;
+    title.className = 'intro-title';
+    introContainer.appendChild(title);
+    
+    // Add intro text
+    const introTextElement = document.createElement('p');
+    introTextElement.className = 'intro-text';
+    introTextElement.textContent = introText;
+    introContainer.appendChild(introTextElement);
+    
+    // Add continue button
+    const continueButton = document.createElement('button');
+    continueButton.textContent = 'Continue';
+    continueButton.className = 'primary-button';
+    continueButton.style.marginTop = '30px';
+    continueButton.addEventListener('click', () => {
+      introContainer.remove();
+      // Now show the language screen
+      showLanguageScreen();
+    });
+    introContainer.appendChild(continueButton);
+    
+    document.body.appendChild(introContainer);
+    
+    // Play the audio if available
+    if (introAudio) {
+      const audio = new Audio(introAudio);
+      audio.play().catch(err => console.warn('Could not play intro audio:', err));
     }
     
-    // Show loading indicator
-    const loadingIndicator = document.createElement('div');
-    loadingIndicator.className = 'loading-indicator';
-    loadingIndicator.textContent = 'Establishing language foundations';
-    languageContainer.appendChild(loadingIndicator);
+    return; // Exit early, the continue button will call showLanguageScreen
+  }
+  
+  // If no intro, just show the language screen directly
+  showLanguageScreen();
+  
+  // Define the showLanguageScreen function that contains the original code
+  function showLanguageScreen() {
+    // Create container
+    const languageContainer = document.createElement('div');
+    languageContainer.id = 'language-init-screen';
+    languageContainer.className = 'fullscreen-overlay';
     
-    try {
-      // Get colony info from localStorage
-      const colonyName = localStorage.getItem('colonyName');
-      const kinName = localStorage.getItem('kinName');
+    // Add title
+    const title = document.createElement('h2');
+    title.textContent = 'Language Development';
+    title.className = 'language-title';
+    languageContainer.appendChild(title);
+    
+    // Add explanation
+    const explanation = document.createElement('p');
+    explanation.className = 'language-explanation';
+    explanation.innerHTML = `Your settlers in <strong>${colonyName}</strong> don't yet know how to communicate effectively. 
+      As their leader, you need to guide the initial development of their language. 
+      How will your people begin to form words and meaning?`;
+    languageContainer.appendChild(explanation);
+    
+    // Add input area
+    const inputLabel = document.createElement('label');
+    inputLabel.textContent = 'How will you start developing your colony\'s language?';
+    inputLabel.htmlFor = 'language-input';
+    inputLabel.className = 'language-input-label';
+    languageContainer.appendChild(inputLabel);
+    
+    const inputArea = document.createElement('textarea');
+    inputArea.id = 'language-input';
+    inputArea.className = 'language-input';
+    inputArea.placeholder = 'Describe how your settlers will begin to communicate. For example: "They will start by using simple gestures and sounds to identify important resources like water and food..."';
+    inputArea.rows = 6;
+    languageContainer.appendChild(inputArea);
+    
+    // Add buttons
+    const buttonContainer = document.createElement('div');
+    buttonContainer.className = 'button-container';
+    
+    // Back button
+    const backButton = document.createElement('button');
+    backButton.textContent = 'Back';
+    backButton.className = 'secondary-button';
+    backButton.addEventListener('click', () => {
+      languageContainer.remove();
+      createColonyNamingScreen();
+    });
+    buttonContainer.appendChild(backButton);
+    
+    // Continue button
+    const continueButton = document.createElement('button');
+    continueButton.textContent = 'Establish Language';
+    continueButton.className = 'primary-button';
+    continueButton.addEventListener('click', async () => {
+      const languageDescription = inputArea.value.trim();
       
-      // Initialize language with KinOS
-      const languageResponse = await initializeLanguage(kinName, languageDescription, colonyName);
-      
-      if (languageResponse.error) {
-        throw new Error(languageResponse.error);
+      if (!languageDescription) {
+        alert('Please describe how your settlers will begin to communicate.');
+        return;
       }
       
-      // Store language initialization in localStorage
-      localStorage.setItem('languageInitialized', 'true');
-      localStorage.setItem('languageDescription', languageDescription);
+      // Show loading indicator
+      const loadingIndicator = document.createElement('div');
+      loadingIndicator.className = 'loading-indicator';
+      loadingIndicator.textContent = 'Establishing language foundations';
+      languageContainer.appendChild(loadingIndicator);
       
-      // Remove the language screen
-      languageContainer.remove();
-      
-      // Start the game
-      initWorld();
-    } catch (error) {
-      console.error('Error initializing language:', error);
-      alert(`Failed to initialize language: ${error.message}`);
-      loadingIndicator.remove();
-    }
-  });
-  buttonContainer.appendChild(continueButton);
-  
-  languageContainer.appendChild(buttonContainer);
-  
-  document.body.appendChild(languageContainer);
-  
-  // Focus the input area
-  inputArea.focus();
+      try {
+        // Get colony info from localStorage
+        const colonyName = localStorage.getItem('colonyName');
+        const kinName = localStorage.getItem('kinName');
+        
+        // Initialize language with KinOS
+        const languageResponse = await initializeLanguage(kinName, languageDescription, colonyName);
+        
+        if (languageResponse.error) {
+          throw new Error(languageResponse.error);
+        }
+        
+        // Store language initialization in localStorage
+        localStorage.setItem('languageInitialized', 'true');
+        localStorage.setItem('languageDescription', languageDescription);
+        
+        // Remove the language screen
+        languageContainer.remove();
+        
+        // Start the game
+        initWorld();
+      } catch (error) {
+        console.error('Error initializing language:', error);
+        alert(`Failed to initialize language: ${error.message}`);
+        loadingIndicator.remove();
+      }
+    });
+    buttonContainer.appendChild(continueButton);
+    
+    languageContainer.appendChild(buttonContainer);
+    
+    document.body.appendChild(languageContainer);
+    
+    // Focus the input area
+    inputArea.focus();
+  }
 }
 
 // Function to create a new kin in KinOS
@@ -400,7 +452,7 @@ ${dream}
 Tribe Appearance:
 ${appearance}
 
-Please save this information about the tribe for future reference. This describes both the physical appearance of the settlers and their long-term aspirations.
+Please create an epic, inspiring introduction for this tribe that captures their appearance and ambitious dreams. Make it dramatic and cinematic - something that would make an amazing opening narration for their story. This will be read aloud to the player, so make it sound great when spoken.
 `;
 
     const response = await fetch(`http://localhost:5000/v2/blueprints/autonomousrealms/kins/${kinName}/messages`, {
@@ -412,7 +464,7 @@ Please save this information about the tribe for future reference. This describe
         content: messageContent,
         model: "claude-3-7-sonnet-latest",
         mode: "tribe_initialization",
-        addSystem: "You are the tribal memory keeper. Store this information about the tribe's appearance and dreams for the future. Acknowledge receipt of this information and confirm you'll use it to inform future interactions."
+        addSystem: "You are an epic storyteller creating a powerful introduction for a new tribe. Create a dramatic, inspiring narrative that captures both their physical appearance and their dreams for the future. Your introduction should be 3-5 sentences long and have a cinematic quality - like the opening narration to an epic saga."
       })
     });
     
@@ -422,7 +474,47 @@ Please save this information about the tribe for future reference. This describe
       // We don't throw here to allow the process to continue even if this fails
     }
     
-    return await response.json();
+    const responseData = await response.json();
+    
+    // Extract the introduction text from the response
+    const introText = responseData.content || "A new tribe begins their journey...";
+    
+    // Generate TTS for the introduction
+    try {
+      console.log("Generating TTS for tribe introduction");
+      const ttsResponse = await fetch('http://localhost:5000/v2/tts?format=mp3', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          text: introText,
+          voice_id: "IKne3meq5aSn9XLyUdCD", // Epic narrator voice
+          model: "eleven_flash_v2_5"
+        })
+      });
+      
+      if (ttsResponse.ok) {
+        const ttsData = await ttsResponse.json();
+        
+        // Play the audio if available
+        if (ttsData.audio_url || ttsData.result_url) {
+          const audioUrl = ttsData.audio_url || ttsData.result_url;
+          const audio = new Audio(audioUrl);
+          audio.play().catch(err => console.warn('Could not play intro audio:', err));
+          
+          // Store the intro text and audio URL in localStorage
+          localStorage.setItem('tribeIntroText', introText);
+          localStorage.setItem('tribeIntroAudio', audioUrl);
+        }
+      } else {
+        console.warn('Failed to generate TTS for tribe introduction');
+      }
+    } catch (ttsError) {
+      console.warn('Error generating TTS:', ttsError);
+    }
+    
+    return responseData;
   } catch (error) {
     console.warn('Error saving tribe information, but continuing:', error);
     // We don't throw here to allow the process to continue even if this fails

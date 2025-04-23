@@ -649,6 +649,25 @@ body::before {
   margin-bottom: 30px;
 }
 
+/* Tribe Intro Screen */
+.intro-title {
+  font-size: 42px;
+  margin-bottom: 30px;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+  color: #ffcc00;
+}
+
+.intro-text {
+  font-size: 24px;
+  line-height: 1.6;
+  max-width: 800px;
+  text-align: center;
+  margin-bottom: 40px;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
 .language-input-label {
   font-size: 18px;
   margin-bottom: 10px;

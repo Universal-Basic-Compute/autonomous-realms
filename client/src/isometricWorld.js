@@ -442,6 +442,16 @@ function setupEventListeners() {
         document.getElementById('menu-toggle-music').textContent = isMuted ? 'Enable Music' : 'Disable Music';
         sideMenu.classList.remove('visible');
     });
+    
+    // Add restart music button
+    const restartMusicButton = document.createElement('button');
+    restartMusicButton.id = 'menu-restart-music';
+    restartMusicButton.textContent = 'Restart Music';
+    restartMusicButton.addEventListener('click', () => {
+        audioPlayer.restartMusic();
+        sideMenu.classList.remove('visible');
+    });
+    document.querySelector('#side-menu .menu-content ul').appendChild(document.createElement('li')).appendChild(restartMusicButton);
 
     document.getElementById('menu-toggle-debug').addEventListener('click', () => {
         toggleDebugMode();

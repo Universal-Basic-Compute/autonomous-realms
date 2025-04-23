@@ -18,8 +18,29 @@ class AudioPlayer {
 
     // Add event listener for when a track ends
     this.audioElement.addEventListener('ended', () => {
+      console.log('Track ended, playing next track');
       this.playRandomTrack();
     });
+
+    // Add error event listener
+    this.audioElement.addEventListener('error', (e) => {
+      console.error('Audio playback error:', e);
+      console.error('Error code:', this.audioElement.error ? this.audioElement.error.code : 'unknown');
+      console.error('Current src:', this.audioElement.src);
+      
+      // Try playing another track after a short delay
+      setTimeout(() => {
+        console.log('Attempting to play another track after error');
+        this.playRandomTrack();
+      }, 3000);
+    });
+
+    // Add debugging listeners
+    this.audioElement.addEventListener('loadstart', () => console.log('Audio loading started'));
+    this.audioElement.addEventListener('canplay', () => console.log('Audio can start playing'));
+    this.audioElement.addEventListener('canplaythrough', () => console.log('Audio can play through'));
+    this.audioElement.addEventListener('play', () => console.log('Audio playback started'));
+    this.audioElement.addEventListener('pause', () => console.log('Audio playback paused'));
 
     // Fetch the list of available music tracks
     this.fetchMusicList();
@@ -27,6 +48,7 @@ class AudioPlayer {
 
   async fetchMusicList() {
     try {
+      console.log('Fetching music list from server...');
       const response = await fetch('http://localhost:3000/api/tiles/audio/music/list');
       if (!response.ok) {
         console.error('Failed to fetch music list:', response.statusText);
@@ -37,7 +59,7 @@ class AudioPlayer {
       this.musicList = data.tracks || [];
       
       if (this.musicList.length > 0) {
-        console.log(`Loaded ${this.musicList.length} music tracks`);
+        console.log(`Loaded ${this.musicList.length} music tracks:`, this.musicList);
         this.playRandomTrack();
       } else {
         console.warn('No music tracks available');
@@ -70,7 +92,10 @@ class AudioPlayer {
     this.currentTrack = track;
     
     // Set the audio source and play
-    this.audioElement.src = `http://localhost:3000/assets/audio/music/${track}`;
+    const audioUrl = `http://localhost:3000/assets/audio/music/${track}`;
+    console.log(`Setting audio source to: ${audioUrl}`);
+    this.audioElement.src = audioUrl;
+    
     this.audioElement.play().catch(error => {
       console.error('Error playing audio:', error);
     });
@@ -104,6 +129,17 @@ class AudioPlayer {
       });
       this.isPlaying = true;
     }
+  }
+  // Method to manually restart music playback
+  restartMusic() {
+    console.log('Manually restarting music playback');
+    // Stop current playback if any
+    if (this.audioElement) {
+      this.audioElement.pause();
+      this.audioElement.currentTime = 0;
+    }
+    // Refetch the music list and start playing
+    this.fetchMusicList();
   }
 }
 

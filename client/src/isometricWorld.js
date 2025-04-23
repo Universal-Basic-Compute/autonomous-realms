@@ -2221,6 +2221,11 @@ async function generateTileConversation(tileX, tileY, terrainCode, terrainDescri
   }
 }
 
+// Helper function to get the current user ID from localStorage
+function getCurrentUserId() {
+  return localStorage.getItem('userId');
+}
+
 // Generate an image visualizing the action being performed
 async function generateActionVisualization(action, terrainInfo, actionResponse) {
   try {

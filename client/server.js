@@ -9,6 +9,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Serve the src directory for JavaScript and CSS
 app.use('/src', express.static(path.join(__dirname, 'src')));
 
+// Serve node_modules for client-side imports
+app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
+
 // Serve index.html for all routes
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));

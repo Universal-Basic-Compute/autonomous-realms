@@ -1,6 +1,11 @@
 import audioPlayer from './audioPlayer.js';
 import { createWelcomeScreen } from './welcomeScreen.js';
 
+// Language caching variables
+let languageCache = null;
+let languageCacheTimestamp = 0;
+const LANGUAGE_CACHE_DURATION = 600000; // 10 minutes in milliseconds
+
 // Function to check if a pixel is transparent
 function isTransparentPixel(img, x, y) {
   try {
@@ -98,6 +103,13 @@ export function initWorld() {
     
     // Show the circular menu immediately
     showCircularMenu();
+    
+    // Fetch language data in the background
+    fetchAndCacheLanguageData().then(data => {
+        if (data) {
+            console.log('Language data pre-loaded successfully');
+        }
+    });
 }
 
 // Fetch available actions for a terrain type
@@ -437,16 +449,45 @@ function showLanguageMenu() {
   // Add to document body
   document.body.appendChild(languageMenu);
   
-  // Fetch current language details from KinOS
-  fetchLanguageDetails(menuContent, loadingElement);
+  // Check if we have cached data that's still valid
+  const now = Date.now();
+  if (languageCache && (now - languageCacheTimestamp < LANGUAGE_CACHE_DURATION)) {
+    // Use cached data
+    console.log('Using cached language data from', new Date(languageCacheTimestamp).toLocaleTimeString());
+    loadingElement.remove();
+    
+    if (languageCache.rawContent) {
+      displayLanguageDetails(menuContent, languageCache.rawContent);
+    } else {
+      const errorElement = document.createElement('div');
+      errorElement.className = 'evolution-error';
+      errorElement.textContent = 'Error: No language data available';
+      menuContent.appendChild(errorElement);
+    }
+    
+    // Add the language evolution form
+    addLanguageEvolutionForm(menuContent);
+  } else {
+    // Fetch fresh data
+    fetchLanguageDetails(menuContent, loadingElement);
+  }
 }
 
-// Function to fetch language details from KinOS
-async function fetchLanguageDetails(menuContent, loadingElement) {
+// Function to fetch and cache language data
+async function fetchAndCacheLanguageData() {
   try {
+    // Check if we have a valid cache
+    const now = Date.now();
+    if (languageCache && (now - languageCacheTimestamp < LANGUAGE_CACHE_DURATION)) {
+      console.log('Using cached language data');
+      return languageCache;
+    }
+    
     // Get the colony name and kin name from localStorage
     const colonyName = localStorage.getItem('colonyName') || 'Your Colony';
     const kinName = localStorage.getItem('kinName') || 'defaultcolony';
+    
+    console.log('Fetching fresh language data for', colonyName);
     
     // Prepare the message for KinOS
     const messageContent = `
@@ -482,27 +523,46 @@ Format the word list in a way that's easy to display in a UI, with the tribe's w
     
     const responseData = await response.json();
     
-    // Add debug logging for the response
-    console.log('Language details response:', responseData);
-    
     // Check for the content in either response or content field
     const languageContent = responseData.response || responseData.content;
-    console.log('Language content type:', typeof languageContent);
-    console.log('Language content:', languageContent);
+    
+    // Parse the language data
+    const parsedData = parseLanguageResponse(languageContent);
+    
+    // Update the cache
+    languageCache = {
+      rawContent: languageContent,
+      parsedData: parsedData
+    };
+    languageCacheTimestamp = now;
+    
+    console.log('Language data cached at', new Date(languageCacheTimestamp).toLocaleTimeString());
+    return languageCache;
+  } catch (error) {
+    console.error('Error fetching language data:', error);
+    return null;
+  }
+}
+
+// Function to fetch language details from KinOS
+async function fetchLanguageDetails(menuContent, loadingElement) {
+  try {
+    // Fetch and cache the language data
+    const cacheData = await fetchAndCacheLanguageData();
     
     // Remove loading indicator
     loadingElement.remove();
     
     // Check if we have language content before trying to parse it
-    if (!languageContent) {
-      console.error('No language content in response data:', responseData);
+    if (!cacheData || !cacheData.rawContent) {
+      console.error('No language content in response data');
       const errorElement = document.createElement('div');
       errorElement.className = 'evolution-error';
       errorElement.textContent = 'Error: No language data received from server';
       menuContent.appendChild(errorElement);
     } else {
       // Parse and display the language details
-      displayLanguageDetails(menuContent, languageContent);
+      displayLanguageDetails(menuContent, cacheData.rawContent);
     }
     
     // Also display the language evolution form
@@ -818,6 +878,10 @@ Please provide:
     
     // Display results
     showEvolutionResults(evolutionResults);
+    
+    // Invalidate the language cache so we'll fetch fresh data next time
+    languageCache = null;
+    languageCacheTimestamp = 0;
     
   } catch (error) {
     console.error('Error evolving language:', error);

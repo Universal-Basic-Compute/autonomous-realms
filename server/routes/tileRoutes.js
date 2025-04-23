@@ -247,9 +247,11 @@ router.get('/curl-test', async (req, res) => {
 // Add this route to generate action visualization images
 router.post('/generate-action-image', async (req, res) => {
   try {
+    logger.info(`Action image generation endpoint hit`);
     const { prompt, action, terrainCode, min_files = 1, max_files = 1 } = req.body;
     
     if (!prompt) {
+      logger.warn('No prompt provided for image generation');
       return res.status(400).json({ error: 'No prompt provided for image generation' });
     }
     
@@ -346,6 +348,15 @@ router.get('/queue-status', (req, res) => {
     logger.error(`Error getting queue status: ${error.message}`);
     res.status(500).json({ error: 'Failed to get queue status' });
   }
+});
+
+// Add a test endpoint for action image generation
+router.get('/test-action-image', (req, res) => {
+  logger.info('Test action image endpoint hit');
+  res.json({ 
+    success: true, 
+    message: 'Action image generation endpoint is working' 
+  });
 });
 
 // Get a tile by coordinates

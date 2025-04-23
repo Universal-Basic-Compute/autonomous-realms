@@ -2071,6 +2071,7 @@ async function generateActionVisualization(action, terrainInfo, actionResponse) 
     console.log('Generating action visualization with prompt:', prompt);
     
     // Make request to the server endpoint for image generation
+    console.log(`Sending request to: ${config.serverUrl}/api/tiles/generate-action-image`);
     const response = await fetch(`${config.serverUrl}/api/tiles/generate-action-image`, {
       method: 'POST',
       headers: {
@@ -2086,6 +2087,8 @@ async function generateActionVisualization(action, terrainInfo, actionResponse) 
     });
     
     if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`Failed to generate action image: ${response.status} ${response.statusText}`, errorText);
       throw new Error(`Failed to generate action image: ${response.status} ${response.statusText}`);
     }
     

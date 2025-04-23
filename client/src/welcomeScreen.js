@@ -240,6 +240,11 @@ function createColonyNamingScreen() {
     const loadingIndicator = document.createElement('div');
     loadingIndicator.className = 'loading-indicator';
     loadingIndicator.textContent = 'Creating your colony';
+    loadingIndicator.style.position = 'fixed'; // Ensure fixed positioning
+    loadingIndicator.style.top = '50%';        // Center vertically
+    loadingIndicator.style.left = '50%';       // Center horizontally
+    loadingIndicator.style.transform = 'translate(-50%, -50%)'; // Perfect centering
+    loadingIndicator.style.zIndex = '2000';    // Ensure it's above everything
     namingContainer.appendChild(loadingIndicator);
     
     try {

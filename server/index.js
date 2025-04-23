@@ -76,6 +76,8 @@ async function init() {
     
     // Set up routes
     app.use('/api/tiles', tileRoutes);
+    // Add direct route for action image generation to ensure it's accessible
+    app.post('/api/tiles/generate-action-image', (req, res) => tileRoutes.handle('/generate-action-image', req, res));
     app.use('/api/icons', require('./routes/iconRoutes'));
     app.use('/api/data', require('./routes/dataRoutes'));
     app.use('/api/kinos', require('./routes/kinosRoutes'));

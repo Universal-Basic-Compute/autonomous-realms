@@ -1731,10 +1731,26 @@ async function performAction(action) {
     // Create a more compact and immersive dialog
     const progressDialog = document.createElement('div');
     progressDialog.className = 'dialog action-dialog';
+    
+    // Select a random flavor text from several options for variety
+    const flavorTexts = [
+        "Your settlers toil tirelessly as the sun arcs through the azure sky...",
+        "As daylight journeys from horizon to horizon, your people labor with steady determination...",
+        "While the sun traces its daily path overhead, your settlers persist in their dedicated work...",
+        "Your diligent settlers continue their tasks as shadows slowly shift with the sun's passage...",
+        "The sun climbs and descends in its celestial journey as your settlers work with unwavering focus...",
+        "Your people's hands remain busy as the sun makes its patient voyage across the heavens...",
+        "From dawn until dusk, your settlers maintain their rhythmic work as the sun traverses the sky...",
+        "Your settlers' efforts continue unabated as the sun marches steadily across the blue expanse above...",
+        "The day progresses with the sun's measured travel, matched by your settlers' persistent labor...",
+        "Your community works with quiet determination as sunlight gradually shifts through the passing hours..."
+    ];
+    const randomFlavorText = flavorTexts[Math.floor(Math.random() * flavorTexts.length)];
+    
     progressDialog.innerHTML = `
         <div class="dialog-content action-dialog-content">
             <h2>${action.name}</h2>
-            <p class="action-flavor-text">Your settlers work diligently as the sun moves across the sky...</p>
+            <p class="action-flavor-text">${randomFlavorText}</p>
             
             <div class="action-progress-text">Time passing: <span id="progress-time">0</span> moments</div>
             <div class="action-progress-container">

@@ -512,3 +512,123 @@ body::before {
   max-width: 600px;
   width: 80%;
 }
+
+/* Language Evolution Form */
+.language-evolution-form {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+}
+
+.language-evolution-form h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #4CAF50;
+}
+
+.language-evolution-form p {
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #555;
+}
+
+#language-evolution-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+    font-family: inherit;
+    margin-bottom: 10px;
+}
+
+#evolve-language-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+#evolve-language-button:hover {
+    background-color: #45a049;
+}
+
+#evolve-language-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+#language-evolution-loading {
+    margin-top: 10px;
+    font-style: italic;
+    color: #666;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Evolution Results */
+.evolution-results {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #f0f7ff;
+    border-radius: 5px;
+    border: 1px solid #d0e0ff;
+}
+
+.evolution-results h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #2196F3;
+    border-bottom: 1px solid #d0e0ff;
+    padding-bottom: 5px;
+}
+
+.evolution-results h5 {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.evolution-section {
+    margin-bottom: 15px;
+}
+
+.evolution-success {
+    color: #4CAF50;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.evolution-failure {
+    color: #F44336;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.evolution-error {
+    background-color: #ffebee;
+    border: 1px solid #ffcdd2;
+    padding: 10px;
+    border-radius: 4px;
+    color: #d32f2f;
+}
+
+.evolution-narrative {
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 15px;
+}
+
+.evolution-narrative p {
+    line-height: 1.5;
+    white-space: pre-wrap;
+}

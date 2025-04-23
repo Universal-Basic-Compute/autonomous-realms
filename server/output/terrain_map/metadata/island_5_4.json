@@ -1,5 +1,22 @@
 {
-  "coordinates": {"x": 5, "y": 4},
-  "description": "Small floating island with a medieval cottage, thatched roof, stone path, and a small garden. A waterfall flows off the eastern edge into the void below.",
-  "terrainCode": "P-LUS|E-FLT|X-TRE|S-FLT"
+  "coordinates": {
+    "x": 5,
+    "y": 4
+  },
+  "description": "The swamp continues with a maze of water channels between tree-covered hummocks. The water is still but occasionally disturbed by fish or turtles. Frogs call constantly from hidden locations.",
+  "terrainCode": "W-SWP|E-FLT|H-SAT|A-TUR",
+  "generatedPrompt": "isometric view of realistic terrain tile with The swamp continues with a maze of water channels between tree-covered hummocks. The water is still but occasionally disturbed by fish or turtles. Frogs call constantly from hidden locations., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-SWP|E-FLT|H-SAT|A-TUR), east: unknown terrain (F-THN|E-FLT|W-STR|A-FIS), north: unknown terrain (W-SWP|E-FLT|H-SAT|X-TRE), south: unknown terrain (W-SWP|E-FLT|H-WET|X-BSH)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:02:01.021521+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The swamp continues with a maze of water channels between tree-covered hummocks. The water is still but occasionally disturbed by fish or turtles. Frogs call constantly from hidden locations., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-SWP|E-FLT|H-SAT|A-TUR), east: unknown terrain (F-THN|E-FLT|W-STR|A-FIS), north: unknown terrain (W-SWP|E-FLT|H-SAT|X-TRE), south: unknown terrain (W-SWP|E-FLT|H-WET|X-BSH)",
+        "resolution": "1024x1024",
+        "seed": 1214758623,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/vP9Y5YZ8SBCn6bT3ZUkM1g.png?exp=1745456526&sig=d6de9a48e272d64b974ac5da5c9b127984e35d39c8e6d7b10a6797a53fe1c243"
+      }
+    ]
+  }
 }

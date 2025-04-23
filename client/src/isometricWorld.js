@@ -57,11 +57,39 @@ async function fetchAvailableActions(terrainCode) {
         // Extract the base terrain code (before any | character)
         const baseTerrainCode = terrainCode.split('|')[0];
         
+        // Check if this is a magical/special terrain type (S-prefix)
+        const isMagicalTerrain = baseTerrainCode.startsWith('S-');
+        
+        // For magical terrain, use a fallback to a more realistic terrain type
+        let actionTerrainCode = baseTerrainCode;
+        
+        if (isMagicalTerrain) {
+            // Map magical terrain types to realistic equivalents
+            const magicalToRealisticMap = {
+                'S-ENC': 'F-MIX', // Enchanted forest → Mixed forest
+                'S-GLW': 'F-MIX', // Glowing terrain → Mixed forest
+                'S-MIS': 'F-MIX', // Misty terrain → Mixed forest
+                'S-CRY': 'M-LOW', // Crystal formation → Low mountains
+                'S-ANC': 'F-ANC', // Ancient power site → Ancient forest
+                'S-BUR': 'L-BRN', // Burning ground → Burned area
+                'S-FRZ': 'T-SNO', // Perpetually frozen → Snow field
+                'S-FLT': 'M-HIG', // Floating terrain → High mountains
+                'S-DIS': 'R-KAR', // Distorted reality → Karst
+                'S-SHD': 'F-DES', // Shadow realm → Dead forest
+                'S-ETH': 'F-MIX', // Ethereal plane → Mixed forest
+                'S-CRS': 'L-BLI'  // Cursed land → Blighted land
+            };
+            
+            // Use the mapped terrain type or default to mixed forest
+            actionTerrainCode = magicalToRealisticMap[baseTerrainCode] || 'F-MIX';
+            console.log(`Mapped magical terrain ${baseTerrainCode} to realistic terrain ${actionTerrainCode}`);
+        }
+        
         // Fetch actions for this terrain type
-        const response = await fetch(`${config.serverUrl}/api/data/actions/${baseTerrainCode}`);
+        const response = await fetch(`${config.serverUrl}/api/data/actions/${actionTerrainCode}`);
         
         if (!response.ok) {
-            console.error(`Failed to fetch actions for terrain ${baseTerrainCode}`);
+            console.error(`Failed to fetch actions for terrain ${actionTerrainCode}`);
             return [];
         }
         

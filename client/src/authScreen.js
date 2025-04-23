@@ -210,16 +210,19 @@ function createAuthScreen() {
         throw new Error(data.error || 'Registration failed');
       }
       
-      // Show success message and switch to login tab
-      errorElement.textContent = 'Registration successful! Please log in.';
+      // Store user info in localStorage
+      localStorage.setItem('userId', data.userId);
+      localStorage.setItem('username', data.username);
+      localStorage.setItem('isGuest', 'false');
+      
+      // Show success message
+      errorElement.textContent = 'Registration successful! Logging you in...';
       errorElement.style.color = '#4CAF50';
       
-      // Reset form
-      registerForm.reset();
-      
-      // Switch to login tab after a short delay
+      // Remove auth screen and show welcome screen after a short delay
       setTimeout(() => {
-        loginTab.click();
+        authContainer.remove();
+        createWelcomeScreen();
       }, 1500);
       
     } catch (error) {

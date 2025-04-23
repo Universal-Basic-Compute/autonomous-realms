@@ -308,7 +308,8 @@ router.post('/generate-action-image', async (req, res) => {
     res.json({
       success: true,
       imageUrl: `/assets/images/actions/${imageFilename}`,
-      prompt: prompt
+      prompt: prompt,
+      totalImages: responseData.data.length
     });
     
   } catch (error) {

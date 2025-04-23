@@ -1510,7 +1510,7 @@ async function sendKinOSMessage(action, terrainInfo) {
   try {
     console.log(`Sending action "${action.name}" to KinOS with terrain info:`, terrainInfo);
     
-    // Prepare the message content with explicit JSON request
+    // Prepare the message content with explicit JSON request and item limits
     const messageContent = `
 I am attempting to perform the action "${action.name}" (${action.code}) on terrain type: ${terrainInfo.terrainCode}.
 
@@ -1524,25 +1524,22 @@ IMPORTANT: Format your response as a JSON object with these sections:
 1. "analysis": A brief analysis of the action in this terrain (2-3 sentences)
 2. "narration": A vivid, single paragraph description (5-8 sentences) of the settlers performing this action
 3. "outcomes": Object containing:
-   - "resources": Array of resources that might be gained
-   - "knowledge": Array of knowledge or skills acquired
-   - "challenges": Array of challenges faced
-4. "tips": Array of practical tips for success
+   - "resources": Array of 1-3 resources that might be gained
+   - "knowledge": Array of 1-2 knowledge or skills acquired
+   - "challenges": Array of 1-3 challenges faced
+4. "tips": Array of 1-2 practical tips for success
 
 Example response format:
 {
   "analysis": "This terrain is well-suited for gathering berries due to the abundant bushes and rich soil. The flat terrain makes movement easy, and the nearby water source supports diverse plant life.",
   "narration": "Your settlers spread out among the berry bushes, carefully selecting the ripest fruits while watching for thorns. The morning dew still clings to the leaves, making the berries glisten in the early light. Children join the work, learning which colors indicate the sweetest harvest, while the more experienced gatherers fill their baskets with practiced efficiency.",
   "outcomes": {
-    "resources": ["Wild berries (2-3 days worth)", "Berry seeds for planting", "Medicinal leaves from berry bushes"],
-    "knowledge": ["Identification of berry varieties", "Seasonal ripening patterns", "Preservation techniques"],
-    "challenges": ["Thorny bushes causing minor injuries", "Competition with wildlife", "Need for proper storage"]
+    "resources": ["Wild berries (2-3 days worth)", "Berry seeds for planting"],
+    "knowledge": ["Identification of berry varieties"],
+    "challenges": ["Thorny bushes causing minor injuries", "Competition with wildlife"]
   },
   "tips": [
-    "Focus on bushes with the most ripe berries rather than checking every plant",
-    "Harvest in early morning when berries are firmest",
-    "Leave some berries on each bush to ensure future growth",
-    "Use leather gloves to protect hands from thorns"
+    "Focus on bushes with the most ripe berries rather than checking every plant"
   ]
 }
 
@@ -1917,7 +1914,9 @@ async function generateActionVisualization(action, terrainInfo, actionResponse) 
       body: JSON.stringify({
         prompt: prompt,
         action: action.code,
-        terrainCode: terrainInfo.terrainCode
+        terrainCode: terrainInfo.terrainCode,
+        min_files: 2,
+        max_files: 5
       })
     });
     

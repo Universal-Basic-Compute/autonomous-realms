@@ -1175,14 +1175,17 @@ async function performAction(action) {
             return;
         }
         
-        // Show the KinOS response in a dialog
+        // Parse the response content to extract structured data
+        const parsedResponse = parseActionResponse(kinOSResponse.content);
+        
+        // Show the KinOS response in a dialog with structured format
         const responseDialog = document.createElement('div');
         responseDialog.className = 'dialog';
         responseDialog.innerHTML = `
             <div class="dialog-content">
                 <h2>${action.name}</h2>
-                <div class="action-response">
-                    ${kinOSResponse.content || 'No response from assistant'}
+                <div class="action-response structured-response">
+                    ${formatStructuredResponse(parsedResponse)}
                 </div>
                 <button class="close-button">Close</button>
             </div>
@@ -1211,6 +1214,162 @@ async function performAction(action) {
             errorNotification.remove();
         }, 5000);
     }
+}
+
+// Parse the action response from KinOS into a structured format
+function parseActionResponse(responseText) {
+    try {
+        // First try to find a JSON object in the response
+        const jsonMatch = responseText.match(/\{[\s\S]*\}/);
+        if (jsonMatch) {
+            return JSON.parse(jsonMatch[0]);
+        }
+        
+        // If no JSON found, parse the markdown structure
+        const sections = {};
+        
+        // Extract the title (if present)
+        const titleMatch = responseText.match(/# ([^\n]+)/);
+        if (titleMatch) {
+            sections.title = titleMatch[1].trim();
+        }
+        
+        // Extract Action Analysis section
+        const analysisMatch = responseText.match(/## Action Analysis\n([\s\S]*?)(?=##|$)/);
+        if (analysisMatch) {
+            sections.analysis = analysisMatch[1].trim();
+        }
+        
+        // Extract Narration section
+        const narrationMatch = responseText.match(/## Narration\n([\s\S]*?)(?=##|$)/);
+        if (narrationMatch) {
+            sections.narration = narrationMatch[1].trim();
+        }
+        
+        // Extract Expected Outcomes section
+        const outcomesMatch = responseText.match(/## Expected Outcomes\n([\s\S]*?)(?=##|$)/);
+        if (outcomesMatch) {
+            sections.outcomes = outcomesMatch[1].trim();
+            
+            // Try to further parse resources, knowledge, and challenges
+            const resourcesMatch = sections.outcomes.match(/\*\*Resources Gained:\*\*\n([\s\S]*?)(?=\n\*\*|$)/);
+            if (resourcesMatch) {
+                sections.resources = resourcesMatch[1].trim();
+            }
+            
+            const knowledgeMatch = sections.outcomes.match(/\*\*Knowledge Opportunities:\*\*\n([\s\S]*?)(?=\n\*\*|$)/);
+            if (knowledgeMatch) {
+                sections.knowledge = knowledgeMatch[1].trim();
+            }
+            
+            const challengesMatch = sections.outcomes.match(/\*\*Challenges:\*\*\n([\s\S]*?)(?=\n\*\*|$)/);
+            if (challengesMatch) {
+                sections.challenges = challengesMatch[1].trim();
+            }
+        }
+        
+        // Extract Tips section
+        const tipsMatch = responseText.match(/## Tips for Success\n([\s\S]*?)(?=##|$)/);
+        if (tipsMatch) {
+            sections.tips = tipsMatch[1].trim();
+        }
+        
+        // If we couldn't parse structured sections, use the full text
+        if (Object.keys(sections).length <= 1) {
+            sections.fullText = responseText;
+        }
+        
+        return sections;
+    } catch (error) {
+        console.error('Error parsing action response:', error);
+        return { fullText: responseText };
+    }
+}
+
+// Format the structured response as HTML
+function formatStructuredResponse(parsedResponse) {
+    // If we have the full text only, just return it with line breaks
+    if (parsedResponse.fullText && Object.keys(parsedResponse).length === 1) {
+        return parsedResponse.fullText.replace(/\n/g, '<br>');
+    }
+    
+    let html = '';
+    
+    // Add each section with appropriate formatting
+    if (parsedResponse.analysis) {
+        html += `<div class="response-section">
+            <h3>Analysis</h3>
+            <div class="section-content">${parsedResponse.analysis.replace(/\n/g, '<br>')}</div>
+        </div>`;
+    }
+    
+    if (parsedResponse.narration) {
+        html += `<div class="response-section narrative">
+            <h3>Narration</h3>
+            <div class="section-content">${parsedResponse.narration.replace(/\n/g, '<br>')}</div>
+        </div>`;
+    }
+    
+    // Resources section with special formatting
+    if (parsedResponse.resources) {
+        html += `<div class="response-section resources">
+            <h3>Resources Gained</h3>
+            <div class="section-content">
+                <ul>
+                    ${parsedResponse.resources.split('\n').map(item => 
+                        `<li>${item.replace(/^- /, '')}</li>`).join('')}
+                </ul>
+            </div>
+        </div>`;
+    }
+    
+    // Knowledge section
+    if (parsedResponse.knowledge) {
+        html += `<div class="response-section knowledge">
+            <h3>Knowledge Opportunities</h3>
+            <div class="section-content">
+                <ul>
+                    ${parsedResponse.knowledge.split('\n').map(item => 
+                        `<li>${item.replace(/^- /, '')}</li>`).join('')}
+                </ul>
+            </div>
+        </div>`;
+    }
+    
+    // Challenges section
+    if (parsedResponse.challenges) {
+        html += `<div class="response-section challenges">
+            <h3>Challenges</h3>
+            <div class="section-content">
+                <ul>
+                    ${parsedResponse.challenges.split('\n').map(item => 
+                        `<li>${item.replace(/^- /, '')}</li>`).join('')}
+                </ul>
+            </div>
+        </div>`;
+    }
+    
+    // Tips section
+    if (parsedResponse.tips) {
+        html += `<div class="response-section tips">
+            <h3>Tips for Success</h3>
+            <div class="section-content">
+                <ol>
+                    ${parsedResponse.tips.split('\n').map(item => {
+                        // Extract the number and text
+                        const match = item.match(/(\d+)\.\s+(.*)/);
+                        if (match) {
+                            return `<li>${match[2]}</li>`;
+                        } else {
+                            return `<li>${item.replace(/^- /, '')}</li>`;
+                        }
+                    }).join('')}
+                </ol>
+            </div>
+        </div>`;
+    }
+    
+    return html;
 }
 
 // Set up event listeners

@@ -584,187 +584,110 @@ async function fetchLanguageDetails(menuContent, loadingElement) {
   }
 }
 
-// Function to parse and display language details
+// Function to display language details with markdown formatting
 function displayLanguageDetails(menuContent, responseText) {
   // Create language details container
   const detailsContainer = document.createElement('div');
   detailsContainer.className = 'language-details';
-  
-  // Try to extract structured information from the response
-  const sections = parseLanguageResponse(responseText);
   
   // Add title
   const title = document.createElement('h4');
   title.textContent = 'Current Language Status';
   detailsContainer.appendChild(title);
   
-  // Add development stage section
-  if (sections.stage) {
-    const stageSection = document.createElement('div');
-    stageSection.className = 'language-section';
-    
-    const stageTitle = document.createElement('h5');
-    stageTitle.textContent = 'Development Stage';
-    stageSection.appendChild(stageTitle);
-    
-    const stageText = document.createElement('p');
-    stageText.textContent = sections.stage;
-    stageSection.appendChild(stageText);
-    
-    detailsContainer.appendChild(stageSection);
-  }
+  // Create a container for the markdown content
+  const markdownContainer = document.createElement('div');
+  markdownContainer.className = 'markdown-content';
   
-  // Add grammar section
-  if (sections.grammar) {
-    const grammarSection = document.createElement('div');
-    grammarSection.className = 'language-section';
-    
-    const grammarTitle = document.createElement('h5');
-    grammarTitle.textContent = 'Grammatical Features';
-    grammarSection.appendChild(grammarTitle);
-    
-    const grammarText = document.createElement('p');
-    grammarText.textContent = sections.grammar;
-    grammarSection.appendChild(grammarText);
-    
-    detailsContainer.appendChild(grammarSection);
-  }
+  // Convert the markdown to HTML
+  const htmlContent = convertMarkdownToHtml(responseText);
+  markdownContainer.innerHTML = htmlContent;
   
-  // Add cultural implications section
-  if (sections.cultural) {
-    const culturalSection = document.createElement('div');
-    culturalSection.className = 'language-section';
-    
-    const culturalTitle = document.createElement('h5');
-    culturalTitle.textContent = 'Cultural Implications';
-    culturalSection.appendChild(culturalTitle);
-    
-    const culturalText = document.createElement('p');
-    culturalText.textContent = sections.cultural;
-    culturalSection.appendChild(culturalText);
-    
-    detailsContainer.appendChild(culturalSection);
-  }
-  
-  // Add word list section
-  if (sections.words && sections.words.length > 0) {
-    const wordSection = document.createElement('div');
-    wordSection.className = 'language-section';
-    
-    const wordTitle = document.createElement('h5');
-    wordTitle.textContent = 'Vocabulary';
-    wordSection.appendChild(wordTitle);
-    
-    const wordList = document.createElement('div');
-    wordList.className = 'word-list';
-    
-    sections.words.forEach(word => {
-      const wordItem = document.createElement('div');
-      wordItem.className = 'word-item';
-      
-      const nativeWord = document.createElement('div');
-      nativeWord.className = 'native';
-      nativeWord.textContent = word.native;
-      wordItem.appendChild(nativeWord);
-      
-      const meaning = document.createElement('div');
-      meaning.className = 'meaning';
-      meaning.textContent = word.meaning;
-      wordItem.appendChild(meaning);
-      
-      wordList.appendChild(wordItem);
-    });
-    
-    wordSection.appendChild(wordList);
-    detailsContainer.appendChild(wordSection);
-  }
-  
-  // If no structured data was extracted, just show the raw text
-  if (Object.keys(sections).length === 0) {
-    const rawText = document.createElement('p');
-    rawText.textContent = responseText;
-    detailsContainer.appendChild(rawText);
-  }
+  // Add the markdown content to the container
+  detailsContainer.appendChild(markdownContainer);
   
   // Add to menu content
   menuContent.appendChild(detailsContainer);
 }
 
-// Function to parse language response into structured sections
-function parseLanguageResponse(responseText) {
-  // Add null/undefined check
-  if (!responseText) {
-    console.error('Received null or undefined responseText in parseLanguageResponse');
-    return {};
-  }
+// Function to convert markdown to HTML
+function convertMarkdownToHtml(markdown) {
+  if (!markdown) return '';
   
-  const sections = {};
+  let html = markdown;
   
-  // Try to extract development stage
-  const stageMatch = responseText.match(/(?:Development Stage|Current Stage|Language Stage):\s*([^\n]+)/i);
-  if (stageMatch) {
-    sections.stage = stageMatch[1].trim();
-  }
+  // Handle headers
+  html = html.replace(/^# (.*$)/gm, '<h1>$1</h1>');
+  html = html.replace(/^## (.*$)/gm, '<h2>$1</h2>');
+  html = html.replace(/^### (.*$)/gm, '<h3>$1</h3>');
+  html = html.replace(/^#### (.*$)/gm, '<h4>$1</h4>');
+  html = html.replace(/^##### (.*$)/gm, '<h5>$1</h5>');
   
-  // Try to extract grammatical features
-  const grammarMatch = responseText.match(/(?:Grammatical Features|Grammar|Key Features):\s*([^\n]+(?:\n(?!\n)[^\n]+)*)/i);
-  if (grammarMatch) {
-    sections.grammar = grammarMatch[1].trim();
-  }
+  // Handle bold and italic
+  html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
   
-  // Try to extract cultural implications
-  const culturalMatch = responseText.match(/(?:Cultural Implications|Cultural Impact|Cultural Significance):\s*([^\n]+(?:\n(?!\n)[^\n]+)*)/i);
-  if (culturalMatch) {
-    sections.cultural = culturalMatch[1].trim();
-  }
+  // Handle lists
+  html = html.replace(/^\- (.*$)/gm, '<li>$1</li>');
+  html = html.replace(/^(\d+)\. (.*$)/gm, '<li>$2</li>');
   
-  // Try to extract word list
-  sections.words = [];
+  // Wrap lists in <ul> or <ol>
+  html = html.replace(/(<li>.*<\/li>)\n(?!<li>)/g, '$1</ul>\n');
+  html = html.replace(/(?<!<\/ul>\n)(<li>)/g, '<ul>$1');
   
-  // Look for word list patterns
-  const wordListMatch = responseText.match(/(?:Word List|Vocabulary|Known Words):\s*([\s\S]+?)(?:\n\n|$)/i);
-  if (wordListMatch) {
-    const wordListText = wordListMatch[1];
+  // Handle tables
+  // First, identify table sections
+  const tableRegex = /^\|(.*)\|\s*\n\|([-:| ]*)\|\s*\n(\|.*\|\s*\n)+/gm;
+  html = html.replace(tableRegex, function(match) {
+    // Process the table
+    const lines = match.split('\n').filter(line => line.trim() !== '');
     
-    // Try to match different word list formats
-    const wordLines = wordListText.split('\n');
-    wordLines.forEach(line => {
-      // Skip empty lines
-      if (!line.trim()) return;
-      
-      // Try different patterns for word entries
-      const patterns = [
-        /^[\*\-•]?\s*"?([^":\-–—]+)"?\s*[:–—-]\s*"?([^"]+)"?$/,  // Format: Word - Meaning
-        /^[\*\-•]?\s*([^:]+):\s*(.+)$/,                          // Format: Word: Meaning
-        /^[\*\-•]?\s*([^\(]+)\s*\(([^\)]+)\)$/                   // Format: Word (Meaning)
-      ];
-      
-      for (const pattern of patterns) {
-        const match = line.match(pattern);
-        if (match) {
-          sections.words.push({
-            native: match[1].trim(),
-            meaning: match[2].trim()
-          });
-          return;
-        }
-      }
-      
-      // If no pattern matched but the line has content, try a simple split
-      if (line.includes('-') || line.includes('–') || line.includes('—')) {
-        const parts = line.split(/[-–—]/);
-        if (parts.length >= 2) {
-          sections.words.push({
-            native: parts[0].trim(),
-            meaning: parts.slice(1).join('-').trim()
-          });
-        }
-      }
+    // Extract headers
+    const headerLine = lines[0];
+    const headers = headerLine.split('|').map(cell => cell.trim()).filter(cell => cell !== '');
+    
+    // Skip the separator line (line with dashes)
+    
+    // Process data rows
+    const rows = lines.slice(2).map(line => {
+      const cells = line.split('|').map(cell => cell.trim()).filter(cell => cell !== '');
+      return cells;
     });
-  }
+    
+    // Build HTML table
+    let tableHtml = '<table class="markdown-table">\n<thead>\n<tr>\n';
+    
+    // Add headers
+    headers.forEach(header => {
+      tableHtml += `<th>${header}</th>\n`;
+    });
+    
+    tableHtml += '</tr>\n</thead>\n<tbody>\n';
+    
+    // Add rows
+    rows.forEach(row => {
+      tableHtml += '<tr>\n';
+      row.forEach(cell => {
+        tableHtml += `<td>${cell}</td>\n`;
+      });
+      tableHtml += '</tr>\n';
+    });
+    
+    tableHtml += '</tbody>\n</table>';
+    
+    return tableHtml;
+  });
   
-  return sections;
+  // Handle paragraphs
+  html = html.replace(/^([^<].*)\n$/gm, '<p>$1</p>');
+  
+  // Handle line breaks
+  html = html.replace(/\n/g, '<br>');
+  
+  return html;
 }
+
+// This function is no longer needed as we're using the markdown converter instead
 
 // Function to add the language evolution form
 function addLanguageEvolutionForm(menuContent) {

@@ -984,39 +984,97 @@ body::before {
     color: #333;
 }
 
-.language-section {
-    margin-bottom: 15px;
+/* Add styles for markdown content */
+.markdown-content {
+  line-height: 1.6;
+  font-size: 14px;
 }
 
-.language-section h5 {
-    margin-top: 0;
-    margin-bottom: 5px;
-    color: #4CAF50;
+.markdown-content h1 {
+  font-size: 24px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #333;
 }
 
-.word-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 10px;
-    margin-top: 10px;
+.markdown-content h2 {
+  font-size: 20px;
+  margin-top: 18px;
+  margin-bottom: 8px;
+  color: #444;
 }
 
-.word-item {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 8px;
-    font-size: 13px;
+.markdown-content h3 {
+  font-size: 18px;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  color: #555;
 }
 
-.word-item .native {
-    font-weight: bold;
-    color: #333;
+.markdown-content h4 {
+  font-size: 16px;
+  margin-top: 14px;
+  margin-bottom: 6px;
+  color: #666;
 }
 
-.word-item .meaning {
-    color: #666;
-    font-style: italic;
+.markdown-content h5 {
+  font-size: 14px;
+  margin-top: 12px;
+  margin-bottom: 6px;
+  color: #777;
+}
+
+.markdown-content p {
+  margin-bottom: 10px;
+}
+
+.markdown-content ul, .markdown-content ol {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+.markdown-content li {
+  margin-bottom: 5px;
+}
+
+.markdown-content .markdown-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 15px 0;
+}
+
+.markdown-content .markdown-table th,
+.markdown-content .markdown-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.markdown-content .markdown-table th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+.markdown-content .markdown-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.markdown-content .markdown-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Make tables responsive */
+.markdown-content .markdown-table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .markdown-content .markdown-table {
+    white-space: normal;
+  }
 }
 
 .loading-language {

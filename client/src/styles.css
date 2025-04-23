@@ -982,22 +982,22 @@ body::before {
 
 /* Language Menu Styles */
 .submenu {
-    position: fixed; /* Change from absolute to fixed */
+    position: fixed; /* Keep fixed positioning */
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Center it */
+    transform: translate(-50%, -50%); /* This ensures perfect centering */
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     padding: 20px;
     z-index: 210;
     width: 80%; /* Much wider */
-    height: 80%; /* Much taller */
     max-width: 1200px; /* Add maximum width */
-    max-height: 800px; /* Add maximum height */
+    max-height: 80vh; /* Use viewport height instead of fixed pixels */
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+    margin: 0; /* Remove any margin that might affect centering */
 }
 
 .submenu-header {
@@ -1028,6 +1028,7 @@ body::before {
     flex: 1;
     overflow-y: auto;
     padding-right: 10px;
+    width: 100%; /* Ensure content takes full width */
 }
 
 /* Add styles for the language details section */
@@ -1285,7 +1286,8 @@ body::before {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 15px;
-  margin-top: 15px;
+  margin: 15px auto; /* Add auto margins for horizontal centering */
+  width: 100%; /* Ensure it takes full width */
 }
 
 .culture-category-card {

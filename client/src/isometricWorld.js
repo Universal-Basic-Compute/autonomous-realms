@@ -998,6 +998,11 @@ function showCultureMenu() {
   // Add to document body
   document.body.appendChild(cultureMenu);
   
+  // Ensure the menu is centered in the viewport
+  cultureMenu.style.top = '50%';
+  cultureMenu.style.left = '50%';
+  cultureMenu.style.transform = 'translate(-50%, -50%)';
+  
   // Try to get culture data from localStorage
   const cultureDataJSON = localStorage.getItem('cultureData');
   

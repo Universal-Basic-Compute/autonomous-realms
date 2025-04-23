@@ -76,11 +76,87 @@ async function init() {
     
     // Set up routes
     app.use('/api/tiles', tileRoutes);
-    // Add direct route for action image generation to ensure it's accessible
-    app.post('/api/tiles/generate-action-image', (req, res) => tileRoutes.handle('/generate-action-image', req, res));
     app.use('/api/icons', require('./routes/iconRoutes'));
     app.use('/api/data', require('./routes/dataRoutes'));
     app.use('/api/kinos', require('./routes/kinosRoutes'));
+    
+    // Add a direct route handler for action image generation
+    app.post('/api/tiles/generate-action-image', async (req, res) => {
+      try {
+        const { prompt, action, terrainCode } = req.body;
+        
+        if (!prompt) {
+          return res.status(400).json({ error: 'No prompt provided for image generation' });
+        }
+        
+        logger.info(`Generating action visualization image for action ${action} on terrain ${terrainCode}`);
+        
+        // Generate a unique filename for this action image
+        const imageId = `action_${action}_${terrainCode ? terrainCode.split('|')[0] : 'unknown'}_${Date.now()}`;
+        const imageFilename = `${imageId}.png`;
+        const imageDir = path.join(__dirname, 'assets/images/actions');
+        const imagePath = path.join(imageDir, imageFilename);
+        
+        // Make sure the directory exists
+        await fs.mkdir(imageDir, { recursive: true });
+        
+        // Prepare request data for Ideogram API
+        const requestData = {
+          image_request: {
+            prompt: prompt,
+            model: config.IDEOGRAM_MODEL || "V_2_TURBO",
+            aspect_ratio: "ASPECT_1_1", // Square aspect ratio for action images
+            style_type: config.IDEOGRAM_STYLE_TYPE || "REALISTIC"
+          }
+        };
+        
+        // Make API request to Ideogram
+        const response = await fetch('https://api.ideogram.ai/generate', {
+          method: 'POST',
+          headers: {
+            'Api-Key': config.IDEOGRAM_API_KEY,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(requestData),
+          timeout: config.API_TIMEOUT
+        });
+        
+        // Check response
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`API request failed with status ${response.status}: ${errorText}`);
+        }
+        
+        // Parse response
+        const responseData = await response.json();
+        
+        // Check if we have valid image data
+        if (!responseData.data || !responseData.data[0] || !responseData.data[0].url) {
+          throw new Error('Invalid response from Ideogram API: No image URL found');
+        }
+        
+        // Download the generated image
+        const imageUrl = responseData.data[0].url;
+        const imageResponse = await fetch(imageUrl);
+        const buffer = await imageResponse.buffer();
+        await fs.writeFile(imagePath, buffer);
+        
+        // Return the URL to the saved image
+        res.json({
+          success: true,
+          imageUrl: `/assets/images/actions/${imageFilename}`,
+          prompt: prompt
+        });
+        
+      } catch (error) {
+        logger.error(`Error generating action image: ${error.message}`, { error });
+        res.status(500).json({ 
+          error: 'Failed to generate action image', 
+          message: error.message
+        });
+      }
+    });
     
     // Serve static files
     app.use('/assets', express.static(path.join(__dirname, 'assets')));

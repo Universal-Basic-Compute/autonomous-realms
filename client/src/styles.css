@@ -2556,17 +2556,27 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('../public/images/splash.png') no-repeat center center;
+    background: url('/public/images/splash.png') no-repeat center center;
     background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 2000; /* Increase z-index to ensure it's above all game elements */
     color: white;
     padding: 20px;
     box-sizing: border-box;
     overflow-y: auto;
+}
+
+/* Hide game interface when welcome screen is active */
+body:has(#welcome-screen) #game-container,
+body:has(#welcome-screen) #game-hud,
+body:has(#welcome-screen) #burger-menu-icon,
+body:has(#welcome-screen) #side-menu,
+body:has(#welcome-screen) #mini-map-container,
+body:has(#welcome-screen) #day-night-overlay {
+    display: none !important;
 }
 
 /* Auth Screen Styles */

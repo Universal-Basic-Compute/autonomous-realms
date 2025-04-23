@@ -77,9 +77,6 @@ const state = {
 
 // DOM Elements
 const worldContainer = document.getElementById('isometric-world');
-const zoomInButton = document.getElementById('zoom-in');
-const zoomOutButton = document.getElementById('zoom-out');
-const resetViewButton = document.getElementById('reset-view');
 const tileInfoElement = document.getElementById('tile-info');
 
 // Initialize the world
@@ -373,22 +370,11 @@ function setupEventListeners() {
     document.addEventListener('touchmove', handleTouchMove, { passive: false });
     document.addEventListener('touchend', handleTouchEnd, { passive: true });
     
-    // Zoom controls
-    zoomInButton.addEventListener('click', zoomIn);
-    zoomOutButton.addEventListener('click', zoomOut);
-    resetViewButton.addEventListener('click', resetView);
-    
     // Mouse wheel zoom
     document.addEventListener('wheel', handleWheel, { passive: false });
     
     // Window resize
     window.addEventListener('resize', handleResize);
-    
-    // Add debug button
-    const debugButton = document.createElement('button');
-    debugButton.textContent = 'Debug';
-    debugButton.addEventListener('click', toggleDebugMode);
-    document.getElementById('controls').appendChild(debugButton);
     
     // Add context menu event listener to the document
     document.addEventListener('contextmenu', (e) => {

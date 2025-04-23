@@ -1131,9 +1131,14 @@ function displayCultureDetails(menuContent, cultureData) {
     progressContainer.appendChild(progressBar);
     categoryCard.appendChild(progressContainer);
     
-    // Add click handler to show details
+    // Add click handler to show details in the development section
     categoryCard.addEventListener('click', () => {
-      showCultureCategoryDetails(category, categoryData);
+      // Find the development section
+      const developmentSection = document.querySelector('.culture-development-section');
+      if (developmentSection) {
+        // Update the development section with this category's details
+        displayCategoryInDevelopmentSection(developmentSection, category, categoryData);
+      }
     });
     
     // Add to grid
@@ -1158,43 +1163,19 @@ function displayCultureDetails(menuContent, cultureData) {
   menuContent.appendChild(developmentSection);
 }
 
-// Function to show details for a specific culture category
-function showCultureCategoryDetails(category, categoryData) {
-  // Remove any existing details panel
-  const existingPanel = document.getElementById('culture-category-details');
-  if (existingPanel) {
-    existingPanel.remove();
-  }
-  
-  // Create details panel
-  const detailsPanel = document.createElement('div');
-  detailsPanel.id = 'culture-category-details';
-  detailsPanel.className = 'culture-category-details';
+// New function to display category details in the development section
+function displayCategoryInDevelopmentSection(developmentSection, category, categoryData) {
+  // Clear existing content
+  developmentSection.innerHTML = '';
   
   // Add header
-  const header = document.createElement('div');
-  header.className = 'details-header';
-  
-  const title = document.createElement('h4');
-  title.innerHTML = `${category.icon} ${category.name}`;
-  
-  const closeButton = document.createElement('button');
-  closeButton.className = 'close-details';
-  closeButton.innerHTML = '&times;';
-  closeButton.addEventListener('click', () => {
-    detailsPanel.remove();
-  });
-  
-  header.appendChild(title);
-  header.appendChild(closeButton);
-  detailsPanel.appendChild(header);
+  const header = document.createElement('h4');
+  header.innerHTML = `${category.icon} ${category.name}`;
+  developmentSection.appendChild(header);
   
   // Add current status
   const statusSection = document.createElement('div');
   statusSection.className = 'details-section';
-  
-  const statusTitle = document.createElement('h5');
-  statusTitle.textContent = 'Current Status';
   
   const stageInfo = document.createElement('div');
   stageInfo.className = 'stage-info';
@@ -1218,11 +1199,10 @@ function showCultureCategoryDetails(category, categoryData) {
   description.className = 'category-description';
   description.textContent = categoryData.description || 'No description available.';
   
-  statusSection.appendChild(statusTitle);
   statusSection.appendChild(stageInfo);
   statusSection.appendChild(progressInfo);
   statusSection.appendChild(description);
-  detailsPanel.appendChild(statusSection);
+  developmentSection.appendChild(statusSection);
   
   // Add next steps section
   const nextStepsSection = document.createElement('div');
@@ -1259,18 +1239,10 @@ function showCultureCategoryDetails(category, categoryData) {
     nextStepsSection.appendChild(noSteps);
   }
   
-  detailsPanel.appendChild(nextStepsSection);
+  developmentSection.appendChild(nextStepsSection);
   
-  // Add to document body
-  document.body.appendChild(detailsPanel);
-  
-  // Position the panel
-  const cultureMenu = document.getElementById('culture-menu');
-  if (cultureMenu) {
-    const menuRect = cultureMenu.getBoundingClientRect();
-    detailsPanel.style.top = `${menuRect.top}px`;
-    detailsPanel.style.left = `${menuRect.right + 20}px`;
-  }
+  // Scroll to the development section
+  developmentSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 // Function to develop a culture category

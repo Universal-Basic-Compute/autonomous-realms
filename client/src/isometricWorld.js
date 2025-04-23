@@ -2686,6 +2686,10 @@ function drag(e) {
     state.offsetY = state.lastOffsetY + dy;
     
     updateWorldTransform();
+    
+    // Update mini-map when dragging
+    updateMiniMap();
+    
     e.preventDefault();
 }
 
@@ -2783,6 +2787,9 @@ function zoomIn() {
     
     updateWorldTransform();
     loadVisibleTiles();
+    
+    // Update mini-map after zooming
+    updateMiniMap();
 }
 
 // Zoom out
@@ -2811,6 +2818,9 @@ function zoomOut() {
     
     updateWorldTransform();
     loadVisibleTiles();
+    
+    // Update mini-map after zooming
+    updateMiniMap();
 }
 
 // Reset view
@@ -2876,6 +2886,9 @@ function handleWheel(e) {
 // Handle window resize
 function handleResize() {
     loadVisibleTiles();
+    
+    // Update mini-map when window is resized
+    updateMiniMap();
 }
 
 // Update the world container transform
@@ -2895,6 +2908,23 @@ function gridToIso(x, y) {
     return { x: isoX, y: isoY };
 }
 
+// Convert world coordinates to grid coordinates (inverse of gridToIso)
+function worldToGrid(worldX, worldY) {
+    // These calculations are the inverse of the gridToIso function
+    // Solve the system of equations:
+    // worldX = (x - y) * (config.tileWidth * 0.8)
+    // worldY = (x + y) * (config.tileHeight * 0.25)
+    
+    const tileWidthFactor = config.tileWidth * 0.8;
+    const tileHeightFactor = config.tileHeight * 0.25;
+    
+    // Solve for x and y
+    const y = (worldY / tileHeightFactor - worldX / tileWidthFactor) / 2;
+    const x = (worldY / tileHeightFactor + worldX / tileWidthFactor) / 2;
+    
+    return { x, y };
+}
+
 // Initialize mini-map
 function initMiniMap() {
     const toggleButton = document.getElementById('toggle-mini-map');
@@ -2908,7 +2938,7 @@ function initMiniMap() {
     }
 }
 
-// Update mini-map with current tiles
+// Update mini-map with current tiles and viewport
 function updateMiniMap() {
     const miniMap = document.getElementById('mini-map');
     if (!miniMap || !miniMap.classList.contains('visible')) return;
@@ -2942,6 +2972,35 @@ function updateMiniMap() {
         
         miniMap.appendChild(miniTile);
     });
+    
+    // Add viewport indicator
+    const viewportIndicator = document.createElement('div');
+    viewportIndicator.className = 'mini-map-viewport';
+    
+    // Calculate viewport center in world coordinates
+    const viewportCenterX = (window.innerWidth / 2 - state.offsetX) / state.zoom;
+    const viewportCenterY = (window.innerHeight / 2 - state.offsetY) / state.zoom;
+    
+    // Convert to isometric coordinates
+    const isoCoords = worldToGrid(viewportCenterX, viewportCenterY);
+    
+    // Position the viewport indicator
+    const indicatorX = (isoCoords.x * 10 + isoCoords.y * 10) * scale + 90;
+    const indicatorY = (isoCoords.y * 5 - isoCoords.x * 5) * scale + 90;
+    
+    viewportIndicator.style.left = `${indicatorX}px`;
+    viewportIndicator.style.top = `${indicatorY}px`;
+    
+    // Calculate viewport size based on zoom level
+    const viewportWidth = (window.innerWidth / state.zoom) * scale / 2;
+    const viewportHeight = (window.innerHeight / state.zoom) * scale / 2;
+    
+    viewportIndicator.style.width = `${viewportWidth}px`;
+    viewportIndicator.style.height = `${viewportHeight}px`;
+    viewportIndicator.style.marginLeft = `-${viewportWidth / 2}px`;
+    viewportIndicator.style.marginTop = `-${viewportHeight / 2}px`;
+    
+    miniMap.appendChild(viewportIndicator);
 }
 
 // Day/night cycle

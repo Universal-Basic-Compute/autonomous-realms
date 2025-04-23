@@ -2581,6 +2581,16 @@ body::before {
     z-index: 10;
 }
 
+.mini-map-viewport {
+    position: absolute;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    pointer-events: none;
+    z-index: 15;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
 /* Day/night cycle overlay */
 #day-night-overlay {
     position: fixed;

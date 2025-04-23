@@ -79,25 +79,43 @@ async function fetchTerrainNarration(terrainCode) {
     if (!terrainCode) return null;
     
     try {
+        console.log(`Fetching narration for terrain: ${terrainCode}`);
         const response = await fetch(`${config.serverUrl}/api/data/actions/ai/${terrainCode}/narration`);
         
         if (!response.ok) {
-            console.error(`Failed to fetch narration for terrain ${terrainCode}`);
+            const errorData = await response.json();
+            console.error(`Failed to fetch narration for terrain ${terrainCode}:`, errorData);
+            showErrorNotification(`Failed to fetch narration: ${errorData.message || response.statusText}`);
             return null;
         }
         
         const narrationData = await response.json();
+        console.log('Received narration data:', narrationData);
+        
+        if (narrationData.error) {
+            console.error('Narration data contains error:', narrationData.error);
+            showErrorNotification(`Narration error: ${narrationData.error.message || 'Unknown error'}`);
+        }
+        
         return narrationData;
     } catch (error) {
         console.error('Error fetching terrain narration:', error);
+        showErrorNotification(`Error fetching narration: ${error.message}`);
         return null;
     }
 }
 
 // Play audio narration
 function playNarration(audioData) {
-    if (!audioData || audioData.error) {
-        console.error('No valid audio data to play');
+    if (!audioData) {
+        console.error('No audio data provided');
+        showErrorNotification('Failed to load audio narration');
+        return;
+    }
+    
+    if (audioData.error) {
+        console.error('Audio data contains error:', audioData.error);
+        showErrorNotification('Failed to generate audio narration');
         return;
     }
     
@@ -107,21 +125,49 @@ function playNarration(audioData) {
         
         // Set the source to the audio data
         if (audioData.audio_url) {
-            audioElement.src = audioData.audio_url;
+            console.log('Playing audio from URL:', audioData.audio_url);
+            audioElement.src = `http://localhost:3000${audioData.audio_url}`;
+        } else if (audioData.result_url) {
+            console.log('Playing audio from result URL:', audioData.result_url);
+            audioElement.src = audioData.result_url;
         } else if (audioData.audio_base64) {
+            console.log('Playing audio from base64 data');
             audioElement.src = `data:audio/mp3;base64,${audioData.audio_base64}`;
         } else {
-            console.error('No audio URL or base64 data found');
+            console.error('No audio URL or base64 data found in:', audioData);
+            showErrorNotification('Audio data format not supported');
             return;
         }
+        
+        // Add error handling for audio playback
+        audioElement.onerror = (e) => {
+            console.error('Error playing audio:', e);
+            showErrorNotification('Failed to play audio narration');
+        };
         
         // Play the audio
         audioElement.play().catch(error => {
             console.error('Error playing audio:', error);
+            showErrorNotification('Failed to play audio narration');
         });
     } catch (error) {
         console.error('Error setting up audio playback:', error);
+        showErrorNotification('Failed to set up audio playback');
     }
+}
+
+// Helper function to show error notifications
+function showErrorNotification(message) {
+    const notification = document.createElement('div');
+    notification.className = 'notification error-notification';
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    
+    // Remove notification after a delay
+    setTimeout(() => {
+        notification.classList.add('fade-out');
+        setTimeout(() => notification.remove(), 1000);
+    }, 5000);
 }
 
 // Display the action menu
@@ -610,11 +656,19 @@ function loadTile(regionX, regionY, x, y) {
                                 }, 8000);
                                 
                                 // Play the audio narration if available
-                                if (narrationData.audio) {
+                                if (narrationData.audio && !narrationData.error) {
+                                    console.log('Playing narration audio:', narrationData.audio);
                                     playNarration(narrationData.audio);
+                                } else if (narrationData.error) {
+                                    console.error('Narration contains error:', narrationData.error);
+                                    // Error notification is already shown in fetchTerrainNarration
                                 }
                             }
                         })
+                        .catch(error => {
+                            console.error('Error handling narration:', error);
+                            showErrorNotification(`Error handling narration: ${error.message}`);
+                        });
                         .catch(error => {
                             // If there's an error, show an error message in the action menu
                             const errorMenu = document.createElement('div');

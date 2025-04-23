@@ -234,7 +234,7 @@ Example response format:
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: "claude-3-haiku-20240307",
+        model: "claude-3-7-sonnet-latest",
         max_tokens: 4000,
         system: systemPrompt,
         messages: [
@@ -381,11 +381,29 @@ router.get('/actions/ai/:terrainCode/narration', async (req, res) => {
     // Extract the base terrain type (before any | character)
     const baseTerrainCode = terrainCode.split('|')[0];
     
+    logger.info(`Generating narration for terrain code: ${terrainCode}`);
+    
     // Use Claude API to generate a narration based on the terrain code
     const narration = await generateAINarrationForTerrain(terrainCode);
     
     // Call the TTS API to convert the narration to speech
     const ttsResponse = await generateTTS(narration);
+    
+    // Check if there was an error with TTS
+    if (ttsResponse.error) {
+      logger.error(`TTS generation failed: ${ttsResponse.error}`);
+      
+      // Return the narration text but with the error for the audio
+      return res.json({
+        terrainCode,
+        narration,
+        audio: null,
+        error: {
+          message: "Failed to generate audio narration",
+          details: ttsResponse.error
+        }
+      });
+    }
     
     res.json({
       terrainCode,
@@ -393,8 +411,12 @@ router.get('/actions/ai/:terrainCode/narration', async (req, res) => {
       audio: ttsResponse
     });
   } catch (error) {
-    logger.error(`Error generating narration: ${error.message}`);
-    res.status(500).json({ error: 'Failed to generate narration', message: error.message });
+    logger.error(`Error generating narration: ${error.message}`, { error });
+    res.status(500).json({ 
+      error: 'Failed to generate narration', 
+      message: error.message,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+    });
   }
 });
 
@@ -421,7 +443,7 @@ Modifiers: ${modifiers.join(', ')}`;
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: "claude-3-haiku-20240307", // Using a smaller, faster model for quick responses
+        model: "claude-3-7-sonnet-latest", // Updated from claude-3-haiku-20240307
         max_tokens: 150,
         messages: [
           {
@@ -508,6 +530,8 @@ function getTerrainDescription(baseTerrainCode) {
 // Add this function to generate TTS using the KinOS API
 async function generateTTS(text) {
   try {
+    logger.info(`Generating TTS for text: "${text.substring(0, 50)}..."`);
+    
     const response = await fetch('https://api.kinos-engine.ai/v2/tts?format=json', {
       method: 'POST',
       headers: {
@@ -522,14 +546,23 @@ async function generateTTS(text) {
     });
     
     if (!response.ok) {
-      throw new Error(`TTS API request failed with status ${response.status}`);
+      const errorText = await response.text();
+      logger.error(`TTS API request failed with status ${response.status}: ${errorText}`);
+      return { 
+        error: `TTS API request failed with status ${response.status}`,
+        errorDetails: errorText
+      };
     }
     
     const data = await response.json();
+    logger.info(`Successfully generated TTS, received audio URL: ${data.audio_url ? 'Yes' : 'No'}`);
     return data;
   } catch (error) {
-    logger.error(`Error generating TTS: ${error.message}`);
-    return { error: error.message };
+    logger.error(`Error generating TTS: ${error.message}`, { error });
+    return { 
+      error: error.message,
+      stack: error.stack
+    };
   }
 }
 

@@ -3,19 +3,18 @@ import { createWelcomeScreen } from './welcomeScreen.js';
 
 // Function to check if a pixel is transparent
 function isTransparentPixel(img, x, y) {
-  // Create a temporary canvas to analyze the image
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-  
-  // Make sure the canvas is the same size as the image
-  canvas.width = img.width;
-  canvas.height = img.height;
-  
-  // Draw the image on the canvas
-  ctx.drawImage(img, 0, 0);
-  
-  // Get the pixel data
   try {
+    // Create a temporary canvas to analyze the image
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Make sure the canvas is the same size as the image
+    canvas.width = img.width;
+    canvas.height = img.height;
+    
+    // Draw the image on the canvas
+    ctx.drawImage(img, 0, 0);
+    
     // Make sure x and y are within bounds and are integers
     x = Math.floor(x);
     y = Math.floor(y);
@@ -30,10 +29,6 @@ function isTransparentPixel(img, x, y) {
     
     // Check if the alpha channel (4th value) is less than a threshold (using 10 instead of 0 for better detection)
     const isTransparent = pixelData[3] < 10;
-    
-    if (isTransparent) {
-      console.log(`Pixel at ${x},${y} is transparent (alpha: ${pixelData[3]})`);
-    }
     
     return isTransparent;
   } catch (error) {
@@ -1245,13 +1240,19 @@ function loadTile(regionX, regionY, x, y) {
                 
                 console.log(`Found ${tilesUnderPoint.length} tiles under the click point`);
                 
+                // If no tiles found under the point, log an error and return
+                if (tilesUnderPoint.length === 0) {
+                    console.error('No tiles found under the click point');
+                    return;
+                }
+                
                 // Sort tiles by their DOM order (which should reflect their z-index/stacking)
                 // This assumes tiles are added to the DOM in the correct stacking order
-                // We need to reverse the order to start from the bottom-most tile
+                // We need to reverse the order to start from the top-most tile
                 const sortedTiles = tilesUnderPoint.sort((a, b) => {
                     const aIndex = Array.from(worldContainer.children).indexOf(a);
                     const bIndex = Array.from(worldContainer.children).indexOf(b);
-                    return bIndex - aIndex; // Reverse order to start from bottom
+                    return bIndex - aIndex; // Reverse order to start from top
                 });
                 
                 // Remove the current tile from consideration
@@ -1285,129 +1286,7 @@ function loadTile(regionX, regionY, x, y) {
                         
                         // Simulate a click on this tile
                         setTimeout(() => {
-                            // Select this tile directly instead of creating a new click event
-                            // This is more reliable than dispatching a new event
-                            
-                            // Deselect previous tile
-                            if (state.selectedTile) {
-                                state.selectedTile.classList.remove('selected');
-                            }
-                            
-                            // Select this tile
-                            tile.classList.add('selected');
-                            state.selectedTile = tile;
-                            
-                            // Get the tile coordinates
-                            const tileX = parseInt(tile.dataset.x);
-                            const tileY = parseInt(tile.dataset.y);
-                            
-                            // Show loading in the info panel
-                            tileInfoElement.innerHTML = 'Loading tile information...';
-                            
-                            // Clear any existing action menu
-                            const existingMenu = document.getElementById('action-menu');
-                            if (existingMenu) {
-                                existingMenu.remove();
-                            }
-                            
-                            // Show a temporary action menu with loading state
-                            const loadingMenu = document.createElement('div');
-                            loadingMenu.id = 'action-menu';
-                            loadingMenu.className = 'action-menu';
-                            loadingMenu.innerHTML = '<h3>Available Actions</h3><p class="loading-actions">Analyzing terrain for available actions...</p>';
-                            document.body.appendChild(loadingMenu);
-                            state.actionMenuVisible = true;
-                            
-                            // Fetch tile info
-                            fetch(`${config.serverUrl}/api/tiles/islands/${tileX}/${tileY}/info`)
-                                .then(response => response.json())
-                                .then(data => {
-                                    // Display tile info
-                                    let infoHtml = `
-                                        <p><strong>Position:</strong> (${tileX}, ${tileY})</p>
-                                    `;
-                                    
-                                    if (data.exists) {
-                                        infoHtml += `
-                                            <p><strong>Description:</strong> ${data.description}</p>
-                                            <p><strong>Terrain Code:</strong> ${data.terrainCode}</p>
-                                        `;
-                                        
-                                        // Fetch and display available actions based on terrain code
-                                        fetchAvailableActions(data.terrainCode)
-                                            .then(actions => {
-                                                state.availableActions = actions;
-                                                showActionMenu(actions);
-                                            })
-                                            .catch(error => {
-                                                // Handle error
-                                                console.error('Error fetching actions:', error);
-                                                const errorMenu = document.getElementById('action-menu');
-                                                if (errorMenu) {
-                                                    errorMenu.innerHTML = `
-                                                        <h3>Available Actions</h3>
-                                                        <p class="error-message">Error loading actions: ${error.message}</p>
-                                                        <button class="close-button">Close</button>
-                                                    `;
-                                                    
-                                                    const closeButton = errorMenu.querySelector('.close-button');
-                                                    if (closeButton) {
-                                                        closeButton.addEventListener('click', () => {
-                                                            errorMenu.remove();
-                                                            state.actionMenuVisible = false;
-                                                        });
-                                                    }
-                                                }
-                                            });
-                                        
-                                        // Fetch and play narration
-                                        fetchTerrainNarration(data.terrainCode)
-                                            .then(narrationData => {
-                                                if (narrationData && narrationData.narration) {
-                                                    // Show narration text
-                                                    const notification = document.createElement('div');
-                                                    notification.className = 'narration-notification';
-                                                    notification.textContent = narrationData.narration;
-                                                    document.body.appendChild(notification);
-                                                    
-                                                    // Remove notification after a delay
-                                                    setTimeout(() => {
-                                                        notification.classList.add('fade-out');
-                                                        setTimeout(() => notification.remove(), 1000);
-                                                    }, 8000);
-                                                    
-                                                    // Play audio if available
-                                                    if (narrationData.audio && !narrationData.error) {
-                                                        playNarration(narrationData.audio);
-                                                    }
-                                                }
-                                            })
-                                            .catch(error => {
-                                                console.error('Error handling narration:', error);
-                                            });
-                                    } else {
-                                        infoHtml += `<p><em>Island not yet generated</em></p>`;
-                                        
-                                        // Remove loading menu
-                                        const loadingMenu = document.getElementById('action-menu');
-                                        if (loadingMenu) {
-                                            loadingMenu.remove();
-                                            state.actionMenuVisible = false;
-                                        }
-                                    }
-                                    
-                                    tileInfoElement.innerHTML = infoHtml;
-                                })
-                                .catch(error => {
-                                    tileInfoElement.innerHTML = `<p>Error loading tile info: ${error.message}</p>`;
-                                    
-                                    // Remove loading menu
-                                    const loadingMenu = document.getElementById('action-menu');
-                                    if (loadingMenu) {
-                                        loadingMenu.remove();
-                                        state.actionMenuVisible = false;
-                                    }
-                                });
+                            selectTile(tile);
                         }, 0);
                         
                         foundVisibleTile = true;
@@ -1417,138 +1296,25 @@ function loadTile(regionX, regionY, x, y) {
                 
                 if (!foundVisibleTile) {
                     console.log('No visible tile found underneath');
+                    
+                    // If we couldn't find a non-transparent pixel in any tile,
+                    // just select the top-most tile as a fallback
+                    if (otherTiles.length > 0) {
+                        console.log('Selecting top-most tile as fallback');
+                        const topTile = otherTiles[0];
+                        
+                        // Simulate a click on the top tile
+                        setTimeout(() => {
+                            selectTile(topTile);
+                        }, 0);
+                    }
                 }
                 
                 return;
             }
         }
         
-        // Deselect previous tile
-        if (state.selectedTile) {
-            state.selectedTile.classList.remove('selected');
-        }
-        
-        // Select this tile
-        tileElement.classList.add('selected');
-        state.selectedTile = tileElement;
-        
-        // Show loading in the info panel
-        tileInfoElement.innerHTML = 'Loading tile information...';
-        
-        // Clear any existing action menu
-        const existingMenu = document.getElementById('action-menu');
-        if (existingMenu) {
-            existingMenu.remove();
-        }
-        
-        // Show a temporary action menu with loading state
-        const loadingMenu = document.createElement('div');
-        loadingMenu.id = 'action-menu';
-        loadingMenu.className = 'action-menu';
-        loadingMenu.innerHTML = '<h3>Available Actions</h3><p class="loading-actions">Analyzing terrain for available actions...</p>';
-        document.body.appendChild(loadingMenu);
-        state.actionMenuVisible = true;
-        
-        // Fetch tile info - use the islands info endpoint
-        fetch(`${config.serverUrl}/api/tiles/islands/${x}/${y}/info`)
-            .then(response => response.json())
-            .then(data => {
-                // Display tile info
-                let infoHtml = `
-                    <p><strong>Position:</strong> (${x}, ${y})</p>
-                `;
-                
-                if (data.exists) {
-                    infoHtml += `
-                        <p><strong>Description:</strong> ${data.description}</p>
-                        <p><strong>Terrain Code:</strong> ${data.terrainCode}</p>
-                    `;
-                    
-                    // Fetch and display available actions based on terrain code
-                    fetchAvailableActions(data.terrainCode)
-                        .then(actions => {
-                            state.availableActions = actions;
-                            showActionMenu(actions);
-                        })
-                        .catch(error => {
-                            // If there's an error, show an error message in the action menu
-                            const errorMenu = document.createElement('div');
-                            errorMenu.id = 'action-menu';
-                            errorMenu.className = 'action-menu';
-                            errorMenu.innerHTML = `
-                                <h3>Available Actions</h3>
-                                <p class="error-message">Error loading actions: ${error.message}</p>
-                                <button class="close-button">Close</button>
-                            `;
-                            
-                            // Add close button functionality
-                            const closeButton = errorMenu.querySelector('.close-button');
-                            closeButton.addEventListener('click', () => {
-                                errorMenu.remove();
-                                state.actionMenuVisible = false;
-                            });
-                            
-                            // Replace the loading menu with the error menu
-                            const loadingMenu = document.getElementById('action-menu');
-                            if (loadingMenu) {
-                                loadingMenu.remove();
-                            }
-                            document.body.appendChild(errorMenu);
-                        });
-                    
-                    // Fetch and play narration for this terrain
-                    fetchTerrainNarration(data.terrainCode)
-                        .then(narrationData => {
-                            if (narrationData && narrationData.narration) {
-                                // Show narration text in a notification
-                                const notification = document.createElement('div');
-                                notification.className = 'narration-notification';
-                                notification.textContent = narrationData.narration;
-                                document.body.appendChild(notification);
-                                
-                                // Remove notification after a delay
-                                setTimeout(() => {
-                                    notification.classList.add('fade-out');
-                                    setTimeout(() => notification.remove(), 1000);
-                                }, 8000);
-                                
-                                // Play the audio narration if available
-                                if (narrationData.audio && !narrationData.error) {
-                                    console.log('Playing narration audio:', narrationData.audio);
-                                    playNarration(narrationData.audio);
-                                } else if (narrationData.error) {
-                                    console.error('Narration contains error:', narrationData.error);
-                                    // Error notification is already shown in fetchTerrainNarration
-                                }
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error handling narration:', error);
-                            showErrorNotification(`Error handling narration: ${error.message}`);
-                        });
-                } else {
-                    infoHtml += `<p><em>Island not yet generated</em></p>`;
-                    
-                    // Remove the loading action menu since there's no terrain
-                    const loadingMenu = document.getElementById('action-menu');
-                    if (loadingMenu) {
-                        loadingMenu.remove();
-                        state.actionMenuVisible = false;
-                    }
-                }
-                
-                tileInfoElement.innerHTML = infoHtml;
-            })
-            .catch(error => {
-                tileInfoElement.innerHTML = `<p>Error loading tile info: ${error.message}</p>`;
-                
-                // Remove the loading action menu on error
-                const loadingMenu = document.getElementById('action-menu');
-                if (loadingMenu) {
-                    loadingMenu.remove();
-                    state.actionMenuVisible = false;
-                }
-            });
+        selectTile(tileElement);
     });
     
     // Add the image to the tile
@@ -1736,6 +1502,133 @@ function hideLoading() {
     if (loadingElement) {
         loadingElement.remove();
     }
+}
+
+// Function to handle tile selection
+function selectTile(tile) {
+  // Deselect previous tile
+  if (state.selectedTile) {
+    state.selectedTile.classList.remove('selected');
+  }
+  
+  // Select this tile
+  tile.classList.add('selected');
+  state.selectedTile = tile;
+  
+  // Show circular menu for the selected tile
+  showCircularMenu();
+  
+  // Get the tile coordinates
+  const tileX = parseInt(tile.dataset.x);
+  const tileY = parseInt(tile.dataset.y);
+  
+  // Show loading in the info panel
+  tileInfoElement.innerHTML = 'Loading tile information...';
+  
+  // Clear any existing action menu
+  const existingMenu = document.getElementById('action-menu');
+  if (existingMenu) {
+    existingMenu.remove();
+  }
+  
+  // Show a temporary action menu with loading state
+  const loadingMenu = document.createElement('div');
+  loadingMenu.id = 'action-menu';
+  loadingMenu.className = 'action-menu';
+  loadingMenu.innerHTML = '<h3>Available Actions</h3><p class="loading-actions">Analyzing terrain for available actions...</p>';
+  document.body.appendChild(loadingMenu);
+  state.actionMenuVisible = true;
+  
+  // Fetch tile info
+  fetch(`${config.serverUrl}/api/tiles/islands/${tileX}/${tileY}/info`)
+    .then(response => response.json())
+    .then(data => {
+      // Display tile info
+      let infoHtml = `
+        <p><strong>Position:</strong> (${tileX}, ${tileY})</p>
+      `;
+      
+      if (data.exists) {
+        infoHtml += `
+          <p><strong>Description:</strong> ${data.description}</p>
+          <p><strong>Terrain Code:</strong> ${data.terrainCode}</p>
+        `;
+        
+        // Fetch and display available actions based on terrain code
+        fetchAvailableActions(data.terrainCode)
+          .then(actions => {
+            state.availableActions = actions;
+            showActionMenu(actions);
+          })
+          .catch(error => {
+            // Handle error
+            console.error('Error fetching actions:', error);
+            const errorMenu = document.getElementById('action-menu');
+            if (errorMenu) {
+              errorMenu.innerHTML = `
+                <h3>Available Actions</h3>
+                <p class="error-message">Error loading actions: ${error.message}</p>
+                <button class="close-button">Close</button>
+              `;
+              
+              const closeButton = errorMenu.querySelector('.close-button');
+              if (closeButton) {
+                closeButton.addEventListener('click', () => {
+                  errorMenu.remove();
+                  state.actionMenuVisible = false;
+                });
+              }
+            }
+          });
+        
+        // Fetch and play narration
+        fetchTerrainNarration(data.terrainCode)
+          .then(narrationData => {
+            if (narrationData && narrationData.narration) {
+              // Show narration text
+              const notification = document.createElement('div');
+              notification.className = 'narration-notification';
+              notification.textContent = narrationData.narration;
+              document.body.appendChild(notification);
+              
+              // Remove notification after a delay
+              setTimeout(() => {
+                notification.classList.add('fade-out');
+                setTimeout(() => notification.remove(), 1000);
+              }, 8000);
+              
+              // Play audio if available
+              if (narrationData.audio && !narrationData.error) {
+                playNarration(narrationData.audio);
+              }
+            }
+          })
+          .catch(error => {
+            console.error('Error handling narration:', error);
+          });
+      } else {
+        infoHtml += `<p><em>Island not yet generated</em></p>`;
+        
+        // Remove loading menu
+        const loadingMenu = document.getElementById('action-menu');
+        if (loadingMenu) {
+          loadingMenu.remove();
+          state.actionMenuVisible = false;
+        }
+      }
+      
+      tileInfoElement.innerHTML = infoHtml;
+    })
+    .catch(error => {
+      tileInfoElement.innerHTML = `<p>Error loading tile info: ${error.message}</p>`;
+      
+      // Remove loading menu
+      const loadingMenu = document.getElementById('action-menu');
+      if (loadingMenu) {
+        loadingMenu.remove();
+        state.actionMenuVisible = false;
+      }
+    });
 }
 
 // Initialize the world when the page loads

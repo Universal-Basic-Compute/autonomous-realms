@@ -79,6 +79,20 @@ class ResourceManager {
     // Load saved resources from localStorage
     this.loadResources();
     
+    // Make sure the R-POP category exists
+    if (!this.resources['R-POP']) {
+      this.resources['R-POP'] = {
+        name: 'Population',
+        icon: '👪',
+        items: {}
+      };
+    }
+    
+    // Make sure the items object exists
+    if (!this.resources['R-POP'].items) {
+      this.resources['R-POP'].items = {};
+    }
+    
     // Initialize families resource if it doesn't exist
     if (!this.resources['R-POP'].items['Families']) {
       this.resources['R-POP'].items['Families'] = {

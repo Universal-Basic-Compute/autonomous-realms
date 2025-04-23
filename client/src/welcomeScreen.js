@@ -113,68 +113,6 @@ function createWelcomeScreen() {
   document.body.appendChild(welcomeContainer);
 }
 
-// Helper function to get saved colonies from localStorage
-function getSavedColonies() {
-  const colonies = [];
-  
-  // Check if we have a saved colony
-  if (localStorage.getItem('colonyName') && localStorage.getItem('leaderName')) {
-    // Get the last played timestamp or use current time if not available
-    const lastPlayed = localStorage.getItem('lastPlayed') || new Date().toISOString();
-    
-    colonies.push({
-      id: 'current', // Use 'current' as ID for the main colony
-      colonyName: localStorage.getItem('colonyName'),
-      leaderName: localStorage.getItem('leaderName'),
-      lastPlayed: lastPlayed
-    });
-  }
-  
-  // Check for additional colonies in the 'savedColonies' array
-  try {
-    const savedColoniesJSON = localStorage.getItem('savedColonies');
-    if (savedColoniesJSON) {
-      const savedColonies = JSON.parse(savedColoniesJSON);
-      colonies.push(...savedColonies);
-    }
-  } catch (error) {
-    console.error('Error parsing saved colonies:', error);
-  }
-  
-  // Sort by last played date (most recent first)
-  return colonies.sort((a, b) => new Date(b.lastPlayed) - new Date(a.lastPlayed));
-}
-
-// Helper function to format date
-function formatDate(dateString) {
-  try {
-    const date = new Date(dateString);
-    
-    // Check if date is valid
-    if (isNaN(date.getTime())) {
-      return 'Unknown date';
-    }
-    
-    // If it's today, show time
-    const today = new Date();
-    if (date.toDateString() === today.toDateString()) {
-      return `Today at ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
-    }
-    
-    // If it's yesterday, show "Yesterday"
-    const yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1);
-    if (date.toDateString() === yesterday.toDateString()) {
-      return 'Yesterday';
-    }
-    
-    // Otherwise show the date
-    return date.toLocaleDateString([], { year: 'numeric', month: 'short', day: 'numeric' });
-  } catch (error) {
-    console.error('Error formatting date:', error);
-    return 'Unknown date';
-  }
-}
 
 // Create a screen for naming the colony
 function createColonyNamingScreen() {

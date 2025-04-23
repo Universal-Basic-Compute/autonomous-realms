@@ -733,6 +733,7 @@ body::before {
   align-items: center;
   z-index: 1100;
   font-size: 24px;
+  text-align: center; /* Add this to center the text */
 }
 
 .loading-indicator::after {
@@ -741,6 +742,8 @@ body::before {
   width: 24px;
   display: inline-block;
   text-align: left;
+  position: relative; /* Add this */
+  margin-left: 5px; /* Add this to create space between text and dots */
 }
 
 @keyframes loading-dots {

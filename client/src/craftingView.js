@@ -334,19 +334,36 @@ class CraftingView {
       </div>
     `;
 
-    // Animate the progress bar
+    // Animate the progress bar with "moments" counter
     let progress = 0;
+    const totalMoments = 20; // Set to 20 moments
+    const progressPerMoment = 100 / totalMoments; // Calculate % per moment
+
+    // Add a moments counter to the UI
+    const progressMessage = document.querySelector('.crafting-progress-message');
+    if (progressMessage) {
+      progressMessage.innerHTML += `<div class="moments-counter">0 of ${totalMoments} moments</div>`;
+    }
+
     this.progressInterval = setInterval(() => {
-      progress += 5;
+      progress++;
       const progressBar = document.getElementById('crafting-progress-bar');
+      const momentsCounter = document.querySelector('.moments-counter');
+      
       if (progressBar) {
-        progressBar.style.width = `${progress}%`;
-        
-        if (progress >= 100) {
-          clearInterval(this.progressInterval);
-        }
+        // Update progress bar width
+        progressBar.style.width = `${progress * progressPerMoment}%`;
       }
-    }, 150);
+      
+      if (momentsCounter) {
+        // Update moments counter text
+        momentsCounter.textContent = `${progress} of ${totalMoments} moments`;
+      }
+      
+      if (progress >= totalMoments) {
+        clearInterval(this.progressInterval);
+      }
+    }, 1000); // 1 second per moment
     
     try {
       // Get the colony name and kin name from localStorage

@@ -2228,6 +2228,13 @@ body::before {
   100% { transform: rotate(360deg); }
 }
 
+.moments-counter {
+  font-size: 12px;
+  color: #aaa;
+  margin-top: 8px;
+  font-style: normal;
+}
+
 .crafting-success {
   width: 100%;
   padding: 15px;

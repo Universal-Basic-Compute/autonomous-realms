@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const Airtable = require('airtable');
 const logger = require('../utils/logger');
 const config = require('../config');

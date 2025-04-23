@@ -521,7 +521,7 @@ Please determine how their language might evolve in response to this situation, 
 `;
 
         // Make the API request
-        const response = await fetch('http://localhost:5000/v2/blueprints/autonomousrealms/kins/defaultcolony/messages', {
+        const response = await fetch('http://localhost:3000/api/kinos/kins/defaultcolony/messages', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

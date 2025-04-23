@@ -764,13 +764,16 @@ function setupEventListeners() {
     const closeMenuButton = document.getElementById('close-menu');
 
     // Open menu when burger icon is clicked
-    burgerMenuIcon.addEventListener('click', () => {
+    burgerMenuIcon.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent the click from being handled by document click handler
         sideMenu.classList.add('visible');
+        console.log('Burger menu clicked, adding visible class');
     });
 
     // Close menu when close button is clicked
     closeMenuButton.addEventListener('click', () => {
         sideMenu.classList.remove('visible');
+        console.log('Close menu clicked, removing visible class');
     });
 
     // Close menu when clicking outside of it
@@ -779,6 +782,7 @@ function setupEventListeners() {
             !sideMenu.contains(e.target) && 
             !burgerMenuIcon.contains(e.target)) {
             sideMenu.classList.remove('visible');
+            console.log('Clicked outside menu, removing visible class');
         }
     });
 

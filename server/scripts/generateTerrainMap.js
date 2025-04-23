@@ -52,14 +52,21 @@ Use the following terrain reference guide to create appropriate terrain codes:
 ${terrainReference}`;
     
     // Prepare the user prompt
-    const userPrompt = `Generate a ${size}x${size} terrain map of isolated realistic terrain tiles for an isometric game.
+    const userPrompt = `Generate a ${size}x${size} terrain map for an isometric game with connected, coherent terrain features.
 
 For each tile, provide:
 1. Coordinates (x,y) from 0,0 to ${size-1},${size-1}
 2. A brief description (30-50 words) of the terrain's natural features, including terrain type, vegetation, geological formations, and unique elements. DO NOT include any human constructions, settlements, buildings, or artificial structures.
 3. A terrain code using the format from the terrain reference document (e.g., "F-OAK|E-SLI|X-RUI")
 
-Make each terrain tile unique and detailed with realistic features. Include various natural terrain types like forests, mountains, plains, etc. Each tile should be isolated and self-contained. Focus exclusively on natural landscapes without any signs of civilization.
+IMPORTANT: Create connected terrain features that span multiple tiles. For example:
+- Rivers should flow across multiple tiles in logical paths
+- Forests should extend across adjacent tiles with appropriate transitions
+- Mountain ranges should form coherent chains
+- Coastlines should create realistic shores with beaches and cliffs
+- Terrain should transition naturally between different biomes
+
+Make each terrain tile detailed with realistic features. Include various natural terrain types like forests, mountains, plains, etc. Focus exclusively on natural landscapes without any signs of civilization.
 
 IMPORTANT: Create only realistic terrain with features at a realistic advancement level. DO NOT include any magical or fantasy elements (no glowing terrain, enchanted forests, magical crystals, etc.). All terrain should be geologically and biologically plausible in a real-world setting.
 
@@ -71,6 +78,11 @@ Example:
     "coordinates": {"x": 3, "y": 5},
     "description": "Dense pine forest with needle-covered ground and exposed granite outcroppings. Moss covers the north-facing rocks, and a small natural clearing reveals rich dark soil with ferns.",
     "terrainCode": "F-PIN|E-SLI|X-RCK|R-GRN"
+  },
+  {
+    "coordinates": {"x": 3, "y": 6},
+    "description": "The pine forest continues here but begins to thin out. The ground slopes gently downward with more exposed granite and the first signs of a small stream forming from spring water.",
+    "terrainCode": "F-PIN|E-SLI|X-RCK|W-STR"
   },
   ...
 ]`;
@@ -229,13 +241,18 @@ Example:
 }
 
 // Generate an image for a single island
-async function generateIslandImage(island, index) {
+async function generateIslandImage(island, index, terrainMap = []) {
   try {
     logger.info(`Generating image for terrain at ${island.coordinates.x},${island.coordinates.y}`);
     
-    // Create a prompt for Ideogram based on the island description
-    // Updated to explicitly request isometric view, isolated tile, and white background
-    const prompt = `isometric view of isolated realistic terrain tile with ${island.description}, white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background`;
+    // Find adjacent tiles to provide context for coherent generation
+    const adjacentTiles = findAdjacentTiles(island.coordinates, terrainMap);
+    const adjacentContext = createAdjacentContext(adjacentTiles);
+    
+    // Create a prompt for Ideogram based on the island description and adjacent context
+    const prompt = `isometric view of realistic terrain tile with ${island.description}, white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. 
+    
+    IMPORTANT: This tile should connect seamlessly with adjacent terrain: ${adjacentContext}`;
     
     // Prepare request data
     const requestData = {
@@ -439,7 +456,8 @@ async function processTerrainMap() {
           await new Promise(resolve => setTimeout(resolve, delay));
         }
         
-        await generateIslandImage(island, i);
+        // Pass the full terrain map to provide context for adjacent tiles
+        await generateIslandImage(island, i, terrainMap);
       } catch (error) {
         logger.error(`Error processing island at ${island.coordinates.x},${island.coordinates.y}: ${error.message}`);
         // Continue with next island even if one fails
@@ -476,6 +494,69 @@ if (require.main === module) {
       logger.error(`Unhandled error: ${error.message}`);
       process.exit(1);
     });
+}
+
+// Find adjacent tiles in the terrain map
+function findAdjacentTiles(coordinates, terrainMap) {
+  const { x, y } = coordinates;
+  const adjacentPositions = [
+    { x: x-1, y: y, direction: "west" },
+    { x: x+1, y: y, direction: "east" },
+    { x: x, y: y-1, direction: "north" },
+    { x: x, y: y+1, direction: "south" }
+  ];
+  
+  const adjacentTiles = [];
+  
+  for (const pos of adjacentPositions) {
+    const adjacentTile = terrainMap.find(tile => 
+      tile.coordinates.x === pos.x && tile.coordinates.y === pos.y
+    );
+    
+    if (adjacentTile) {
+      adjacentTiles.push({
+        ...adjacentTile,
+        direction: pos.direction
+      });
+    }
+  }
+  
+  return adjacentTiles;
+}
+
+// Create a description of adjacent terrain for the prompt
+function createAdjacentContext(adjacentTiles) {
+  if (adjacentTiles.length === 0) {
+    return "no adjacent tiles available";
+  }
+  
+  return adjacentTiles.map(tile => {
+    return `${tile.direction}: ${getTerrainSummary(tile.terrainCode)} (${tile.terrainCode})`;
+  }).join(", ");
+}
+
+// Get a short summary of terrain based on terrain code
+function getTerrainSummary(terrainCode) {
+  const parts = terrainCode.split('|');
+  const baseCode = parts[0];
+  
+  // Map base terrain codes to simple descriptions
+  const terrainMap = {
+    "P-BAS": "basic grassland",
+    "P-LUS": "lush grassland",
+    "F-OAK": "oak forest",
+    "F-PIN": "pine forest",
+    "D-SND": "sandy desert",
+    "M-LOW": "low mountains",
+    "M-HIG": "high mountains",
+    "W-RIV": "river",
+    "W-LAK": "lake",
+    "W-OCE": "ocean",
+    "W-SEA": "sea"
+    // Add more mappings as needed
+  };
+  
+  return terrainMap[baseCode] || "unknown terrain";
 }
 
 module.exports = { processTerrainMap, generateTerrainMap, generateIslandImage };

@@ -1,3 +1,5 @@
+import audioPlayer from './audioPlayer.js';
+
 // Configuration
 const config = {
     tileWidth: 512,
@@ -48,6 +50,46 @@ function initWorld() {
     
     // Load initial tiles
     loadVisibleTiles();
+    
+    // Add music controls
+    addMusicControls();
+}
+
+// Add music controls
+function addMusicControls() {
+  const controlsContainer = document.getElementById('controls');
+  
+  // Create music control container
+  const musicControls = document.createElement('div');
+  musicControls.className = 'music-controls';
+  
+  // Create music toggle button
+  const musicToggleBtn = document.createElement('button');
+  musicToggleBtn.innerHTML = '🔊';
+  musicToggleBtn.title = 'Toggle Music';
+  musicToggleBtn.addEventListener('click', () => {
+    const isMuted = audioPlayer.toggleMute();
+    musicToggleBtn.innerHTML = isMuted ? '🔇' : '🔊';
+  });
+  
+  // Create volume slider
+  const volumeSlider = document.createElement('input');
+  volumeSlider.type = 'range';
+  volumeSlider.min = '0';
+  volumeSlider.max = '100';
+  volumeSlider.value = '30'; // Default to 30%
+  volumeSlider.className = 'volume-slider';
+  volumeSlider.title = 'Music Volume';
+  volumeSlider.addEventListener('input', (e) => {
+    audioPlayer.setVolume(e.target.value / 100);
+  });
+  
+  // Add controls to container
+  musicControls.appendChild(musicToggleBtn);
+  musicControls.appendChild(volumeSlider);
+  
+  // Add to main controls
+  controlsContainer.appendChild(musicControls);
 }
 
 // Fetch available actions for a terrain type

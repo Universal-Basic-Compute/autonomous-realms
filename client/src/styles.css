@@ -331,3 +331,47 @@ body::before {
     align-items: center;
     justify-content: center;
 }
+
+/* Music Controls */
+.music-controls {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.music-controls button {
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.volume-slider {
+  width: 80px;
+  height: 10px;
+  -webkit-appearance: none;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
+  outline: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}

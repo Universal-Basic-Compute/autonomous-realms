@@ -2290,7 +2290,30 @@ async function sendKinOSMessage(action, terrainInfo) {
     // Get the current user ID
     const userId = getCurrentUserId();
     
-    // Prepare the message content with explicit JSON request and item limits
+    // Get current resources from resource manager
+    const allResources = resourceManager.getAllResources();
+    
+    // Format resources for the prompt
+    let resourcesText = "Available Resources:\n";
+    
+    // Loop through each category
+    for (const categoryKey in allResources) {
+      const category = allResources[categoryKey];
+      const items = category.items;
+      
+      // Skip empty categories
+      if (Object.keys(items).length === 0) continue;
+      
+      resourcesText += `- ${category.name} (${category.icon}):\n`;
+      
+      // Add each resource in the category
+      for (const itemName in items) {
+        const item = items[itemName];
+        resourcesText += `  * ${item.name}: ${item.quantity}\n`;
+      }
+    }
+    
+    // Prepare the message content with explicit JSON request, item limits, and resources
     const messageContent = `
 I am attempting to perform the action "${action.name}" (${action.code}) on terrain type: ${terrainInfo.terrainCode}.
 
@@ -2298,23 +2321,33 @@ Terrain Description: ${terrainInfo.description || 'No description available'}
 
 Action Description: ${action.description || 'No description available'}
 
+${resourcesText}
+
 Please provide guidance on how this action might unfold in this environment, any challenges I might face, and potential outcomes. 
 
+First, determine if this action is possible with the available resources. If not, explain what resources are missing.
+
 IMPORTANT: Format your response as a JSON object with these sections:
-1. "analysis": A brief analysis of the action in this terrain (2-3 sentences)
-2. "narration": A vivid, single paragraph description (5-8 sentences) of the settlers performing this action
-3. "outcomes": Object containing:
+1. "possible": Boolean indicating if the action is possible with current resources
+2. "missingResources": Array of resources needed but not available (empty if possible is true)
+3. "analysis": A brief analysis of the action in this terrain (2-3 sentences)
+4. "narration": A vivid, single paragraph description (5-8 sentences) of the settlers performing this action
+5. "outcomes": Object containing:
    - "resources": Array of 1-3 resources that might be gained
+   - "resourcesConsumed": Array of resources that will be consumed by this action
    - "knowledge": Array of 1-2 knowledge or skills acquired
    - "challenges": Array of 1-3 challenges faced
-4. "tips": Array of 1-2 practical tips for success
+6. "tips": Array of 1-2 practical tips for success
 
 Example response format:
 {
+  "possible": true,
+  "missingResources": [],
   "analysis": "This terrain is well-suited for gathering berries due to the abundant bushes and rich soil. The flat terrain makes movement easy, and the nearby water source supports diverse plant life.",
   "narration": "Your settlers spread out among the berry bushes, carefully selecting the ripest fruits while watching for thorns. The morning dew still clings to the leaves, making the berries glisten in the early light. Children join the work, learning which colors indicate the sweetest harvest, while the more experienced gatherers fill their baskets with practiced efficiency.",
   "outcomes": {
     "resources": ["Wild berries (2-3 days worth)", "Berry seeds for planting"],
+    "resourcesConsumed": ["Baskets (2)"],
     "knowledge": ["Identification of berry varieties"],
     "challenges": ["Thorny bushes causing minor injuries", "Competition with wildlife"]
   },
@@ -2604,6 +2637,43 @@ async function performAction(action) {
             return;
         }
         
+        // Check if the action is possible with current resources
+        if (kinOSResponse.possible === false) {
+            // Action is not possible due to missing resources
+            let missingResourcesHtml = '';
+            if (kinOSResponse.missingResources && kinOSResponse.missingResources.length > 0) {
+                missingResourcesHtml = `
+                    <div class="missing-resources">
+                        <h4>Missing Resources:</h4>
+                        <ul>
+                            ${kinOSResponse.missingResources.map(resource => `<li>${resource}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+            
+            responseContainer.innerHTML = `
+                <div class="response-section">
+                    <h3>Cannot Complete Action</h3>
+                    <p class="error-message">Your settlers lack the necessary resources to perform this action.</p>
+                    ${missingResourcesHtml}
+                    <p>${kinOSResponse.analysis || 'Gather the required resources and try again.'}</p>
+                </div>
+            `;
+            resultContainer.style.display = 'block';
+            closeButton.style.display = 'block';
+            
+            // Clear the progress intervals
+            clearInterval(progressInterval);
+            clearInterval(timeInterval);
+            
+            // Update progress bar to 100%
+            progressBar.style.width = '100%';
+            progressBar.textContent = '100%';
+            
+            return;
+        }
+        
         // If we have audio, play it
         if (kinOSResponse.audio && kinOSResponse.audio.audio_url) {
             playNarration(kinOSResponse.audio);
@@ -2641,6 +2711,34 @@ async function performAction(action) {
                     
                     // Add the resource
                     resourceManager.addResource(resourceName, quantity);
+                });
+            }
+            
+            // Remove consumed resources
+            if (kinOSResponse.outcomes && kinOSResponse.outcomes.resourcesConsumed) {
+                kinOSResponse.outcomes.resourcesConsumed.forEach(resource => {
+                    // Extract quantity if present (e.g., "Baskets (2)" -> 2)
+                    let quantity = 1;
+                    let resourceName = resource;
+                    
+                    // Look for patterns like "X units of Y" or "Y (X)"
+                    const quantityMatch = resource.match(/(\d+)[\s-]*(?:units?|pieces?|bundles?|of)?\s+(?:of\s+)?(.+)/i) || 
+                                         resource.match(/(.+?)\s*\((\d+)[^)]*\)/i);
+                    
+                    if (quantityMatch) {
+                        if (quantityMatch[1] && !isNaN(parseInt(quantityMatch[1]))) {
+                            // First pattern: "X units of Y"
+                            quantity = parseInt(quantityMatch[1]);
+                            resourceName = quantityMatch[2].trim();
+                        } else if (quantityMatch[2] && !isNaN(parseInt(quantityMatch[2]))) {
+                            // Second pattern: "Y (X)"
+                            quantity = parseInt(quantityMatch[2]);
+                            resourceName = quantityMatch[1].trim();
+                        }
+                    }
+                    
+                    // Remove the resource
+                    resourceManager.removeResource(resourceName, quantity);
                 });
             }
         } else if (kinOSResponse.content) {
@@ -3266,6 +3364,18 @@ function formatJSONResponse(response) {
             <div class="section-content">
                 <ul>
                     ${response.outcomes.resources.map(item => `<li>${item}</li>`).join('')}
+                </ul>
+            </div>
+        </div>`;
+    }
+    
+    // Resources consumed section
+    if (response.outcomes && response.outcomes.resourcesConsumed && response.outcomes.resourcesConsumed.length > 0) {
+        html += `<div class="response-section resources-consumed">
+            <h3>Resources Used</h3>
+            <div class="section-content">
+                <ul>
+                    ${response.outcomes.resourcesConsumed.map(item => `<li>${item}</li>`).join('')}
                 </ul>
             </div>
         </div>`;

@@ -85,6 +85,7 @@ async function init() {
     app.use('/assets/audio', express.static(path.join(__dirname, 'assets/audio')));
     app.use('/assets/audio/music', express.static(path.join(__dirname, 'assets/audio/music')));
     app.use('/assets/audio/narration', express.static(path.join(__dirname, 'assets/audio/narration')));
+    app.use('/assets/images/actions', express.static(path.join(__dirname, 'assets/images/actions')));
     app.use('/output', express.static(path.join(__dirname, 'output')));
     app.use('/docs', express.static(path.join(__dirname, '../docs')));
     

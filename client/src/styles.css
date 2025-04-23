@@ -867,8 +867,59 @@ body::before {
 
 /* Make the dialog larger for structured responses */
 .dialog-content {
-    max-width: 700px;
-    width: 80%;
+    max-width: 800px;
+    width: 90%;
+}
+
+/* Action Image Visualization */
+.action-image-container {
+  margin-top: 20px;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+  text-align: center;
+}
+
+.image-placeholder {
+  color: #888;
+  font-style: italic;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+
+.image-loading {
+  color: #666;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.action-visualization-image {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.image-caption {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+  font-style: italic;
+}
+
+.image-error {
+  color: #d32f2f;
+  padding: 15px;
+  background-color: #ffebee;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.error-details {
+  font-size: 12px;
+  margin-top: 5px;
 }
 
 /* Edge Menu - Icon-only version with tooltips */

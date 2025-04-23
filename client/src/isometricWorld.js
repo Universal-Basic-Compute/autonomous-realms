@@ -1661,6 +1661,11 @@ async function performAction(action) {
                 <div class="action-response structured-response" id="action-response">
                     <p>Processing your action...</p>
                 </div>
+                
+                <!-- Add image container for action visualization -->
+                <div id="action-image-container" class="action-image-container">
+                    <div class="image-placeholder">Action visualization will appear here...</div>
+                </div>
             </div>
             
             <button class="close-button" style="display: none;" id="action-close-button">Close</button>
@@ -1771,6 +1776,9 @@ async function performAction(action) {
         progressBar.style.width = '100%';
         progressBar.textContent = '100%';
         progressTime.textContent = '0';
+        
+        // Generate and display an image visualization of the action
+        generateActionVisualization(action, terrainInfo, kinOSResponse);
         
     } catch (error) {
         console.error('Error performing action:', error);
@@ -1883,6 +1891,70 @@ function parseActionResponse(responseText) {
         console.error('Error parsing action response:', error);
         return { fullText: responseText || "Error parsing response" };
     }
+}
+
+// Generate an image visualizing the action being performed
+async function generateActionVisualization(action, terrainInfo, actionResponse) {
+  try {
+    // Show loading state for image generation
+    const imageContainer = document.getElementById('action-image-container');
+    if (imageContainer) {
+      imageContainer.innerHTML = '<div class="image-loading">Generating action visualization...</div>';
+    }
+    
+    // Create a detailed prompt based on the action, terrain, and response
+    const prompt = `Isometric view of settlers ${action.name.toLowerCase()} in a ${terrainInfo.description} environment. 
+    ${actionResponse.narration || 'Settlers working together on this task.'}
+    Detailed, vibrant colors, Clash Royale style, game asset, white background.`;
+    
+    console.log('Generating action visualization with prompt:', prompt);
+    
+    // Make request to the server endpoint for image generation
+    const response = await fetch(`${config.serverUrl}/api/tiles/generate-action-image`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        prompt: prompt,
+        action: action.code,
+        terrainCode: terrainInfo.terrainCode
+      })
+    });
+    
+    if (!response.ok) {
+      throw new Error(`Failed to generate action image: ${response.status} ${response.statusText}`);
+    }
+    
+    const data = await response.json();
+    
+    // Display the generated image
+    if (imageContainer && data.imageUrl) {
+      imageContainer.innerHTML = `
+        <div class="action-image-wrapper">
+          <img src="${data.imageUrl}" alt="${action.name}" class="action-visualization-image">
+          <div class="image-caption">Visualization of ${action.name}</div>
+        </div>
+      `;
+    }
+    
+    return data.imageUrl;
+  } catch (error) {
+    console.error('Error generating action visualization:', error);
+    
+    // Show error in the image container
+    const imageContainer = document.getElementById('action-image-container');
+    if (imageContainer) {
+      imageContainer.innerHTML = `
+        <div class="image-error">
+          <p>Could not generate action visualization</p>
+          <p class="error-details">${error.message}</p>
+        </div>
+      `;
+    }
+    
+    return null;
+  }
 }
 
 // Format the structured response as HTML

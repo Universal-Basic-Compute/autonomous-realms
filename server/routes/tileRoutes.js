@@ -244,6 +244,82 @@ router.get('/curl-test', async (req, res) => {
   }
 });
 
+// Add this route to generate action visualization images
+router.post('/generate-action-image', async (req, res) => {
+  try {
+    const { prompt, action, terrainCode } = req.body;
+    
+    if (!prompt) {
+      return res.status(400).json({ error: 'No prompt provided for image generation' });
+    }
+    
+    logger.info(`Generating action visualization image for action ${action} on terrain ${terrainCode}`);
+    
+    // Generate a unique filename for this action image
+    const imageId = `action_${action}_${terrainCode.split('|')[0]}_${Date.now()}`;
+    const imageFilename = `${imageId}.png`;
+    const imageDir = path.join(__dirname, '../assets/images/actions');
+    const imagePath = path.join(imageDir, imageFilename);
+    
+    // Make sure the directory exists
+    await fs.mkdir(imageDir, { recursive: true });
+    
+    // Prepare request data for Ideogram API
+    const requestData = {
+      image_request: {
+        prompt: prompt,
+        model: config.IDEOGRAM_MODEL || "V_2_TURBO",
+        aspect_ratio: "ASPECT_1_1", // Square aspect ratio for action images
+        style_type: config.IDEOGRAM_STYLE_TYPE || "REALISTIC"
+      }
+    };
+    
+    // Make API request to Ideogram
+    const response = await fetch('https://api.ideogram.ai/generate', {
+      method: 'POST',
+      headers: {
+        'Api-Key': config.IDEOGRAM_API_KEY,
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(requestData),
+      timeout: config.API_TIMEOUT
+    });
+    
+    // Check response
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`API request failed with status ${response.status}: ${errorText}`);
+    }
+    
+    // Parse response
+    const responseData = await response.json();
+    
+    // Check if we have valid image data
+    if (!responseData.data || !responseData.data[0] || !responseData.data[0].url) {
+      throw new Error('Invalid response from Ideogram API: No image URL found');
+    }
+    
+    // Download the generated image
+    const imageUrl = responseData.data[0].url;
+    await tileService.downloadImage(imageUrl, imagePath);
+    
+    // Return the URL to the saved image
+    res.json({
+      success: true,
+      imageUrl: `/assets/images/actions/${imageFilename}`,
+      prompt: prompt
+    });
+    
+  } catch (error) {
+    logger.error(`Error generating action image: ${error.message}`, { error });
+    res.status(500).json({ 
+      error: 'Failed to generate action image', 
+      message: error.message
+    });
+  }
+});
+
 // Add a route to monitor the queue status
 router.get('/queue-status', (req, res) => {
   try {

@@ -142,4 +142,42 @@ router.post('/update-compute', async (req, res) => {
   }
 });
 
+// Add this route after the login endpoint
+router.post('/update-compute', async (req, res) => {
+  try {
+    const { userId, walletAddress, computeAmount } = req.body;
+    
+    if (!userId || !walletAddress || !computeAmount) {
+      return res.status(400).json({ error: 'All fields are required' });
+    }
+    
+    // Find user by ID
+    const records = await base(usersTable).find(userId);
+    
+    if (!records) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    
+    // Update user record with wallet address and compute amount
+    await base(usersTable).update([
+      {
+        id: userId,
+        fields: {
+          Wallet: walletAddress,
+          Compute: parseInt(computeAmount)
+        }
+      }
+    ]);
+    
+    res.json({
+      success: true,
+      message: 'Compute balance updated successfully'
+    });
+    
+  } catch (error) {
+    logger.error(`Update compute error: ${error.message}`);
+    res.status(500).json({ error: 'Failed to update compute balance', details: error.message });
+  }
+});
+
 module.exports = router;

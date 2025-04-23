@@ -70,22 +70,57 @@ router.get('/actions/:terrainType', (req, res) => {
   try {
     const { terrainType } = req.params;
     
+    logger.debug(`Looking for actions for terrain type: ${terrainType}`);
+    
     // Find the terrain category that contains this terrain type
     let terrainActions = null;
     
+    // Check each terrain category (plains, forest, etc.)
     for (const category in gameData.actions) {
       if (gameData.actions[category][terrainType]) {
+        logger.debug(`Found actions for ${terrainType} in category ${category}`);
         terrainActions = gameData.actions[category][terrainType];
         break;
       }
     }
     
     if (!terrainActions) {
+      // Try to determine the category from the terrain code prefix
+      const prefix = terrainType.split('-')[0];
+      let categoryMap = {
+        'P': 'plains',
+        'F': 'forest',
+        'D': 'desert',
+        'M': 'mountains',
+        'W': 'water',
+        'T': 'tundra',
+        'R': 'rocky',
+        'S': 'special',
+        'L': 'wasteland'
+      };
+      
+      const category = categoryMap[prefix];
+      if (category && gameData.actions[category]) {
+        // Look for similar terrain types in the same category as fallback
+        logger.debug(`No exact match found, looking for similar terrain types in ${category} category`);
+        
+        // Use the first terrain type in the category as fallback
+        const firstTerrainType = Object.keys(gameData.actions[category])[0];
+        if (firstTerrainType) {
+          logger.debug(`Using ${firstTerrainType} as fallback for ${terrainType}`);
+          terrainActions = gameData.actions[category][firstTerrainType];
+        }
+      }
+    }
+    
+    if (!terrainActions) {
+      logger.debug(`No actions found for terrain type: ${terrainType}`);
       // If no specific actions found, return an empty array instead of 404
       // This allows for terrain types that don't have specific actions
       return res.json([]);
     }
     
+    logger.debug(`Returning ${terrainActions.length} actions for ${terrainType}`);
     res.json(terrainActions);
   } catch (error) {
     logger.error(`Error getting actions for terrain type: ${error.message}`);

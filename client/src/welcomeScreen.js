@@ -523,7 +523,7 @@ Please create an epic, inspiring introduction for this tribe that captures their
         body: JSON.stringify({
           text: introText,
           voice_id: "IKne3meq5aSn9XLyUdCD", // Epic narrator voice
-          model: "eleven_flash_v2_5"
+          model: "eleven_monolingual_v1"
         })
       });
       
@@ -561,9 +561,9 @@ Please create an epic, inspiring introduction for this tribe that captures their
         },
         body: JSON.stringify({
           prompt: imagePrompt,
-          aspect_ratio: "ASPECT_1_1",
-          model: "V_2A_TURBO",
-          magic_prompt_option: "AUTO"
+          aspect_ratio: "1:1",
+          model: "ideogram-v2",
+          magic_prompt: true
         })
       });
       

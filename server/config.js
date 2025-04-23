@@ -6,6 +6,7 @@ module.exports = {
   PIXELCUT_API_KEY: process.env.PIXELCUT_API_KEY || 'your-pixelcut-api-key',
   CLAUDE_API_KEY: process.env.CLAUDE_API_KEY || 'your-claude-api-key',
   KINOS_API_KEY: process.env.KINOS_API_KEY || 'your-kinos-api-key',
+  ELEVENLABS_API_KEY: process.env.ELEVENLABS_API_KEY || 'your-elevenlabs-api-key',
   IDEOGRAM_MODEL: process.env.IDEOGRAM_MODEL || 'V_2_TURBO', // Configurable model for Reframe API
   IDEOGRAM_STYLE_TYPE: process.env.IDEOGRAM_STYLE_TYPE || 'REALISTIC', // Configurable style type
   TEMP_DIR: path.join(__dirname, 'temp'),

@@ -554,55 +554,91 @@ async function generateTTS(text, terrainCode) {
     // Make sure the narration directory exists
     await fs.mkdir(narrationDir, { recursive: true });
     
-    const response = await fetch('https://api.kinos-engine.ai/v2/tts?format=json', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.KINOS_API_KEY || config.KINOS_API_KEY}`
-      },
-      body: JSON.stringify({
-        text: text,
-        voice_id: "IKne3meq5aSn9XLyUdCD",
-        model: "eleven_flash_v2_5"
-      })
-    });
-    
-    if (!response.ok) {
-      const errorText = await response.text();
-      logger.error(`TTS API request failed with status ${response.status}: ${errorText}`);
-      return { 
-        error: `TTS API request failed with status ${response.status}`,
-        errorDetails: errorText
-      };
-    }
-    
-    const data = await response.json();
-    logger.info(`Successfully generated TTS, received audio URL: ${data.audio_url ? 'Yes' : 'No'}`);
-    
-    // If we have an audio URL, download and save the file
-    if (data.audio_url || data.result_url) {
-      try {
-        const audioUrl = data.audio_url || data.result_url;
-        const audioResponse = await fetch(audioUrl);
+    // Make a direct request for binary audio data
+    try {
+      const response = await fetch('https://api.kinos-engine.ai/v2/tts?format=mp3', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.KINOS_API_KEY || config.KINOS_API_KEY}`,
+          'Accept': 'audio/mpeg' // Request audio directly
+        },
+        body: JSON.stringify({
+          text: text,
+          voice_id: "IKne3meq5aSn9XLyUdCD",
+          model: "eleven_flash_v2_5"
+        })
+      });
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        logger.error(`TTS API request failed with status ${response.status}: ${errorText}`);
+        return { 
+          error: `TTS API request failed with status ${response.status}`,
+          errorDetails: errorText
+        };
+      }
+      
+      // Check if the response is binary audio data or JSON
+      const contentType = response.headers.get('content-type');
+      
+      if (contentType && contentType.includes('audio/')) {
+        // Handle binary audio data
+        const audioBuffer = await response.buffer();
         
-        if (!audioResponse.ok) {
-          throw new Error(`Failed to download audio: ${audioResponse.status}`);
-        }
-        
-        const audioBuffer = await audioResponse.buffer();
+        // Save the audio file
         await fs.writeFile(narrationPath, audioBuffer);
         
         logger.info(`Saved narration audio to ${narrationPath}`);
         
-        // Update the response to use our local path
-        data.audio_url = `/assets/audio/narration/${narrationFilename}`;
-      } catch (downloadError) {
-        logger.error(`Error saving audio file: ${downloadError.message}`);
-        // Continue with the original response even if saving fails
+        // Return the URL to the saved file
+        return {
+          audio_url: `/assets/audio/narration/${narrationFilename}`
+        };
+      } else {
+        // Try to parse as JSON (fallback)
+        try {
+          const data = await response.json();
+          logger.info(`Received JSON response with audio URL: ${data.audio_url ? 'Yes' : 'No'}`);
+          
+          // If we have an audio URL, download and save the file
+          if (data.audio_url || data.result_url) {
+            try {
+              const audioUrl = data.audio_url || data.result_url;
+              const audioResponse = await fetch(audioUrl);
+              
+              if (!audioResponse.ok) {
+                throw new Error(`Failed to download audio: ${audioResponse.status}`);
+              }
+              
+              const audioBuffer = await audioResponse.buffer();
+              await fs.writeFile(narrationPath, audioBuffer);
+              
+              logger.info(`Saved narration audio to ${narrationPath}`);
+              
+              // Update the response to use our local path
+              data.audio_url = `/assets/audio/narration/${narrationFilename}`;
+            } catch (downloadError) {
+              logger.error(`Error saving audio file: ${downloadError.message}`);
+              // Continue with the original response even if saving fails
+            }
+          }
+          
+          return data;
+        } catch (jsonError) {
+          logger.error(`Error parsing JSON response: ${jsonError.message}`);
+          return { 
+            error: `Failed to process TTS response: ${jsonError.message}`
+          };
+        }
       }
+    } catch (error) {
+      logger.error(`Error with TTS request: ${error.message}`);
+      return { 
+        error: error.message,
+        stack: error.stack
+      };
     }
-    
-    return data;
   } catch (error) {
     logger.error(`Error generating TTS: ${error.message}`, { error });
     return { 

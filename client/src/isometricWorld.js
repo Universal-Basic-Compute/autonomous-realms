@@ -783,8 +783,83 @@ function loadTile(regionX, regionY, x, y) {
         
         // Check if the image is loaded and the click is on a transparent pixel
         if (imgElement.complete && isTransparentPixel(imgElement, clickX, clickY)) {
-            // Click is on a transparent part, ignore this tile
+            // Click is on a transparent part, ignore this tile and find tile underneath
             console.log(`Click on transparent part of tile ${x},${y}, ignoring`);
+            
+            // Prevent the current click from being processed further
+            e.stopPropagation();
+            
+            // Get the absolute position of the click in the document
+            const clickPointX = e.clientX;
+            const clickPointY = e.clientY;
+            
+            // Find all tiles that contain this point
+            const allTiles = Array.from(document.querySelectorAll('.tile'));
+            
+            // Get tiles that are under this point (using getBoundingClientRect)
+            const tilesUnderPoint = allTiles.filter(tile => {
+                const rect = tile.getBoundingClientRect();
+                return (
+                    clickPointX >= rect.left && 
+                    clickPointX <= rect.right && 
+                    clickPointY >= rect.top && 
+                    clickPointY <= rect.bottom
+                );
+            });
+            
+            // Sort tiles by their DOM order (which should reflect their z-index/stacking)
+            // This assumes tiles are added to the DOM in the correct stacking order
+            const sortedTiles = tilesUnderPoint.sort((a, b) => {
+                const aIndex = Array.from(worldContainer.children).indexOf(a);
+                const bIndex = Array.from(worldContainer.children).indexOf(b);
+                return aIndex - bIndex;
+            });
+            
+            // Remove the current tile from consideration
+            const otherTiles = sortedTiles.filter(tile => tile !== tileElement);
+            
+            // Find the first non-transparent tile under the click point
+            let foundVisibleTile = false;
+            
+            for (const tile of otherTiles) {
+                // Calculate relative position within this tile
+                const tileRect = tile.getBoundingClientRect();
+                const relX = clickPointX - tileRect.left;
+                const relY = clickPointY - tileRect.top;
+                
+                const tileImg = tile.querySelector('img');
+                
+                // Skip if image isn't loaded yet
+                if (!tileImg || !tileImg.complete) continue;
+                
+                // Check if this pixel is non-transparent
+                if (!isTransparentPixel(tileImg, relX, relY)) {
+                    // We found a non-transparent tile under the click point
+                    console.log(`Found visible tile underneath: ${tile.dataset.x},${tile.dataset.y}`);
+                    
+                    // Simulate a click on this tile
+                    setTimeout(() => {
+                        // Create and dispatch a new click event
+                        const newClickEvent = new MouseEvent('click', {
+                            bubbles: true,
+                            cancelable: true,
+                            view: window,
+                            clientX: clickPointX,
+                            clientY: clickPointY
+                        });
+                        
+                        tile.dispatchEvent(newClickEvent);
+                    }, 0);
+                    
+                    foundVisibleTile = true;
+                    break;
+                }
+            }
+            
+            if (!foundVisibleTile) {
+                console.log('No visible tile found underneath');
+            }
+            
             return;
         }
         

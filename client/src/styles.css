@@ -133,19 +133,20 @@ body::before {
 
 /* Action Menu Styles */
 .action-menu {
-    position: absolute;
-    bottom: 20px;
+    position: fixed; /* Change from absolute to fixed for better positioning */
+    bottom: 80px; /* Move up from the bottom edge */
     left: 50%;
     transform: translateX(-50%);
     background-color: rgba(255, 255, 255, 0.95);
     border-radius: 8px;
     padding: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    z-index: 100;
+    z-index: 150; /* Ensure it's above other elements */
     max-width: 90%;
     width: auto;
     min-width: 300px;
-    /* Remove max-height and overflow-y to prevent scrolling */
+    max-height: 60vh; /* Limit maximum height to 60% of viewport height */
+    overflow-y: auto; /* Add scrolling if content exceeds max height */
 }
 
 .action-menu h3 {
@@ -166,7 +167,7 @@ body::before {
     margin: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 8px;
     justify-content: center;
 }
 
@@ -188,6 +189,7 @@ body::before {
     font-size: 12px;
     white-space: nowrap;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    min-width: 80px; /* Add minimum width for better appearance */
 }
 
 .action-button:hover {

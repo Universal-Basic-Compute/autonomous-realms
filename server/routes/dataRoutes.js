@@ -158,6 +158,125 @@ router.get('/culture/:category', (req, res) => {
   }
 });
 
+// Add this route to handle TTS requests
+router.post('/actions/ai/tts', async (req, res) => {
+  try {
+    const { text } = req.body;
+    
+    if (!text) {
+      return res.status(400).json({ error: 'No text provided for TTS' });
+    }
+    
+    logger.info(`Generating TTS for text: "${text.substring(0, 50)}..."`);
+    
+    // Generate a unique filename for this narration
+    const narrationId = `narration_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
+    const narrationFilename = `${narrationId}.mp3`;
+    const narrationDir = path.join(__dirname, '../assets/audio/narration');
+    const narrationPath = path.join(narrationDir, narrationFilename);
+    
+    // Make sure the narration directory exists
+    await fs.mkdir(narrationDir, { recursive: true });
+    
+    // Make a request to the TTS API
+    try {
+      const response = await fetch('https://api.kinos-engine.ai/v2/tts?format=mp3', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.KINOS_API_KEY || config.KINOS_API_KEY}`,
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          text: text,
+          voice_id: "IKne3meq5aSn9XLyUdCD", // Use a consistent voice ID
+          model: "eleven_flash_v2_5"
+        })
+      });
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        logger.error(`TTS API request failed with status ${response.status}: ${errorText}`);
+        return res.status(response.status).json({ 
+          error: `TTS API request failed with status ${response.status}`,
+          errorDetails: errorText
+        });
+      }
+      
+      // Check if the response is binary audio data or JSON
+      const contentType = response.headers.get('content-type');
+      logger.debug(`TTS API response content-type: ${contentType}`);
+      
+      // Handle the response appropriately based on content type
+      if (contentType && contentType.includes('audio/')) {
+        // It's audio data
+        const audioBuffer = await response.buffer();
+        await fs.writeFile(narrationPath, audioBuffer);
+        
+        logger.info(`Saved narration audio to ${narrationPath}`);
+        
+        return res.json({
+          success: true,
+          audio_url: `/assets/audio/narration/${narrationFilename}`
+        });
+      } else if (contentType && contentType.includes('application/json')) {
+        // It's JSON data
+        const data = await response.json();
+        
+        // If we have an audio URL, download and save the file
+        if (data.audio_url || data.result_url) {
+          try {
+            const audioUrl = data.audio_url || data.result_url;
+            const audioResponse = await fetch(audioUrl);
+            
+            if (!audioResponse.ok) {
+              throw new Error(`Failed to download audio: ${audioResponse.status}`);
+            }
+            
+            const audioBuffer = await audioResponse.buffer();
+            await fs.writeFile(narrationPath, audioBuffer);
+            
+            logger.info(`Saved narration audio to ${narrationPath}`);
+            
+            // Return the local path to the saved file
+            return res.json({
+              success: true,
+              audio_url: `/assets/audio/narration/${narrationFilename}`
+            });
+          } catch (downloadError) {
+            logger.error(`Error saving audio file: ${downloadError.message}`);
+            return res.status(500).json({
+              error: `Failed to download audio: ${downloadError.message}`,
+              original_response: data
+            });
+          }
+        } else {
+          // No audio URL in the response
+          return res.status(500).json({
+            error: 'No audio URL in TTS response',
+            original_response: data
+          });
+        }
+      } else {
+        // Unknown content type
+        return res.status(500).json({
+          error: `Unexpected content type from TTS API: ${contentType}`
+        });
+      }
+    } catch (ttsError) {
+      logger.error(`Error with TTS request: ${ttsError.message}`);
+      return res.status(500).json({ 
+        error: ttsError.message
+      });
+    }
+  } catch (error) {
+    logger.error(`Error generating TTS: ${error.message}`, { error });
+    return res.status(500).json({ 
+      error: error.message
+    });
+  }
+});
+
 // Get actions for a terrain using KinOS analysis
 router.get('/actions/ai/:terrainType', async (req, res) => {
   try {

@@ -941,7 +941,7 @@ async function sendKinOSMessage(action, terrainInfo) {
   try {
     console.log(`Sending action "${action.name}" to KinOS with terrain info:`, terrainInfo);
     
-    // Prepare the message content
+    // Prepare the message content with explicit JSON request
     const messageContent = `
 I am attempting to perform the action "${action.name}" (${action.code}) on terrain type: ${terrainInfo.terrainCode}.
 
@@ -949,11 +949,35 @@ Terrain Description: ${terrainInfo.description || 'No description available'}
 
 Action Description: ${action.description || 'No description available'}
 
-Please provide guidance on how this action might unfold in this environment, any challenges I might face, and potential outcomes. Format your response with these sections:
-1. Action Analysis - A brief analysis of the action in this terrain
-2. Narration - A vivid description of the settlers performing this action
-3. Expected Outcomes - What resources might be gained, knowledge acquired, and challenges faced
-4. Tips for Success - Practical advice for maximizing success
+Please provide guidance on how this action might unfold in this environment, any challenges I might face, and potential outcomes. 
+
+IMPORTANT: Format your response as a JSON object with these sections:
+1. "analysis": A brief analysis of the action in this terrain (2-3 sentences)
+2. "narration": A vivid, single paragraph description (5-8 sentences) of the settlers performing this action
+3. "outcomes": Object containing:
+   - "resources": Array of resources that might be gained
+   - "knowledge": Array of knowledge or skills acquired
+   - "challenges": Array of challenges faced
+4. "tips": Array of practical tips for success
+
+Example response format:
+{
+  "analysis": "This terrain is well-suited for gathering berries due to the abundant bushes and rich soil. The flat terrain makes movement easy, and the nearby water source supports diverse plant life.",
+  "narration": "Your settlers spread out among the berry bushes, carefully selecting the ripest fruits while watching for thorns. The morning dew still clings to the leaves, making the berries glisten in the early light. Children join the work, learning which colors indicate the sweetest harvest, while the more experienced gatherers fill their baskets with practiced efficiency.",
+  "outcomes": {
+    "resources": ["Wild berries (2-3 days worth)", "Berry seeds for planting", "Medicinal leaves from berry bushes"],
+    "knowledge": ["Identification of berry varieties", "Seasonal ripening patterns", "Preservation techniques"],
+    "challenges": ["Thorny bushes causing minor injuries", "Competition with wildlife", "Need for proper storage"]
+  },
+  "tips": [
+    "Focus on bushes with the most ripe berries rather than checking every plant",
+    "Harvest in early morning when berries are firmest",
+    "Leave some berries on each bush to ensure future growth",
+    "Use leather gloves to protect hands from thorns"
+  ]
+}
+
+Please provide ONLY the JSON response with no additional text, markdown formatting, or explanation.
 `;
 
     // Prepare the request body with updated blueprint, kin, and mode
@@ -961,8 +985,8 @@ Please provide guidance on how this action might unfold in this environment, any
       content: messageContent,
       model: "claude-3-7-sonnet-latest",
       history_length: 25,
-      mode: "action_resolution", // Updated mode
-      addSystem: "You are a helpful game assistant providing realistic and immersive guidance on actions taken in a settlement-building game. Consider the terrain, available resources, and potential challenges when describing outcomes. Be specific and vivid in your descriptions. Format your response with clear section headers."
+      mode: "action_resolution", 
+      addSystem: "You are a helpful game assistant providing realistic and immersive guidance on actions taken in a settlement-building game. Consider the terrain, available resources, and potential challenges when describing outcomes. Be specific and vivid in your descriptions. Format your response ONLY as a valid JSON object with the exact structure requested by the user. Do not include any text outside the JSON object."
     };
     
     // Make the API request with updated blueprint and kin
@@ -988,10 +1012,52 @@ Please provide guidance on how this action might unfold in this environment, any
       throw new Error('No content in KinOS response');
     }
     
-    // Return the content
-    return {
-      content: content
-    };
+    // Try to parse the JSON from the response
+    let parsedResponse;
+    try {
+      // Look for JSON object in the response
+      const jsonMatch = content.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        parsedResponse = JSON.parse(jsonMatch[0]);
+      } else {
+        // If no JSON found, use the parseActionResponse function as fallback
+        parsedResponse = parseActionResponse(content);
+      }
+      
+      // If we have a narration, send it for TTS
+      if (parsedResponse.narration) {
+        // Generate TTS for the narration
+        try {
+          const ttsResponse = await fetch(`${config.serverUrl}/api/data/actions/ai/tts`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              text: parsedResponse.narration
+            })
+          });
+          
+          if (ttsResponse.ok) {
+            const ttsData = await ttsResponse.json();
+            parsedResponse.audio = ttsData;
+          }
+        } catch (ttsError) {
+          console.error('Error generating TTS for narration:', ttsError);
+        }
+      }
+      
+      return parsedResponse;
+    } catch (parseError) {
+      console.error('Error parsing KinOS response as JSON:', parseError);
+      console.log('Raw response:', content);
+      
+      // Return the raw content as fallback
+      return { 
+        content: content,
+        parseError: parseError.message
+      };
+    }
   } catch (error) {
     console.error('Error sending message to KinOS:', error);
     return { error: error.message };
@@ -1103,11 +1169,28 @@ async function performAction(action) {
             return;
         }
         
-        // Parse the response content to extract structured data
-        const parsedResponse = parseActionResponse(kinOSResponse.content);
+        // If we have audio, play it
+        if (kinOSResponse.audio && kinOSResponse.audio.audio_url) {
+            playNarration(kinOSResponse.audio);
+        }
         
-        // Show the KinOS response in the dialog with structured format
-        responseContainer.innerHTML = formatStructuredResponse(parsedResponse);
+        // Format the response based on whether it's the new JSON format or the old format
+        let formattedResponse;
+        
+        if (kinOSResponse.narration && kinOSResponse.analysis) {
+            // It's the new JSON format
+            formattedResponse = formatJSONResponse(kinOSResponse);
+        } else if (kinOSResponse.content) {
+            // It's the old format with raw content
+            const parsedResponse = parseActionResponse(kinOSResponse.content);
+            formattedResponse = formatStructuredResponse(parsedResponse);
+        } else {
+            // Unexpected format, try to handle it gracefully
+            formattedResponse = formatStructuredResponse(kinOSResponse);
+        }
+        
+        // Show the formatted response in the dialog
+        responseContainer.innerHTML = formattedResponse;
         resultContainer.style.display = 'block';
         closeButton.style.display = 'block';
         
@@ -1320,6 +1403,77 @@ function formatStructuredResponse(parsedResponse) {
     if (html === '') {
         html = `<div class="response-section">
             <div class="section-content">${parsedResponse.fullText || responseText}</div>
+        </div>`;
+    }
+    
+    return html;
+}
+
+// Add a new function to format the JSON response
+function formatJSONResponse(response) {
+    let html = '';
+    
+    // Analysis section
+    if (response.analysis) {
+        html += `<div class="response-section">
+            <h3>Analysis</h3>
+            <div class="section-content">${response.analysis.replace(/\n/g, '<br>')}</div>
+        </div>`;
+    }
+    
+    // Narration section
+    if (response.narration) {
+        html += `<div class="response-section narrative">
+            <h3>Narration</h3>
+            <div class="section-content">${response.narration.replace(/\n/g, '<br>')}</div>
+        </div>`;
+    }
+    
+    // Resources section
+    if (response.outcomes && response.outcomes.resources && response.outcomes.resources.length > 0) {
+        html += `<div class="response-section resources">
+            <h3>Resources Gained</h3>
+            <div class="section-content">
+                <ul>
+                    ${response.outcomes.resources.map(item => `<li>${item}</li>`).join('')}
+                </ul>
+            </div>
+        </div>`;
+    }
+    
+    // Knowledge section
+    if (response.outcomes && response.outcomes.knowledge && response.outcomes.knowledge.length > 0) {
+        html += `<div class="response-section knowledge">
+            <h3>Knowledge Opportunities</h3>
+            <div class="section-content">
+                <ul>
+                    ${response.outcomes.knowledge.map(item => `<li>${item}</li>`).join('')}
+                </ul>
+            </div>
+        </div>`;
+    }
+    
+    // Challenges section
+    if (response.outcomes && response.outcomes.challenges && response.outcomes.challenges.length > 0) {
+        html += `<div class="response-section challenges">
+            <h3>Challenges</h3>
+            <div class="section-content">
+                <ul>
+                    ${response.outcomes.challenges.map(item => `<li>${item}</li>`).join('')}
+                </ul>
+            </div>
+        </div>`;
+    }
+    
+    // Tips section
+    if (response.tips && response.tips.length > 0) {
+        html += `<div class="response-section tips">
+            <h3>Tips for Success</h3>
+            <div class="section-content">
+                <ol>
+                    ${response.tips.map(item => `<li>${item}</li>`).join('')}
+                </ol>
+            </div>
         </div>`;
     }
     

@@ -59,9 +59,9 @@ async function generateNextHorizontalTile(previousTilePath, position) {
       maskCtx.fillStyle = 'black';
       maskCtx.fillRect(0, 0, maskCanvas.width, maskCanvas.height);
       
-      // Fill the right 50% with white (area to generate)
+      // Fill the right 20% with white (area to generate)
       maskCtx.fillStyle = 'white';
-      maskCtx.fillRect(previousTile.width, 0, previousTile.width * 0.5, previousTile.height);
+      maskCtx.fillRect(previousTile.width * 0.8, 0, previousTile.width * 0.2, previousTile.height);
       
       // Save the mask for future use
       await fs.mkdir(config.MASKS_DIR, { recursive: true });
@@ -237,9 +237,9 @@ async function generateNextVerticalTile(bottomTilePath, position) {
       maskCtx.fillStyle = 'black';
       maskCtx.fillRect(0, 0, maskCanvas.width, maskCanvas.height);
       
-      // Fill the top 50% with white (area to generate)
+      // Fill the top 75% with white (area to generate)
       maskCtx.fillStyle = 'white';
-      maskCtx.fillRect(0, 0, bottomTile.width, bottomTile.height * 0.5);
+      maskCtx.fillRect(0, 0, bottomTile.width, bottomTile.height * 0.75);
       
       // Save the mask for future use
       await fs.mkdir(config.MASKS_DIR, { recursive: true });
@@ -824,12 +824,12 @@ async function cropAndSaveRightSide(imagePath, outputPath) {
     await fs.copyFile(imagePath, uncropeedPath);
     logger.debug(`Saved uncropped image to ${uncropeedPath}`);
     
-    // Draw only the right 1/3 of the generated image (the newly generated part)
+    // Draw only the right 20% of the generated image (the newly generated part)
     ctx.drawImage(
       image,
-      image.width * 2/3,  // Source X (start from 2/3 of the way)
+      image.width * 0.8,  // Source X (start from 80% of the way)
       0,                  // Source Y
-      image.width / 3,    // Source Width (take 1/3 of the image)
+      image.width * 0.2,  // Source Width (take 20% of the image)
       image.height,       // Source Height
       0,                  // Destination X
       0,                  // Destination Y
@@ -927,13 +927,13 @@ async function cropAndSaveTopSide(imagePath, outputPath) {
     await fs.copyFile(imagePath, uncropeedPath);
     logger.debug(`Saved uncropped image to ${uncropeedPath}`);
     
-    // Draw only the top 1/3 of the generated image (the newly generated part)
+    // Draw only the top 75% of the generated image (the newly generated part)
     ctx.drawImage(
       image,
       0,                  // Source X
       0,                  // Source Y
       image.width,        // Source Width
-      image.height / 3,   // Source Height (take 1/3 of the image)
+      image.height * 0.75,   // Source Height (take 75% of the image)
       0,                  // Destination X
       0,                  // Destination Y
       canvas.width,       // Destination Width

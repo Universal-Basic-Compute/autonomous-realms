@@ -27,7 +27,8 @@ const state = {
     selectedTile: null,
     isLoading: false,
     availableActions: [], // Store available actions for selected tile
-    actionMenuVisible: false // Track if action menu is visible
+    actionMenuVisible: false, // Track if action menu is visible
+    contextMenu: null // Track the current context menu
 };
 
 // DOM Elements
@@ -185,6 +186,37 @@ function setupEventListeners() {
     debugButton.textContent = 'Debug';
     debugButton.addEventListener('click', toggleDebugMode);
     document.getElementById('controls').appendChild(debugButton);
+    
+    // Add context menu event listener to the document
+    document.addEventListener('contextmenu', (e) => {
+        e.preventDefault(); // Prevent default browser context menu
+        
+        // Check if right-click was on a tile
+        const tileElement = e.target.closest('.tile');
+        if (tileElement) {
+            showContextMenu(e.clientX, e.clientY, tileElement);
+        } else {
+            hideContextMenu();
+        }
+    });
+    
+    // Hide context menu when clicking elsewhere
+    document.addEventListener('click', (e) => {
+        // Don't hide if clicking on the menu itself
+        if (!e.target.closest('.context-menu')) {
+            hideContextMenu();
+        }
+    });
+    
+    // Hide context menu when scrolling
+    document.addEventListener('wheel', () => {
+        hideContextMenu();
+    });
+    
+    // Hide context menu when window is resized
+    window.addEventListener('resize', () => {
+        hideContextMenu();
+    });
 }
 
 // Start dragging
@@ -604,6 +636,126 @@ function formatFileSize(bytes) {
     if (bytes < 1024) return bytes + ' bytes';
     else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
     else return (bytes / 1048576).toFixed(1) + ' MB';
+}
+
+// Show context menu
+function showContextMenu(x, y, tileElement) {
+    // Remove any existing context menu
+    hideContextMenu();
+    
+    // Create context menu
+    const contextMenu = document.createElement('div');
+    contextMenu.className = 'context-menu';
+    contextMenu.style.left = `${x}px`;
+    contextMenu.style.top = `${y}px`;
+    
+    // Add menu items
+    const redrawOption = document.createElement('div');
+    redrawOption.className = 'context-menu-item';
+    redrawOption.textContent = 'Redraw Tile';
+    redrawOption.addEventListener('click', () => {
+        redrawTile(tileElement);
+        hideContextMenu();
+    });
+    
+    contextMenu.appendChild(redrawOption);
+    
+    // Add to document
+    document.body.appendChild(contextMenu);
+    
+    // Store reference to the menu
+    state.contextMenu = contextMenu;
+}
+
+// Hide context menu
+function hideContextMenu() {
+    if (state.contextMenu) {
+        state.contextMenu.remove();
+        state.contextMenu = null;
+    }
+}
+
+// Redraw a tile
+async function redrawTile(tileElement) {
+    if (!tileElement) return;
+    
+    const x = parseInt(tileElement.dataset.x);
+    const y = parseInt(tileElement.dataset.y);
+    const regionX = parseInt(tileElement.dataset.regionX);
+    const regionY = parseInt(tileElement.dataset.regionY);
+    
+    // Show loading indicator on the tile
+    const imgElement = tileElement.querySelector('img');
+    const originalSrc = imgElement.src;
+    imgElement.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgZmlsbD0iI2VlZWVlZSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjI0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmaWxsPSIjOTk5OTk5Ij5SZWRyYXdpbmcuLi48L3RleHQ+PC9zdmc+';
+    
+    try {
+        // Make API call to redraw the tile
+        const response = await fetch(`${config.serverUrl}/api/tiles/islands/${x}/${y}/redraw`, {
+            method: 'POST'
+        });
+        
+        if (!response.ok) {
+            throw new Error(`Failed to redraw tile: ${response.status}`);
+        }
+        
+        // Get the new image URL with a cache-busting parameter
+        const newImageUrl = `${config.serverUrl}/api/tiles/islands/${x}/${y}?t=${Date.now()}`;
+        
+        // Create a new image to preload
+        const newImage = new Image();
+        newImage.onload = () => {
+            // Update the tile with the new image
+            imgElement.src = newImageUrl;
+            
+            // Show notification
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = `Tile at (${x}, ${y}) redrawn successfully`;
+            document.body.appendChild(notification);
+            
+            // Remove notification after a delay
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        };
+        
+        newImage.onerror = () => {
+            // Revert to original image on error
+            imgElement.src = originalSrc;
+            
+            // Show error notification
+            const notification = document.createElement('div');
+            notification.className = 'notification error-notification';
+            notification.textContent = `Failed to load redrawn tile at (${x}, ${y})`;
+            document.body.appendChild(notification);
+            
+            // Remove notification after a delay
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        };
+        
+        // Start loading the new image
+        newImage.src = newImageUrl;
+        
+    } catch (error) {
+        console.error('Error redrawing tile:', error);
+        
+        // Revert to original image
+        imgElement.src = originalSrc;
+        
+        // Show error notification
+        const notification = document.createElement('div');
+        notification.className = 'notification error-notification';
+        notification.textContent = `Error redrawing tile: ${error.message}`;
+        document.body.appendChild(notification);
+        
+        // Remove notification after a delay
+        setTimeout(() => {
+            notification.remove();
+        }, 3000);
+    }
 }
 
 // Show loading indicator

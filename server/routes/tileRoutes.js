@@ -104,6 +104,65 @@ router.get('/islands/:x/:y/info', async (req, res) => {
   }
 });
 
+// Add this route to handle tile redrawing
+router.post('/islands/:x/:y/redraw', async (req, res) => {
+  try {
+    const { x, y } = req.params;
+    const position = { 
+      x: parseInt(x), 
+      y: parseInt(y)
+    };
+    
+    logger.info(`Redraw requested for island tile at position (${x}, ${y})`);
+    
+    // Check if island metadata exists
+    const metadataPath = path.join(
+      __dirname, 
+      '../output/terrain_map/metadata', 
+      `island_${position.x}_${position.y}.json`
+    );
+    
+    let metadata;
+    try {
+      const metadataContent = await fs.readFile(metadataPath, 'utf8');
+      metadata = JSON.parse(metadataContent);
+    } catch (err) {
+      return res.status(404).json({ error: 'Island metadata not found' });
+    }
+    
+    // Get the island image path
+    const islandPath = path.join(
+      __dirname, 
+      '../output/terrain_map/islands', 
+      `island_${position.x}_${position.y}.png`
+    );
+    
+    // Delete the existing image if it exists
+    try {
+      await fs.access(islandPath);
+      await fs.unlink(islandPath);
+      logger.info(`Deleted existing island image at ${islandPath}`);
+    } catch (err) {
+      // File doesn't exist, which is fine
+    }
+    
+    // Generate a new image using the existing metadata
+    const terrainMap = require('../scripts/generateTerrainMap');
+    await terrainMap.generateIslandImage(metadata, 0);
+    
+    logger.info(`Successfully regenerated island image at ${position.x},${position.y}`);
+    
+    res.json({ 
+      success: true, 
+      message: `Island at (${x}, ${y}) has been redrawn`,
+      imageUrl: `/api/tiles/islands/${x}/${y}?t=${Date.now()}`
+    });
+  } catch (error) {
+    logger.error(`Error redrawing island: ${error.message}`, { error });
+    res.status(500).json({ error: 'Failed to redraw island' });
+  }
+});
+
 // Add a route for cURL diagnostics
 router.get('/curl-test', async (req, res) => {
   try {

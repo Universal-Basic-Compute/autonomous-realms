@@ -245,6 +245,32 @@ body::before {
     animation: fadeOut 3s forwards;
 }
 
+.error-notification {
+    background-color: rgba(220, 53, 69, 0.8) !important;
+}
+
+/* Context Menu Styles */
+.context-menu {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 5px 0;
+    z-index: 1000;
+    min-width: 150px;
+}
+
+.context-menu-item {
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.context-menu-item:hover {
+    background-color: #f0f0f0;
+}
+
 @keyframes fadeOut {
     0% { opacity: 1; }
     70% { opacity: 1; }

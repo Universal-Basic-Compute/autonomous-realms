@@ -163,6 +163,27 @@ router.post('/islands/:x/:y/redraw', async (req, res) => {
   }
 });
 
+// Add this route to list music files
+router.get('/audio/music/list', async (req, res) => {
+  try {
+    const musicDir = path.join(__dirname, '../assets/audio/music');
+    
+    // Read the directory
+    const files = await fs.readdir(musicDir);
+    
+    // Filter for audio files
+    const musicFiles = files.filter(file => {
+      const ext = path.extname(file).toLowerCase();
+      return ext === '.mp3' || ext === '.ogg' || ext === '.wav' || ext === '.m4a';
+    });
+    
+    res.json({ tracks: musicFiles });
+  } catch (error) {
+    logger.error(`Error listing music files: ${error.message}`);
+    res.status(500).json({ error: 'Failed to list music files' });
+  }
+});
+
 // Add a route for cURL diagnostics
 router.get('/curl-test', async (req, res) => {
   try {

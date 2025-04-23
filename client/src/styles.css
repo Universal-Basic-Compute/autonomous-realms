@@ -2012,10 +2012,17 @@ body::before {
 
 .resource-name {
   flex-grow: 1;
-  white-space: nowrap;
+  color: #e0e0e0;
+  font-size: 11px;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: #e0e0e0;
+  margin-right: 5px;
+  white-space: normal; /* Changed from nowrap to normal to allow wrapping */
+  line-height: 1.2;
+  max-height: 2.4em; /* Allow for 2 lines of text */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .resource-quantity {

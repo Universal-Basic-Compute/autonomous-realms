@@ -1535,7 +1535,7 @@ function showComputeTransferDialog(walletAddress) {
   const dialogContainer = document.createElement('div');
   dialogContainer.className = 'dialog';
   dialogContainer.style.display = 'flex'; // Ensure it's displayed as flex
-  dialogContainer.style.zIndex = '1000'; // Ensure high z-index
+  dialogContainer.style.zIndex = '2000'; // Increase z-index to ensure it's above welcome menu
   
   // Create dialog content
   const dialogContent = document.createElement('div');

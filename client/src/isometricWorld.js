@@ -110,6 +110,13 @@ export function initWorld() {
             console.log('Language data pre-loaded successfully');
         }
     });
+    
+    // Fetch culture data in the background
+    fetchAndCacheCultureData().then(data => {
+        if (data) {
+            console.log('Culture data pre-loaded successfully');
+        }
+    });
 }
 
 // Fetch available actions for a terrain type
@@ -373,7 +380,7 @@ function showCircularMenu() {
     // Add menu items
     const menuItems = [
         { icon: '🗣️', label: 'Language', action: showLanguageMenu },
-        { icon: '🏛️', label: 'Culture', action: () => console.log('Culture clicked') },
+        { icon: '🏛️', label: 'Culture', action: showCultureMenu },
         { icon: '🛠️', label: 'Crafting', action: () => console.log('Crafting clicked') },
         { icon: '🏠', label: 'Building', action: () => console.log('Building clicked') },
         { icon: '🔍', label: 'Explore', action: () => console.log('Explore clicked') }
@@ -544,6 +551,119 @@ Format the word list in a way that's easy to display in a UI, with the tribe's w
     return languageCache;
   } catch (error) {
     console.error('Error fetching language data:', error);
+    return null;
+  }
+}
+
+// Function to fetch and cache culture data
+async function fetchAndCacheCultureData() {
+  try {
+    // Get the colony name and kin name from localStorage
+    const colonyName = localStorage.getItem('colonyName') || 'Your Colony';
+    const kinName = localStorage.getItem('kinName') || 'defaultcolony';
+    
+    console.log('Fetching culture data for', colonyName);
+    
+    // Prepare the message for KinOS
+    const messageContent = `
+Please provide a detailed analysis of the current cultural development for the tribe "${colonyName}".
+
+Return your response as a JSON object with these properties:
+- language: Current language development status (string)
+- belief: Current belief system development (string)
+- social: Social organization status (string)
+- art: Artistic expression development (string)
+- knowledge: Knowledge systems status (string)
+- rituals: Ritual and ceremony development (string)
+- identity: Identity and community status (string)
+- laws: Rules and customs status (string)
+- trade: Trade and exchange development (string)
+- kinship: Kinship and relations status (string)
+
+For each category, include:
+1. A brief description of the current development stage
+2. A progress value between 0-100 indicating development level
+3. Next possible developments
+
+Example format:
+{
+  "language": {
+    "stage": "Basic Communication",
+    "progress": 15,
+    "description": "Simple gesture system with basic sound signals",
+    "nextSteps": ["Develop consistent naming system", "Create action words"]
+  },
+  "belief": {
+    "stage": "Natural World Beliefs",
+    "progress": 10,
+    "description": "Recognition of weather phenomena and animal spirits",
+    "nextSteps": ["Develop creation stories", "Establish sacred places"]
+  },
+  ...
+}
+`;
+
+    // Make request to KinOS
+    const response = await fetch(`http://localhost:3000/api/kinos/kins/${kinName}/messages`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        content: messageContent,
+        model: "claude-3-7-sonnet-latest",
+        history_length: 25,
+        mode: "culture_analysis",
+        addSystem: "You are a cultural anthropologist analyzing the development of a tribe's culture. Provide a detailed, structured analysis of their current cultural state in JSON format as requested. Make sure your response is valid JSON that can be parsed directly."
+      })
+    });
+    
+    if (!response.ok) {
+      throw new Error(`KinOS API request failed with status ${response.status}: ${response.statusText}`);
+    }
+    
+    const responseData = await response.json();
+    
+    // Try to extract JSON from the response
+    let cultureData = null;
+    
+    // Check for the content in either response or content field
+    const responseContent = responseData.response || responseData.content;
+    
+    // Try to find JSON in the response
+    try {
+      // Look for JSON object pattern
+      const jsonMatch = responseContent.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        cultureData = JSON.parse(jsonMatch[0]);
+      } else {
+        throw new Error('No JSON object found in response');
+      }
+    } catch (parseError) {
+      console.error('Error parsing culture data JSON:', parseError);
+      
+      // Create a basic fallback object
+      cultureData = {
+        language: { stage: "Basic Communication", progress: 10, description: "Simple gestures and sounds", nextSteps: ["Develop more consistent signals"] },
+        belief: { stage: "Natural World Beliefs", progress: 5, description: "Basic recognition of natural phenomena", nextSteps: ["Develop weather interpretations"] },
+        social: { stage: "Family Units", progress: 15, description: "Simple family groupings", nextSteps: ["Establish group decision processes"] },
+        art: { stage: "Body Decoration", progress: 10, description: "Simple body painting and adornment", nextSteps: ["Develop symbolic markings"] },
+        knowledge: { stage: "Environmental Knowledge", progress: 20, description: "Basic understanding of local resources", nextSteps: ["Improve plant identification"] },
+        rituals: { stage: "Life Cycle Rituals", progress: 5, description: "Simple birth and death observances", nextSteps: ["Develop naming rituals"] },
+        identity: { stage: "Personal Identity", progress: 10, description: "Individual recognition within group", nextSteps: ["Develop group symbols"] },
+        laws: { stage: "Basic Rules", progress: 15, description: "Simple resource sharing protocols", nextSteps: ["Establish conflict resolution methods"] },
+        trade: { stage: "Basic Exchange", progress: 10, description: "Direct gifting and food sharing", nextSteps: ["Develop reciprocity expectations"] },
+        kinship: { stage: "Family Structure", progress: 20, description: "Nuclear family units", nextSteps: ["Recognize extended family networks"] }
+      };
+    }
+    
+    // Store in localStorage for persistence
+    localStorage.setItem('cultureData', JSON.stringify(cultureData));
+    console.log('Culture data cached successfully');
+    
+    return cultureData;
+  } catch (error) {
+    console.error('Error fetching culture data:', error);
     return null;
   }
 }
@@ -826,6 +946,452 @@ Please provide:
     // Hide loading, enable button
     loadingElement.classList.add('hidden');
     evolveButton.disabled = false;
+  }
+}
+
+// Show culture development menu
+function showCultureMenu() {
+  // Remove any existing culture menu
+  const existingMenu = document.getElementById('culture-menu');
+  if (existingMenu) {
+    existingMenu.remove();
+  }
+  
+  // Create culture menu container
+  const cultureMenu = document.createElement('div');
+  cultureMenu.id = 'culture-menu';
+  cultureMenu.className = 'submenu';
+  
+  // Add header with close button
+  const menuHeader = document.createElement('div');
+  menuHeader.className = 'submenu-header';
+  
+  const menuTitle = document.createElement('h3');
+  menuTitle.textContent = 'Cultural Development';
+  
+  const closeButton = document.createElement('button');
+  closeButton.className = 'close-submenu';
+  closeButton.innerHTML = '&times;';
+  closeButton.addEventListener('click', () => {
+    cultureMenu.remove();
+  });
+  
+  menuHeader.appendChild(menuTitle);
+  menuHeader.appendChild(closeButton);
+  cultureMenu.appendChild(menuHeader);
+  
+  // Add content
+  const menuContent = document.createElement('div');
+  menuContent.className = 'submenu-content';
+  
+  // Add loading indicator
+  const loadingElement = document.createElement('div');
+  loadingElement.className = 'loading-language';
+  loadingElement.textContent = 'Retrieving cultural information...';
+  menuContent.appendChild(loadingElement);
+  
+  cultureMenu.appendChild(menuContent);
+  
+  // Add to document body
+  document.body.appendChild(cultureMenu);
+  
+  // Try to get culture data from localStorage
+  const cultureDataJSON = localStorage.getItem('cultureData');
+  
+  if (cultureDataJSON) {
+    try {
+      const cultureData = JSON.parse(cultureDataJSON);
+      loadingElement.remove();
+      displayCultureDetails(menuContent, cultureData);
+    } catch (error) {
+      console.error('Error parsing cached culture data:', error);
+      // Fetch fresh data if parsing fails
+      fetchCultureDetails(menuContent, loadingElement);
+    }
+  } else {
+    // No cached data, fetch fresh data
+    fetchCultureDetails(menuContent, loadingElement);
+  }
+}
+
+// Function to fetch culture details
+async function fetchCultureDetails(menuContent, loadingElement) {
+  try {
+    // Fetch and cache the culture data
+    const cultureData = await fetchAndCacheCultureData();
+    
+    // Remove loading indicator
+    loadingElement.remove();
+    
+    // Check if we have culture data before trying to display it
+    if (!cultureData) {
+      console.error('No culture data received');
+      const errorElement = document.createElement('div');
+      errorElement.className = 'evolution-error';
+      errorElement.textContent = 'Error: No cultural data received from server';
+      menuContent.appendChild(errorElement);
+    } else {
+      // Display the culture details
+      displayCultureDetails(menuContent, cultureData);
+    }
+  } catch (error) {
+    console.error('Error fetching culture details:', error);
+    
+    // Remove loading indicator and show error
+    loadingElement.remove();
+    
+    const errorElement = document.createElement('div');
+    errorElement.className = 'evolution-error';
+    errorElement.textContent = `Error: ${error.message}`;
+    menuContent.appendChild(errorElement);
+  }
+}
+
+// Function to display culture details
+function displayCultureDetails(menuContent, cultureData) {
+  // Create culture overview container
+  const overviewContainer = document.createElement('div');
+  overviewContainer.className = 'culture-overview';
+  
+  // Add title
+  const title = document.createElement('h4');
+  title.textContent = 'Cultural Development Overview';
+  overviewContainer.appendChild(title);
+  
+  // Create culture categories grid
+  const categoriesGrid = document.createElement('div');
+  categoriesGrid.className = 'culture-categories-grid';
+  
+  // Define the categories and their icons
+  const categories = [
+    { key: 'language', name: 'Language', icon: '🗣️' },
+    { key: 'belief', name: 'Belief Systems', icon: '🌟' },
+    { key: 'social', name: 'Social Organization', icon: '👥' },
+    { key: 'art', name: 'Artistic Expression', icon: '🎨' },
+    { key: 'knowledge', name: 'Knowledge Systems', icon: '📚' },
+    { key: 'rituals', name: 'Rituals & Ceremonies', icon: '🔮' },
+    { key: 'identity', name: 'Identity & Community', icon: '🏛️' },
+    { key: 'laws', name: 'Rules & Customs', icon: '⚖️' },
+    { key: 'trade', name: 'Trade & Exchange', icon: '🔄' },
+    { key: 'kinship', name: 'Kinship & Relations', icon: '👪' }
+  ];
+  
+  // Add each category to the grid
+  categories.forEach(category => {
+    const categoryData = cultureData[category.key];
+    
+    if (!categoryData) {
+      console.warn(`No data found for category: ${category.key}`);
+      return;
+    }
+    
+    const categoryCard = document.createElement('div');
+    categoryCard.className = 'culture-category-card';
+    categoryCard.dataset.category = category.key;
+    
+    // Add header with icon and name
+    const cardHeader = document.createElement('div');
+    cardHeader.className = 'category-header';
+    
+    const icon = document.createElement('span');
+    icon.className = 'category-icon';
+    icon.textContent = category.icon;
+    
+    const name = document.createElement('h5');
+    name.className = 'category-name';
+    name.textContent = category.name;
+    
+    cardHeader.appendChild(icon);
+    cardHeader.appendChild(name);
+    categoryCard.appendChild(cardHeader);
+    
+    // Add stage
+    const stage = document.createElement('div');
+    stage.className = 'category-stage';
+    stage.textContent = categoryData.stage || 'Not developed';
+    categoryCard.appendChild(stage);
+    
+    // Add progress bar
+    const progressContainer = document.createElement('div');
+    progressContainer.className = 'category-progress-container';
+    
+    const progressBar = document.createElement('div');
+    progressBar.className = 'category-progress-bar';
+    progressBar.style.width = `${categoryData.progress || 0}%`;
+    progressBar.textContent = `${categoryData.progress || 0}%`;
+    
+    progressContainer.appendChild(progressBar);
+    categoryCard.appendChild(progressContainer);
+    
+    // Add click handler to show details
+    categoryCard.addEventListener('click', () => {
+      showCultureCategoryDetails(category, categoryData);
+    });
+    
+    // Add to grid
+    categoriesGrid.appendChild(categoryCard);
+  });
+  
+  overviewContainer.appendChild(categoriesGrid);
+  menuContent.appendChild(overviewContainer);
+  
+  // Add development options section
+  const developmentSection = document.createElement('div');
+  developmentSection.className = 'culture-development-section';
+  
+  const developmentTitle = document.createElement('h4');
+  developmentTitle.textContent = 'Develop Your Culture';
+  developmentSection.appendChild(developmentTitle);
+  
+  const developmentText = document.createElement('p');
+  developmentText.textContent = 'Select a cultural category above to view details and development options.';
+  developmentSection.appendChild(developmentText);
+  
+  menuContent.appendChild(developmentSection);
+}
+
+// Function to show details for a specific culture category
+function showCultureCategoryDetails(category, categoryData) {
+  // Remove any existing details panel
+  const existingPanel = document.getElementById('culture-category-details');
+  if (existingPanel) {
+    existingPanel.remove();
+  }
+  
+  // Create details panel
+  const detailsPanel = document.createElement('div');
+  detailsPanel.id = 'culture-category-details';
+  detailsPanel.className = 'culture-category-details';
+  
+  // Add header
+  const header = document.createElement('div');
+  header.className = 'details-header';
+  
+  const title = document.createElement('h4');
+  title.innerHTML = `${category.icon} ${category.name}`;
+  
+  const closeButton = document.createElement('button');
+  closeButton.className = 'close-details';
+  closeButton.innerHTML = '&times;';
+  closeButton.addEventListener('click', () => {
+    detailsPanel.remove();
+  });
+  
+  header.appendChild(title);
+  header.appendChild(closeButton);
+  detailsPanel.appendChild(header);
+  
+  // Add current status
+  const statusSection = document.createElement('div');
+  statusSection.className = 'details-section';
+  
+  const statusTitle = document.createElement('h5');
+  statusTitle.textContent = 'Current Status';
+  
+  const stageInfo = document.createElement('div');
+  stageInfo.className = 'stage-info';
+  stageInfo.innerHTML = `<strong>Stage:</strong> ${categoryData.stage || 'Not developed'}`;
+  
+  const progressInfo = document.createElement('div');
+  progressInfo.className = 'progress-info';
+  
+  const progressContainer = document.createElement('div');
+  progressContainer.className = 'category-progress-container';
+  
+  const progressBar = document.createElement('div');
+  progressBar.className = 'category-progress-bar';
+  progressBar.style.width = `${categoryData.progress || 0}%`;
+  progressBar.textContent = `${categoryData.progress || 0}%`;
+  
+  progressContainer.appendChild(progressBar);
+  progressInfo.appendChild(progressContainer);
+  
+  const description = document.createElement('p');
+  description.className = 'category-description';
+  description.textContent = categoryData.description || 'No description available.';
+  
+  statusSection.appendChild(statusTitle);
+  statusSection.appendChild(stageInfo);
+  statusSection.appendChild(progressInfo);
+  statusSection.appendChild(description);
+  detailsPanel.appendChild(statusSection);
+  
+  // Add next steps section
+  const nextStepsSection = document.createElement('div');
+  nextStepsSection.className = 'details-section';
+  
+  const nextStepsTitle = document.createElement('h5');
+  nextStepsTitle.textContent = 'Development Options';
+  
+  nextStepsSection.appendChild(nextStepsTitle);
+  
+  if (categoryData.nextSteps && categoryData.nextSteps.length > 0) {
+    const stepsList = document.createElement('ul');
+    stepsList.className = 'next-steps-list';
+    
+    categoryData.nextSteps.forEach(step => {
+      const stepItem = document.createElement('li');
+      
+      const stepButton = document.createElement('button');
+      stepButton.className = 'development-button';
+      stepButton.textContent = step;
+      stepButton.addEventListener('click', () => {
+        developCultureCategory(category.key, step);
+      });
+      
+      stepItem.appendChild(stepButton);
+      stepsList.appendChild(stepItem);
+    });
+    
+    nextStepsSection.appendChild(stepsList);
+  } else {
+    const noSteps = document.createElement('p');
+    noSteps.className = 'no-steps';
+    noSteps.textContent = 'No development options available at this time.';
+    nextStepsSection.appendChild(noSteps);
+  }
+  
+  detailsPanel.appendChild(nextStepsSection);
+  
+  // Add to document body
+  document.body.appendChild(detailsPanel);
+  
+  // Position the panel
+  const cultureMenu = document.getElementById('culture-menu');
+  if (cultureMenu) {
+    const menuRect = cultureMenu.getBoundingClientRect();
+    detailsPanel.style.top = `${menuRect.top}px`;
+    detailsPanel.style.left = `${menuRect.right + 20}px`;
+  }
+}
+
+// Function to develop a culture category
+async function developCultureCategory(categoryKey, developmentOption) {
+  try {
+    // Show loading indicator
+    const loadingIndicator = document.createElement('div');
+    loadingIndicator.className = 'loading-indicator';
+    loadingIndicator.textContent = 'Developing culture...';
+    document.body.appendChild(loadingIndicator);
+    
+    // Get the colony name and kin name from localStorage
+    const colonyName = localStorage.getItem('colonyName') || 'Your Colony';
+    const kinName = localStorage.getItem('kinName') || 'defaultcolony';
+    
+    // Get current culture data
+    const cultureDataJSON = localStorage.getItem('cultureData');
+    const cultureData = cultureDataJSON ? JSON.parse(cultureDataJSON) : {};
+    
+    // Prepare the message for KinOS
+    const messageContent = `
+I want to develop the ${categoryKey} aspect of my tribe "${colonyName}" by focusing on: "${developmentOption}".
+
+Current cultural state:
+${JSON.stringify(cultureData, null, 2)}
+
+Please update the cultural data to reflect this development. Return the complete updated culture data as a JSON object with the same structure, showing how this development affects the ${categoryKey} category and potentially other related categories.
+
+Make sure the progress values increase appropriately and new nextSteps are provided where relevant.
+`;
+
+    // Make request to KinOS
+    const response = await fetch(`http://localhost:3000/api/kinos/kins/${kinName}/messages`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        content: messageContent,
+        model: "claude-3-7-sonnet-latest",
+        history_length: 25,
+        mode: "culture_development",
+        addSystem: "You are a cultural anthropologist helping to develop a realistic cultural evolution for a prehistoric tribe. Update the cultural data based on the user's development choice, providing a plausible progression. Return only valid JSON that matches the original structure but with updated values."
+      })
+    });
+    
+    if (!response.ok) {
+      throw new Error(`KinOS API request failed with status ${response.status}: ${response.statusText}`);
+    }
+    
+    const responseData = await response.json();
+    
+    // Try to extract JSON from the response
+    let updatedCultureData = null;
+    
+    // Check for the content in either response or content field
+    const responseContent = responseData.response || responseData.content;
+    
+    // Try to find JSON in the response
+    try {
+      // Look for JSON object pattern
+      const jsonMatch = responseContent.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        updatedCultureData = JSON.parse(jsonMatch[0]);
+      } else {
+        throw new Error('No JSON object found in response');
+      }
+    } catch (parseError) {
+      console.error('Error parsing updated culture data JSON:', parseError);
+      throw new Error('Failed to parse culture development response');
+    }
+    
+    // Store updated culture data
+    localStorage.setItem('cultureData', JSON.stringify(updatedCultureData));
+    
+    // Remove loading indicator
+    loadingIndicator.remove();
+    
+    // Show success notification
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.textContent = `Successfully developed ${categoryKey}: ${developmentOption}`;
+    document.body.appendChild(notification);
+    
+    // Remove notification after a delay
+    setTimeout(() => {
+      notification.classList.add('fade-out');
+      setTimeout(() => notification.remove(), 1000);
+    }, 5000);
+    
+    // Refresh the culture menu
+    const existingMenu = document.getElementById('culture-menu');
+    if (existingMenu) {
+      const menuContent = existingMenu.querySelector('.submenu-content');
+      if (menuContent) {
+        menuContent.innerHTML = '';
+        displayCultureDetails(menuContent, updatedCultureData);
+      }
+    }
+    
+    // Close the details panel
+    const detailsPanel = document.getElementById('culture-category-details');
+    if (detailsPanel) {
+      detailsPanel.remove();
+    }
+    
+    return updatedCultureData;
+  } catch (error) {
+    console.error('Error developing culture category:', error);
+    
+    // Remove loading indicator if it exists
+    const loadingIndicator = document.querySelector('.loading-indicator');
+    if (loadingIndicator) {
+      loadingIndicator.remove();
+    }
+    
+    // Show error notification
+    const notification = document.createElement('div');
+    notification.className = 'notification error-notification';
+    notification.textContent = `Error developing culture: ${error.message}`;
+    document.body.appendChild(notification);
+    
+    // Remove notification after a delay
+    setTimeout(() => {
+      notification.classList.add('fade-out');
+      setTimeout(() => notification.remove(), 1000);
+    }, 5000);
+    
+    return null;
   }
 }
 

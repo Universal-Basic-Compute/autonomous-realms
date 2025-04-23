@@ -1229,6 +1229,193 @@ body::before {
     white-space: pre-wrap;
 }
 
+/* Culture Menu Styles */
+.culture-overview {
+  background-color: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.culture-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.culture-category-card {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.culture-category-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-color: #4CAF50;
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.category-icon {
+  font-size: 20px;
+  margin-right: 8px;
+}
+
+.category-name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.category-stage {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.category-progress-container {
+  width: 100%;
+  height: 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.category-progress-bar {
+  height: 100%;
+  background-color: #4CAF50;
+  border-radius: 5px;
+  font-size: 8px;
+  color: white;
+  text-align: center;
+  line-height: 10px;
+}
+
+.culture-development-section {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.culture-development-section h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.culture-development-section p {
+  margin-bottom: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Culture Category Details Panel */
+.culture-category-details {
+  position: fixed;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  z-index: 220;
+  width: 300px;
+  max-height: 80%;
+  overflow-y: auto;
+}
+
+.details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.details-header h4 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.close-details {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #666;
+}
+
+.details-section {
+  margin-bottom: 20px;
+}
+
+.details-section h5 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #4CAF50;
+  font-size: 14px;
+}
+
+.stage-info {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.category-description {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #555;
+}
+
+.next-steps-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.next-steps-list li {
+  margin-bottom: 8px;
+}
+
+.development-button {
+  width: 100%;
+  padding: 8px 12px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: left;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.development-button:hover {
+  background-color: #e0e0e0;
+  border-color: #4CAF50;
+}
+
+.no-steps {
+  font-style: italic;
+  color: #888;
+  font-size: 13px;
+}
+
 /* Action Progress Bar */
 .action-progress-container {
   width: 100%;

@@ -2667,11 +2667,11 @@ function updateWorldTransform() {
 
 // Convert grid coordinates to isometric screen coordinates
 function gridToIso(x, y) {
-    // Apply isometric projection
-    const isoX = (x - y) * (config.tileWidth / 2);
+    // Apply isometric projection with 20% horizontal overlap
+    const isoX = (x - y) * (config.tileWidth * 0.8);
     
-    // Use 50% vertical overlap for better visibility
-    const isoY = (x + y) * (config.tileHeight / 2);
+    // Use 75% vertical overlap for better visibility
+    const isoY = (x + y) * (config.tileHeight * 0.25);
     
     return { x: isoX, y: isoY };
 }

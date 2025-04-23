@@ -870,6 +870,11 @@ async function performAction(action) {
 // Parse the action response from KinOS into a structured format
 function parseActionResponse(responseText) {
     try {
+        // Check if responseText is undefined or null
+        if (!responseText) {
+            return { fullText: "No response received from KinOS." };
+        }
+        
         // First try to find a JSON object in the response
         const jsonMatch = responseText.match(/\{[\s\S]*\}/);
         if (jsonMatch) {
@@ -933,7 +938,7 @@ function parseActionResponse(responseText) {
         return sections;
     } catch (error) {
         console.error('Error parsing action response:', error);
-        return { fullText: responseText };
+        return { fullText: responseText || "Error parsing response" };
     }
 }
 

@@ -691,19 +691,20 @@ body::before {
 .welcome-menu {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  width: 250px; /* Reduced from 300px */
+  gap: 10px; /* Reduced from 15px */
+  width: 200px; /* Reduced from 250px */
 }
 
 .welcome-button {
-  padding: 12px 15px; /* Reduced from 15px 20px */
-  font-size: 16px; /* Reduced from 18px */
+  padding: 10px 12px; /* Reduced from 12px 15px */
+  font-size: 14px; /* Reduced from 16px */
   background-color: rgba(76, 175, 80, 0.8);
   border: 2px solid rgba(76, 175, 80, 1);
   color: white;
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.2s;
+  margin-bottom: 8px; /* Add spacing between buttons */
 }
 
 .welcome-button:hover {

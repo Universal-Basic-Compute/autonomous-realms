@@ -81,7 +81,7 @@ const worldContainer = document.getElementById('isometric-world');
 const tileInfoElement = document.getElementById('tile-info');
 
 // Initialize the world
-function initWorld() {
+export function initWorld() {
     // Calculate the center of the grid in isometric coordinates
     const centerX = Math.floor(config.gridSize / 2);
     const centerY = Math.floor(config.gridSize / 2);

@@ -1,3 +1,5 @@
+import { initWorld } from './isometricWorld.js';
+
 // Create a welcome screen with menu options
 function createWelcomeScreen() {
   // Create container

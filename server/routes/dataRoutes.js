@@ -158,7 +158,7 @@ router.get('/culture/:category', (req, res) => {
   }
 });
 
-// Get actions for a terrain using Claude AI
+// Get actions for a terrain using KinOS analysis
 router.get('/actions/ai/:terrainType', async (req, res) => {
   try {
     const { terrainType } = req.params;
@@ -181,7 +181,7 @@ router.get('/actions/ai/:terrainType', async (req, res) => {
       }
     }
     
-    // If we found local actions, use those instead of calling Claude
+    // If we found local actions, use those instead of calling KinOS
     if (actions.length > 0) {
       logger.info(`Using local actions for ${baseTerrainCode} (${actions.length} actions found)`);
       return res.json(actions);
@@ -191,13 +191,7 @@ router.get('/actions/ai/:terrainType', async (req, res) => {
     const actionsDocPath = path.join(__dirname, '../../docs/initial_actions.md');
     const actionsDoc = await fs.readFile(actionsDocPath, 'utf8');
     
-    // Prepare the system prompt with the actions reference
-    const systemPrompt = `You are a game world assistant that determines what actions are available for a given terrain type.
-Use the following actions reference guide to determine appropriate actions:
-
-${actionsDoc}`;
-    
-    // Prepare the user prompt
+    // Prepare the message for KinOS analysis
     const userPrompt = `Based on the terrain code "${terrainType}", provide a list of available actions that would be realistic and appropriate.
 
 The base terrain type is "${baseTerrainCode}" (the part before the first "|").
@@ -228,36 +222,34 @@ Example response format:
   }
 ]`;
 
-    logger.debug(`Making Claude API request for terrain ${baseTerrainCode}`);
+    // Additional system instructions
+    const systemInstructions = `You are a game world assistant that determines what actions are available for a given terrain type.
+Use the following actions reference guide to determine appropriate actions:
+
+${actionsDoc}`;
+
+    logger.debug(`Making KinOS analysis request for terrain ${baseTerrainCode}`);
     
-    // Make request to Claude API
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    // Make request to KinOS analysis endpoint
+    const response = await fetch('http://localhost:5000/v2/blueprints/autonomousrealms/kins/defaultcolony/analysis', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': process.env.CLAUDE_API_KEY || config.CLAUDE_API_KEY,
-        'anthropic-version': '2023-06-01'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
+        message: userPrompt,
         model: "claude-3-7-sonnet-latest",
-        max_tokens: 4000,
-        system: systemPrompt,
-        messages: [
-          {
-            role: "user",
-            content: userPrompt
-          }
-        ]
+        addSystem: systemInstructions
       })
     });
 
     if (!response.ok) {
       const errorText = await response.text();
-      logger.error(`Claude API request failed with status ${response.status}: ${errorText}`);
+      logger.error(`KinOS analysis request failed with status ${response.status}: ${errorText}`);
       
-      // If we have a Claude API error but found local actions as fallback, use those
+      // If we have local actions as fallback, use those
       if (actions.length > 0) {
-        logger.info(`Using fallback local actions after Claude API error`);
+        logger.info(`Using fallback local actions after KinOS API error`);
         return res.json(actions);
       }
       
@@ -268,10 +260,14 @@ Example response format:
     }
 
     const responseData = await response.json();
-    logger.debug(`Claude API response received`);
+    logger.debug(`KinOS analysis response received`);
+    
+    if (!responseData.response) {
+      throw new Error('Invalid response from KinOS: No response field found');
+    }
     
     // Extract the JSON array from Claude's response
-    const contentText = responseData.content[0].text;
+    const contentText = responseData.response;
     
     // Try to parse the JSON
     try {
@@ -279,17 +275,17 @@ Example response format:
       const jsonMatch = contentText.match(/\[\s*\{[\s\S]*\}\s*\]/);
       if (jsonMatch) {
         actions = JSON.parse(jsonMatch[0]);
-        logger.info(`Successfully parsed ${actions.length} actions from Claude response`);
+        logger.info(`Successfully parsed ${actions.length} actions from KinOS response`);
       } else {
-        throw new Error('Could not find JSON array in Claude response');
+        throw new Error('Could not find JSON array in KinOS response');
       }
     } catch (parseError) {
-      logger.error(`Error parsing Claude response: ${parseError.message}`);
-      logger.debug(`Claude response: ${contentText}`);
+      logger.error(`Error parsing KinOS response: ${parseError.message}`);
+      logger.debug(`KinOS response: ${contentText}`);
       
       // If we have local actions as fallback, use those
       if (actions.length > 0) {
-        logger.info(`Using fallback local actions after Claude response parsing error`);
+        logger.info(`Using fallback local actions after KinOS response parsing error`);
         return res.json(actions);
       }
       
@@ -425,7 +421,7 @@ router.get('/actions/ai/:terrainCode/narration', async (req, res) => {
   }
 });
 
-// Add this function to generate narration using Claude AI
+// Add this function to generate narration using KinOS analysis
 async function generateAINarrationForTerrain(terrainCode) {
   try {
     // Extract the base terrain code and any modifiers
@@ -433,39 +429,36 @@ async function generateAINarrationForTerrain(terrainCode) {
     const baseTerrainCode = parts[0];
     const modifiers = parts.slice(1);
     
-    // Create a prompt for Claude to generate a narration
+    // Create a prompt for KinOS analysis
     const prompt = `Write a single, vivid sentence describing settlers arriving at a ${getTerrainDescription(baseTerrainCode)} terrain for the first time. The sentence should evoke the feeling of discovery and the unique characteristics of this terrain. Keep it under 150 characters if possible.
 
 Terrain code: ${baseTerrainCode}
 Modifiers: ${modifiers.join(', ')}`;
 
-    // Make request to Claude API
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    // Make request to KinOS analysis endpoint
+    const response = await fetch('http://localhost:5000/v2/blueprints/autonomousrealms/kins/defaultcolony/analysis', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': process.env.CLAUDE_API_KEY || config.CLAUDE_API_KEY,
-        'anthropic-version': '2023-06-01'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        model: "claude-3-7-sonnet-latest", // Updated from claude-3-haiku-20240307
-        max_tokens: 150,
-        messages: [
-          {
-            role: "user",
-            content: prompt
-          }
-        ]
+        message: prompt,
+        model: "claude-3-7-sonnet-latest"
       })
     });
 
     if (!response.ok) {
       const errorText = await response.text();
-      throw new Error(`Claude API request failed with status ${response.status}: ${errorText}`);
+      throw new Error(`KinOS analysis request failed with status ${response.status}: ${errorText}`);
     }
 
     const responseData = await response.json();
-    const narration = responseData.content[0].text.trim();
+    
+    if (!responseData.response) {
+      throw new Error('Invalid response from KinOS: No response field found');
+    }
+    
+    const narration = responseData.response.trim();
     
     // Log the generated narration
     logger.info(`Generated narration for ${terrainCode}: ${narration}`);

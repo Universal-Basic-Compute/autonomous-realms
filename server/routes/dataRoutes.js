@@ -561,18 +561,34 @@ Terrain type: ${terrainCode}
 Description: ${terrainDescription}
 
 IMPORTANT REQUIREMENTS:
-1. Write ONLY in the colony's constructed language (no translations)
-2. Format as simple dialogue with one line per speaker (2-3 speakers total)
+1. Write dialogue in the colony's constructed language
+2. Format as a JSON array with 2-3 speakers
 3. Each line should be short (5-10 words maximum)
 4. The conversation should relate to exploring or reacting to this specific terrain
-5. Do NOT include any explanations, translations, or notes - ONLY the dialogue lines
+5. Include both the original language and a literal English translation for each line
 
-Example format:
-Speaker 1: "Kafa mero santi loma!"
-Speaker 2: "Eh, vero nata suni."
-Speaker 3: "Mika tala fero noss."
+Return your response as a JSON array with this structure:
+[
+  {
+    "speaker": "Speaker 1",
+    "original": "Kafa mero santi loma!",
+    "translation": "Look at beautiful mountain!",
+    "voiceId": "IKne3meq5aSn9XLyUdCD"
+  },
+  {
+    "speaker": "Speaker 2",
+    "original": "Eh, vero nata suni.",
+    "translation": "Yes, very tall stone.",
+    "voiceId": "pNInz6obpgDQGcFmaJgB"
+  }
+]
 
-Return ONLY the dialogue lines, nothing else.
+Use these voice IDs in your response:
+- "IKne3meq5aSn9XLyUdCD" (Voice 1)
+- "pNInz6obpgDQGcFmaJgB" (Voice 2)
+- "XB0fDUnXU5powFXDhCwa" (Voice 3)
+
+Return ONLY the valid JSON array, nothing else.
 `;
 
     // Make request to KinOS
@@ -586,7 +602,7 @@ Return ONLY the dialogue lines, nothing else.
         model: "claude-3-7-sonnet-latest",
         history_length: 25,
         mode: "tile_conversation",
-        addSystem: "You are a linguistic anthropologist creating authentic dialogue in a constructed language. Generate only the requested dialogue lines in the constructed language with no translations or explanations. The language should be consistent with previous examples and have its own phonology and grammar patterns."
+        addSystem: "You are a linguistic anthropologist creating authentic dialogue in a constructed language. Generate the requested dialogue in JSON format with both the constructed language and literal English translations. The language should be consistent with previous examples and have its own phonology and grammar patterns."
       })
     });
     
@@ -602,31 +618,24 @@ Return ONLY the dialogue lines, nothing else.
     // Remove the loading indicator
     loadingIndicator.remove();
     
-    // Split into individual lines
-    const lines = conversationText.split('\n').filter(line => line.trim() !== '');
+    // Parse the JSON response
+    let dialogueLines = [];
+    try {
+      // Find JSON array in the response
+      const jsonMatch = conversationText.match(/\[[\s\S]*\]/);
+      if (jsonMatch) {
+        dialogueLines = JSON.parse(jsonMatch[0]);
+      } else {
+        throw new Error('No valid JSON found in response');
+      }
+    } catch (error) {
+      console.error('Error parsing dialogue JSON:', error);
+      return null;
+    }
     
-    // Play each line with a different voice
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i];
-      
-      // Skip any non-dialogue lines (instructions, etc.)
-      if (!line.includes(':')) continue;
-      
-      // Extract just the dialogue part (after the colon)
-      const dialogueParts = line.split(':');
-      if (dialogueParts.length < 2) continue;
-      
-      const dialogue = dialogueParts[1].trim();
-      
-      // Generate TTS for this line with a specific voice ID based on the line index
-      // We'll use a different voice for each speaker
-      const voiceIds = [
-        "IKne3meq5aSn9XLyUdCD", // Voice 1
-        "pNInz6obpgDQGcFmaJgB", // Voice 2
-        "XB0fDUnXU5powFXDhCwa"  // Voice 3
-      ];
-      
-      const voiceId = voiceIds[i % voiceIds.length];
+    // Play each line with the specified voice
+    for (let i = 0; i < dialogueLines.length; i++) {
+      const line = dialogueLines[i];
       
       try {
         const ttsResponse = await fetch(`${config.serverUrl}/api/data/actions/ai/tts`, {
@@ -635,8 +644,8 @@ Return ONLY the dialogue lines, nothing else.
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            text: dialogue,
-            voice_id: voiceId
+            text: line.original,
+            voice_id: line.voiceId
           })
         });
         
@@ -649,10 +658,14 @@ Return ONLY the dialogue lines, nothing else.
               ? `${config.serverUrl}${ttsData.audio_url}` 
               : ttsData.audio_url;
             
-            // Create a notification with the text
+            // Create a notification with both original text and translation
             const dialogueNotification = document.createElement('div');
             dialogueNotification.className = 'dialogue-notification';
-            dialogueNotification.textContent = dialogue;
+            dialogueNotification.innerHTML = `
+              <div class="dialogue-speaker">${line.speaker}:</div>
+              <div class="dialogue-original">${line.original}</div>
+              <div class="dialogue-translation">${line.translation}</div>
+            `;
             document.body.appendChild(dialogueNotification);
             
             // Play the audio
@@ -676,7 +689,7 @@ Return ONLY the dialogue lines, nothing else.
       }
     }
     
-    return lines;
+    return dialogueLines;
   } catch (error) {
     console.error('Error generating tile conversation:', error);
     return null;

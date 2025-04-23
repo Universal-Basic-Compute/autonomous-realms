@@ -232,8 +232,8 @@ async function generateIslandImage(island, index) {
     logger.info(`Generating image for terrain at ${island.coordinates.x},${island.coordinates.y}`);
     
     // Create a prompt for Ideogram based on the island description
-    // Updated to request isolated realistic terrain tiles instead of floating islands
-    const prompt = `isolated realistic terrain tile with ${island.description}, white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile`;
+    // Updated to explicitly request isometric view and isolated tile
+    const prompt = `isometric view of isolated realistic terrain tile with ${island.description}, white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective`;
     
     // Prepare request data
     const requestData = {

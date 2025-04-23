@@ -547,6 +547,49 @@ const actions = {
       { code: "D-002", name: "Attempt First Taming", description: "Try to domesticate wild animals" },
       { code: "S-001", name: "Establish Gathering Place", description: "Create a central location for community activities" },
       { code: "X-001", name: "Survey Open Terrain", description: "Explore and map the surrounding grassland" }
+    ],
+    "P-TAL": [
+      { code: "G-001", name: "Gather Wild Grasses", description: "Collect tall grasses for construction and crafting" },
+      { code: "G-002", name: "Collect Edible Seeds", description: "Harvest seeds from tall grass species" },
+      { code: "H-001", name: "Hunt Small Game", description: "Hunt animals hiding in the tall grass" },
+      { code: "C-001", name: "Build Grass Shelters", description: "Construct shelters using abundant tall grass" },
+      { code: "X-001", name: "Survey Grass Patterns", description: "Study wind patterns through grass movement" }
+    ],
+    "P-FLW": [
+      { code: "G-001", name: "Gather Wild Grasses", description: "Collect grasses for various uses" },
+      { code: "G-003", name: "Harvest Wild Fruits", description: "Gather fruits from wild plants" },
+      { code: "G-004", name: "Gather Medicinal Plants", description: "Collect plants with healing properties" },
+      { code: "G-005", name: "Collect Honey", description: "Gather honey from wild bees attracted to flowers" },
+      { code: "A-003", name: "Create Garden Plots", description: "Establish small areas for intensive plant cultivation" },
+      { code: "S-002", name: "Perform Seasonal Rituals", description: "Conduct ceremonies related to flowering cycles" },
+      { code: "S-003", name: "Create Floral Decorations", description: "Make decorative items from flowers" }
+    ],
+    "P-DRY": [
+      { code: "G-001", name: "Gather Wild Grasses", description: "Collect grasses for various uses (limited)" },
+      { code: "G-006", name: "Collect Drought-Resistant Seeds", description: "Gather seeds from hardy plants" },
+      { code: "H-001", name: "Hunt Small Game", description: "Hunt animals adapted to dry conditions" },
+      { code: "H-003", name: "Track Larger Herds", description: "Follow migrating animals seeking water" },
+      { code: "C-002", name: "Build Shade Structures", description: "Construct shelters focused on providing shade" },
+      { code: "T-001", name: "Create Hunting Weapons", description: "Craft tools for hunting in open terrain" },
+      { code: "W-001", name: "Dig Simple Wells", description: "Create access to underground water" },
+      { code: "X-002", name: "Search for Water Sources", description: "Explore to find hidden water" },
+      { code: "X-003", name: "Scout Migration Routes", description: "Map paths of animal movement" }
+    ],
+    "P-FRT": [
+      { code: "G-001", name: "Gather Wild Grasses", description: "Collect grasses for various uses" },
+      { code: "G-002", name: "Collect Edible Roots", description: "Dig up abundant edible roots" },
+      { code: "G-003", name: "Harvest Wild Fruits", description: "Gather fruits from wild plants" },
+      { code: "C-001", name: "Build Grass Huts", description: "Construct simple shelters using grass" },
+      { code: "C-003", name: "Create Storage Structures", description: "Build places to store harvested food" },
+      { code: "A-001", name: "Clear Land for Planting", description: "Prepare ground for cultivation" },
+      { code: "A-002", name: "Plant Wild Seeds", description: "Sow collected seeds in prepared ground" },
+      { code: "A-003", name: "Create Garden Plots", description: "Establish small areas for intensive plant cultivation" },
+      { code: "A-004", name: "Establish First Field", description: "Create larger cultivated area" },
+      { code: "D-001", name: "Observe Animal Patterns", description: "Study animal behavior for future hunting" },
+      { code: "D-002", name: "Attempt First Taming", description: "Try to domesticate wild animals" },
+      { code: "D-003", name: "Create Grazing Area", description: "Establish protected area for animals" },
+      { code: "S-001", name: "Establish Gathering Place", description: "Create a central location for community activities" },
+      { code: "S-004", name: "Mark Territory Boundaries", description: "Define the limits of your settlement area" }
     ]
   },
   forest: {
@@ -572,6 +615,244 @@ const actions = {
       { code: "C-006", name: "Create Pine Needle Bedding", description: "Make comfortable bedding from pine needles" },
       { code: "T-004", name: "Make Pitch Adhesive", description: "Create sticky substance for binding" },
       { code: "X-004", name: "Scout Forest Interior", description: "Explore deeper into the forest" }
+    ],
+    "F-JUN": [
+      { code: "G-003", name: "Harvest Wild Fruits", description: "Gather fruits from jungle plants" },
+      { code: "G-004", name: "Gather Medicinal Plants", description: "Collect tropical plants with healing properties" },
+      { code: "G-012", name: "Collect Tropical Fibers", description: "Gather strong plant fibers for crafting" },
+      { code: "G-013", name: "Gather Exotic Seeds", description: "Collect seeds from unusual jungle plants" },
+      { code: "H-006", name: "Hunt Jungle Prey", description: "Hunt animals adapted to jungle environment" },
+      { code: "C-007", name: "Build Elevated Structures", description: "Construct shelters raised above the ground" },
+      { code: "C-008", name: "Create Rain Shelters", description: "Build structures to protect from tropical rain" },
+      { code: "T-005", name: "Make Fiber Ropes", description: "Create strong cordage from jungle plants" },
+      { code: "T-006", name: "Create Woven Containers", description: "Weave baskets and containers from flexible materials" }
+    ],
+    "F-DES": [
+      { code: "G-008", name: "Gather Fallen Wood", description: "Collect abundant deadwood" },
+      { code: "G-014", name: "Collect Fungus", description: "Gather mushrooms growing on dead trees" },
+      { code: "H-007", name: "Hunt Scavengers", description: "Hunt animals that feed on decaying matter" },
+      { code: "C-009", name: "Build With Deadwood", description: "Construct structures using dead trees" },
+      { code: "T-007", name: "Make Charcoal", description: "Create charcoal from deadwood" },
+      { code: "X-005", name: "Investigate Forest Decline", description: "Study what caused the forest to die" }
+    ],
+    "F-MAN": [
+      { code: "G-015", name: "Collect Shellfish", description: "Gather mollusks from mangrove roots" },
+      { code: "G-016", name: "Gather Mangrove Fruits", description: "Collect fruits from mangrove trees" },
+      { code: "H-008", name: "Hunt Wading Birds", description: "Hunt birds that feed in shallow water" },
+      { code: "H-009", name: "Fish In Mangrove Roots", description: "Catch fish hiding among roots" },
+      { code: "C-010", name: "Build Stilted Structures", description: "Construct homes elevated above water" },
+      { code: "T-008", name: "Make Reed Baskets", description: "Weave containers from water plants" },
+      { code: "T-009", name: "Craft Fishing Tools", description: "Create specialized tools for mangrove fishing" },
+      { code: "W-002", name: "Navigate Tidal Channels", description: "Learn to move through changing water levels" }
+    ]
+  },
+  desert: {
+    "D-SND": [
+      { code: "G-017", name: "Gather Desert Seeds", description: "Collect seeds from desert plants" },
+      { code: "G-018", name: "Collect Desert Plants", description: "Gather drought-resistant vegetation" },
+      { code: "H-010", name: "Hunt Desert Animals", description: "Hunt creatures adapted to arid conditions" },
+      { code: "C-011", name: "Dig Sand Shelters", description: "Create shelters partially buried in sand" },
+      { code: "C-012", name: "Create Shade Structures", description: "Build shelters focused on providing shade" },
+      { code: "T-010", name: "Make Sun Protection", description: "Craft items to shield from intense sunlight" },
+      { code: "W-003", name: "Dig Deep Wells", description: "Create access to underground water" },
+      { code: "X-006", name: "Search For Oases", description: "Explore to find water sources" }
+    ],
+    "D-ROC": [
+      { code: "G-019", name: "Gather Lithic Material", description: "Collect stone for tool making" },
+      { code: "G-020", name: "Collect Desert Herbs", description: "Gather rare plants growing among rocks" },
+      { code: "H-010", name: "Hunt Desert Animals", description: "Hunt creatures adapted to rocky terrain" },
+      { code: "C-013", name: "Build Stone Shelters", description: "Construct dwellings using abundant stone" },
+      { code: "T-011", name: "Create Stone Tools", description: "Craft implements from quality stone" },
+      { code: "W-004", name: "Collect Dew Water", description: "Gather moisture that collects on rocks" },
+      { code: "X-007", name: "Find Cave Shelters", description: "Locate natural shelters in rock formations" },
+      { code: "X-008", name: "Look For Mineral Deposits", description: "Search for valuable minerals" }
+    ],
+    "D-OAS": [
+      { code: "G-003", name: "Harvest Wild Fruits", description: "Gather fruits growing near water" },
+      { code: "G-021", name: "Collect Palm Fibers", description: "Gather materials from palm trees" },
+      { code: "G-022", name: "Gather Water Plants", description: "Collect plants growing in or near water" },
+      { code: "H-011", name: "Hunt Oasis Visitors", description: "Hunt animals that come to drink" },
+      { code: "H-012", name: "Fish In Oasis Pool", description: "Catch fish from the oasis water" },
+      { code: "C-014", name: "Build Oasis Shelters", description: "Construct homes near the water source" },
+      { code: "A-005", name: "Plant Date Palms", description: "Cultivate palm trees for food" },
+      { code: "A-006", name: "Create Irrigated Gardens", description: "Build small gardens using oasis water" },
+      { code: "W-005", name: "Maintain Water Source", description: "Work to preserve the oasis water" },
+      { code: "S-006", name: "Establish Trading Post", description: "Create a location for desert travelers to trade" }
+    ]
+  },
+  mountains: {
+    "M-LOW": [
+      { code: "G-023", name: "Gather Mountain Herbs", description: "Collect unique plants from mountain slopes" },
+      { code: "G-024", name: "Collect Mountain Berries", description: "Gather berries that grow at higher elevations" },
+      { code: "H-013", name: "Hunt Mountain Goats", description: "Hunt agile animals on rocky terrain" },
+      { code: "H-014", name: "Set Cliff Traps", description: "Place traps in strategic mountain locations" },
+      { code: "C-015", name: "Build Against Slopes", description: "Construct shelters using the natural incline" },
+      { code: "M-001", name: "Collect Surface Stones", description: "Gather useful rocks and stones" },
+      { code: "M-002", name: "Find Mineral Deposits", description: "Search for valuable minerals" },
+      { code: "X-009", name: "Scout Mountain Passes", description: "Explore routes through the mountains" },
+      { code: "X-010", name: "Search For Caves", description: "Look for natural shelters in the rock" }
+    ],
+    "M-HIG": [
+      { code: "G-025", name: "Gather Alpine Plants", description: "Collect rare plants from high elevations" },
+      { code: "H-015", name: "Hunt High Altitude Game", description: "Hunt animals adapted to mountain heights" },
+      { code: "C-016", name: "Build Windbreak Shelters", description: "Construct homes protected from strong winds" },
+      { code: "C-017", name: "Create Stone Markers", description: "Build cairns and other navigation aids" },
+      { code: "M-003", name: "Find Gem Deposits", description: "Search for precious stones" },
+      { code: "M-004", name: "Collect Pure Water", description: "Gather water from mountain springs" },
+      { code: "X-011", name: "Establish Lookout Points", description: "Create observation posts with wide views" },
+      { code: "S-007", name: "Create Summit Shrine", description: "Build a sacred place at high elevation" }
+    ],
+    "M-VOL": [
+      { code: "G-026", name: "Collect Volcanic Glass", description: "Gather obsidian for tools" },
+      { code: "G-027", name: "Gather Sulfur Deposits", description: "Collect yellow mineral deposits" },
+      { code: "C-018", name: "Build Heat-Resistant Shelter", description: "Create dwellings that withstand volcanic heat" },
+      { code: "M-005", name: "Harvest Obsidian", description: "Collect volcanic glass for sharp tools" },
+      { code: "M-006", name: "Collect Mineral Deposits", description: "Gather unique minerals formed by volcanic activity" },
+      { code: "T-012", name: "Create Obsidian Tools", description: "Craft extremely sharp implements" },
+      { code: "X-012", name: "Find Hot Springs", description: "Locate naturally heated water sources" },
+      { code: "S-008", name: "Establish Fire Rituals", description: "Create ceremonies honoring volcanic forces" }
+    ],
+    "M-FOO": [
+      { code: "G-023", name: "Gather Mountain Herbs", description: "Collect unique plants from foothills" },
+      { code: "G-028", name: "Collect Foothill Plants", description: "Gather plants from transitional zones" },
+      { code: "H-016", name: "Hunt Transitional Game", description: "Hunt animals that move between ecosystems" },
+      { code: "C-019", name: "Build Against Hill", description: "Construct shelters using the natural hill" },
+      { code: "C-020", name: "Create Terraced Space", description: "Build level areas on sloped ground" },
+      { code: "A-007", name: "Establish Hill Gardens", description: "Create gardens on sloped terrain" },
+      { code: "X-013", name: "Find Cave Shelters", description: "Look for natural shelters in hillsides" },
+      { code: "X-014", name: "Locate Springs", description: "Find water sources emerging from hills" }
+    ]
+  },
+  water: {
+    "W-RIV": [
+      { code: "G-029", name: "Collect Riverbank Clay", description: "Gather clay deposits from river edges" },
+      { code: "G-030", name: "Gather River Plants", description: "Collect plants growing in and near water" },
+      { code: "H-017", name: "Fish River Waters", description: "Catch fish from the flowing water" },
+      { code: "H-018", name: "Hunt River Visitors", description: "Hunt animals that come to drink" },
+      { code: "C-021", name: "Build Near Riverbank", description: "Construct shelters close to water access" },
+      { code: "T-013", name: "Make Clay Vessels", description: "Create containers from river clay" },
+      { code: "T-014", name: "Create Fishing Tools", description: "Craft implements for catching fish" },
+      { code: "W-006", name: "Create Water Channel", description: "Dig small channels to direct water flow" },
+      { code: "W-007", name: "Build Simple Dock", description: "Construct platform for water access" },
+      { code: "X-015", name: "Follow River Course", description: "Explore along the river path" }
+    ],
+    "W-LAK": [
+      { code: "G-030", name: "Gather River Plants", description: "Collect plants growing in and near water" },
+      { code: "G-031", name: "Collect Lakeside Reeds", description: "Gather tall water plants for crafting" },
+      { code: "H-017", name: "Fish River Waters", description: "Catch fish from the lake" },
+      { code: "H-019", name: "Hunt Lake Birds", description: "Hunt waterfowl and shore birds" },
+      { code: "C-022", name: "Build Lakeside Shelters", description: "Construct homes near the lake shore" },
+      { code: "C-023", name: "Create Fish Drying Racks", description: "Build structures for preserving fish" },
+      { code: "T-014", name: "Create Fishing Tools", description: "Craft implements for catching fish" },
+      { code: "T-015", name: "Make Reed Boats", description: "Construct simple watercraft from reeds" },
+      { code: "W-008", name: "Build Lake Access", description: "Create safe ways to reach the water" }
+    ],
+    "W-SWP": [
+      { code: "G-031", name: "Collect Lakeside Reeds", description: "Gather tall water plants for crafting" },
+      { code: "G-032", name: "Gather Swamp Roots", description: "Collect specialized plants from wet soil" },
+      { code: "H-020", name: "Hunt Swamp Animals", description: "Hunt creatures adapted to wetland life" },
+      { code: "H-021", name: "Fish Swamp Waters", description: "Catch fish from murky waters" },
+      { code: "C-024", name: "Build Raised Structures", description: "Construct homes elevated above water" },
+      { code: "C-025", name: "Create Boardwalks", description: "Build wooden paths over wet ground" },
+      { code: "T-016", name: "Make Swamp Remedies", description: "Create medicines from swamp plants" },
+      { code: "W-009", name: "Build Drainage Channels", description: "Create paths for water movement" },
+      { code: "X-016", name: "Map Safe Passages", description: "Find reliable routes through the swamp" }
+    ],
+    "W-BOG": [
+      { code: "G-033", name: "Harvest Bog Plants", description: "Collect specialized bog vegetation" },
+      { code: "G-034", name: "Collect Peat", description: "Gather decomposed plant material" },
+      { code: "H-022", name: "Hunt Bog Visitors", description: "Hunt animals that visit the bog" },
+      { code: "C-026", name: "Build on Firm Ground", description: "Construct shelters on stable areas" },
+      { code: "T-017", name: "Use Peat for Fuel", description: "Process peat for burning" },
+      { code: "W-010", name: "Create Stepping Paths", description: "Build safe routes across soft ground" },
+      { code: "X-017", name: "Find Preserved Materials", description: "Search for items preserved in bog conditions" }
+    ]
+  },
+  tundra: {
+    "T-SNO": [
+      { code: "G-035", name: "Gather Snow", description: "Collect snow for water and other uses" },
+      { code: "H-023", name: "Hunt Snow-Dwelling Game", description: "Hunt animals adapted to snowy conditions" },
+      { code: "C-027", name: "Build Snow Shelters", description: "Construct insulated shelters from snow" },
+      { code: "C-028", name: "Create Wind Barriers", description: "Build structures to block cold winds" },
+      { code: "T-018", name: "Make Snow Tools", description: "Craft implements for snow travel and hunting" },
+      { code: "T-019", name: "Craft Cold-Weather Gear", description: "Create clothing and equipment for extreme cold" },
+      { code: "X-018", name: "Find Safe Travel Routes", description: "Discover paths with minimal snow hazards" }
+    ],
+    "T-TUN": [
+      { code: "G-036", name: "Gather Tundra Plants", description: "Collect hardy plants from cold environment" },
+      { code: "G-037", name: "Collect Lichen", description: "Gather slow-growing plant-like organisms" },
+      { code: "H-024", name: "Hunt Tundra Animals", description: "Hunt creatures adapted to harsh conditions" },
+      { code: "C-029", name: "Build Insulated Shelters", description: "Construct homes designed to retain heat" },
+      { code: "C-030", name: "Create Storage Caches", description: "Build protected food storage areas" },
+      { code: "T-020", name: "Make Fur Clothing", description: "Craft warm garments from animal pelts" },
+      { code: "X-019", name: "Map Seasonal Resources", description: "Document how resources change with seasons" }
+    ],
+    "T-TAI": [
+      { code: "G-038", name: "Collect Taiga Berries", description: "Gather berries from forest edge" },
+      { code: "G-039", name: "Gather Firewood", description: "Collect wood for essential heating" },
+      { code: "H-025", name: "Hunt Taiga Animals", description: "Hunt creatures from the boreal forest" },
+      { code: "C-031", name: "Build Log Structures", description: "Construct homes from available timber" },
+      { code: "T-021", name: "Make Winter Tools", description: "Craft implements for cold conditions" },
+      { code: "X-020", name: "Find Winter Shelter", description: "Locate protected areas for harsh weather" }
+    ]
+  },
+  rocky: {
+    "R-BLD": [
+      { code: "G-040", name: "Gather Rock Plants", description: "Collect plants growing among boulders" },
+      { code: "H-026", name: "Hunt Rock-Dwelling Prey", description: "Hunt animals that live among rocks" },
+      { code: "C-032", name: "Build Against Boulders", description: "Construct shelters using large rocks as walls" },
+      { code: "C-033", name: "Create Stone Structures", description: "Build using abundant stone materials" },
+      { code: "M-007", name: "Find Special Stones", description: "Search for unusual or useful rocks" },
+      { code: "T-022", name: "Make Stone Tools", description: "Craft implements from available stone" },
+      { code: "X-021", name: "Discover Hidden Passages", description: "Find paths through boulder fields" }
+    ],
+    "R-CAV": [
+      { code: "C-034", name: "Prepare Cave Dwelling", description: "Make natural caves suitable for habitation" },
+      { code: "C-035", name: "Secure Cave Entrance", description: "Create protective barriers at cave openings" },
+      { code: "S-009", name: "Create Cave Paintings", description: "Make artistic or symbolic markings on walls" },
+      { code: "S-010", name: "Establish Echo Chamber", description: "Find or create spaces with acoustic properties" },
+      { code: "X-022", name: "Explore Cave System", description: "Venture deeper into connected caves" },
+      { code: "X-023", name: "Map Underground Resources", description: "Document useful materials found in caves" }
+    ],
+    "R-KAR": [
+      { code: "G-041", name: "Gather Karst Plants", description: "Collect specialized plants from limestone areas" },
+      { code: "C-036", name: "Build Near Sinkholes", description: "Construct shelters near karst features" },
+      { code: "W-011", name: "Find Underground Water", description: "Locate water flowing through karst systems" },
+      { code: "X-024", name: "Explore Karst Features", description: "Investigate sinkholes and limestone formations" },
+      { code: "X-025", name: "Map Water Channels", description: "Document underground water movement" }
+    ]
+  },
+  special: {
+    "S-CRY": [
+      { code: "G-042", name: "Harvest Crystal Fragments", description: "Carefully collect pieces of crystal" },
+      { code: "C-037", name: "Build Aligned Structures", description: "Construct buildings in harmony with crystal energies" },
+      { code: "T-023", name: "Create Crystal Tools", description: "Craft implements using crystal properties" },
+      { code: "S-011", name: "Establish Crystal Rituals", description: "Develop ceremonies focused on crystal energy" },
+      { code: "S-012", name: "Observe Light Patterns", description: "Study how light interacts with crystals" },
+      { code: "X-026", name: "Study Crystal Properties", description: "Research the unique aspects of different crystals" }
+    ],
+    "S-ANC": [
+      { code: "C-038", name: "Build Ritual Structures", description: "Construct buildings for ceremonial purposes" },
+      { code: "S-013", name: "Perform Power Rituals", description: "Conduct ceremonies to connect with ancient energies" },
+      { code: "S-014", name: "Create Power Markers", description: "Make symbols to indicate energy patterns" },
+      { code: "X-027", name: "Study Ancient Remains", description: "Examine artifacts from previous civilizations" },
+      { code: "X-028", name: "Map Energy Patterns", description: "Document the flow of power in the area" }
+    ]
+  },
+  wasteland: {
+    "L-ASH": [
+      { code: "G-043", name: "Gather Ash", description: "Collect ash for various uses" },
+      { code: "C-039", name: "Build Ash-Resistant Shelter", description: "Create dwellings that withstand ash conditions" },
+      { code: "A-008", name: "Test Ash Fertility", description: "Experiment with growing plants in ash-rich soil" },
+      { code: "X-029", name: "Find Safe Passages", description: "Discover routes with minimal ash hazards" },
+      { code: "X-030", name: "Locate Surviving Plants", description: "Find vegetation that survived the ash fall" }
+    ],
+    "L-BRN": [
+      { code: "G-044", name: "Collect Charcoal", description: "Gather burned wood remains" },
+      { code: "G-045", name: "Find First Regrowth", description: "Locate new plants emerging after fire" },
+      { code: "C-040", name: "Build Temporary Camp", description: "Create basic shelter in recovering land" },
+      { code: "A-009", name: "Test Soil Recovery", description: "Assess soil condition after burning" },
+      { code: "X-031", name: "Study Burn Patterns", description: "Analyze how fire moved through the area" }
     ]
   }
 };

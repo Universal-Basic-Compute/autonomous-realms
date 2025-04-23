@@ -5,6 +5,8 @@ function isTransparentPixel(img, x, y) {
   // Create a temporary canvas to analyze the image
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
+  
+  // Make sure the canvas is the same size as the image
   canvas.width = img.width;
   canvas.height = img.height;
   
@@ -13,16 +15,26 @@ function isTransparentPixel(img, x, y) {
   
   // Get the pixel data
   try {
-    // Make sure x and y are within bounds
+    // Make sure x and y are within bounds and are integers
+    x = Math.floor(x);
+    y = Math.floor(y);
+    
     if (x < 0 || y < 0 || x >= img.width || y >= img.height) {
+      console.log(`Pixel coordinates out of bounds: ${x},${y} for image ${img.width}x${img.height}`);
       return true; // Consider out-of-bounds as transparent
     }
     
     // Get the pixel data
     const pixelData = ctx.getImageData(x, y, 1, 1).data;
     
-    // Check if the alpha channel (4th value) is 0 (fully transparent)
-    return pixelData[3] === 0;
+    // Check if the alpha channel (4th value) is less than a threshold (using 10 instead of 0 for better detection)
+    const isTransparent = pixelData[3] < 10;
+    
+    if (isTransparent) {
+      console.log(`Pixel at ${x},${y} is transparent (alpha: ${pixelData[3]})`);
+    }
+    
+    return isTransparent;
   } catch (error) {
     console.error('Error checking pixel transparency:', error);
     return false; // Default to non-transparent on error
@@ -781,86 +793,215 @@ function loadTile(regionX, regionY, x, y) {
         // Get the image element
         const imgElement = tileElement.querySelector('img');
         
-        // Check if the image is loaded and the click is on a transparent pixel
-        if (imgElement.complete && isTransparentPixel(imgElement, clickX, clickY)) {
-            // Click is on a transparent part, ignore this tile and find tile underneath
-            console.log(`Click on transparent part of tile ${x},${y}, ignoring`);
+        // Only check transparency if the image is fully loaded
+        if (imgElement.complete && imgElement.naturalWidth > 0) {
+            // Debug information
+            console.log(`Click at relative position: ${clickX},${clickY} on tile ${x},${y}`);
+            console.log(`Image dimensions: ${imgElement.width}x${imgElement.height}`);
             
-            // Prevent the current click from being processed further
-            e.stopPropagation();
-            
-            // Get the absolute position of the click in the document
-            const clickPointX = e.clientX;
-            const clickPointY = e.clientY;
-            
-            // Find all tiles that contain this point
-            const allTiles = Array.from(document.querySelectorAll('.tile'));
-            
-            // Get tiles that are under this point (using getBoundingClientRect)
-            const tilesUnderPoint = allTiles.filter(tile => {
-                const rect = tile.getBoundingClientRect();
-                return (
-                    clickPointX >= rect.left && 
-                    clickPointX <= rect.right && 
-                    clickPointY >= rect.top && 
-                    clickPointY <= rect.bottom
-                );
-            });
-            
-            // Sort tiles by their DOM order (which should reflect their z-index/stacking)
-            // This assumes tiles are added to the DOM in the correct stacking order
-            const sortedTiles = tilesUnderPoint.sort((a, b) => {
-                const aIndex = Array.from(worldContainer.children).indexOf(a);
-                const bIndex = Array.from(worldContainer.children).indexOf(b);
-                return aIndex - bIndex;
-            });
-            
-            // Remove the current tile from consideration
-            const otherTiles = sortedTiles.filter(tile => tile !== tileElement);
-            
-            // Find the first non-transparent tile under the click point
-            let foundVisibleTile = false;
-            
-            for (const tile of otherTiles) {
-                // Calculate relative position within this tile
-                const tileRect = tile.getBoundingClientRect();
-                const relX = clickPointX - tileRect.left;
-                const relY = clickPointY - tileRect.top;
+            // Check if the click is on a transparent pixel
+            if (isTransparentPixel(imgElement, clickX, clickY)) {
+                console.log(`Click on transparent part of tile ${x},${y}, ignoring`);
                 
-                const tileImg = tile.querySelector('img');
+                // Prevent the current click from being processed further
+                e.stopPropagation();
                 
-                // Skip if image isn't loaded yet
-                if (!tileImg || !tileImg.complete) continue;
+                // Get the absolute position of the click in the document
+                const clickPointX = e.clientX;
+                const clickPointY = e.clientY;
                 
-                // Check if this pixel is non-transparent
-                if (!isTransparentPixel(tileImg, relX, relY)) {
-                    // We found a non-transparent tile under the click point
-                    console.log(`Found visible tile underneath: ${tile.dataset.x},${tile.dataset.y}`);
+                // Find all tiles that contain this point
+                const allTiles = Array.from(document.querySelectorAll('.tile'));
+                
+                // Get tiles that are under this point (using getBoundingClientRect)
+                const tilesUnderPoint = allTiles.filter(tile => {
+                    const tileRect = tile.getBoundingClientRect();
+                    return (
+                        clickPointX >= tileRect.left && 
+                        clickPointX <= tileRect.right && 
+                        clickPointY >= tileRect.top && 
+                        clickPointY <= tileRect.bottom
+                    );
+                });
+                
+                console.log(`Found ${tilesUnderPoint.length} tiles under the click point`);
+                
+                // Sort tiles by their DOM order (which should reflect their z-index/stacking)
+                // This assumes tiles are added to the DOM in the correct stacking order
+                // We need to reverse the order to start from the bottom-most tile
+                const sortedTiles = tilesUnderPoint.sort((a, b) => {
+                    const aIndex = Array.from(worldContainer.children).indexOf(a);
+                    const bIndex = Array.from(worldContainer.children).indexOf(b);
+                    return bIndex - aIndex; // Reverse order to start from bottom
+                });
+                
+                // Remove the current tile from consideration
+                const otherTiles = sortedTiles.filter(tile => tile !== tileElement);
+                
+                console.log(`Checking ${otherTiles.length} other tiles for non-transparent pixels`);
+                
+                // Find the first non-transparent tile under the click point
+                let foundVisibleTile = false;
+                
+                for (const tile of otherTiles) {
+                    // Calculate relative position within this tile
+                    const tileRect = tile.getBoundingClientRect();
+                    const relX = clickPointX - tileRect.left;
+                    const relY = clickPointY - tileRect.top;
                     
-                    // Simulate a click on this tile
-                    setTimeout(() => {
-                        // Create and dispatch a new click event
-                        const newClickEvent = new MouseEvent('click', {
-                            bubbles: true,
-                            cancelable: true,
-                            view: window,
-                            clientX: clickPointX,
-                            clientY: clickPointY
-                        });
+                    const tileImg = tile.querySelector('img');
+                    
+                    // Skip if image isn't loaded yet
+                    if (!tileImg || !tileImg.complete || tileImg.naturalWidth === 0) {
+                        console.log(`Skipping tile ${tile.dataset.x},${tile.dataset.y} - image not fully loaded`);
+                        continue;
+                    }
+                    
+                    console.log(`Checking tile ${tile.dataset.x},${tile.dataset.y} at relative position ${relX},${relY}`);
+                    
+                    // Check if this pixel is non-transparent
+                    if (!isTransparentPixel(tileImg, relX, relY)) {
+                        // We found a non-transparent tile under the click point
+                        console.log(`Found visible tile underneath: ${tile.dataset.x},${tile.dataset.y}`);
                         
-                        tile.dispatchEvent(newClickEvent);
-                    }, 0);
-                    
-                    foundVisibleTile = true;
-                    break;
+                        // Simulate a click on this tile
+                        setTimeout(() => {
+                            // Select this tile directly instead of creating a new click event
+                            // This is more reliable than dispatching a new event
+                            
+                            // Deselect previous tile
+                            if (state.selectedTile) {
+                                state.selectedTile.classList.remove('selected');
+                            }
+                            
+                            // Select this tile
+                            tile.classList.add('selected');
+                            state.selectedTile = tile;
+                            
+                            // Get the tile coordinates
+                            const tileX = parseInt(tile.dataset.x);
+                            const tileY = parseInt(tile.dataset.y);
+                            
+                            // Show loading in the info panel
+                            tileInfoElement.innerHTML = 'Loading tile information...';
+                            
+                            // Clear any existing action menu
+                            const existingMenu = document.getElementById('action-menu');
+                            if (existingMenu) {
+                                existingMenu.remove();
+                            }
+                            
+                            // Show a temporary action menu with loading state
+                            const loadingMenu = document.createElement('div');
+                            loadingMenu.id = 'action-menu';
+                            loadingMenu.className = 'action-menu';
+                            loadingMenu.innerHTML = '<h3>Available Actions</h3><p class="loading-actions">Analyzing terrain for available actions...</p>';
+                            document.body.appendChild(loadingMenu);
+                            state.actionMenuVisible = true;
+                            
+                            // Fetch tile info
+                            fetch(`${config.serverUrl}/api/tiles/islands/${tileX}/${tileY}/info`)
+                                .then(response => response.json())
+                                .then(data => {
+                                    // Display tile info
+                                    let infoHtml = `
+                                        <p><strong>Position:</strong> (${tileX}, ${tileY})</p>
+                                    `;
+                                    
+                                    if (data.exists) {
+                                        infoHtml += `
+                                            <p><strong>Description:</strong> ${data.description}</p>
+                                            <p><strong>Terrain Code:</strong> ${data.terrainCode}</p>
+                                        `;
+                                        
+                                        // Fetch and display available actions based on terrain code
+                                        fetchAvailableActions(data.terrainCode)
+                                            .then(actions => {
+                                                state.availableActions = actions;
+                                                showActionMenu(actions);
+                                            })
+                                            .catch(error => {
+                                                // Handle error
+                                                console.error('Error fetching actions:', error);
+                                                const errorMenu = document.getElementById('action-menu');
+                                                if (errorMenu) {
+                                                    errorMenu.innerHTML = `
+                                                        <h3>Available Actions</h3>
+                                                        <p class="error-message">Error loading actions: ${error.message}</p>
+                                                        <button class="close-button">Close</button>
+                                                    `;
+                                                    
+                                                    const closeButton = errorMenu.querySelector('.close-button');
+                                                    if (closeButton) {
+                                                        closeButton.addEventListener('click', () => {
+                                                            errorMenu.remove();
+                                                            state.actionMenuVisible = false;
+                                                        });
+                                                    }
+                                                }
+                                            });
+                                        
+                                        // Fetch and play narration
+                                        fetchTerrainNarration(data.terrainCode)
+                                            .then(narrationData => {
+                                                if (narrationData && narrationData.narration) {
+                                                    // Show narration text
+                                                    const notification = document.createElement('div');
+                                                    notification.className = 'narration-notification';
+                                                    notification.textContent = narrationData.narration;
+                                                    document.body.appendChild(notification);
+                                                    
+                                                    // Remove notification after a delay
+                                                    setTimeout(() => {
+                                                        notification.classList.add('fade-out');
+                                                        setTimeout(() => notification.remove(), 1000);
+                                                    }, 8000);
+                                                    
+                                                    // Play audio if available
+                                                    if (narrationData.audio && !narrationData.error) {
+                                                        playNarration(narrationData.audio);
+                                                    }
+                                                }
+                                            })
+                                            .catch(error => {
+                                                console.error('Error handling narration:', error);
+                                            });
+                                    } else {
+                                        infoHtml += `<p><em>Island not yet generated</em></p>`;
+                                        
+                                        // Remove loading menu
+                                        const loadingMenu = document.getElementById('action-menu');
+                                        if (loadingMenu) {
+                                            loadingMenu.remove();
+                                            state.actionMenuVisible = false;
+                                        }
+                                    }
+                                    
+                                    tileInfoElement.innerHTML = infoHtml;
+                                })
+                                .catch(error => {
+                                    tileInfoElement.innerHTML = `<p>Error loading tile info: ${error.message}</p>`;
+                                    
+                                    // Remove loading menu
+                                    const loadingMenu = document.getElementById('action-menu');
+                                    if (loadingMenu) {
+                                        loadingMenu.remove();
+                                        state.actionMenuVisible = false;
+                                    }
+                                });
+                        }, 0);
+                        
+                        foundVisibleTile = true;
+                        break;
+                    }
                 }
+                
+                if (!foundVisibleTile) {
+                    console.log('No visible tile found underneath');
+                }
+                
+                return;
             }
-            
-            if (!foundVisibleTile) {
-                console.log('No visible tile found underneath');
-            }
-            
-            return;
         }
         
         // Deselect previous tile

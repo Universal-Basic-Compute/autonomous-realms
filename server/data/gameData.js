@@ -837,6 +837,82 @@ const actions = {
       { code: "S-014", name: "Create Power Markers", description: "Make symbols to indicate energy patterns" },
       { code: "X-027", name: "Study Ancient Remains", description: "Examine artifacts from previous civilizations" },
       { code: "X-028", name: "Map Energy Patterns", description: "Document the flow of power in the area" }
+    ],
+    "S-ENC": [
+      { code: "G-050", name: "Gather Enchanted Plants", description: "Collect plants with magical properties" },
+      { code: "G-051", name: "Harvest Glowing Mushrooms", description: "Gather luminescent fungi for light and magical use" },
+      { code: "G-052", name: "Collect Magical Essence", description: "Gather concentrated magical energy from the environment" },
+      { code: "H-030", name: "Hunt Mystical Creatures", description: "Track and hunt animals with unusual properties" },
+      { code: "C-050", name: "Build Harmony Structures", description: "Construct buildings that resonate with magical energies" },
+      { code: "T-030", name: "Craft Enchanted Tools", description: "Create implements imbued with magical properties" },
+      { code: "S-020", name: "Perform Attunement Rituals", description: "Conduct ceremonies to align with local magic" },
+      { code: "S-021", name: "Establish Magical Wards", description: "Create protective magical boundaries" },
+      { code: "X-040", name: "Map Magical Currents", description: "Document the flow of magical energy in the area" },
+      { code: "X-041", name: "Study Unusual Phenomena", description: "Research the unique magical occurrences" }
+    ],
+    "S-GLW": [
+      { code: "G-053", name: "Harvest Luminous Materials", description: "Collect naturally glowing substances" },
+      { code: "G-054", name: "Gather Light Crystals", description: "Collect crystals that store and emit light" },
+      { code: "C-051", name: "Build Light-Focusing Structures", description: "Construct buildings that channel natural light" },
+      { code: "T-031", name: "Create Light-Storing Items", description: "Craft objects that can capture and release light" },
+      { code: "S-022", name: "Perform Light Ceremonies", description: "Conduct rituals celebrating luminescence" },
+      { code: "X-042", name: "Study Light Patterns", description: "Research the cycles and behaviors of the glow" }
+    ],
+    "S-MIS": [
+      { code: "G-055", name: "Collect Mist Essence", description: "Gather condensed mist with unusual properties" },
+      { code: "G-056", name: "Harvest Mist-Touched Plants", description: "Collect plants adapted to constant mist" },
+      { code: "H-031", name: "Hunt Mist Dwellers", description: "Track creatures that thrive in misty conditions" },
+      { code: "C-052", name: "Build Mist Shelters", description: "Construct dwellings suited to misty environments" },
+      { code: "T-032", name: "Craft Mist Navigation Tools", description: "Create implements for finding direction in mist" },
+      { code: "X-043", name: "Map Mist Patterns", description: "Document how mist moves and changes" }
+    ],
+    "S-FRZ": [
+      { code: "G-057", name: "Harvest Eternal Ice", description: "Collect ice that never melts" },
+      { code: "G-058", name: "Gather Frost Crystals", description: "Collect crystallized frost formations" },
+      { code: "H-032", name: "Hunt Frost-Adapted Creatures", description: "Track animals that thrive in frozen conditions" },
+      { code: "C-053", name: "Build Ice Structures", description: "Construct buildings using permanent ice" },
+      { code: "T-033", name: "Craft Cold-Preserving Tools", description: "Create implements that maintain freezing temperatures" },
+      { code: "S-023", name: "Perform Frost Rituals", description: "Conduct ceremonies honoring eternal winter" }
+    ],
+    "S-DIS": [
+      { code: "G-059", name: "Collect Reality Fragments", description: "Gather pieces of distorted reality" },
+      { code: "G-060", name: "Harvest Paradox Plants", description: "Collect plants with impossible properties" },
+      { code: "C-054", name: "Build Non-Euclidean Structures", description: "Construct buildings with impossible geometry" },
+      { code: "T-034", name: "Craft Reality-Bending Tools", description: "Create implements that manipulate physical laws" },
+      { code: "S-024", name: "Perform Stabilization Rituals", description: "Conduct ceremonies to maintain reality" },
+      { code: "X-044", name: "Map Reality Fluctuations", description: "Document where and how reality shifts" }
+    ],
+    "S-ETH": [
+      { code: "G-061", name: "Gather Ethereal Essence", description: "Collect material from the ethereal plane" },
+      { code: "G-062", name: "Harvest Boundary Plants", description: "Collect plants growing at planar intersections" },
+      { code: "C-055", name: "Build Planar Anchors", description: "Construct structures that stabilize planar boundaries" },
+      { code: "T-035", name: "Craft Planar Tools", description: "Create implements that interact with multiple planes" },
+      { code: "S-025", name: "Perform Boundary Rituals", description: "Conduct ceremonies at planar intersections" },
+      { code: "X-045", name: "Study Planar Phenomena", description: "Research the effects of planar overlap" }
+    ],
+    "S-SHD": [
+      { code: "G-063", name: "Collect Shadow Essence", description: "Gather concentrated shadow material" },
+      { code: "G-064", name: "Harvest Umbral Plants", description: "Collect plants that grow in perpetual shadow" },
+      { code: "H-033", name: "Hunt Shadow Creatures", description: "Track and hunt beings of shadow" },
+      { code: "C-056", name: "Build Shadow Shelters", description: "Construct buildings that harness shadow properties" },
+      { code: "T-036", name: "Craft Shadow Tools", description: "Create implements that manipulate shadows" },
+      { code: "S-026", name: "Perform Darkness Rituals", description: "Conduct ceremonies honoring shadow forces" }
+    ],
+    "S-BUR": [
+      { code: "G-065", name: "Collect Eternal Flame", description: "Gather never-extinguishing fire" },
+      { code: "G-066", name: "Harvest Fire-Blooming Plants", description: "Collect plants that thrive in burning conditions" },
+      { code: "H-034", name: "Hunt Flame Creatures", description: "Track beings that live in fire" },
+      { code: "C-057", name: "Build Fire-Resistant Structures", description: "Construct buildings immune to burning" },
+      { code: "T-037", name: "Craft Flame Tools", description: "Create implements that harness perpetual fire" },
+      { code: "S-027", name: "Perform Fire Communion", description: "Conduct ceremonies connecting with fire elements" }
+    ],
+    "S-FLT": [
+      { code: "G-067", name: "Gather Levitation Crystals", description: "Collect crystals with anti-gravity properties" },
+      { code: "G-068", name: "Harvest Sky Plants", description: "Collect plants that grow without soil" },
+      { code: "H-035", name: "Hunt Aerial Creatures", description: "Track beings that inhabit floating terrain" },
+      { code: "C-058", name: "Build Floating Structures", description: "Construct buildings that hover above ground" },
+      { code: "T-038", name: "Craft Levitation Tools", description: "Create implements that manipulate gravity" },
+      { code: "S-028", name: "Perform Ascension Rituals", description: "Conduct ceremonies celebrating elevation" }
     ]
   },
   wasteland: {

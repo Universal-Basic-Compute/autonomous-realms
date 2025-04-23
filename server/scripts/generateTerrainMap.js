@@ -232,8 +232,8 @@ async function generateIslandImage(island, index) {
     logger.info(`Generating image for terrain at ${island.coordinates.x},${island.coordinates.y}`);
     
     // Create a prompt for Ideogram based on the island description
-    // Updated to explicitly request isometric view and isolated tile
-    const prompt = `isometric view of isolated realistic terrain tile with ${island.description}, white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective`;
+    // Updated to explicitly request isometric view, isolated tile, and white background
+    const prompt = `isometric view of isolated realistic terrain tile with ${island.description}, white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background`;
     
     // Prepare request data
     const requestData = {
@@ -274,6 +274,9 @@ async function generateIslandImage(island, index) {
     const imageUrl = responseData.data[0].url;
     const outputPath = path.join(__dirname, `../output/terrain_map/islands/island_${island.coordinates.x}_${island.coordinates.y}.png`);
     await downloadImage(imageUrl, outputPath);
+    
+    // Re-enable background removal
+    await removeBackground(outputPath);
     
     // Save metadata
     const metadataPath = path.join(__dirname, `../output/terrain_map/metadata/island_${island.coordinates.x}_${island.coordinates.y}.json`);

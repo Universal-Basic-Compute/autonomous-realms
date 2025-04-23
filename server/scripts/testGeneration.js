@@ -139,7 +139,7 @@ async function generateTestImage() {
     // Prepare request data
     const requestData = {
       image_request: {
-        prompt: "floating island with medieval cottages, small garden, stone paths, waterfall flowing off edge, tethered by magical chains, white background, isometric view, clearly defined edges, Clash Royale style, vibrant colors, game asset, no shadows, isolated game tile",
+        prompt: "floating island with medieval cottages, small garden, stone paths, waterfall flowing off edge, tethered by magical chains, white background, isometric view, clearly defined edges, Clash Royale style, vibrant colors, game asset, no shadows, isolated game tile, pure white background",
         model: "V_2A_TURBO",
         aspect_ratio: "ASPECT_1_1", // Square aspect ratio for game tiles
         style_type: "REALISTIC"  // Changed to REALISTIC

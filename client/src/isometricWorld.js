@@ -534,13 +534,9 @@ Format the word list in a way that's easy to display in a UI, with the tribe's w
     // Check for the content in either response or content field
     const languageContent = responseData.response || responseData.content;
     
-    // Parse the language data
-    const parsedData = parseLanguageResponse(languageContent);
-    
     // Update the cache
     languageCache = {
-      rawContent: languageContent,
-      parsedData: parsedData
+      rawContent: languageContent
     };
     languageCacheTimestamp = now;
     

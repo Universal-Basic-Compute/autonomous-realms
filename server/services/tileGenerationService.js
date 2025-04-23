@@ -673,7 +673,7 @@ async function removeBackground(imagePath) {
 }
 
 /**
- * Crops the right side of an image and saves it
+ * Crops the right side of an image and saves it with enhanced image processing
  */
 async function cropAndSaveRightSide(imagePath, outputPath) {
   logger.debug(`Cropping right side of image ${imagePath} to ${outputPath}`);
@@ -706,6 +706,9 @@ async function cropAndSaveRightSide(imagePath, outputPath) {
       canvas.height       // Destination Height
     );
     
+    // Apply image enhancements
+    enhanceImage(ctx, canvas.width, canvas.height);
+    
     // Save the cropped image
     await fs.writeFile(outputPath, canvas.toBuffer('image/png'));
     
@@ -726,7 +729,54 @@ async function cropAndSaveRightSide(imagePath, outputPath) {
 }
 
 /**
- * Crops the top side of an image and saves it
+ * Apply image enhancements to improve visual quality
+ */
+function enhanceImage(ctx, width, height) {
+  try {
+    // Get the image data
+    const imageData = ctx.getImageData(0, 0, width, height);
+    const data = imageData.data;
+    
+    // Enhance contrast and saturation slightly
+    for (let i = 0; i < data.length; i += 4) {
+      // Skip fully transparent pixels
+      if (data[i + 3] === 0) continue;
+      
+      // Increase saturation slightly
+      const r = data[i];
+      const g = data[i + 1];
+      const b = data[i + 2];
+      
+      // Calculate luminance (brightness)
+      const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
+      
+      // Saturation factor (1.1 = 10% more saturated)
+      const saturationFactor = 1.1;
+      
+      // Apply saturation adjustment
+      data[i] = Math.max(0, Math.min(255, luminance + saturationFactor * (r - luminance)));
+      data[i + 1] = Math.max(0, Math.min(255, luminance + saturationFactor * (g - luminance)));
+      data[i + 2] = Math.max(0, Math.min(255, luminance + saturationFactor * (b - luminance)));
+    }
+    
+    // Put the modified image data back
+    ctx.putImageData(imageData, 0, 0);
+    
+    // Apply a very slight sharpening effect
+    ctx.globalCompositeOperation = 'overlay';
+    ctx.globalAlpha = 0.1;
+    ctx.drawImage(ctx.canvas, 0, 0);
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.globalAlpha = 1.0;
+    
+  } catch (error) {
+    logger.warn(`Image enhancement failed, continuing with original: ${error.message}`);
+    // Continue with the original image if enhancement fails
+  }
+}
+
+/**
+ * Crops the top side of an image and saves it with enhanced image processing
  */
 async function cropAndSaveTopSide(imagePath, outputPath) {
   logger.debug(`Cropping top side of image ${imagePath} to ${outputPath}`);
@@ -759,6 +809,9 @@ async function cropAndSaveTopSide(imagePath, outputPath) {
       canvas.height       // Destination Height
     );
     
+    // Apply image enhancements
+    enhanceImage(ctx, canvas.width, canvas.height);
+    
     // Save the cropped image
     await fs.writeFile(outputPath, canvas.toBuffer('image/png'));
     
@@ -779,7 +832,7 @@ async function cropAndSaveTopSide(imagePath, outputPath) {
 }
 
 /**
- * Crops the top-right quadrant of an image and saves it
+ * Crops the top-right quadrant of an image and saves it with enhanced image processing
  */
 async function cropAndSaveTopRightQuadrant(imagePath, outputPath) {
   logger.debug(`Cropping top-right quadrant of image ${imagePath} to ${outputPath}`);
@@ -817,6 +870,9 @@ async function cropAndSaveTopRightQuadrant(imagePath, outputPath) {
       canvas.width,     // Destination Width
       canvas.height     // Destination Height
     );
+    
+    // Apply image enhancements
+    enhanceImage(ctx, canvas.width, canvas.height);
     
     // Save the cropped image
     await fs.writeFile(outputPath, canvas.toBuffer('image/png'));
@@ -1004,20 +1060,35 @@ function getTerrainBaseColor(terrainCode) {
 }
 
 /**
- * Queues an API request to respect rate limits
+ * Queues an API request to respect rate limits with improved queue management
  */
 async function queueApiRequest(requestFunction) {
   return new Promise((resolve, reject) => {
     const queuePosition = apiQueue.length + 1;
+    const requestId = `req_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
     
     apiQueue.push({
+      id: requestId,
       requestFunction,
       resolve,
       reject,
-      timestamp: Date.now()
+      timestamp: Date.now(),
+      priority: 1 // Default priority (higher number = higher priority)
     });
     
-    logger.debug(`Added request to queue (position ${queuePosition})`);
+    logger.debug(`Added request ${requestId} to queue (position ${queuePosition})`);
+    
+    // Set a timeout to increase priority of this request if it waits too long
+    setTimeout(() => {
+      const queueItem = apiQueue.find(item => item.id === requestId);
+      if (queueItem) {
+        queueItem.priority += 1;
+        logger.debug(`Increased priority of request ${requestId} to ${queueItem.priority} due to wait time`);
+        
+        // Re-sort the queue based on priority
+        apiQueue.sort((a, b) => b.priority - a.priority);
+      }
+    }, 60000); // After 1 minute, increase priority
     
     if (!processingQueue) {
       processQueue();
@@ -1026,7 +1097,7 @@ async function queueApiRequest(requestFunction) {
 }
 
 /**
- * Processes the API request queue in batches
+ * Processes the API request queue in batches with improved error handling and retry logic
  */
 async function processQueue() {
   if (apiQueue.length === 0) {
@@ -1047,6 +1118,9 @@ async function processQueue() {
   // Increase the active batch count
   activeBatchCount++;
   
+  // Sort the queue by priority before processing
+  apiQueue.sort((a, b) => b.priority - a.priority);
+  
   // Take up to BATCH_SIZE requests from the queue
   const batchSize = Math.min(BATCH_SIZE, apiQueue.length);
   const batch = apiQueue.splice(0, batchSize);
@@ -1062,12 +1136,34 @@ async function processQueue() {
         await new Promise(resolve => setTimeout(resolve, staggerDelay));
       }
       
-      // Execute the request
-      const result = await request.requestFunction();
+      // Execute the request with timeout
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('API request timeout')), config.API_TIMEOUT || 120000);
+      });
+      
+      const result = await Promise.race([
+        request.requestFunction(),
+        timeoutPromise
+      ]);
+      
+      logger.debug(`Request ${request.id} completed successfully`);
       request.resolve(result);
     } catch (error) {
-      logger.error(`API request in batch failed: ${error.message}`);
-      request.reject(error);
+      logger.error(`API request ${request.id} in batch failed: ${error.message}`);
+      
+      // Check if we should retry this request
+      if (!request.retryCount || request.retryCount < 2) { // Max 2 retries
+        request.retryCount = (request.retryCount || 0) + 1;
+        request.priority += 2; // Increase priority for retries
+        
+        logger.info(`Requeueing request ${request.id} for retry attempt ${request.retryCount}`);
+        
+        // Put back in the queue with higher priority
+        apiQueue.push(request);
+      } else {
+        logger.warn(`Request ${request.id} failed after ${request.retryCount} retry attempts`);
+        request.reject(error);
+      }
     }
   });
   
@@ -1078,10 +1174,16 @@ async function processQueue() {
   // Decrease the active batch count
   activeBatchCount--;
   
+  // Calculate dynamic delay based on queue size
+  const queueSizeMultiplier = Math.max(0.5, Math.min(2, apiQueue.length / 10)); // Between 0.5 and 2
+  const dynamicDelay = Math.round(1000 * queueSizeMultiplier);
+  
   // Add a delay before processing the next batch to respect rate limits
   setTimeout(() => {
     processQueue();
-  }, 1000); // 1 second between batches
+  }, dynamicDelay);
+  
+  logger.debug(`Next batch will process in ${dynamicDelay}ms (queue size: ${apiQueue.length})`);
 }
 
 module.exports = {
@@ -1090,8 +1192,13 @@ module.exports = {
   generateInteriorTile,
   generateFallbackTile,
   getTerrainCodeForPosition,
+  removeBackground,
+  enhanceImage,
   // Add these exports
   apiQueue,
   activeBatchCount,
-  BATCH_SIZE
+  BATCH_SIZE,
+  // Add queue management utilities
+  queueApiRequest,
+  processQueue
 };

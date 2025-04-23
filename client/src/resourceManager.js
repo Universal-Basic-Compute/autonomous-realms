@@ -146,6 +146,12 @@ class ResourceManager {
       return false;
     }
     
+    // Make sure the resource exists in the category
+    if (!this.resources[category].items[resourceName]) {
+      console.warn(`Resource "${resourceName}" not found in category ${category}`);
+      return false;
+    }
+    
     // Update the quantity
     this.resources[category].items[resourceName].quantity -= quantity;
     
@@ -179,6 +185,28 @@ class ResourceManager {
     if (!category) return null;
     
     return this.resources[category].items[resourceName];
+  }
+  
+  // Get the total quantity of resources in a category
+  getTotalResourcesInCategory(categoryCode) {
+    if (!this.resources[categoryCode]) {
+      return 0;
+    }
+    
+    let total = 0;
+    const items = this.resources[categoryCode].items;
+    
+    for (const resourceName in items) {
+      total += items[resourceName].quantity;
+    }
+    
+    return total;
+  }
+
+  // Get the quantity of a specific resource
+  getResourceQuantity(resourceName) {
+    const resource = this.getResource(resourceName);
+    return resource ? resource.quantity : 0;
   }
   
   // Find which category contains a resource

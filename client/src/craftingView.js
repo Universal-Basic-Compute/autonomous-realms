@@ -453,23 +453,46 @@ Example response:
       
       // Process the crafting result
       if (craftingResult.success) {
-        // Remove consumed resources
-        craftingResult.consumedResources.forEach(resource => {
-          resourceManager.removeResource(resource.name, resource.quantity);
-        });
-        
-        // Add the crafted item
-        resourceManager.addResource(
-          craftingResult.result.name, 
-          craftingResult.result.quantity, 
-          craftingResult.result.code
-        );
-        
-        // Show the result
-        this.showCraftingResult(craftingResult);
-        
-        // Clear the slots
-        this.clearSlots();
+        try {
+          // Remove consumed resources
+          let allResourcesAvailable = true;
+          
+          // First check if all resources are available
+          for (const resource of craftingResult.consumedResources) {
+            const existingResource = resourceManager.getResource(resource.name);
+            if (!existingResource || existingResource.quantity < resource.quantity) {
+              allResourcesAvailable = false;
+              console.warn(`Not enough ${resource.name} available for crafting`);
+              break;
+            }
+          }
+          
+          if (allResourcesAvailable) {
+            // Remove the resources
+            craftingResult.consumedResources.forEach(resource => {
+              resourceManager.removeResource(resource.name, resource.quantity);
+            });
+            
+            // Add the crafted item
+            resourceManager.addResource(
+              craftingResult.result.name, 
+              craftingResult.result.quantity, 
+              craftingResult.result.code
+            );
+            
+            // Show the result
+            this.showCraftingResult(craftingResult);
+            
+            // Clear the slots
+            this.clearSlots();
+          } else {
+            // Not enough resources
+            this.showCraftingError("Not enough resources available to complete crafting");
+          }
+        } catch (error) {
+          console.error('Error processing crafting result:', error);
+          this.showCraftingError(`Error during crafting: ${error.message}`);
+        }
       } else {
         // Show the error
         this.showCraftingError(craftingResult.error || 'Crafting failed');

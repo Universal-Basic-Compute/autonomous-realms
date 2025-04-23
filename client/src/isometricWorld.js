@@ -71,7 +71,8 @@ const state = {
     isLoading: false,
     availableActions: [], // Store available actions for selected tile
     actionMenuVisible: false, // Track if action menu is visible
-    contextMenu: null // Track the current context menu
+    contextMenu: null, // Track the current context menu
+    hasDragged: false  // Track if dragging has occurred
 };
 
 // DOM Elements
@@ -490,6 +491,7 @@ function startDrag(e) {
     if (e.button !== 0) return; // Only left mouse button
     
     state.isDragging = true;
+    state.hasDragged = false; // Reset the drag flag when starting a new drag
     state.dragStartX = e.clientX;
     state.dragStartY = e.clientY;
     state.lastOffsetX = state.offsetX;
@@ -505,6 +507,12 @@ function drag(e) {
     
     const dx = e.clientX - state.dragStartX;
     const dy = e.clientY - state.dragStartY;
+    
+    // Set hasDragged to true if there's significant movement
+    // This threshold helps distinguish between a click and a drag
+    if (Math.abs(dx) > 5 || Math.abs(dy) > 5) {
+        state.hasDragged = true;
+    }
     
     state.offsetX = state.lastOffsetX + dx;
     state.offsetY = state.lastOffsetY + dy;
@@ -534,6 +542,7 @@ function handleTouchStart(e) {
     if (e.touches.length !== 1) return;
     
     state.isDragging = true;
+    state.hasDragged = false; // Reset the drag flag
     state.dragStartX = e.touches[0].clientX;
     state.dragStartY = e.touches[0].clientY;
     state.lastOffsetX = state.offsetX;
@@ -549,6 +558,11 @@ function handleTouchMove(e) {
     
     const dx = e.touches[0].clientX - state.dragStartX;
     const dy = e.touches[0].clientY - state.dragStartY;
+    
+    // Set hasDragged to true if there's significant movement
+    if (Math.abs(dx) > 5 || Math.abs(dy) > 5) {
+        state.hasDragged = true;
+    }
     
     state.offsetX = state.lastOffsetX + dx;
     state.offsetY = state.lastOffsetY + dy;
@@ -803,6 +817,11 @@ function loadTile(regionX, regionY, x, y) {
     
     // Add click event to show tile info
     tileElement.addEventListener('click', (e) => {
+        // If we've been dragging, don't treat this as a click
+        if (state.hasDragged) {
+            return;
+        }
+        
         // Get the relative position within the tile
         const rect = tileElement.getBoundingClientRect();
         const clickX = e.clientX - rect.left;

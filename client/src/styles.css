@@ -1125,8 +1125,8 @@ body::before {
     transition: all 0.3s ease;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(5px);
-    /* Add these properties to center it and limit width */
-    width: 85%; /* Take up 85% of the screen width */
+    /* Modify these properties to center it and limit width to 80% */
+    width: 80%; /* Take up 80% of the screen width instead of 85% */
     margin-left: auto;
     margin-right: auto;
     left: 0;
@@ -1149,10 +1149,10 @@ body::before {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 45px;
-    height: 45px;
+    width: 40px; /* Reduced from 45px */
+    height: 40px; /* Reduced from 45px */
     background: linear-gradient(to bottom, #2a3038, #1a1e22);
-    border-radius: 10px;
+    border-radius: 8px; /* Slightly smaller radius */
     cursor: pointer;
     position: relative;
     transition: all 0.3s ease;
@@ -1173,7 +1173,7 @@ body::before {
 }
 
 .category-icon {
-    font-size: 22px;
+    font-size: 18px; /* Reduced from 22px */
 }
 
 .category-count {
@@ -1261,16 +1261,16 @@ body::before {
 
 .resource-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* Smaller minimum width */
+    gap: 10px; /* Slightly reduced gap */
 }
 
 .resource-item {
     display: flex;
     align-items: center;
     background: linear-gradient(to bottom, #2a3038, #1a1e22);
-    padding: 10px;
-    border-radius: 8px;
+    padding: 8px; /* Reduced from 10px */
+    border-radius: 6px; /* Slightly smaller radius */
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s;
 }
@@ -1283,26 +1283,31 @@ body::before {
 }
 
 .resource-icon {
-    font-size: 20px;
-    margin-right: 10px;
+    font-size: 16px; /* Reduced from 20px */
+    margin-right: 8px; /* Reduced from 10px */
 }
 
 .resource-name {
     flex-grow: 1;
     color: #e0e0e0;
-    font-size: 14px;
+    font-size: 12px; /* Reduced from 14px */
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add ellipsis for overflow */
+    margin-right: 5px; /* Add margin to separate from quantity */
 }
 
 .resource-quantity {
     background: linear-gradient(to bottom, #3d8b40, #2d6a30);
     color: white;
-    padding: 3px 8px;
-    border-radius: 12px;
-    font-size: 12px;
-    min-width: 25px;
+    padding: 2px 6px; /* Slightly smaller padding */
+    border-radius: 10px;
+    font-size: 11px; /* Reduced from 12px */
+    min-width: 22px; /* Slightly smaller */
     text-align: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    white-space: nowrap; /* Prevent wrapping */
 }
 
 .no-resources {

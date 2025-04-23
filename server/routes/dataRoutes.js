@@ -158,6 +158,142 @@ router.get('/culture/:category', (req, res) => {
   }
 });
 
+// Add a new endpoint to handle tile conversation generation
+router.post('/tile-conversation', async (req, res) => {
+  try {
+    const { tileX, tileY, terrainCode, terrainDescription } = req.body;
+    
+    if (!terrainCode || !terrainDescription) {
+      return res.status(400).json({ error: 'Missing required parameters' });
+    }
+    
+    logger.info(`Generating conversation for tile at (${tileX}, ${tileY}) with terrain ${terrainCode}`);
+    
+    // Get the colony name and kin name from the request or use defaults
+    const colonyName = req.body.colonyName || 'Your Colony';
+    const kinName = req.body.kinName || 'defaultcolony';
+    
+    // Prepare the message for KinOS
+    const messageContent = `
+Generate a short conversation (2-3 sentences total) between settlers exploring this terrain:
+Terrain type: ${terrainCode}
+Description: ${terrainDescription}
+
+IMPORTANT REQUIREMENTS:
+1. Write dialogue in the colony's constructed language
+2. Format as a JSON array with 2-3 speakers
+3. Each line should be short (5-10 words maximum)
+4. The conversation should relate to exploring or reacting to this specific terrain
+5. Include both the original language and a literal English translation for each line
+
+Return your response as a JSON array with this structure:
+[
+  {
+    "speaker": "Speaker 1",
+    "original": "Kafa mero santi loma!",
+    "translation": "Look at beautiful mountain!",
+    "voiceId": "IKne3meq5aSn9XLyUdCD"
+  },
+  {
+    "speaker": "Speaker 2",
+    "original": "Eh, vero nata suni.",
+    "translation": "Yes, very tall stone.",
+    "voiceId": "pNInz6obpgDQGcFmaJgB"
+  }
+]
+
+Use these voice IDs in your response:
+- "IKne3meq5aSn9XLyUdCD" (Voice 1)
+- "pNInz6obpgDQGcFmaJgB" (Voice 2)
+- "XB0fDUnXU5powFXDhCwa" (Voice 3)
+
+Return ONLY the valid JSON array, nothing else.
+`;
+
+    // Make request to KinOS
+    const kinosResponse = await fetch(`http://localhost:3000/api/kinos/kins/${kinName}/messages`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        content: messageContent,
+        model: "claude-3-7-sonnet-latest",
+        history_length: 25,
+        mode: "tile_conversation",
+        addSystem: "You are a linguistic anthropologist creating authentic dialogue in a constructed language. Generate the requested dialogue in JSON format with both the constructed language and literal English translations. The language should be consistent with previous examples and have its own phonology and grammar patterns."
+      })
+    });
+    
+    if (!kinosResponse.ok) {
+      throw new Error(`KinOS API request failed with status ${kinosResponse.status}: ${kinosResponse.statusText}`);
+    }
+    
+    const responseData = await kinosResponse.json();
+    
+    // Extract the conversation lines
+    const conversationText = responseData.response || responseData.content;
+    
+    // Parse the JSON response
+    let dialogueLines = [];
+    try {
+      // Find JSON array in the response
+      const jsonMatch = conversationText.match(/\[[\s\S]*\]/);
+      if (jsonMatch) {
+        dialogueLines = JSON.parse(jsonMatch[0]);
+      } else {
+        throw new Error('No valid JSON found in response');
+      }
+    } catch (error) {
+      logger.error(`Error parsing dialogue JSON: ${error.message}`);
+      return res.status(500).json({ error: 'Failed to parse dialogue response' });
+    }
+    
+    // Generate TTS for each line
+    for (let i = 0; i < dialogueLines.length; i++) {
+      const line = dialogueLines[i];
+      
+      try {
+        const ttsResponse = await fetch(`http://localhost:3000/api/data/actions/ai/tts`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            text: line.original,
+            voice_id: line.voiceId
+          })
+        });
+        
+        if (ttsResponse.ok) {
+          const ttsData = await ttsResponse.json();
+          
+          // Add the audio URL to the dialogue line
+          if (ttsData.audio_url) {
+            dialogueLines[i].audioUrl = ttsData.audio_url;
+          }
+        }
+      } catch (ttsError) {
+        logger.error(`Error generating TTS for dialogue line: ${ttsError.message}`);
+        // Continue without audio if TTS fails
+      }
+    }
+    
+    // Return the dialogue lines with audio URLs
+    res.json({ 
+      success: true, 
+      dialogueLines: dialogueLines 
+    });
+    
+  } catch (error) {
+    logger.error(`Error generating tile conversation: ${error.message}`);
+    res.status(500).json({ 
+      error: 'Failed to generate conversation',
+      message: error.message
+    });
+  }
+});
+
 // Add this route to handle TTS requests
 router.post('/actions/ai/tts', async (req, res) => {
   try {
@@ -544,160 +680,6 @@ router.get('/actions/ai/:terrainCode/narration', async (req, res) => {
   }
 });
 
-// Generate a conversation in the colony's language for a tile
-async function generateTileConversation(tileX, tileY, terrainCode, terrainDescription) {
-  try {
-    // Show a subtle loading indicator
-    const loadingIndicator = document.createElement('div');
-    loadingIndicator.className = 'notification';
-    loadingIndicator.textContent = 'Settlers are discussing this area...';
-    document.body.appendChild(loadingIndicator);
-    
-    // Get the colony name and kin name from localStorage
-    const colonyName = localStorage.getItem('colonyName') || 'Your Colony';
-    const kinName = localStorage.getItem('kinName') || 'defaultcolony';
-    
-    // Prepare the message for KinOS
-    const messageContent = `
-Generate a short conversation (2-3 sentences total) between settlers exploring this terrain:
-Terrain type: ${terrainCode}
-Description: ${terrainDescription}
-
-IMPORTANT REQUIREMENTS:
-1. Write dialogue in the colony's constructed language
-2. Format as a JSON array with 2-3 speakers
-3. Each line should be short (5-10 words maximum)
-4. The conversation should relate to exploring or reacting to this specific terrain
-5. Include both the original language and a literal English translation for each line
-
-Return your response as a JSON array with this structure:
-[
-  {
-    "speaker": "Speaker 1",
-    "original": "Kafa mero santi loma!",
-    "translation": "Look at beautiful mountain!",
-    "voiceId": "IKne3meq5aSn9XLyUdCD"
-  },
-  {
-    "speaker": "Speaker 2",
-    "original": "Eh, vero nata suni.",
-    "translation": "Yes, very tall stone.",
-    "voiceId": "pNInz6obpgDQGcFmaJgB"
-  }
-]
-
-Use these voice IDs in your response:
-- "IKne3meq5aSn9XLyUdCD" (Voice 1)
-- "pNInz6obpgDQGcFmaJgB" (Voice 2)
-- "XB0fDUnXU5powFXDhCwa" (Voice 3)
-
-Return ONLY the valid JSON array, nothing else.
-`;
-
-    // Make request to KinOS
-    const response = await fetch(`${config.serverUrl}/api/kinos/kins/${kinName}/messages`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        content: messageContent,
-        model: "claude-3-7-sonnet-latest",
-        history_length: 25,
-        mode: "tile_conversation",
-        addSystem: "You are a linguistic anthropologist creating authentic dialogue in a constructed language. Generate the requested dialogue in JSON format with both the constructed language and literal English translations. The language should be consistent with previous examples and have its own phonology and grammar patterns."
-      })
-    });
-    
-    if (!response.ok) {
-      throw new Error(`KinOS API request failed with status ${response.status}: ${response.statusText}`);
-    }
-    
-    const responseData = await response.json();
-    
-    // Extract the conversation lines
-    const conversationText = responseData.response || responseData.content;
-    
-    // Remove the loading indicator
-    loadingIndicator.remove();
-    
-    // Parse the JSON response
-    let dialogueLines = [];
-    try {
-      // Find JSON array in the response
-      const jsonMatch = conversationText.match(/\[[\s\S]*\]/);
-      if (jsonMatch) {
-        dialogueLines = JSON.parse(jsonMatch[0]);
-      } else {
-        throw new Error('No valid JSON found in response');
-      }
-    } catch (error) {
-      console.error('Error parsing dialogue JSON:', error);
-      return null;
-    }
-    
-    // Play each line with the specified voice
-    for (let i = 0; i < dialogueLines.length; i++) {
-      const line = dialogueLines[i];
-      
-      try {
-        const ttsResponse = await fetch(`${config.serverUrl}/api/data/actions/ai/tts`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            text: line.original,
-            voice_id: line.voiceId
-          })
-        });
-        
-        if (ttsResponse.ok) {
-          const ttsData = await ttsResponse.json();
-          
-          // Play the audio
-          if (ttsData.audio_url) {
-            const fullAudioUrl = ttsData.audio_url.startsWith('/') 
-              ? `${config.serverUrl}${ttsData.audio_url}` 
-              : ttsData.audio_url;
-            
-            // Create a notification with both original text and translation
-            const dialogueNotification = document.createElement('div');
-            dialogueNotification.className = 'dialogue-notification';
-            dialogueNotification.innerHTML = `
-              <div class="dialogue-speaker">${line.speaker}:</div>
-              <div class="dialogue-original">${line.original}</div>
-              <div class="dialogue-translation">${line.translation}</div>
-            `;
-            document.body.appendChild(dialogueNotification);
-            
-            // Play the audio
-            const audio = new Audio(fullAudioUrl);
-            
-            // Remove notification when audio ends
-            audio.onended = () => {
-              dialogueNotification.classList.add('fade-out');
-              setTimeout(() => dialogueNotification.remove(), 1000);
-            };
-            
-            // Wait for previous audio to finish before playing the next one
-            await audio.play();
-            
-            // Add a small delay between lines
-            await new Promise(resolve => setTimeout(resolve, 500));
-          }
-        }
-      } catch (ttsError) {
-        console.error('Error generating TTS for dialogue line:', ttsError);
-      }
-    }
-    
-    return dialogueLines;
-  } catch (error) {
-    console.error('Error generating tile conversation:', error);
-    return null;
-  }
-}
 
 // Add this function to generate narration using KinOS analysis
 async function generateAINarrationForTerrain(terrainCode) {

@@ -2069,7 +2069,7 @@ function parseActionResponse(responseText) {
     }
 }
 
-// Generate a conversation in the colony's language for a tile
+// Request a conversation in the colony's language for a tile
 async function generateTileConversation(tileX, tileY, terrainCode, terrainDescription) {
   try {
     // Show a subtle loading indicator
@@ -2078,142 +2078,83 @@ async function generateTileConversation(tileX, tileY, terrainCode, terrainDescri
     loadingIndicator.textContent = 'Settlers are discussing this area...';
     document.body.appendChild(loadingIndicator);
     
-    // Get the colony name and kin name from localStorage
-    const colonyName = localStorage.getItem('colonyName') || 'Your Colony';
-    const kinName = localStorage.getItem('kinName') || 'defaultcolony';
-    
-    // Prepare the message for KinOS
-    const messageContent = `
-Generate a short conversation (2-3 sentences total) between settlers exploring this terrain:
-Terrain type: ${terrainCode}
-Description: ${terrainDescription}
-
-IMPORTANT REQUIREMENTS:
-1. Write dialogue in the colony's constructed language
-2. Format as a JSON array with 2-3 speakers
-3. Each line should be short (5-10 words maximum)
-4. The conversation should relate to exploring or reacting to this specific terrain
-5. Include both the original language and a literal English translation for each line
-
-Return your response as a JSON array with this structure:
-[
-  {
-    "speaker": "Speaker 1",
-    "original": "Kafa mero santi loma!",
-    "translation": "Look at beautiful mountain!",
-    "voiceId": "IKne3meq5aSn9XLyUdCD"
-  },
-  {
-    "speaker": "Speaker 2",
-    "original": "Eh, vero nata suni.",
-    "translation": "Yes, very tall stone.",
-    "voiceId": "pNInz6obpgDQGcFmaJgB"
-  }
-]
-
-Use these voice IDs in your response:
-- "IKne3meq5aSn9XLyUdCD" (Voice 1)
-- "pNInz6obpgDQGcFmaJgB" (Voice 2)
-- "XB0fDUnXU5powFXDhCwa" (Voice 3)
-
-Return ONLY the valid JSON array, nothing else.
-`;
-
-    // Make request to KinOS
-    const response = await fetch(`${config.serverUrl}/api/kinos/kins/${kinName}/messages`, {
+    // Make request to the server endpoint that will handle the conversation generation
+    const response = await fetch(`${config.serverUrl}/api/data/tile-conversation`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        content: messageContent,
-        model: "claude-3-7-sonnet-latest",
-        history_length: 25,
-        mode: "tile_conversation",
-        addSystem: "You are a linguistic anthropologist creating authentic dialogue in a constructed language. Generate the requested dialogue in JSON format with both the constructed language and literal English translations. The language should be consistent with previous examples and have its own phonology and grammar patterns."
+        tileX,
+        tileY,
+        terrainCode,
+        terrainDescription
       })
     });
-    
-    if (!response.ok) {
-      throw new Error(`KinOS API request failed with status ${response.status}: ${response.statusText}`);
-    }
-    
-    const responseData = await response.json();
-    
-    // Extract the conversation lines
-    const conversationText = responseData.response || responseData.content;
     
     // Remove the loading indicator
     loadingIndicator.remove();
     
-    // Parse the JSON response
-    let dialogueLines = [];
-    try {
-      // Find JSON array in the response
-      const jsonMatch = conversationText.match(/\[[\s\S]*\]/);
-      if (jsonMatch) {
-        dialogueLines = JSON.parse(jsonMatch[0]);
-      } else {
-        throw new Error('No valid JSON found in response');
-      }
-    } catch (error) {
-      console.error('Error parsing dialogue JSON:', error);
-      return null;
+    if (!response.ok) {
+      throw new Error(`Server request failed with status ${response.status}: ${response.statusText}`);
     }
     
-    // Play each line with the specified voice
+    const dialogueData = await response.json();
+    
+    if (!dialogueData || !dialogueData.dialogueLines || !Array.isArray(dialogueData.dialogueLines)) {
+      throw new Error('Invalid response format from server');
+    }
+    
+    const dialogueLines = dialogueData.dialogueLines;
+    
+    // Display and play each line of dialogue
     for (let i = 0; i < dialogueLines.length; i++) {
       const line = dialogueLines[i];
       
-      try {
-        const ttsResponse = await fetch(`${config.serverUrl}/api/data/actions/ai/tts`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            text: line.original,
-            voice_id: line.voiceId
-          })
-        });
+      // Create a notification with both original text and translation
+      const dialogueNotification = document.createElement('div');
+      dialogueNotification.className = 'dialogue-notification';
+      dialogueNotification.innerHTML = `
+        <div class="dialogue-speaker">${line.speaker}:</div>
+        <div class="dialogue-original">${line.original}</div>
+        <div class="dialogue-translation">${line.translation}</div>
+      `;
+      document.body.appendChild(dialogueNotification);
+      
+      // Play the audio if available
+      if (line.audioUrl) {
+        const fullAudioUrl = line.audioUrl.startsWith('/') 
+          ? `${config.serverUrl}${line.audioUrl}` 
+          : line.audioUrl;
         
-        if (ttsResponse.ok) {
-          const ttsData = await ttsResponse.json();
+        const audio = new Audio(fullAudioUrl);
+        
+        // Remove notification when audio ends
+        audio.onended = () => {
+          dialogueNotification.classList.add('fade-out');
+          setTimeout(() => dialogueNotification.remove(), 1000);
+        };
+        
+        try {
+          // Wait for audio to play before continuing
+          await audio.play();
           
-          // Play the audio
-          if (ttsData.audio_url) {
-            const fullAudioUrl = ttsData.audio_url.startsWith('/') 
-              ? `${config.serverUrl}${ttsData.audio_url}` 
-              : ttsData.audio_url;
-            
-            // Create a notification with both original text and translation
-            const dialogueNotification = document.createElement('div');
-            dialogueNotification.className = 'dialogue-notification';
-            dialogueNotification.innerHTML = `
-              <div class="dialogue-speaker">${line.speaker}:</div>
-              <div class="dialogue-original">${line.original}</div>
-              <div class="dialogue-translation">${line.translation}</div>
-            `;
-            document.body.appendChild(dialogueNotification);
-            
-            // Play the audio
-            const audio = new Audio(fullAudioUrl);
-            
-            // Remove notification when audio ends
-            audio.onended = () => {
-              dialogueNotification.classList.add('fade-out');
-              setTimeout(() => dialogueNotification.remove(), 1000);
-            };
-            
-            // Wait for previous audio to finish before playing the next one
-            await audio.play();
-            
-            // Add a small delay between lines
-            await new Promise(resolve => setTimeout(resolve, 500));
-          }
+          // Add a small delay between lines
+          await new Promise(resolve => setTimeout(resolve, 500));
+        } catch (audioError) {
+          console.error('Error playing audio:', audioError);
+          // If audio fails, remove the notification after a delay
+          setTimeout(() => {
+            dialogueNotification.classList.add('fade-out');
+            setTimeout(() => dialogueNotification.remove(), 1000);
+          }, 3000);
         }
-      } catch (ttsError) {
-        console.error('Error generating TTS for dialogue line:', ttsError);
+      } else {
+        // If no audio, remove the notification after a delay
+        setTimeout(() => {
+          dialogueNotification.classList.add('fade-out');
+          setTimeout(() => dialogueNotification.remove(), 1000);
+        }, 3000);
       }
     }
     

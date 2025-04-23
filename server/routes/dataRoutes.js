@@ -312,9 +312,9 @@ function generateFallbackActions(terrainCode) {
   
   // Default actions that work for most terrain types
   const defaultActions = [
-    { code: "X-001", name: "Survey Area", description: "Explore and map the surrounding terrain" },
-    { code: "G-001", name: "Gather Resources", description: "Collect useful materials from the environment" },
-    { code: "C-001", name: "Build Basic Shelter", description: "Construct a simple protective structure" }
+    { code: "X-001", name: "Survey Area", description: "Explore and map the surrounding terrain", emoji: "🧭" },
+    { code: "G-001", name: "Gather Resources", description: "Collect useful materials from the environment", emoji: "🧺" },
+    { code: "C-001", name: "Build Basic Shelter", description: "Construct a simple protective structure", emoji: "🏕️" }
   ];
   
   // Add terrain-specific actions based on the prefix
@@ -322,51 +322,51 @@ function generateFallbackActions(terrainCode) {
     case 'P': // Plains
       return [
         ...defaultActions,
-        { code: "G-002", name: "Collect Wild Plants", description: "Gather edible and useful plants" },
-        { code: "H-001", name: "Hunt Small Game", description: "Hunt small animals in the grassland" }
+        { code: "G-002", name: "Collect Wild Plants", description: "Gather edible and useful plants", emoji: "🌿" },
+        { code: "H-001", name: "Hunt Small Game", description: "Hunt small animals in the grassland", emoji: "🏹" }
       ];
     case 'F': // Forest
       return [
         ...defaultActions,
-        { code: "G-008", name: "Gather Fallen Wood", description: "Collect wood from the forest floor" },
-        { code: "H-004", name: "Hunt Forest Animals", description: "Hunt creatures that live in the forest" }
+        { code: "G-008", name: "Gather Fallen Wood", description: "Collect wood from the forest floor", emoji: "🪵" },
+        { code: "H-004", name: "Hunt Forest Animals", description: "Hunt creatures that live in the forest", emoji: "🦌" }
       ];
     case 'M': // Mountains
       return [
         ...defaultActions,
-        { code: "G-023", name: "Gather Mountain Plants", description: "Collect unique plants from high elevations" },
-        { code: "M-001", name: "Collect Surface Stones", description: "Gather useful rocks and stones" },
-        { code: "X-009", name: "Scout Mountain Passes", description: "Find routes through difficult terrain" }
+        { code: "G-023", name: "Gather Mountain Plants", description: "Collect unique plants from high elevations", emoji: "🏔️" },
+        { code: "M-001", name: "Collect Surface Stones", description: "Gather useful rocks and stones", emoji: "🪨" },
+        { code: "X-009", name: "Scout Mountain Passes", description: "Find routes through difficult terrain", emoji: "🧗" }
       ];
     case 'W': // Water
       return [
         ...defaultActions,
-        { code: "G-030", name: "Gather Water Plants", description: "Collect plants growing in or near water" },
-        { code: "H-017", name: "Fish Waters", description: "Catch fish from the water" }
+        { code: "G-030", name: "Gather Water Plants", description: "Collect plants growing in or near water", emoji: "🌊" },
+        { code: "H-017", name: "Fish Waters", description: "Catch fish from the water", emoji: "🎣" }
       ];
     case 'D': // Desert
       return [
         ...defaultActions,
-        { code: "G-018", name: "Collect Desert Plants", description: "Gather drought-resistant vegetation" },
-        { code: "W-003", name: "Search for Water", description: "Look for hidden water sources" }
+        { code: "G-018", name: "Collect Desert Plants", description: "Gather drought-resistant vegetation", emoji: "🌵" },
+        { code: "W-003", name: "Search for Water", description: "Look for hidden water sources", emoji: "💧" }
       ];
     case 'R': // Rocky
       return [
         ...defaultActions,
-        { code: "M-007", name: "Find Special Stones", description: "Search for unusual or useful rocks" },
-        { code: "T-022", name: "Make Stone Tools", description: "Craft implements from available stone" }
+        { code: "M-007", name: "Find Special Stones", description: "Search for unusual or useful rocks", emoji: "💎" },
+        { code: "T-022", name: "Make Stone Tools", description: "Craft implements from available stone", emoji: "🔨" }
       ];
     case 'T': // Tundra
       return [
         ...defaultActions,
-        { code: "G-036", name: "Gather Tundra Plants", description: "Collect hardy plants from cold environment" },
-        { code: "T-019", name: "Craft Cold-Weather Gear", description: "Create clothing for extreme conditions" }
+        { code: "G-036", name: "Gather Tundra Plants", description: "Collect hardy plants from cold environment", emoji: "❄️" },
+        { code: "T-019", name: "Craft Cold-Weather Gear", description: "Create clothing for extreme conditions", emoji: "🧤" }
       ];
     case 'L': // Wasteland
       return [
         ...defaultActions,
-        { code: "X-029", name: "Find Safe Passages", description: "Discover routes with minimal hazards" },
-        { code: "X-030", name: "Locate Surviving Resources", description: "Find usable materials in harsh conditions" }
+        { code: "X-029", name: "Find Safe Passages", description: "Discover routes with minimal hazards", emoji: "🧪" },
+        { code: "X-030", name: "Locate Surviving Resources", description: "Find usable materials in harsh conditions", emoji: "🔍" }
       ];
     default:
       return defaultActions;

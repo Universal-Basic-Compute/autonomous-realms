@@ -308,7 +308,10 @@ function showActionMenu(actions) {
             const actionButton = document.createElement('button');
             actionButton.className = 'action-button';
             actionButton.dataset.actionCode = action.code;
-            actionButton.textContent = action.name;
+            
+            // Add emoji if available, otherwise use a default
+            const emoji = action.emoji || '▶️';
+            actionButton.textContent = `${emoji} ${action.name}`;
             
             // Add click handler for the action
             actionButton.addEventListener('click', () => {

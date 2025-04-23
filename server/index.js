@@ -41,11 +41,34 @@ async function ensureDirectories() {
   }
 }
 
+// Create a dummy audio file for fallback
+async function createDummyAudioFile() {
+  const dummyAudioPath = path.join(__dirname, 'assets/audio/narration/dummy.mp3');
+  
+  try {
+    // Check if the file already exists
+    await fs.access(dummyAudioPath);
+    logger.debug('Dummy audio file already exists');
+  } catch (err) {
+    // File doesn't exist, create the directory and an empty file
+    logger.info('Creating dummy audio file for fallback');
+    await fs.mkdir(path.join(__dirname, 'assets/audio/narration'), { recursive: true });
+    
+    // Create a minimal valid MP3 file (1 second of silence)
+    // You can replace this with a real MP3 file if you have one
+    // For now, we'll just create an empty file
+    await fs.writeFile(dummyAudioPath, Buffer.from(''));
+    
+    logger.info(`Created dummy audio file at ${dummyAudioPath}`);
+  }
+}
+
 // Initialize server
 async function init() {
   try {
     logger.info('Server initializing...');
     await ensureDirectories();
+    await createDummyAudioFile();
     
     // Debug API key (showing only first 8 chars for security)
     logger.debug(`Using API key: ${config.IDEOGRAM_API_KEY.substring(0, 8)}... (${config.IDEOGRAM_API_KEY ? 'provided' : 'missing'}, length: ${config.IDEOGRAM_API_KEY ? config.IDEOGRAM_API_KEY.length : 0})`);

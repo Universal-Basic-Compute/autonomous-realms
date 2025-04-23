@@ -575,7 +575,8 @@ async function generateTTS(text, terrainCode) {
         logger.error(`TTS API request failed with status ${response.status}: ${errorText}`);
         return { 
           error: `TTS API request failed with status ${response.status}`,
-          errorDetails: errorText
+          errorDetails: errorText,
+          audio_url: `/assets/audio/narration/dummy.mp3` // Add fallback audio URL
         };
       }
         
@@ -602,7 +603,8 @@ async function generateTTS(text, terrainCode) {
         } catch (bufferError) {
           logger.error(`Error processing audio buffer: ${bufferError.message}`);
           return { 
-            error: `Failed to process audio data: ${bufferError.message}`
+            error: `Failed to process audio data: ${bufferError.message}`,
+            audio_url: `/assets/audio/narration/dummy.mp3` // Add fallback audio URL
           };
         }
       } 
@@ -632,14 +634,22 @@ async function generateTTS(text, terrainCode) {
             } catch (downloadError) {
               logger.error(`Error saving audio file: ${downloadError.message}`);
               // Continue with the original response even if saving fails
+              // Add fallback if no audio_url exists
+              if (!data.audio_url && !data.result_url) {
+                data.audio_url = `/assets/audio/narration/dummy.mp3`;
+              }
             }
+          } else {
+            // Add fallback if no audio_url exists
+            data.audio_url = `/assets/audio/narration/dummy.mp3`;
           }
             
           return data;
         } catch (jsonError) {
           logger.error(`Error parsing JSON response: ${jsonError.message}`);
           return { 
-            error: `Failed to process TTS response: ${jsonError.message}`
+            error: `Failed to process TTS response: ${jsonError.message}`,
+            audio_url: `/assets/audio/narration/dummy.mp3` // Add fallback audio URL
           };
         }
       }
@@ -662,7 +672,8 @@ async function generateTTS(text, terrainCode) {
         } catch (unknownError) {
           logger.error(`Error handling unknown content type: ${unknownError.message}`);
           return { 
-            error: `Failed to process unknown response type: ${unknownError.message}`
+            error: `Failed to process unknown response type: ${unknownError.message}`,
+            audio_url: `/assets/audio/narration/dummy.mp3` // Add fallback audio URL
           };
         }
       }
@@ -670,14 +681,16 @@ async function generateTTS(text, terrainCode) {
       logger.error(`Error with TTS request: ${error.message}`);
       return { 
         error: error.message,
-        stack: error.stack
+        stack: error.stack,
+        audio_url: `/assets/audio/narration/dummy.mp3` // Add fallback audio URL
       };
     }
   } catch (error) {
     logger.error(`Error generating TTS: ${error.message}`, { error });
     return { 
       error: error.message,
-      stack: error.stack
+      stack: error.stack,
+      audio_url: `/assets/audio/narration/dummy.mp3` // Add fallback audio URL
     };
   }
 }

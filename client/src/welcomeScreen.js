@@ -556,8 +556,20 @@ Please create an epic, inspiring introduction for this tribe that captures their
       if (ttsResponse.ok) {
         const ttsData = await ttsResponse.json();
         
-        // Play the audio if available
-        if (ttsData.audio_url || ttsData.result_url) {
+        // Check if there was an error but we still got a response with an audio_url
+        if (ttsData.error && ttsData.audio_url) {
+          console.warn('TTS generation had an error but provided a fallback URL:', ttsData.error);
+          // Still use the audio URL even if there was an error
+          const audioUrl = ttsData.audio_url;
+          const audio = new Audio(audioUrl);
+          audio.play().catch(err => console.warn('Could not play intro audio:', err));
+          
+          // Store the intro text and audio URL in localStorage
+          localStorage.setItem('tribeIntroText', introText);
+          localStorage.setItem('tribeIntroAudio', audioUrl);
+        }
+        // Normal successful case
+        else if (ttsData.audio_url || ttsData.result_url) {
           const audioUrl = ttsData.audio_url || ttsData.result_url;
           const audio = new Audio(audioUrl);
           audio.play().catch(err => console.warn('Could not play intro audio:', err));
@@ -565,6 +577,9 @@ Please create an epic, inspiring introduction for this tribe that captures their
           // Store the intro text and audio URL in localStorage
           localStorage.setItem('tribeIntroText', introText);
           localStorage.setItem('tribeIntroAudio', audioUrl);
+        }
+        else {
+          console.warn('No audio URL found in TTS response:', ttsData);
         }
       } else {
         console.warn('Failed to generate TTS for tribe introduction');
@@ -589,21 +604,31 @@ Please create an epic, inspiring introduction for this tribe that captures their
           prompt: imagePrompt,
           aspect_ratio: "1:1",
           model: "ideogram-v2",
-          magic_prompt: true
+          magic_prompt: true,
+          message: "Generate an image of our tribe" // Add required message parameter
         })
       });
       
       if (imageResponse.ok) {
         const imageData = await imageResponse.json();
         
-        // Store the image URL in localStorage
-        if (imageData.data && imageData.data.url) {
+        // Check if there was an error but we still got a URL
+        if (imageData.error && imageData.data && imageData.data.url) {
+          console.warn('Image generation had an error but provided a URL:', imageData.error);
+          localStorage.setItem('tribeImageUrl', imageData.data.url);
+        }
+        // Normal successful case
+        else if (imageData.data && imageData.data.url) {
           localStorage.setItem('tribeImageUrl', imageData.data.url);
           console.log("Tribe image generated successfully:", imageData.data.url);
-        } else if (imageData.local_path) {
+        } 
+        else if (imageData.local_path) {
           // If we have a local path instead of a direct URL
           localStorage.setItem('tribeImagePath', imageData.local_path);
           console.log("Tribe image saved locally:", imageData.local_path);
+        }
+        else {
+          console.warn('No image URL found in response:', imageData);
         }
       } else {
         console.warn('Failed to generate tribe image');

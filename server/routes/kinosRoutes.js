@@ -127,60 +127,75 @@ router.post('/kins/:kinName/images', async (req, res) => {
         ideogramModel = "V_2A_TURBO";
       }
       
-      const ideogramResponse = await fetch('https://api.ideogram.ai/generate', {
-        method: 'POST',
-        headers: {
-          'Api-Key': process.env.IDEOGRAM_API_KEY || config.IDEOGRAM_API_KEY,
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          image_request: {
-            prompt: prompt,
-            model: ideogramModel,
-            aspect_ratio: ideogramAspectRatio,
-            style_type: "REALISTIC"
-          }
-        })
-      });
-      
-      if (!ideogramResponse.ok) {
-        const errorText = await ideogramResponse.text();
-        logger.error(`Ideogram API error: ${errorText}`);
-        return res.status(ideogramResponse.status).json({ 
+      try {
+        const ideogramResponse = await fetch('https://api.ideogram.ai/generate', {
+          method: 'POST',
+          headers: {
+            'Api-Key': process.env.IDEOGRAM_API_KEY || config.IDEOGRAM_API_KEY,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            image_request: {
+              prompt: prompt,
+              model: ideogramModel,
+              aspect_ratio: ideogramAspectRatio,
+              style_type: "REALISTIC"
+            }
+          })
+        });
+        
+        if (!ideogramResponse.ok) {
+          const errorText = await ideogramResponse.text();
+          logger.error(`Ideogram API error: ${errorText}`);
+          return res.status(ideogramResponse.status).json({ 
+            error: 'Image generation failed',
+            details: errorText
+          });
+        }
+        
+        const ideogramData = await ideogramResponse.json();
+        
+        if (!ideogramData.data || !ideogramData.data[0] || !ideogramData.data[0].url) {
+          logger.error('Invalid response from Ideogram API: No image URL found');
+          return res.status(500).json({ error: 'Invalid response from image generation API' });
+        }
+        
+        // Download the image to save locally
+        const imageUrl = ideogramData.data[0].url;
+        const filename = `tribe_image_${Date.now()}.png`;
+        
+        // Ensure directory exists
+        const imagesDir = path.join(__dirname, '../assets/images');
+        await fs.mkdir(imagesDir, { recursive: true });
+        const filePath = path.join(imagesDir, filename);
+        
+        // Download and save the image
+        const imageResponse = await fetch(imageUrl);
+        const imageBuffer = await imageResponse.buffer();
+        await fs.writeFile(filePath, imageBuffer);
+        
+        logger.info(`Successfully generated image for kin: ${kinName} via Ideogram directly`);
+        return res.json({
+          success: true,
+          data: {
+            url: imageUrl
+          },
+          local_path: `/assets/images/${filename}`
+        });
+      } catch (ideogramError) {
+        logger.error(`Ideogram API error: ${ideogramError.message}`);
+        
+        // Return a fallback response with a placeholder image URL
+        return res.json({
+          success: false,
           error: 'Image generation failed',
-          details: errorText
+          message: ideogramError.message,
+          data: {
+            url: 'https://via.placeholder.com/512x512?text=Image+Generation+Failed'
+          }
         });
       }
-      
-      const ideogramData = await ideogramResponse.json();
-      
-      if (!ideogramData.data || !ideogramData.data[0] || !ideogramData.data[0].url) {
-        logger.error('Invalid response from Ideogram API: No image URL found');
-        return res.status(500).json({ error: 'Invalid response from image generation API' });
-      }
-      
-      // Download the image to save locally
-      const imageUrl = ideogramData.data[0].url;
-      const filename = `tribe_image_${Date.now()}.png`;
-      const filePath = path.join(__dirname, '../assets/images', filename);
-      
-      // Ensure directory exists
-      await fs.mkdir(path.join(__dirname, '../assets/images'), { recursive: true });
-      
-      // Download and save the image
-      const imageResponse = await fetch(imageUrl);
-      const imageBuffer = await imageResponse.buffer();
-      await fs.writeFile(filePath, imageBuffer);
-      
-      logger.info(`Successfully generated image for kin: ${kinName} via Ideogram directly`);
-      return res.json({
-        success: true,
-        data: {
-          url: imageUrl
-        },
-        local_path: `/assets/images/${filename}`
-      });
     }
   } catch (error) {
     logger.error(`Error generating image for kin: ${error.message}`);
@@ -210,15 +225,73 @@ router.post('/tts', async (req, res) => {
           model
         })
       });
-    
-      const data = await response.json();
       
-      if (!response.ok) {
-        throw new Error(`KinOS TTS API error: ${JSON.stringify(data)}`);
+      // Check if the response is binary audio data or JSON
+      const contentType = response.headers.get('content-type');
+      logger.debug(`KinOS TTS response content-type: ${contentType}`);
+      
+      // Handle binary audio data (MP3)
+      if (contentType && contentType.includes('audio/')) {
+        try {
+          // Get the audio as an ArrayBuffer
+          const arrayBuffer = await response.arrayBuffer();
+          const buffer = Buffer.from(arrayBuffer);
+          
+          // Save the audio file
+          const filename = `tts_${Date.now()}.mp3`;
+          const filePath = path.join(__dirname, '../assets/audio/narration', filename);
+          
+          // Ensure directory exists
+          await fs.mkdir(path.join(__dirname, '../assets/audio/narration'), { recursive: true });
+          
+          // Write the file
+          await fs.writeFile(filePath, buffer);
+          
+          logger.info(`Successfully generated TTS via KinOS (binary response)`);
+          return res.json({
+            success: true,
+            audio_url: `/assets/audio/narration/${filename}`
+          });
+        } catch (bufferError) {
+          logger.error(`Error processing audio buffer: ${bufferError.message}`);
+          throw new Error(`Failed to process audio data: ${bufferError.message}`);
+        }
+      } 
+      // Handle JSON response
+      else if (contentType && contentType.includes('application/json')) {
+        const data = await response.json();
+        
+        if (!response.ok) {
+          throw new Error(`KinOS TTS API error: ${JSON.stringify(data)}`);
+        }
+        
+        logger.info(`Successfully generated TTS via KinOS (JSON response)`);
+        return res.json(data);
       }
-      
-      logger.info(`Successfully generated TTS via KinOS`);
-      return res.json(data);
+      // Unknown content type - try to save as binary anyway
+      else {
+        logger.warn(`Unknown content type from KinOS TTS API: ${contentType}, attempting to save as binary`);
+        const buffer = await response.buffer();
+        
+        // Save the audio file
+        const filename = `tts_${Date.now()}.mp3`;
+        const filePath = path.join(__dirname, '../assets/audio/narration', filename);
+        
+        // Ensure directory exists
+        await fs.mkdir(path.join(__dirname, '../assets/audio/narration'), { recursive: true });
+        
+        // Write the file
+        await fs.writeFile(filePath, buffer);
+        
+        logger.info(`Saved unknown content to file`);
+        
+        // Return the URL to the saved file
+        return res.json({
+          success: true,
+          audio_url: `/assets/audio/narration/${filename}`,
+          warning: `Unknown content type: ${contentType}`
+        });
+      }
     } catch (kinosError) {
       // If KinOS endpoint fails, try the ElevenLabs API directly
       logger.warn(`KinOS TTS failed, trying ElevenLabs directly: ${kinosError.message}`);
@@ -226,7 +299,14 @@ router.post('/tts', async (req, res) => {
       // Check if we have a valid API key before making the request
       const apiKey = process.env.ELEVENLABS_API_KEY || config.ELEVENLABS_API_KEY;
       if (!apiKey) {
-        throw new Error('ElevenLabs API key is missing. Please add ELEVENLABS_API_KEY to your .env file or config.js');
+        // If no ElevenLabs API key, return a dummy audio URL
+        logger.warn('No ElevenLabs API key available, returning dummy audio');
+        return res.json({
+          success: false,
+          error: 'TTS generation failed: No valid API key',
+          // Return a dummy audio URL that will show the UI but not actually play
+          audio_url: '/assets/audio/narration/dummy.mp3'
+        });
       }
       
       const elevenLabsResponse = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voice_id}`, {
@@ -248,9 +328,14 @@ router.post('/tts', async (req, res) => {
       if (!elevenLabsResponse.ok) {
         const errorData = await elevenLabsResponse.text();
         logger.error(`ElevenLabs API error: ${errorData}`);
-        return res.status(elevenLabsResponse.status).json({ 
-          error: 'TTS generation failed',
-          details: errorData
+        
+        // Return a dummy audio URL if ElevenLabs fails
+        return res.json({
+          success: false,
+          error: 'TTS generation failed: ElevenLabs API error',
+          details: errorData,
+          // Return a dummy audio URL that will show the UI but not actually play
+          audio_url: '/assets/audio/narration/dummy.mp3'
         });
       }
       
@@ -275,7 +360,15 @@ router.post('/tts', async (req, res) => {
     }
   } catch (error) {
     logger.error(`Error generating TTS: ${error.message}`);
-    res.status(500).json({ error: 'Failed to generate TTS' });
+    
+    // Return a dummy audio URL on error
+    return res.json({
+      success: false,
+      error: 'Failed to generate TTS',
+      message: error.message,
+      // Return a dummy audio URL that will show the UI but not actually play
+      audio_url: '/assets/audio/narration/dummy.mp3'
+    });
   }
 });
 

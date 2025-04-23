@@ -35,7 +35,32 @@ async function connectWallet() {
     
     // Connect to wallet
     const resp = await provider.connect();
-    return resp.publicKey.toString();
+    const walletAddress = resp.publicKey.toString();
+    
+    // Show success notification
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.textContent = `Wallet connected: ${walletAddress.substring(0, 6)}...${walletAddress.substring(walletAddress.length - 4)}`;
+    document.body.appendChild(notification);
+    
+    // Remove notification after a delay
+    setTimeout(() => {
+      notification.classList.add('fade-out');
+      setTimeout(() => notification.remove(), 1000);
+    }, 3000);
+    
+    // Update the wallet button text
+    updateWalletButtonText(walletAddress);
+    
+    // Store wallet address in localStorage
+    localStorage.setItem('walletAddress', walletAddress);
+    
+    // Show compute transfer dialog
+    setTimeout(() => {
+      showComputeTransferDialog(walletAddress);
+    }, 500);
+    
+    return walletAddress;
   } catch (error) {
     console.error('Error connecting to wallet:', error);
     
@@ -53,6 +78,33 @@ async function connectWallet() {
     
     return null;
   }
+}
+
+// Add a new function to update the wallet button text
+function updateWalletButtonText(walletAddress) {
+  // Find all wallet buttons in the DOM (in case there are multiple screens)
+  const walletButtons = document.querySelectorAll('.welcome-button');
+  
+  walletButtons.forEach(button => {
+    if (button.textContent === 'Connect Wallet') {
+      button.textContent = `Wallet: ${walletAddress.substring(0, 6)}...${walletAddress.substring(walletAddress.length - 4)}`;
+      
+      // Update the click handler to show the transfer dialog instead of connecting again
+      button.removeEventListener('click', connectWalletHandler);
+      button.addEventListener('click', () => {
+        showComputeTransferDialog(walletAddress);
+      });
+    }
+  });
+}
+
+// Extract the wallet button click handler to a named function so we can remove it later
+function connectWalletHandler() {
+  connectWallet().then(walletAddress => {
+    if (walletAddress) {
+      // The rest of the handler is now in the connectWallet function
+    }
+  });
 }
 
 // Function to transfer $COMPUTE tokens
@@ -257,29 +309,14 @@ function createWelcomeScreen() {
   const walletButton = document.createElement('button');
   walletButton.textContent = 'Connect Wallet';
   walletButton.className = 'welcome-button';
-  walletButton.addEventListener('click', async () => {
-    const walletAddress = await connectWallet();
-    if (walletAddress) {
-      // Show wallet connected notification
-      const notification = document.createElement('div');
-      notification.className = 'notification';
-      notification.textContent = `Wallet connected: ${walletAddress.substring(0, 6)}...${walletAddress.substring(walletAddress.length - 4)}`;
-      document.body.appendChild(notification);
-      
-      // Remove notification after a delay
-      setTimeout(() => {
-        notification.classList.add('fade-out');
-        setTimeout(() => notification.remove(), 1000);
-      }, 3000);
-      
-      // Store wallet address in localStorage
-      localStorage.setItem('walletAddress', walletAddress);
-      
-      // Show compute transfer dialog
-      showComputeTransferDialog(walletAddress);
-    }
-  });
+  walletButton.addEventListener('click', connectWalletHandler);
   menuContainer.appendChild(walletButton);
+  
+  // Check if wallet is already connected and update button accordingly
+  const savedWalletAddress = localStorage.getItem('walletAddress');
+  if (savedWalletAddress) {
+    updateWalletButtonText(savedWalletAddress);
+  }
   
   // Add settings button (disabled for now)
   const settingsButton = document.createElement('button');
@@ -1408,6 +1445,13 @@ function showComputeTransferDialog(walletAddress) {
   
   dialogContent.appendChild(buttonContainer);
   dialogContainer.appendChild(dialogContent);
+  
+  // Make sure we don't have multiple dialogs
+  const existingDialog = document.querySelector('.dialog');
+  if (existingDialog) {
+    existingDialog.remove();
+  }
+  
   document.body.appendChild(dialogContainer);
 }
 

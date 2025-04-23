@@ -473,21 +473,63 @@ Example response:
         try {
           // Remove consumed resources
           let allResourcesAvailable = true;
+          let missingResources = [];
+          
+          // Log the resources we're checking
+          console.log("Checking resources availability:");
+          console.log("Resources needed:", craftingResult.consumedResources);
+          console.log("Current inventory:", resourceManager.getAllResources());
           
           // First check if all resources are available
           for (const resource of craftingResult.consumedResources) {
-            const existingResource = resourceManager.getResource(resource.name);
+            // Try to find the resource by exact name first
+            let existingResource = resourceManager.getResource(resource.name);
+            
+            // If not found, try case-insensitive matching
+            if (!existingResource) {
+              // Get all resources and search for a case-insensitive match
+              const allResources = resourceManager.getAllResources();
+              for (const category in allResources) {
+                for (const itemName in allResources[category].items) {
+                  if (itemName.toLowerCase() === resource.name.toLowerCase()) {
+                    existingResource = allResources[category].items[itemName];
+                    console.log(`Found resource with case-insensitive match: ${itemName}`);
+                    break;
+                  }
+                }
+                if (existingResource) break;
+              }
+            }
+            
             if (!existingResource || existingResource.quantity < resource.quantity) {
               allResourcesAvailable = false;
-              console.warn(`Not enough ${resource.name} available for crafting`);
-              break;
+              missingResources.push(resource.name);
+              console.warn(`Not enough ${resource.name} available for crafting. Required: ${resource.quantity}, Available: ${existingResource ? existingResource.quantity : 0}`);
+            } else {
+              console.log(`Resource ${resource.name} is available. Required: ${resource.quantity}, Available: ${existingResource.quantity}`);
             }
           }
           
           if (allResourcesAvailable) {
             // Remove the resources
             craftingResult.consumedResources.forEach(resource => {
-              resourceManager.removeResource(resource.name, resource.quantity);
+              // Try to find the resource by exact name first
+              let resourceName = resource.name;
+              if (!resourceManager.getResource(resourceName)) {
+                // Try case-insensitive matching
+                const allResources = resourceManager.getAllResources();
+                for (const category in allResources) {
+                  for (const itemName in allResources[category].items) {
+                    if (itemName.toLowerCase() === resource.name.toLowerCase()) {
+                      resourceName = itemName; // Use the actual name with correct case
+                      break;
+                    }
+                  }
+                  if (resourceName !== resource.name) break;
+                }
+              }
+              
+              resourceManager.removeResource(resourceName, resource.quantity);
             });
             
             // Add the crafted item
@@ -504,7 +546,7 @@ Example response:
             this.clearSlots();
           } else {
             // Not enough resources
-            this.showCraftingError("Not enough resources available to complete crafting");
+            this.showCraftingError(`Not enough resources available: ${missingResources.join(', ')}`);
           }
         } catch (error) {
           console.error('Error processing crafting result:', error);

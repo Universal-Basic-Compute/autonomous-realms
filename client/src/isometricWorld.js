@@ -3447,9 +3447,14 @@ function setupEventListeners() {
 
 // Start dragging
 function startDrag(e) {
-    // Don't start dragging if we clicked on a button or control
-    if (e.target.closest('#controls') || e.target.closest('#info-panel') || 
-        e.target.closest('.edge-menu') || e.target.closest('.submenu')) {
+    // Don't start dragging if we clicked on a button, control, or draggable crafting item
+    if (e.target.closest('#controls') || 
+        e.target.closest('#info-panel') || 
+        e.target.closest('.edge-menu') || 
+        e.target.closest('.submenu') ||
+        e.target.closest('.crafting-resource-item') || // Check for crafting resources
+        e.target.closest('.crafting-slot') ||          // Check for crafting slots
+        e.target.closest('.crafting-view')) {          // Check for any part of crafting view
         return;
     }
     
@@ -3509,9 +3514,14 @@ function endDrag() {
 
 // Handle touch start
 function handleTouchStart(e) {
-    // Don't start dragging if we touched a button or control
-    if (e.target.closest('#controls') || e.target.closest('#info-panel') || 
-        e.target.closest('.edge-menu') || e.target.closest('.submenu')) {
+    // Don't start dragging if we touched a button, control, or draggable crafting item
+    if (e.target.closest('#controls') || 
+        e.target.closest('#info-panel') || 
+        e.target.closest('.edge-menu') || 
+        e.target.closest('.submenu') ||
+        e.target.closest('.crafting-resource-item') || // Check for crafting resources
+        e.target.closest('.crafting-slot') ||          // Check for crafting slots
+        e.target.closest('.crafting-view')) {          // Check for any part of crafting view
         return;
     }
     

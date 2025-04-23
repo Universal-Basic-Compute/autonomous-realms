@@ -2,6 +2,7 @@ import audioPlayer from './audioPlayer.js';
 import { createWelcomeScreen } from './welcomeScreen.js';
 import resourceManager from './resourceManager.js';
 import './resourceDisplay.js'; // This will initialize the resource display
+import './craftingView.js'; // Import the crafting view
 
 // Language caching variables
 let languageCache = null;
@@ -435,7 +436,7 @@ function showCircularMenu() {
     const menuItems = [
         { icon: '🗣️', label: 'Language', action: showLanguageMenu },
         { icon: '🏛️', label: 'Culture', action: showCultureMenu },
-        { icon: '🛠️', label: 'Crafting', action: () => console.log('Crafting clicked') },
+        { icon: '🛠️', label: 'Crafting', action: showCraftingMenu },
         { icon: '🏠', label: 'Building', action: () => console.log('Building clicked') },
         { icon: '🔍', label: 'Explore', action: () => console.log('Explore clicked') }
     ];
@@ -470,6 +471,17 @@ function showCircularMenu() {
     // Position the menu at the left edge of the screen
     circularMenu.style.left = '20px';
     circularMenu.style.top = '100px';
+}
+
+// Add this function to show the crafting menu
+function showCraftingMenu() {
+    // Import the crafting view dynamically
+    import('./craftingView.js').then(module => {
+        const craftingView = module.default;
+        craftingView.show();
+    }).catch(error => {
+        console.error('Error loading crafting view:', error);
+    });
 }
 
 // Show language development menu

@@ -3040,7 +3040,7 @@ function selectTile(tile) {
   const loadingMenu = document.createElement('div');
   loadingMenu.id = 'action-menu';
   loadingMenu.className = 'action-menu';
-  loadingMenu.innerHTML = '<h3>Available Actions</h3><p class="loading-actions">Analyzing terrain for available actions...</p>';
+  loadingMenu.innerHTML = '<h3>Available Actions</h3><p class="loading-actions">Your settlers survey the land, considering their options...</p>';
   document.body.appendChild(loadingMenu);
   state.actionMenuVisible = true;
   

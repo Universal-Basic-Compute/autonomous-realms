@@ -2183,6 +2183,293 @@ function selectTile(tile) {
     });
 }
 
+// Create a screen for loading saved colonies
+function createLoadColonyScreen() {
+  // Create container
+  const loadContainer = document.createElement('div');
+  loadContainer.id = 'load-colony-screen';
+  loadContainer.className = 'fullscreen-overlay';
+  
+  // Add title
+  const title = document.createElement('h2');
+  title.textContent = 'Load Colony';
+  title.className = 'naming-title';
+  loadContainer.appendChild(title);
+  
+  // Create colonies list container
+  const coloniesContainer = document.createElement('div');
+  coloniesContainer.className = 'colonies-container';
+  
+  // Get saved colonies from localStorage
+  const savedColonies = getSavedColonies();
+  
+  if (savedColonies.length === 0) {
+    // No saved colonies
+    const noColoniesMessage = document.createElement('p');
+    noColoniesMessage.className = 'no-colonies-message';
+    noColoniesMessage.textContent = 'No saved colonies found.';
+    coloniesContainer.appendChild(noColoniesMessage);
+  } else {
+    // Create a list of colonies
+    const coloniesList = document.createElement('div');
+    coloniesList.className = 'colonies-list';
+    
+    savedColonies.forEach(colony => {
+      const colonyItem = document.createElement('div');
+      colonyItem.className = 'colony-item';
+      
+      // Add colony info
+      const colonyInfo = document.createElement('div');
+      colonyInfo.className = 'colony-info';
+      
+      const colonyName = document.createElement('h3');
+      colonyName.textContent = colony.colonyName;
+      colonyInfo.appendChild(colonyName);
+      
+      const leaderName = document.createElement('p');
+      leaderName.textContent = `Leader: ${colony.leaderName}`;
+      colonyInfo.appendChild(leaderName);
+      
+      const lastPlayed = document.createElement('p');
+      lastPlayed.className = 'last-played';
+      lastPlayed.textContent = `Last played: ${formatDate(colony.lastPlayed)}`;
+      colonyInfo.appendChild(lastPlayed);
+      
+      colonyItem.appendChild(colonyInfo);
+      
+      // Add load button
+      const loadButton = document.createElement('button');
+      loadButton.className = 'load-colony-button';
+      loadButton.textContent = 'Load';
+      loadButton.addEventListener('click', () => {
+        loadColony(colony.id);
+        loadContainer.remove();
+      });
+      colonyItem.appendChild(loadButton);
+      
+      // Add delete button
+      const deleteButton = document.createElement('button');
+      deleteButton.className = 'delete-colony-button';
+      deleteButton.textContent = '🗑️';
+      deleteButton.title = 'Delete colony';
+      deleteButton.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent triggering the load action
+        confirmDeleteColony(colony.id, colonyItem);
+      });
+      colonyItem.appendChild(deleteButton);
+      
+      coloniesList.appendChild(colonyItem);
+    });
+    
+    coloniesContainer.appendChild(coloniesList);
+  }
+  
+  loadContainer.appendChild(coloniesContainer);
+  
+  // Add buttons
+  const buttonContainer = document.createElement('div');
+  buttonContainer.className = 'button-container';
+  
+  // Back button
+  const backButton = document.createElement('button');
+  backButton.textContent = 'Back';
+  backButton.className = 'secondary-button';
+  backButton.addEventListener('click', () => {
+    loadContainer.remove();
+    createWelcomeScreen();
+  });
+  buttonContainer.appendChild(backButton);
+  
+  loadContainer.appendChild(buttonContainer);
+  
+  document.body.appendChild(loadContainer);
+}
+
+// Function to load a colony
+function loadColony(colonyId) {
+  try {
+    console.log(`Loading colony with ID: ${colonyId}`);
+    
+    // Update last played timestamp
+    const now = new Date().toISOString();
+    localStorage.setItem('lastPlayed', now);
+    
+    // If it's not the current colony, we need to swap data
+    if (colonyId !== 'current') {
+      // Get the saved colonies
+      const savedColoniesJSON = localStorage.getItem('savedColonies');
+      if (savedColoniesJSON) {
+        const savedColonies = JSON.parse(savedColoniesJSON);
+        
+        // Find the colony to load
+        const colonyToLoad = savedColonies.find(colony => colony.id === colonyId);
+        
+        if (colonyToLoad) {
+          // Save current colony data to savedColonies if it exists
+          if (localStorage.getItem('colonyName') && localStorage.getItem('leaderName')) {
+            // Create a backup of current colony
+            const currentColony = {
+              id: 'backup_' + Date.now(),
+              colonyName: localStorage.getItem('colonyName'),
+              leaderName: localStorage.getItem('leaderName'),
+              kinId: localStorage.getItem('kinId'),
+              kinName: localStorage.getItem('kinName'),
+              tribeDream: localStorage.getItem('tribeDream'),
+              tribeAppearance: localStorage.getItem('tribeAppearance'),
+              languageInitialized: localStorage.getItem('languageInitialized'),
+              languageDescription: localStorage.getItem('languageDescription'),
+              tribeIntroText: localStorage.getItem('tribeIntroText'),
+              tribeIntroAudio: localStorage.getItem('tribeIntroAudio'),
+              tribeImageUrl: localStorage.getItem('tribeImageUrl'),
+              tribeImagePath: localStorage.getItem('tribeImagePath'),
+              languageDevelopment: localStorage.getItem('languageDevelopment'),
+              lastPlayed: localStorage.getItem('lastPlayed') || now
+            };
+            
+            // Add to saved colonies, replacing the one we're loading
+            const updatedColonies = savedColonies
+              .filter(colony => colony.id !== colonyId)
+              .concat(currentColony);
+            
+            localStorage.setItem('savedColonies', JSON.stringify(updatedColonies));
+          }
+          
+          // Load the selected colony data into main localStorage
+          localStorage.setItem('colonyName', colonyToLoad.colonyName);
+          localStorage.setItem('leaderName', colonyToLoad.leaderName);
+          localStorage.setItem('kinId', colonyToLoad.kinId || '');
+          localStorage.setItem('kinName', colonyToLoad.kinName || '');
+          localStorage.setItem('tribeDream', colonyToLoad.tribeDream || '');
+          localStorage.setItem('tribeAppearance', colonyToLoad.tribeAppearance || '');
+          localStorage.setItem('languageInitialized', colonyToLoad.languageInitialized || 'false');
+          localStorage.setItem('languageDescription', colonyToLoad.languageDescription || '');
+          localStorage.setItem('tribeIntroText', colonyToLoad.tribeIntroText || '');
+          localStorage.setItem('tribeIntroAudio', colonyToLoad.tribeIntroAudio || '');
+          localStorage.setItem('tribeImageUrl', colonyToLoad.tribeImageUrl || '');
+          localStorage.setItem('tribeImagePath', colonyToLoad.tribeImagePath || '');
+          localStorage.setItem('languageDevelopment', colonyToLoad.languageDevelopment || '');
+          localStorage.setItem('lastPlayed', now);
+          
+          console.log(`Colony "${colonyToLoad.colonyName}" loaded successfully`);
+        } else {
+          console.error(`Colony with ID ${colonyId} not found`);
+        }
+      }
+    }
+    
+    // Initialize the world
+    initWorld();
+  } catch (error) {
+    console.error('Error loading colony:', error);
+    alert(`Failed to load colony: ${error.message}`);
+  }
+}
+
+// Function to confirm and delete a colony
+function confirmDeleteColony(colonyId, colonyElement) {
+  // Create confirmation dialog
+  const confirmDialog = document.createElement('div');
+  confirmDialog.className = 'confirm-delete-dialog';
+  
+  const confirmMessage = document.createElement('p');
+  confirmMessage.textContent = 'Are you sure you want to delete this colony? This action cannot be undone.';
+  confirmDialog.appendChild(confirmMessage);
+  
+  const buttonContainer = document.createElement('div');
+  buttonContainer.className = 'confirm-buttons';
+  
+  // Cancel button
+  const cancelButton = document.createElement('button');
+  cancelButton.textContent = 'Cancel';
+  cancelButton.className = 'cancel-button';
+  cancelButton.addEventListener('click', () => {
+    confirmDialog.remove();
+  });
+  buttonContainer.appendChild(cancelButton);
+  
+  // Confirm button
+  const confirmButton = document.createElement('button');
+  confirmButton.textContent = 'Delete';
+  confirmButton.className = 'confirm-button';
+  confirmButton.addEventListener('click', () => {
+    deleteColony(colonyId);
+    colonyElement.remove();
+    confirmDialog.remove();
+    
+    // Check if there are no more colonies
+    const coloniesList = document.querySelector('.colonies-list');
+    if (coloniesList && coloniesList.children.length === 0) {
+      const coloniesContainer = document.querySelector('.colonies-container');
+      const noColoniesMessage = document.createElement('p');
+      noColoniesMessage.className = 'no-colonies-message';
+      noColoniesMessage.textContent = 'No saved colonies found.';
+      coloniesContainer.innerHTML = '';
+      coloniesContainer.appendChild(noColoniesMessage);
+    }
+  });
+  buttonContainer.appendChild(confirmButton);
+  
+  confirmDialog.appendChild(buttonContainer);
+  
+  // Add to colony element
+  colonyElement.appendChild(confirmDialog);
+}
+
+// Function to delete a colony
+function deleteColony(colonyId) {
+  try {
+    console.log(`Deleting colony with ID: ${colonyId}`);
+    
+    // If it's the current colony, clear localStorage
+    if (colonyId === 'current') {
+      // Save any other colonies first
+      const savedColoniesJSON = localStorage.getItem('savedColonies');
+      const savedColonies = savedColoniesJSON ? JSON.parse(savedColoniesJSON) : [];
+      
+      // Clear main colony data
+      localStorage.removeItem('colonyName');
+      localStorage.removeItem('leaderName');
+      localStorage.removeItem('kinId');
+      localStorage.removeItem('kinName');
+      localStorage.removeItem('tribeDream');
+      localStorage.removeItem('tribeAppearance');
+      localStorage.removeItem('languageInitialized');
+      localStorage.removeItem('languageDescription');
+      localStorage.removeItem('tribeIntroText');
+      localStorage.removeItem('tribeIntroAudio');
+      localStorage.removeItem('tribeImageUrl');
+      localStorage.removeItem('tribeImagePath');
+      localStorage.removeItem('languageDevelopment');
+      localStorage.removeItem('lastPlayed');
+      
+      // Keep saved colonies
+      if (savedColonies.length > 0) {
+        localStorage.setItem('savedColonies', JSON.stringify(savedColonies));
+      } else {
+        localStorage.removeItem('savedColonies');
+      }
+    } else {
+      // Remove from saved colonies
+      const savedColoniesJSON = localStorage.getItem('savedColonies');
+      if (savedColoniesJSON) {
+        const savedColonies = JSON.parse(savedColoniesJSON);
+        const updatedColonies = savedColonies.filter(colony => colony.id !== colonyId);
+        
+        if (updatedColonies.length > 0) {
+          localStorage.setItem('savedColonies', JSON.stringify(updatedColonies));
+        } else {
+          localStorage.removeItem('savedColonies');
+        }
+      }
+    }
+    
+    console.log(`Colony with ID ${colonyId} deleted successfully`);
+  } catch (error) {
+    console.error('Error deleting colony:', error);
+    alert(`Failed to delete colony: ${error.message}`);
+  }
+}
+
 // Initialize the world when the page loads
 window.addEventListener('load', () => {
   // Always show the welcome screen first

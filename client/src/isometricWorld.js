@@ -359,17 +359,17 @@ Action Description: ${action.description || 'No description available'}
 Please provide guidance on how this action might unfold in this environment, any challenges I might face, and potential outcomes.
 `;
 
-    // Prepare the request body
+    // Prepare the request body with updated blueprint, kin, and mode
     const requestBody = {
       content: messageContent,
       model: "claude-3-7-sonnet-latest",
       history_length: 25,
-      mode: "creative",
+      mode: "action_resolution", // Updated mode
       addSystem: "You are a helpful game assistant providing realistic and immersive guidance on actions taken in a settlement-building game. Consider the terrain, available resources, and potential challenges when describing outcomes. Be specific and vivid in your descriptions."
     };
     
-    // Make the API request
-    const response = await fetch('http://localhost:5000/v2/blueprints/game-assistant/kins/game-guide/messages', {
+    // Make the API request with updated blueprint and kin
+    const response = await fetch('http://localhost:5000/v2/blueprints/autonomousrealms/kins/defaultcolony/messages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

@@ -836,6 +836,28 @@ Modifiers: ${modifiers.join(', ')}`;
   }
 }
 
+// Function to show insufficient COMPUTE notification
+function showInsufficientComputeNotification() {
+  const notification = document.createElement('div');
+  notification.className = 'notification error-notification';
+  notification.innerHTML = `
+    <strong>Insufficient COMPUTE Balance</strong><br>
+    Connect your wallet and transfer COMPUTE tokens to use AI features.
+  `;
+  document.body.appendChild(notification);
+  
+  // Remove notification after a delay
+  setTimeout(() => {
+    notification.classList.add('fade-out');
+    setTimeout(() => notification.remove(), 1000);
+  }, 5000);
+}
+
+// Helper function to get the current user ID from localStorage
+function getCurrentUserId() {
+  return localStorage.getItem('userId');
+}
+
 // Helper function to get a human-readable description of a terrain code
 function getTerrainDescription(baseTerrainCode) {
   const terrainDescriptions = {

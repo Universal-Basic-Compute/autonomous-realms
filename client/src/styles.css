@@ -335,6 +335,7 @@ body::before {
 .error-notification {
     background-color: rgba(30, 35, 40, 0.9) !important;
     border-left: 4px solid #ff6b6b !important;
+    line-height: 1.4;
 }
 
 /* Narration notification */

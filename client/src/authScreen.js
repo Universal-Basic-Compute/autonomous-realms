@@ -97,7 +97,25 @@ function createAuthScreen() {
     <button type="submit" class="auth-button">Register</button>
   `;
   
-  // Guest login option removed
+  // Add guest login option
+  const guestLoginContainer = document.createElement('div');
+  guestLoginContainer.className = 'guest-login-container';
+  guestLoginContainer.innerHTML = `
+    <p>Don't want to create an account?</p>
+    <button class="guest-login-button">Continue as Guest</button>
+  `;
+  
+  // Add event listener for guest login
+  guestLoginContainer.querySelector('.guest-login-button').addEventListener('click', () => {
+    // Store guest status in localStorage
+    localStorage.setItem('isGuest', 'true');
+    
+    // Remove auth screen and show welcome screen
+    authContainer.remove();
+    createWelcomeScreen();
+  });
+  
+  authForm.appendChild(guestLoginContainer);
   
   // Add forms to auth form container
   authForm.appendChild(loginForm);

@@ -182,10 +182,17 @@ async function fetchAvailableActions(terrainCode) {
         // Extract the base terrain code (before any | character)
         const baseTerrainCode = terrainCode.split('|')[0];
         
+        // Get the current user ID
+        const userId = getCurrentUserId();
+        
         console.log(`Fetching actions for terrain: ${terrainCode} (base: ${baseTerrainCode})`);
         
         // Use the AI-powered endpoint to get actions
-        const response = await fetch(`${config.serverUrl}/api/data/actions/ai/${terrainCode}`);
+        const response = await fetch(`${config.serverUrl}/api/data/actions/ai/${terrainCode}`, {
+            headers: {
+                'User-ID': userId || ''
+            }
+        });
         
         if (!response.ok) {
             console.error(`Failed to fetch actions for terrain ${terrainCode}: ${response.status} ${response.statusText}`);
@@ -207,8 +214,15 @@ async function fetchTerrainNarration(terrainCode) {
     if (!terrainCode) return null;
     
     try {
+        // Get the current user ID
+        const userId = getCurrentUserId();
+        
         console.log(`Fetching narration for terrain: ${terrainCode}`);
-        const response = await fetch(`${config.serverUrl}/api/data/actions/ai/${terrainCode}/narration`);
+        const response = await fetch(`${config.serverUrl}/api/data/actions/ai/${terrainCode}/narration`, {
+            headers: {
+                'User-ID': userId || ''
+            }
+        });
         
         if (!response.ok) {
             try {

@@ -858,6 +858,11 @@ function getCurrentUserId() {
   return localStorage.getItem('userId');
 }
 
+// Helper function to get the current user ID from localStorage
+function getCurrentUserId() {
+  return localStorage.getItem('userId');
+}
+
 // Helper function to get a human-readable description of a terrain code
 function getTerrainDescription(baseTerrainCode) {
   const terrainDescriptions = {

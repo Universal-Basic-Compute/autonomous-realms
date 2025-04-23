@@ -1520,6 +1520,23 @@ function createLoadColonyScreen() {
   document.body.appendChild(loadContainer);
 }
 
+// Function to show insufficient COMPUTE notification
+function showInsufficientComputeNotification() {
+  const notification = document.createElement('div');
+  notification.className = 'notification error-notification';
+  notification.innerHTML = `
+    <strong>Insufficient COMPUTE Balance</strong><br>
+    Connect your wallet and transfer COMPUTE tokens to use AI features.
+  `;
+  document.body.appendChild(notification);
+  
+  // Remove notification after a delay
+  setTimeout(() => {
+    notification.classList.add('fade-out');
+    setTimeout(() => notification.remove(), 1000);
+  }, 5000);
+}
+
 // Function to show compute transfer dialog
 function showComputeTransferDialog(walletAddress) {
   console.log('showComputeTransferDialog called with address:', walletAddress);

@@ -67,11 +67,28 @@ class ResourceManager {
         name: 'Misc',
         icon: '📦',
         items: {}
+      },
+      // Population category
+      'R-POP': {
+        name: 'Population',
+        icon: '👪',
+        items: {}
       }
     };
     
     // Load saved resources from localStorage
     this.loadResources();
+    
+    // Initialize families resource if it doesn't exist
+    if (!this.resources['R-POP'].items['Families']) {
+      this.resources['R-POP'].items['Families'] = {
+        name: 'Families',
+        quantity: 4,
+        code: 'R-POP-001',
+        icon: '👪'
+      };
+      this.saveResources();
+    }
   }
   
   // Add a resource to the inventory

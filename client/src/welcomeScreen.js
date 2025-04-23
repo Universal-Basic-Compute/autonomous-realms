@@ -1,5 +1,24 @@
 import { initWorld } from './isometricWorld.js';
 
+// Helper function to validate and format audio URLs
+function getValidAudioUrl(url) {
+  if (!url) return null;
+  
+  // Add server URL prefix if the path is relative
+  if (url.startsWith('/')) {
+    return `http://localhost:3000${url}`;
+  }
+  
+  // Check if URL is valid
+  try {
+    new URL(url);
+    return url;
+  } catch (e) {
+    console.warn('Invalid audio URL:', url);
+    return null;
+  }
+}
+
 // Create a welcome screen with menu options
 function createWelcomeScreen() {
   // Create container
@@ -345,7 +364,28 @@ function createLanguageInitScreen(colonyName) {
     
     // Play the audio if available
     if (introAudio) {
-      const audio = new Audio(introAudio);
+      // Add server URL prefix if the path is relative
+      const fullAudioUrl = introAudio.startsWith('/') 
+        ? `http://localhost:3000${introAudio}` 
+        : introAudio;
+      
+      console.log('Playing intro audio from URL:', fullAudioUrl);
+      
+      const audio = new Audio(fullAudioUrl);
+      
+      // Add error handling with more detailed logging
+      audio.addEventListener('error', (e) => {
+        console.error('Audio error:', e);
+        console.error('Audio error code:', audio.error ? audio.error.code : 'unknown');
+        console.error('Audio error message:', audio.error ? audio.error.message : 'unknown');
+        console.error('Audio source:', audio.src);
+      });
+      
+      // Add debugging listeners
+      audio.addEventListener('loadstart', () => console.log('Audio loading started'));
+      audio.addEventListener('canplay', () => console.log('Audio can start playing'));
+      audio.addEventListener('canplaythrough', () => console.log('Audio can play through'));
+      
       audio.play().catch(err => console.warn('Could not play intro audio:', err));
     }
     
@@ -564,22 +604,38 @@ Please create an epic, inspiring introduction for this tribe that captures their
           console.warn('TTS generation had an error but provided a fallback URL:', ttsData.error);
           // Still use the audio URL even if there was an error
           const audioUrl = ttsData.audio_url;
-          const audio = new Audio(audioUrl);
+          
+          // Add server URL prefix if the path is relative
+          const fullAudioUrl = audioUrl.startsWith('/') 
+            ? `http://localhost:3000${audioUrl}` 
+            : audioUrl;
+          
+          console.log('Using audio URL:', fullAudioUrl);
+          
+          const audio = new Audio(fullAudioUrl);
           audio.play().catch(err => console.warn('Could not play intro audio:', err));
           
           // Store the intro text and audio URL in localStorage
           localStorage.setItem('tribeIntroText', introText);
-          localStorage.setItem('tribeIntroAudio', audioUrl);
+          localStorage.setItem('tribeIntroAudio', fullAudioUrl);
         }
         // Normal successful case
         else if (ttsData.audio_url || ttsData.result_url) {
           const audioUrl = ttsData.audio_url || ttsData.result_url;
-          const audio = new Audio(audioUrl);
+          
+          // Add server URL prefix if the path is relative
+          const fullAudioUrl = audioUrl.startsWith('/') 
+            ? `http://localhost:3000${audioUrl}` 
+            : audioUrl;
+          
+          console.log('Using audio URL:', fullAudioUrl);
+          
+          const audio = new Audio(fullAudioUrl);
           audio.play().catch(err => console.warn('Could not play intro audio:', err));
           
           // Store the intro text and audio URL in localStorage
           localStorage.setItem('tribeIntroText', introText);
-          localStorage.setItem('tribeIntroAudio', audioUrl);
+          localStorage.setItem('tribeIntroAudio', fullAudioUrl);
         }
         else {
           console.warn('No audio URL found in TTS response:', ttsData);

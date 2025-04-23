@@ -484,16 +484,20 @@ Example response:
           for (const resource of craftingResult.consumedResources) {
             // Try to find the resource by exact name first
             let existingResource = resourceManager.getResource(resource.name);
+            let actualResourceName = resource.name;
             
-            // If not found, try case-insensitive matching
+            // If not found, try a more flexible matching approach
             if (!existingResource) {
-              // Get all resources and search for a case-insensitive match
+              // Get all resources and search for a partial match
               const allResources = resourceManager.getAllResources();
               for (const category in allResources) {
                 for (const itemName in allResources[category].items) {
-                  if (itemName.toLowerCase() === resource.name.toLowerCase()) {
+                  // Check if the item name contains the resource name or vice versa
+                  if (itemName.toLowerCase().includes(resource.name.toLowerCase()) || 
+                      resource.name.toLowerCase().includes(itemName.toLowerCase())) {
                     existingResource = allResources[category].items[itemName];
-                    console.log(`Found resource with case-insensitive match: ${itemName}`);
+                    actualResourceName = itemName;
+                    console.log(`Found resource with partial match: ${itemName} for requested ${resource.name}`);
                     break;
                   }
                 }
@@ -506,7 +510,7 @@ Example response:
               missingResources.push(resource.name);
               console.warn(`Not enough ${resource.name} available for crafting. Required: ${resource.quantity}, Available: ${existingResource ? existingResource.quantity : 0}`);
             } else {
-              console.log(`Resource ${resource.name} is available. Required: ${resource.quantity}, Available: ${existingResource.quantity}`);
+              console.log(`Resource ${actualResourceName} is available. Required: ${resource.quantity}, Available: ${existingResource.quantity}`);
             }
           }
           
@@ -514,22 +518,31 @@ Example response:
             // Remove the resources
             craftingResult.consumedResources.forEach(resource => {
               // Try to find the resource by exact name first
-              let resourceName = resource.name;
-              if (!resourceManager.getResource(resourceName)) {
-                // Try case-insensitive matching
+              let existingResource = resourceManager.getResource(resource.name);
+              let actualResourceName = resource.name;
+              
+              // If not found, try a more flexible matching approach
+              if (!existingResource) {
+                // Get all resources and search for a partial match
                 const allResources = resourceManager.getAllResources();
                 for (const category in allResources) {
                   for (const itemName in allResources[category].items) {
-                    if (itemName.toLowerCase() === resource.name.toLowerCase()) {
-                      resourceName = itemName; // Use the actual name with correct case
+                    // Check if the item name contains the resource name or vice versa
+                    if (itemName.toLowerCase().includes(resource.name.toLowerCase()) || 
+                        resource.name.toLowerCase().includes(itemName.toLowerCase())) {
+                      existingResource = allResources[category].items[itemName];
+                      actualResourceName = itemName;
                       break;
                     }
                   }
-                  if (resourceName !== resource.name) break;
+                  if (existingResource) break;
                 }
               }
               
-              resourceManager.removeResource(resourceName, resource.quantity);
+              // Remove the resource using the actual name we found
+              if (existingResource) {
+                resourceManager.removeResource(actualResourceName, resource.quantity);
+              }
             });
             
             // Add the crafted item

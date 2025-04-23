@@ -937,4 +937,169 @@ function generateRandomName(type) {
   return 'Unknown';
 }
 
+// Helper function to get saved colonies from localStorage
+function getSavedColonies() {
+  const colonies = [];
+  
+  // Check if we have a saved colony
+  if (localStorage.getItem('colonyName') && localStorage.getItem('leaderName')) {
+    // Get the last played timestamp or use current time if not available
+    const lastPlayed = localStorage.getItem('lastPlayed') || new Date().toISOString();
+    
+    colonies.push({
+      id: 'current', // Use 'current' as ID for the main colony
+      colonyName: localStorage.getItem('colonyName'),
+      leaderName: localStorage.getItem('leaderName'),
+      lastPlayed: lastPlayed
+    });
+  }
+  
+  // Check for additional colonies in the 'savedColonies' array
+  try {
+    const savedColoniesJSON = localStorage.getItem('savedColonies');
+    if (savedColoniesJSON) {
+      const savedColonies = JSON.parse(savedColoniesJSON);
+      colonies.push(...savedColonies);
+    }
+  } catch (error) {
+    console.error('Error parsing saved colonies:', error);
+  }
+  
+  // Sort by last played date (most recent first)
+  return colonies.sort((a, b) => new Date(b.lastPlayed) - new Date(a.lastPlayed));
+}
+
+// Helper function to format date
+function formatDate(dateString) {
+  try {
+    const date = new Date(dateString);
+    
+    // Check if date is valid
+    if (isNaN(date.getTime())) {
+      return 'Unknown date';
+    }
+    
+    // If it's today, show time
+    const today = new Date();
+    if (date.toDateString() === today.toDateString()) {
+      return `Today at ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+    }
+    
+    // If it's yesterday, show "Yesterday"
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    if (date.toDateString() === yesterday.toDateString()) {
+      return 'Yesterday';
+    }
+    
+    // Otherwise show the date
+    return date.toLocaleDateString([], { year: 'numeric', month: 'short', day: 'numeric' });
+  } catch (error) {
+    console.error('Error formatting date:', error);
+    return 'Unknown date';
+  }
+}
+
+// Create a screen for loading saved colonies
+function createLoadColonyScreen() {
+  // Create container
+  const loadContainer = document.createElement('div');
+  loadContainer.id = 'load-colony-screen';
+  loadContainer.className = 'fullscreen-overlay';
+  
+  // Add title
+  const title = document.createElement('h2');
+  title.textContent = 'Load Colony';
+  title.className = 'naming-title';
+  loadContainer.appendChild(title);
+  
+  // Create colonies list container
+  const coloniesContainer = document.createElement('div');
+  coloniesContainer.className = 'colonies-container';
+  
+  // Get saved colonies from localStorage
+  const savedColonies = getSavedColonies();
+  
+  if (savedColonies.length === 0) {
+    // No saved colonies
+    const noColoniesMessage = document.createElement('p');
+    noColoniesMessage.className = 'no-colonies-message';
+    noColoniesMessage.textContent = 'No saved colonies found.';
+    coloniesContainer.appendChild(noColoniesMessage);
+  } else {
+    // Create a list of colonies
+    const coloniesList = document.createElement('div');
+    coloniesList.className = 'colonies-list';
+    
+    savedColonies.forEach(colony => {
+      const colonyItem = document.createElement('div');
+      colonyItem.className = 'colony-item';
+      
+      // Add colony info
+      const colonyInfo = document.createElement('div');
+      colonyInfo.className = 'colony-info';
+      
+      const colonyName = document.createElement('h3');
+      colonyName.textContent = colony.colonyName;
+      colonyInfo.appendChild(colonyName);
+      
+      const leaderName = document.createElement('p');
+      leaderName.textContent = `Leader: ${colony.leaderName}`;
+      colonyInfo.appendChild(leaderName);
+      
+      const lastPlayed = document.createElement('p');
+      lastPlayed.className = 'last-played';
+      lastPlayed.textContent = `Last played: ${formatDate(colony.lastPlayed)}`;
+      colonyInfo.appendChild(lastPlayed);
+      
+      colonyItem.appendChild(colonyInfo);
+      
+      // Add load button
+      const loadButton = document.createElement('button');
+      loadButton.className = 'load-colony-button';
+      loadButton.textContent = 'Load';
+      loadButton.addEventListener('click', () => {
+        loadColony(colony.id);
+        loadContainer.remove();
+      });
+      colonyItem.appendChild(loadButton);
+      
+      // Add delete button
+      const deleteButton = document.createElement('button');
+      deleteButton.className = 'delete-colony-button';
+      deleteButton.textContent = '🗑️';
+      deleteButton.title = 'Delete colony';
+      deleteButton.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent triggering the load action
+        confirmDeleteColony(colony.id, colonyItem);
+      });
+      colonyItem.appendChild(deleteButton);
+      
+      coloniesList.appendChild(colonyItem);
+    });
+    
+    coloniesContainer.appendChild(coloniesList);
+  }
+  
+  loadContainer.appendChild(coloniesContainer);
+  
+  // Add buttons
+  const buttonContainer = document.createElement('div');
+  buttonContainer.className = 'button-container';
+  
+  // Back button
+  const backButton = document.createElement('button');
+  backButton.textContent = 'Back';
+  backButton.className = 'secondary-button';
+  backButton.addEventListener('click', () => {
+    loadContainer.remove();
+    createWelcomeScreen();
+  });
+  buttonContainer.appendChild(backButton);
+  
+  loadContainer.appendChild(buttonContainer);
+  
+  document.body.appendChild(loadContainer);
+}
+
 export { createWelcomeScreen, createColonyNamingScreen, createLanguageInitScreen, createLoadColonyScreen };

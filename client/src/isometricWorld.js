@@ -636,6 +636,7 @@ function handleResize() {
 
 // Update the world container transform
 function updateWorldTransform() {
+    worldContainer.style.transformOrigin = 'center center';
     worldContainer.style.transform = `translate(${state.offsetX}px, ${state.offsetY}px) scale(${state.zoom})`;
 }
 

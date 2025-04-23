@@ -2524,6 +2524,7 @@ async function performAction(action) {
         </div>
     `;
     document.body.appendChild(progressDialog);
+    document.body.appendChild(progressDialog);
     
     // Set up progress bar animation
     const progressBar = document.getElementById('action-progress-bar');
@@ -2785,9 +2786,24 @@ async function performAction(action) {
         }
         
         // Show the formatted response in the dialog
-        responseContainer.innerHTML = formattedResponse;
-        resultContainer.style.display = 'block';
-        closeButton.style.display = 'block';
+        // Check that these elements are correctly identified
+        if (responseContainer) {
+            responseContainer.innerHTML = formattedResponse;
+        } else {
+            console.error('Response container not found');
+        }
+        
+        if (resultContainer) {
+            resultContainer.style.display = 'block';
+        } else {
+            console.error('Result container not found');
+        }
+        
+        if (closeButton) {
+            closeButton.style.display = 'block';
+        } else {
+            console.error('Close button not found');
+        }
         
         // Clear the progress intervals if they're still running
         clearInterval(progressInterval);

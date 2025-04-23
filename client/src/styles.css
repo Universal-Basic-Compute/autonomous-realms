@@ -986,6 +986,12 @@ body::before {
   border-radius: 8px;
   line-height: 1.6;
   white-space: pre-wrap;
+  display: block; /* Ensure it's displayed as a block */
+}
+
+#action-result-container {
+  margin-top: 20px;
+  width: 100%;
 }
 
 /* Make the dialog larger for action responses */

@@ -125,21 +125,54 @@ async function fetchTerrainNarration(terrainCode) {
         const response = await fetch(`${config.serverUrl}/api/data/actions/ai/${terrainCode}/narration`);
         
         if (!response.ok) {
-            const errorData = await response.json();
-            console.error(`Failed to fetch narration for terrain ${terrainCode}:`, errorData);
-            showErrorNotification(`Failed to fetch narration: ${errorData.message || response.statusText}`);
+            try {
+                // Try to parse as JSON first
+                const errorData = await response.json();
+                console.error(`Failed to fetch narration for terrain ${terrainCode}:`, errorData);
+                showErrorNotification(`Failed to fetch narration: ${errorData.message || response.statusText}`);
+            } catch (parseError) {
+                // If it's not JSON, get the text
+                const errorText = await response.text();
+                console.error(`Failed to fetch narration for terrain ${terrainCode}: ${response.status} ${response.statusText}`, errorText);
+                showErrorNotification(`Failed to fetch narration: ${response.status} ${response.statusText}`);
+            }
             return null;
         }
         
-        const narrationData = await response.json();
-        console.log('Received narration data:', narrationData);
+        // Check content type to determine how to handle the response
+        const contentType = response.headers.get('content-type');
         
-        if (narrationData.error) {
-            console.error('Narration data contains error:', narrationData.error);
-            showErrorNotification(`Narration error: ${narrationData.error.message || 'Unknown error'}`);
+        // If it's JSON, parse it
+        if (contentType && contentType.includes('application/json')) {
+            try {
+                const narrationData = await response.json();
+                console.log('Received narration data:', narrationData);
+                
+                if (narrationData.error) {
+                    console.error('Narration data contains error:', narrationData.error);
+                    showErrorNotification(`Narration error: ${narrationData.error.message || 'Unknown error'}`);
+                }
+                
+                return narrationData;
+            } catch (jsonError) {
+                console.error('Error parsing narration JSON:', jsonError);
+                showErrorNotification(`Error parsing narration data: ${jsonError.message}`);
+                return null;
+            }
+        } else {
+            // For non-JSON responses, create a simple object with the narration text
+            console.warn(`Received non-JSON response with content-type: ${contentType}`);
+            return {
+                terrainCode,
+                narration: "A new land awaits exploration...", // Fallback narration text
+                audio: {
+                    audio_url: null,
+                    error: {
+                        message: `Unexpected content type: ${contentType}`
+                    }
+                }
+            };
         }
-        
-        return narrationData;
     } catch (error) {
         console.error('Error fetching terrain narration:', error);
         showErrorNotification(`Error fetching narration: ${error.message}`);
@@ -171,7 +204,7 @@ function playNarration(audioData) {
             // Check if it's a relative or absolute URL
             if (audioData.audio_url.startsWith('/')) {
                 // It's a server path, prepend the server URL
-                audioElement.src = `http://localhost:3000${audioData.audio_url}`;
+                audioElement.src = `${config.serverUrl}${audioData.audio_url}`;
             } else {
                 // It's already a full URL
                 audioElement.src = audioData.audio_url;
@@ -194,10 +227,19 @@ function playNarration(audioData) {
             showErrorNotification('Failed to play audio narration');
         };
         
+        // Add loading indicator
+        audioElement.onloadstart = () => {
+            console.log('Audio started loading');
+        };
+        
+        audioElement.oncanplaythrough = () => {
+            console.log('Audio can play through');
+        };
+        
         // Play the audio
         audioElement.play().catch(error => {
             console.error('Error playing audio:', error);
-            showErrorNotification('Failed to play audio narration');
+            showErrorNotification(`Failed to play audio: ${error.message}`);
         });
     } catch (error) {
         console.error('Error setting up audio playback:', error);

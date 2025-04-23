@@ -560,8 +560,8 @@ async function generateTTS(text, terrainCode) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.KINOS_API_KEY || config.KINOS_API_KEY}`,
-          'Accept': 'audio/mpeg' // Request audio directly
+          'Authorization': `Bearer ${process.env.KINOS_API_KEY || config.KINOS_API_KEY}`
+          // Don't specify Accept header to let API decide response format
         },
         body: JSON.stringify({
           text: text,
@@ -569,7 +569,7 @@ async function generateTTS(text, terrainCode) {
           model: "eleven_flash_v2_5"
         })
       });
-      
+        
       if (!response.ok) {
         const errorText = await response.text();
         logger.error(`TTS API request failed with status ${response.status}: ${errorText}`);
@@ -578,44 +578,55 @@ async function generateTTS(text, terrainCode) {
           errorDetails: errorText
         };
       }
-      
+        
       // Check if the response is binary audio data or JSON
       const contentType = response.headers.get('content-type');
-      
+      logger.debug(`TTS API response content-type: ${contentType}`);
+        
+      // Handle binary audio data (MP3)
       if (contentType && contentType.includes('audio/')) {
-        // Handle binary audio data
-        const audioBuffer = await response.buffer();
-        
-        // Save the audio file
-        await fs.writeFile(narrationPath, audioBuffer);
-        
-        logger.info(`Saved narration audio to ${narrationPath}`);
-        
-        // Return the URL to the saved file
-        return {
-          audio_url: `/assets/audio/narration/${narrationFilename}`
-        };
-      } else {
-        // Try to parse as JSON (fallback)
+        try {
+          // Get the audio as an ArrayBuffer
+          const arrayBuffer = await response.arrayBuffer();
+          const buffer = Buffer.from(arrayBuffer);
+            
+          // Save the audio file
+          await fs.writeFile(narrationPath, buffer);
+            
+          logger.info(`Saved narration audio to ${narrationPath}`);
+            
+          // Return the URL to the saved file
+          return {
+            audio_url: `/assets/audio/narration/${narrationFilename}`
+          };
+        } catch (bufferError) {
+          logger.error(`Error processing audio buffer: ${bufferError.message}`);
+          return { 
+            error: `Failed to process audio data: ${bufferError.message}`
+          };
+        }
+      } 
+      // Handle JSON response
+      else if (contentType && contentType.includes('application/json')) {
         try {
           const data = await response.json();
           logger.info(`Received JSON response with audio URL: ${data.audio_url ? 'Yes' : 'No'}`);
-          
+            
           // If we have an audio URL, download and save the file
           if (data.audio_url || data.result_url) {
             try {
               const audioUrl = data.audio_url || data.result_url;
               const audioResponse = await fetch(audioUrl);
-              
+                
               if (!audioResponse.ok) {
                 throw new Error(`Failed to download audio: ${audioResponse.status}`);
               }
-              
+                
               const audioBuffer = await audioResponse.buffer();
               await fs.writeFile(narrationPath, audioBuffer);
-              
+                
               logger.info(`Saved narration audio to ${narrationPath}`);
-              
+                
               // Update the response to use our local path
               data.audio_url = `/assets/audio/narration/${narrationFilename}`;
             } catch (downloadError) {
@@ -623,12 +634,35 @@ async function generateTTS(text, terrainCode) {
               // Continue with the original response even if saving fails
             }
           }
-          
+            
           return data;
         } catch (jsonError) {
           logger.error(`Error parsing JSON response: ${jsonError.message}`);
           return { 
             error: `Failed to process TTS response: ${jsonError.message}`
+          };
+        }
+      }
+      // Unknown content type - try to save as binary anyway
+      else {
+        try {
+          logger.warn(`Unknown content type from TTS API: ${contentType}, attempting to save as binary`);
+          const buffer = await response.buffer();
+            
+          // Save the audio file
+          await fs.writeFile(narrationPath, buffer);
+            
+          logger.info(`Saved unknown content to ${narrationPath}`);
+            
+          // Return the URL to the saved file
+          return {
+            audio_url: `/assets/audio/narration/${narrationFilename}`,
+            warning: `Unknown content type: ${contentType}`
+          };
+        } catch (unknownError) {
+          logger.error(`Error handling unknown content type: ${unknownError.message}`);
+          return { 
+            error: `Failed to process unknown response type: ${unknownError.message}`
           };
         }
       }

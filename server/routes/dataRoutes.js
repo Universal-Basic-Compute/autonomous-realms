@@ -206,6 +206,9 @@ Return your response as a JSON array of action objects with these properties:
 - code: The action code from the reference (e.g., "G-001")
 - name: The name of the action (e.g., "Gather Wild Grasses")
 - description: A brief description of the action
+- emoji: An appropriate emoji that represents this action visually
+
+Choose emojis that clearly represent the action's purpose (e.g., 🌾 for gathering grasses, 🏹 for hunting, 🏗️ for construction).
 
 If the exact terrain type isn't in the reference, use the most similar terrain type from the same category.
 
@@ -214,12 +217,14 @@ Example response format:
   {
     "code": "G-001",
     "name": "Gather Wild Grasses",
-    "description": "Collect grasses for various uses"
+    "description": "Collect grasses for various uses",
+    "emoji": "🌾"
   },
   {
     "code": "H-001",
     "name": "Hunt Small Game",
-    "description": "Hunt rabbits, rodents, and other small animals"
+    "description": "Hunt rabbits, rodents, and other small animals",
+    "emoji": "🏹"
   }
 ]`;
 

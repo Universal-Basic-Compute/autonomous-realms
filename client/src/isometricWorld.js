@@ -1009,6 +1009,70 @@ async function performAction(action) {
     loadingNotification.textContent = `Performing: ${action.name}...`;
     document.body.appendChild(loadingNotification);
     
+    // Create a dialog with progress bar
+    const progressDialog = document.createElement('div');
+    progressDialog.className = 'dialog';
+    progressDialog.innerHTML = `
+        <div class="dialog-content">
+            <h2>${action.name}</h2>
+            <p>Performing action, please wait...</p>
+            
+            <div class="action-progress-text">Time remaining: <span id="progress-time">20</span> seconds</div>
+            <div class="action-progress-container">
+                <div class="action-progress-bar" id="action-progress-bar">0%</div>
+            </div>
+            
+            <div id="action-result-container" style="display: none;">
+                <div class="action-response structured-response" id="action-response">
+                    <p>Processing your action...</p>
+                </div>
+            </div>
+            
+            <button class="close-button" style="display: none;" id="action-close-button">Close</button>
+        </div>
+    `;
+    document.body.appendChild(progressDialog);
+    
+    // Set up progress bar animation
+    const progressBar = document.getElementById('action-progress-bar');
+    const progressTime = document.getElementById('progress-time');
+    const resultContainer = document.getElementById('action-result-container');
+    const closeButton = document.getElementById('action-close-button');
+    const responseContainer = document.getElementById('action-response');
+    
+    // Initialize progress variables
+    let progress = 0;
+    let timeRemaining = 20;
+    let progressInterval;
+    let timeInterval;
+    let actionCompleted = false;
+    
+    // Start progress bar animation
+    progressInterval = setInterval(() => {
+        progress += 1;
+        progressBar.style.width = `${progress * 5}%`;
+        progressBar.textContent = `${progress * 5}%`;
+        
+        if (progress >= 20) {
+            clearInterval(progressInterval);
+            if (!actionCompleted) {
+                // If the action hasn't completed yet, show a timeout message
+                responseContainer.innerHTML = `<p>The action is taking longer than expected. Results will appear when ready.</p>`;
+                resultContainer.style.display = 'block';
+            }
+        }
+    }, 1000);
+    
+    // Update time remaining
+    timeInterval = setInterval(() => {
+        timeRemaining -= 1;
+        progressTime.textContent = timeRemaining;
+        
+        if (timeRemaining <= 0) {
+            clearInterval(timeInterval);
+        }
+    }, 1000);
+    
     try {
         // Get the terrain information for the selected tile
         const tileX = parseInt(state.selectedTile.dataset.x);
@@ -1025,44 +1089,36 @@ async function performAction(action) {
         // Send the action to KinOS
         const kinOSResponse = await sendKinOSMessage(action, terrainInfo);
         
+        // Action is complete
+        actionCompleted = true;
+        
         // Remove the loading notification
         loadingNotification.remove();
         
         if (kinOSResponse.error) {
-            // Show error notification
-            const errorNotification = document.createElement('div');
-            errorNotification.className = 'notification error-notification';
-            errorNotification.textContent = `Error: ${kinOSResponse.error}`;
-            document.body.appendChild(errorNotification);
-            
-            // Remove notification after a delay
-            setTimeout(() => {
-                errorNotification.remove();
-            }, 5000);
+            // Show error in the dialog
+            responseContainer.innerHTML = `<p class="error-message">Error: ${kinOSResponse.error}</p>`;
+            resultContainer.style.display = 'block';
+            closeButton.style.display = 'block';
             return;
         }
         
         // Parse the response content to extract structured data
         const parsedResponse = parseActionResponse(kinOSResponse.content);
         
-        // Show the KinOS response in a dialog with structured format
-        const responseDialog = document.createElement('div');
-        responseDialog.className = 'dialog';
-        responseDialog.innerHTML = `
-            <div class="dialog-content">
-                <h2>${action.name}</h2>
-                <div class="action-response structured-response">
-                    ${formatStructuredResponse(parsedResponse)}
-                </div>
-                <button class="close-button">Close</button>
-            </div>
-        `;
-        document.body.appendChild(responseDialog);
+        // Show the KinOS response in the dialog with structured format
+        responseContainer.innerHTML = formatStructuredResponse(parsedResponse);
+        resultContainer.style.display = 'block';
+        closeButton.style.display = 'block';
         
-        // Add close functionality
-        responseDialog.querySelector('.close-button').addEventListener('click', () => {
-            responseDialog.remove();
-        });
+        // Clear the progress intervals if they're still running
+        clearInterval(progressInterval);
+        clearInterval(timeInterval);
+        
+        // Update progress bar to 100%
+        progressBar.style.width = '100%';
+        progressBar.textContent = '100%';
+        progressTime.textContent = '0';
         
     } catch (error) {
         console.error('Error performing action:', error);
@@ -1070,17 +1126,24 @@ async function performAction(action) {
         // Remove the loading notification
         loadingNotification.remove();
         
-        // Show error notification
-        const errorNotification = document.createElement('div');
-        errorNotification.className = 'notification error-notification';
-        errorNotification.textContent = `Error performing action: ${error.message}`;
-        document.body.appendChild(errorNotification);
+        // Show error in the dialog
+        responseContainer.innerHTML = `<p class="error-message">Error performing action: ${error.message}</p>`;
+        resultContainer.style.display = 'block';
+        closeButton.style.display = 'block';
         
-        // Remove notification after a delay
-        setTimeout(() => {
-            errorNotification.remove();
-        }, 5000);
+        // Clear the progress intervals if they're still running
+        clearInterval(progressInterval);
+        clearInterval(timeInterval);
     }
+    
+    // Add close functionality
+    closeButton.addEventListener('click', () => {
+        progressDialog.remove();
+        
+        // Clear any remaining intervals just in case
+        clearInterval(progressInterval);
+        clearInterval(timeInterval);
+    });
 }
 
 // Parse the action response from KinOS into a structured format

@@ -1229,6 +1229,34 @@ body::before {
     white-space: pre-wrap;
 }
 
+/* Action Progress Bar */
+.action-progress-container {
+  width: 100%;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  margin: 15px 0;
+  overflow: hidden;
+}
+
+.action-progress-bar {
+  height: 20px;
+  background-color: #4CAF50;
+  width: 0%;
+  transition: width 0.5s;
+  text-align: center;
+  color: white;
+  font-size: 12px;
+  line-height: 20px;
+  border-radius: 4px;
+}
+
+.action-progress-text {
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #555;
+}
+
 /* Load Colony Screen Styles */
 .colonies-container {
   width: 100%;

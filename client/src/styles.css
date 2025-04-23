@@ -638,7 +638,7 @@ body::before {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 300;
+    z-index: 2000; /* Increased z-index to ensure it's above welcome menu */
     opacity: 0;
     transition: opacity 0.3s ease;
 }

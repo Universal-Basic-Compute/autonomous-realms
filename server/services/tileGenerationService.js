@@ -30,7 +30,7 @@ async function generateNextHorizontalTile(previousTilePath, position) {
     const previousTile = await loadImage(previousTilePath);
     
     // Create expanded canvas
-    const expandedCanvas = createCanvas(previousTile.width * 1.5, previousTile.height);
+    const expandedCanvas = createCanvas(previousTile.width * 1.2, previousTile.height);
     const ctx = expandedCanvas.getContext('2d');
     
     // Draw the previous tile on the left side
@@ -208,11 +208,11 @@ async function generateNextVerticalTile(bottomTilePath, position) {
     const bottomTile = await loadImage(bottomTilePath);
     
     // Create expanded canvas
-    const expandedCanvas = createCanvas(bottomTile.width, bottomTile.height * 1.5);
+    const expandedCanvas = createCanvas(bottomTile.width, bottomTile.height * 1.75);
     const ctx = expandedCanvas.getContext('2d');
     
     // Draw the bottom tile at the bottom
-    ctx.drawImage(bottomTile, 0, expandedCanvas.height - bottomTile.height);
+    ctx.drawImage(bottomTile, 0, expandedCanvas.height - bottomTile.height * 0.25);
     
     // Check if a mask already exists for this type of operation
     const maskFilename = `vertical_mask_${TILE_WIDTH}x${TILE_HEIGHT}.png`;

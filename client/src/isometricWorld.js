@@ -342,6 +342,409 @@ function showActionMenu(actions) {
     // Add to document
     document.body.appendChild(actionMenu);
     state.actionMenuVisible = true;
+    
+    // Show circular menu for the selected tile
+    showCircularMenu();
+}
+
+// Create and show circular menu
+function showCircularMenu() {
+    // Remove any existing circular menu
+    const existingMenu = document.getElementById('circular-menu');
+    if (existingMenu) {
+        existingMenu.remove();
+    }
+    
+    // Create circular menu container
+    const circularMenu = document.createElement('div');
+    circularMenu.id = 'circular-menu';
+    circularMenu.className = 'circular-menu';
+    
+    // Add menu items
+    const menuItems = [
+        { icon: '🗣️', label: 'Language', action: showLanguageMenu },
+        { icon: '🏛️', label: 'Culture', action: () => console.log('Culture clicked') },
+        { icon: '🛠️', label: 'Crafting', action: () => console.log('Crafting clicked') },
+        { icon: '🏠', label: 'Building', action: () => console.log('Building clicked') },
+        { icon: '🔍', label: 'Explore', action: () => console.log('Explore clicked') }
+    ];
+    
+    // Calculate positions in a circle
+    const totalItems = menuItems.length;
+    const radius = 80; // Distance from center
+    
+    menuItems.forEach((item, index) => {
+        // Calculate position in the circle
+        const angle = (index / totalItems) * 2 * Math.PI; // Angle in radians
+        const x = radius * Math.cos(angle);
+        const y = radius * Math.sin(angle);
+        
+        // Create menu item
+        const menuItem = document.createElement('div');
+        menuItem.className = 'menu-item';
+        menuItem.style.transform = `translate(${x}px, ${y}px)`;
+        
+        // Create button with icon and label
+        const button = document.createElement('button');
+        button.className = 'menu-button';
+        button.innerHTML = `<span class="menu-icon">${item.icon}</span><span class="menu-label">${item.label}</span>`;
+        button.addEventListener('click', item.action);
+        
+        menuItem.appendChild(button);
+        circularMenu.appendChild(menuItem);
+    });
+    
+    // Add to document body
+    document.body.appendChild(circularMenu);
+    
+    // Position the menu near the selected tile
+    if (state.selectedTile) {
+        const tileRect = state.selectedTile.getBoundingClientRect();
+        circularMenu.style.left = `${tileRect.left + tileRect.width / 2}px`;
+        circularMenu.style.top = `${tileRect.top + tileRect.height / 2}px`;
+    } else {
+        // Default to center of screen if no tile is selected
+        circularMenu.style.left = '50%';
+        circularMenu.style.top = '50%';
+        circularMenu.style.transform = 'translate(-50%, -50%)';
+    }
+}
+
+// Function to show the language menu
+function showLanguageMenu() {
+    // Close any existing language menu
+    const existingMenu = document.getElementById('language-menu');
+    if (existingMenu) {
+        existingMenu.remove();
+        return; // Toggle off if already open
+    }
+    
+    // Create language menu
+    const languageMenu = document.createElement('div');
+    languageMenu.id = 'language-menu';
+    languageMenu.className = 'submenu language-menu';
+    
+    // Add header
+    const header = document.createElement('div');
+    header.className = 'submenu-header';
+    header.innerHTML = '<h3>Language</h3><button class="close-submenu">×</button>';
+    languageMenu.appendChild(header);
+    
+    // Add content
+    const content = document.createElement('div');
+    content.className = 'submenu-content';
+    
+    // Add initial message
+    content.innerHTML = '<p class="no-development">Your settlers do not know how to communicate yet.</p>';
+    
+    // Add language evolution form
+    const evolutionForm = document.createElement('div');
+    evolutionForm.className = 'language-evolution-form';
+    
+    // Add title
+    const formTitle = document.createElement('h4');
+    formTitle.textContent = 'Evolve Language';
+    evolutionForm.appendChild(formTitle);
+    
+    // Add description
+    const formDescription = document.createElement('p');
+    formDescription.textContent = 'Describe a situation or activity that might cause your settlers to develop new language concepts.';
+    evolutionForm.appendChild(formDescription);
+    
+    // Add text area
+    const textArea = document.createElement('textarea');
+    textArea.id = 'language-evolution-input';
+    textArea.placeholder = 'Example: The settlers are beginning to work with copper, heating and shaping it into tools...';
+    textArea.rows = 4;
+    evolutionForm.appendChild(textArea);
+    
+    // Add evolve button
+    const evolveButton = document.createElement('button');
+    evolveButton.id = 'evolve-language-button';
+    evolveButton.textContent = 'Attempt Evolution';
+    evolveButton.addEventListener('click', attemptLanguageEvolution);
+    evolutionForm.appendChild(evolveButton);
+    
+    // Add loading indicator (hidden by default)
+    const loadingIndicator = document.createElement('div');
+    loadingIndicator.id = 'language-evolution-loading';
+    loadingIndicator.className = 'loading-indicator hidden';
+    loadingIndicator.textContent = 'Processing language evolution...';
+    evolutionForm.appendChild(loadingIndicator);
+    
+    // Add results container (hidden by default)
+    const resultsContainer = document.createElement('div');
+    resultsContainer.id = 'language-evolution-results';
+    resultsContainer.className = 'evolution-results hidden';
+    evolutionForm.appendChild(resultsContainer);
+    
+    // Add the form to the content
+    content.appendChild(evolutionForm);
+    
+    languageMenu.appendChild(content);
+    
+    // Add close button functionality
+    const closeButton = header.querySelector('.close-submenu');
+    closeButton.addEventListener('click', () => {
+        languageMenu.remove();
+    });
+    
+    // Add to document body
+    document.body.appendChild(languageMenu);
+    
+    // Position the menu relative to the circular menu
+    const circularMenu = document.getElementById('circular-menu');
+    const rect = circularMenu.getBoundingClientRect();
+    languageMenu.style.top = `${rect.bottom + 10}px`;
+    languageMenu.style.left = `${rect.left}px`;
+}
+
+// Function to handle language evolution attempts
+async function attemptLanguageEvolution() {
+    // Get the input text
+    const inputText = document.getElementById('language-evolution-input').value.trim();
+    
+    // Validate input
+    if (!inputText) {
+        alert('Please describe a situation for language evolution.');
+        return;
+    }
+    
+    // Show loading indicator
+    const loadingIndicator = document.getElementById('language-evolution-loading');
+    loadingIndicator.classList.remove('hidden');
+    
+    // Hide any previous results
+    const resultsContainer = document.getElementById('language-evolution-results');
+    resultsContainer.classList.add('hidden');
+    resultsContainer.innerHTML = '';
+    
+    // Disable the button while processing
+    const evolveButton = document.getElementById('evolve-language-button');
+    evolveButton.disabled = true;
+    
+    try {
+        // Prepare the message content
+        const messageContent = `
+The settlers are attempting to evolve their language based on the following situation:
+
+${inputText}
+
+Please determine how their language might evolve in response to this situation, including:
+- New vocabulary that might develop
+- Changes to existing terms
+- New grammatical structures
+- How well concepts are communicated
+- Cultural impacts of these language changes
+`;
+
+        // Make the API request
+        const response = await fetch('http://localhost:3000/api/kinos/kins/defaultcolony/messages', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                content: messageContent,
+                model: "claude-3-7-sonnet-latest",
+                mode: "language_resolution",
+                addSystem: "You are a linguistic anthropologist specializing in language evolution. Analyze how language might evolve in response to new situations, technologies, or social changes. Provide detailed analysis of vocabulary changes, grammatical developments, and cultural impacts."
+            })
+        });
+        
+        if (!response.ok) {
+            throw new Error(`API request failed with status ${response.status}: ${response.statusText}`);
+        }
+        
+        const responseData = await response.json();
+        
+        // Parse the response to extract the resolution data
+        const resolutionData = parseLanguageResolution(responseData.content);
+        
+        // Display the results
+        displayLanguageEvolutionResults(resolutionData);
+        
+    } catch (error) {
+        console.error('Error attempting language evolution:', error);
+        
+        // Display error message in results container
+        resultsContainer.innerHTML = `
+            <div class="evolution-error">
+                <h4>Evolution Failed</h4>
+                <p>There was an error processing your language evolution request: ${error.message}</p>
+            </div>
+        `;
+        resultsContainer.classList.remove('hidden');
+        
+    } finally {
+        // Hide loading indicator
+        loadingIndicator.classList.add('hidden');
+        
+        // Re-enable the button
+        evolveButton.disabled = false;
+    }
+}
+
+// Function to parse the language resolution from the response
+function parseLanguageResolution(responseText) {
+    try {
+        // Try to find a JSON object in the response
+        const jsonMatch = responseText.match(/\{[\s\S]*\}/);
+        if (jsonMatch) {
+            return JSON.parse(jsonMatch[0]);
+        }
+        
+        // If no JSON found, return a simple object with the narrative
+        return {
+            resolution_type: "evolution",
+            success: true,
+            narrative_description: responseText
+        };
+    } catch (error) {
+        console.error('Error parsing language resolution:', error);
+        return {
+            resolution_type: "evolution",
+            success: false,
+            error: error.message,
+            narrative_description: responseText
+        };
+    }
+}
+
+// Function to display language evolution results
+function displayLanguageEvolutionResults(resolutionData) {
+    const resultsContainer = document.getElementById('language-evolution-results');
+    
+    // Clear previous results
+    resultsContainer.innerHTML = '';
+    
+    // Create results content
+    let resultsHTML = `
+        <h4>Language Evolution Results</h4>
+    `;
+    
+    // Add success indicator
+    if (resolutionData.success) {
+        resultsHTML += `
+            <div class="evolution-success">
+                <p><strong>Evolution Successful</strong> ${resolutionData.success_degree ? `(${Math.round(resolutionData.success_degree * 100)}%)` : ''}</p>
+            </div>
+        `;
+    } else {
+        resultsHTML += `
+            <div class="evolution-failure">
+                <p><strong>Evolution Unsuccessful</strong></p>
+            </div>
+        `;
+    }
+    
+    // Add vocabulary changes if available
+    if (resolutionData.vocabulary_changes) {
+        resultsHTML += `<div class="evolution-section"><h5>Vocabulary Changes</h5>`;
+        
+        if (resolutionData.vocabulary_changes.added_terms && resolutionData.vocabulary_changes.added_terms.length > 0) {
+            resultsHTML += `
+                <p><strong>New Terms:</strong> ${resolutionData.vocabulary_changes.added_terms.join(', ')}</p>
+            `;
+        }
+        
+        if (resolutionData.vocabulary_changes.modified_terms && resolutionData.vocabulary_changes.modified_terms.length > 0) {
+            resultsHTML += `
+                <p><strong>Modified Terms:</strong> ${resolutionData.vocabulary_changes.modified_terms.join(', ')}</p>
+            `;
+        }
+        
+        if (resolutionData.vocabulary_changes.formalized_terms && resolutionData.vocabulary_changes.formalized_terms.length > 0) {
+            resultsHTML += `
+                <p><strong>Formalized Terms:</strong> ${resolutionData.vocabulary_changes.formalized_terms.join(', ')}</p>
+            `;
+        }
+        
+        resultsHTML += `</div>`;
+    }
+    
+    // Add grammar changes if available
+    if (resolutionData.grammar_changes) {
+        resultsHTML += `<div class="evolution-section"><h5>Grammar Changes</h5>`;
+        
+        if (resolutionData.grammar_changes.new_structures && resolutionData.grammar_changes.new_structures.length > 0) {
+            resultsHTML += `
+                <p><strong>New Structures:</strong> ${resolutionData.grammar_changes.new_structures.join(', ')}</p>
+            `;
+        }
+        
+        if (resolutionData.grammar_changes.modified_structures && resolutionData.grammar_changes.modified_structures.length > 0) {
+            resultsHTML += `
+                <p><strong>Modified Structures:</strong> ${resolutionData.grammar_changes.modified_structures.join(', ')}</p>
+            `;
+        }
+        
+        resultsHTML += `</div>`;
+    }
+    
+    // Add communication results if available
+    if (resolutionData.communication_results) {
+        resultsHTML += `<div class="evolution-section"><h5>Communication Results</h5>`;
+        
+        if (resolutionData.communication_results.clarity) {
+            resultsHTML += `
+                <p><strong>Clarity:</strong> ${Math.round(resolutionData.communication_results.clarity * 100)}%</p>
+            `;
+        }
+        
+        if (resolutionData.communication_results.misunderstandings && resolutionData.communication_results.misunderstandings.length > 0) {
+            resultsHTML += `
+                <p><strong>Misunderstandings:</strong> ${resolutionData.communication_results.misunderstandings.join(', ')}</p>
+            `;
+        }
+        
+        if (resolutionData.communication_results.shared_concepts && resolutionData.communication_results.shared_concepts.length > 0) {
+            resultsHTML += `
+                <p><strong>Shared Concepts:</strong> ${resolutionData.communication_results.shared_concepts.join(', ')}</p>
+            `;
+        }
+        
+        resultsHTML += `</div>`;
+    }
+    
+    // Add cultural impacts if available
+    if (resolutionData.cultural_impacts) {
+        resultsHTML += `<div class="evolution-section"><h5>Cultural Impacts</h5>`;
+        
+        if (resolutionData.cultural_impacts.identity_formation) {
+            resultsHTML += `
+                <p><strong>Identity Formation:</strong> ${resolutionData.cultural_impacts.identity_formation}</p>
+            `;
+        }
+        
+        if (resolutionData.cultural_impacts.social_cohesion) {
+            resultsHTML += `
+                <p><strong>Social Cohesion:</strong> ${Math.round(resolutionData.cultural_impacts.social_cohesion * 100)}%</p>
+            `;
+        }
+        
+        if (resolutionData.cultural_impacts.knowledge_transfer) {
+            resultsHTML += `
+                <p><strong>Knowledge Transfer:</strong> ${Math.round(resolutionData.cultural_impacts.knowledge_transfer * 100)}%</p>
+            `;
+        }
+        
+        resultsHTML += `</div>`;
+    }
+    
+    // Always add narrative description
+    if (resolutionData.narrative_description) {
+        resultsHTML += `
+            <div class="evolution-narrative">
+                <h5>Narrative</h5>
+                <p>${resolutionData.narrative_description}</p>
+            </div>
+        `;
+    }
+    
+    // Set the HTML and show the results
+    resultsContainer.innerHTML = resultsHTML;
+    resultsContainer.classList.remove('hidden');
 }
 
 // Send a message to KinOS about an action
@@ -847,6 +1250,20 @@ function setupEventListeners() {
         if (!e.target.closest('.context-menu')) {
             hideContextMenu();
         }
+        
+        // Don't hide circular menu if clicking on the menu itself or a tile
+        if (!e.target.closest('.circular-menu') && !e.target.closest('.tile') && !e.target.closest('.submenu')) {
+            const circularMenu = document.getElementById('circular-menu');
+            if (circularMenu) {
+                circularMenu.remove();
+            }
+            
+            // Also hide any submenus
+            const languageMenu = document.getElementById('language-menu');
+            if (languageMenu) {
+                languageMenu.remove();
+            }
+        }
     });
     
     // Hide context menu when scrolling
@@ -936,8 +1353,21 @@ function setupEventListeners() {
 // Start dragging
 function startDrag(e) {
     // Don't start dragging if we clicked on a button or control
-    if (e.target.closest('#controls') || e.target.closest('#info-panel')) {
+    if (e.target.closest('#controls') || e.target.closest('#info-panel') || 
+        e.target.closest('.circular-menu') || e.target.closest('.submenu')) {
         return;
+    }
+    
+    // Hide circular menu when dragging starts
+    const circularMenu = document.getElementById('circular-menu');
+    if (circularMenu) {
+        circularMenu.remove();
+    }
+    
+    // Hide any submenus
+    const languageMenu = document.getElementById('language-menu');
+    if (languageMenu) {
+        languageMenu.remove();
     }
     
     if (e.button !== 0) return; // Only left mouse button
@@ -987,8 +1417,21 @@ function endDrag() {
 // Handle touch start
 function handleTouchStart(e) {
     // Don't start dragging if we touched a button or control
-    if (e.target.closest('#controls') || e.target.closest('#info-panel')) {
+    if (e.target.closest('#controls') || e.target.closest('#info-panel') || 
+        e.target.closest('.circular-menu') || e.target.closest('.submenu')) {
         return;
+    }
+    
+    // Hide circular menu when dragging starts
+    const circularMenu = document.getElementById('circular-menu');
+    if (circularMenu) {
+        circularMenu.remove();
+    }
+    
+    // Hide any submenus
+    const languageMenu = document.getElementById('language-menu');
+    if (languageMenu) {
+        languageMenu.remove();
     }
     
     if (e.touches.length !== 1) return;

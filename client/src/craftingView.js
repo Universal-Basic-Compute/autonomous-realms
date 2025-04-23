@@ -6,6 +6,7 @@ class CraftingView {
     this.isVisible = false;
     this.selectedResources = [];
     this.maxCombinerSlots = 4;
+    this.progressInterval = null; // Track progress animation interval
     
     // Initialize the crafting view
     this.initialize();
@@ -287,6 +288,12 @@ class CraftingView {
     resultArea.innerHTML = `
       <p class="crafting-instructions">Drag resources to the slots above and click "Craft" to combine them.</p>
     `;
+    
+    // Clear any progress interval
+    if (this.progressInterval) {
+      clearInterval(this.progressInterval);
+      this.progressInterval = null;
+    }
   }
   
   // Craft items from the selected resources
@@ -297,14 +304,49 @@ class CraftingView {
       return;
     }
     
-    // Show loading state
+    // Show loading state with immersive messages
     const resultArea = document.getElementById('crafting-result');
+
+    const craftingMessages = [
+      "Your settlers carefully combine the materials, working with practiced hands...",
+      "The skilled crafters of your tribe apply ancient techniques passed down through generations...",
+      "With focused determination, your people transform raw materials into something useful...",
+      "Careful measurements and precise movements guide the creation process...",
+      "The rhythmic sounds of crafting fill the air as your settlers work diligently..."
+    ];
+
+    // Get resource-specific messages based on what's being crafted
+    const resourceSpecificMessages = this.getCraftingFlavorText(this.selectedResources);
+
+    // Combine general and specific messages
+    const allMessages = [...craftingMessages, ...resourceSpecificMessages];
+
+    // Select a random message
+    const randomMessage = allMessages[Math.floor(Math.random() * allMessages.length)];
+
     resultArea.innerHTML = `
       <div class="crafting-loading">
-        <p>Crafting in progress...</p>
+        <p class="crafting-progress-message">${randomMessage}</p>
+        <div class="crafting-progress-container">
+          <div class="crafting-progress-bar" id="crafting-progress-bar"></div>
+        </div>
         <div class="crafting-spinner"></div>
       </div>
     `;
+
+    // Animate the progress bar
+    let progress = 0;
+    this.progressInterval = setInterval(() => {
+      progress += 5;
+      const progressBar = document.getElementById('crafting-progress-bar');
+      if (progressBar) {
+        progressBar.style.width = `${progress}%`;
+        
+        if (progress >= 100) {
+          clearInterval(this.progressInterval);
+        }
+      }
+    }, 150);
     
     try {
       // Get the colony name and kin name from localStorage
@@ -440,6 +482,12 @@ Example response:
   
   // Show the crafting result
   showCraftingResult(result) {
+    // Clear any progress interval
+    if (this.progressInterval) {
+      clearInterval(this.progressInterval);
+      this.progressInterval = null;
+    }
+    
     const resultArea = document.getElementById('crafting-result');
     
     resultArea.innerHTML = `
@@ -471,6 +519,12 @@ Example response:
   
   // Show a crafting error
   showCraftingError(errorMessage) {
+    // Clear any progress interval
+    if (this.progressInterval) {
+      clearInterval(this.progressInterval);
+      this.progressInterval = null;
+    }
+    
     const resultArea = document.getElementById('crafting-result');
     
     resultArea.innerHTML = `
@@ -527,6 +581,49 @@ Example response:
     } else {
       this.show();
     }
+  }
+  
+  // Get crafting flavor text based on selected resources
+  getCraftingFlavorText(resources) {
+    const messages = [];
+    
+    // Check for specific resource combinations and add appropriate messages
+    const resourceNames = resources.map(r => r.name.toLowerCase());
+    
+    if (resourceNames.some(name => name.includes('wood'))) {
+      messages.push("The wood is carefully shaped and smoothed with practiced motions...");
+      messages.push("Skilled hands carve and shape the wood with precision...");
+    }
+    
+    if (resourceNames.some(name => name.includes('stone'))) {
+      messages.push("The stone is methodically chipped and ground to the desired form...");
+      messages.push("Each strike against the stone is deliberate and controlled...");
+    }
+    
+    if (resourceNames.some(name => name.includes('fiber') || name.includes('plant'))) {
+      messages.push("The fibers are twisted and woven with nimble fingers...");
+      messages.push("Patient hands work the fibers into strong, flexible material...");
+    }
+    
+    if (resourceNames.some(name => name.includes('clay'))) {
+      messages.push("The clay is kneaded and shaped with careful attention to detail...");
+      messages.push("Wet clay takes form under the skilled touch of your crafters...");
+    }
+    
+    // Add messages for combinations
+    if (resourceNames.some(name => name.includes('wood')) && 
+        resourceNames.some(name => name.includes('stone'))) {
+      messages.push("Wood and stone are joined together with ingenious techniques...");
+      messages.push("The complementary properties of wood and stone are expertly balanced...");
+    }
+    
+    // Return at least one message even if no specific resources were matched
+    if (messages.length === 0) {
+      messages.push("The materials transform under the skilled hands of your crafters...");
+      messages.push("Your settlers work methodically, their expertise evident in every movement...");
+    }
+    
+    return messages;
   }
 }
 

@@ -163,7 +163,15 @@ router.post('/tile-conversation', async (req, res) => {
   try {
     const { tileX, tileY, terrainCode, terrainDescription } = req.body;
     
+    logger.info(`Tile conversation request received with params:`, {
+      tileX, 
+      tileY, 
+      terrainCode, 
+      terrainDescription
+    });
+    
     if (!terrainCode || !terrainDescription) {
+      logger.warn('Missing required parameters for tile conversation');
       return res.status(400).json({ error: 'Missing required parameters' });
     }
     
@@ -210,7 +218,10 @@ Use these voice IDs in your response:
 Return ONLY the valid JSON array, nothing else.
 `;
 
+    logger.debug('Sending message to KinOS with content:', messageContent);
+    
     // Make request to KinOS
+    logger.info(`Making request to KinOS API for kin: ${kinName}`);
     const kinosResponse = await fetch(`http://localhost:3000/api/kinos/kins/${kinName}/messages`, {
       method: 'POST',
       headers: {
@@ -226,13 +237,17 @@ Return ONLY the valid JSON array, nothing else.
     });
     
     if (!kinosResponse.ok) {
+      const errorText = await kinosResponse.text();
+      logger.error(`KinOS API request failed with status ${kinosResponse.status}: ${errorText}`);
       throw new Error(`KinOS API request failed with status ${kinosResponse.status}: ${kinosResponse.statusText}`);
     }
     
     const responseData = await kinosResponse.json();
+    logger.debug('Received response from KinOS:', responseData);
     
     // Extract the conversation lines
     const conversationText = responseData.response || responseData.content;
+    logger.debug('Extracted conversation text:', conversationText);
     
     // Parse the JSON response
     let dialogueLines = [];
@@ -240,8 +255,10 @@ Return ONLY the valid JSON array, nothing else.
       // Find JSON array in the response
       const jsonMatch = conversationText.match(/\[[\s\S]*\]/);
       if (jsonMatch) {
+        logger.debug('Found JSON match in response:', jsonMatch[0]);
         dialogueLines = JSON.parse(jsonMatch[0]);
       } else {
+        logger.error('No valid JSON found in response');
         throw new Error('No valid JSON found in response');
       }
     } catch (error) {
@@ -249,11 +266,15 @@ Return ONLY the valid JSON array, nothing else.
       return res.status(500).json({ error: 'Failed to parse dialogue response' });
     }
     
+    logger.info(`Successfully parsed ${dialogueLines.length} dialogue lines`);
+    
     // Generate TTS for each line
     for (let i = 0; i < dialogueLines.length; i++) {
       const line = dialogueLines[i];
+      logger.debug(`Generating TTS for line ${i+1}:`, line);
       
       try {
+        logger.info(`Requesting TTS for text: "${line.original}"`);
         const ttsResponse = await fetch(`http://localhost:3000/api/data/actions/ai/tts`, {
           method: 'POST',
           headers: {
@@ -267,11 +288,18 @@ Return ONLY the valid JSON array, nothing else.
         
         if (ttsResponse.ok) {
           const ttsData = await ttsResponse.json();
+          logger.debug('Received TTS response:', ttsData);
           
           // Add the audio URL to the dialogue line
           if (ttsData.audio_url) {
+            logger.info(`Got audio URL for line ${i+1}: ${ttsData.audio_url}`);
             dialogueLines[i].audioUrl = ttsData.audio_url;
+          } else {
+            logger.warn(`No audio URL in TTS response for line ${i+1}`);
           }
+        } else {
+          const errorText = await ttsResponse.text();
+          logger.error(`TTS request failed with status ${ttsResponse.status}: ${errorText}`);
         }
       } catch (ttsError) {
         logger.error(`Error generating TTS for dialogue line: ${ttsError.message}`);
@@ -280,6 +308,7 @@ Return ONLY the valid JSON array, nothing else.
     }
     
     // Return the dialogue lines with audio URLs
+    logger.info(`Returning ${dialogueLines.length} dialogue lines with audio`);
     res.json({ 
       success: true, 
       dialogueLines: dialogueLines 

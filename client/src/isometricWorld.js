@@ -2078,7 +2078,16 @@ async function generateTileConversation(tileX, tileY, terrainCode, terrainDescri
     loadingIndicator.textContent = 'Settlers are discussing this area...';
     document.body.appendChild(loadingIndicator);
     
+    // Add debugging logs
+    console.log('Generating tile conversation with params:', {
+      tileX,
+      tileY,
+      terrainCode,
+      terrainDescription
+    });
+    
     // Make request to the server endpoint that will handle the conversation generation
+    console.log(`Sending request to: ${config.serverUrl}/api/data/tile-conversation`);
     const response = await fetch(`${config.serverUrl}/api/data/tile-conversation`, {
       method: 'POST',
       headers: {
@@ -2095,21 +2104,30 @@ async function generateTileConversation(tileX, tileY, terrainCode, terrainDescri
     // Remove the loading indicator
     loadingIndicator.remove();
     
+    // Log response status
+    console.log('Conversation response status:', response.status, response.statusText);
+    
     if (!response.ok) {
+      const errorText = await response.text();
+      console.error('Conversation response error:', errorText);
       throw new Error(`Server request failed with status ${response.status}: ${response.statusText}`);
     }
     
     const dialogueData = await response.json();
+    console.log('Received dialogue data:', dialogueData);
     
     if (!dialogueData || !dialogueData.dialogueLines || !Array.isArray(dialogueData.dialogueLines)) {
+      console.error('Invalid dialogue data format:', dialogueData);
       throw new Error('Invalid response format from server');
     }
     
     const dialogueLines = dialogueData.dialogueLines;
+    console.log(`Processing ${dialogueLines.length} dialogue lines`);
     
     // Display and play each line of dialogue
     for (let i = 0; i < dialogueLines.length; i++) {
       const line = dialogueLines[i];
+      console.log(`Processing dialogue line ${i+1}:`, line);
       
       // Create a notification with both original text and translation
       const dialogueNotification = document.createElement('div');
@@ -2127,10 +2145,18 @@ async function generateTileConversation(tileX, tileY, terrainCode, terrainDescri
           ? `${config.serverUrl}${line.audioUrl}` 
           : line.audioUrl;
         
+        console.log(`Playing audio from: ${fullAudioUrl}`);
         const audio = new Audio(fullAudioUrl);
+        
+        // Add debugging for audio events
+        audio.addEventListener('loadstart', () => console.log('Audio loading started'));
+        audio.addEventListener('canplay', () => console.log('Audio can start playing'));
+        audio.addEventListener('playing', () => console.log('Audio is playing'));
+        audio.addEventListener('error', (e) => console.error('Audio error:', e));
         
         // Remove notification when audio ends
         audio.onended = () => {
+          console.log('Audio playback ended');
           dialogueNotification.classList.add('fade-out');
           setTimeout(() => dialogueNotification.remove(), 1000);
         };
@@ -2138,6 +2164,7 @@ async function generateTileConversation(tileX, tileY, terrainCode, terrainDescri
         try {
           // Wait for audio to play before continuing
           await audio.play();
+          console.log('Audio playback started successfully');
           
           // Add a small delay between lines
           await new Promise(resolve => setTimeout(resolve, 500));
@@ -2150,6 +2177,7 @@ async function generateTileConversation(tileX, tileY, terrainCode, terrainDescri
           }, 3000);
         }
       } else {
+        console.log('No audio URL for this dialogue line');
         // If no audio, remove the notification after a delay
         setTimeout(() => {
           dialogueNotification.classList.add('fade-out');

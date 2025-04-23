@@ -702,6 +702,18 @@ const actions = {
       { code: "X-011", name: "Establish Lookout Points", description: "Create observation posts with wide views" },
       { code: "S-007", name: "Create Summit Shrine", description: "Build a sacred place at high elevation" }
     ],
+    "M-PEA": [
+      { code: "G-025", name: "Gather Alpine Plants", description: "Collect rare plants from high elevations" },
+      { code: "G-070", name: "Collect Snow Herbs", description: "Gather herbs that grow near snow line" },
+      { code: "H-015", name: "Hunt Mountain Goats", description: "Hunt animals adapted to snowy peaks" },
+      { code: "H-040", name: "Track Snow Predators", description: "Hunt predators that live in snowy mountains" },
+      { code: "C-016", name: "Build Snow Shelters", description: "Construct homes protected from extreme cold" },
+      { code: "C-017", name: "Create Stone Markers", description: "Build cairns for navigation in snow" },
+      { code: "M-004", name: "Collect Pure Water", description: "Gather water from mountain springs and snow" },
+      { code: "T-019", name: "Craft Cold-Weather Gear", description: "Create clothing for extreme mountain conditions" },
+      { code: "X-011", name: "Establish Lookout Points", description: "Create observation posts with wide views" },
+      { code: "X-050", name: "Map Avalanche Zones", description: "Identify dangerous snow areas" }
+    ],
     "M-VOL": [
       { code: "G-026", name: "Collect Volcanic Glass", description: "Gather obsidian for tools" },
       { code: "G-027", name: "Gather Sulfur Deposits", description: "Collect yellow mineral deposits" },
@@ -721,6 +733,55 @@ const actions = {
       { code: "A-007", name: "Establish Hill Gardens", description: "Create gardens on sloped terrain" },
       { code: "X-013", name: "Find Cave Shelters", description: "Look for natural shelters in hillsides" },
       { code: "X-014", name: "Locate Springs", description: "Find water sources emerging from hills" }
+    ],
+    "M-CLF": [
+      { code: "G-023", name: "Gather Cliff Plants", description: "Collect plants growing on steep faces" },
+      { code: "H-013", name: "Hunt Cliff Dwellers", description: "Hunt animals that nest on cliff faces" },
+      { code: "H-041", name: "Set Cliff Traps", description: "Place traps in strategic cliff locations" },
+      { code: "C-060", name: "Build Cliff Shelters", description: "Construct homes against or within cliff faces" },
+      { code: "C-061", name: "Create Climbing Routes", description: "Establish safe paths up cliff faces" },
+      { code: "M-001", name: "Collect Exposed Minerals", description: "Gather minerals visible in cliff faces" },
+      { code: "X-051", name: "Scout Cliff Passages", description: "Find routes through cliff areas" },
+      { code: "X-052", name: "Search For Cliff Caves", description: "Locate natural shelters in cliff faces" }
+    ],
+    "M-HIL": [
+      { code: "G-023", name: "Gather Hill Herbs", description: "Collect plants from rolling terrain" },
+      { code: "G-071", name: "Harvest Hill Berries", description: "Gather berries growing on hillsides" },
+      { code: "H-042", name: "Hunt Hill Game", description: "Hunt animals that inhabit hilly terrain" },
+      { code: "C-019", name: "Build On Hillside", description: "Construct shelters on sloped ground" },
+      { code: "C-020", name: "Create Terraced Space", description: "Build level areas on hillsides" },
+      { code: "A-007", name: "Establish Hill Gardens", description: "Create gardens on sloped terrain" },
+      { code: "X-053", name: "Find Vantage Points", description: "Locate high spots with good visibility" },
+      { code: "X-054", name: "Map Hill Resources", description: "Document useful materials in hilly areas" }
+    ],
+    "M-VAL": [
+      { code: "G-072", name: "Gather Valley Plants", description: "Collect plants from protected valley floor" },
+      { code: "G-073", name: "Harvest Valley Fruits", description: "Gather fruits growing in sheltered valley" },
+      { code: "H-043", name: "Hunt Valley Game", description: "Hunt animals that inhabit mountain valleys" },
+      { code: "C-062", name: "Build Valley Settlement", description: "Construct homes in protected valley" },
+      { code: "A-007", name: "Establish Valley Gardens", description: "Create gardens in fertile valley soil" },
+      { code: "W-012", name: "Manage Valley Streams", description: "Control water flow through valley" },
+      { code: "X-055", name: "Explore Valley Routes", description: "Find paths connecting through valleys" },
+      { code: "X-056", name: "Map Valley Resources", description: "Document useful materials in valley" }
+    ],
+    "M-RID": [
+      { code: "G-074", name: "Gather Ridge Plants", description: "Collect plants growing along mountain ridges" },
+      { code: "H-044", name: "Hunt Ridge Predators", description: "Hunt animals that patrol ridge lines" },
+      { code: "C-063", name: "Build Ridge Shelters", description: "Construct wind-resistant homes on ridges" },
+      { code: "C-064", name: "Create Ridge Markers", description: "Build navigation aids along ridges" },
+      { code: "X-057", name: "Scout Ridge Paths", description: "Find routes along mountain ridges" },
+      { code: "X-058", name: "Establish Signal Points", description: "Create locations for visual communication" },
+      { code: "X-059", name: "Map Ridge Systems", description: "Document connected ridge networks" }
+    ],
+    "M-GLR": [
+      { code: "G-075", name: "Gather Glacier Plants", description: "Collect rare plants from glacier edges" },
+      { code: "H-045", name: "Hunt Glacier Animals", description: "Hunt creatures adapted to glacier life" },
+      { code: "C-065", name: "Build Ice Shelters", description: "Construct homes using ice blocks" },
+      { code: "C-066", name: "Create Ice Storage", description: "Build food preservation areas using ice" },
+      { code: "M-010", name: "Harvest Pure Ice", description: "Collect clean ice for water and preservation" },
+      { code: "T-070", name: "Craft Ice Tools", description: "Create implements from ice" },
+      { code: "X-060", name: "Map Glacier Movement", description: "Document how glaciers change over time" },
+      { code: "X-061", name: "Find Safe Ice Routes", description: "Identify stable paths across glaciers" }
     ]
   },
   water: {

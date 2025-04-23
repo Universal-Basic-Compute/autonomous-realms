@@ -34,8 +34,11 @@ async function connectWallet() {
     }
     
     // Connect to wallet
+    console.log('Attempting to connect to Phantom wallet...');
     const resp = await provider.connect();
     const walletAddress = resp.publicKey.toString();
+    
+    console.log('Wallet connected successfully:', walletAddress);
     
     // Show success notification
     const notification = document.createElement('div');
@@ -55,10 +58,12 @@ async function connectWallet() {
     // Store wallet address in localStorage
     localStorage.setItem('walletAddress', walletAddress);
     
-    // Show compute transfer dialog
+    // Show compute transfer dialog with a slight delay to ensure UI is updated
+    console.log('Preparing to show COMPUTE transfer dialog...');
     setTimeout(() => {
+      console.log('Showing COMPUTE transfer dialog now');
       showComputeTransferDialog(walletAddress);
-    }, 500);
+    }, 800); // Increased delay to ensure UI is ready
     
     return walletAddress;
   } catch (error) {
@@ -82,16 +87,20 @@ async function connectWallet() {
 
 // Add a new function to update the wallet button text
 function updateWalletButtonText(walletAddress) {
+  console.log('Updating wallet button text for address:', walletAddress);
+  
   // Find all wallet buttons in the DOM (in case there are multiple screens)
   const walletButtons = document.querySelectorAll('.welcome-button');
   
   walletButtons.forEach(button => {
     if (button.textContent === 'Connect Wallet') {
+      console.log('Found wallet button to update');
       button.textContent = `Wallet: ${walletAddress.substring(0, 6)}...${walletAddress.substring(walletAddress.length - 4)}`;
       
       // Update the click handler to show the transfer dialog instead of connecting again
       button.removeEventListener('click', connectWalletHandler);
       button.addEventListener('click', () => {
+        console.log('Wallet button clicked, showing transfer dialog');
         showComputeTransferDialog(walletAddress);
       });
     }
@@ -1345,6 +1354,15 @@ function createLoadColonyScreen() {
 
 // Function to show compute transfer dialog
 function showComputeTransferDialog(walletAddress) {
+  console.log('showComputeTransferDialog called with address:', walletAddress);
+  
+  // Make sure we don't have multiple dialogs
+  const existingDialog = document.querySelector('.dialog');
+  if (existingDialog) {
+    console.log('Removing existing dialog before showing new one');
+    existingDialog.remove();
+  }
+  
   // Create dialog container
   const dialogContainer = document.createElement('div');
   dialogContainer.className = 'dialog';
@@ -1446,13 +1464,9 @@ function showComputeTransferDialog(walletAddress) {
   dialogContent.appendChild(buttonContainer);
   dialogContainer.appendChild(dialogContent);
   
-  // Make sure we don't have multiple dialogs
-  const existingDialog = document.querySelector('.dialog');
-  if (existingDialog) {
-    existingDialog.remove();
-  }
-  
+  // Add to document
   document.body.appendChild(dialogContainer);
+  console.log('COMPUTE transfer dialog added to document');
 }
 
 export { createWelcomeScreen, createColonyNamingScreen, createLanguageInitScreen, createLoadColonyScreen, loadColony, showComputeTransferDialog };

@@ -83,6 +83,16 @@ const tileInfoElement = document.getElementById('tile-info');
 
 // Initialize the world
 function initWorld() {
+    // Calculate the center of the grid in isometric coordinates
+    const centerX = Math.floor(config.gridSize / 2);
+    const centerY = Math.floor(config.gridSize / 2);
+    const centerPosition = gridToIso(centerX, centerY);
+    
+    // Set initial offset to center the view on the middle of the map
+    // We need to negate the position because we're moving the world in the opposite direction
+    state.offsetX = -centerPosition.x * config.initialZoom + window.innerWidth / 2;
+    state.offsetY = -centerPosition.y * config.initialZoom + window.innerHeight / 2;
+    
     // Set initial transform
     updateWorldTransform();
     

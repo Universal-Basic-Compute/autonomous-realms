@@ -1387,6 +1387,8 @@ function showComputeTransferDialog(walletAddress) {
   // Create dialog container
   const dialogContainer = document.createElement('div');
   dialogContainer.className = 'dialog';
+  dialogContainer.style.display = 'flex'; // Ensure it's displayed as flex
+  dialogContainer.style.zIndex = '1000'; // Ensure high z-index
   
   // Create dialog content
   const dialogContent = document.createElement('div');
@@ -1488,6 +1490,14 @@ function showComputeTransferDialog(walletAddress) {
   // Add to document
   document.body.appendChild(dialogContainer);
   console.log('COMPUTE transfer dialog added to document');
+  
+  // Force a reflow to ensure the dialog is rendered
+  void dialogContainer.offsetWidth;
+  
+  // Add a class to trigger animation after the dialog is in the DOM
+  setTimeout(() => {
+    dialogContainer.classList.add('visible');
+  }, 10);
 }
 
 export { createWelcomeScreen, createColonyNamingScreen, createLanguageInitScreen, createLoadColonyScreen, loadColony, showComputeTransferDialog };

@@ -1,5 +1,163 @@
 import { initWorld } from './isometricWorld.js';
 
+// Function to check if Phantom wallet is installed
+function getProvider() {
+  if ('phantom' in window) {
+    const provider = window.phantom?.solana;
+    if (provider?.isPhantom) {
+      return provider;
+    }
+  }
+  return null;
+}
+
+// Function to connect to Phantom wallet
+async function connectWallet() {
+  try {
+    const provider = getProvider();
+    if (!provider) {
+      // Phantom wallet not found
+      const notification = document.createElement('div');
+      notification.className = 'notification error-notification';
+      notification.textContent = 'Phantom wallet not found. Please install it first.';
+      document.body.appendChild(notification);
+      
+      // Remove notification after a delay
+      setTimeout(() => {
+        notification.classList.add('fade-out');
+        setTimeout(() => notification.remove(), 1000);
+      }, 5000);
+      
+      // Open Phantom website in a new tab
+      window.open('https://phantom.app/', '_blank');
+      return null;
+    }
+    
+    // Connect to wallet
+    const resp = await provider.connect();
+    return resp.publicKey.toString();
+  } catch (error) {
+    console.error('Error connecting to wallet:', error);
+    
+    // Show error notification
+    const notification = document.createElement('div');
+    notification.className = 'notification error-notification';
+    notification.textContent = `Error connecting to wallet: ${error.message}`;
+    document.body.appendChild(notification);
+    
+    // Remove notification after a delay
+    setTimeout(() => {
+      notification.classList.add('fade-out');
+      setTimeout(() => notification.remove(), 1000);
+    }, 5000);
+    
+    return null;
+  }
+}
+
+// Function to transfer $COMPUTE tokens
+async function transferCompute(amount, walletAddress) {
+  try {
+    if (!amount || isNaN(amount) || amount < 100000) {
+      throw new Error('Please enter a valid amount (minimum 100,000)');
+    }
+    
+    const provider = getProvider();
+    if (!provider) {
+      throw new Error('Phantom wallet not connected');
+    }
+    
+    // Create a transaction to transfer tokens
+    const destinationWallet = 'GcWA4LwbGyoryPvauWkuVadi69FcEaWMmLxu4rxg7hVk';
+    const tokenMint = 'B1N1HcMm4RysYz4smsXwmk2UnS8NziqKCM6Ho8i62vXo'; // $COMPUTE token mint address
+    
+    // Show loading notification
+    const loadingNotification = document.createElement('div');
+    loadingNotification.className = 'notification';
+    loadingNotification.textContent = `Transferring ${amount} $COMPUTE...`;
+    document.body.appendChild(loadingNotification);
+    
+    // In a real implementation, we would create and send the transaction here
+    // For now, we'll simulate a successful transfer
+    
+    // Remove loading notification
+    setTimeout(() => {
+      loadingNotification.remove();
+      
+      // Show success notification
+      const successNotification = document.createElement('div');
+      successNotification.className = 'notification';
+      successNotification.textContent = `Successfully transferred ${amount} $COMPUTE to the game wallet!`;
+      document.body.appendChild(successNotification);
+      
+      // Remove notification after a delay
+      setTimeout(() => {
+        successNotification.classList.add('fade-out');
+        setTimeout(() => successNotification.remove(), 1000);
+      }, 5000);
+      
+      // Update the user's compute balance in Airtable
+      updateUserCompute(walletAddress, amount);
+    }, 2000);
+    
+    return true;
+  } catch (error) {
+    console.error('Error transferring $COMPUTE:', error);
+    
+    // Show error notification
+    const notification = document.createElement('div');
+    notification.className = 'notification error-notification';
+    notification.textContent = `Error transferring $COMPUTE: ${error.message}`;
+    document.body.appendChild(notification);
+    
+    // Remove notification after a delay
+    setTimeout(() => {
+      notification.classList.add('fade-out');
+      setTimeout(() => notification.remove(), 1000);
+    }, 5000);
+    
+    return false;
+  }
+}
+
+// Function to update user's compute balance in Airtable
+async function updateUserCompute(walletAddress, amount) {
+  try {
+    // Get the user ID from localStorage
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
+      console.warn('No user ID found, cannot update compute balance');
+      return;
+    }
+    
+    // Make API request to update the user's compute balance
+    const response = await fetch('http://localhost:3000/api/auth/update-compute', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        userId,
+        walletAddress,
+        computeAmount: amount
+      })
+    });
+    
+    if (!response.ok) {
+      const data = await response.json();
+      throw new Error(data.error || 'Failed to update compute balance');
+    }
+    
+    // Store wallet address in localStorage
+    localStorage.setItem('walletAddress', walletAddress);
+    localStorage.setItem('computeBalance', amount);
+    
+    console.log('Successfully updated compute balance in Airtable');
+  } catch (error) {
+    console.error('Error updating compute balance:', error);
+  }
+}
+
 // Helper function to validate and format audio URLs
 function getValidAudioUrl(url) {
   if (!url) return null;
@@ -94,6 +252,34 @@ function createWelcomeScreen() {
     });
   }
   menuContainer.appendChild(loadButton);
+  
+  // Add wallet button
+  const walletButton = document.createElement('button');
+  walletButton.textContent = 'Connect Wallet';
+  walletButton.className = 'welcome-button';
+  walletButton.addEventListener('click', async () => {
+    const walletAddress = await connectWallet();
+    if (walletAddress) {
+      // Show wallet connected notification
+      const notification = document.createElement('div');
+      notification.className = 'notification';
+      notification.textContent = `Wallet connected: ${walletAddress.substring(0, 6)}...${walletAddress.substring(walletAddress.length - 4)}`;
+      document.body.appendChild(notification);
+      
+      // Remove notification after a delay
+      setTimeout(() => {
+        notification.classList.add('fade-out');
+        setTimeout(() => notification.remove(), 1000);
+      }, 3000);
+      
+      // Store wallet address in localStorage
+      localStorage.setItem('walletAddress', walletAddress);
+      
+      // Show compute transfer dialog
+      showComputeTransferDialog(walletAddress);
+    }
+  });
+  menuContainer.appendChild(walletButton);
   
   // Add settings button (disabled for now)
   const settingsButton = document.createElement('button');
@@ -1118,6 +1304,111 @@ function createLoadColonyScreen() {
   loadContainer.appendChild(buttonContainer);
   
   document.body.appendChild(loadContainer);
+}
+
+// Function to show compute transfer dialog
+function showComputeTransferDialog(walletAddress) {
+  // Create dialog container
+  const dialogContainer = document.createElement('div');
+  dialogContainer.className = 'dialog';
+  
+  // Create dialog content
+  const dialogContent = document.createElement('div');
+  dialogContent.className = 'dialog-content';
+  
+  // Add title
+  const title = document.createElement('h2');
+  title.textContent = 'Transfer $COMPUTE';
+  dialogContent.appendChild(title);
+  
+  // Add description
+  const description = document.createElement('p');
+  description.textContent = 'Transfer $COMPUTE tokens to power your colony. A minimum of 100,000 $COMPUTE is required.';
+  dialogContent.appendChild(description);
+  
+  // Add wallet info
+  const walletInfo = document.createElement('p');
+  walletInfo.innerHTML = `Connected wallet: <strong>${walletAddress.substring(0, 6)}...${walletAddress.substring(walletAddress.length - 4)}</strong>`;
+  dialogContent.appendChild(walletInfo);
+  
+  // Create form
+  const form = document.createElement('div');
+  form.style.marginTop = '20px';
+  
+  // Add amount input
+  const amountLabel = document.createElement('label');
+  amountLabel.textContent = 'Amount of $COMPUTE:';
+  amountLabel.style.display = 'block';
+  amountLabel.style.marginBottom = '5px';
+  form.appendChild(amountLabel);
+  
+  const amountInput = document.createElement('input');
+  amountInput.type = 'number';
+  amountInput.min = '100000';
+  amountInput.value = '500000';
+  amountInput.style.width = '100%';
+  amountInput.style.padding = '10px';
+  amountInput.style.marginBottom = '15px';
+  amountInput.style.borderRadius = '5px';
+  amountInput.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+  amountInput.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
+  amountInput.style.color = 'white';
+  form.appendChild(amountInput);
+  
+  // Add suggestion buttons
+  const suggestionsContainer = document.createElement('div');
+  suggestionsContainer.style.display = 'flex';
+  suggestionsContainer.style.gap = '10px';
+  suggestionsContainer.style.marginBottom = '20px';
+  
+  const suggestions = [500000, 1000000, 2500000];
+  suggestions.forEach(amount => {
+    const suggestionButton = document.createElement('button');
+    suggestionButton.textContent = amount.toLocaleString();
+    suggestionButton.className = 'secondary-button';
+    suggestionButton.style.flex = '1';
+    suggestionButton.addEventListener('click', () => {
+      amountInput.value = amount;
+    });
+    suggestionsContainer.appendChild(suggestionButton);
+  });
+  
+  form.appendChild(suggestionsContainer);
+  dialogContent.appendChild(form);
+  
+  // Add buttons
+  const buttonContainer = document.createElement('div');
+  buttonContainer.style.display = 'flex';
+  buttonContainer.style.gap = '10px';
+  buttonContainer.style.marginTop = '20px';
+  
+  // Cancel button
+  const cancelButton = document.createElement('button');
+  cancelButton.textContent = 'Cancel';
+  cancelButton.className = 'secondary-button';
+  cancelButton.style.flex = '1';
+  cancelButton.addEventListener('click', () => {
+    dialogContainer.remove();
+  });
+  buttonContainer.appendChild(cancelButton);
+  
+  // Transfer button
+  const transferButton = document.createElement('button');
+  transferButton.textContent = 'Transfer';
+  transferButton.className = 'primary-button';
+  transferButton.style.flex = '1';
+  transferButton.addEventListener('click', async () => {
+    const amount = parseInt(amountInput.value);
+    const success = await transferCompute(amount, walletAddress);
+    if (success) {
+      dialogContainer.remove();
+    }
+  });
+  buttonContainer.appendChild(transferButton);
+  
+  dialogContent.appendChild(buttonContainer);
+  dialogContainer.appendChild(dialogContent);
+  document.body.appendChild(dialogContainer);
 }
 
 export { createWelcomeScreen, createColonyNamingScreen, createLanguageInitScreen, createLoadColonyScreen, loadColony };

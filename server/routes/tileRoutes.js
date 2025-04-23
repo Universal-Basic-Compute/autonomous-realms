@@ -247,7 +247,7 @@ router.get('/curl-test', async (req, res) => {
 // Add this route to generate action visualization images
 router.post('/generate-action-image', async (req, res) => {
   try {
-    const { prompt, action, terrainCode } = req.body;
+    const { prompt, action, terrainCode, min_files = 1, max_files = 1 } = req.body;
     
     if (!prompt) {
       return res.status(400).json({ error: 'No prompt provided for image generation' });
@@ -270,7 +270,9 @@ router.post('/generate-action-image', async (req, res) => {
         prompt: prompt,
         model: config.IDEOGRAM_MODEL || "V_2_TURBO",
         aspect_ratio: "ASPECT_1_1", // Square aspect ratio for action images
-        style_type: config.IDEOGRAM_STYLE_TYPE || "REALISTIC"
+        style_type: config.IDEOGRAM_STYLE_TYPE || "REALISTIC",
+        min_files: parseInt(min_files),
+        max_files: parseInt(max_files)
       }
     };
     

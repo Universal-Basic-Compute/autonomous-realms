@@ -373,4 +373,164 @@ function generateFallbackActions(terrainCode) {
   }
 }
 
+// Add this new endpoint after the existing /actions/ai/:terrainType endpoint
+router.get('/actions/ai/:terrainCode/narration', async (req, res) => {
+  try {
+    const { terrainCode } = req.params;
+    
+    // Extract the base terrain type (before any | character)
+    const baseTerrainCode = terrainCode.split('|')[0];
+    
+    // Use Claude API to generate a narration based on the terrain code
+    const narration = await generateAINarrationForTerrain(terrainCode);
+    
+    // Call the TTS API to convert the narration to speech
+    const ttsResponse = await generateTTS(narration);
+    
+    res.json({
+      terrainCode,
+      narration,
+      audio: ttsResponse
+    });
+  } catch (error) {
+    logger.error(`Error generating narration: ${error.message}`);
+    res.status(500).json({ error: 'Failed to generate narration', message: error.message });
+  }
+});
+
+// Add this function to generate narration using Claude AI
+async function generateAINarrationForTerrain(terrainCode) {
+  try {
+    // Extract the base terrain code and any modifiers
+    const parts = terrainCode.split('|');
+    const baseTerrainCode = parts[0];
+    const modifiers = parts.slice(1);
+    
+    // Create a prompt for Claude to generate a narration
+    const prompt = `Write a single, vivid sentence describing settlers arriving at a ${getTerrainDescription(baseTerrainCode)} terrain for the first time. The sentence should evoke the feeling of discovery and the unique characteristics of this terrain. Keep it under 150 characters if possible.
+
+Terrain code: ${baseTerrainCode}
+Modifiers: ${modifiers.join(', ')}`;
+
+    // Make request to Claude API
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': process.env.CLAUDE_API_KEY || config.CLAUDE_API_KEY,
+        'anthropic-version': '2023-06-01'
+      },
+      body: JSON.stringify({
+        model: "claude-3-haiku-20240307", // Using a smaller, faster model for quick responses
+        max_tokens: 150,
+        messages: [
+          {
+            role: "user",
+            content: prompt
+          }
+        ]
+      })
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Claude API request failed with status ${response.status}: ${errorText}`);
+    }
+
+    const responseData = await response.json();
+    const narration = responseData.content[0].text.trim();
+    
+    // Log the generated narration
+    logger.info(`Generated narration for ${terrainCode}: ${narration}`);
+    
+    return narration;
+  } catch (error) {
+    logger.error(`Error generating AI narration: ${error.message}`);
+    // Return a fallback narration if AI generation fails
+    return `The settlers arrived at the new terrain, surveying the ${getTerrainDescription(terrainCode.split('|')[0])} with cautious optimism.`;
+  }
+}
+
+// Helper function to get a human-readable description of a terrain code
+function getTerrainDescription(baseTerrainCode) {
+  const terrainDescriptions = {
+    // Plains
+    "P-BAS": "basic grassland",
+    "P-LUS": "lush grassland",
+    "P-TAL": "tall grass prairie",
+    "P-FLW": "flower-dotted meadow",
+    "P-DRY": "dry savanna",
+    "P-SCR": "scrubland",
+    "P-STN": "stony plain",
+    "P-BUR": "burned grassland",
+    "P-FRT": "fertile plain",
+    "P-RCH": "rich soil plain",
+    
+    // Forest
+    "F-OAK": "oak forest",
+    "F-PIN": "pine forest",
+    "F-SPR": "spruce forest",
+    "F-BIR": "birch forest",
+    "F-JUN": "jungle",
+    "F-PAL": "palm grove",
+    "F-BAM": "bamboo forest",
+    "F-RED": "redwood forest",
+    "F-MIX": "mixed forest",
+    "F-AUT": "autumn forest",
+    
+    // Desert
+    "D-SND": "sandy desert",
+    "D-ROC": "rocky desert",
+    "D-DUN": "sand dunes",
+    "D-FLT": "flat desert",
+    "D-SAL": "salt flat",
+    "D-OAS": "oasis",
+    
+    // Mountains
+    "M-LOW": "low mountains",
+    "M-HIG": "high mountains",
+    "M-PEA": "snowy peaks",
+    "M-VOL": "volcanic mountain",
+    
+    // Water
+    "W-RIV": "river",
+    "W-LAK": "lake",
+    "W-SWP": "swamp",
+    "W-BOG": "bog",
+    
+    // Default
+    "DEFAULT": "unknown terrain"
+  };
+  
+  return terrainDescriptions[baseTerrainCode] || terrainDescriptions["DEFAULT"];
+}
+
+// Add this function to generate TTS using the KinOS API
+async function generateTTS(text) {
+  try {
+    const response = await fetch('https://api.kinos-engine.ai/v2/tts?format=json', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.KINOS_API_KEY || config.KINOS_API_KEY}`
+      },
+      body: JSON.stringify({
+        text: text,
+        voice_id: "IKne3meq5aSn9XLyUdCD",
+        model: "eleven_flash_v2_5"
+      })
+    });
+    
+    if (!response.ok) {
+      throw new Error(`TTS API request failed with status ${response.status}`);
+    }
+    
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    logger.error(`Error generating TTS: ${error.message}`);
+    return { error: error.message };
+  }
+}
+
 module.exports = router;

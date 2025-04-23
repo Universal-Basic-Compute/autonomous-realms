@@ -74,6 +74,56 @@ async function fetchAvailableActions(terrainCode) {
     }
 }
 
+// Fetch narration for a terrain type
+async function fetchTerrainNarration(terrainCode) {
+    if (!terrainCode) return null;
+    
+    try {
+        const response = await fetch(`${config.serverUrl}/api/data/actions/ai/${terrainCode}/narration`);
+        
+        if (!response.ok) {
+            console.error(`Failed to fetch narration for terrain ${terrainCode}`);
+            return null;
+        }
+        
+        const narrationData = await response.json();
+        return narrationData;
+    } catch (error) {
+        console.error('Error fetching terrain narration:', error);
+        return null;
+    }
+}
+
+// Play audio narration
+function playNarration(audioData) {
+    if (!audioData || audioData.error) {
+        console.error('No valid audio data to play');
+        return;
+    }
+    
+    try {
+        // Create an audio element
+        const audioElement = new Audio();
+        
+        // Set the source to the audio data
+        if (audioData.audio_url) {
+            audioElement.src = audioData.audio_url;
+        } else if (audioData.audio_base64) {
+            audioElement.src = `data:audio/mp3;base64,${audioData.audio_base64}`;
+        } else {
+            console.error('No audio URL or base64 data found');
+            return;
+        }
+        
+        // Play the audio
+        audioElement.play().catch(error => {
+            console.error('Error playing audio:', error);
+        });
+    } catch (error) {
+        console.error('Error setting up audio playback:', error);
+    }
+}
+
 // Display the action menu
 function showActionMenu(actions) {
     // Clear any existing action menu
@@ -541,6 +591,29 @@ function loadTile(regionX, regionY, x, y) {
                         .then(actions => {
                             state.availableActions = actions;
                             showActionMenu(actions);
+                        });
+                    
+                    // Fetch and play narration for this terrain
+                    fetchTerrainNarration(data.terrainCode)
+                        .then(narrationData => {
+                            if (narrationData && narrationData.narration) {
+                                // Show narration text in a notification
+                                const notification = document.createElement('div');
+                                notification.className = 'narration-notification';
+                                notification.textContent = narrationData.narration;
+                                document.body.appendChild(notification);
+                                
+                                // Remove notification after a delay
+                                setTimeout(() => {
+                                    notification.classList.add('fade-out');
+                                    setTimeout(() => notification.remove(), 1000);
+                                }, 8000);
+                                
+                                // Play the audio narration if available
+                                if (narrationData.audio) {
+                                    playNarration(narrationData.audio);
+                                }
+                            }
                         })
                         .catch(error => {
                             // If there's an error, show an error message in the action menu

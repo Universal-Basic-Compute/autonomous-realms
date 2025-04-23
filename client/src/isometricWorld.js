@@ -57,39 +57,11 @@ async function fetchAvailableActions(terrainCode) {
         // Extract the base terrain code (before any | character)
         const baseTerrainCode = terrainCode.split('|')[0];
         
-        // Check if this is a magical/special terrain type (S-prefix)
-        const isMagicalTerrain = baseTerrainCode.startsWith('S-');
-        
-        // For magical terrain, use a fallback to a more realistic terrain type
-        let actionTerrainCode = baseTerrainCode;
-        
-        if (isMagicalTerrain) {
-            // Map magical terrain types to realistic equivalents
-            const magicalToRealisticMap = {
-                'S-ENC': 'F-MIX', // Enchanted forest → Mixed forest
-                'S-GLW': 'F-MIX', // Glowing terrain → Mixed forest
-                'S-MIS': 'F-MIX', // Misty terrain → Mixed forest
-                'S-CRY': 'M-LOW', // Crystal formation → Low mountains
-                'S-ANC': 'F-ANC', // Ancient power site → Ancient forest
-                'S-BUR': 'L-BRN', // Burning ground → Burned area
-                'S-FRZ': 'T-SNO', // Perpetually frozen → Snow field
-                'S-FLT': 'M-HIG', // Floating terrain → High mountains
-                'S-DIS': 'R-KAR', // Distorted reality → Karst
-                'S-SHD': 'F-DES', // Shadow realm → Dead forest
-                'S-ETH': 'F-MIX', // Ethereal plane → Mixed forest
-                'S-CRS': 'L-BLI'  // Cursed land → Blighted land
-            };
-            
-            // Use the mapped terrain type or default to mixed forest
-            actionTerrainCode = magicalToRealisticMap[baseTerrainCode] || 'F-MIX';
-            console.log(`Mapped magical terrain ${baseTerrainCode} to realistic terrain ${actionTerrainCode}`);
-        }
-        
-        // Fetch actions for this terrain type
-        const response = await fetch(`${config.serverUrl}/api/data/actions/${actionTerrainCode}`);
+        // Use the AI-powered endpoint to get actions
+        const response = await fetch(`${config.serverUrl}/api/data/actions/ai/${terrainCode}`);
         
         if (!response.ok) {
-            console.error(`Failed to fetch actions for terrain ${actionTerrainCode}`);
+            console.error(`Failed to fetch actions for terrain ${terrainCode}`);
             return [];
         }
         
@@ -503,6 +475,20 @@ function loadTile(regionX, regionY, x, y) {
         // Show loading in the info panel
         tileInfoElement.innerHTML = 'Loading tile information...';
         
+        // Clear any existing action menu
+        const existingMenu = document.getElementById('action-menu');
+        if (existingMenu) {
+            existingMenu.remove();
+        }
+        
+        // Show a temporary action menu with loading state
+        const loadingMenu = document.createElement('div');
+        loadingMenu.id = 'action-menu';
+        loadingMenu.className = 'action-menu';
+        loadingMenu.innerHTML = '<h3>Available Actions</h3><p class="loading-actions">Analyzing terrain for available actions...</p>';
+        document.body.appendChild(loadingMenu);
+        state.actionMenuVisible = true;
+        
         // Fetch tile info - use the islands info endpoint
         fetch(`${config.serverUrl}/api/tiles/islands/${x}/${y}/info`)
             .then(response => response.json())
@@ -523,15 +509,54 @@ function loadTile(regionX, regionY, x, y) {
                         .then(actions => {
                             state.availableActions = actions;
                             showActionMenu(actions);
+                        })
+                        .catch(error => {
+                            // If there's an error, show an error message in the action menu
+                            const errorMenu = document.createElement('div');
+                            errorMenu.id = 'action-menu';
+                            errorMenu.className = 'action-menu';
+                            errorMenu.innerHTML = `
+                                <h3>Available Actions</h3>
+                                <p class="error-message">Error loading actions: ${error.message}</p>
+                                <button class="close-button">Close</button>
+                            `;
+                            
+                            // Add close button functionality
+                            const closeButton = errorMenu.querySelector('.close-button');
+                            closeButton.addEventListener('click', () => {
+                                errorMenu.remove();
+                                state.actionMenuVisible = false;
+                            });
+                            
+                            // Replace the loading menu with the error menu
+                            const loadingMenu = document.getElementById('action-menu');
+                            if (loadingMenu) {
+                                loadingMenu.remove();
+                            }
+                            document.body.appendChild(errorMenu);
                         });
                 } else {
                     infoHtml += `<p><em>Island not yet generated</em></p>`;
+                    
+                    // Remove the loading action menu since there's no terrain
+                    const loadingMenu = document.getElementById('action-menu');
+                    if (loadingMenu) {
+                        loadingMenu.remove();
+                        state.actionMenuVisible = false;
+                    }
                 }
                 
                 tileInfoElement.innerHTML = infoHtml;
             })
             .catch(error => {
                 tileInfoElement.innerHTML = `<p>Error loading tile info: ${error.message}</p>`;
+                
+                // Remove the loading action menu on error
+                const loadingMenu = document.getElementById('action-menu');
+                if (loadingMenu) {
+                    loadingMenu.remove();
+                    state.actionMenuVisible = false;
+                }
             });
     });
     

@@ -223,11 +223,17 @@ router.post('/tts', async (req, res) => {
       // If KinOS endpoint fails, try the ElevenLabs API directly
       logger.warn(`KinOS TTS failed, trying ElevenLabs directly: ${kinosError.message}`);
       
+      // Check if we have a valid API key before making the request
+      const apiKey = process.env.ELEVENLABS_API_KEY || config.ELEVENLABS_API_KEY;
+      if (!apiKey) {
+        throw new Error('ElevenLabs API key is missing. Please add ELEVENLABS_API_KEY to your .env file or config.js');
+      }
+      
       const elevenLabsResponse = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voice_id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'xi-api-key': process.env.ELEVENLABS_API_KEY || config.ELEVENLABS_API_KEY
+          'xi-api-key': apiKey
         },
         body: JSON.stringify({
           text,

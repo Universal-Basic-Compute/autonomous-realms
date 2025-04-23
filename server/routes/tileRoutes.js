@@ -356,7 +356,7 @@ router.post('/generate-action-image', async (req, res) => {
 // Add this route to update a tile with activity
 router.post('/update-with-activity', async (req, res) => {
   try {
-    const { tileX, tileY, prompt, action, terrainCode } = req.body;
+    const { tileX, tileY, prompt, action, terrainCode, removeBackground } = req.body;
     
     // Get user ID from request headers or query params
     const userId = req.headers['user-id'] || req.query.userId || req.body.userId;
@@ -425,10 +425,27 @@ router.post('/update-with-activity', async (req, res) => {
     
     // Download the generated image
     const imageUrl = responseData.data[0].url;
+    let finalImagePath = imagePath;
     
     // Use tileService.downloadImage if available, otherwise fetch directly
     if (tileService && typeof tileService.downloadImage === 'function') {
       await tileService.downloadImage(imageUrl, imagePath);
+      
+      // Remove background if requested
+      if (removeBackground === true && tileService.removeBackground) {
+        logger.info(`Removing background from activity image at ${imagePath}`);
+        try {
+          // Process the image to remove background
+          const processedImagePath = await tileService.removeBackground(imagePath);
+          if (processedImagePath) {
+            finalImagePath = processedImagePath;
+            logger.info(`Successfully removed background, new image at ${processedImagePath}`);
+          }
+        } catch (bgError) {
+          logger.error(`Error removing background: ${bgError.message}`, { error: bgError });
+          // Continue with the original image if background removal fails
+        }
+      }
     } else {
       const imageResponse = await fetch(imageUrl);
       const buffer = await imageResponse.buffer();
@@ -443,7 +460,7 @@ router.post('/update-with-activity', async (req, res) => {
     // Return the URL to the saved image
     res.json({
       success: true,
-      imageUrl: `/assets/images/activities/${imageFilename}`,
+      imageUrl: `/assets/images/activities/${path.basename(finalImagePath)}`,
       prompt: prompt
     });
     

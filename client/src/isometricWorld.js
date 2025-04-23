@@ -3098,7 +3098,8 @@ async function updateTileWithActivity(tileX, tileY, action, terrainInfo) {
         prompt: prompt,
         action: action.code,
         terrainCode: terrainInfo.terrainCode,
-        userId // Also include in body
+        userId, // Also include in body
+        removeBackground: true // Add this parameter to request background removal
       })
     });
     

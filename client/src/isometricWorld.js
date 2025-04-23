@@ -2869,7 +2869,7 @@ async function generateTileConversation(tileX, tileY, terrainCode, terrainDescri
     const dialogueLines = dialogueData.dialogueLines;
     console.log(`Processing ${dialogueLines.length} dialogue lines`);
     
-    // Display and play each line of dialogue
+    // Play each line of dialogue sequentially
     for (let i = 0; i < dialogueLines.length; i++) {
       const line = dialogueLines[i];
       console.log(`Processing dialogue line ${i+1}:`, line);
@@ -2884,50 +2884,70 @@ async function generateTileConversation(tileX, tileY, terrainCode, terrainDescri
       `;
       document.body.appendChild(dialogueNotification);
       
-      // Play the audio if available
+      // Play the audio if available and wait for it to complete
       if (line.audioUrl) {
         const fullAudioUrl = line.audioUrl.startsWith('/') 
           ? `${config.serverUrl}${line.audioUrl}` 
           : line.audioUrl;
         
         console.log(`Playing audio from: ${fullAudioUrl}`);
-        const audio = new Audio(fullAudioUrl);
-        
-        // Add debugging for audio events
-        audio.addEventListener('loadstart', () => console.log('Audio loading started'));
-        audio.addEventListener('canplay', () => console.log('Audio can start playing'));
-        audio.addEventListener('playing', () => console.log('Audio is playing'));
-        audio.addEventListener('error', (e) => console.error('Audio error:', e));
-        
-        // Remove notification when audio ends
-        audio.onended = () => {
-          console.log('Audio playback ended');
-          dialogueNotification.classList.add('fade-out');
-          setTimeout(() => dialogueNotification.remove(), 1000);
-        };
         
         try {
-          // Wait for audio to play before continuing
-          await audio.play();
-          console.log('Audio playback started successfully');
+          // Create a promise that resolves when audio ends or errors
+          await new Promise((resolve, reject) => {
+            const audio = new Audio(fullAudioUrl);
+            
+            // Add debugging for audio events
+            audio.addEventListener('loadstart', () => console.log('Audio loading started'));
+            audio.addEventListener('canplay', () => console.log('Audio can start playing'));
+            audio.addEventListener('playing', () => console.log('Audio is playing'));
+            audio.addEventListener('error', (e) => {
+              console.error('Audio error:', e);
+              console.error('Audio error code:', audio.error ? audio.error.code : 'unknown');
+              console.error('Audio error message:', audio.error ? audio.error.message : 'unknown');
+              console.error('Audio source:', audio.src);
+              reject(new Error('Audio playback failed'));
+            });
+            
+            // Resolve the promise when audio ends
+            audio.onended = () => {
+              console.log('Audio playback ended');
+              dialogueNotification.classList.add('fade-out');
+              setTimeout(() => dialogueNotification.remove(), 1000);
+              resolve();
+            };
+            
+            // Start audio playback
+            audio.play().catch(err => {
+              console.warn('Could not play audio:', err);
+              reject(err);
+            });
+          });
           
           // Add a small delay between lines
           await new Promise(resolve => setTimeout(resolve, 500));
+          
         } catch (audioError) {
           console.error('Error playing audio:', audioError);
           // If audio fails, remove the notification after a delay
-          setTimeout(() => {
-            dialogueNotification.classList.add('fade-out');
-            setTimeout(() => dialogueNotification.remove(), 1000);
-          }, 3000);
+          dialogueNotification.classList.add('fade-out');
+          setTimeout(() => dialogueNotification.remove(), 3000);
+          
+          // Still add a delay between lines even if audio fails
+          await new Promise(resolve => setTimeout(resolve, 3000));
         }
       } else {
         console.log('No audio URL for this dialogue line');
         // If no audio, remove the notification after a delay
-        setTimeout(() => {
-          dialogueNotification.classList.add('fade-out');
-          setTimeout(() => dialogueNotification.remove(), 1000);
-        }, 3000);
+        await new Promise(resolve => {
+          setTimeout(() => {
+            dialogueNotification.classList.add('fade-out');
+            setTimeout(() => {
+              dialogueNotification.remove();
+              resolve();
+            }, 1000);
+          }, 3000);
+        });
       }
     }
     

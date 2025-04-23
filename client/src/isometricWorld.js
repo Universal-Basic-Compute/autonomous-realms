@@ -112,15 +112,19 @@ async function fetchAvailableActions(terrainCode) {
         // Extract the base terrain code (before any | character)
         const baseTerrainCode = terrainCode.split('|')[0];
         
+        console.log(`Fetching actions for terrain: ${terrainCode} (base: ${baseTerrainCode})`);
+        
         // Use the AI-powered endpoint to get actions
         const response = await fetch(`${config.serverUrl}/api/data/actions/ai/${terrainCode}`);
         
         if (!response.ok) {
-            console.error(`Failed to fetch actions for terrain ${terrainCode}`);
+            console.error(`Failed to fetch actions for terrain ${terrainCode}: ${response.status} ${response.statusText}`);
             return [];
         }
         
         const actions = await response.json();
+        console.log(`Received ${actions.length} actions for terrain ${terrainCode}`);
+        
         return actions;
     } catch (error) {
         console.error('Error fetching available actions:', error);

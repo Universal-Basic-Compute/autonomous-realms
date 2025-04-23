@@ -1638,37 +1638,37 @@ Please provide ONLY the JSON response with no additional text, markdown formatti
 async function performAction(action) {
     console.log(`Performing action: ${action.name} (${action.code})`);
     
-    // Show a loading notification
+    // Show a subtle notification instead of a full dialog for the initial state
     const loadingNotification = document.createElement('div');
-    loadingNotification.className = 'notification';
-    loadingNotification.textContent = `Performing: ${action.name}...`;
+    loadingNotification.className = 'notification action-in-progress';
+    loadingNotification.textContent = `Your settlers are ${action.name.toLowerCase()}...`;
     document.body.appendChild(loadingNotification);
     
-    // Create a dialog with progress bar
+    // Create a more compact and immersive dialog
     const progressDialog = document.createElement('div');
-    progressDialog.className = 'dialog';
+    progressDialog.className = 'dialog action-dialog';
     progressDialog.innerHTML = `
-        <div class="dialog-content">
+        <div class="dialog-content action-dialog-content">
             <h2>${action.name}</h2>
-            <p>Performing action, please wait...</p>
+            <p class="action-flavor-text">Your settlers work diligently as the sun moves across the sky...</p>
             
-            <div class="action-progress-text">Time remaining: <span id="progress-time">20</span> seconds</div>
+            <div class="action-progress-text">Time passing: <span id="progress-time">0</span> moments</div>
             <div class="action-progress-container">
                 <div class="action-progress-bar" id="action-progress-bar">0%</div>
             </div>
             
             <div id="action-result-container" style="display: none;">
                 <div class="action-response structured-response" id="action-response">
-                    <p>Processing your action...</p>
+                    <p>The settlers continue their work...</p>
                 </div>
                 
                 <!-- Add image container for action visualization -->
                 <div id="action-image-container" class="action-image-container">
-                    <div class="image-placeholder">Action visualization will appear here...</div>
+                    <div class="image-placeholder">Visualizing the settlers' work...</div>
                 </div>
             </div>
             
-            <button class="close-button" style="display: none;" id="action-close-button">Close</button>
+            <button class="close-button" style="display: none;" id="action-close-button">Return to Settlement</button>
         </div>
     `;
     document.body.appendChild(progressDialog);
@@ -1696,19 +1696,18 @@ async function performAction(action) {
         if (progress >= 20) {
             clearInterval(progressInterval);
             if (!actionCompleted) {
-                // If the action hasn't completed yet, show a timeout message
-                responseContainer.innerHTML = `<p>The action is taking longer than expected. Results will appear when ready.</p>`;
+                // If the action hasn't completed yet, show a thematic timeout message
+                responseContainer.innerHTML = `<p>The task is taking longer than expected. Your settlers persevere, determined to complete their work...</p>`;
                 resultContainer.style.display = 'block';
             }
         }
     }, 1000);
     
-    // Update time remaining
+    // Update time passing
     timeInterval = setInterval(() => {
-        timeRemaining -= 1;
-        progressTime.textContent = timeRemaining;
+        progressTime.textContent = progress; // Use progress as "moments" counter
         
-        if (timeRemaining <= 0) {
+        if (progress >= 20) {
             clearInterval(timeInterval);
         }
     }, 1000);
@@ -1737,7 +1736,7 @@ async function performAction(action) {
         
         if (kinOSResponse.error) {
             // Show error in the dialog
-            responseContainer.innerHTML = `<p class="error-message">Error: ${kinOSResponse.error}</p>`;
+            responseContainer.innerHTML = `<p class="error-message">The settlers encountered a problem: ${kinOSResponse.error}</p>`;
             resultContainer.style.display = 'block';
             closeButton.style.display = 'block';
             return;
@@ -1775,7 +1774,7 @@ async function performAction(action) {
         // Update progress bar to 100%
         progressBar.style.width = '100%';
         progressBar.textContent = '100%';
-        progressTime.textContent = '0';
+        progressTime.textContent = '20';
         
         // Generate and display an image visualization of the action
         generateActionVisualization(action, terrainInfo, kinOSResponse);
@@ -1786,8 +1785,8 @@ async function performAction(action) {
         // Remove the loading notification
         loadingNotification.remove();
         
-        // Show error in the dialog
-        responseContainer.innerHTML = `<p class="error-message">Error performing action: ${error.message}</p>`;
+        // Show error in the dialog with thematic language
+        responseContainer.innerHTML = `<p class="error-message">The settlers were unable to complete their task: ${error.message}</p>`;
         resultContainer.style.display = 'block';
         closeButton.style.display = 'block';
         
@@ -1969,14 +1968,14 @@ function formatStructuredResponse(parsedResponse) {
     // Add each section with appropriate formatting
     if (parsedResponse.analysis) {
         html += `<div class="response-section">
-            <h3>Analysis</h3>
+            <h3>Observations</h3>
             <div class="section-content">${parsedResponse.analysis.replace(/\n/g, '<br>')}</div>
         </div>`;
     }
     
     if (parsedResponse.narration) {
         html += `<div class="response-section narrative">
-            <h3>Narration</h3>
+            <h3>What Happened</h3>
             <div class="section-content">${parsedResponse.narration.replace(/\n/g, '<br>')}</div>
         </div>`;
     }
@@ -1984,7 +1983,7 @@ function formatStructuredResponse(parsedResponse) {
     // Resources section with special formatting
     if (parsedResponse.resources) {
         html += `<div class="response-section resources">
-            <h3>Resources Gained</h3>
+            <h3>Resources Gathered</h3>
             <div class="section-content">
                 <ul>
                     ${parsedResponse.resources.split('\n').map(item => 
@@ -1997,7 +1996,7 @@ function formatStructuredResponse(parsedResponse) {
     // Knowledge section
     if (parsedResponse.knowledge) {
         html += `<div class="response-section knowledge">
-            <h3>Knowledge Opportunities</h3>
+            <h3>Knowledge Gained</h3>
             <div class="section-content">
                 <ul>
                     ${parsedResponse.knowledge.split('\n').map(item => 
@@ -2010,7 +2009,7 @@ function formatStructuredResponse(parsedResponse) {
     // Challenges section
     if (parsedResponse.challenges) {
         html += `<div class="response-section challenges">
-            <h3>Challenges</h3>
+            <h3>Challenges Faced</h3>
             <div class="section-content">
                 <ul>
                     ${parsedResponse.challenges.split('\n').map(item => 
@@ -2023,7 +2022,7 @@ function formatStructuredResponse(parsedResponse) {
     // Tips section
     if (parsedResponse.tips) {
         html += `<div class="response-section tips">
-            <h3>Tips for Success</h3>
+            <h3>Elder Wisdom</h3>
             <div class="section-content">
                 <ol>
                     ${parsedResponse.tips.split('\n').map(item => {
@@ -2057,7 +2056,7 @@ function formatJSONResponse(response) {
     // Analysis section
     if (response.analysis) {
         html += `<div class="response-section">
-            <h3>Analysis</h3>
+            <h3>Observations</h3>
             <div class="section-content">${response.analysis.replace(/\n/g, '<br>')}</div>
         </div>`;
     }
@@ -2065,7 +2064,7 @@ function formatJSONResponse(response) {
     // Narration section
     if (response.narration) {
         html += `<div class="response-section narrative">
-            <h3>Narration</h3>
+            <h3>What Happened</h3>
             <div class="section-content">${response.narration.replace(/\n/g, '<br>')}</div>
         </div>`;
     }
@@ -2073,7 +2072,7 @@ function formatJSONResponse(response) {
     // Resources section
     if (response.outcomes && response.outcomes.resources && response.outcomes.resources.length > 0) {
         html += `<div class="response-section resources">
-            <h3>Resources Gained</h3>
+            <h3>Resources Gathered</h3>
             <div class="section-content">
                 <ul>
                     ${response.outcomes.resources.map(item => `<li>${item}</li>`).join('')}
@@ -2085,7 +2084,7 @@ function formatJSONResponse(response) {
     // Knowledge section
     if (response.outcomes && response.outcomes.knowledge && response.outcomes.knowledge.length > 0) {
         html += `<div class="response-section knowledge">
-            <h3>Knowledge Opportunities</h3>
+            <h3>Knowledge Gained</h3>
             <div class="section-content">
                 <ul>
                     ${response.outcomes.knowledge.map(item => `<li>${item}</li>`).join('')}
@@ -2097,7 +2096,7 @@ function formatJSONResponse(response) {
     // Challenges section
     if (response.outcomes && response.outcomes.challenges && response.outcomes.challenges.length > 0) {
         html += `<div class="response-section challenges">
-            <h3>Challenges</h3>
+            <h3>Challenges Faced</h3>
             <div class="section-content">
                 <ul>
                     ${response.outcomes.challenges.map(item => `<li>${item}</li>`).join('')}
@@ -2109,7 +2108,7 @@ function formatJSONResponse(response) {
     // Tips section
     if (response.tips && response.tips.length > 0) {
         html += `<div class="response-section tips">
-            <h3>Tips for Success</h3>
+            <h3>Elder Wisdom</h3>
             <div class="section-content">
                 <ol>
                     ${response.tips.map(item => `<li>${item}</li>`).join('')}

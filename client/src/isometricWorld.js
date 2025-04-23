@@ -1,4 +1,5 @@
 import audioPlayer from './audioPlayer.js';
+import { createWelcomeScreen } from './welcomeScreen.js';
 
 // Function to check if a pixel is transparent
 function isTransparentPixel(img, x, y) {
@@ -1808,4 +1809,13 @@ function hideLoading() {
 }
 
 // Initialize the world when the page loads
-window.addEventListener('load', initWorld);
+window.addEventListener('load', () => {
+  // Check if we're coming from the language initialization
+  if (localStorage.getItem('languageInitialized') === 'true') {
+    // Start the game directly
+    initWorld();
+  } else {
+    // Show the welcome screen
+    createWelcomeScreen();
+  }
+});

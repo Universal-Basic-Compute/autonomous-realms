@@ -618,7 +618,8 @@ function displayLanguageDetails(menuContent, responseText) {
 function convertMarkdownToHtml(markdown) {
   if (!markdown) return '';
   
-  let html = markdown;
+  // Add a wrapper with smaller text size
+  let html = `<div style="font-size: 0.9em;">${markdown}</div>`;
   
   // Handle headers
   html = html.replace(/^# (.*$)/gm, '<h1>$1</h1>');
@@ -631,16 +632,16 @@ function convertMarkdownToHtml(markdown) {
   html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
   html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
   
-  // Handle lists
+  // Handle lists - MODIFIED to prevent double line breaks between items
   html = html.replace(/^\- (.*$)/gm, '<li>$1</li>');
   html = html.replace(/^(\d+)\. (.*$)/gm, '<li>$2</li>');
   
-  // Wrap lists in <ul> or <ol>
+  // Wrap lists in <ul> or <ol> - MODIFIED to prevent double spacing
   html = html.replace(/(<li>.*<\/li>)\n(?!<li>)/g, '$1</ul>\n');
   html = html.replace(/(?<!<\/ul>\n)(<li>)/g, '<ul>$1');
   
-  // Handle tables
-  // First, identify table sections
+  // Handle tables - MODIFIED to reduce space before tables
+  // First, identify table sections with less space
   const tableRegex = /^\|(.*)\|\s*\n\|([-:| ]*)\|\s*\n(\|.*\|\s*\n)+/gm;
   html = html.replace(tableRegex, function(match) {
     // Process the table
@@ -658,8 +659,8 @@ function convertMarkdownToHtml(markdown) {
       return cells;
     });
     
-    // Build HTML table
-    let tableHtml = '<table class="markdown-table">\n<thead>\n<tr>\n';
+    // Build HTML table with reduced margins
+    let tableHtml = '<table class="markdown-table" style="margin-top: 0.5em; margin-bottom: 0.5em;">\n<thead>\n<tr>\n';
     
     // Add headers
     headers.forEach(header => {

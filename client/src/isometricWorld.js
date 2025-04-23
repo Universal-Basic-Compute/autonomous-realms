@@ -343,22 +343,133 @@ function showActionMenu(actions) {
     state.actionMenuVisible = true;
 }
 
+// Send a message to KinOS about an action
+async function sendKinOSMessage(action, terrainInfo) {
+  try {
+    console.log(`Sending action "${action.name}" to KinOS with terrain info:`, terrainInfo);
+    
+    // Prepare the message content
+    const messageContent = `
+I am attempting to perform the action "${action.name}" (${action.code}) on terrain type: ${terrainInfo.terrainCode}.
+
+Terrain Description: ${terrainInfo.description || 'No description available'}
+
+Action Description: ${action.description || 'No description available'}
+
+Please provide guidance on how this action might unfold in this environment, any challenges I might face, and potential outcomes.
+`;
+
+    // Prepare the request body
+    const requestBody = {
+      content: messageContent,
+      model: "claude-3-7-sonnet-latest",
+      history_length: 25,
+      mode: "creative",
+      addSystem: "You are a helpful game assistant providing realistic and immersive guidance on actions taken in a settlement-building game. Consider the terrain, available resources, and potential challenges when describing outcomes. Be specific and vivid in your descriptions."
+    };
+    
+    // Make the API request
+    const response = await fetch('http://localhost:5000/v2/blueprints/game-assistant/kins/game-guide/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestBody)
+    });
+    
+    if (!response.ok) {
+      throw new Error(`KinOS API request failed with status ${response.status}: ${response.statusText}`);
+    }
+    
+    const responseData = await response.json();
+    console.log('KinOS response:', responseData);
+    
+    return responseData;
+  } catch (error) {
+    console.error('Error sending message to KinOS:', error);
+    return { error: error.message };
+  }
+}
+
 // Handle performing an action
-function performAction(action) {
+async function performAction(action) {
     console.log(`Performing action: ${action.name} (${action.code})`);
-    // In a full implementation, this would communicate with the server
-    // to actually perform the action and update the game state
     
-    // For now, just show a notification
-    const notification = document.createElement('div');
-    notification.className = 'notification';
-    notification.textContent = `Performed: ${action.name}`;
-    document.body.appendChild(notification);
+    // Show a loading notification
+    const loadingNotification = document.createElement('div');
+    loadingNotification.className = 'notification';
+    loadingNotification.textContent = `Performing: ${action.name}...`;
+    document.body.appendChild(loadingNotification);
     
-    // Remove notification after a delay
-    setTimeout(() => {
-        notification.remove();
-    }, 3000);
+    try {
+        // Get the terrain information for the selected tile
+        const tileX = parseInt(state.selectedTile.dataset.x);
+        const tileY = parseInt(state.selectedTile.dataset.y);
+        
+        // Fetch terrain info
+        const response = await fetch(`${config.serverUrl}/api/tiles/islands/${tileX}/${tileY}/info`);
+        const terrainInfo = await response.json();
+        
+        if (!terrainInfo.exists) {
+            throw new Error('Cannot perform action: terrain information not available');
+        }
+        
+        // Send the action to KinOS
+        const kinOSResponse = await sendKinOSMessage(action, terrainInfo);
+        
+        // Remove the loading notification
+        loadingNotification.remove();
+        
+        if (kinOSResponse.error) {
+            // Show error notification
+            const errorNotification = document.createElement('div');
+            errorNotification.className = 'notification error-notification';
+            errorNotification.textContent = `Error: ${kinOSResponse.error}`;
+            document.body.appendChild(errorNotification);
+            
+            // Remove notification after a delay
+            setTimeout(() => {
+                errorNotification.remove();
+            }, 5000);
+            return;
+        }
+        
+        // Show the KinOS response in a dialog
+        const responseDialog = document.createElement('div');
+        responseDialog.className = 'dialog';
+        responseDialog.innerHTML = `
+            <div class="dialog-content">
+                <h2>${action.name}</h2>
+                <div class="action-response">
+                    ${kinOSResponse.content || 'No response from assistant'}
+                </div>
+                <button class="close-button">Close</button>
+            </div>
+        `;
+        document.body.appendChild(responseDialog);
+        
+        // Add close functionality
+        responseDialog.querySelector('.close-button').addEventListener('click', () => {
+            responseDialog.remove();
+        });
+        
+    } catch (error) {
+        console.error('Error performing action:', error);
+        
+        // Remove the loading notification
+        loadingNotification.remove();
+        
+        // Show error notification
+        const errorNotification = document.createElement('div');
+        errorNotification.className = 'notification error-notification';
+        errorNotification.textContent = `Error performing action: ${error.message}`;
+        document.body.appendChild(errorNotification);
+        
+        // Remove notification after a delay
+        setTimeout(() => {
+            errorNotification.remove();
+        }, 5000);
+    }
 }
 
 // Set up event listeners

@@ -493,3 +493,22 @@ body::before {
 .dialog .close-button:hover {
     background-color: #45a049;
 }
+
+/* Action Response Dialog */
+.action-response {
+  max-height: 400px;
+  overflow-y: auto;
+  margin: 15px 0;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+/* Make the dialog larger for action responses */
+.dialog-content {
+  max-width: 600px;
+  width: 80%;
+}

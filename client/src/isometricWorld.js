@@ -948,7 +948,11 @@ Terrain Description: ${terrainInfo.description || 'No description available'}
 
 Action Description: ${action.description || 'No description available'}
 
-Please provide guidance on how this action might unfold in this environment, any challenges I might face, and potential outcomes.
+Please provide guidance on how this action might unfold in this environment, any challenges I might face, and potential outcomes. Format your response with these sections:
+1. Action Analysis - A brief analysis of the action in this terrain
+2. Narration - A vivid description of the settlers performing this action
+3. Expected Outcomes - What resources might be gained, knowledge acquired, and challenges faced
+4. Tips for Success - Practical advice for maximizing success
 `;
 
     // Prepare the request body with updated blueprint, kin, and mode
@@ -957,7 +961,7 @@ Please provide guidance on how this action might unfold in this environment, any
       model: "claude-3-7-sonnet-latest",
       history_length: 25,
       mode: "action_resolution", // Updated mode
-      addSystem: "You are a helpful game assistant providing realistic and immersive guidance on actions taken in a settlement-building game. Consider the terrain, available resources, and potential challenges when describing outcomes. Be specific and vivid in your descriptions."
+      addSystem: "You are a helpful game assistant providing realistic and immersive guidance on actions taken in a settlement-building game. Consider the terrain, available resources, and potential challenges when describing outcomes. Be specific and vivid in your descriptions. Format your response with clear section headers."
     };
     
     // Make the API request with updated blueprint and kin
@@ -976,7 +980,17 @@ Please provide guidance on how this action might unfold in this environment, any
     const responseData = await response.json();
     console.log('KinOS response:', responseData);
     
-    return responseData;
+    // Check if we have a response field (new format) or content field (old format)
+    const content = responseData.response || responseData.content;
+    
+    if (!content) {
+      throw new Error('No content in KinOS response');
+    }
+    
+    // Return the content
+    return {
+      content: content
+    };
   } catch (error) {
     console.error('Error sending message to KinOS:', error);
     return { error: error.message };
@@ -1076,13 +1090,19 @@ function parseActionResponse(responseText) {
             return { fullText: "No response received from KinOS." };
         }
         
+        console.log("Raw response text:", responseText);
+        
         // First try to find a JSON object in the response
         const jsonMatch = responseText.match(/\{[\s\S]*\}/);
         if (jsonMatch) {
-            return JSON.parse(jsonMatch[0]);
+            try {
+                return JSON.parse(jsonMatch[0]);
+            } catch (e) {
+                console.warn("Found JSON-like content but couldn't parse it:", e);
+                // Continue with other parsing methods
+            }
         }
         
-        // If no JSON found, parse the markdown structure
         const sections = {};
         
         // Extract the title (if present)
@@ -1092,48 +1112,54 @@ function parseActionResponse(responseText) {
         }
         
         // Extract Action Analysis section
-        const analysisMatch = responseText.match(/## Action Analysis\n([\s\S]*?)(?=##|$)/);
+        const analysisMatch = responseText.match(/## Action Analysis\s*\n([\s\S]*?)(?=##|$)/i);
         if (analysisMatch) {
             sections.analysis = analysisMatch[1].trim();
         }
         
         // Extract Narration section
-        const narrationMatch = responseText.match(/## Narration\n([\s\S]*?)(?=##|$)/);
+        const narrationMatch = responseText.match(/## Narration\s*\n([\s\S]*?)(?=##|$)/i);
         if (narrationMatch) {
             sections.narration = narrationMatch[1].trim();
         }
         
         // Extract Expected Outcomes section
-        const outcomesMatch = responseText.match(/## Expected Outcomes\n([\s\S]*?)(?=##|$)/);
+        const outcomesMatch = responseText.match(/## Expected Outcomes\s*\n([\s\S]*?)(?=##|$)/i);
         if (outcomesMatch) {
             sections.outcomes = outcomesMatch[1].trim();
             
             // Try to further parse resources, knowledge, and challenges
-            const resourcesMatch = sections.outcomes.match(/\*\*Resources Gained:\*\*\n([\s\S]*?)(?=\n\*\*|$)/);
+            const resourcesMatch = sections.outcomes.match(/\*\*Resources Gained:\*\*\s*\n([\s\S]*?)(?=\n\*\*|$)/i);
             if (resourcesMatch) {
                 sections.resources = resourcesMatch[1].trim();
             }
             
-            const knowledgeMatch = sections.outcomes.match(/\*\*Knowledge Opportunities:\*\*\n([\s\S]*?)(?=\n\*\*|$)/);
+            const knowledgeMatch = sections.outcomes.match(/\*\*Knowledge Opportunities:\*\*\s*\n([\s\S]*?)(?=\n\*\*|$)/i);
             if (knowledgeMatch) {
                 sections.knowledge = knowledgeMatch[1].trim();
             }
             
-            const challengesMatch = sections.outcomes.match(/\*\*Challenges:\*\*\n([\s\S]*?)(?=\n\*\*|$)/);
+            const challengesMatch = sections.outcomes.match(/\*\*Challenges:\*\*\s*\n([\s\S]*?)(?=\n\*\*|$)/i);
             if (challengesMatch) {
                 sections.challenges = challengesMatch[1].trim();
             }
         }
         
         // Extract Tips section
-        const tipsMatch = responseText.match(/## Tips for Success\n([\s\S]*?)(?=##|$)/);
+        const tipsMatch = responseText.match(/## Tips for Success\s*\n([\s\S]*?)(?=##|$)/i);
         if (tipsMatch) {
             sections.tips = tipsMatch[1].trim();
         }
         
         // If we couldn't parse structured sections, use the full text
         if (Object.keys(sections).length <= 1) {
-            sections.fullText = responseText;
+            // Try to apply some basic formatting to the full text
+            const formattedText = responseText
+                .replace(/\n\n/g, '<br><br>')
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>');
+                
+            sections.fullText = formattedText;
         }
         
         return sections;
@@ -1147,7 +1173,7 @@ function parseActionResponse(responseText) {
 function formatStructuredResponse(parsedResponse) {
     // If we have the full text only, just return it with line breaks
     if (parsedResponse.fullText && Object.keys(parsedResponse).length === 1) {
-        return parsedResponse.fullText.replace(/\n/g, '<br>');
+        return parsedResponse.fullText;
     }
     
     let html = '';
@@ -1223,6 +1249,13 @@ function formatStructuredResponse(parsedResponse) {
                     }).join('')}
                 </ol>
             </div>
+        </div>`;
+    }
+    
+    // If no structured sections were found, display the full text
+    if (html === '') {
+        html = `<div class="response-section">
+            <div class="section-content">${parsedResponse.fullText || responseText}</div>
         </div>`;
     }
     

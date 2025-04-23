@@ -557,7 +557,7 @@ async function fetchLanguageDetails(menuContent, loadingElement) {
     // Remove loading indicator
     loadingElement.remove();
     
-    // Check if we have language content before trying to parse it
+    // Check if we have language content before trying to display it
     if (!cacheData || !cacheData.rawContent) {
       console.error('No language content in response data');
       const errorElement = document.createElement('div');
@@ -565,7 +565,7 @@ async function fetchLanguageDetails(menuContent, loadingElement) {
       errorElement.textContent = 'Error: No language data received from server';
       menuContent.appendChild(errorElement);
     } else {
-      // Parse and display the language details
+      // Display the language details
       displayLanguageDetails(menuContent, cacheData.rawContent);
     }
     

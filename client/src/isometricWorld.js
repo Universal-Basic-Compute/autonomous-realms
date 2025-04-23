@@ -119,7 +119,59 @@ export function initWorld() {
             console.log('Culture data pre-loaded successfully');
         }
     });
+    
+    // Initialize mini-map
+    initMiniMap();
+    
+    // Initialize day/night cycle
+    initDayNightCycle();
+    
+    // Update HUD with colony information
+    updateHUD();
 }
+
+// Update HUD with colony information
+function updateHUD() {
+    // Update colony name and leader
+    const colonyName = localStorage.getItem('colonyName') || 'New Colony';
+    const leaderName = localStorage.getItem('leaderName') || 'Unknown Leader';
+    
+    const colonyNameElement = document.getElementById('hud-colony-name');
+    const leaderNameElement = document.getElementById('hud-leader-name');
+    
+    if (colonyNameElement) colonyNameElement.textContent = colonyName;
+    if (leaderNameElement) leaderNameElement.textContent = leaderName;
+    
+    // Set initial day count (can be updated as game progresses)
+    const dayCount = localStorage.getItem('dayCount') || 1;
+    const dayCountElement = document.getElementById('day-count');
+    if (dayCountElement) dayCountElement.textContent = dayCount;
+    
+    // Update resource counts from resource manager
+    updateResourceCounts();
+}
+
+// Update resource quick view in HUD
+function updateResourceCounts() {
+    // Get counts from resource manager
+    const foodCount = resourceManager.getTotalResourcesInCategory('R-FOD') || 0;
+    const woodCount = resourceManager.getResourceQuantity('Wood') || 0;
+    const stoneCount = resourceManager.getResourceQuantity('Stone') || 0;
+    
+    // Update the HUD elements
+    const foodCountElement = document.getElementById('food-count');
+    const woodCountElement = document.getElementById('wood-count');
+    const stoneCountElement = document.getElementById('stone-count');
+    
+    if (foodCountElement) foodCountElement.textContent = foodCount;
+    if (woodCountElement) woodCountElement.textContent = woodCount;
+    if (stoneCountElement) stoneCountElement.textContent = stoneCount;
+}
+
+// Listen for resource updates
+document.addEventListener('resourcesUpdated', () => {
+    updateResourceCounts();
+});
 
 // Fetch available actions for a terrain type
 async function fetchAvailableActions(terrainCode) {
@@ -2605,6 +2657,108 @@ function gridToIso(x, y) {
     return { x: isoX, y: isoY };
 }
 
+// Initialize mini-map
+function initMiniMap() {
+    const toggleButton = document.getElementById('toggle-mini-map');
+    const miniMap = document.getElementById('mini-map');
+    
+    if (toggleButton && miniMap) {
+        toggleButton.addEventListener('click', () => {
+            miniMap.classList.toggle('visible');
+            updateMiniMap();
+        });
+    }
+}
+
+// Update mini-map with current tiles
+function updateMiniMap() {
+    const miniMap = document.getElementById('mini-map');
+    if (!miniMap || !miniMap.classList.contains('visible')) return;
+    
+    // Clear existing tiles
+    miniMap.innerHTML = '';
+    
+    // Calculate scale factor
+    const scale = 180 / (config.gridSize * 20); // 180px is mini-map size, 20px is the visual size of each tile
+    
+    // Add tiles to mini-map
+    state.loadedTiles.forEach((tileElement, key) => {
+        const [x, y] = key.split('_').map(Number);
+        
+        const miniTile = document.createElement('div');
+        miniTile.className = 'mini-map-tile';
+        
+        // Position the tile
+        const tileX = (x * 10 + y * 10) * scale + 90; // Center in mini-map
+        const tileY = (y * 5 - x * 5) * scale + 90; // Center in mini-map
+        
+        miniTile.style.left = `${tileX}px`;
+        miniTile.style.top = `${tileY}px`;
+        
+        // Highlight selected tile
+        if (state.selectedTile && 
+            parseInt(state.selectedTile.dataset.x) === x && 
+            parseInt(state.selectedTile.dataset.y) === y) {
+            miniTile.classList.add('current');
+        }
+        
+        miniMap.appendChild(miniTile);
+    });
+}
+
+// Day/night cycle
+function initDayNightCycle() {
+    const overlay = document.getElementById('day-night-overlay');
+    if (!overlay) return;
+    
+    // Get current time or use game time
+    const gameTime = localStorage.getItem('gameTime') || 0;
+    let currentTime = parseInt(gameTime);
+    
+    // Update cycle every 30 seconds (game time moves faster than real time)
+    setInterval(() => {
+        currentTime = (currentTime + 1) % 24;
+        localStorage.setItem('gameTime', currentTime.toString());
+        
+        // Update day count when a new day starts
+        if (currentTime === 6) { // 6am is start of new day
+            const currentDay = parseInt(localStorage.getItem('dayCount') || 1);
+            localStorage.setItem('dayCount', (currentDay + 1).toString());
+            
+            // Update the HUD
+            const dayCountElement = document.getElementById('day-count');
+            if (dayCountElement) dayCountElement.textContent = currentDay + 1;
+            
+            // Show day notification
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = `Day ${currentDay + 1} has begun`;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.add('fade-out');
+                setTimeout(() => notification.remove(), 1000);
+            }, 3000);
+        }
+        
+        // Set appropriate class based on time
+        if (currentTime >= 6 && currentTime < 17) {
+            // Daytime (6am - 5pm)
+            overlay.className = 'daytime';
+        } else if (currentTime >= 17 && currentTime < 20) {
+            // Sunset (5pm - 8pm)
+            overlay.className = 'sunset';
+        } else if (currentTime >= 20 || currentTime < 5) {
+            // Night (8pm - 5am)
+            overlay.className = 'night';
+        } else {
+            // Sunrise (5am - 6am)
+            overlay.className = 'sunrise';
+        }
+        
+    }, 30000); // Update every 30 seconds
+}
+
 // Load visible tiles based on current view
 function loadVisibleTiles() {
     // Show loading indicator
@@ -2650,6 +2804,9 @@ function loadVisibleTiles() {
     
     // Hide loading indicator
     hideLoading();
+    
+    // Update mini-map after loading tiles
+    updateMiniMap();
 }
 
 // Load a single tile
@@ -3144,6 +3301,9 @@ function selectTile(tile) {
         state.actionMenuVisible = false;
       }
     });
+    
+  // Update mini-map to highlight selected tile
+  updateMiniMap();
 }
 
 // Create a screen for loading saved colonies

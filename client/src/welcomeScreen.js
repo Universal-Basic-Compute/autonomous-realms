@@ -261,6 +261,39 @@ function createLanguageInitScreen(colonyName) {
     title.className = 'intro-title';
     introContainer.appendChild(title);
     
+    // Add tribe image if available
+    const tribeImageUrl = localStorage.getItem('tribeImageUrl');
+    const tribeImagePath = localStorage.getItem('tribeImagePath');
+    
+    if (tribeImageUrl || tribeImagePath) {
+      const imageContainer = document.createElement('div');
+      imageContainer.className = 'tribe-image-container';
+      
+      const tribeImage = document.createElement('img');
+      tribeImage.className = 'tribe-image';
+      
+      // Set the image source based on what's available
+      if (tribeImageUrl) {
+        tribeImage.src = tribeImageUrl;
+      } else if (tribeImagePath) {
+        // If we have a local path, construct the URL
+        tribeImage.src = `http://localhost:5000/${tribeImagePath}`;
+      }
+      
+      // Add loading and error handling
+      tribeImage.onload = () => {
+        console.log('Tribe image loaded successfully');
+      };
+      
+      tribeImage.onerror = (e) => {
+        console.warn('Failed to load tribe image:', e);
+        imageContainer.style.display = 'none'; // Hide the container if image fails to load
+      };
+      
+      imageContainer.appendChild(tribeImage);
+      introContainer.appendChild(imageContainer);
+    }
+    
     // Add intro text
     const introTextElement = document.createElement('p');
     introTextElement.className = 'intro-text';
@@ -512,6 +545,45 @@ Please create an epic, inspiring introduction for this tribe that captures their
       }
     } catch (ttsError) {
       console.warn('Error generating TTS:', ttsError);
+    }
+    
+    // Generate an image of the tribe using Ideogram API
+    try {
+      console.log("Generating image of the tribe");
+      
+      // Create a prompt for the image based on tribe information
+      const imagePrompt = `Epic cinematic portrait of a primitive tribe: ${appearance}. They are standing together as a group in their natural environment, looking determined and hopeful. Their dream is: ${dream}. Dramatic lighting, detailed, realistic style, high quality.`;
+      
+      const imageResponse = await fetch(`http://localhost:5000/v2/blueprints/autonomousrealms/kins/${kinName}/images`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          prompt: imagePrompt,
+          aspect_ratio: "ASPECT_1_1",
+          model: "V_2A_TURBO",
+          magic_prompt_option: "AUTO"
+        })
+      });
+      
+      if (imageResponse.ok) {
+        const imageData = await imageResponse.json();
+        
+        // Store the image URL in localStorage
+        if (imageData.data && imageData.data.url) {
+          localStorage.setItem('tribeImageUrl', imageData.data.url);
+          console.log("Tribe image generated successfully:", imageData.data.url);
+        } else if (imageData.local_path) {
+          // If we have a local path instead of a direct URL
+          localStorage.setItem('tribeImagePath', imageData.local_path);
+          console.log("Tribe image saved locally:", imageData.local_path);
+        }
+      } else {
+        console.warn('Failed to generate tribe image');
+      }
+    } catch (imageError) {
+      console.warn('Error generating tribe image:', imageError);
     }
     
     return responseData;

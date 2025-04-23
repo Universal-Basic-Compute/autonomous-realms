@@ -668,6 +668,22 @@ body::before {
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
+/* Tribe Image Styling */
+.tribe-image-container {
+  margin-bottom: 30px;
+  max-width: 80%;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.tribe-image {
+  width: 100%;
+  max-height: 50vh;
+  object-fit: contain;
+  display: block;
+}
+
 .language-input-label {
   font-size: 18px;
   margin-bottom: 10px;

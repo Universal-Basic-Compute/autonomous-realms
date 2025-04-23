@@ -694,8 +694,6 @@ function loadTile(regionX, regionY, x, y) {
                             console.error('Error handling narration:', error);
                             showErrorNotification(`Error handling narration: ${error.message}`);
                         });
-                            
-                        });
                 } else {
                     infoHtml += `<p><em>Island not yet generated</em></p>`;
                     

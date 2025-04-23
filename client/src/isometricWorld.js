@@ -2534,6 +2534,16 @@ function resetView() {
 
 // Handle mouse wheel for zooming
 function handleWheel(e) {
+    // Check if the wheel event is inside a scrollable menu
+    if (e.target.closest('.submenu-content') || 
+        e.target.closest('.colonies-container') || 
+        e.target.closest('.dialog-content') ||
+        e.target.closest('.action-response')) {
+        // Allow default scrolling behavior in menus
+        return;
+    }
+    
+    // Otherwise, handle as map zoom
     e.preventDefault();
     
     // Store the old zoom level

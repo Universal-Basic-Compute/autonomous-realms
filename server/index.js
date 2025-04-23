@@ -79,6 +79,7 @@ async function init() {
     app.use('/api/icons', require('./routes/iconRoutes'));
     app.use('/api/data', require('./routes/dataRoutes'));
     app.use('/api/kinos', require('./routes/kinosRoutes'));
+    app.use('/api/auth', require('./routes/authRoutes'));
     
     // Route for action image generation is now in tileRoutes.js
     

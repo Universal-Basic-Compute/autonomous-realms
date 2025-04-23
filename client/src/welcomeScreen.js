@@ -334,6 +334,27 @@ function createWelcomeScreen() {
   settingsButton.disabled = true;
   menuContainer.appendChild(settingsButton);
   
+  // Add logout button
+  const logoutButton = document.createElement('button');
+  logoutButton.textContent = 'Logout';
+  logoutButton.className = 'welcome-button';
+  logoutButton.addEventListener('click', () => {
+    // Clear user authentication data
+    localStorage.removeItem('userId');
+    localStorage.removeItem('username');
+    localStorage.removeItem('email');
+    
+    // Remove the welcome screen
+    welcomeContainer.remove();
+    
+    // Show the auth screen
+    import('./authScreen.js').then(module => {
+      const { createAuthScreen } = module;
+      createAuthScreen();
+    });
+  });
+  menuContainer.appendChild(logoutButton);
+  
   welcomeContainer.appendChild(menuContainer);
   
   // Add version info

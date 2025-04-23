@@ -1,5 +1,34 @@
 import audioPlayer from './audioPlayer.js';
 
+// Function to check if a pixel is transparent
+function isTransparentPixel(img, x, y) {
+  // Create a temporary canvas to analyze the image
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = img.width;
+  canvas.height = img.height;
+  
+  // Draw the image on the canvas
+  ctx.drawImage(img, 0, 0);
+  
+  // Get the pixel data
+  try {
+    // Make sure x and y are within bounds
+    if (x < 0 || y < 0 || x >= img.width || y >= img.height) {
+      return true; // Consider out-of-bounds as transparent
+    }
+    
+    // Get the pixel data
+    const pixelData = ctx.getImageData(x, y, 1, 1).data;
+    
+    // Check if the alpha channel (4th value) is 0 (fully transparent)
+    return pixelData[3] === 0;
+  } catch (error) {
+    console.error('Error checking pixel transparency:', error);
+    return false; // Default to non-transparent on error
+  }
+}
+
 // Configuration
 const config = {
     tileWidth: 512,
@@ -681,7 +710,22 @@ function loadTile(regionX, regionY, x, y) {
         });
     
     // Add click event to show tile info
-    tileElement.addEventListener('click', () => {
+    tileElement.addEventListener('click', (e) => {
+        // Get the relative position within the tile
+        const rect = tileElement.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const clickY = e.clientY - rect.top;
+        
+        // Get the image element
+        const imgElement = tileElement.querySelector('img');
+        
+        // Check if the image is loaded and the click is on a transparent pixel
+        if (imgElement.complete && isTransparentPixel(imgElement, clickX, clickY)) {
+            // Click is on a transparent part, ignore this tile
+            console.log(`Click on transparent part of tile ${x},${y}, ignoring`);
+            return;
+        }
+        
         // Deselect previous tile
         if (state.selectedTile) {
             state.selectedTile.classList.remove('selected');

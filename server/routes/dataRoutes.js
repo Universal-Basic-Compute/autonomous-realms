@@ -560,8 +560,8 @@ async function generateTTS(text, terrainCode) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.KINOS_API_KEY || config.KINOS_API_KEY}`
-          // Don't specify Accept header to let API decide response format
+          'Authorization': `Bearer ${process.env.KINOS_API_KEY || config.KINOS_API_KEY}`,
+          'Accept': 'application/json' // Explicitly request JSON response
         },
         body: JSON.stringify({
           text: text,

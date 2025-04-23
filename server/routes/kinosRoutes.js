@@ -3,6 +3,8 @@ const router = express.Router();
 const fetch = require('node-fetch');
 const logger = require('../utils/logger');
 const config = require('../config');
+const path = require('path');
+const fs = require('fs').promises;
 
 // Create a new kin
 router.post('/kins', async (req, res) => {
@@ -94,7 +96,8 @@ router.post('/kins/:kinName/images', async (req, res) => {
           prompt,
           aspect_ratio,
           model,
-          magic_prompt_option: magic_prompt_option || (magic_prompt ? "AUTO" : undefined)
+          magic_prompt_option: magic_prompt_option || (magic_prompt ? "AUTO" : undefined),
+          message: "Generate an image based on the provided prompt" // Add required message parameter
         })
       });
     

@@ -907,6 +907,86 @@ function getSavedColonies() {
   return colonies.sort((a, b) => new Date(b.lastPlayed) - new Date(a.lastPlayed));
 }
 
+// Function to load a colony
+function loadColony(colonyId) {
+  try {
+    console.log(`Loading colony with ID: ${colonyId}`);
+    
+    // Update last played timestamp
+    const now = new Date().toISOString();
+    localStorage.setItem('lastPlayed', now);
+    
+    // If it's not the current colony, we need to swap data
+    if (colonyId !== 'current') {
+      // Get the saved colonies
+      const savedColoniesJSON = localStorage.getItem('savedColonies');
+      if (savedColoniesJSON) {
+        const savedColonies = JSON.parse(savedColoniesJSON);
+        
+        // Find the colony to load
+        const colonyToLoad = savedColonies.find(colony => colony.id === colonyId);
+        
+        if (colonyToLoad) {
+          // Save current colony data to savedColonies if it exists
+          if (localStorage.getItem('colonyName') && localStorage.getItem('leaderName')) {
+            // Create a backup of current colony
+            const currentColony = {
+              id: 'backup_' + Date.now(),
+              colonyName: localStorage.getItem('colonyName'),
+              leaderName: localStorage.getItem('leaderName'),
+              kinId: localStorage.getItem('kinId'),
+              kinName: localStorage.getItem('kinName'),
+              tribeDream: localStorage.getItem('tribeDream'),
+              tribeAppearance: localStorage.getItem('tribeAppearance'),
+              languageInitialized: localStorage.getItem('languageInitialized'),
+              languageDescription: localStorage.getItem('languageDescription'),
+              tribeIntroText: localStorage.getItem('tribeIntroText'),
+              tribeIntroAudio: localStorage.getItem('tribeIntroAudio'),
+              tribeImageUrl: localStorage.getItem('tribeImageUrl'),
+              tribeImagePath: localStorage.getItem('tribeImagePath'),
+              languageDevelopment: localStorage.getItem('languageDevelopment'),
+              lastPlayed: localStorage.getItem('lastPlayed') || now
+            };
+            
+            // Add to saved colonies, replacing the one we're loading
+            const updatedColonies = savedColonies
+              .filter(colony => colony.id !== colonyId)
+              .concat(currentColony);
+            
+            localStorage.setItem('savedColonies', JSON.stringify(updatedColonies));
+          }
+          
+          // Load the selected colony data into main localStorage
+          localStorage.setItem('colonyName', colonyToLoad.colonyName);
+          localStorage.setItem('leaderName', colonyToLoad.leaderName);
+          localStorage.setItem('kinId', colonyToLoad.kinId || '');
+          localStorage.setItem('kinName', colonyToLoad.kinName || '');
+          localStorage.setItem('tribeDream', colonyToLoad.tribeDream || '');
+          localStorage.setItem('tribeAppearance', colonyToLoad.tribeAppearance || '');
+          localStorage.setItem('languageInitialized', colonyToLoad.languageInitialized || 'false');
+          localStorage.setItem('languageDescription', colonyToLoad.languageDescription || '');
+          localStorage.setItem('tribeIntroText', colonyToLoad.tribeIntroText || '');
+          localStorage.setItem('tribeIntroAudio', colonyToLoad.tribeIntroAudio || '');
+          localStorage.setItem('tribeImageUrl', colonyToLoad.tribeImageUrl || '');
+          localStorage.setItem('tribeImagePath', colonyToLoad.tribeImagePath || '');
+          localStorage.setItem('languageDevelopment', colonyToLoad.languageDevelopment || '');
+          localStorage.setItem('lastPlayed', now);
+          
+          console.log(`Colony "${colonyToLoad.colonyName}" loaded successfully`);
+        } else {
+          console.error(`Colony with ID ${colonyId} not found`);
+        }
+      }
+    }
+    
+    // Initialize the world
+    initWorld();
+  } catch (error) {
+    console.error('Error loading colony:', error);
+    alert(`Failed to load colony: ${error.message}`);
+  }
+}
+
 // Helper function to format date
 function formatDate(dateString) {
   try {
@@ -1040,4 +1120,4 @@ function createLoadColonyScreen() {
   document.body.appendChild(loadContainer);
 }
 
-export { createWelcomeScreen, createColonyNamingScreen, createLanguageInitScreen, createLoadColonyScreen };
+export { createWelcomeScreen, createColonyNamingScreen, createLanguageInitScreen, createLoadColonyScreen, loadColony };

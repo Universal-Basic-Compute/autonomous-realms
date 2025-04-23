@@ -2556,7 +2556,8 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.95)), url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFISURBVGhD7ZixSgNBFEXXIIKFIIJgYWFhYWEhiKCFhYWFhYWFhYWFhYWFhYWFhYVgYWFhISgoKCgoKAQUFBQCCgEFBYWAgoKCwufAXZjAMBLII8w58JvN7p97YXY2+0IIIYQQQgghhBBCCCGEEEKI/6NeP7xMkv0nrw9DvV5/8PrwJMnOm9eHoVLZffT68CRJ9t+9PgxJkr15fRjq9f0Prw9PkuxMvT4MlcrOxOvDkyQ7Y68PQ5LsTL0+PEmyM/H6MFQq2xOvD0+S7Iy9PgxJsjP1+vAkyc7Y68NQqWyNvT48SbIz8vowJMnOxOvDkyQ7I68PQ6WyOfL68CTJztDrw5AkO0OvD0+S7Ay9PgyVysbQ68OTJDsDrw9DkuwMvD48SbIz8PowVCvrA68PT5LsDLw+DEmyM/D68CTJTt/rhRBCCCGEEEIIIYQQQvwRUfQFBpb+GhBj8AAAAAAASUVORK5CYII=');
+    background: url('../public/images/splash.png') no-repeat center center;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -2566,7 +2567,6 @@ body::before {
     padding: 20px;
     box-sizing: border-box;
     overflow-y: auto;
-    animation: fadeInBackground 1s ease-out;
 }
 
 /* Auth Screen Styles */

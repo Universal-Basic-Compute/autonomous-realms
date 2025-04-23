@@ -245,18 +245,6 @@ function createWelcomeScreen() {
   welcomeContainer.id = 'welcome-screen';
   welcomeContainer.className = 'fullscreen-overlay';
   
-  // Add title
-  const title = document.createElement('h1');
-  title.textContent = 'Autonomous Realms';
-  title.className = 'welcome-title';
-  welcomeContainer.appendChild(title);
-  
-  // Add subtitle
-  const subtitle = document.createElement('h2');
-  subtitle.textContent = 'An AI-powered settlement simulation';
-  subtitle.className = 'welcome-subtitle';
-  welcomeContainer.appendChild(subtitle);
-  
   // Add description about the tribe
   const tribeDescription = document.createElement('p');
   tribeDescription.className = 'tribe-description';

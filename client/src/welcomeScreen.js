@@ -39,6 +39,25 @@ function createWelcomeScreen() {
   });
   menuContainer.appendChild(startButton);
   
+  // Add continue button
+  const continueButton = document.createElement('button');
+  continueButton.textContent = 'Continue';
+  continueButton.className = 'welcome-button';
+  
+  // Check if there's a saved colony to continue
+  const hasExistingColony = localStorage.getItem('languageInitialized') === 'true';
+  
+  if (!hasExistingColony) {
+    continueButton.disabled = true;
+    continueButton.title = 'No saved colony found';
+  } else {
+    continueButton.addEventListener('click', () => {
+      welcomeContainer.remove();
+      initWorld();
+    });
+  }
+  menuContainer.appendChild(continueButton);
+  
   // Add load colony button (disabled for now)
   const loadButton = document.createElement('button');
   loadButton.textContent = 'Load Colony';

@@ -146,12 +146,24 @@ async function generateTerrainIcon(terrainType, iconDir) {
 // Download image from URL
 async function downloadImage(url, outputPath) {
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      timeout: 30000, // 30 second timeout
+      headers: {
+        'User-Agent': 'Terrain-Icon-Generator'
+      }
+    });
+    
     if (!response.ok) {
       throw new Error(`Failed to download image: ${response.status} ${response.statusText}`);
     }
     
     const buffer = await response.buffer();
+    
+    // Check if we actually got an image
+    if (buffer.length < 100) {
+      throw new Error('Downloaded file is too small to be a valid image');
+    }
+    
     await fs.writeFile(outputPath, buffer);
     logger.info(`Image downloaded successfully to ${outputPath}`);
   } catch (error) {
@@ -165,12 +177,22 @@ async function processIconImage(imagePath) {
   try {
     logger.info(`Processing icon image: ${imagePath}`);
     
-    // For now, we'll just use the image as-is
-    // In a more advanced implementation, you could:
-    // 1. Resize to a standard size (e.g., 128x128)
-    // 2. Convert to PNG with transparency
-    // 3. Apply any necessary filters or adjustments
+    // Load the image
+    const { createCanvas, loadImage } = require('canvas');
+    const image = await loadImage(imagePath);
     
+    // Create a canvas with standard size
+    const canvas = createCanvas(128, 128);
+    const ctx = canvas.getContext('2d');
+    
+    // Draw the image onto the canvas (resizing it)
+    ctx.drawImage(image, 0, 0, 128, 128);
+    
+    // Save the processed image
+    const buffer = canvas.toBuffer('image/png');
+    await fs.writeFile(imagePath, buffer);
+    
+    logger.info(`Successfully processed icon image: ${imagePath}`);
     return imagePath;
   } catch (error) {
     logger.error(`Error processing icon image: ${error.message}`);
@@ -201,7 +223,7 @@ async function generateAllTerrainIcons() {
       try {
         // Add delay between requests to respect rate limits
         if (i > 0) {
-          const delay = 2000; // 2 seconds between requests
+          const delay = 3000; // 3 seconds between requests to be safer
           logger.debug(`Rate limiting: waiting ${delay}ms before next request`);
           await new Promise(resolve => setTimeout(resolve, delay));
         }
@@ -219,6 +241,9 @@ async function generateAllTerrainIcons() {
           success: false,
           error: error.message
         });
+        
+        // Add a longer delay after an error to avoid hitting rate limits
+        await new Promise(resolve => setTimeout(resolve, 5000));
       }
     }
     

@@ -882,6 +882,32 @@ body::before {
     align-items: center;
 }
 
+/* Fixed Circular Menu */
+.circular-menu.fixed-menu {
+    position: fixed;
+    z-index: 300; /* Ensure it's above other elements */
+    transform: none !important; /* Override any transform */
+    left: 120px;
+    top: 120px;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    pointer-events: auto; /* Ensure it can be clicked */
+}
+
+/* Adjust menu items for fixed menu */
+.fixed-menu .menu-button {
+    transition: all 0.2s ease;
+}
+
+.fixed-menu .menu-button:hover {
+    transform: scale(1.1);
+    background-color: #4CAF50;
+    color: white;
+}
+
 .menu-item {
     position: absolute;
     transform-origin: center;

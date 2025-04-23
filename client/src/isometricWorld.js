@@ -95,6 +95,9 @@ export function initWorld() {
     
     // Load initial tiles
     loadVisibleTiles();
+    
+    // Show the circular menu immediately
+    showCircularMenu();
 }
 
 // Fetch available actions for a terrain type
@@ -353,7 +356,7 @@ function showCircularMenu() {
     // Create circular menu container
     const circularMenu = document.createElement('div');
     circularMenu.id = 'circular-menu';
-    circularMenu.className = 'circular-menu';
+    circularMenu.className = 'circular-menu fixed-menu'; // Add a new class for fixed positioning
     
     // Add menu items
     const menuItems = [
@@ -392,17 +395,10 @@ function showCircularMenu() {
     // Add to document body
     document.body.appendChild(circularMenu);
     
-    // Position the menu near the selected tile
-    if (state.selectedTile) {
-        const tileRect = state.selectedTile.getBoundingClientRect();
-        circularMenu.style.left = `${tileRect.left + tileRect.width / 2}px`;
-        circularMenu.style.top = `${tileRect.top + tileRect.height / 2}px`;
-    } else {
-        // Default to center of screen if no tile is selected
-        circularMenu.style.left = '50%';
-        circularMenu.style.top = '50%';
-        circularMenu.style.transform = 'translate(-50%, -50%)';
-    }
+    // Position the menu in the top left corner
+    circularMenu.style.left = '120px';  // Give some margin from the left edge
+    circularMenu.style.top = '120px';   // Give some margin from the top edge
+    circularMenu.style.transform = 'none'; // Remove any transform that would center it
 }
 
 // Show language development menu
@@ -1066,14 +1062,9 @@ function setupEventListeners() {
             hideContextMenu();
         }
         
-        // Don't hide circular menu if clicking on the menu itself or a tile
-        if (!e.target.closest('.circular-menu') && !e.target.closest('.tile') && !e.target.closest('.submenu')) {
-            const circularMenu = document.getElementById('circular-menu');
-            if (circularMenu) {
-                circularMenu.remove();
-            }
-            
-            // Also hide any submenus
+        // Don't hide circular menu since it's now always visible
+        // Only hide submenus when clicking outside
+        if (!e.target.closest('.submenu')) {
             const languageMenu = document.getElementById('language-menu');
             if (languageMenu) {
                 languageMenu.remove();
@@ -1851,9 +1842,6 @@ function selectTile(tile) {
   // Select this tile
   tile.classList.add('selected');
   state.selectedTile = tile;
-  
-  // Show circular menu for the selected tile
-  showCircularMenu();
   
   // Get the tile coordinates
   const tileX = parseInt(tile.dataset.x);

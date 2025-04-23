@@ -482,11 +482,25 @@ Format the word list in a way that's easy to display in a UI, with the tribe's w
     
     const responseData = await response.json();
     
+    // Add debug logging for the response content
+    console.log('Language details response:', responseData);
+    console.log('Response content type:', typeof responseData.content);
+    console.log('Response content:', responseData.content);
+    
     // Remove loading indicator
     loadingElement.remove();
     
-    // Parse and display the language details
-    displayLanguageDetails(menuContent, responseData.content);
+    // Check if content exists before trying to parse it
+    if (!responseData.content) {
+      console.error('No content in response data:', responseData);
+      const errorElement = document.createElement('div');
+      errorElement.className = 'evolution-error';
+      errorElement.textContent = 'Error: No language data received from server';
+      menuContent.appendChild(errorElement);
+    } else {
+      // Parse and display the language details
+      displayLanguageDetails(menuContent, responseData.content);
+    }
     
     // Also display the language evolution form
     addLanguageEvolutionForm(menuContent);
@@ -615,6 +629,12 @@ function displayLanguageDetails(menuContent, responseText) {
 
 // Function to parse language response into structured sections
 function parseLanguageResponse(responseText) {
+  // Add null/undefined check
+  if (!responseText) {
+    console.error('Received null or undefined responseText in parseLanguageResponse');
+    return {};
+  }
+  
   const sections = {};
   
   // Try to extract development stage

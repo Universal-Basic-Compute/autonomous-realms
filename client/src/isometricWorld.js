@@ -1,5 +1,7 @@
 import audioPlayer from './audioPlayer.js';
 import { createWelcomeScreen } from './welcomeScreen.js';
+import resourceManager from './resourceManager.js';
+import './resourceDisplay.js'; // This will initialize the resource display
 
 // Language caching variables
 let languageCache = null;
@@ -1727,10 +1729,72 @@ async function performAction(action) {
         if (kinOSResponse.narration && kinOSResponse.analysis) {
             // It's the new JSON format
             formattedResponse = formatJSONResponse(kinOSResponse);
+            
+            // Add resources to the resource manager
+            if (kinOSResponse.outcomes && kinOSResponse.outcomes.resources) {
+                kinOSResponse.outcomes.resources.forEach(resource => {
+                    // Extract quantity if present (e.g., "Wild berries (2-3 days worth)" -> 2)
+                    let quantity = 1;
+                    let resourceName = resource;
+                    
+                    // Look for patterns like "X units of Y" or "Y (X)"
+                    const quantityMatch = resource.match(/(\d+)[\s-]*(?:units?|pieces?|bundles?|of)?\s+(?:of\s+)?(.+)/i) || 
+                                         resource.match(/(.+?)\s*\((\d+)[^)]*\)/i);
+                    
+                    if (quantityMatch) {
+                        if (quantityMatch[1] && !isNaN(parseInt(quantityMatch[1]))) {
+                            // First pattern: "X units of Y"
+                            quantity = parseInt(quantityMatch[1]);
+                            resourceName = quantityMatch[2].trim();
+                        } else if (quantityMatch[2] && !isNaN(parseInt(quantityMatch[2]))) {
+                            // Second pattern: "Y (X)"
+                            quantity = parseInt(quantityMatch[2]);
+                            resourceName = quantityMatch[1].trim();
+                        }
+                    }
+                    
+                    // Add the resource
+                    resourceManager.addResource(resourceName, quantity);
+                });
+            }
         } else if (kinOSResponse.content) {
             // It's the old format with raw content
             const parsedResponse = parseActionResponse(kinOSResponse.content);
             formattedResponse = formatStructuredResponse(parsedResponse);
+            
+            // Try to extract resources from the parsed response
+            if (parsedResponse.resources) {
+                // Split by lines and process each resource
+                const resourceLines = parsedResponse.resources.split('\n');
+                resourceLines.forEach(line => {
+                    // Remove bullet points and extract resource name
+                    const resourceText = line.replace(/^[-*•]\s*/, '').trim();
+                    if (resourceText) {
+                        // Extract quantity if present
+                        let quantity = 1;
+                        let resourceName = resourceText;
+                        
+                        // Look for patterns like "X units of Y" or "Y (X)"
+                        const quantityMatch = resourceText.match(/(\d+)[\s-]*(?:units?|pieces?|bundles?|of)?\s+(?:of\s+)?(.+)/i) || 
+                                             resourceText.match(/(.+?)\s*\((\d+)[^)]*\)/i);
+                        
+                        if (quantityMatch) {
+                            if (quantityMatch[1] && !isNaN(parseInt(quantityMatch[1]))) {
+                                // First pattern: "X units of Y"
+                                quantity = parseInt(quantityMatch[1]);
+                                resourceName = quantityMatch[2].trim();
+                            } else if (quantityMatch[2] && !isNaN(parseInt(quantityMatch[2]))) {
+                                // Second pattern: "Y (X)"
+                                quantity = parseInt(quantityMatch[2]);
+                                resourceName = quantityMatch[1].trim();
+                            }
+                        }
+                        
+                        // Add the resource
+                        resourceManager.addResource(resourceName, quantity);
+                    }
+                });
+            }
         } else {
             // Unexpected format, try to handle it gracefully
             formattedResponse = formatStructuredResponse(kinOSResponse);

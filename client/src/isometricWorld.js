@@ -405,6 +405,334 @@ function showCircularMenu() {
     }
 }
 
+// Show language development menu
+function showLanguageMenu() {
+  // Remove any existing language menu
+  const existingMenu = document.getElementById('language-menu');
+  if (existingMenu) {
+    existingMenu.remove();
+  }
+  
+  // Create language menu container
+  const languageMenu = document.createElement('div');
+  languageMenu.id = 'language-menu';
+  languageMenu.className = 'submenu';
+  
+  // Add header with close button
+  const menuHeader = document.createElement('div');
+  menuHeader.className = 'submenu-header';
+  
+  const menuTitle = document.createElement('h3');
+  menuTitle.textContent = 'Language Development';
+  
+  const closeButton = document.createElement('button');
+  closeButton.className = 'close-submenu';
+  closeButton.innerHTML = '&times;';
+  closeButton.addEventListener('click', () => {
+    languageMenu.remove();
+  });
+  
+  menuHeader.appendChild(menuTitle);
+  menuHeader.appendChild(closeButton);
+  languageMenu.appendChild(menuHeader);
+  
+  // Add content
+  const menuContent = document.createElement('div');
+  menuContent.className = 'submenu-content';
+  
+  // Check if we have language development data in localStorage
+  const languageData = localStorage.getItem('languageDevelopment');
+  
+  if (languageData) {
+    try {
+      const parsedData = JSON.parse(languageData);
+      
+      // Display current language development
+      const currentDev = document.createElement('div');
+      currentDev.innerHTML = `
+        <h4>Current Development</h4>
+        <p><strong>Stage:</strong> ${parsedData.stage || 'Basic'}</p>
+        <p><strong>Vocabulary:</strong> ${parsedData.vocabulary || 'Limited'}</p>
+        <p><strong>Features:</strong> ${parsedData.features || 'Simple communication'}</p>
+      `;
+      menuContent.appendChild(currentDev);
+      
+      // Add language evolution form
+      const evolutionForm = document.createElement('div');
+      evolutionForm.className = 'language-evolution-form';
+      evolutionForm.innerHTML = `
+        <h4>Evolve Your Language</h4>
+        <p>Describe how you want your language to develop next:</p>
+        <textarea id="language-evolution-input" rows="4" placeholder="Example: I want to develop more complex verbs to describe hunting activities..."></textarea>
+        <button id="evolve-language-button">Evolve Language</button>
+        <div id="language-evolution-loading" class="hidden">Processing language evolution...</div>
+      `;
+      menuContent.appendChild(evolutionForm);
+      
+      // Add event listener for the evolve button
+      setTimeout(() => {
+        const evolveButton = document.getElementById('evolve-language-button');
+        if (evolveButton) {
+          evolveButton.addEventListener('click', evolveLanguage);
+        }
+      }, 0);
+      
+    } catch (error) {
+      console.error('Error parsing language data:', error);
+      menuContent.innerHTML = '<p>Error loading language development data.</p>';
+    }
+  } else {
+    // No language development yet
+    menuContent.innerHTML = `
+      <p class="no-development">Your tribe hasn't developed a formal language yet.</p>
+      <div class="language-evolution-form">
+        <h4>Begin Language Development</h4>
+        <p>Describe how you want your language to start developing:</p>
+        <textarea id="language-evolution-input" rows="4" placeholder="Example: I want to develop basic words for important resources like water, food, and shelter..."></textarea>
+        <button id="evolve-language-button">Start Language</button>
+        <div id="language-evolution-loading" class="hidden">Processing language development...</div>
+      </div>
+    `;
+    
+    // Add event listener for the evolve button
+    setTimeout(() => {
+      const evolveButton = document.getElementById('evolve-language-button');
+      if (evolveButton) {
+        evolveButton.addEventListener('click', evolveLanguage);
+      }
+    }, 0);
+  }
+  
+  languageMenu.appendChild(menuContent);
+  
+  // Add to document body
+  document.body.appendChild(languageMenu);
+  
+  // Position the menu near the circular menu
+  const circularMenu = document.getElementById('circular-menu');
+  if (circularMenu) {
+    const circularMenuRect = circularMenu.getBoundingClientRect();
+    languageMenu.style.left = `${circularMenuRect.right + 20}px`;
+    languageMenu.style.top = `${circularMenuRect.top}px`;
+  } else {
+    // Default to center of screen if circular menu is not found
+    languageMenu.style.left = '50%';
+    languageMenu.style.top = '50%';
+    languageMenu.style.transform = 'translate(-50%, -50%)';
+  }
+}
+
+// Function to handle language evolution
+async function evolveLanguage() {
+  const inputElement = document.getElementById('language-evolution-input');
+  const loadingElement = document.getElementById('language-evolution-loading');
+  const evolveButton = document.getElementById('evolve-language-button');
+  
+  if (!inputElement || !loadingElement || !evolveButton) {
+    console.error('Required elements not found');
+    return;
+  }
+  
+  const evolutionDescription = inputElement.value.trim();
+  
+  if (!evolutionDescription) {
+    alert('Please describe how you want your language to evolve.');
+    return;
+  }
+  
+  // Show loading, disable button
+  loadingElement.classList.remove('hidden');
+  evolveButton.disabled = true;
+  
+  try {
+    // Get current language data if it exists
+    let currentLanguage = {};
+    const storedData = localStorage.getItem('languageDevelopment');
+    if (storedData) {
+      currentLanguage = JSON.parse(storedData);
+    }
+    
+    // Get the colony name
+    const colonyName = localStorage.getItem('colonyName') || 'Your Colony';
+    
+    // Prepare the message for KinOS
+    const messageContent = `
+I want to evolve the language of my tribe "${colonyName}".
+
+Current language state:
+${currentLanguage.stage ? `Stage: ${currentLanguage.stage}` : 'No formal language yet'}
+${currentLanguage.vocabulary ? `Vocabulary: ${currentLanguage.vocabulary}` : ''}
+${currentLanguage.features ? `Features: ${currentLanguage.features}` : ''}
+
+My desired evolution: ${evolutionDescription}
+
+Please provide:
+1. An updated description of the language stage
+2. New vocabulary that has developed
+3. New grammatical or structural features
+4. A brief narrative about how this language change affects the tribe's culture
+`;
+
+    // Make request to KinOS
+    const response = await fetch('http://localhost:3000/api/kinos/kins/defaultcolony/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        content: messageContent,
+        model: "claude-3-7-sonnet-latest",
+        history_length: 25,
+        mode: "language_evolution",
+        addSystem: "You are a linguistic anthropologist helping to develop a realistic language evolution for a prehistoric tribe. Provide plausible, historically grounded language developments based on the user's request."
+      })
+    });
+    
+    if (!response.ok) {
+      throw new Error(`KinOS API request failed with status ${response.status}: ${response.statusText}`);
+    }
+    
+    const responseData = await response.json();
+    
+    // Parse the response
+    const evolutionResults = parseLanguageEvolution(responseData.response);
+    
+    // Update stored language data
+    const updatedLanguage = {
+      ...currentLanguage,
+      ...evolutionResults,
+      lastUpdated: new Date().toISOString()
+    };
+    
+    localStorage.setItem('languageDevelopment', JSON.stringify(updatedLanguage));
+    
+    // Display results
+    showEvolutionResults(evolutionResults);
+    
+  } catch (error) {
+    console.error('Error evolving language:', error);
+    
+    // Show error in the menu
+    const menuContent = document.querySelector('.submenu-content');
+    if (menuContent) {
+      const errorElement = document.createElement('div');
+      errorElement.className = 'evolution-error';
+      errorElement.textContent = `Error: ${error.message}`;
+      menuContent.appendChild(errorElement);
+    }
+  } finally {
+    // Hide loading, enable button
+    loadingElement.classList.add('hidden');
+    evolveButton.disabled = false;
+  }
+}
+
+// Parse language evolution response
+function parseLanguageEvolution(responseText) {
+  try {
+    // Try to find JSON in the response
+    const jsonMatch = responseText.match(/\{[\s\S]*\}/);
+    if (jsonMatch) {
+      return JSON.parse(jsonMatch[0]);
+    }
+    
+    // If no JSON, parse the text format
+    const result = {
+      stage: '',
+      vocabulary: '',
+      features: '',
+      narrative: ''
+    };
+    
+    // Extract stage
+    const stageMatch = responseText.match(/Stage:([^\n]*)/i);
+    if (stageMatch) {
+      result.stage = stageMatch[1].trim();
+    }
+    
+    // Extract vocabulary
+    const vocabMatch = responseText.match(/Vocabulary:([^\n]*)/i);
+    if (vocabMatch) {
+      result.vocabulary = vocabMatch[1].trim();
+    }
+    
+    // Extract features
+    const featuresMatch = responseText.match(/Features:([^\n]*)/i);
+    if (featuresMatch) {
+      result.features = featuresMatch[1].trim();
+    }
+    
+    // Extract narrative
+    const narrativeMatch = responseText.match(/Narrative:([\s\S]*?)(?=\n\n|$)/i);
+    if (narrativeMatch) {
+      result.narrative = narrativeMatch[1].trim();
+    }
+    
+    return result;
+  } catch (error) {
+    console.error('Error parsing language evolution:', error);
+    return {
+      stage: 'Unknown',
+      vocabulary: 'Error parsing response',
+      features: 'Error parsing response',
+      narrative: 'There was an error processing the language evolution.'
+    };
+  }
+}
+
+// Show evolution results
+function showEvolutionResults(results) {
+  // Remove any existing results
+  const existingResults = document.querySelector('.evolution-results');
+  if (existingResults) {
+    existingResults.remove();
+  }
+  
+  // Create results container
+  const resultsElement = document.createElement('div');
+  resultsElement.className = 'evolution-results';
+  
+  // Add content
+  resultsElement.innerHTML = `
+    <h4>Language Evolution Results</h4>
+    
+    <div class="evolution-section">
+      <h5>New Language Stage</h5>
+      <p>${results.stage || 'Basic communication'}</p>
+    </div>
+    
+    <div class="evolution-section">
+      <h5>Vocabulary Development</h5>
+      <p>${results.vocabulary || 'No specific vocabulary developed'}</p>
+    </div>
+    
+    <div class="evolution-section">
+      <h5>Grammatical Features</h5>
+      <p>${results.features || 'Simple language structure'}</p>
+    </div>
+    
+    ${results.narrative ? `
+    <div class="evolution-narrative">
+      <h5>Cultural Impact</h5>
+      <p>${results.narrative}</p>
+    </div>
+    ` : ''}
+    
+    <div class="evolution-success">
+      Language successfully evolved!
+    </div>
+  `;
+  
+  // Add to the menu
+  const menuContent = document.querySelector('.submenu-content');
+  if (menuContent) {
+    menuContent.appendChild(resultsElement);
+    
+    // Scroll to show results
+    resultsElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+
 
 // Send a message to KinOS about an action
 async function sendKinOSMessage(action, terrainInfo) {

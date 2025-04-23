@@ -1956,6 +1956,12 @@ async function performAction(action) {
         // Generate and display an image visualization of the action
         generateActionVisualization(action, terrainInfo, kinOSResponse);
         
+        // After the action is complete and resources are added, update the tile to show the activity
+        if (state.selectedTile) {
+          // Update the tile with the activity that just occurred
+          await updateTileWithActivity(tileX, tileY, action, terrainInfo);
+        }
+        
     } catch (error) {
         console.error('Error performing action:', error);
         
@@ -2258,6 +2264,80 @@ async function generateActionVisualization(action, terrainInfo, actionResponse) 
       `;
     }
     
+    return null;
+  }
+}
+
+// Generate an updated tile showing the activity that occurred
+async function updateTileWithActivity(tileX, tileY, action, terrainInfo) {
+  try {
+    // Show a subtle loading indicator
+    const loadingIndicator = document.createElement('div');
+    loadingIndicator.className = 'notification';
+    loadingIndicator.textContent = 'Updating terrain with activity...';
+    document.body.appendChild(loadingIndicator);
+    
+    // Create a detailed prompt based on the action and terrain
+    const prompt = `Isometric view of the same ${terrainInfo.description} terrain, but now showing settlers ${action.name.toLowerCase()}. 
+    Include several tribespeople actively engaged in this task in the environment.
+    Detailed, vibrant colors, Clash Royale style, game asset, white background.`;
+    
+    console.log('Generating updated tile with activity:', prompt);
+    
+    // Make request to the server endpoint for tile update
+    const response = await fetch(`${config.serverUrl}/api/tiles/update-with-activity`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        tileX: tileX,
+        tileY: tileY,
+        prompt: prompt,
+        action: action.code,
+        terrainCode: terrainInfo.terrainCode
+      })
+    });
+    
+    // Remove the loading indicator
+    loadingIndicator.remove();
+    
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`Failed to update tile: ${response.status} ${response.statusText}`, errorText);
+      throw new Error(`Failed to update tile: ${response.status} ${response.statusText}`);
+    }
+    
+    const data = await response.json();
+    
+    // If successful, update the tile image
+    if (data.success && data.imageUrl) {
+      // Find the tile element
+      const tileElement = state.selectedTile;
+      if (tileElement) {
+        const imgElement = tileElement.querySelector('img');
+        if (imgElement) {
+          // Update the image with the new one showing the activity
+          imgElement.src = `${config.serverUrl}${data.imageUrl}?t=${Date.now()}`;
+          
+          // Show a notification
+          const notification = document.createElement('div');
+          notification.className = 'notification';
+          notification.textContent = `The terrain now shows signs of ${action.name.toLowerCase()}`;
+          document.body.appendChild(notification);
+          
+          // Remove notification after a delay
+          setTimeout(() => {
+            notification.classList.add('fade-out');
+            setTimeout(() => notification.remove(), 1000);
+          }, 5000);
+        }
+      }
+    }
+    
+    return data.imageUrl;
+  } catch (error) {
+    console.error('Error updating tile with activity:', error);
     return null;
   }
 }

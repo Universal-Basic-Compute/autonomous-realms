@@ -333,6 +333,90 @@ router.post('/generate-action-image', async (req, res) => {
   }
 });
 
+// Add this route to update a tile with activity
+router.post('/update-with-activity', async (req, res) => {
+  try {
+    const { tileX, tileY, prompt, action, terrainCode } = req.body;
+    
+    if (!prompt || !tileX || !tileY) {
+      return res.status(400).json({ error: 'Missing required parameters' });
+    }
+    
+    logger.info(`Updating tile at (${tileX}, ${tileY}) with activity: ${action}`);
+    
+    // Generate a unique filename for this updated tile
+    const activityId = `activity_${tileX}_${tileY}_${action}_${Date.now()}`;
+    const imageFilename = `${activityId}.png`;
+    const imageDir = path.join(__dirname, '../assets/images/activities');
+    const imagePath = path.join(imageDir, imageFilename);
+    
+    // Make sure the directory exists
+    await fs.mkdir(imageDir, { recursive: true });
+    
+    // Prepare request data for Ideogram API
+    const requestData = {
+      image_request: {
+        prompt: prompt,
+        model: config.IDEOGRAM_MODEL || "V_2_TURBO",
+        aspect_ratio: "ASPECT_1_1", // Square aspect ratio for tiles
+        style_type: config.IDEOGRAM_STYLE_TYPE || "REALISTIC"
+      }
+    };
+    
+    // Make API request to Ideogram
+    const response = await fetch('https://api.ideogram.ai/generate', {
+      method: 'POST',
+      headers: {
+        'Api-Key': config.IDEOGRAM_API_KEY,
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(requestData),
+      timeout: config.API_TIMEOUT
+    });
+    
+    // Check response
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`API request failed with status ${response.status}: ${errorText}`);
+    }
+    
+    // Parse response
+    const responseData = await response.json();
+    
+    // Check if we have valid image data
+    if (!responseData.data || !responseData.data[0] || !responseData.data[0].url) {
+      throw new Error('Invalid response from Ideogram API: No image URL found');
+    }
+    
+    // Download the generated image
+    const imageUrl = responseData.data[0].url;
+    
+    // Use tileService.downloadImage if available, otherwise fetch directly
+    if (tileService && typeof tileService.downloadImage === 'function') {
+      await tileService.downloadImage(imageUrl, imagePath);
+    } else {
+      const imageResponse = await fetch(imageUrl);
+      const buffer = await imageResponse.buffer();
+      await fs.writeFile(imagePath, buffer);
+    }
+    
+    // Return the URL to the saved image
+    res.json({
+      success: true,
+      imageUrl: `/assets/images/activities/${imageFilename}`,
+      prompt: prompt
+    });
+    
+  } catch (error) {
+    logger.error(`Error updating tile with activity: ${error.message}`, { error });
+    res.status(500).json({ 
+      error: 'Failed to update tile with activity', 
+      message: error.message
+    });
+  }
+});
+
 // Add a route to monitor the queue status
 router.get('/queue-status', (req, res) => {
   try {

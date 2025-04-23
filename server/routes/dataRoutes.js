@@ -161,7 +161,7 @@ router.get('/culture/:category', (req, res) => {
 // Add this route to handle TTS requests
 router.post('/actions/ai/tts', async (req, res) => {
   try {
-    const { text } = req.body;
+    const { text, voice_id } = req.body;
     
     if (!text) {
       return res.status(400).json({ error: 'No text provided for TTS' });
@@ -180,6 +180,9 @@ router.post('/actions/ai/tts', async (req, res) => {
     
     // Make a request to the TTS API
     try {
+      // Use the voice_id if provided, otherwise use default
+      const voiceId = voice_id || "IKne3meq5aSn9XLyUdCD";
+      
       const response = await fetch('https://api.kinos-engine.ai/v2/tts?format=mp3', {
         method: 'POST',
         headers: {
@@ -189,7 +192,7 @@ router.post('/actions/ai/tts', async (req, res) => {
         },
         body: JSON.stringify({
           text: text,
-          voice_id: "IKne3meq5aSn9XLyUdCD", // Use a consistent voice ID
+          voice_id: voiceId,
           model: "eleven_flash_v2_5"
         })
       });

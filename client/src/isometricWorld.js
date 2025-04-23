@@ -695,19 +695,6 @@ function loadTile(regionX, regionY, x, y) {
                             showErrorNotification(`Error handling narration: ${error.message}`);
                         });
                             
-                            // Add close button functionality
-                            const closeButton = errorMenu.querySelector('.close-button');
-                            closeButton.addEventListener('click', () => {
-                                errorMenu.remove();
-                                state.actionMenuVisible = false;
-                            });
-                            
-                            // Replace the loading menu with the error menu
-                            const loadingMenu = document.getElementById('action-menu');
-                            if (loadingMenu) {
-                                loadingMenu.remove();
-                            }
-                            document.body.appendChild(errorMenu);
                         });
                 } else {
                     infoHtml += `<p><em>Island not yet generated</em></p>`;

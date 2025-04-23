@@ -480,6 +480,7 @@ body::before {
   color: white;
   padding: 20px;
   box-sizing: border-box;
+  overflow-y: auto; /* Add this to allow scrolling if content is too tall */
 }
 
 .welcome-title {
@@ -677,6 +678,7 @@ body::before {
   max-width: 90%;
   width: 800px;
   text-align: center;
+  margin: 0 auto; /* Add this to center horizontally */
 }
 
 /* Tribe Image Styling */
@@ -688,6 +690,7 @@ body::before {
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
   display: flex;
   justify-content: center;
+  align-self: center; /* Add this to ensure it's centered */
 }
 
 .tribe-image {

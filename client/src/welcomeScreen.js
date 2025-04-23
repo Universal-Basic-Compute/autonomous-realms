@@ -276,9 +276,12 @@ function createLanguageInitScreen(colonyName) {
     introContainer.id = 'tribe-intro-screen';
     introContainer.className = 'fullscreen-overlay';
     
-    // Create a centered content wrapper
+    // Create a centered content wrapper with proper styling
     const contentWrapper = document.createElement('div');
     contentWrapper.className = 'centered-content';
+    contentWrapper.style.width = '800px'; // Ensure consistent width
+    contentWrapper.style.maxWidth = '90%'; // Responsive constraint
+    contentWrapper.style.margin = '0 auto'; // Center horizontally
     introContainer.appendChild(contentWrapper);
     
     // Add title

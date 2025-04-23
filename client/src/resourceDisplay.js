@@ -137,9 +137,12 @@ class ResourceDisplay {
         resourceItem.className = 'resource-item';
         resourceItem.innerHTML = `
           <span class="resource-icon">${resource.icon}</span>
-          <span class="resource-name">${resource.name}</span>
+          <span class="resource-name" title="${resource.name}">${resource.name}</span>
           <span class="resource-quantity">${resource.quantity}</span>
         `;
+        
+        // Add tooltip to show full name on hover
+        resourceItem.querySelector('.resource-name').title = resource.name;
         
         resourceList.appendChild(resourceItem);
       }

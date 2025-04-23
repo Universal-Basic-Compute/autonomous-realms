@@ -868,80 +868,54 @@ body::before {
     width: 80%;
 }
 
-/* Circular Menu */
-.circular-menu {
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 200;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Fixed Circular Menu */
-.circular-menu.fixed-menu {
+/* Edge Menu (replacing Circular Menu) */
+.edge-menu {
     position: fixed;
-    z-index: 300; /* Ensure it's above other elements */
-    transform: none !important; /* Override any transform */
-    left: 120px;
-    top: 120px;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    border-radius: 50%;
-    width: 200px;
-    height: 200px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    pointer-events: auto; /* Ensure it can be clicked */
+    z-index: 300;
+    left: 20px;
+    top: 100px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: auto;
 }
 
-/* Adjust menu items for fixed menu */
-.fixed-menu .menu-button {
-    transition: all 0.2s ease;
-}
-
-.fixed-menu .menu-button:hover {
-    transform: scale(1.1);
-    background-color: #4CAF50;
-    color: white;
-}
-
-.menu-item {
-    position: absolute;
-    transform-origin: center;
+.edge-menu .menu-item {
+    position: relative;
+    transform-origin: left center;
     transition: all 0.3s ease;
 }
 
-.menu-button {
+.edge-menu .menu-button {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
+    width: 160px;
+    height: 40px;
+    border-radius: 8px;
     background-color: rgba(255, 255, 255, 0.9);
     border: 2px solid #4CAF50;
     cursor: pointer;
     transition: all 0.2s;
-    padding: 0;
+    padding: 0 10px;
 }
 
-.menu-button:hover {
-    transform: scale(1.1);
+.edge-menu .menu-button:hover {
+    transform: scale(1.05);
     background-color: #4CAF50;
     color: white;
 }
 
-.menu-icon {
-    font-size: 24px;
-    margin-bottom: 2px;
+.edge-menu .menu-icon {
+    font-size: 20px;
+    margin-right: 10px;
 }
 
-.menu-label {
-    font-size: 10px;
+.edge-menu .menu-label {
+    font-size: 14px;
     font-weight: bold;
 }
 

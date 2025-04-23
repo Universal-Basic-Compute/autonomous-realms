@@ -353,10 +353,10 @@ function showCircularMenu() {
         existingMenu.remove();
     }
     
-    // Create circular menu container
+    // Create menu container
     const circularMenu = document.createElement('div');
     circularMenu.id = 'circular-menu';
-    circularMenu.className = 'circular-menu fixed-menu'; // Add a new class for fixed positioning
+    circularMenu.className = 'edge-menu'; // Change class from circular-menu fixed-menu to edge-menu
     
     // Add menu items
     const menuItems = [
@@ -367,20 +367,11 @@ function showCircularMenu() {
         { icon: '🔍', label: 'Explore', action: () => console.log('Explore clicked') }
     ];
     
-    // Calculate positions in a circle
-    const totalItems = menuItems.length;
-    const radius = 80; // Distance from center
-    
+    // Create menu items in a vertical list instead of a circle
     menuItems.forEach((item, index) => {
-        // Calculate position in the circle
-        const angle = (index / totalItems) * 2 * Math.PI; // Angle in radians
-        const x = radius * Math.cos(angle);
-        const y = radius * Math.sin(angle);
-        
         // Create menu item
         const menuItem = document.createElement('div');
         menuItem.className = 'menu-item';
-        menuItem.style.transform = `translate(${x}px, ${y}px)`;
         
         // Create button with icon and label
         const button = document.createElement('button');
@@ -395,10 +386,9 @@ function showCircularMenu() {
     // Add to document body
     document.body.appendChild(circularMenu);
     
-    // Position the menu in the top left corner
-    circularMenu.style.left = '120px';  // Give some margin from the left edge
-    circularMenu.style.top = '120px';   // Give some margin from the top edge
-    circularMenu.style.transform = 'none'; // Remove any transform that would center it
+    // Position the menu at the left edge of the screen
+    circularMenu.style.left = '20px';
+    circularMenu.style.top = '100px';
 }
 
 // Show language development menu
@@ -504,14 +494,14 @@ function showLanguageMenu() {
   // Add to document body
   document.body.appendChild(languageMenu);
   
-  // Position the menu near the circular menu
-  const circularMenu = document.getElementById('circular-menu');
-  if (circularMenu) {
-    const circularMenuRect = circularMenu.getBoundingClientRect();
-    languageMenu.style.left = `${circularMenuRect.right + 20}px`;
-    languageMenu.style.top = `${circularMenuRect.top}px`;
+  // Position the menu next to the edge menu
+  const edgeMenu = document.getElementById('circular-menu');
+  if (edgeMenu) {
+    const edgeMenuRect = edgeMenu.getBoundingClientRect();
+    languageMenu.style.left = `${edgeMenuRect.right + 20}px`;
+    languageMenu.style.top = `${edgeMenuRect.top}px`;
   } else {
-    // Default to center of screen if circular menu is not found
+    // Default to center of screen if edge menu is not found
     languageMenu.style.left = '50%';
     languageMenu.style.top = '50%';
     languageMenu.style.transform = 'translate(-50%, -50%)';
@@ -1062,9 +1052,9 @@ function setupEventListeners() {
             hideContextMenu();
         }
         
-        // Don't hide circular menu since it's now always visible
+        // Don't hide edge menu since it should always be visible
         // Only hide submenus when clicking outside
-        if (!e.target.closest('.submenu')) {
+        if (!e.target.closest('.submenu') && !e.target.closest('.edge-menu')) {
             const languageMenu = document.getElementById('language-menu');
             if (languageMenu) {
                 languageMenu.remove();
@@ -1164,14 +1154,8 @@ function setupEventListeners() {
 function startDrag(e) {
     // Don't start dragging if we clicked on a button or control
     if (e.target.closest('#controls') || e.target.closest('#info-panel') || 
-        e.target.closest('.circular-menu') || e.target.closest('.submenu')) {
+        e.target.closest('.edge-menu') || e.target.closest('.submenu')) {
         return;
-    }
-    
-    // Hide circular menu when dragging starts
-    const circularMenu = document.getElementById('circular-menu');
-    if (circularMenu) {
-        circularMenu.remove();
     }
     
     // Hide any submenus
@@ -1228,14 +1212,8 @@ function endDrag() {
 function handleTouchStart(e) {
     // Don't start dragging if we touched a button or control
     if (e.target.closest('#controls') || e.target.closest('#info-panel') || 
-        e.target.closest('.circular-menu') || e.target.closest('.submenu')) {
+        e.target.closest('.edge-menu') || e.target.closest('.submenu')) {
         return;
-    }
-    
-    // Hide circular menu when dragging starts
-    const circularMenu = document.getElementById('circular-menu');
-    if (circularMenu) {
-        circularMenu.remove();
     }
     
     // Hide any submenus

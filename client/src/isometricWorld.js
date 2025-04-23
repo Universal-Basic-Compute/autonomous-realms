@@ -368,7 +368,7 @@ function showCircularMenu() {
     // Create menu container
     const circularMenu = document.createElement('div');
     circularMenu.id = 'circular-menu';
-    circularMenu.className = 'edge-menu'; // Change class from circular-menu fixed-menu to edge-menu
+    circularMenu.className = 'edge-menu'; // Using edge-menu class
     
     // Add menu items
     const menuItems = [
@@ -379,19 +379,27 @@ function showCircularMenu() {
         { icon: '🔍', label: 'Explore', action: () => console.log('Explore clicked') }
     ];
     
-    // Create menu items in a vertical list instead of a circle
-    menuItems.forEach((item, index) => {
+    // Create menu items with icons only and tooltips
+    menuItems.forEach((item) => {
         // Create menu item
         const menuItem = document.createElement('div');
         menuItem.className = 'menu-item';
         
-        // Create button with icon and label
+        // Create button with icon only
         const button = document.createElement('button');
         button.className = 'menu-button';
-        button.innerHTML = `<span class="menu-icon">${item.icon}</span><span class="menu-label">${item.label}</span>`;
+        button.innerHTML = `<span class="menu-icon">${item.icon}</span>`;
+        button.title = item.label; // Add native tooltip as fallback
         button.addEventListener('click', item.action);
         
+        // Create tooltip label
+        const tooltip = document.createElement('span');
+        tooltip.className = 'menu-label';
+        tooltip.textContent = item.label;
+        
+        // Add button and tooltip to menu item
         menuItem.appendChild(button);
+        menuItem.appendChild(tooltip);
         circularMenu.appendChild(menuItem);
     });
     

@@ -1450,6 +1450,21 @@ Make sure the progress values increase appropriately and new nextSteps are provi
       if (menuContent) {
         menuContent.innerHTML = '';
         displayCultureDetails(menuContent, updatedCultureData);
+        
+        // After refreshing the culture menu, find and click the developed category
+        // This will automatically open the details for the category that was just developed
+        setTimeout(() => {
+          const categoryCard = menuContent.querySelector(`.culture-category-card[data-category="${categoryKey}"]`);
+          if (categoryCard) {
+            categoryCard.click();
+            
+            // Scroll to the development section to ensure it's visible
+            const developmentSection = menuContent.querySelector('.culture-development-section');
+            if (developmentSection) {
+              developmentSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
+        }, 100); // Small delay to ensure the DOM is updated
       }
     }
     

@@ -1951,6 +1951,7 @@ body::before {
   flex: 1;
   overflow-y: auto;
   padding-right: 10px;
+  max-height: 100%; /* Ensure it doesn't exceed container height */
 }
 
 .crafting-category {
@@ -2013,11 +2014,11 @@ body::before {
 .resource-name {
   flex-grow: 1;
   color: #e0e0e0;
-  font-size: 11px;
+  font-size: 10px; /* Reduced from 11px to 10px */
   overflow: hidden;
   margin-right: 5px;
   white-space: normal; /* Keep normal to allow wrapping */
-  line-height: 1.2;
+  line-height: 1.1; /* Slightly reduced line height */
   /* Removed max-height, -webkit-line-clamp, display and -webkit-box-orient properties
      to allow text to wrap to as many lines as needed */
 }

@@ -692,12 +692,12 @@ body::before {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  width: 300px;
+  width: 250px; /* Reduced from 300px */
 }
 
 .welcome-button {
-  padding: 15px 20px;
-  font-size: 18px;
+  padding: 12px 15px; /* Reduced from 15px 20px */
+  font-size: 16px; /* Reduced from 18px */
   background-color: rgba(76, 175, 80, 0.8);
   border: 2px solid rgba(76, 175, 80, 1);
   color: white;

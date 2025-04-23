@@ -363,6 +363,34 @@ body::before {
     opacity: 0;
 }
 
+/* Dialogue notification for colony language conversations */
+.dialogue-notification {
+  position: fixed;
+  bottom: 150px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(20, 25, 30, 0.9);
+  color: #e0e0e0;
+  padding: 12px 20px;
+  border-radius: 12px;
+  z-index: 201;
+  max-width: 80%;
+  text-align: center;
+  font-style: italic;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  transition: opacity 1s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.5s;
+  line-height: 1.6;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+}
+
+.dialogue-notification.fade-out {
+  opacity: 0;
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateX(-50%) translateY(10px); }
     to { opacity: 1; transform: translateX(-50%) translateY(0); }

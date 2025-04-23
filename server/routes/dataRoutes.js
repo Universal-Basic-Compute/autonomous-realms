@@ -541,6 +541,148 @@ router.get('/actions/ai/:terrainCode/narration', async (req, res) => {
   }
 });
 
+// Generate a conversation in the colony's language for a tile
+async function generateTileConversation(tileX, tileY, terrainCode, terrainDescription) {
+  try {
+    // Show a subtle loading indicator
+    const loadingIndicator = document.createElement('div');
+    loadingIndicator.className = 'notification';
+    loadingIndicator.textContent = 'Settlers are discussing this area...';
+    document.body.appendChild(loadingIndicator);
+    
+    // Get the colony name and kin name from localStorage
+    const colonyName = localStorage.getItem('colonyName') || 'Your Colony';
+    const kinName = localStorage.getItem('kinName') || 'defaultcolony';
+    
+    // Prepare the message for KinOS
+    const messageContent = `
+Generate a short conversation (2-3 sentences total) between settlers exploring this terrain:
+Terrain type: ${terrainCode}
+Description: ${terrainDescription}
+
+IMPORTANT REQUIREMENTS:
+1. Write ONLY in the colony's constructed language (no translations)
+2. Format as simple dialogue with one line per speaker (2-3 speakers total)
+3. Each line should be short (5-10 words maximum)
+4. The conversation should relate to exploring or reacting to this specific terrain
+5. Do NOT include any explanations, translations, or notes - ONLY the dialogue lines
+
+Example format:
+Speaker 1: "Kafa mero santi loma!"
+Speaker 2: "Eh, vero nata suni."
+Speaker 3: "Mika tala fero noss."
+
+Return ONLY the dialogue lines, nothing else.
+`;
+
+    // Make request to KinOS
+    const response = await fetch(`${config.serverUrl}/api/kinos/kins/${kinName}/messages`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        content: messageContent,
+        model: "claude-3-7-sonnet-latest",
+        history_length: 25,
+        mode: "tile_conversation",
+        addSystem: "You are a linguistic anthropologist creating authentic dialogue in a constructed language. Generate only the requested dialogue lines in the constructed language with no translations or explanations. The language should be consistent with previous examples and have its own phonology and grammar patterns."
+      })
+    });
+    
+    if (!response.ok) {
+      throw new Error(`KinOS API request failed with status ${response.status}: ${response.statusText}`);
+    }
+    
+    const responseData = await response.json();
+    
+    // Extract the conversation lines
+    const conversationText = responseData.response || responseData.content;
+    
+    // Remove the loading indicator
+    loadingIndicator.remove();
+    
+    // Split into individual lines
+    const lines = conversationText.split('\n').filter(line => line.trim() !== '');
+    
+    // Play each line with a different voice
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      
+      // Skip any non-dialogue lines (instructions, etc.)
+      if (!line.includes(':')) continue;
+      
+      // Extract just the dialogue part (after the colon)
+      const dialogueParts = line.split(':');
+      if (dialogueParts.length < 2) continue;
+      
+      const dialogue = dialogueParts[1].trim();
+      
+      // Generate TTS for this line with a specific voice ID based on the line index
+      // We'll use a different voice for each speaker
+      const voiceIds = [
+        "IKne3meq5aSn9XLyUdCD", // Voice 1
+        "pNInz6obpgDQGcFmaJgB", // Voice 2
+        "XB0fDUnXU5powFXDhCwa"  // Voice 3
+      ];
+      
+      const voiceId = voiceIds[i % voiceIds.length];
+      
+      try {
+        const ttsResponse = await fetch(`${config.serverUrl}/api/data/actions/ai/tts`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            text: dialogue,
+            voice_id: voiceId
+          })
+        });
+        
+        if (ttsResponse.ok) {
+          const ttsData = await ttsResponse.json();
+          
+          // Play the audio
+          if (ttsData.audio_url) {
+            const fullAudioUrl = ttsData.audio_url.startsWith('/') 
+              ? `${config.serverUrl}${ttsData.audio_url}` 
+              : ttsData.audio_url;
+            
+            // Create a notification with the text
+            const dialogueNotification = document.createElement('div');
+            dialogueNotification.className = 'dialogue-notification';
+            dialogueNotification.textContent = dialogue;
+            document.body.appendChild(dialogueNotification);
+            
+            // Play the audio
+            const audio = new Audio(fullAudioUrl);
+            
+            // Remove notification when audio ends
+            audio.onended = () => {
+              dialogueNotification.classList.add('fade-out');
+              setTimeout(() => dialogueNotification.remove(), 1000);
+            };
+            
+            // Wait for previous audio to finish before playing the next one
+            await audio.play();
+            
+            // Add a small delay between lines
+            await new Promise(resolve => setTimeout(resolve, 500));
+          }
+        }
+      } catch (ttsError) {
+        console.error('Error generating TTS for dialogue line:', ttsError);
+      }
+    }
+    
+    return lines;
+  } catch (error) {
+    console.error('Error generating tile conversation:', error);
+    return null;
+  }
+}
+
 // Add this function to generate narration using KinOS analysis
 async function generateAINarrationForTerrain(terrainCode) {
   try {

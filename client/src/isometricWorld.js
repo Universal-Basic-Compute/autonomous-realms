@@ -3245,6 +3245,9 @@ function selectTile(tile) {
           <p><strong>Terrain Code:</strong> ${data.terrainCode}</p>
         `;
         
+        // Generate a conversation in the colony's language
+        generateTileConversation(tileX, tileY, data.terrainCode, data.description);
+        
         // Fetch and display available actions based on terrain code
         fetchAvailableActions(data.terrainCode)
           .then(actions => {

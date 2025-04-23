@@ -24,7 +24,9 @@ const state = {
     lastOffsetY: 0,
     loadedTiles: new Map(), // Map to track loaded tiles
     selectedTile: null,
-    isLoading: false
+    isLoading: false,
+    availableActions: [], // Store available actions for selected tile
+    actionMenuVisible: false // Track if action menu is visible
 };
 
 // DOM Elements
@@ -44,6 +46,114 @@ function initWorld() {
     
     // Load initial tiles
     loadVisibleTiles();
+}
+
+// Fetch available actions for a terrain type
+async function fetchAvailableActions(terrainCode) {
+    if (!terrainCode) return [];
+    
+    try {
+        // Extract the base terrain code (before any | character)
+        const baseTerrainCode = terrainCode.split('|')[0];
+        
+        // Fetch actions for this terrain type
+        const response = await fetch(`${config.serverUrl}/api/data/actions/${baseTerrainCode}`);
+        
+        if (!response.ok) {
+            console.error(`Failed to fetch actions for terrain ${baseTerrainCode}`);
+            return [];
+        }
+        
+        const actions = await response.json();
+        return actions;
+    } catch (error) {
+        console.error('Error fetching available actions:', error);
+        return [];
+    }
+}
+
+// Display the action menu
+function showActionMenu(actions) {
+    // Clear any existing action menu
+    const existingMenu = document.getElementById('action-menu');
+    if (existingMenu) {
+        existingMenu.remove();
+    }
+    
+    // Create action menu container
+    const actionMenu = document.createElement('div');
+    actionMenu.id = 'action-menu';
+    actionMenu.className = 'action-menu';
+    
+    // Add title
+    const menuTitle = document.createElement('h3');
+    menuTitle.textContent = 'Available Actions';
+    actionMenu.appendChild(menuTitle);
+    
+    // Create action list
+    const actionList = document.createElement('ul');
+    
+    if (actions.length === 0) {
+        const noActions = document.createElement('li');
+        noActions.textContent = 'No actions available for this terrain';
+        noActions.className = 'no-actions';
+        actionList.appendChild(noActions);
+    } else {
+        // Add each action as a button
+        actions.forEach(action => {
+            const actionItem = document.createElement('li');
+            
+            const actionButton = document.createElement('button');
+            actionButton.className = 'action-button';
+            actionButton.dataset.actionCode = action.code;
+            actionButton.textContent = action.name;
+            
+            // Add click handler for the action
+            actionButton.addEventListener('click', () => {
+                performAction(action);
+            });
+            
+            // Add tooltip with description
+            actionButton.title = action.description;
+            
+            actionItem.appendChild(actionButton);
+            actionList.appendChild(actionItem);
+        });
+    }
+    
+    actionMenu.appendChild(actionList);
+    
+    // Add close button
+    const closeButton = document.createElement('button');
+    closeButton.textContent = 'Close';
+    closeButton.className = 'close-button';
+    closeButton.addEventListener('click', () => {
+        actionMenu.remove();
+        state.actionMenuVisible = false;
+    });
+    actionMenu.appendChild(closeButton);
+    
+    // Add to document
+    document.body.appendChild(actionMenu);
+    state.actionMenuVisible = true;
+}
+
+// Handle performing an action
+function performAction(action) {
+    console.log(`Performing action: ${action.name} (${action.code})`);
+    // In a full implementation, this would communicate with the server
+    // to actually perform the action and update the game state
+    
+    // For now, just show a notification
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.textContent = `Performed: ${action.name}`;
+    document.body.appendChild(notification);
+    
+    // Remove notification after a delay
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
 }
 
 // Set up event listeners
@@ -371,6 +481,13 @@ function loadTile(regionX, regionY, x, y) {
                         <p><strong>Description:</strong> ${data.description}</p>
                         <p><strong>Terrain Code:</strong> ${data.terrainCode}</p>
                     `;
+                    
+                    // Fetch and display available actions based on terrain code
+                    fetchAvailableActions(data.terrainCode)
+                        .then(actions => {
+                            state.availableActions = actions;
+                            showActionMenu(actions);
+                        });
                 } else {
                     infoHtml += `<p><em>Island not yet generated</em></p>`;
                 }

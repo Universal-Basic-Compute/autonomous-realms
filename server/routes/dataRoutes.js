@@ -81,7 +81,9 @@ router.get('/actions/:terrainType', (req, res) => {
     }
     
     if (!terrainActions) {
-      return res.status(404).json({ error: `Actions for terrain type '${terrainType}' not found` });
+      // If no specific actions found, return an empty array instead of 404
+      // This allows for terrain types that don't have specific actions
+      return res.json([]);
     }
     
     res.json(terrainActions);

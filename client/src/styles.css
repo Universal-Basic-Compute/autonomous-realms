@@ -2286,6 +2286,141 @@ body::before {
   font-size: 14px;
 }
 
+/* Technology Menu Styles */
+.technology-overview {
+  padding: 10px;
+}
+
+.technology-section {
+  margin-bottom: 25px;
+}
+
+.technology-section-title {
+  color: #4CAF50;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.technology-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.technology-card {
+  background: linear-gradient(to bottom, #2a3038, #1a1e22);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 15px;
+  transition: all 0.3s;
+}
+
+.technology-card.researched {
+  border-color: rgba(76, 175, 80, 0.3);
+  background: linear-gradient(to bottom, rgba(76, 175, 80, 0.1), rgba(30, 35, 40, 0.9));
+}
+
+.technology-card.available {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.technology-card.locked {
+  border-color: rgba(255, 255, 255, 0.1);
+  opacity: 0.7;
+}
+
+.technology-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.technology-card.available:hover {
+  border-color: rgba(76, 175, 80, 0.5);
+}
+
+.technology-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.technology-icon {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.technology-name {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #e0e0e0;
+}
+
+.technology-description {
+  font-size: 14px;
+  color: #aaa;
+  margin-bottom: 12px;
+}
+
+.technology-cost, .technology-benefits, .technology-prerequisites {
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.research-button {
+  width: 100%;
+  padding: 8px 0;
+  margin-top: 10px;
+  background: linear-gradient(to bottom, #4CAF50, #3d8b40);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.research-button:hover {
+  background: linear-gradient(to bottom, #5cb860, #4CAF50);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Research Result Dialog Styles */
+.research-narrative {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-style: italic;
+  border-left: 3px solid #4CAF50;
+}
+
+.research-details {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.research-detail {
+  margin-bottom: 12px;
+}
+
+.research-detail:last-child {
+  margin-bottom: 0;
+}
+
+.research-detail ul {
+  margin: 8px 0 0 20px;
+}
+
+.research-detail li {
+  margin-bottom: 5px;
+}
+
 /* Improved culture categories grid */
 .culture-overview {
   background: linear-gradient(to bottom, #2a3038, #1a1e22);

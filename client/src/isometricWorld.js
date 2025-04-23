@@ -438,7 +438,7 @@ function showCircularMenu() {
         { icon: '🏛️', label: 'Culture', action: showCultureMenu },
         { icon: '🛠️', label: 'Crafting', action: showCraftingMenu },
         { icon: '🏠', label: 'Building', action: () => console.log('Building clicked') },
-        { icon: '🔍', label: 'Explore', action: () => console.log('Explore clicked') }
+        { icon: '🔬', label: 'Technology', action: showTechnologyMenu }
     ];
     
     // Create menu items with icons only and tooltips
@@ -482,6 +482,655 @@ function showCraftingMenu() {
     }).catch(error => {
         console.error('Error loading crafting view:', error);
     });
+}
+
+// Show technology research menu
+function showTechnologyMenu() {
+  // Remove any existing technology menu
+  const existingMenu = document.getElementById('technology-menu');
+  if (existingMenu) {
+    existingMenu.remove();
+  }
+  
+  // Create technology menu container
+  const technologyMenu = document.createElement('div');
+  technologyMenu.id = 'technology-menu';
+  technologyMenu.className = 'submenu';
+  
+  // Add header with close button
+  const menuHeader = document.createElement('div');
+  menuHeader.className = 'submenu-header';
+  
+  const menuTitle = document.createElement('h3');
+  menuTitle.textContent = 'Technology Research';
+  
+  const closeButton = document.createElement('button');
+  closeButton.className = 'close-submenu';
+  closeButton.innerHTML = '&times;';
+  closeButton.addEventListener('click', () => {
+    technologyMenu.remove();
+  });
+  
+  menuHeader.appendChild(menuTitle);
+  menuHeader.appendChild(closeButton);
+  technologyMenu.appendChild(menuHeader);
+  
+  // Add content
+  const menuContent = document.createElement('div');
+  menuContent.className = 'submenu-content';
+  
+  // Add loading indicator
+  const loadingElement = document.createElement('div');
+  loadingElement.className = 'loading-language';
+  loadingElement.textContent = 'Retrieving technology information...';
+  menuContent.appendChild(loadingElement);
+  
+  technologyMenu.appendChild(menuContent);
+  
+  // Add to document body
+  document.body.appendChild(technologyMenu);
+  
+  // Fetch technology data
+  fetchTechnologyData(menuContent, loadingElement);
+}
+
+// Function to fetch technology data from KinOS
+async function fetchTechnologyData(menuContent, loadingElement) {
+  try {
+    // Get the colony name and kin name from localStorage
+    const colonyName = localStorage.getItem('colonyName') || 'Your Colony';
+    const kinName = localStorage.getItem('kinName') || 'defaultcolony';
+    
+    // Get the current user ID
+    const userId = getCurrentUserId();
+    
+    console.log('Fetching technology data for', colonyName);
+    
+    // Prepare the message for KinOS
+    const messageContent = `
+Please provide a detailed analysis of the current technology development for the tribe "${colonyName}".
+
+Return your response as a JSON object with these properties:
+- "researched": An array of technologies that have already been researched
+- "available": An array of technologies that are currently available to research
+- "locked": An array of technologies that are locked (prerequisites not met)
+
+Each technology object should have:
+- "id": A unique identifier for the technology
+- "name": The name of the technology
+- "description": A brief description of what the technology does
+- "icon": An emoji representing the technology
+- "cost": The research cost in resources
+- "benefits": Array of benefits gained from this technology
+- "prerequisites": Array of technology IDs required before this can be researched (empty for available technologies)
+
+Example format:
+{
+  "researched": [
+    {
+      "id": "tech_fire",
+      "name": "Fire Making",
+      "description": "The ability to create and control fire",
+      "icon": "🔥",
+      "benefits": ["Cooking food", "Warmth", "Protection from predators"]
+    }
+  ],
+  "available": [
+    {
+      "id": "tech_stone_tools",
+      "name": "Stone Tools",
+      "description": "Creating tools from shaped stones",
+      "icon": "🪨",
+      "cost": "50 Stone, 20 Wood",
+      "benefits": ["Improved hunting", "Better resource gathering"],
+      "prerequisites": []
+    }
+  ],
+  "locked": [
+    {
+      "id": "tech_pottery",
+      "name": "Pottery",
+      "description": "Creating vessels from clay",
+      "icon": "🏺",
+      "cost": "30 Clay, 40 Wood",
+      "benefits": ["Food storage", "Water storage"],
+      "prerequisites": ["tech_fire"]
+    }
+  ]
+}
+`;
+
+    // Make request to KinOS
+    const response = await fetch(`http://localhost:3000/api/kinos/kins/${kinName}/messages`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'User-ID': userId || ''
+      },
+      body: JSON.stringify({
+        content: messageContent,
+        model: "claude-3-7-sonnet-latest",
+        history_length: 25,
+        mode: "technology_analysis",
+        addSystem: "You are a technological anthropologist analyzing the development of a tribe's technology. Provide a detailed, structured analysis of their current technological state in JSON format as requested. Make sure your response is valid JSON that can be parsed directly."
+      })
+    });
+    
+    if (!response.ok) {
+      throw new Error(`KinOS API request failed with status ${response.status}: ${response.statusText}`);
+    }
+    
+    const responseData = await response.json();
+    
+    // Try to extract JSON from the response
+    let techData = null;
+    
+    // Check for the content in either response or content field
+    const responseContent = responseData.response || responseData.content;
+    
+    // Try to find JSON in the response
+    try {
+      // Look for JSON object pattern
+      const jsonMatch = responseContent.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        techData = JSON.parse(jsonMatch[0]);
+      } else {
+        throw new Error('No JSON object found in response');
+      }
+    } catch (parseError) {
+      console.error('Error parsing technology data JSON:', parseError);
+      
+      // Create a basic fallback object
+      techData = {
+        researched: [
+          {
+            id: "tech_fire",
+            name: "Fire Making",
+            description: "The ability to create and control fire",
+            icon: "🔥",
+            benefits: ["Cooking food", "Warmth", "Protection from predators"]
+          }
+        ],
+        available: [
+          {
+            id: "tech_stone_tools",
+            name: "Stone Tools",
+            description: "Creating tools from shaped stones",
+            icon: "🪨",
+            cost: "50 Stone, 20 Wood",
+            benefits: ["Improved hunting", "Better resource gathering"],
+            prerequisites: []
+          },
+          {
+            id: "tech_shelter",
+            name: "Basic Shelter",
+            description: "Constructing simple protective structures",
+            icon: "🏠",
+            cost: "100 Wood, 30 Stone",
+            benefits: ["Protection from elements", "Improved rest"],
+            prerequisites: []
+          }
+        ],
+        locked: [
+          {
+            id: "tech_pottery",
+            name: "Pottery",
+            description: "Creating vessels from clay",
+            icon: "🏺",
+            cost: "30 Clay, 40 Wood",
+            benefits: ["Food storage", "Water storage"],
+            prerequisites: ["tech_fire"]
+          }
+        ]
+      };
+    }
+    
+    // Store in localStorage for persistence
+    localStorage.setItem('technologyData', JSON.stringify(techData));
+    console.log('Technology data cached successfully');
+    
+    // Remove loading indicator
+    loadingElement.remove();
+    
+    // Display the technology data
+    displayTechnologyData(menuContent, techData);
+    
+    return techData;
+  } catch (error) {
+    console.error('Error fetching technology data:', error);
+    
+    // Remove loading indicator and show error
+    loadingElement.remove();
+    
+    const errorElement = document.createElement('div');
+    errorElement.className = 'evolution-error';
+    errorElement.textContent = `Error: ${error.message}`;
+    menuContent.appendChild(errorElement);
+    
+    return null;
+  }
+}
+
+// Function to display technology data
+function displayTechnologyData(menuContent, techData) {
+  // Create technology overview container
+  const overviewContainer = document.createElement('div');
+  overviewContainer.className = 'technology-overview';
+  
+  // Add researched technologies section
+  if (techData.researched && techData.researched.length > 0) {
+    const researchedSection = document.createElement('div');
+    researchedSection.className = 'technology-section';
+    
+    const researchedTitle = document.createElement('h4');
+    researchedTitle.textContent = 'Researched Technologies';
+    researchedTitle.className = 'technology-section-title';
+    researchedSection.appendChild(researchedTitle);
+    
+    const researchedGrid = document.createElement('div');
+    researchedGrid.className = 'technology-grid';
+    
+    techData.researched.forEach(tech => {
+      const techCard = createTechnologyCard(tech, 'researched');
+      researchedGrid.appendChild(techCard);
+    });
+    
+    researchedSection.appendChild(researchedGrid);
+    overviewContainer.appendChild(researchedSection);
+  }
+  
+  // Add available technologies section
+  if (techData.available && techData.available.length > 0) {
+    const availableSection = document.createElement('div');
+    availableSection.className = 'technology-section';
+    
+    const availableTitle = document.createElement('h4');
+    availableTitle.textContent = 'Available Technologies';
+    availableTitle.className = 'technology-section-title';
+    availableSection.appendChild(availableTitle);
+    
+    const availableGrid = document.createElement('div');
+    availableGrid.className = 'technology-grid';
+    
+    techData.available.forEach(tech => {
+      const techCard = createTechnologyCard(tech, 'available');
+      availableGrid.appendChild(techCard);
+    });
+    
+    availableSection.appendChild(availableGrid);
+    overviewContainer.appendChild(availableSection);
+  }
+  
+  // Add locked technologies section
+  if (techData.locked && techData.locked.length > 0) {
+    const lockedSection = document.createElement('div');
+    lockedSection.className = 'technology-section';
+    
+    const lockedTitle = document.createElement('h4');
+    lockedTitle.textContent = 'Locked Technologies';
+    lockedTitle.className = 'technology-section-title';
+    lockedSection.appendChild(lockedTitle);
+    
+    const lockedGrid = document.createElement('div');
+    lockedGrid.className = 'technology-grid';
+    
+    techData.locked.forEach(tech => {
+      const techCard = createTechnologyCard(tech, 'locked');
+      lockedGrid.appendChild(techCard);
+    });
+    
+    lockedSection.appendChild(lockedGrid);
+    overviewContainer.appendChild(lockedSection);
+  }
+  
+  menuContent.appendChild(overviewContainer);
+}
+
+// Function to create a technology card
+function createTechnologyCard(tech, status) {
+  const techCard = document.createElement('div');
+  techCard.className = `technology-card ${status}`;
+  techCard.dataset.techId = tech.id;
+  
+  // Add icon and name
+  const header = document.createElement('div');
+  header.className = 'technology-header';
+  
+  const icon = document.createElement('span');
+  icon.className = 'technology-icon';
+  icon.textContent = tech.icon;
+  
+  const name = document.createElement('h5');
+  name.className = 'technology-name';
+  name.textContent = tech.name;
+  
+  header.appendChild(icon);
+  header.appendChild(name);
+  techCard.appendChild(header);
+  
+  // Add description
+  const description = document.createElement('p');
+  description.className = 'technology-description';
+  description.textContent = tech.description;
+  techCard.appendChild(description);
+  
+  // Add cost for available and locked technologies
+  if (status !== 'researched' && tech.cost) {
+    const cost = document.createElement('div');
+    cost.className = 'technology-cost';
+    cost.innerHTML = `<strong>Cost:</strong> ${tech.cost}`;
+    techCard.appendChild(cost);
+  }
+  
+  // Add benefits
+  if (tech.benefits && tech.benefits.length > 0) {
+    const benefits = document.createElement('div');
+    benefits.className = 'technology-benefits';
+    benefits.innerHTML = `<strong>Benefits:</strong> ${tech.benefits.join(', ')}`;
+    techCard.appendChild(benefits);
+  }
+  
+  // Add prerequisites for locked technologies
+  if (status === 'locked' && tech.prerequisites && tech.prerequisites.length > 0) {
+    const prerequisites = document.createElement('div');
+    prerequisites.className = 'technology-prerequisites';
+    prerequisites.innerHTML = `<strong>Prerequisites:</strong> ${tech.prerequisites.join(', ')}`;
+    techCard.appendChild(prerequisites);
+  }
+  
+  // Add research button for available technologies
+  if (status === 'available') {
+    const researchButton = document.createElement('button');
+    researchButton.className = 'research-button';
+    researchButton.textContent = 'Research';
+    researchButton.addEventListener('click', () => {
+      researchTechnology(tech);
+    });
+    techCard.appendChild(researchButton);
+  }
+  
+  return techCard;
+}
+
+// Function to research a technology
+async function researchTechnology(tech) {
+  try {
+    // Show loading notification
+    const loadingNotification = document.createElement('div');
+    loadingNotification.className = 'notification';
+    loadingNotification.textContent = `Researching ${tech.name}...`;
+    document.body.appendChild(loadingNotification);
+    
+    // Get the colony name and kin name from localStorage
+    const colonyName = localStorage.getItem('colonyName') || 'Your Colony';
+    const kinName = localStorage.getItem('kinName') || 'defaultcolony';
+    
+    // Get the current user ID
+    const userId = getCurrentUserId();
+    
+    // Prepare the message for KinOS
+    const messageContent = `
+The tribe "${colonyName}" is researching the technology: "${tech.name}" (${tech.id}).
+
+Technology details:
+- Description: ${tech.description}
+- Cost: ${tech.cost}
+- Benefits: ${tech.benefits.join(', ')}
+
+Please provide a narrative of how the tribe researches this technology, the challenges they face, and the benefits they gain. Include:
+
+1. The research process and how long it takes
+2. Any unexpected discoveries made during research
+3. How the technology changes daily life for the tribe
+4. Any new opportunities that arise from this technology
+
+Return your response as a JSON object with these properties:
+- "success": boolean indicating if research was successful
+- "narrative": A vivid description of the research process and outcomes
+- "timeRequired": How long the research took (in days)
+- "resourcesConsumed": Resources used during research
+- "benefitsGained": Specific benefits gained
+- "newOpportunities": New possibilities opened up by this technology
+`;
+
+    // Make request to KinOS
+    const response = await fetch(`http://localhost:3000/api/kinos/kins/${kinName}/messages`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'User-ID': userId || ''
+      },
+      body: JSON.stringify({
+        content: messageContent,
+        model: "claude-3-7-sonnet-latest",
+        history_length: 25,
+        mode: "technology_resolution",
+        addSystem: "You are a technological anthropologist describing how a prehistoric tribe researches and develops new technologies. Provide a vivid, historically plausible narrative of the research process and outcomes. Format your response as valid JSON as requested."
+      })
+    });
+    
+    if (!response.ok) {
+      throw new Error(`KinOS API request failed with status ${response.status}: ${response.statusText}`);
+    }
+    
+    const responseData = await response.json();
+    
+    // Try to extract JSON from the response
+    let researchResult = null;
+    
+    // Check for the content in either response or content field
+    const responseContent = responseData.response || responseData.content;
+    
+    // Try to find JSON in the response
+    try {
+      // Look for JSON object pattern
+      const jsonMatch = responseContent.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        researchResult = JSON.parse(jsonMatch[0]);
+      } else {
+        throw new Error('No JSON object found in response');
+      }
+    } catch (parseError) {
+      console.error('Error parsing research result JSON:', parseError);
+      
+      // Create a basic fallback object
+      researchResult = {
+        success: true,
+        narrative: `Your tribe has successfully researched ${tech.name}. This new technology will greatly benefit your people.`,
+        timeRequired: "7 days",
+        resourcesConsumed: tech.cost,
+        benefitsGained: tech.benefits,
+        newOpportunities: ["New advancements are now possible"]
+      };
+    }
+    
+    // Remove loading notification
+    loadingNotification.remove();
+    
+    // Show research result dialog
+    showResearchResultDialog(tech, researchResult);
+    
+    // Update technology data in localStorage
+    updateTechnologyData(tech);
+    
+    return researchResult;
+  } catch (error) {
+    console.error('Error researching technology:', error);
+    
+    // Show error notification
+    const errorNotification = document.createElement('div');
+    errorNotification.className = 'notification error-notification';
+    errorNotification.textContent = `Error researching technology: ${error.message}`;
+    document.body.appendChild(errorNotification);
+    
+    // Remove notification after a delay
+    setTimeout(() => {
+      errorNotification.classList.add('fade-out');
+      setTimeout(() => errorNotification.remove(), 1000);
+    }, 5000);
+    
+    return null;
+  }
+}
+
+// Function to show research result dialog
+function showResearchResultDialog(tech, result) {
+  // Create dialog container
+  const dialogContainer = document.createElement('div');
+  dialogContainer.className = 'dialog';
+  
+  // Create dialog content
+  const dialogContent = document.createElement('div');
+  dialogContent.className = 'dialog-content';
+  
+  // Add title
+  const title = document.createElement('h2');
+  title.textContent = `${tech.icon} ${tech.name} Research`;
+  dialogContent.appendChild(title);
+  
+  // Add narrative
+  const narrative = document.createElement('div');
+  narrative.className = 'research-narrative';
+  narrative.textContent = result.narrative;
+  dialogContent.appendChild(narrative);
+  
+  // Add details section
+  const detailsSection = document.createElement('div');
+  detailsSection.className = 'research-details';
+  
+  // Add time required
+  const timeRequired = document.createElement('div');
+  timeRequired.className = 'research-detail';
+  timeRequired.innerHTML = `<strong>Time Required:</strong> ${result.timeRequired}`;
+  detailsSection.appendChild(timeRequired);
+  
+  // Add resources consumed
+  const resourcesConsumed = document.createElement('div');
+  resourcesConsumed.className = 'research-detail';
+  resourcesConsumed.innerHTML = `<strong>Resources Used:</strong> ${result.resourcesConsumed}`;
+  detailsSection.appendChild(resourcesConsumed);
+  
+  // Add benefits gained
+  if (result.benefitsGained && result.benefitsGained.length > 0) {
+    const benefitsGained = document.createElement('div');
+    benefitsGained.className = 'research-detail';
+    benefitsGained.innerHTML = `<strong>Benefits Gained:</strong>`;
+    
+    const benefitsList = document.createElement('ul');
+    result.benefitsGained.forEach(benefit => {
+      const benefitItem = document.createElement('li');
+      benefitItem.textContent = benefit;
+      benefitsList.appendChild(benefitItem);
+    });
+    
+    benefitsGained.appendChild(benefitsList);
+    detailsSection.appendChild(benefitsGained);
+  }
+  
+  // Add new opportunities
+  if (result.newOpportunities && result.newOpportunities.length > 0) {
+    const newOpportunities = document.createElement('div');
+    newOpportunities.className = 'research-detail';
+    newOpportunities.innerHTML = `<strong>New Opportunities:</strong>`;
+    
+    const opportunitiesList = document.createElement('ul');
+    result.newOpportunities.forEach(opportunity => {
+      const opportunityItem = document.createElement('li');
+      opportunityItem.textContent = opportunity;
+      opportunitiesList.appendChild(opportunityItem);
+    });
+    
+    newOpportunities.appendChild(opportunitiesList);
+    detailsSection.appendChild(newOpportunities);
+  }
+  
+  dialogContent.appendChild(detailsSection);
+  
+  // Add close button
+  const closeButton = document.createElement('button');
+  closeButton.textContent = 'Close';
+  closeButton.className = 'close-button';
+  closeButton.addEventListener('click', () => {
+    dialogContainer.remove();
+    
+    // Refresh the technology menu
+    const technologyMenu = document.getElementById('technology-menu');
+    if (technologyMenu) {
+      const menuContent = technologyMenu.querySelector('.submenu-content');
+      if (menuContent) {
+        menuContent.innerHTML = '';
+        
+        // Get updated technology data from localStorage
+        const techDataJSON = localStorage.getItem('technologyData');
+        if (techDataJSON) {
+          try {
+            const techData = JSON.parse(techDataJSON);
+            displayTechnologyData(menuContent, techData);
+          } catch (error) {
+            console.error('Error parsing technology data:', error);
+            
+            // Show error
+            const errorElement = document.createElement('div');
+            errorElement.className = 'evolution-error';
+            errorElement.textContent = `Error: ${error.message}`;
+            menuContent.appendChild(errorElement);
+          }
+        }
+      }
+    }
+  });
+  dialogContent.appendChild(closeButton);
+  
+  dialogContainer.appendChild(dialogContent);
+  document.body.appendChild(dialogContainer);
+  
+  // Add visible class to trigger animation
+  setTimeout(() => {
+    dialogContainer.classList.add('visible');
+  }, 10);
+}
+
+// Function to update technology data after research
+function updateTechnologyData(researchedTech) {
+  try {
+    // Get current technology data
+    const techDataJSON = localStorage.getItem('technologyData');
+    if (!techDataJSON) return;
+    
+    const techData = JSON.parse(techDataJSON);
+    
+    // Move the researched technology from available to researched
+    const availableIndex = techData.available.findIndex(tech => tech.id === researchedTech.id);
+    if (availableIndex !== -1) {
+      const tech = techData.available.splice(availableIndex, 1)[0];
+      techData.researched.push(tech);
+      
+      // Check if any locked technologies can now be unlocked
+      const newlyAvailable = [];
+      
+      techData.locked = techData.locked.filter(lockedTech => {
+        // Check if all prerequisites are met
+        const prereqsMet = lockedTech.prerequisites.every(prereq => 
+          techData.researched.some(resTech => resTech.id === prereq)
+        );
+        
+        if (prereqsMet) {
+          // Move to available
+          newlyAvailable.push(lockedTech);
+          return false;
+        }
+        return true;
+      });
+      
+      // Add newly available technologies
+      techData.available = techData.available.concat(newlyAvailable);
+      
+      // Save updated data
+      localStorage.setItem('technologyData', JSON.stringify(techData));
+    }
+  } catch (error) {
+    console.error('Error updating technology data:', error);
+  }
 }
 
 // Show language development menu

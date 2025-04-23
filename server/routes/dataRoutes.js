@@ -6,6 +6,7 @@ const fetch = require('node-fetch');
 const fs = require('fs').promises;
 const path = require('path');
 const config = require('../config');
+const computeManager = require('../utils/computeManager');
 
 // Get all terrain types
 router.get('/terrain', (req, res) => {
@@ -163,16 +164,31 @@ router.post('/tile-conversation', async (req, res) => {
   try {
     const { tileX, tileY, terrainCode, terrainDescription } = req.body;
     
+    // Get user ID from request headers or query params
+    const userId = req.headers['user-id'] || req.query.userId || req.body.userId;
+    
     logger.info(`Tile conversation request received with params:`, {
       tileX, 
       tileY, 
       terrainCode, 
-      terrainDescription
+      terrainDescription,
+      userId
     });
     
     if (!terrainCode || !terrainDescription) {
       logger.warn('Missing required parameters for tile conversation');
       return res.status(400).json({ error: 'Missing required parameters' });
+    }
+    
+    // Check if user has enough COMPUTE
+    if (userId) {
+      const hasEnough = await computeManager.hasEnoughCompute(userId, 'KINOS');
+      if (!hasEnough) {
+        return res.status(402).json({ 
+          error: 'Insufficient COMPUTE balance',
+          message: 'You need at least 1000 COMPUTE to use this service'
+        });
+      }
     }
     
     logger.info(`Generating conversation for tile at (${tileX}, ${tileY}) with terrain ${terrainCode}`);
@@ -307,6 +323,11 @@ Return ONLY the valid JSON array, nothing else.
       }
     }
     
+    // Deduct COMPUTE if successful and userId is provided
+    if (userId && dialogueLines.length > 0) {
+      await computeManager.deductCompute(userId, 'KINOS');
+    }
+    
     // Return the dialogue lines with audio URLs
     logger.info(`Returning ${dialogueLines.length} dialogue lines with audio`);
     res.json({ 
@@ -328,8 +349,23 @@ router.post('/actions/ai/tts', async (req, res) => {
   try {
     const { text, voice_id } = req.body;
     
+    // Get user ID from request headers or query params
+    const userId = req.headers['user-id'] || req.query.userId || req.body.userId;
+    
     if (!text) {
       return res.status(400).json({ error: 'No text provided for TTS' });
+    }
+    
+    // Check if user has enough COMPUTE
+    if (userId) {
+      const hasEnough = await computeManager.hasEnoughCompute(userId, 'KINOS');
+      if (!hasEnough) {
+        return res.json({
+          success: false,
+          error: 'Insufficient COMPUTE balance',
+          audio_url: '/assets/audio/narration/dummy.mp3'
+        });
+      }
     }
     
     logger.info(`Generating TTS for text: "${text.substring(0, 50)}..."`);
@@ -407,6 +443,11 @@ router.post('/actions/ai/tts', async (req, res) => {
             logger.info(`Saved narration audio to ${narrationPath}`);
             
             // Return the local path to the saved file
+            // Deduct COMPUTE if successful and userId is provided
+            if (userId) {
+              await computeManager.deductCompute(userId, 'KINOS');
+            }
+            
             return res.json({
               success: true,
               audio_url: `/assets/audio/narration/${narrationFilename}`
@@ -451,6 +492,9 @@ router.get('/actions/ai/:terrainType', async (req, res) => {
     const { terrainType } = req.params;
     logger.info(`Getting AI-generated actions for terrain type: ${terrainType}`);
     
+    // Get user ID from request headers or query params
+    const userId = req.headers['user-id'] || req.query.userId;
+    
     // Extract the base terrain code (before any | character)
     const baseTerrainCode = terrainType.split('|')[0];
     logger.debug(`Base terrain code: ${baseTerrainCode}`);
@@ -472,6 +516,17 @@ router.get('/actions/ai/:terrainType', async (req, res) => {
     if (actions.length > 0) {
       logger.info(`Using local actions for ${baseTerrainCode} (${actions.length} actions found)`);
       return res.json(actions);
+    }
+    
+    // Check if user has enough COMPUTE
+    if (userId) {
+      const hasEnough = await computeManager.hasEnoughCompute(userId, 'CLAUDE');
+      if (!hasEnough) {
+        // If we don't have enough COMPUTE, use fallback actions
+        logger.info(`User ${userId} has insufficient COMPUTE, using fallback actions`);
+        const fallbackActions = generateFallbackActions(baseTerrainCode);
+        return res.json(fallbackActions);
+      }
     }
     
     // Read the initial_actions.md file for the system prompt
@@ -667,8 +722,23 @@ router.get('/actions/ai/:terrainCode/narration', async (req, res) => {
   try {
     const { terrainCode } = req.params;
     
+    // Get user ID from request headers or query params
+    const userId = req.headers['user-id'] || req.query.userId;
+    
     // Extract the base terrain type (before any | character)
     const baseTerrainCode = terrainCode.split('|')[0];
+    
+    // Check if user has enough COMPUTE
+    if (userId) {
+      const hasEnough = await computeManager.hasEnoughCompute(userId, 'CLAUDE');
+      if (!hasEnough) {
+        return res.json({
+          terrainCode,
+          narration: `The settlers arrived at the new terrain, surveying the ${getTerrainDescription(terrainCode.split('|')[0])} with cautious optimism.`,
+          audio: null
+        });
+      }
+    }
     
     logger.info(`Generating narration for terrain code: ${terrainCode}`);
     
@@ -692,6 +762,11 @@ router.get('/actions/ai/:terrainCode/narration', async (req, res) => {
           details: ttsResponse.error
         }
       });
+    }
+    
+    // Deduct COMPUTE if successful and userId is provided
+    if (userId && narration) {
+      await computeManager.deductCompute(userId, 'CLAUDE');
     }
     
     res.json({

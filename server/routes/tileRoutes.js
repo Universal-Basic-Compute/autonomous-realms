@@ -9,6 +9,7 @@ const { exec } = require('child_process');
 const tileService = require('../services/tileGenerationService');
 const config = require('../config');
 const logger = require('../utils/logger');
+const computeManager = require('../utils/computeManager');
 
 // Get a generated island tile
 router.get('/islands/:x/:y', async (req, res) => {
@@ -250,9 +251,23 @@ router.post('/generate-action-image', async (req, res) => {
     logger.info(`Action image generation endpoint hit`);
     const { prompt, action, terrainCode, min_files = 1, max_files = 1 } = req.body;
     
+    // Get user ID from request headers or query params
+    const userId = req.headers['user-id'] || req.query.userId || req.body.userId;
+    
     if (!prompt) {
       logger.warn('No prompt provided for image generation');
       return res.status(400).json({ error: 'No prompt provided for image generation' });
+    }
+    
+    // Check if user has enough COMPUTE
+    if (userId) {
+      const hasEnough = await computeManager.hasEnoughCompute(userId, 'IDEOGRAM');
+      if (!hasEnough) {
+        return res.status(402).json({ 
+          error: 'Insufficient COMPUTE balance',
+          message: 'You need at least 1000 COMPUTE to use this service'
+        });
+      }
     }
     
     logger.info(`Generating action visualization image for action ${action} on terrain ${terrainCode}`);
@@ -316,6 +331,11 @@ router.post('/generate-action-image', async (req, res) => {
       await fs.writeFile(imagePath, buffer);
     }
     
+    // Deduct COMPUTE if successful and userId is provided
+    if (userId && responseData.data && responseData.data[0]) {
+      await computeManager.deductCompute(userId, 'IDEOGRAM');
+    }
+    
     // Return the URL to the saved image
     res.json({
       success: true,
@@ -338,8 +358,22 @@ router.post('/update-with-activity', async (req, res) => {
   try {
     const { tileX, tileY, prompt, action, terrainCode } = req.body;
     
+    // Get user ID from request headers or query params
+    const userId = req.headers['user-id'] || req.query.userId || req.body.userId;
+    
     if (!prompt || !tileX || !tileY) {
       return res.status(400).json({ error: 'Missing required parameters' });
+    }
+    
+    // Check if user has enough COMPUTE
+    if (userId) {
+      const hasEnough = await computeManager.hasEnoughCompute(userId, 'IDEOGRAM');
+      if (!hasEnough) {
+        return res.status(402).json({ 
+          error: 'Insufficient COMPUTE balance',
+          message: 'You need at least 1000 COMPUTE to use this service'
+        });
+      }
     }
     
     logger.info(`Updating tile at (${tileX}, ${tileY}) with activity: ${action}`);
@@ -399,6 +433,11 @@ router.post('/update-with-activity', async (req, res) => {
       const imageResponse = await fetch(imageUrl);
       const buffer = await imageResponse.buffer();
       await fs.writeFile(imagePath, buffer);
+    }
+    
+    // Deduct COMPUTE if successful and userId is provided
+    if (userId && responseData.data && responseData.data[0]) {
+      await computeManager.deductCompute(userId, 'IDEOGRAM');
     }
     
     // Return the URL to the saved image

@@ -1624,6 +1624,9 @@ async function sendKinOSMessage(action, terrainInfo) {
   try {
     console.log(`Sending action "${action.name}" to KinOS with terrain info:`, terrainInfo);
     
+    // Get the current user ID
+    const userId = getCurrentUserId();
+    
     // Prepare the message content with explicit JSON request and item limits
     const messageContent = `
 I am attempting to perform the action "${action.name}" (${action.code}) on terrain type: ${terrainInfo.terrainCode}.
@@ -1670,10 +1673,11 @@ Please provide ONLY the JSON response with no additional text, markdown formatti
     };
     
     // Make the API request with updated blueprint and kin
-    const response = await fetch('http://localhost:3000/api/kinos/kins/defaultcolony/messages', {
+    const response = await fetch(`http://localhost:3000/api/kinos/kins/defaultcolony/messages${userId ? `?userId=${userId}` : ''}`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'User-ID': userId || '' // Also add as header
       },
       body: JSON.stringify(requestBody)
     });
@@ -2096,12 +2100,16 @@ async function generateTileConversation(tileX, tileY, terrainCode, terrainDescri
     loadingIndicator.textContent = 'Settlers are discussing this area...';
     document.body.appendChild(loadingIndicator);
     
+    // Get the current user ID
+    const userId = getCurrentUserId();
+    
     // Add debugging logs
     console.log('Generating tile conversation with params:', {
       tileX,
       tileY,
       terrainCode,
-      terrainDescription
+      terrainDescription,
+      userId
     });
     
     // Make request to the server endpoint that will handle the conversation generation
@@ -2109,13 +2117,15 @@ async function generateTileConversation(tileX, tileY, terrainCode, terrainDescri
     const response = await fetch(`${config.serverUrl}/api/data/tile-conversation`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'User-ID': userId || '' // Add user ID as header
       },
       body: JSON.stringify({
         tileX,
         tileY,
         terrainCode,
-        terrainDescription
+        terrainDescription,
+        userId // Also include in body
       })
     });
     
@@ -2220,6 +2230,9 @@ async function generateActionVisualization(action, terrainInfo, actionResponse) 
       imageContainer.innerHTML = '<div class="image-loading">Generating action visualization...</div>';
     }
     
+    // Get the current user ID
+    const userId = getCurrentUserId();
+    
     // Create a detailed prompt based on the action, terrain, and response
     const prompt = `Isometric view of settlers ${action.name.toLowerCase()} in a ${terrainInfo.description} environment. 
     ${actionResponse.narration || 'Settlers working together on this task.'}
@@ -2229,21 +2242,38 @@ async function generateActionVisualization(action, terrainInfo, actionResponse) 
     
     // Make request to the server endpoint for image generation
     console.log(`Sending request to: ${config.serverUrl}/api/tiles/generate-action-image`);
-    const response = await fetch(`${config.serverUrl}/api/tiles/generate-action-image`, {
+    const response = await fetch(`${config.serverUrl}/api/tiles/generate-action-image${userId ? `?userId=${userId}` : ''}`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'User-ID': userId || '' // Add user ID as header
       },
       body: JSON.stringify({
         prompt: prompt,
         action: action.code,
         terrainCode: terrainInfo.terrainCode,
         min_files: 2,
-        max_files: 5
+        max_files: 5,
+        userId // Also include in body
       })
     });
     
     if (!response.ok) {
+      if (response.status === 402) {
+        showInsufficientComputeNotification();
+        
+        // Show a placeholder in the image container
+        if (imageContainer) {
+          imageContainer.innerHTML = `
+            <div class="image-error">
+              <p>Insufficient COMPUTE to generate visualization</p>
+              <p class="error-details">Connect your wallet to add more COMPUTE</p>
+            </div>
+          `;
+        }
+        return null;
+      }
+      
       const errorText = await response.text();
       console.error(`Failed to generate action image: ${response.status} ${response.statusText}`, errorText);
       throw new Error(`Failed to generate action image: ${response.status} ${response.statusText}`);
@@ -2289,6 +2319,9 @@ async function updateTileWithActivity(tileX, tileY, action, terrainInfo) {
     loadingIndicator.textContent = 'Updating terrain with activity...';
     document.body.appendChild(loadingIndicator);
     
+    // Get the current user ID
+    const userId = getCurrentUserId();
+    
     // Create a detailed prompt based on the action and terrain
     const prompt = `Isometric view of the same ${terrainInfo.description} terrain, but now showing settlers ${action.name.toLowerCase()}. 
     Include several tribespeople actively engaged in this task in the environment.
@@ -2297,17 +2330,19 @@ async function updateTileWithActivity(tileX, tileY, action, terrainInfo) {
     console.log('Generating updated tile with activity:', prompt);
     
     // Make request to the server endpoint for tile update
-    const response = await fetch(`${config.serverUrl}/api/tiles/update-with-activity`, {
+    const response = await fetch(`${config.serverUrl}/api/tiles/update-with-activity${userId ? `?userId=${userId}` : ''}`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'User-ID': userId || '' // Add user ID as header
       },
       body: JSON.stringify({
         tileX: tileX,
         tileY: tileY,
         prompt: prompt,
         action: action.code,
-        terrainCode: terrainInfo.terrainCode
+        terrainCode: terrainInfo.terrainCode,
+        userId // Also include in body
       })
     });
     

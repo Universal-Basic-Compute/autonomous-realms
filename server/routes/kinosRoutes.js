@@ -5,6 +5,7 @@ const logger = require('../utils/logger');
 const config = require('../config');
 const path = require('path');
 const fs = require('fs').promises;
+const computeManager = require('../utils/computeManager');
 
 // Create a new kin
 router.post('/kins', async (req, res) => {
@@ -45,6 +46,20 @@ router.post('/kins/:kinName/messages', async (req, res) => {
     const { kinName } = req.params;
     const { content, model, mode, addSystem } = req.body;
     
+    // Get user ID from request headers or query params
+    const userId = req.headers['user-id'] || req.query.userId || req.body.userId;
+    
+    // Check if user has enough COMPUTE
+    if (userId) {
+      const hasEnough = await computeManager.hasEnoughCompute(userId, 'KINOS');
+      if (!hasEnough) {
+        return res.status(402).json({ 
+          error: 'Insufficient COMPUTE balance',
+          message: 'You need at least 1000 COMPUTE to use this service'
+        });
+      }
+    }
+    
     logger.info(`Sending message to kin: ${kinName}`);
     
     const response = await fetch(`http://localhost:5000/v2/blueprints/autonomousrealms/kins/${kinName}/messages`, {
@@ -68,6 +83,11 @@ router.post('/kins/:kinName/messages', async (req, res) => {
       return res.status(response.status).json(data);
     }
     
+    // Deduct COMPUTE if successful and userId is provided
+    if (userId) {
+      await computeManager.deductCompute(userId, 'KINOS');
+    }
+    
     logger.info(`Successfully sent message to kin: ${kinName}`);
     res.json(data);
   } catch (error) {
@@ -81,6 +101,20 @@ router.post('/kins/:kinName/images', async (req, res) => {
   try {
     const { kinName } = req.params;
     const { prompt, aspect_ratio, model, magic_prompt, magic_prompt_option } = req.body;
+    
+    // Get user ID from request headers or query params
+    const userId = req.headers['user-id'] || req.query.userId || req.body.userId;
+    
+    // Check if user has enough COMPUTE
+    if (userId) {
+      const hasEnough = await computeManager.hasEnoughCompute(userId, 'IDEOGRAM');
+      if (!hasEnough) {
+        return res.status(402).json({ 
+          error: 'Insufficient COMPUTE balance',
+          message: 'You need at least 1000 COMPUTE to use this service'
+        });
+      }
+    }
     
     logger.info(`Generating image for kin: ${kinName}`);
     
@@ -105,6 +139,11 @@ router.post('/kins/:kinName/images', async (req, res) => {
       
       if (!response.ok) {
         throw new Error(`KinOS image API error: ${JSON.stringify(data)}`);
+      }
+      
+      // Deduct COMPUTE if successful and userId is provided
+      if (userId) {
+        await computeManager.deductCompute(userId, 'IDEOGRAM');
       }
       
       logger.info(`Successfully generated image for kin: ${kinName} via KinOS`);
@@ -175,6 +214,11 @@ router.post('/kins/:kinName/images', async (req, res) => {
         const imageBuffer = await imageResponse.buffer();
         await fs.writeFile(filePath, imageBuffer);
         
+        // Deduct COMPUTE if successful and userId is provided
+        if (userId) {
+          await computeManager.deductCompute(userId, 'IDEOGRAM');
+        }
+        
         logger.info(`Successfully generated image for kin: ${kinName} via Ideogram directly`);
         return res.json({
           success: true,
@@ -208,6 +252,21 @@ router.post('/tts', async (req, res) => {
   try {
     const { text, voice_id, model } = req.body;
     const format = req.query.format || 'mp3';
+    
+    // Get user ID from request headers or query params
+    const userId = req.headers['user-id'] || req.query.userId || req.body.userId;
+    
+    // Check if user has enough COMPUTE
+    if (userId) {
+      const hasEnough = await computeManager.hasEnoughCompute(userId, 'KINOS');
+      if (!hasEnough) {
+        return res.status(402).json({ 
+          error: 'Insufficient COMPUTE balance',
+          message: 'You need at least 1000 COMPUTE to use this service',
+          audio_url: '/assets/audio/narration/dummy.mp3'
+        });
+      }
+    }
     
     logger.info(`Generating TTS for text: "${text.substring(0, 50)}..."`);
     
@@ -259,6 +318,11 @@ router.post('/tts', async (req, res) => {
           // Write the file
           await fs.writeFile(filePath, buffer);
           
+          // Deduct COMPUTE if successful and userId is provided
+          if (userId) {
+            await computeManager.deductCompute(userId, 'KINOS');
+          }
+          
           logger.info(`Successfully generated TTS via KinOS (binary response)`);
           return res.json({
             success: true,
@@ -275,6 +339,11 @@ router.post('/tts', async (req, res) => {
         
         if (!response.ok) {
           throw new Error(`KinOS TTS API error: ${JSON.stringify(data)}`);
+        }
+        
+        // Deduct COMPUTE if successful and userId is provided
+        if (userId) {
+          await computeManager.deductCompute(userId, 'KINOS');
         }
         
         logger.info(`Successfully generated TTS via KinOS (JSON response)`);
@@ -363,6 +432,11 @@ router.post('/tts', async (req, res) => {
       
       // Write the file
       await fs.writeFile(filePath, Buffer.from(audioBuffer));
+      
+      // Deduct COMPUTE if successful and userId is provided
+      if (userId) {
+        await computeManager.deductCompute(userId, 'KINOS');
+      }
       
       logger.info(`Successfully generated TTS via ElevenLabs directly`);
       return res.json({

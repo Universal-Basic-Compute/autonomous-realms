@@ -1411,4 +1411,4 @@ function showComputeTransferDialog(walletAddress) {
   document.body.appendChild(dialogContainer);
 }
 
-export { createWelcomeScreen, createColonyNamingScreen, createLanguageInitScreen, createLoadColonyScreen, loadColony };
+export { createWelcomeScreen, createColonyNamingScreen, createLanguageInitScreen, createLoadColonyScreen, loadColony, showComputeTransferDialog };

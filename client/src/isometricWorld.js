@@ -9,7 +9,8 @@ const config = {
     serverUrl: 'http://localhost:3000',
     gridSize: 16, // Size of the terrain map (16x16)
     visibleRadius: 5, // How many tiles to load around the center
-    isometricAngle: 30 // Degrees for isometric projection
+    isometricAngle: 30, // Degrees for isometric projection
+    debugMode: false // Set to true to enable debug visualization
 };
 
 // State
@@ -178,6 +179,12 @@ function setupEventListeners() {
     
     // Window resize
     window.addEventListener('resize', handleResize);
+    
+    // Add debug button
+    const debugButton = document.createElement('button');
+    debugButton.textContent = 'Debug';
+    debugButton.addEventListener('click', toggleDebugMode);
+    document.getElementById('controls').appendChild(debugButton);
 }
 
 // Start dragging
@@ -328,8 +335,8 @@ function gridToIso(x, y) {
     // Apply isometric projection
     const isoX = (x - y) * (config.tileWidth / 2);
     
-    // Updated to use 0% vertical overlap (no compression)
-    const isoY = (x + y) * (config.tileHeight / 1); // Changed from /3 to /1 for 0% overlap
+    // Use 50% vertical overlap for better visibility
+    const isoY = (x + y) * (config.tileHeight / 2);
     
     return { x: isoX, y: isoY };
 }
@@ -384,7 +391,7 @@ function loadVisibleTiles() {
 // Load a single tile
 function loadTile(regionX, regionY, x, y) {
     const tileKey = `${x}_${y}`;
-    console.log(`Loading tile at ${x},${y}`);
+    console.log(`Attempting to load tile at ${x},${y}`);
     
     // Create tile element
     const tileElement = document.createElement('div');
@@ -398,6 +405,7 @@ function loadTile(regionX, regionY, x, y) {
     const position = gridToIso(x, y);
     tileElement.style.left = `${position.x}px`;
     tileElement.style.top = `${position.y}px`;
+    console.log(`Created tile element for ${x},${y} at position (${position.x}, ${position.y})`);
     
     // Create image element
     const imgElement = document.createElement('img');
@@ -504,9 +512,38 @@ function loadTile(regionX, regionY, x, y) {
     
     // Add the tile to the world container
     worldContainer.appendChild(tileElement);
+    console.log(`Added tile ${x},${y} to world container`);
     
     // Store the tile element for later reference
     state.loadedTiles.set(tileKey, tileElement);
+}
+
+// Toggle debug mode to visualize the grid and tile positions
+function toggleDebugMode() {
+    config.debugMode = !config.debugMode;
+    
+    if (config.debugMode) {
+        // Add grid visualization
+        for (let y = 0; y < config.gridSize; y++) {
+            for (let x = 0; x < config.gridSize; x++) {
+                const position = gridToIso(x, y);
+                const debugElement = document.createElement('div');
+                debugElement.className = 'debug-tile';
+                debugElement.style.left = `${position.x}px`;
+                debugElement.style.top = `${position.y}px`;
+                debugElement.style.width = `${config.tileWidth}px`;
+                debugElement.style.height = `${config.tileHeight}px`;
+                debugElement.textContent = `${x},${y}`;
+                debugElement.dataset.x = x;
+                debugElement.dataset.y = y;
+                worldContainer.appendChild(debugElement);
+            }
+        }
+    } else {
+        // Remove debug visualization
+        const debugTiles = document.querySelectorAll('.debug-tile');
+        debugTiles.forEach(tile => tile.remove());
+    }
 }
 
 // Format file size in bytes to human-readable format

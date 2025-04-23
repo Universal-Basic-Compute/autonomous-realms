@@ -44,6 +44,27 @@ router.get('/islands/:x/:y', async (req, res) => {
   }
 });
 
+// Test endpoint to list all available islands
+router.get('/islands/test', async (req, res) => {
+  try {
+    // List all island files
+    const islandsDir = path.join(__dirname, '../output/terrain_map/islands');
+    const files = await fs.readdir(islandsDir);
+    
+    res.json({
+      success: true,
+      islandCount: files.length,
+      islands: files.map(file => ({
+        filename: file,
+        url: `/api/tiles/islands/${file.replace('island_', '').replace('.png', '')}`
+      }))
+    });
+  } catch (error) {
+    logger.error(`Error testing islands: ${error.message}`);
+    res.status(500).json({ error: 'Failed to test islands' });
+  }
+});
+
 // Get information about an island
 router.get('/islands/:x/:y/info', async (req, res) => {
   try {

@@ -298,12 +298,24 @@ async function generateIslandImage(island, index) {
 // Download image from URL
 async function downloadImage(url, outputPath) {
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      timeout: 30000, // 30 second timeout
+      headers: {
+        'User-Agent': 'Terrain-Icon-Generator'
+      }
+    });
+    
     if (!response.ok) {
       throw new Error(`Failed to download image: ${response.status} ${response.statusText}`);
     }
     
     const buffer = await response.buffer();
+    
+    // Check if we actually got an image
+    if (buffer.length < 100) {
+      throw new Error('Downloaded file is too small to be a valid image');
+    }
+    
     await fs.writeFile(outputPath, buffer);
     logger.info(`Image downloaded successfully to ${outputPath}`);
   } catch (error) {

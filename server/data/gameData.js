@@ -736,6 +736,16 @@ const actions = {
       { code: "W-007", name: "Build Simple Dock", description: "Construct platform for water access" },
       { code: "X-015", name: "Follow River Course", description: "Explore along the river path" }
     ],
+    "W-STR": [
+      { code: "G-029", name: "Collect Stream Clay", description: "Gather clay deposits from stream banks" },
+      { code: "G-030", name: "Gather Stream Plants", description: "Collect plants growing along streams" },
+      { code: "H-017", name: "Fish Stream Waters", description: "Catch fish from flowing water" },
+      { code: "H-018", name: "Hunt Stream Visitors", description: "Hunt animals that come to drink" },
+      { code: "C-021", name: "Build Near Stream", description: "Construct shelters close to water access" },
+      { code: "T-014", name: "Create Fishing Tools", description: "Craft implements for stream fishing" },
+      { code: "W-006", name: "Create Small Dam", description: "Build structure to control water flow" },
+      { code: "X-015", name: "Follow Stream Course", description: "Explore where the stream leads" }
+    ],
     "W-LAK": [
       { code: "G-030", name: "Gather River Plants", description: "Collect plants growing in and near water" },
       { code: "G-031", name: "Collect Lakeside Reeds", description: "Gather tall water plants for crafting" },
@@ -746,6 +756,27 @@ const actions = {
       { code: "T-014", name: "Create Fishing Tools", description: "Craft implements for catching fish" },
       { code: "T-015", name: "Make Reed Boats", description: "Construct simple watercraft from reeds" },
       { code: "W-008", name: "Build Lake Access", description: "Create safe ways to reach the water" }
+    ],
+    "W-PON": [
+      { code: "G-030", name: "Gather Pond Plants", description: "Collect plants growing in and around ponds" },
+      { code: "G-031", name: "Harvest Water Lilies", description: "Gather floating aquatic plants" },
+      { code: "H-017", name: "Fish Pond Waters", description: "Catch fish from still water" },
+      { code: "H-019", name: "Hunt Pond Visitors", description: "Hunt animals that come to drink" },
+      { code: "C-022", name: "Build Pond-Side Shelters", description: "Construct homes near water source" },
+      { code: "T-014", name: "Create Fishing Tools", description: "Craft implements for pond fishing" },
+      { code: "W-005", name: "Maintain Water Quality", description: "Work to keep pond water clean" },
+      { code: "X-016", name: "Study Pond Ecosystem", description: "Observe the relationships between pond species" }
+    ],
+    "W-MRS": [
+      { code: "G-031", name: "Collect Marsh Reeds", description: "Gather tall water plants for crafting" },
+      { code: "G-032", name: "Gather Salt-Tolerant Plants", description: "Collect specialized plants from brackish water" },
+      { code: "H-019", name: "Hunt Marsh Birds", description: "Hunt waterfowl and wading birds" },
+      { code: "H-021", name: "Fish Shallow Waters", description: "Catch fish from brackish waters" },
+      { code: "C-024", name: "Build Elevated Structures", description: "Construct homes above tidal waters" },
+      { code: "C-025", name: "Create Walkways", description: "Build paths through wet areas" },
+      { code: "T-016", name: "Make Marsh Remedies", description: "Create medicines from marsh plants" },
+      { code: "W-009", name: "Build Tidal Channels", description: "Create paths for water movement" },
+      { code: "X-016", name: "Map Tidal Patterns", description: "Document how water levels change" }
     ],
     "W-SWP": [
       { code: "G-031", name: "Collect Lakeside Reeds", description: "Gather tall water plants for crafting" },
@@ -766,6 +797,36 @@ const actions = {
       { code: "T-017", name: "Use Peat for Fuel", description: "Process peat for burning" },
       { code: "W-010", name: "Create Stepping Paths", description: "Build safe routes across soft ground" },
       { code: "X-017", name: "Find Preserved Materials", description: "Search for items preserved in bog conditions" }
+    ],
+    "W-FEN": [
+      { code: "G-033", name: "Harvest Fen Plants", description: "Collect specialized fen vegetation" },
+      { code: "G-034", name: "Collect Peat Moss", description: "Gather spongy plant material" },
+      { code: "H-022", name: "Hunt Fen Wildlife", description: "Hunt animals adapted to fen conditions" },
+      { code: "C-026", name: "Build on Stable Ground", description: "Construct shelters on drier areas" },
+      { code: "T-017", name: "Process Peat", description: "Prepare peat for various uses" },
+      { code: "W-010", name: "Create Drainage", description: "Build channels to manage water" },
+      { code: "X-017", name: "Study Water Chemistry", description: "Examine the unique water properties" }
+    ],
+    "W-EST": [
+      { code: "G-030", name: "Gather Estuary Plants", description: "Collect plants from brackish water zones" },
+      { code: "G-031", name: "Harvest Salt Marsh Grasses", description: "Gather specialized grasses" },
+      { code: "H-017", name: "Fish Estuary Waters", description: "Catch fish from mixed fresh/salt water" },
+      { code: "H-019", name: "Hunt Estuary Birds", description: "Hunt birds attracted to estuary ecosystems" },
+      { code: "C-022", name: "Build Tidal-Aware Structures", description: "Construct homes considering water level changes" },
+      { code: "T-014", name: "Create Specialized Fishing Tools", description: "Craft implements for estuary fishing" },
+      { code: "T-015", name: "Make Salt Collection Tools", description: "Craft implements for gathering salt" },
+      { code: "W-008", name: "Monitor Tidal Patterns", description: "Track and predict water level changes" }
+    ],
+    "W-DEL": [
+      { code: "G-030", name: "Gather Delta Plants", description: "Collect plants from sediment-rich areas" },
+      { code: "G-031", name: "Harvest River Cane", description: "Gather tall reeds from delta regions" },
+      { code: "H-017", name: "Fish Rich Waters", description: "Catch fish from nutrient-rich delta" },
+      { code: "H-019", name: "Hunt Delta Birds", description: "Hunt birds attracted to delta ecosystems" },
+      { code: "C-022", name: "Build on Raised Land", description: "Construct homes on natural levees" },
+      { code: "C-023", name: "Create Fishing Stations", description: "Build structures for fishing activities" },
+      { code: "T-014", name: "Create Specialized Fishing Tools", description: "Craft implements for delta fishing" },
+      { code: "W-008", name: "Navigate Channels", description: "Learn to move through changing waterways" },
+      { code: "A-006", name: "Establish Fertile Gardens", description: "Create plots using rich delta soil" }
     ]
   },
   tundra: {

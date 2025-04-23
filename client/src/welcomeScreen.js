@@ -204,18 +204,71 @@ async function updateUserCompute(walletAddress, amount) {
       })
     });
     
+    // Check if the response is OK before trying to parse JSON
     if (!response.ok) {
-      const data = await response.json();
-      throw new Error(data.error || 'Failed to update compute balance');
+      // Check specifically for 404 errors
+      if (response.status === 404) {
+        console.warn('COMPUTE update endpoint not found. This feature may not be fully implemented yet.');
+        
+        // Still store the wallet address and compute amount in localStorage
+        localStorage.setItem('walletAddress', walletAddress);
+        localStorage.setItem('computeBalance', amount);
+        
+        // Show a notification to the user
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.textContent = `COMPUTE balance stored locally (server update not available)`;
+        document.body.appendChild(notification);
+        
+        // Remove notification after a delay
+        setTimeout(() => {
+          notification.classList.add('fade-out');
+          setTimeout(() => notification.remove(), 1000);
+        }, 3000);
+        
+        return;
+      }
+      
+      // For other errors, try to get error details
+      let errorMessage;
+      try {
+        // Try to parse as JSON first
+        const errorData = await response.json();
+        errorMessage = errorData.error || `HTTP error ${response.status}`;
+      } catch (parseError) {
+        // If parsing fails, use the status text
+        errorMessage = `HTTP error ${response.status}: ${response.statusText}`;
+      }
+      
+      throw new Error(errorMessage);
     }
     
-    // Store wallet address in localStorage
+    // Parse the successful response
+    const data = await response.json();
+    
+    // Store wallet address and compute balance in localStorage
     localStorage.setItem('walletAddress', walletAddress);
     localStorage.setItem('computeBalance', amount);
     
     console.log('Successfully updated compute balance in Airtable');
   } catch (error) {
     console.error('Error updating compute balance:', error);
+    
+    // Still store the wallet address and compute amount in localStorage even if the server update fails
+    localStorage.setItem('walletAddress', walletAddress);
+    localStorage.setItem('computeBalance', amount);
+    
+    // Show a notification about the error but confirm local storage
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.textContent = `COMPUTE balance stored locally (server update failed)`;
+    document.body.appendChild(notification);
+    
+    // Remove notification after a delay
+    setTimeout(() => {
+      notification.classList.add('fade-out');
+      setTimeout(() => notification.remove(), 1000);
+    }, 3000);
   }
 }
 

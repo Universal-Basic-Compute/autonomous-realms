@@ -3651,7 +3651,8 @@ function handleWheel(e) {
     if (e.target.closest('.submenu-content') || 
         e.target.closest('.colonies-container') || 
         e.target.closest('.dialog-content') ||
-        e.target.closest('.action-response')) {
+        e.target.closest('.action-response') ||
+        e.target.closest('.crafting-resources-list')) {
         // Allow default scrolling behavior in menus
         return;
     }

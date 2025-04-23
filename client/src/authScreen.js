@@ -97,28 +97,11 @@ function createAuthScreen() {
     <button type="submit" class="auth-button">Register</button>
   `;
   
-  // Add guest login option
-  const guestLoginContainer = document.createElement('div');
-  guestLoginContainer.className = 'guest-login-container';
-  
-  const guestLoginButton = document.createElement('button');
-  guestLoginButton.className = 'guest-login-button';
-  guestLoginButton.textContent = 'Continue as Guest';
-  guestLoginButton.addEventListener('click', () => {
-    // Store guest status in localStorage
-    localStorage.setItem('isGuest', 'true');
-    
-    // Remove auth screen and show welcome screen
-    authContainer.remove();
-    createWelcomeScreen();
-  });
-  
-  guestLoginContainer.appendChild(guestLoginButton);
+  // Guest login option removed
   
   // Add forms to auth form container
   authForm.appendChild(loginForm);
   authForm.appendChild(registerForm);
-  authForm.appendChild(guestLoginContainer);
   
   // Add auth form to content wrapper
   contentWrapper.appendChild(authForm);
@@ -174,7 +157,12 @@ function createAuthScreen() {
       createWelcomeScreen();
       
     } catch (error) {
-      errorElement.textContent = error.message;
+      // Check if it's a connection error
+      if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+        errorElement.textContent = 'Cannot connect to server. Please check your connection and try again.';
+      } else {
+        errorElement.textContent = error.message;
+      }
       
       // Reset button
       submitButton.disabled = false;
@@ -235,7 +223,12 @@ function createAuthScreen() {
       }, 1500);
       
     } catch (error) {
-      errorElement.textContent = error.message;
+      // Check if it's a connection error
+      if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+        errorElement.textContent = 'Cannot connect to server. Please check your connection and try again.';
+      } else {
+        errorElement.textContent = error.message;
+      }
     } finally {
       // Reset button
       submitButton.disabled = false;

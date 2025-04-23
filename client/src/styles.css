@@ -494,6 +494,16 @@ body::before {
   opacity: 0.8;
 }
 
+/* Add styles for the tribe description */
+.tribe-description {
+  font-size: 18px;
+  line-height: 1.5;
+  max-width: 600px;
+  text-align: center;
+  margin-bottom: 30px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
 .welcome-menu {
   display: flex;
   flex-direction: column;
@@ -541,14 +551,16 @@ body::before {
 .naming-form {
   display: grid;
   grid-template-columns: auto 1fr auto;
-  gap: 10px;
-  align-items: center;
-  width: 400px;
+  gap: 15px;
+  align-items: start;
+  width: 600px;
   margin-bottom: 30px;
 }
 
 .naming-form label {
   font-size: 16px;
+  align-self: start;
+  padding-top: 10px;
 }
 
 .naming-form input {
@@ -558,6 +570,18 @@ body::before {
   background-color: rgba(0, 0, 0, 0.3);
   color: white;
   border-radius: 4px;
+}
+
+.naming-form textarea {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  border-radius: 4px;
+  resize: vertical;
+  font-family: inherit;
+  grid-column: 2;
 }
 
 .dice-button {

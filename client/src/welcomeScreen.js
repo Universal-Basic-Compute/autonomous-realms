@@ -17,6 +17,12 @@ function createWelcomeScreen() {
   subtitle.className = 'welcome-subtitle';
   welcomeContainer.appendChild(subtitle);
   
+  // Add description about the tribe
+  const tribeDescription = document.createElement('p');
+  tribeDescription.className = 'tribe-description';
+  tribeDescription.innerHTML = 'You lead a small tribe of 20 settlers armed only with stones and sticks, ready to start an adventure that will traverse millennia. Together, you will build a civilization from the ground up.';
+  welcomeContainer.appendChild(tribeDescription);
+  
   // Create menu container
   const menuContainer = document.createElement('div');
   menuContainer.className = 'welcome-menu';
@@ -117,6 +123,38 @@ function createColonyNamingScreen() {
   });
   form.appendChild(colonyDiceButton);
   
+  // Dream for civilization field
+  const dreamLabel = document.createElement('label');
+  dreamLabel.textContent = 'Dream for your civilization:';
+  dreamLabel.htmlFor = 'civilization-dream';
+  form.appendChild(dreamLabel);
+
+  const dreamInput = document.createElement('textarea');
+  dreamInput.id = 'civilization-dream';
+  dreamInput.placeholder = 'What is your long-term vision for your people?';
+  dreamInput.rows = 3;
+  form.appendChild(dreamInput);
+
+  // Empty cell for grid alignment
+  const emptyCell = document.createElement('div');
+  form.appendChild(emptyCell);
+
+  // Tribe appearance field
+  const appearanceLabel = document.createElement('label');
+  appearanceLabel.textContent = 'Tribe appearance:';
+  appearanceLabel.htmlFor = 'tribe-appearance';
+  form.appendChild(appearanceLabel);
+
+  const appearanceInput = document.createElement('textarea');
+  appearanceInput.id = 'tribe-appearance';
+  appearanceInput.placeholder = 'What do you and your tribespeople look like?';
+  appearanceInput.rows = 3;
+  form.appendChild(appearanceInput);
+
+  // Empty cell for grid alignment
+  const emptyCell2 = document.createElement('div');
+  form.appendChild(emptyCell2);
+  
   namingContainer.appendChild(form);
   
   // Add buttons
@@ -140,9 +178,21 @@ function createColonyNamingScreen() {
   startButton.addEventListener('click', async () => {
     const leaderName = leaderInput.value.trim();
     const colonyName = colonyInput.value.trim();
+    const dream = dreamInput.value.trim();
+    const appearance = appearanceInput.value.trim();
     
     if (!leaderName || !colonyName) {
       alert('Please enter both your name and a colony name.');
+      return;
+    }
+    
+    if (!dream) {
+      alert('Please share your dream for your civilization.');
+      return;
+    }
+    
+    if (!appearance) {
+      alert('Please describe what your tribe looks like.');
       return;
     }
     
@@ -157,7 +207,7 @@ function createColonyNamingScreen() {
       const sanitizedColonyName = colonyName.toLowerCase().replace(/[^a-z0-9]/g, '-');
       
       // Create a new kin in KinOS
-      const kinResponse = await createKinOSKin(sanitizedColonyName);
+      const kinResponse = await createKinOSKin(sanitizedColonyName, leaderName, colonyName, dream, appearance);
       
       if (kinResponse.error) {
         throw new Error(kinResponse.error);
@@ -168,6 +218,8 @@ function createColonyNamingScreen() {
       localStorage.setItem('leaderName', leaderName);
       localStorage.setItem('kinId', kinResponse.id || kinResponse.existing_kin?.id);
       localStorage.setItem('kinName', sanitizedColonyName);
+      localStorage.setItem('tribeDream', dream);
+      localStorage.setItem('tribeAppearance', appearance);
       
       // Remove the naming screen
       namingContainer.remove();
@@ -295,7 +347,7 @@ function createLanguageInitScreen(colonyName) {
 }
 
 // Function to create a new kin in KinOS
-async function createKinOSKin(kinName) {
+async function createKinOSKin(kinName, leaderName, colonyName, dream, appearance) {
   try {
     const response = await fetch('http://localhost:5000/v2/blueprints/autonomousrealms/kins', {
       method: 'POST',
@@ -313,16 +365,68 @@ async function createKinOSKin(kinName) {
       // If the kin already exists, we can still use it
       if (response.status === 409 && data.existing_kin) {
         console.log('Kin already exists, using existing kin:', data.existing_kin);
+        
+        // Send a message to save the dream and appearance
+        await sendInitialTribeInfo(kinName, leaderName, colonyName, dream, appearance);
+        
         return data;
       }
       
       throw new Error(data.error || 'Failed to create kin');
     }
     
+    // Send a message to save the dream and appearance
+    await sendInitialTribeInfo(kinName, leaderName, colonyName, dream, appearance);
+    
     return data;
   } catch (error) {
     console.error('Error creating KinOS kin:', error);
     return { error: error.message };
+  }
+}
+
+// Add a new function to send the initial tribe information
+async function sendInitialTribeInfo(kinName, leaderName, colonyName, dream, appearance) {
+  try {
+    const messageContent = `
+Initial Tribe Information:
+
+Colony Name: ${colonyName}
+Leader Name: ${leaderName}
+
+Dream for Civilization:
+${dream}
+
+Tribe Appearance:
+${appearance}
+
+Please save this information about the tribe for future reference. This describes both the physical appearance of the settlers and their long-term aspirations.
+`;
+
+    const response = await fetch(`http://localhost:5000/v2/blueprints/autonomousrealms/kins/${kinName}/messages`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        content: messageContent,
+        model: "claude-3-7-sonnet-latest",
+        mode: "tribe_initialization",
+        addSystem: "You are the tribal memory keeper. Store this information about the tribe's appearance and dreams for the future. Acknowledge receipt of this information and confirm you'll use it to inform future interactions."
+      })
+    });
+    
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.warn('Failed to save tribe information, but continuing:', errorData.error);
+      // We don't throw here to allow the process to continue even if this fails
+    }
+    
+    return await response.json();
+  } catch (error) {
+    console.warn('Error saving tribe information, but continuing:', error);
+    // We don't throw here to allow the process to continue even if this fails
+    return { warning: error.message };
   }
 }
 

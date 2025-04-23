@@ -256,7 +256,7 @@ router.post('/generate-action-image', async (req, res) => {
     logger.info(`Generating action visualization image for action ${action} on terrain ${terrainCode}`);
     
     // Generate a unique filename for this action image
-    const imageId = `action_${action}_${terrainCode.split('|')[0]}_${Date.now()}`;
+    const imageId = `action_${action}_${terrainCode ? terrainCode.split('|')[0] : 'unknown'}_${Date.now()}`;
     const imageFilename = `${imageId}.png`;
     const imageDir = path.join(__dirname, '../assets/images/actions');
     const imagePath = path.join(imageDir, imageFilename);
@@ -304,7 +304,15 @@ router.post('/generate-action-image', async (req, res) => {
     
     // Download the generated image
     const imageUrl = responseData.data[0].url;
-    await tileService.downloadImage(imageUrl, imagePath);
+    
+    // Use tileService.downloadImage if available, otherwise fetch directly
+    if (tileService && typeof tileService.downloadImage === 'function') {
+      await tileService.downloadImage(imageUrl, imagePath);
+    } else {
+      const imageResponse = await fetch(imageUrl);
+      const buffer = await imageResponse.buffer();
+      await fs.writeFile(imagePath, buffer);
+    }
     
     // Return the URL to the saved image
     res.json({

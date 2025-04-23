@@ -3942,12 +3942,11 @@ function deleteColony(colonyId) {
 
 // Initialize the world when the page loads
 window.addEventListener('load', () => {
-  // Check if user is logged in or is a guest
+  // Check if user is logged in
   const userId = localStorage.getItem('userId');
-  const isGuest = localStorage.getItem('isGuest') === 'true';
   
-  if (userId || isGuest) {
-    // User is logged in or is a guest, show welcome screen
+  if (userId) {
+    // User is logged in, show welcome screen
     createWelcomeScreen();
   } else {
     // User is not logged in, show auth screen

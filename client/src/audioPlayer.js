@@ -44,6 +44,9 @@ class AudioPlayer {
 
     // Fetch the list of available music tracks
     this.fetchMusicList();
+    
+    // Add autoplay attempt when user interacts with the page
+    this.setupAutoplay();
   }
 
   async fetchMusicList() {
@@ -60,7 +63,12 @@ class AudioPlayer {
       
       if (this.musicList.length > 0) {
         console.log(`Loaded ${this.musicList.length} music tracks:`, this.musicList);
-        this.playRandomTrack();
+        
+        // Start playing immediately or if autoplay was requested during loading
+        if (!this.isPlaying || this._autoplayRequested) {
+          this.playRandomTrack();
+          this._autoplayRequested = false;
+        }
       } else {
         console.warn('No music tracks available');
       }
@@ -140,6 +148,59 @@ class AudioPlayer {
     }
     // Refetch the music list and start playing
     this.fetchMusicList();
+  }
+  
+  setupAutoplay() {
+    // Most browsers require user interaction before allowing autoplay
+    // This function sets up event listeners to start music on first interaction
+    
+    const startAudioOnInteraction = () => {
+      console.log('User interaction detected, attempting to start audio');
+      
+      // If we already have tracks, play one
+      if (this.musicList.length > 0) {
+        this.playRandomTrack();
+      } else {
+        // If tracks haven't loaded yet, set a flag to play as soon as they do
+        this._autoplayRequested = true;
+      }
+      
+      // Remove the event listeners once we've captured an interaction
+      document.removeEventListener('click', startAudioOnInteraction);
+      document.removeEventListener('keydown', startAudioOnInteraction);
+      document.removeEventListener('touchstart', startAudioOnInteraction);
+    };
+    
+    // Add event listeners for common user interactions
+    document.addEventListener('click', startAudioOnInteraction);
+    document.addEventListener('keydown', startAudioOnInteraction);
+    document.addEventListener('touchstart', startAudioOnInteraction);
+    
+    // Also try to autoplay immediately (will work on some browsers/situations)
+    setTimeout(() => {
+      if (this.musicList.length > 0 && !this.isPlaying) {
+        console.log('Attempting immediate autoplay...');
+        this.playRandomTrack();
+      }
+    }, 1000);
+  }
+  
+  async canAutoplay() {
+    try {
+      // Create a temporary audio element
+      const audio = document.createElement('audio');
+      audio.volume = 0;
+      
+      // Try to play it
+      await audio.play();
+      
+      // If we get here, autoplay is allowed
+      audio.pause();
+      return true;
+    } catch (error) {
+      // Autoplay not allowed
+      return false;
+    }
   }
 }
 

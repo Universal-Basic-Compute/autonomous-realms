@@ -6,7 +6,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #9CB53B; /* Fallback grass green-yellow color */
+    background-color: #2C3033; /* Dark grey color */
     overflow: hidden;
     margin: 0;
     padding: 0;
@@ -22,7 +22,7 @@ body::before {
     width: 100%;
     height: 100%;
     z-index: -10;
-    background: linear-gradient(to bottom, #B5C55F, #8EA832); /* Gradient from lighter to darker grass color */
+    background: linear-gradient(to bottom, #3A3F44, #23272A); /* Gradient from medium to darker grey */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

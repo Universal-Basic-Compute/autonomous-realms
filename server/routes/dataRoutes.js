@@ -583,9 +583,21 @@ async function generateTTS(text, terrainCode) {
       // Check if the response is binary audio data or JSON
       const contentType = response.headers.get('content-type');
       logger.debug(`TTS API response content-type: ${contentType}`);
+      
+      // First check if the response is binary data by examining the first few bytes
+      const clonedResponse = response.clone(); // Clone the response so we can examine it without consuming it
+      const firstChunk = await clonedResponse.arrayBuffer();
+      const firstBytes = new Uint8Array(firstChunk.slice(0, 4));
+      const firstBytesHex = Array.from(firstBytes).map(b => b.toString(16).padStart(2, '0')).join('');
+      logger.debug(`First bytes of response: ${firstBytesHex}`);
+      
+      // Check for MP3 header (ID3 - 49 44 33) or other audio format signatures
+      const isBinaryAudio = firstBytesHex.startsWith('49443') || // ID3 for MP3
+                            firstBytesHex.startsWith('fff') ||   // MP3 without ID3
+                            firstBytesHex.startsWith('4f676753'); // OGG
         
       // Handle binary audio data (MP3)
-      if (contentType && contentType.includes('audio/')) {
+      if (isBinaryAudio || (contentType && contentType.includes('audio/'))) {
         try {
           // Get the audio as an ArrayBuffer
           const arrayBuffer = await response.arrayBuffer();

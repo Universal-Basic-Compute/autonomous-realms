@@ -164,6 +164,29 @@ router.get('/actions/ai/:terrainType', async (req, res) => {
     const { terrainType } = req.params;
     logger.info(`Getting AI-generated actions for terrain type: ${terrainType}`);
     
+    // Extract the base terrain code (before any | character)
+    const baseTerrainCode = terrainType.split('|')[0];
+    logger.debug(`Base terrain code: ${baseTerrainCode}`);
+    
+    // First try to get actions from the local gameData
+    // This serves as a fallback if the AI call fails
+    let actions = [];
+    
+    // Check each terrain category for the base terrain code
+    for (const category in gameData.actions) {
+      if (gameData.actions[category][baseTerrainCode]) {
+        logger.debug(`Found local actions for ${baseTerrainCode} in category ${category}`);
+        actions = gameData.actions[category][baseTerrainCode];
+        break;
+      }
+    }
+    
+    // If we found local actions, use those instead of calling Claude
+    if (actions.length > 0) {
+      logger.info(`Using local actions for ${baseTerrainCode} (${actions.length} actions found)`);
+      return res.json(actions);
+    }
+    
     // Read the initial_actions.md file for the system prompt
     const actionsDocPath = path.join(__dirname, '../../docs/initial_actions.md');
     const actionsDoc = await fs.readFile(actionsDocPath, 'utf8');
@@ -177,7 +200,7 @@ ${actionsDoc}`;
     // Prepare the user prompt
     const userPrompt = `Based on the terrain code "${terrainType}", provide a list of available actions that would be realistic and appropriate.
 
-If the terrain code has multiple parts separated by "|" (like "F-OAK|E-SLI|X-RUI"), focus on the base terrain type (the part before the first "|").
+The base terrain type is "${baseTerrainCode}" (the part before the first "|").
 
 Return your response as a JSON array of action objects with these properties:
 - code: The action code from the reference (e.g., "G-001")
@@ -200,6 +223,8 @@ Example response format:
   }
 ]`;
 
+    logger.debug(`Making Claude API request for terrain ${baseTerrainCode}`);
+    
     // Make request to Claude API
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -223,38 +248,129 @@ Example response format:
 
     if (!response.ok) {
       const errorText = await response.text();
-      throw new Error(`Claude API request failed with status ${response.status}: ${errorText}`);
+      logger.error(`Claude API request failed with status ${response.status}: ${errorText}`);
+      
+      // If we have a Claude API error but found local actions as fallback, use those
+      if (actions.length > 0) {
+        logger.info(`Using fallback local actions after Claude API error`);
+        return res.json(actions);
+      }
+      
+      // If we have no local actions, generate some basic ones based on terrain type
+      logger.info(`Generating basic fallback actions for ${baseTerrainCode}`);
+      const fallbackActions = generateFallbackActions(baseTerrainCode);
+      return res.json(fallbackActions);
     }
 
     const responseData = await response.json();
+    logger.debug(`Claude API response received`);
     
     // Extract the JSON array from Claude's response
     const contentText = responseData.content[0].text;
     
     // Try to parse the JSON
-    let actions = [];
     try {
       // Find JSON array in the response
       const jsonMatch = contentText.match(/\[\s*\{[\s\S]*\}\s*\]/);
       if (jsonMatch) {
         actions = JSON.parse(jsonMatch[0]);
+        logger.info(`Successfully parsed ${actions.length} actions from Claude response`);
       } else {
         throw new Error('Could not find JSON array in Claude response');
       }
     } catch (parseError) {
       logger.error(`Error parsing Claude response: ${parseError.message}`);
       logger.debug(`Claude response: ${contentText}`);
-      return res.status(500).json({ error: 'Failed to parse actions from AI response' });
+      
+      // If we have local actions as fallback, use those
+      if (actions.length > 0) {
+        logger.info(`Using fallback local actions after Claude response parsing error`);
+        return res.json(actions);
+      }
+      
+      // If we have no local actions, generate some basic ones based on terrain type
+      logger.info(`Generating basic fallback actions for ${baseTerrainCode}`);
+      actions = generateFallbackActions(baseTerrainCode);
     }
-    
-    // Cache the result for future use
-    // (In a production system, you might want to store this in a database)
     
     res.json(actions);
   } catch (error) {
     logger.error(`Error getting AI actions for terrain type: ${error.message}`);
-    res.status(500).json({ error: 'Failed to get AI actions for terrain type' });
+    
+    // Generate basic fallback actions in case of any error
+    const baseTerrainCode = req.params.terrainType.split('|')[0];
+    const fallbackActions = generateFallbackActions(baseTerrainCode);
+    
+    res.json(fallbackActions);
   }
 });
+
+// Helper function to generate fallback actions based on terrain prefix
+function generateFallbackActions(terrainCode) {
+  // Extract the prefix (first letter before the hyphen)
+  const prefix = terrainCode.charAt(0);
+  
+  // Default actions that work for most terrain types
+  const defaultActions = [
+    { code: "X-001", name: "Survey Area", description: "Explore and map the surrounding terrain" },
+    { code: "G-001", name: "Gather Resources", description: "Collect useful materials from the environment" },
+    { code: "C-001", name: "Build Basic Shelter", description: "Construct a simple protective structure" }
+  ];
+  
+  // Add terrain-specific actions based on the prefix
+  switch (prefix) {
+    case 'P': // Plains
+      return [
+        ...defaultActions,
+        { code: "G-002", name: "Collect Wild Plants", description: "Gather edible and useful plants" },
+        { code: "H-001", name: "Hunt Small Game", description: "Hunt small animals in the grassland" }
+      ];
+    case 'F': // Forest
+      return [
+        ...defaultActions,
+        { code: "G-008", name: "Gather Fallen Wood", description: "Collect wood from the forest floor" },
+        { code: "H-004", name: "Hunt Forest Animals", description: "Hunt creatures that live in the forest" }
+      ];
+    case 'M': // Mountains
+      return [
+        ...defaultActions,
+        { code: "G-023", name: "Gather Mountain Plants", description: "Collect unique plants from high elevations" },
+        { code: "M-001", name: "Collect Surface Stones", description: "Gather useful rocks and stones" },
+        { code: "X-009", name: "Scout Mountain Passes", description: "Find routes through difficult terrain" }
+      ];
+    case 'W': // Water
+      return [
+        ...defaultActions,
+        { code: "G-030", name: "Gather Water Plants", description: "Collect plants growing in or near water" },
+        { code: "H-017", name: "Fish Waters", description: "Catch fish from the water" }
+      ];
+    case 'D': // Desert
+      return [
+        ...defaultActions,
+        { code: "G-018", name: "Collect Desert Plants", description: "Gather drought-resistant vegetation" },
+        { code: "W-003", name: "Search for Water", description: "Look for hidden water sources" }
+      ];
+    case 'R': // Rocky
+      return [
+        ...defaultActions,
+        { code: "M-007", name: "Find Special Stones", description: "Search for unusual or useful rocks" },
+        { code: "T-022", name: "Make Stone Tools", description: "Craft implements from available stone" }
+      ];
+    case 'T': // Tundra
+      return [
+        ...defaultActions,
+        { code: "G-036", name: "Gather Tundra Plants", description: "Collect hardy plants from cold environment" },
+        { code: "T-019", name: "Craft Cold-Weather Gear", description: "Create clothing for extreme conditions" }
+      ];
+    case 'L': // Wasteland
+      return [
+        ...defaultActions,
+        { code: "X-029", name: "Find Safe Passages", description: "Discover routes with minimal hazards" },
+        { code: "X-030", name: "Locate Surviving Resources", description: "Find usable materials in harsh conditions" }
+      ];
+    default:
+      return defaultActions;
+  }
+}
 
 module.exports = router;

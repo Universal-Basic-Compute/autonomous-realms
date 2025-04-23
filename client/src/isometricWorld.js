@@ -513,8 +513,11 @@ Include:
 2. Key grammatical features that have emerged
 3. A comprehensive list of known words with their meanings
 4. Any cultural implications of the language development
+5. Examples of typical conversations or phrases in the language with translations
 
-Format the word list in a way that's easy to display in a UI, with the tribe's word and its meaning in English.
+Format your response in markdown for better readability, with clear headings and sections. Format the word list as a table with columns for the tribe's word and its meaning in English.
+
+Please include at least 3 example conversations or common phrases that demonstrate how tribe members would communicate in different situations.
 `;
 
     // Make request to KinOS
@@ -528,7 +531,7 @@ Format the word list in a way that's easy to display in a UI, with the tribe's w
         model: "claude-3-7-sonnet-latest",
         history_length: 25,
         mode: "language_analysis",
-        addSystem: "You are a linguistic anthropologist analyzing the development of a tribe's language. Provide a detailed, structured analysis of their current language state, including a comprehensive word list. Format your response in a way that's easy to parse and display in a UI."
+        addSystem: "You are a linguistic anthropologist analyzing the development of a tribe's language. Provide a detailed, structured analysis of their current language state, including a comprehensive word list and example conversations. Format your response in markdown with clear headings, tables for word lists, and example dialogues that show how the language is used in context."
       })
     });
     

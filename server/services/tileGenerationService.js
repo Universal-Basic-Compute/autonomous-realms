@@ -606,18 +606,31 @@ async function downloadImage(url) {
 }
 
 /**
- * Remove background using Pixelcut API
+ * Remove background using Pixelcut API with enhanced error handling and caching
  */
 async function removeBackground(imagePath) {
   try {
     logger.info(`Removing background from image using Pixelcut API: ${imagePath}`);
     
-    // First, we need to upload the image to a temporary URL or use a file upload approach
-    // For this implementation, we'll read the file and convert it to base64
-    const imageBuffer = await fs.readFile(imagePath);
+    // Check if we have a cached version of this processed image
+    const imageHash = await getImageHash(imagePath);
+    const cachedImagePath = path.join(config.TEMP_DIR, 'bg_cache', `${imageHash}.png`);
     
-    // Create a temporary file URL using a service like ImgBB or similar
-    // For now, we'll use a direct file upload approach with the Pixelcut API
+    try {
+      // Check if a cached version exists
+      await fs.access(cachedImagePath);
+      logger.info(`Using cached background-removed image: ${cachedImagePath}`);
+      
+      // Copy the cached version to the target path
+      await fs.copyFile(cachedImagePath, imagePath);
+      return imagePath;
+    } catch (err) {
+      // No cached version, proceed with API call
+      logger.debug(`No cached version found, proceeding with API call`);
+    }
+    
+    // Read the file for processing
+    const imageBuffer = await fs.readFile(imagePath);
     
     // Create form data for the API request
     const FormData = require('form-data');
@@ -633,7 +646,8 @@ async function removeBackground(imagePath) {
         'X-API-KEY': process.env.PIXELCUT_API_KEY || config.PIXELCUT_API_KEY,
         'Accept': 'application/json'
       },
-      body: formData
+      body: formData,
+      timeout: 30000 // 30 second timeout
     });
     
     // Check if the request was successful
@@ -662,13 +676,36 @@ async function removeBackground(imagePath) {
     
     // Save the processed image back to the original path
     await fs.writeFile(imagePath, buffer);
+    
+    // Also save to cache for future use
+    await fs.mkdir(path.join(config.TEMP_DIR, 'bg_cache'), { recursive: true });
+    await fs.writeFile(cachedImagePath, buffer);
+    
     logger.info(`Background removed successfully using Pixelcut API: ${imagePath}`);
+    logger.debug(`Cached background-removed image at: ${cachedImagePath}`);
     
     return imagePath;
   } catch (error) {
     logger.error(`Error removing background with Pixelcut API: ${error.message}`);
     // Return the original image path if processing fails
     return imagePath;
+  }
+}
+
+/**
+ * Generate a hash for an image file to use for caching
+ */
+async function getImageHash(imagePath) {
+  try {
+    const crypto = require('crypto');
+    const fileBuffer = await fs.readFile(imagePath);
+    const hashSum = crypto.createHash('sha256');
+    hashSum.update(fileBuffer);
+    return hashSum.digest('hex').substring(0, 16); // Use first 16 chars of hash
+  } catch (error) {
+    logger.error(`Error generating image hash: ${error.message}`);
+    // Fallback to a timestamp-based identifier
+    return `nohash_${Date.now()}`;
   }
 }
 

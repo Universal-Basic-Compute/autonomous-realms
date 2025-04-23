@@ -59,7 +59,9 @@ For each tile, provide:
 2. A brief description (30-50 words) of the terrain's natural features, including terrain type, vegetation, geological formations, and unique elements. DO NOT include any human constructions, settlements, buildings, or artificial structures.
 3. A terrain code using the format from the terrain reference document (e.g., "F-OAK|E-SLI|X-RUI")
 
-Make each terrain tile unique and detailed with realistic features. Include various natural terrain types like forests, mountains, plains, magical areas, etc. Each tile should be isolated and self-contained. Focus exclusively on natural landscapes without any signs of civilization.
+Make each terrain tile unique and detailed with realistic features. Include various natural terrain types like forests, mountains, plains, etc. Each tile should be isolated and self-contained. Focus exclusively on natural landscapes without any signs of civilization.
+
+IMPORTANT: Create only realistic terrain with features at a realistic advancement level. DO NOT include any magical or fantasy elements (no glowing terrain, enchanted forests, magical crystals, etc.). All terrain should be geologically and biologically plausible in a real-world setting.
 
 Format the response as a JSON array of objects with properties: coordinates, description, and terrainCode.
 

@@ -499,6 +499,301 @@ function showCraftingMenu() {
     });
 }
 
+// Show people management menu
+function showPeopleMenu() {
+  // Remove any existing people menu
+  const existingMenu = document.getElementById('people-menu');
+  if (existingMenu) {
+    existingMenu.remove();
+  }
+  
+  // Create people menu container
+  const peopleMenu = document.createElement('div');
+  peopleMenu.id = 'people-menu';
+  peopleMenu.className = 'submenu';
+  
+  // Add header with close button
+  const menuHeader = document.createElement('div');
+  menuHeader.className = 'submenu-header';
+  
+  const menuTitle = document.createElement('h3');
+  menuTitle.textContent = 'People Management';
+  
+  const closeButton = document.createElement('button');
+  closeButton.className = 'close-submenu';
+  closeButton.innerHTML = '&times;';
+  closeButton.addEventListener('click', () => {
+    peopleMenu.remove();
+  });
+  
+  menuHeader.appendChild(menuTitle);
+  menuHeader.appendChild(closeButton);
+  peopleMenu.appendChild(menuHeader);
+  
+  // Add content
+  const menuContent = document.createElement('div');
+  menuContent.className = 'submenu-content';
+  
+  // Add "Birth a New Soul" button
+  const birthSoulButton = document.createElement('button');
+  birthSoulButton.className = 'development-button';
+  birthSoulButton.innerHTML = '👶 Birth a New Soul';
+  birthSoulButton.addEventListener('click', birthNewSoul);
+  menuContent.appendChild(birthSoulButton);
+  
+  // Add souls container
+  const soulsContainer = document.createElement('div');
+  soulsContainer.id = 'souls-container';
+  soulsContainer.className = 'souls-container';
+  menuContent.appendChild(soulsContainer);
+  
+  // Load existing souls
+  loadSouls(soulsContainer);
+  
+  peopleMenu.appendChild(menuContent);
+  
+  // Add to document body
+  document.body.appendChild(peopleMenu);
+}
+
+// Birth a new soul
+async function birthNewSoul() {
+  try {
+    // Show loading notification
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.textContent = 'Creating a new soul...';
+    document.body.appendChild(notification);
+    
+    // Get the current user ID
+    const userId = getCurrentUserId();
+    
+    // Get colony and leader names
+    const colonyName = localStorage.getItem('colonyName') || 'Your Colony';
+    const leaderName = localStorage.getItem('leaderName') || 'Leader';
+    
+    // Make a request to the server
+    const response = await fetch(`${config.serverUrl}/api/kinos/kins/defaultcolony/messages`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'User-ID': userId || ''
+      },
+      body: JSON.stringify({
+        content: `Create a fully developed character for the colony "${colonyName}". This character should have a unique personality, aspirations, and both strengths and flaws.
+
+Include the following details:
+1. Name (first and last name)
+2. Age (between 18-60)
+3. MBTI personality type with brief explanation
+4. Three character strengths
+5. Two character flaws
+6. Life aspiration or goal
+7. Brief backstory (2-3 sentences)
+8. Relationship to the colony (why they joined)
+9. Special skill or knowledge they bring
+
+Format the response as a JSON object with these fields.`,
+        model: "claude-3-7-sonnet-latest",
+        mode: "soul_resolution",
+        addSystem: "You are creating a unique, well-rounded character for a colony simulation game. The character should feel like a real person with depth, motivations, and flaws. Create a character that would be interesting for players to interact with over time. Return only the JSON object with the character details."
+      })
+    });
+    
+    // Remove notification
+    notification.classList.add('fade-out');
+    setTimeout(() => notification.remove(), 1000);
+    
+    if (!response.ok) {
+      throw new Error(`Failed to create soul: ${response.statusText}`);
+    }
+    
+    const data = await response.json();
+    
+    // Extract the character data from the response
+    let characterData;
+    try {
+      // First try to parse the response directly
+      if (data.response) {
+        // Try to find a JSON object in the response
+        const jsonMatch = data.response.match(/\{[\s\S]*\}/);
+        if (jsonMatch) {
+          characterData = JSON.parse(jsonMatch[0]);
+        } else {
+          throw new Error('No valid JSON found in response');
+        }
+      } else {
+        throw new Error('Invalid response format');
+      }
+    } catch (error) {
+      console.error('Error parsing character data:', error);
+      
+      // Show error notification
+      const errorNotification = document.createElement('div');
+      errorNotification.className = 'notification error-notification';
+      errorNotification.textContent = 'Failed to parse character data';
+      document.body.appendChild(errorNotification);
+      
+      setTimeout(() => {
+        errorNotification.classList.add('fade-out');
+        setTimeout(() => errorNotification.remove(), 1000);
+      }, 5000);
+      
+      return;
+    }
+    
+    // Add a unique ID and creation timestamp to the soul
+    characterData.id = `soul_${Date.now()}`;
+    characterData.createdAt = new Date().toISOString();
+    
+    // Save the soul
+    saveSoul(characterData);
+    
+    // Refresh the souls display
+    const soulsContainer = document.getElementById('souls-container');
+    if (soulsContainer) {
+      loadSouls(soulsContainer);
+    }
+    
+    // Show success notification
+    const successNotification = document.createElement('div');
+    successNotification.className = 'notification';
+    successNotification.textContent = `${characterData.name} has joined your colony!`;
+    document.body.appendChild(successNotification);
+    
+    setTimeout(() => {
+      successNotification.classList.add('fade-out');
+      setTimeout(() => successNotification.remove(), 1000);
+    }, 5000);
+    
+  } catch (error) {
+    console.error('Error birthing new soul:', error);
+    
+    // Show error notification
+    const errorNotification = document.createElement('div');
+    errorNotification.className = 'notification error-notification';
+    errorNotification.textContent = 'Failed to birth a new soul. Try again later.';
+    document.body.appendChild(errorNotification);
+    
+    setTimeout(() => {
+      errorNotification.classList.add('fade-out');
+      setTimeout(() => errorNotification.remove(), 1000);
+    }, 5000);
+  }
+}
+
+// Save a soul to local storage
+function saveSoul(soul) {
+  // Get existing souls
+  const souls = JSON.parse(localStorage.getItem('colony_souls') || '[]');
+  
+  // Add the new soul
+  souls.push(soul);
+  
+  // Save back to local storage
+  localStorage.setItem('colony_souls', JSON.stringify(souls));
+}
+
+// Load souls from local storage
+function loadSouls(container) {
+  const souls = JSON.parse(localStorage.getItem('colony_souls') || '[]');
+  
+  // Clear the container
+  container.innerHTML = '';
+  
+  if (souls.length === 0) {
+    const emptyMessage = document.createElement('div');
+    emptyMessage.className = 'no-souls-message';
+    emptyMessage.textContent = 'No souls have been born yet. Create a new soul to populate your colony.';
+    container.appendChild(emptyMessage);
+    return;
+  }
+  
+  // Display each soul
+  souls.forEach(soul => {
+    displaySoul(soul, container);
+  });
+}
+
+// Display a soul in the UI
+function displaySoul(soul, container) {
+  // Create a card for the soul
+  const card = document.createElement('div');
+  card.className = 'soul-card';
+  card.dataset.soulId = soul.id;
+  
+  // Create the card content
+  card.innerHTML = `
+    <h4>${soul.name}</h4>
+    <div class="soul-age">Age: ${soul.age}</div>
+    <div class="soul-personality">Personality: ${soul.mbti}</div>
+    <div class="soul-aspiration">${soul.aspiration}</div>
+    <button class="view-soul-details">View Details</button>
+  `;
+  
+  // Add event listener to view details button
+  card.querySelector('.view-soul-details').addEventListener('click', () => {
+    showSoulDetails(soul);
+  });
+  
+  // Add the card to the container
+  container.appendChild(card);
+}
+
+// Show detailed information about a soul
+function showSoulDetails(soul) {
+  // Create a dialog for the soul details
+  const dialog = document.createElement('div');
+  dialog.className = 'dialog';
+  
+  // Create the dialog content
+  dialog.innerHTML = `
+    <div class="dialog-content">
+      <h2>${soul.name}</h2>
+      <div class="soul-details">
+        <div class="soul-detail">
+          <strong>Age:</strong> ${soul.age}
+        </div>
+        <div class="soul-detail">
+          <strong>Personality:</strong> ${soul.mbti}
+        </div>
+        <div class="soul-detail">
+          <strong>Strengths:</strong> ${Array.isArray(soul.strengths) ? soul.strengths.join(', ') : soul.strengths}
+        </div>
+        <div class="soul-detail">
+          <strong>Flaws:</strong> ${Array.isArray(soul.flaws) ? soul.flaws.join(', ') : soul.flaws}
+        </div>
+        <div class="soul-detail">
+          <strong>Aspiration:</strong> ${soul.aspiration}
+        </div>
+        <div class="soul-detail">
+          <strong>Backstory:</strong> ${soul.backstory}
+        </div>
+        <div class="soul-detail">
+          <strong>Relationship to Colony:</strong> ${soul.relationship}
+        </div>
+        <div class="soul-detail">
+          <strong>Special Skill:</strong> ${soul.skill}
+        </div>
+      </div>
+      <button class="close-button">Close</button>
+    </div>
+  `;
+  
+  // Add event listener to close button
+  dialog.querySelector('.close-button').addEventListener('click', () => {
+    dialog.remove();
+  });
+  
+  // Add the dialog to the body
+  document.body.appendChild(dialog);
+  
+  // Add visible class to trigger animation
+  setTimeout(() => {
+    dialog.classList.add('visible');
+  }, 10);
+}
+
 // Show technology research menu
 function showTechnologyMenu() {
   // Remove any existing technology menu

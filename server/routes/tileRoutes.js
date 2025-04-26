@@ -164,6 +164,126 @@ router.post('/islands/:x/:y/redraw', async (req, res) => {
   }
 });
 
+// Add this route to handle close map generation
+router.post('/close-map/generate', async (req, res) => {
+  try {
+    const { tileX, tileY, regionX, regionY, terrainCode, terrainDescription } = req.body;
+    
+    // Get user ID from request headers or query params
+    const userId = req.headers['user-id'] || req.query.userId || req.body.userId;
+    
+    logger.info(`Close map generation requested for tile at (${regionX},${regionY},${tileX},${tileY}) with terrain ${terrainCode}`);
+    
+    if (!terrainCode || !terrainDescription) {
+      return res.status(400).json({ error: 'Missing required parameters' });
+    }
+    
+    // Check if user has enough COMPUTE
+    if (userId) {
+      const hasEnough = await computeManager.hasEnoughCompute(userId, 'CLAUDE');
+      if (!hasEnough) {
+        return res.status(402).json({ 
+          error: 'Insufficient COMPUTE balance',
+          message: 'You need at least 1000 COMPUTE to use this service'
+        });
+      }
+    }
+    
+    // Generate the close map
+    const closeMapService = require('../services/closeMapService');
+    const result = await closeMapService.generateCloseMap(regionX, regionY, tileX, tileY, terrainCode, terrainDescription);
+    
+    // Deduct COMPUTE if successful and userId is provided
+    if (userId && result.success) {
+      await computeManager.deductCompute(userId, 'CLAUDE');
+    }
+    
+    res.json(result);
+  } catch (error) {
+    logger.error(`Error generating close map: ${error.message}`, { error });
+    res.status(500).json({ 
+      error: 'Failed to generate close map', 
+      message: error.message
+    });
+  }
+});
+
+// Add this route to get close map tiles
+router.get('/close-map/:regionX/:regionY/:tileX/:tileY/:x/:y', async (req, res) => {
+  try {
+    const { regionX, regionY, tileX, tileY, x, y } = req.params;
+    const position = { 
+      regionX: parseInt(regionX), 
+      regionY: parseInt(regionY),
+      tileX: parseInt(tileX),
+      tileY: parseInt(tileY),
+      x: parseInt(x),
+      y: parseInt(y)
+    };
+    
+    logger.debug(`Close map tile requested at position ${JSON.stringify(position)}`);
+    
+    // Check if tile already exists
+    const tilePath = path.join(
+      config.TILES_DIR, 
+      'close_maps',
+      `${position.regionX}_${position.regionY}_${position.tileX}_${position.tileY}`,
+      `${position.x}_${position.y}.png`
+    );
+    
+    try {
+      await fs.access(tilePath);
+      // Tile exists, return it
+      return res.sendFile(tilePath);
+    } catch (err) {
+      // Tile doesn't exist, return a fallback
+      logger.warn(`Close map tile not found at ${tilePath}`);
+      
+      // Generate a fallback tile
+      const closeMapService = require('../services/closeMapService');
+      const fallbackTilePath = await closeMapService.generateFallbackTile(position);
+      return res.sendFile(fallbackTilePath);
+    }
+  } catch (error) {
+    logger.error(`Error serving close map tile: ${error.message}`, { error });
+    res.status(500).json({ error: 'Failed to serve close map tile' });
+  }
+});
+
+// Add this route to get close map metadata
+router.get('/close-map/:regionX/:regionY/:tileX/:tileY/metadata', async (req, res) => {
+  try {
+    const { regionX, regionY, tileX, tileY } = req.params;
+    const position = { 
+      regionX: parseInt(regionX), 
+      regionY: parseInt(regionY),
+      tileX: parseInt(tileX),
+      tileY: parseInt(tileY)
+    };
+    
+    // Check if metadata exists
+    const metadataPath = path.join(
+      config.TILES_DIR, 
+      'close_maps',
+      `${position.regionX}_${position.regionY}_${position.tileX}_${position.tileY}`,
+      'metadata.json'
+    );
+    
+    try {
+      const metadata = await fs.readFile(metadataPath, 'utf8');
+      return res.json(JSON.parse(metadata));
+    } catch (err) {
+      return res.status(404).json({ 
+        error: 'Close map metadata not found',
+        message: 'The close map may not have been generated yet'
+      });
+    }
+  } catch (error) {
+    logger.error(`Error getting close map metadata: ${error.message}`, { error });
+    res.status(500).json({ error: 'Failed to get close map metadata' });
+  }
+});
+
 // Add this route to list music files
 router.get('/audio/music/list', async (req, res) => {
   try {

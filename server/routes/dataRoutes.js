@@ -925,6 +925,73 @@ function extractCharacterDataFromText(text) {
   return characterData;
 }
 
+// Helper function to extract character data from text when JSON parsing fails
+function extractCharacterDataFromText(text) {
+  if (!text) return null;
+  
+  // Create a default structure
+  const characterData = {
+    id: `soul_${Date.now()}`,
+    name: '',
+    age: 0,
+    mbti: '',
+    strengths: [],
+    flaws: [],
+    aspiration: '',
+    backstory: '',
+    relationship: '',
+    skill: '',
+    createdAt: new Date().toISOString()
+  };
+  
+  // Try to extract each field
+  const nameMatch = text.match(/Name:?\s*([^\n]+)/i);
+  if (nameMatch) characterData.name = nameMatch[1].trim();
+  
+  const ageMatch = text.match(/Age:?\s*(\d+)/i);
+  if (ageMatch) characterData.age = parseInt(ageMatch[1]);
+  
+  const mbtiMatch = text.match(/(?:MBTI|Personality):?\s*([A-Z]{4})/i);
+  if (mbtiMatch) characterData.mbti = mbtiMatch[1].trim();
+  
+  const aspirationMatch = text.match(/(?:Aspiration|Goal|Life goal):?\s*([^\n]+)/i);
+  if (aspirationMatch) characterData.aspiration = aspirationMatch[1].trim();
+  
+  const backstoryMatch = text.match(/Backstory:?\s*([^\n]+(?:\n[^\n]+)*?)(?:\n\n|\n[A-Z]|$)/i);
+  if (backstoryMatch) characterData.backstory = backstoryMatch[1].trim();
+  
+  const relationshipMatch = text.match(/Relationship:?\s*([^\n]+(?:\n[^\n]+)*?)(?:\n\n|\n[A-Z]|$)/i);
+  if (relationshipMatch) characterData.relationship = relationshipMatch[1].trim();
+  
+  const skillMatch = text.match(/(?:Special skill|Skill|Knowledge):?\s*([^\n]+)/i);
+  if (skillMatch) characterData.skill = skillMatch[1].trim();
+  
+  // Extract strengths (could be a list or paragraph)
+  const strengthsSection = text.match(/Strengths:?\s*((?:[^\n]+\n?)+?)(?:\n\n|\n[A-Z]|$)/i);
+  if (strengthsSection) {
+    // Try to split by numbers, bullets, or new lines
+    const strengthsList = strengthsSection[1].split(/(?:\d+\.|\*|\n-|\n\d+\.|\n)/);
+    characterData.strengths = strengthsList
+      .map(s => s.trim())
+      .filter(s => s.length > 0);
+  }
+  
+  // Extract flaws (could be a list or paragraph)
+  const flawsSection = text.match(/(?:Flaws|Weaknesses):?\s*((?:[^\n]+\n?)+?)(?:\n\n|\n[A-Z]|$)/i);
+  if (flawsSection) {
+    // Try to split by numbers, bullets, or new lines
+    const flawsList = flawsSection[1].split(/(?:\d+\.|\*|\n-|\n\d+\.|\n)/);
+    characterData.flaws = flawsList
+      .map(s => s.trim())
+      .filter(s => s.length > 0);
+  }
+  
+  // If we couldn't extract a name, this probably failed
+  if (!characterData.name) return null;
+  
+  return characterData;
+}
+
 // Helper function to get the current user ID from localStorage
 function getCurrentUserId() {
   return localStorage.getItem('userId');

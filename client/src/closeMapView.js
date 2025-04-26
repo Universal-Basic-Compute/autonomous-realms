@@ -354,7 +354,8 @@ class CloseMapView {
           tileX,
           tileY,
           terrainCode,
-          terrainDescription
+          terrainDescription,
+          userId // Also include in body
         })
       });
       
@@ -367,8 +368,14 @@ class CloseMapView {
           return;
         }
         
+        // Check if the response is HTML (which would indicate a server error page)
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('text/html')) {
+          throw new Error('Server returned an HTML error page. The endpoint may not exist or be properly configured.');
+        }
+        
         const error = await response.json();
-        throw new Error(error.message || 'Failed to generate close map');
+        throw new Error(error.message || `Failed to generate close map: ${response.status} ${response.statusText}`);
       }
       
       const result = await response.json();

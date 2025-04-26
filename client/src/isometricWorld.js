@@ -3,6 +3,7 @@ import { createWelcomeScreen } from './welcomeScreen.js';
 import resourceManager from './resourceManager.js';
 import './resourceDisplay.js'; // This will initialize the resource display
 import './craftingView.js'; // Import the crafting view
+import ContextMenu from './contextMenu.js';
 
 // Language caching variables
 let languageCache = null;
@@ -75,7 +76,7 @@ const state = {
     isLoading: false,
     availableActions: [], // Store available actions for selected tile
     actionMenuVisible: false, // Track if action menu is visible
-    contextMenu: null, // Track the current context menu
+    contextMenu: null, // Track the current context menu instance
     hasDragged: false  // Track if dragging has occurred
 };
 
@@ -3757,17 +3758,26 @@ function setupEventListeners() {
         // Check if right-click was on a tile
         const tileElement = e.target.closest('.tile');
         if (tileElement) {
-            showContextMenu(e.clientX, e.clientY, tileElement);
+            // If we don't have a context menu instance yet, create one
+            if (!state.contextMenu) {
+                state.contextMenu = new ContextMenu();
+            }
+            
+            // Show the context menu
+            state.contextMenu.show(e.clientX, e.clientY, tileElement);
         } else {
-            hideContextMenu();
+            // Hide context menu if clicking elsewhere
+            if (state.contextMenu) {
+                state.contextMenu.hide();
+            }
         }
     });
     
     // Hide context menu when clicking elsewhere
     document.addEventListener('click', (e) => {
         // Don't hide if clicking on the menu itself
-        if (!e.target.closest('.context-menu')) {
-            hideContextMenu();
+        if (state.contextMenu && !e.target.closest('.context-menu')) {
+            state.contextMenu.hide();
         }
         
         // Don't hide edge menu since it should always be visible
@@ -3782,12 +3792,16 @@ function setupEventListeners() {
     
     // Hide context menu when scrolling
     document.addEventListener('wheel', () => {
-        hideContextMenu();
+        if (state.contextMenu) {
+            state.contextMenu.hide();
+        }
     });
     
     // Hide context menu when window is resized
     window.addEventListener('resize', () => {
-        hideContextMenu();
+        if (state.contextMenu) {
+            state.contextMenu.hide();
+        }
     });
     
     // Burger menu functionality
@@ -4572,42 +4586,7 @@ function formatFileSize(bytes) {
     else return (bytes / 1048576).toFixed(1) + ' MB';
 }
 
-// Show context menu
-function showContextMenu(x, y, tileElement) {
-    // Remove any existing context menu
-    hideContextMenu();
-    
-    // Create context menu
-    const contextMenu = document.createElement('div');
-    contextMenu.className = 'context-menu';
-    contextMenu.style.left = `${x}px`;
-    contextMenu.style.top = `${y}px`;
-    
-    // Add menu items
-    const redrawOption = document.createElement('div');
-    redrawOption.className = 'context-menu-item';
-    redrawOption.textContent = 'Redraw Tile';
-    redrawOption.addEventListener('click', () => {
-        redrawTile(tileElement);
-        hideContextMenu();
-    });
-    
-    contextMenu.appendChild(redrawOption);
-    
-    // Add to document
-    document.body.appendChild(contextMenu);
-    
-    // Store reference to the menu
-    state.contextMenu = contextMenu;
-}
-
-// Hide context menu
-function hideContextMenu() {
-    if (state.contextMenu) {
-        state.contextMenu.remove();
-        state.contextMenu = null;
-    }
-}
+// These functions are replaced by the ContextMenu class
 
 // Redraw a tile
 async function redrawTile(tileElement) {

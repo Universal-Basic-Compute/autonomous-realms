@@ -636,3 +636,248 @@ module.exports = {
   generateCloseMap,
   generateFallbackTile
 };
+const fs = require('fs').promises;
+const path = require('path');
+const fetch = require('node-fetch');
+const { createCanvas, loadImage } = require('canvas');
+const config = require('../config');
+const logger = require('../utils/logger');
+
+// Constants
+const CLOSE_MAP_SIZE = 16;
+const TILE_WIDTH = 128;
+const TILE_HEIGHT = 128;
+
+/**
+ * Generate a close map for a specific tile
+ */
+async function generateCloseMap(regionX, regionY, tileX, tileY, terrainCode, terrainDescription) {
+  try {
+    logger.info(`Generating close map for tile (${regionX},${regionY},${tileX},${tileY}) with terrain ${terrainCode}`);
+    
+    // Create directory for this close map
+    const closeMapDir = path.join(
+      config.TILES_DIR, 
+      'close_maps',
+      `${regionX}_${regionY}_${tileX}_${tileY}`
+    );
+    
+    await fs.mkdir(closeMapDir, { recursive: true });
+    
+    // Generate a simple metadata file with placeholder data
+    const metadata = {
+      regionX,
+      regionY,
+      tileX,
+      tileY,
+      terrainCode,
+      terrainDescription,
+      size: CLOSE_MAP_SIZE,
+      tileDescriptions: generatePlaceholderDescriptions(terrainCode),
+      generatedAt: new Date().toISOString()
+    };
+    
+    // Save metadata
+    const metadataPath = path.join(closeMapDir, 'metadata.json');
+    await fs.writeFile(metadataPath, JSON.stringify(metadata, null, 2));
+    
+    // Generate placeholder tiles
+    for (let y = 0; y < CLOSE_MAP_SIZE; y++) {
+      for (let x = 0; x < CLOSE_MAP_SIZE; x++) {
+        const tilePath = path.join(closeMapDir, `${x}_${y}.png`);
+        await generateFallbackTileWithDescription(tilePath, metadata.tileDescriptions[y * CLOSE_MAP_SIZE + x]);
+      }
+    }
+    
+    return {
+      success: true,
+      message: `Close map generated for tile (${regionX},${regionY},${tileX},${tileY})`,
+      metadata
+    };
+  } catch (error) {
+    logger.error(`Error generating close map: ${error.message}`, { error });
+    throw error;
+  }
+}
+
+/**
+ * Generate placeholder descriptions for a close map
+ */
+function generatePlaceholderDescriptions(terrainCode) {
+  // Extract the base terrain code (before any | character)
+  const baseTerrainCode = terrainCode.split('|')[0];
+  
+  // Define basic descriptions based on terrain type
+  let primaryDescription = "grass";
+  let secondaryDescription = "tall grass";
+  let tertiaryDescription = "rocks";
+  let specialFeature = "wildflowers";
+  
+  // Customize based on terrain code
+  switch (baseTerrainCode.charAt(0)) {
+    case 'P': // Plains
+      primaryDescription = "grass";
+      secondaryDescription = "tall grass";
+      tertiaryDescription = "small rocks";
+      specialFeature = "wildflowers";
+      break;
+    case 'F': // Forest
+      primaryDescription = "trees";
+      secondaryDescription = "bushes";
+      tertiaryDescription = "fallen logs";
+      specialFeature = "mushrooms";
+      break;
+    case 'D': // Desert
+      primaryDescription = "sand";
+      secondaryDescription = "dry soil";
+      tertiaryDescription = "small rocks";
+      specialFeature = "cactus";
+      break;
+    case 'M': // Mountains
+      primaryDescription = "rocky ground";
+      secondaryDescription = "boulders";
+      tertiaryDescription = "gravel";
+      specialFeature = "mountain flowers";
+      break;
+    case 'W': // Water
+      primaryDescription = "shallow water";
+      secondaryDescription = "reeds";
+      tertiaryDescription = "mud";
+      specialFeature = "water lilies";
+      break;
+    // Add more cases as needed
+  }
+  
+  // Create a 16x16 grid with these descriptions
+  const descriptions = [];
+  for (let y = 0; y < CLOSE_MAP_SIZE; y++) {
+    for (let x = 0; x < CLOSE_MAP_SIZE; x++) {
+      // Use a simple algorithm to distribute features
+      const random = Math.random();
+      
+      if (random < 0.6) {
+        descriptions.push(primaryDescription);
+      } else if (random < 0.8) {
+        descriptions.push(secondaryDescription);
+      } else if (random < 0.95) {
+        descriptions.push(tertiaryDescription);
+      } else {
+        descriptions.push(specialFeature);
+      }
+    }
+  }
+  
+  return descriptions;
+}
+
+/**
+ * Generate a fallback tile with a specific description
+ */
+async function generateFallbackTileWithDescription(outputPath, description) {
+  try {
+    logger.info(`Generating fallback tile for description: ${description}`);
+    
+    // Create a basic canvas
+    const canvas = createCanvas(TILE_WIDTH, TILE_HEIGHT);
+    const ctx = canvas.getContext('2d');
+    
+    // Get base color from description
+    const baseColor = getColorFromDescription(description);
+    
+    // Fill with base color
+    ctx.fillStyle = baseColor;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Add description text
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+    ctx.font = '14px Arial';
+    ctx.fillText(description, 10, canvas.height / 2);
+    
+    // Save the fallback tile
+    await fs.writeFile(outputPath, canvas.toBuffer('image/png'));
+    
+    logger.info(`Fallback tile saved to ${outputPath}`);
+    return outputPath;
+  } catch (error) {
+    logger.error(`Error generating fallback tile: ${error.message}`);
+    throw error;
+  }
+}
+
+/**
+ * Generate a fallback tile for a position
+ */
+async function generateFallbackTile(position) {
+  try {
+    logger.info(`Generating fallback tile for position ${JSON.stringify(position)}`);
+    
+    // Create directory for this close map if it doesn't exist
+    const closeMapDir = path.join(
+      config.TILES_DIR, 
+      'close_maps',
+      `${position.regionX}_${position.regionY}_${position.tileX}_${position.tileY}`
+    );
+    
+    await fs.mkdir(closeMapDir, { recursive: true });
+    
+    // Create the tile path
+    const tilePath = path.join(closeMapDir, `${position.x}_${position.y}.png`);
+    
+    // Create a basic canvas
+    const canvas = createCanvas(TILE_WIDTH, TILE_HEIGHT);
+    const ctx = canvas.getContext('2d');
+    
+    // Fill with a default color
+    ctx.fillStyle = '#8BC34A'; // Light green
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Add position text for debugging
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+    ctx.font = '12px Arial';
+    ctx.fillText(`Close Map: ${position.regionX},${position.regionY}`, 10, 20);
+    ctx.fillText(`Tile: ${position.tileX},${position.tileY}`, 10, 40);
+    ctx.fillText(`Position: ${position.x},${position.y}`, 10, 60);
+    
+    // Save the fallback tile
+    await fs.writeFile(tilePath, canvas.toBuffer('image/png'));
+    
+    logger.info(`Fallback tile saved to ${tilePath}`);
+    return tilePath;
+  } catch (error) {
+    logger.error(`Error generating fallback tile: ${error.message}`);
+    throw error;
+  }
+}
+
+/**
+ * Get a color based on a description
+ */
+function getColorFromDescription(description) {
+  description = description.toLowerCase();
+  
+  if (description.includes('grass')) return '#4CAF50';
+  if (description.includes('tall grass')) return '#388E3C';
+  if (description.includes('tree')) return '#2E7D32';
+  if (description.includes('forest')) return '#1B5E20';
+  if (description.includes('water')) return '#2196F3';
+  if (description.includes('river')) return '#1976D2';
+  if (description.includes('lake')) return '#0D47A1';
+  if (description.includes('sand')) return '#FDD835';
+  if (description.includes('desert')) return '#F9A825';
+  if (description.includes('rock')) return '#757575';
+  if (description.includes('mountain')) return '#616161';
+  if (description.includes('snow')) return '#ECEFF1';
+  if (description.includes('ice')) return '#CFD8DC';
+  if (description.includes('flower')) return '#E91E63';
+  if (description.includes('mud')) return '#795548';
+  if (description.includes('path')) return '#8D6E63';
+  if (description.includes('road')) return '#6D4C41';
+  
+  // Default color
+  return '#8BC34A'; // Light green
+}
+
+module.exports = {
+  generateCloseMap,
+  generateFallbackTile
+};

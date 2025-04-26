@@ -39,6 +39,16 @@ async function ensureDirectories() {
       await fs.mkdir(dir, { recursive: true });
     }
   }
+  
+  // Add close maps directory
+  const closeMapDir = path.join(config.TILES_DIR, 'close_maps');
+  try {
+    await fs.access(closeMapDir);
+    logger.debug(`Directory exists: ${closeMapDir}`);
+  } catch (err) {
+    logger.info(`Creating directory: ${closeMapDir}`);
+    await fs.mkdir(closeMapDir, { recursive: true });
+  }
 }
 
 // Create a dummy audio file for fallback

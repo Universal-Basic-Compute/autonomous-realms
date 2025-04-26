@@ -1394,6 +1394,105 @@ body::before {
   }
 }
 
+/* Souls container */
+.souls-container {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  max-height: 500px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.no-souls-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 20px;
+  color: #aaa;
+  font-style: italic;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.soul-card {
+  background: linear-gradient(to bottom, #2a3038, #1a1e22);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 15px;
+  transition: all 0.3s;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+.soul-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  border-color: #4CAF50;
+}
+
+.soul-card h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #4CAF50;
+  font-size: 16px;
+}
+
+.soul-age, .soul-personality {
+  font-size: 12px;
+  color: #aaa;
+  margin-bottom: 5px;
+}
+
+.soul-aspiration {
+  font-size: 12px;
+  font-style: italic;
+  color: #ccc;
+  margin-bottom: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.view-soul-details {
+  background: linear-gradient(to bottom, #4CAF50, #3d8b40);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s;
+}
+
+.view-soul-details:hover {
+  background: linear-gradient(to bottom, #5cb860, #4CAF50);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
+
+/* Soul details */
+.soul-details {
+  margin: 20px 0;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.soul-detail {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.soul-detail:last-child {
+  margin-bottom: 0;
+}
+
+.soul-detail strong {
+  color: #4CAF50;
+  margin-right: 5px;
+}
+
 /* Enhanced edge menu */
 .edge-menu {
     position: fixed;

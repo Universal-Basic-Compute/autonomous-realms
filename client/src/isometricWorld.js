@@ -448,6 +448,7 @@ function showCircularMenu() {
     
     // Add menu items
     const menuItems = [
+        { icon: '👥', label: 'People', action: showPeopleMenu },
         { icon: '🗣️', label: 'Language', action: showLanguageMenu },
         { icon: '🏛️', label: 'Culture', action: showCultureMenu },
         { icon: '🛠️', label: 'Crafting', action: showCraftingMenu },

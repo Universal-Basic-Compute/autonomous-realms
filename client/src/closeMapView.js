@@ -180,6 +180,69 @@ class CloseMapView {
         background-color: #34495e;
       }
       
+      .close-map-actions button:disabled {
+        background-color: #95a5a6;
+        cursor: not-allowed;
+      }
+      
+      .close-map-actions button[data-action="settle"] {
+        background-color: #27ae60;
+        font-weight: bold;
+      }
+      
+      .close-map-actions button[data-action="settle"]:hover {
+        background-color: #2ecc71;
+      }
+      
+      .building-overlay, .settlement-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
+        z-index: 10;
+        text-shadow: 0 0 3px #000;
+      }
+      
+      .settlement-overlay {
+        font-size: 32px;
+      }
+      
+      .progress-bar {
+        height: 20px;
+        background-color: #3498db;
+        width: 0%;
+        border-radius: 4px;
+        transition: width 0.2s;
+      }
+      
+      .construction-progress, .gathering-progress, .exploration-progress, .settlement-progress {
+        width: 100%;
+        background-color: #ecf0f1;
+        border-radius: 4px;
+        margin: 10px 0;
+      }
+      
+      .settlement-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+      }
+      
+      .primary-button {
+        background-color: #27ae60;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      
+      .primary-button:hover {
+        background-color: #2ecc71;
+      }
+      
       .loading-overlay {
         position: absolute;
         top: 0;
@@ -440,20 +503,27 @@ class CloseMapView {
     // Add selected class to clicked tile
     tileElement.classList.add('selected');
     
+    // Check if this tile already has a building or settlement
+    const hasBuilding = tileElement.dataset.building;
+    const hasSettlement = tileElement.dataset.settlement === 'true';
+    
     // Update info panel
     this.infoPanel.innerHTML = `
       <h3>Tile Information</h3>
       <p><strong>Position:</strong> (${x}, ${y})</p>
       <p><strong>Type:</strong> ${description}</p>
+      ${hasBuilding ? `<p><strong>Building:</strong> ${hasBuilding}</p>` : ''}
+      ${hasSettlement ? `<p><strong>Status:</strong> Settlement Established</p>` : ''}
       <div class="close-map-actions">
-        <button data-action="build">Build</button>
+        <button data-action="build" ${hasSettlement ? 'disabled' : ''}>Build</button>
         <button data-action="gather">Gather</button>
         <button data-action="explore">Explore</button>
+        ${!hasSettlement ? '<button data-action="settle">Establish Settlement</button>' : ''}
       </div>
     `;
     
     // Add event listeners to action buttons
-    this.infoPanel.querySelectorAll('button[data-action]').forEach(button => {
+    this.infoPanel.querySelectorAll('button[data-action]:not([disabled])').forEach(button => {
       button.addEventListener('click', () => {
         const action = button.dataset.action;
         this.handleAction(action, regionX, regionY, tileX, tileY, x, y, description);
@@ -464,20 +534,75 @@ class CloseMapView {
   handleAction(action, regionX, regionY, tileX, tileY, x, y, description) {
     console.log(`Performing ${action} on ${description} at (${x}, ${y})`);
     
-    // Here you would implement the specific action logic
-    // For now, just show a message in the info panel
-    
+    // Handle different actions
+    switch(action) {
+      case 'build':
+        this.handleBuildAction(regionX, regionY, tileX, tileY, x, y, description);
+        break;
+      case 'gather':
+        this.handleGatherAction(regionX, regionY, tileX, tileY, x, y, description);
+        break;
+      case 'explore':
+        this.handleExploreAction(regionX, regionY, tileX, tileY, x, y, description);
+        break;
+      case 'settle':
+        this.handleSettleAction(regionX, regionY, tileX, tileY, x, y, description);
+        break;
+      default:
+        // For unimplemented actions, show a message
+        this.infoPanel.innerHTML = `
+          <h3>Action: ${action}</h3>
+          <p>Performing ${action} on ${description} at (${x}, ${y})</p>
+          <p>This feature is not yet implemented.</p>
+          <button id="close-map-back-to-info">Back</button>
+        `;
+        
+        // Add event listener to back button
+        const backButton = this.infoPanel.querySelector('#close-map-back-to-info');
+        if (backButton) {
+          backButton.addEventListener('click', () => {
+            // Find the selected tile and trigger a click on it to restore the info panel
+            const selectedTile = this.tiles.find(tile => tile.classList.contains('selected'));
+            if (selectedTile) {
+              this.handleTileClick(
+                selectedTile,
+                regionX,
+                regionY,
+                tileX,
+                tileY,
+                parseInt(selectedTile.dataset.x),
+                parseInt(selectedTile.dataset.y),
+                selectedTile.dataset.description
+              );
+            }
+          });
+        }
+    }
+  }
+  handleSettleAction(regionX, regionY, tileX, tileY, x, y, description) {
+    // Show settlement confirmation dialog
     this.infoPanel.innerHTML = `
-      <h3>Action: ${action}</h3>
-      <p>Performing ${action} on ${description} at (${x}, ${y})</p>
-      <p>This feature is not yet implemented.</p>
-      <button id="close-map-back-to-info">Back</button>
+      <h3>Establish Settlement</h3>
+      <p>Are you sure you want to establish a settlement on this ${description} at (${x}, ${y})?</p>
+      <p>This will become your tribe's permanent home base.</p>
+      <div class="settlement-actions">
+        <button id="confirm-settlement" class="primary-button">Confirm Settlement</button>
+        <button id="cancel-settlement">Cancel</button>
+      </div>
     `;
     
-    // Add event listener to back button
-    const backButton = this.infoPanel.querySelector('#close-map-back-to-info');
-    if (backButton) {
-      backButton.addEventListener('click', () => {
+    // Add event listeners to buttons
+    const confirmButton = this.infoPanel.querySelector('#confirm-settlement');
+    const cancelButton = this.infoPanel.querySelector('#cancel-settlement');
+    
+    if (confirmButton) {
+      confirmButton.addEventListener('click', () => {
+        this.establishSettlement(regionX, regionY, tileX, tileY, x, y, description);
+      });
+    }
+    
+    if (cancelButton) {
+      cancelButton.addEventListener('click', () => {
         // Find the selected tile and trigger a click on it to restore the info panel
         const selectedTile = this.tiles.find(tile => tile.classList.contains('selected'));
         if (selectedTile) {
@@ -493,6 +618,93 @@ class CloseMapView {
           );
         }
       });
+    }
+  }
+  
+  establishSettlement(regionX, regionY, tileX, tileY, x, y, description) {
+    // Show settlement in progress
+    this.infoPanel.innerHTML = `
+      <h3>Establishing Settlement</h3>
+      <p>Your tribe is setting up their new home...</p>
+      <div class="settlement-progress">
+        <div class="progress-bar" id="settlement-progress-bar"></div>
+      </div>
+    `;
+    
+    // Animate progress bar
+    const progressBar = document.getElementById('settlement-progress-bar');
+    let progress = 0;
+    
+    const progressInterval = setInterval(() => {
+      progress += 2;
+      if (progressBar) {
+        progressBar.style.width = `${progress}%`;
+      }
+      
+      if (progress >= 100) {
+        clearInterval(progressInterval);
+        this.finishSettlement(regionX, regionY, tileX, tileY, x, y, description);
+      }
+    }, 50);
+  }
+  
+  finishSettlement(regionX, regionY, tileX, tileY, x, y, description) {
+    // Update the tile to show the settlement
+    const selectedTile = this.tiles.find(tile => 
+      parseInt(tile.dataset.x) === x && parseInt(tile.dataset.y) === y
+    );
+    
+    if (selectedTile) {
+      // Add a settlement overlay to the tile
+      const settlementOverlay = document.createElement('div');
+      settlementOverlay.className = 'settlement-overlay';
+      settlementOverlay.innerHTML = '🏕️';
+      
+      // Remove any existing overlays
+      const existingOverlays = selectedTile.querySelectorAll('.building-overlay, .settlement-overlay');
+      existingOverlays.forEach(overlay => overlay.remove());
+      
+      selectedTile.appendChild(settlementOverlay);
+      
+      // Store the settlement information in the tile's dataset
+      selectedTile.dataset.settlement = 'true';
+      
+      // Save the settlement location in localStorage
+      localStorage.setItem('settlementLocation', JSON.stringify({
+        regionX, regionY, tileX, tileY, x, y, description
+      }));
+      
+      // Update the info panel
+      this.infoPanel.innerHTML = `
+        <h3>Settlement Established!</h3>
+        <p>Your tribe has successfully established their new home on this ${description}.</p>
+        <p>This will serve as your base of operations for future explorations and development.</p>
+        <button id="close-map-back-to-info">Continue</button>
+      `;
+      
+      // Add event listener to back button
+      const backButton = this.infoPanel.querySelector('#close-map-back-to-info');
+      if (backButton) {
+        backButton.addEventListener('click', () => {
+          this.handleTileClick(
+            selectedTile,
+            regionX,
+            regionY,
+            tileX,
+            tileY,
+            x,
+            y,
+            description
+          );
+        });
+      }
+      
+      // Trigger an event to notify the game that a settlement has been established
+      document.dispatchEvent(new CustomEvent('settlementEstablished', {
+        detail: {
+          regionX, regionY, tileX, tileY, x, y, description
+        }
+      }));
     }
   }
 }

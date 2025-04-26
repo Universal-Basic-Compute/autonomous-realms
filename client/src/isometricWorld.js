@@ -619,9 +619,20 @@ Format the response as a JSON object with these fields.`,
         // Try to find a JSON object in the response
         const jsonMatch = data.response.match(/\{[\s\S]*\}/);
         if (jsonMatch) {
-          characterData = JSON.parse(jsonMatch[0]);
+          try {
+            characterData = JSON.parse(jsonMatch[0]);
+          } catch (jsonError) {
+            console.error('Error parsing JSON match:', jsonError);
+            console.log('JSON match content:', jsonMatch[0]);
+            throw new Error('Failed to parse JSON content');
+          }
         } else {
-          throw new Error('No valid JSON found in response');
+          // If no JSON object is found, try to extract structured data from the text
+          console.log('No JSON object found, attempting to extract structured data');
+          characterData = extractCharacterDataFromText(data.response);
+          if (!characterData) {
+            throw new Error('No valid JSON or structured data found in response');
+          }
         }
       } else {
         throw new Error('Invalid response format');

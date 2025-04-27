@@ -429,7 +429,8 @@ Example response:
 
       // Make request to KinOS
       console.log('Sending crafting request to KinOS');
-      const response = await fetch(`http://localhost:3000/api/kinos/kins/${kinName}/messages`, {
+      const serverUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+      const response = await fetch(`${serverUrl}/api/kinos/kins/${kinName}/messages`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: autonomous-realms
+    env: node
+    buildCommand: npm install
+    startCommand: node server/index.js
+    envVars:
+      - key: NODE_VERSION
+        value: 16.x
+    buildFilter:
+      paths:
+        - package.json
+        - server/**
+    plan: free
+    healthCheckPath: /health
+    disk:
+      name: data
+      mountPath: /data
+      sizeGB: 1
+    preDeployCommand: apt-get update && apt-get install -y build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev

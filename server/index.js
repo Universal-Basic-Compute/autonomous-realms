@@ -96,7 +96,7 @@ async function init() {
     // Serve static files
     app.use('/assets', express.static(path.join(__dirname, 'assets')));
     app.use('/assets/audio', express.static(path.join(__dirname, 'assets/audio')));
-    app.use('/assets/audio/music', express.static(path.join(__dirname, 'assets/audio/music')));
+    app.use('/assets/audio/music', express.static(path.join(__dirname, 'data/music')));
     app.use('/assets/audio/narration', express.static(path.join(__dirname, 'assets/audio/narration')));
     app.use('/assets/images/actions', express.static(path.join(__dirname, 'assets/images/actions')));
     app.use('/assets/images/activities', express.static(path.join(__dirname, 'assets/images/activities')));

@@ -54,7 +54,7 @@ const config = {
     minZoom: 0.2,
     maxZoom: 2.0,
     zoomStep: 0.1,
-    serverUrl: 'http://localhost:3000',
+    serverUrl: import.meta.env.VITE_API_URL || 'http://localhost:3000',
     gridSize: 16, // Size of the terrain map (16x16)
     visibleRadius: 5, // How many tiles to load around the center
     isometricAngle: 30, // Degrees for isometric projection

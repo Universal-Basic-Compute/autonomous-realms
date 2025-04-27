@@ -51,8 +51,9 @@ class AudioPlayer {
 
   async fetchMusicList() {
     try {
+      const serverUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
       console.log('Fetching music list from server...');
-      const response = await fetch('http://localhost:3000/api/tiles/audio/music/list');
+      const response = await fetch(`${serverUrl}/api/tiles/audio/music/list`);
       if (!response.ok) {
         console.error('Failed to fetch music list:', response.statusText);
         return;
@@ -100,7 +101,8 @@ class AudioPlayer {
     this.currentTrack = track;
     
     // Set the audio source and play
-    const audioUrl = `http://localhost:3000/assets/audio/music/${track}`;
+    const serverUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+    const audioUrl = `${serverUrl}/assets/audio/music/${track}`;
     console.log(`Setting audio source to: ${audioUrl}`);
     this.audioElement.src = audioUrl;
     

@@ -79,7 +79,8 @@
         // Fetch terrain icons from the API
         async function fetchTerrainIcons() {
             try {
-                const response = await fetch('http://localhost:3000/api/icons/terrain');
+                const serverUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+                const response = await fetch(`${serverUrl}/api/icons/terrain`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch icons');
                 }
@@ -95,7 +96,8 @@
         // Fetch terrain reference data
         async function fetchTerrainReference() {
             try {
-                const response = await fetch('http://localhost:3000/docs/terrrain_reference.md');
+                const serverUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+                const response = await fetch(`${serverUrl}/docs/terrrain_reference.md`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch terrain reference');
                 }
@@ -194,7 +196,7 @@
                     
                     const iconImage = document.createElement('img');
                     iconImage.className = 'icon-image';
-                    iconImage.src = `http://localhost:3000${icon.url}`;
+                    iconImage.src = `${serverUrl}${icon.url}`;
                     iconImage.alt = icon.code;
                     iconCard.appendChild(iconImage);
                     

@@ -132,7 +132,8 @@ function createAuthScreen() {
     submitButton.textContent = 'Logging in...';
     
     try {
-      const response = await fetch('http://localhost:3000/api/auth/login', {
+      const serverUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+      const response = await fetch(`${serverUrl}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -195,7 +196,8 @@ function createAuthScreen() {
     submitButton.textContent = 'Registering...';
     
     try {
-      const response = await fetch('http://localhost:3000/api/auth/register', {
+      const serverUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+      const response = await fetch(`${serverUrl}/api/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -3,5 +3,3 @@
 
 # Add server/assets/ to gitignore but keep music directory
 server/assets/
-!server/assets/audio/
-!server/assets/audio/music/

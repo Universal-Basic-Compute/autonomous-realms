@@ -2,14 +2,14 @@ import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
 export default defineConfig({
-  root: '.',
+  root: '.', // Set the root to the current directory
   publicDir: 'public',
   build: {
     outDir: 'dist',
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'public/index.html'),
+        main: resolve(__dirname, 'index.html'), // Point to index.html in the root
       },
     },
   },

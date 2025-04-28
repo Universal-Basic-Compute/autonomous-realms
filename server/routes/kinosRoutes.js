@@ -14,7 +14,9 @@ router.post('/kins', async (req, res) => {
     
     logger.info(`Creating new kin with name: ${name}`);
     
-    const response = await fetch(`${config.KINOS_API_BASE_URL}/blueprints/autonomousrealms/kins`, {
+    // Ensure we're using the correct API base URL
+    const apiBaseUrl = process.env.KINOS_API_BASE_URL || config.KINOS_API_BASE_URL;
+    const response = await fetch(`${apiBaseUrl}/blueprints/autonomousrealms/kins`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -62,7 +64,9 @@ router.post('/kins/:kinName/messages', async (req, res) => {
     
     logger.info(`Sending message to kin: ${kinName}`);
     
-    const response = await fetch(`${config.KINOS_API_BASE_URL}/blueprints/autonomousrealms/kins/${kinName}/messages`, {
+    // Ensure we're using the correct API base URL
+    const apiBaseUrl = process.env.KINOS_API_BASE_URL || config.KINOS_API_BASE_URL;
+    const response = await fetch(`${apiBaseUrl}/blueprints/autonomousrealms/kins/${kinName}/messages`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -120,7 +124,9 @@ router.post('/kins/:kinName/images', async (req, res) => {
     
     // Try KinOS endpoint first
     try {
-      const response = await fetch(`${config.KINOS_API_BASE_URL}/blueprints/autonomousrealms/kins/${kinName}/images`, {
+      // Ensure we're using the correct API base URL
+      const apiBaseUrl = process.env.KINOS_API_BASE_URL || config.KINOS_API_BASE_URL;
+      const response = await fetch(`${apiBaseUrl}/blueprints/autonomousrealms/kins/${kinName}/images`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -272,7 +278,9 @@ router.post('/tts', async (req, res) => {
     
     // First try the KinOS endpoint
     try {
-      const response = await fetch(`${config.KINOS_API_BASE_URL}/tts?format=${format}`, {
+      // Ensure we're using the correct API base URL
+      const apiBaseUrl = process.env.KINOS_API_BASE_URL || config.KINOS_API_BASE_URL;
+      const response = await fetch(`${apiBaseUrl}/tts?format=${format}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

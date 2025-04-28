@@ -238,7 +238,11 @@ Return ONLY the valid JSON array, nothing else.
     
     // Make request to KinOS
     logger.info(`Making request to KinOS API for kin: ${kinName}`);
-    const kinosResponse = await fetch(`${config.CLIENT_API_BASE_URL}/api/kinos/kins/${kinName}/messages`, {
+    // Use the server's own URL for internal requests
+    const apiBaseUrl = process.env.NODE_ENV === 'production' 
+      ? config.CLIENT_API_BASE_URL 
+      : 'http://localhost:3000';
+    const kinosResponse = await fetch(`${apiBaseUrl}/api/kinos/kins/${kinName}/messages`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -291,7 +295,11 @@ Return ONLY the valid JSON array, nothing else.
       
       try {
         logger.info(`Requesting TTS for text: "${line.original}"`);
-        const ttsResponse = await fetch(`http://localhost:3000/api/data/actions/ai/tts`, {
+        // Use the server's own URL for internal requests
+        const apiBaseUrl = process.env.NODE_ENV === 'production' 
+          ? config.CLIENT_API_BASE_URL 
+          : 'http://localhost:3000';
+        const ttsResponse = await fetch(`${apiBaseUrl}/api/data/actions/ai/tts`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

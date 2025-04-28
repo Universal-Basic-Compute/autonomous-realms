@@ -13,7 +13,7 @@ module.exports = {
     ? 'https://api.kinos-engine.ai/v2'
     : 'http://localhost:5000/v2',
   CLIENT_API_BASE_URL: process.env.NODE_ENV === 'production'
-    ? 'https://autonomous-realms.vercel.app'
+    ? process.env.PRODUCTION_URL || 'https://autonomous-realms.onrender.com'
     : 'http://localhost:3000',
   IDEOGRAM_MODEL: process.env.IDEOGRAM_MODEL || 'V_2_TURBO', // Configurable model for Reframe API
   IDEOGRAM_STYLE_TYPE: process.env.IDEOGRAM_STYLE_TYPE || 'REALISTIC', // Configurable style type

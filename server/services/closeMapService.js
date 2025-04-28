@@ -119,7 +119,7 @@ Example format:
 `;
 
     // Make request to Claude API via KinOS
-    const response = await fetch('http://localhost:5000/v2/blueprints/autonomousrealms/kins/defaultcolony/analysis', {
+    const response = await fetch(`${config.KINOS_API_BASE_URL}/blueprints/autonomousrealms/kins/defaultcolony/analysis`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

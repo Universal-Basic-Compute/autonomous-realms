@@ -238,7 +238,7 @@ Return ONLY the valid JSON array, nothing else.
     
     // Make request to KinOS
     logger.info(`Making request to KinOS API for kin: ${kinName}`);
-    const kinosResponse = await fetch(`http://localhost:3000/api/kinos/kins/${kinName}/messages`, {
+    const kinosResponse = await fetch(`${config.CLIENT_API_BASE_URL}/api/kinos/kins/${kinName}/messages`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -573,7 +573,7 @@ ${actionsDoc}`;
     logger.debug(`Making KinOS analysis request for terrain ${baseTerrainCode}`);
     
     // Make request to KinOS analysis endpoint
-    const response = await fetch('http://localhost:5000/v2/blueprints/autonomousrealms/kins/defaultcolony/analysis', {
+    const response = await fetch(`${config.KINOS_API_BASE_URL}/blueprints/autonomousrealms/kins/defaultcolony/analysis`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -800,7 +800,7 @@ Terrain code: ${baseTerrainCode}
 Modifiers: ${modifiers.join(', ')}`;
 
     // Make request to KinOS analysis endpoint
-    const response = await fetch('http://localhost:5000/v2/blueprints/autonomousrealms/kins/defaultcolony/analysis', {
+    const response = await fetch(`${config.KINOS_API_BASE_URL}/blueprints/autonomousrealms/kins/defaultcolony/analysis`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

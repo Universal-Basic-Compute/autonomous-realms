@@ -14,7 +14,7 @@ router.post('/kins', async (req, res) => {
     
     logger.info(`Creating new kin with name: ${name}`);
     
-    const response = await fetch('http://localhost:5000/v2/blueprints/autonomousrealms/kins', {
+    const response = await fetch(`${config.KINOS_API_BASE_URL}/blueprints/autonomousrealms/kins`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ router.post('/kins/:kinName/messages', async (req, res) => {
     
     logger.info(`Sending message to kin: ${kinName}`);
     
-    const response = await fetch(`http://localhost:5000/v2/blueprints/autonomousrealms/kins/${kinName}/messages`, {
+    const response = await fetch(`${config.KINOS_API_BASE_URL}/blueprints/autonomousrealms/kins/${kinName}/messages`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -120,7 +120,7 @@ router.post('/kins/:kinName/images', async (req, res) => {
     
     // Try KinOS endpoint first
     try {
-      const response = await fetch(`http://localhost:5000/v2/blueprints/autonomousrealms/kins/${kinName}/images`, {
+      const response = await fetch(`${config.KINOS_API_BASE_URL}/blueprints/autonomousrealms/kins/${kinName}/images`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -272,7 +272,7 @@ router.post('/tts', async (req, res) => {
     
     // First try the KinOS endpoint
     try {
-      const response = await fetch(`http://localhost:5000/v2/tts?format=${format}`, {
+      const response = await fetch(`${config.KINOS_API_BASE_URL}/tts?format=${format}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

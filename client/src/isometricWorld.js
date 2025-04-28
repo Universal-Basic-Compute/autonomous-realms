@@ -2678,7 +2678,7 @@ Please provide ONLY the JSON response with no additional text, markdown formatti
     };
     
     // Make the API request with updated blueprint and kin
-    const response = await fetch(`http://localhost:3000/api/kinos/kins/defaultcolony/messages${userId ? `?userId=${userId}` : ''}`, {
+    const response = await fetch(`${config.serverUrl}/api/kinos/kins/defaultcolony/messages${userId ? `?userId=${userId}` : ''}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -1234,7 +1234,7 @@ async function generateTTS(text, terrainCode) {
 // Add this route to list music files
 router.get('/music/list', async (req, res) => {
   try {
-    const musicDir = path.join(__dirname, '../assets/audio/music');
+    const musicDir = path.join(__dirname, '../data/music');
     
     // Read the directory
     const files = await fs.readdir(musicDir);

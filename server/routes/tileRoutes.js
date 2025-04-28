@@ -288,7 +288,7 @@ router.get('/close-map/:regionX/:regionY/:tileX/:tileY/metadata', async (req, re
 router.get('/audio/music/list', async (req, res) => {
   try {
     logger.warn('Deprecated endpoint /api/tiles/audio/music/list used, please update to /api/data/music/list');
-    const musicDir = path.join(__dirname, '../assets/audio/music');
+    const musicDir = path.join(__dirname, '../data/music');
     
     // Read the directory
     const files = await fs.readdir(musicDir);

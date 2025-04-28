@@ -428,6 +428,10 @@ Example response:
 }
 `;
 
+      // Get the colony name and kin name from localStorage
+      const colonyName = localStorage.getItem('colonyName') || 'Your Colony';
+      const kinName = localStorage.getItem('kinName') || 'defaultcolony';
+      
       // Make request to KinOS
       console.log('Sending crafting request to KinOS');
       const serverUrl = getServerUrl();

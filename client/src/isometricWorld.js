@@ -574,8 +574,11 @@ async function birthNewSoul() {
     const colonyName = localStorage.getItem('colonyName') || 'Your Colony';
     const leaderName = localStorage.getItem('leaderName') || 'Leader';
     
+    // Get the kin name from localStorage
+    const kinName = localStorage.getItem('kinName') || 'defaultcolony';
+    
     // Make a request to the server
-    const response = await fetch(`${config.serverUrl}/api/kinos/kins/defaultcolony/messages`, {
+    const response = await fetch(`${config.serverUrl}/api/kinos/kins/${kinName}/messages`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -1932,8 +1935,11 @@ Please provide:
 4. A brief narrative about how this language change affects the tribe's culture
 `;
 
+    // Get the kin name from localStorage
+    const kinName = localStorage.getItem('kinName') || 'defaultcolony';
+    
     // Make request to KinOS
-    const response = await fetch('http://localhost:3000/api/kinos/kins/defaultcolony/messages', {
+    const response = await fetch(`${getServerUrl()}/api/kinos/kins/${kinName}/messages`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -2677,8 +2683,11 @@ Please provide ONLY the JSON response with no additional text, markdown formatti
       addSystem: "You are a helpful game assistant providing realistic and immersive guidance on actions taken in a settlement-building game. Consider the terrain, available resources, and potential challenges when describing outcomes. Be specific and vivid in your descriptions. Format your response ONLY as a valid JSON object with the exact structure requested by the user. Do not include any text outside the JSON object."
     };
     
+    // Get the kin name from localStorage
+    const kinName = localStorage.getItem('kinName') || 'defaultcolony';
+    
     // Make the API request with updated blueprint and kin
-    const response = await fetch(`${config.serverUrl}/api/kinos/kins/defaultcolony/messages${userId ? `?userId=${userId}` : ''}`, {
+    const response = await fetch(`${config.serverUrl}/api/kinos/kins/${kinName}/messages${userId ? `?userId=${userId}` : ''}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

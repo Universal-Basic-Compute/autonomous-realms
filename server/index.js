@@ -168,8 +168,11 @@ async function init() {
       `);
     });
     
-    // Start server
-    app.listen(PORT, () => {
+    // Log the port we're about to use
+    logger.info(`Starting server on port ${PORT}`);
+
+    // Start server - bind to all interfaces (0.0.0.0) to ensure it's accessible from outside the container
+    app.listen(PORT, '0.0.0.0', () => {
       logger.info(`Server running on port ${PORT}`);
     });
   } catch (error) {

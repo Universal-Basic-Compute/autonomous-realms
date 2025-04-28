@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "build": "cd client && npm install && npm run build",
-    "start": "cd server && npm install && npm start"
+    "start": "cd client && npm install && npm run preview"
   },
   "engines": {
     "node": ">=16.0.0"

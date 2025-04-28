@@ -104,11 +104,13 @@ class AudioPlayer {
     const serverUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
     const audioUrl = `${serverUrl}/api/data/music/play/${track}`;
     console.log(`Setting audio source to: ${audioUrl}`);
-    this.audioElement.src = audioUrl;
     
-    this.audioElement.play().catch(error => {
-      console.error('Error playing audio:', error);
-    });
+    // Reset any previous errors
+    this.audioElement.onerror = this.handleAudioError.bind(this);
+    
+    // Try to load and play the audio
+    this.audioElement.src = audioUrl;
+    this.tryPlayWithFallbacks();
     
     this.isPlaying = true;
     console.log(`Now playing: ${track}`);
@@ -148,8 +150,75 @@ class AudioPlayer {
       this.audioElement.pause();
       this.audioElement.currentTime = 0;
     }
+    
+    // Reset retry counter
+    this._retryCount = 0;
+    
     // Refetch the music list and start playing
     this.fetchMusicList();
+  }
+  
+  // Handle audio errors with retry logic
+  handleAudioError(error) {
+    console.error('Audio playback error:', error);
+    console.error('Error code:', this.audioElement.error ? this.audioElement.error.code : 'unknown');
+    console.error('Current src:', this.audioElement.src);
+    
+    // Check if we've exceeded max retries
+    if (this._retryCount && this._retryCount >= 3) {
+      console.log('Maximum retry attempts reached, trying another track');
+      this._retryCount = 0;
+      
+      // Try playing another track after a short delay
+      setTimeout(() => {
+        this.playRandomTrack();
+      }, 3000);
+      return;
+    }
+    
+    // Initialize retry count if not set
+    if (!this._retryCount) this._retryCount = 0;
+    this._retryCount++;
+    
+    // Calculate backoff delay (1s, 2s, 4s)
+    const backoffDelay = Math.pow(2, this._retryCount - 1) * 1000;
+    
+    console.log(`Retry attempt ${this._retryCount} in ${backoffDelay}ms`);
+    
+    // Try again with a different approach after backoff delay
+    setTimeout(() => {
+      this.tryPlayWithFallbacks();
+    }, backoffDelay);
+  }
+
+  // Try different playback approaches
+  tryPlayWithFallbacks() {
+    // Get current source
+    const currentSrc = this.audioElement.src;
+    
+    // Try to play
+    this.audioElement.load(); // Force reload
+    
+    this.audioElement.play().catch(error => {
+      console.error('Error playing audio:', error);
+      
+      // If this is a format error, try adding a format parameter
+      if (error.name === 'NotSupportedError' && !currentSrc.includes('format=')) {
+        console.log('Trying with explicit format parameter');
+        
+        // Try with explicit MP3 format
+        const formatUrl = currentSrc.includes('?') 
+          ? `${currentSrc}&format=mp3` 
+          : `${currentSrc}?format=mp3`;
+        
+        this.audioElement.src = formatUrl;
+        this.audioElement.load();
+        this.audioElement.play().catch(err => {
+          console.warn('Still failed with format parameter:', err);
+          // Error will be handled by the onerror handler
+        });
+      }
+    });
   }
   
   setupAutoplay() {

@@ -6,6 +6,10 @@ const tileRoutes = require('./routes/tileRoutes');
 const config = require('./config');
 const logger = require('./utils/logger');
 
+console.log('Server starting - console.log test');
+logger.info('Server starting - logger.info test');
+logger.error('Server starting - logger.error test');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 

@@ -828,11 +828,16 @@ function createLanguageInitScreen(colonyName) {
     languageContainer.id = 'language-init-screen';
     languageContainer.className = 'fullscreen-overlay';
     
+    // Create a wrapper for all language content
+    const contentWrapper = document.createElement('div');
+    contentWrapper.className = 'language-content-wrapper';
+    languageContainer.appendChild(contentWrapper);
+    
     // Add title
     const title = document.createElement('h2');
     title.textContent = 'Language Development';
     title.className = 'language-title';
-    languageContainer.appendChild(title);
+    contentWrapper.appendChild(title);
     
     // Add explanation
     const explanation = document.createElement('p');
@@ -840,21 +845,21 @@ function createLanguageInitScreen(colonyName) {
     explanation.innerHTML = `Your settlers in <strong>${colonyName}</strong> don't yet know how to communicate effectively. 
       As their leader, you need to guide the initial development of their language. 
       How will your people begin to form words and meaning?`;
-    languageContainer.appendChild(explanation);
+    contentWrapper.appendChild(explanation);
     
     // Add input area
     const inputLabel = document.createElement('label');
     inputLabel.textContent = 'How will you start developing your colony\'s language?';
     inputLabel.htmlFor = 'language-input';
     inputLabel.className = 'language-input-label';
-    languageContainer.appendChild(inputLabel);
+    contentWrapper.appendChild(inputLabel);
     
     const inputArea = document.createElement('textarea');
     inputArea.id = 'language-input';
     inputArea.className = 'language-input';
     inputArea.placeholder = 'Describe how your settlers will begin to communicate. For example: "They will start by using simple gestures and sounds to identify important resources like water and food..."';
     inputArea.rows = 6;
-    languageContainer.appendChild(inputArea);
+    contentWrapper.appendChild(inputArea);
     
     // Add buttons
     const buttonContainer = document.createElement('div');
@@ -917,7 +922,7 @@ function createLanguageInitScreen(colonyName) {
     });
     buttonContainer.appendChild(continueButton);
     
-    languageContainer.appendChild(buttonContainer);
+    contentWrapper.appendChild(buttonContainer);
     
     document.body.appendChild(languageContainer);
     

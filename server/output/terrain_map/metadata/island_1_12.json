@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 1,
+    "y": 12
+  },
+  "description": "The mixed forest grows more dense with mature hardwoods dominating. The stream widens slightly, creating a small floodplain with rich alluvial soil. Wildflowers bloom in small clearings.",
+  "terrainCode": "F-MIX|E-FLT|F-RIC|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with The mixed forest grows more dense with mature hardwoods dominating. The stream widens slightly, creating a small floodplain with rich alluvial soil. Wildflowers bloom in small clearings., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|F-GOO|A-DEE), east: oak forest (F-OAK|E-SLI|W-STR|X-RCK), north: unknown terrain (F-MIX|E-FLT|F-GOO|W-STR), south: unknown terrain (F-THN|E-SLI|W-STR|X-RCK)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:50:52.073740+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The mixed forest grows more dense with mature hardwoods dominating. The stream widens slightly, creating a small floodplain with rich alluvial soil. Wildflowers bloom in small clearings., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|F-GOO|A-DEE), east: oak forest (F-OAK|E-SLI|W-STR|X-RCK), north: unknown terrain (F-MIX|E-FLT|F-GOO|W-STR), south: unknown terrain (F-THN|E-SLI|W-STR|X-RCK)",
+        "resolution": "1024x1024",
+        "seed": 1869506771,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/cglm0EFbQp6-MJQa4yDhGQ.png?exp=1745455857&sig=b9bb16e2ea3908f97bbfc73ee0b2d6b21e2b519d249fcfeb6d14e54f309c36e2"
+      }
+    ]
+  }
+}

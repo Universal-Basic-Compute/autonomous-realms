@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 2,
+    "y": 8
+  },
+  "description": "The wetland begins to drain into more solid ground. Patches of drier soil support small trees and shrubs. The stream becomes more defined with clear banks and faster flow.",
+  "terrainCode": "P-BAS|E-FLT|W-STR|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with The wetland begins to drain into more solid ground. Patches of drier soil support small trees and shrubs. The stream becomes more defined with clear banks and faster flow., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: pine forest (F-PIN|E-FLT|F-POO|X-BSH), east: river (W-RIV|E-FLT|H-WET|A-FIS), north: unknown terrain (W-MRS|E-FLT|W-STR|A-FRO), south: lush grassland (P-LUS|E-FLT|F-RIC|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:53:16.017737+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The wetland begins to drain into more solid ground. Patches of drier soil support small trees and shrubs. The stream becomes more defined with clear banks and faster flow., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: pine forest (F-PIN|E-FLT|F-POO|X-BSH), east: river (W-RIV|E-FLT|H-WET|A-FIS), north: unknown terrain (W-MRS|E-FLT|W-STR|A-FRO), south: lush grassland (P-LUS|E-FLT|F-RIC|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 1926656612,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/2x6WPdXUS_uXDtWov87Skw.png?exp=1745456001&sig=af87f4dca4a78b3479ee6a8e936646f4fbb2bfc989ca453a6f21c5f65af711f7"
+      }
+    ]
+  }
+}

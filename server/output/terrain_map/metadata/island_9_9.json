@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 9,
+    "y": 9
+  },
+  "description": "Rocky terrain with mixed pine forest beginning to establish. The stream gathers volume from small tributaries, creating a more substantial flow. Exposed rock shows layered sandstone patterns.",
+  "terrainCode": "F-PIN|E-MOD|W-STR|R-SND",
+  "generatedPrompt": "isometric view of realistic terrain tile with Rocky terrain with mixed pine forest beginning to establish. The stream gathers volume from small tributaries, creating a more substantial flow. Exposed rock shows layered sandstone patterns., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-MOD|X-RCK|A-DEE), east: unknown terrain (M-FOO|E-MOD|X-TRE|W-STR), north: unknown terrain (F-THN|E-MOD|W-STR|X-RCK), south: pine forest (F-PIN|E-MOD|W-STR|X-RCK)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:15:52.743868+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Rocky terrain with mixed pine forest beginning to establish. The stream gathers volume from small tributaries, creating a more substantial flow. Exposed rock shows layered sandstone patterns., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-MOD|X-RCK|A-DEE), east: unknown terrain (M-FOO|E-MOD|X-TRE|W-STR), north: unknown terrain (F-THN|E-MOD|W-STR|X-RCK), south: pine forest (F-PIN|E-MOD|W-STR|X-RCK)",
+        "resolution": "1024x1024",
+        "seed": 1244861606,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/g0GkPtiaT4qzMOLVO-Yo6A.png?exp=1745457357&sig=9d45fe8fea5c9503c4649b35c295375441b8b132f80a576a5e11e414f3fdd906"
+      }
+    ]
+  }
+}

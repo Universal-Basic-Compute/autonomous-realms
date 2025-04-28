@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 6,
+    "y": 11
+  },
+  "description": "Mixed forest begins to thin as rock outcroppings become more common. Trees grow at angles on the increasingly sloped terrain. The small stream gains speed as it flows downhill.",
+  "terrainCode": "F-MIX|E-MOD|X-RCK|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with Mixed forest begins to thin as rock outcroppings become more common. Trees grow at angles on the increasingly sloped terrain. The small stream gains speed as it flows downhill., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-MOD|X-RCK|F-AVG), east: unknown terrain (M-FOO|E-MOD|F-THN|W-STR), north: unknown terrain (F-MIX|E-SLI|X-RCK|X-TRE), south: unknown terrain (M-FOO|E-MOD|F-THN|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:06:35.141709+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Mixed forest begins to thin as rock outcroppings become more common. Trees grow at angles on the increasingly sloped terrain. The small stream gains speed as it flows downhill., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-MOD|X-RCK|F-AVG), east: unknown terrain (M-FOO|E-MOD|F-THN|W-STR), north: unknown terrain (F-MIX|E-SLI|X-RCK|X-TRE), south: unknown terrain (M-FOO|E-MOD|F-THN|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 183839909,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/dsgNNUxWRviebXv-gLoqoQ.png?exp=1745456800&sig=0ac282b76dd9bedaf751d4b823ba7862175e69ff7eb9a2ff1f84b13c8d956f14"
+      }
+    ]
+  }
+}

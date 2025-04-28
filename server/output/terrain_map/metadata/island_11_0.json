@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 11,
+    "y": 0
+  },
+  "description": "Arid desert with sandy soil and sparse vegetation. Small dunes form and shift with the wind. Drought-adapted plants are widely spaced with extensive root systems hidden beneath the surface.",
+  "terrainCode": "D-SND|E-FLT|H-ARD|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with Arid desert with sandy soil and sparse vegetation. Small dunes form and shift with the wind. Drought-adapted plants are widely spaced with extensive root systems hidden beneath the surface., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (P-DRY|E-FLT|H-ARD|A-LIZ), east: unknown terrain (D-FLT|E-FLT|H-ARD|A-LIZ), south: unknown terrain (D-DUN|E-FLT|H-ARD|W-WIN)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:20:28.802222+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Arid desert with sandy soil and sparse vegetation. Small dunes form and shift with the wind. Drought-adapted plants are widely spaced with extensive root systems hidden beneath the surface., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (P-DRY|E-FLT|H-ARD|A-LIZ), east: unknown terrain (D-FLT|E-FLT|H-ARD|A-LIZ), south: unknown terrain (D-DUN|E-FLT|H-ARD|W-WIN)",
+        "resolution": "1024x1024",
+        "seed": 1261496412,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/V3QvaerYTiyHUtwsHuHnJQ.png?exp=1745457634&sig=3cdcd997cbba5720ae714b16aaa73bb370f9ddce88520a72d0037813a233ec9b"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 13,
+    "y": 8
+  },
+  "description": "Canyon oasis with permanent water source. Dense vegetation surrounds the spring and the small stream it creates. Palm trees rise above a lower layer of shrubs and water-loving plants.",
+  "terrainCode": "D-OAS|E-MOD|W-STR|X-TRE",
+  "generatedPrompt": "isometric view of realistic terrain tile with Canyon oasis with permanent water source. Dense vegetation surrounds the spring and the small stream it creates. Palm trees rise above a lower layer of shrubs and water-loving plants., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:28:56.706162+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Canyon oasis with permanent water source. Dense vegetation surrounds the spring and the small stream it creates. Palm trees rise above a lower layer of shrubs and water-loving plants., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+        "resolution": "1024x1024",
+        "seed": 952973173,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/hekDERmASIGwuSqQS_e5qw.png?exp=1745458142&sig=0a892496cade55af60596b1a6207555ea60929398d255e5c4efd74aee712b982"
+      }
+    ]
+  }
+}

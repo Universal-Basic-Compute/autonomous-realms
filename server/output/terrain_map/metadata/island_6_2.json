@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 6,
+    "y": 2
+  },
+  "description": "Wet meadow with occasional pools of standing water. Diverse plant life thrives in the moisture-rich environment. The soil is black and peaty, formed from years of accumulated organic matter.",
+  "terrainCode": "P-LUS|E-FLT|H-WET|W-PON",
+  "generatedPrompt": "isometric view of realistic terrain tile with Wet meadow with occasional pools of standing water. Diverse plant life thrives in the moisture-rich environment. The soil is black and peaty, formed from years of accumulated organic matter., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-SWP|E-FLT|H-SAT|X-TRE), east: lush grassland (P-LUS|E-FLT|X-TRE|A-DEE), north: lush grassland (P-LUS|E-FLT|H-WET|A-BUT), south: unknown terrain (F-THN|E-FLT|H-WET|X-BSH)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:04:48.564678+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Wet meadow with occasional pools of standing water. Diverse plant life thrives in the moisture-rich environment. The soil is black and peaty, formed from years of accumulated organic matter., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-SWP|E-FLT|H-SAT|X-TRE), east: lush grassland (P-LUS|E-FLT|X-TRE|A-DEE), north: lush grassland (P-LUS|E-FLT|H-WET|A-BUT), south: unknown terrain (F-THN|E-FLT|H-WET|X-BSH)",
+        "resolution": "1024x1024",
+        "seed": 172272648,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/71HSjX6zSheBc32nB0017g.png?exp=1745456693&sig=b202ee2c41704366a07d78bbc93bce6aa45ffb50e3eaa942a8ec38b74dd1417c"
+      }
+    ]
+  }
+}

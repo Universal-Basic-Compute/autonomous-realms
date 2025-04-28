@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 9,
+    "y": 1
+  },
+  "description": "The prairie becomes increasingly arid with shorter grasses and more bare soil visible between plants. Small cacti and yucca begin to appear, indicating the transition to drier conditions.",
+  "terrainCode": "P-DRY|E-FLT|H-DRY|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with The prairie becomes increasingly arid with shorter grasses and more bare soil visible between plants. Small cacti and yucca begin to appear, indicating the transition to drier conditions., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (P-FLW|E-FLT|F-RIC|A-BUT), east: sandy desert (D-SND|E-FLT|H-ARD|X-BSH), north: unknown terrain (P-DRY|E-FLT|F-AVG|H-DRY), south: unknown terrain (P-SCR|E-FLT|H-DRY|X-BSH)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:14:15.609136+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The prairie becomes increasingly arid with shorter grasses and more bare soil visible between plants. Small cacti and yucca begin to appear, indicating the transition to drier conditions., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (P-FLW|E-FLT|F-RIC|A-BUT), east: sandy desert (D-SND|E-FLT|H-ARD|X-BSH), north: unknown terrain (P-DRY|E-FLT|F-AVG|H-DRY), south: unknown terrain (P-SCR|E-FLT|H-DRY|X-BSH)",
+        "resolution": "1024x1024",
+        "seed": 633854282,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/GHXQAg2iRSKmmR_DzBUE0w.png?exp=1745457261&sig=144b21c4f10172d61e46e3a277d05931f92314a3045ba3c27b0d2fa49bfafa97"
+      }
+    ]
+  }
+}

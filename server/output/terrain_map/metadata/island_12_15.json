@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 12,
+    "y": 15
+  },
+  "description": "High mountain terrain at the tree line. Stunted conifers give way to alpine meadow vegetation. Rocky peaks rise dramatically above. The air is thin and crystal clear.",
+  "terrainCode": "M-HIG|E-VRY|P-FLW|X-RCK",
+  "generatedPrompt": "isometric view of realistic terrain tile with High mountain terrain at the tree line. Stunted conifers give way to alpine meadow vegetation. Rocky peaks rise dramatically above. The air is thin and crystal clear., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: high mountains (M-HIG|E-VRY|P-FLW|F-PIN), east: high mountains (M-HIG|E-EXT|R-SCR|T-SNO), north: high mountains (M-HIG|E-VRY|F-PIN|X-RCK)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:26:37.126554+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with High mountain terrain at the tree line. Stunted conifers give way to alpine meadow vegetation. Rocky peaks rise dramatically above. The air is thin and crystal clear., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: high mountains (M-HIG|E-VRY|P-FLW|F-PIN), east: high mountains (M-HIG|E-EXT|R-SCR|T-SNO), north: high mountains (M-HIG|E-VRY|F-PIN|X-RCK)",
+        "resolution": "1024x1024",
+        "seed": 1088268156,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/wgbCv9rLQ-aWy5hkX8HPdQ.png?exp=1745458002&sig=1f2cac65c6b1989891bc27fbe699c15188da8eea51005ae2c88e668f391f265c"
+      }
+    ]
+  }
+}

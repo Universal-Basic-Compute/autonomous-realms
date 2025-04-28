@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 3,
+    "y": 2
+  },
+  "description": "The upper reaches of the estuary where freshwater dominance begins. The main channel is deeper with defined banks. Reeds and cattails grow densely along the edges.",
+  "terrainCode": "W-EST|E-FLT|W-RIV|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with The upper reaches of the estuary where freshwater dominance begins. The main channel is deeper with defined banks. Reeds and cattails grow densely along the edges., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-BAY|E-DEP|W-SHL|A-FIS), east: unknown terrain (W-SWP|E-FLT|H-SAT|X-TRE), north: unknown terrain (W-EST|E-FLT|H-SAT|X-BSH), south: river (W-RIV|E-FLT|H-WET|X-TRE)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:55:14.441831+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The upper reaches of the estuary where freshwater dominance begins. The main channel is deeper with defined banks. Reeds and cattails grow densely along the edges., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-BAY|E-DEP|W-SHL|A-FIS), east: unknown terrain (W-SWP|E-FLT|H-SAT|X-TRE), north: unknown terrain (W-EST|E-FLT|H-SAT|X-BSH), south: river (W-RIV|E-FLT|H-WET|X-TRE)",
+        "resolution": "1024x1024",
+        "seed": 657185152,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/A1d5bUqfQTiVWB00bBCvSg.png?exp=1745456119&sig=0628c4d95f7d515a9816fdaadbb239c836051eaf507f2882e0cc508947193946"
+      }
+    ]
+  }
+}

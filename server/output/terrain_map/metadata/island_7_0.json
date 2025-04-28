@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 7,
+    "y": 0
+  },
+  "description": "Lush grassland with extraordinarily rich soil. The flat terrain supports tall grasses that wave in the breeze. Small seasonal streams create slightly lower channels through the landscape.",
+  "terrainCode": "P-LUS|E-FLT|F-RIC|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with Lush grassland with extraordinarily rich soil. The flat terrain supports tall grasses that wave in the breeze. Small seasonal streams create slightly lower channels through the landscape., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-MRS|E-FLT|H-SAT|A-BIR), east: unknown terrain (P-TAL|E-FLT|F-RIC|W-WIN), south: unknown terrain (P-FLW|E-FLT|F-RIC|A-BUT)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:07:35.921275+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Lush grassland with extraordinarily rich soil. The flat terrain supports tall grasses that wave in the breeze. Small seasonal streams create slightly lower channels through the landscape., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-MRS|E-FLT|H-SAT|A-BIR), east: unknown terrain (P-TAL|E-FLT|F-RIC|W-WIN), south: unknown terrain (P-FLW|E-FLT|F-RIC|A-BUT)",
+        "resolution": "1024x1024",
+        "seed": 770558280,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/wyM9vxwqTv-BXDfFUei6kg.png?exp=1745456861&sig=f2ee1798554891d49c5fcfbc7d0f61390d32cf2631a824f9afc3e86e42a352c9"
+      }
+    ]
+  }
+}

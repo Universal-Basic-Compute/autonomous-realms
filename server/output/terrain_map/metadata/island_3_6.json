@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 3,
+    "y": 6
+  },
+  "description": "The river narrows slightly and flows more rapidly. Rocky sections create small riffles on the surface. The banks are thick with vegetation including flowering shrubs and tall grasses.",
+  "terrainCode": "W-RIV|E-FLT|X-RCK|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with The river narrows slightly and flows more rapidly. Rocky sections create small riffles on the surface. The banks are thick with vegetation including flowering shrubs and tall grasses., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:35:48.981699+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The river narrows slightly and flows more rapidly. Rocky sections create small riffles on the surface. The banks are thick with vegetation including flowering shrubs and tall grasses., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+        "resolution": "1024x1024",
+        "seed": 168399417,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/YuhjhlYtR7e95v7LwkjkTA.png?exp=1745458554&sig=6f6af1026250a8c344f88985016e14acd1aee0e75e0edbdee67497df952287f7"
+      }
+    ]
+  }
+}

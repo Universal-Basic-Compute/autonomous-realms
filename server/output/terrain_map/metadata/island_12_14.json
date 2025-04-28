@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 12,
+    "y": 14
+  },
+  "description": "Higher mountain slopes with thinning forest. Trees become more stunted and windswept. Rocky outcrops provide habitat for small mammals that dart quickly between safe locations.",
+  "terrainCode": "M-HIG|E-VRY|F-PIN|X-RCK",
+  "generatedPrompt": "isometric view of realistic terrain tile with Higher mountain slopes with thinning forest. Trees become more stunted and windswept. Rocky outcrops provide habitat for small mammals that dart quickly between safe locations., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: high mountains (M-HIG|E-VRY|P-FLW|F-PIN), east: high mountains (M-HIG|E-VRY|F-PIN|W-STR), north: low mountains (M-LOW|E-HIG|F-PIN|A-HAW), south: high mountains (M-HIG|E-VRY|P-FLW|X-RCK)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:26:25.744922+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Higher mountain slopes with thinning forest. Trees become more stunted and windswept. Rocky outcrops provide habitat for small mammals that dart quickly between safe locations., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: high mountains (M-HIG|E-VRY|P-FLW|F-PIN), east: high mountains (M-HIG|E-VRY|F-PIN|W-STR), north: low mountains (M-LOW|E-HIG|F-PIN|A-HAW), south: high mountains (M-HIG|E-VRY|P-FLW|X-RCK)",
+        "resolution": "1024x1024",
+        "seed": 1628577812,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/S_tO8IYiQc2nWUpo1TgOcA.png?exp=1745457990&sig=9784f1986be3900154f1941831320bf64d5c3e46896c86d31ca1ed040830dbd8"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 8,
+    "y": 2
+  },
+  "description": "Open grassland with the first appearance of scattered trees, primarily oak, creating an emerging savanna. The grasses remain dominant but share space with occasional woody vegetation.",
+  "terrainCode": "P-LUS|E-FLT|X-TRE|F-RIC",
+  "generatedPrompt": "isometric view of realistic terrain tile with Open grassland with the first appearance of scattered trees, primarily oak, creating an emerging savanna. The grasses remain dominant but share space with occasional woody vegetation., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: lush grassland (P-LUS|E-FLT|X-TRE|A-DEE), east: unknown terrain (P-SCR|E-FLT|H-DRY|X-BSH), north: unknown terrain (P-FLW|E-FLT|F-RIC|A-BUT), south: lush grassland (P-LUS|E-FLT|X-TRE|H-DRY)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:11:10.838622+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Open grassland with the first appearance of scattered trees, primarily oak, creating an emerging savanna. The grasses remain dominant but share space with occasional woody vegetation., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: lush grassland (P-LUS|E-FLT|X-TRE|A-DEE), east: unknown terrain (P-SCR|E-FLT|H-DRY|X-BSH), north: unknown terrain (P-FLW|E-FLT|F-RIC|A-BUT), south: lush grassland (P-LUS|E-FLT|X-TRE|H-DRY)",
+        "resolution": "1024x1024",
+        "seed": 1346594056,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/4kpf0XgzRIq2swvVMk1CYw.png?exp=1745457075&sig=085998a4b7fc134e49528b13a01ab32045dd9c2eacffe0ce8c06f52bc5e50ffd"
+      }
+    ]
+  }
+}

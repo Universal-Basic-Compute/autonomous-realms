@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 6,
+    "y": 10
+  },
+  "description": "The forest contains an equal mix of deciduous and coniferous trees. The ground shows the first signs of slope with exposed roots occasionally forming natural steps. Small rocks protrude from the soil.",
+  "terrainCode": "F-MIX|E-SLI|X-RCK|X-TRE",
+  "generatedPrompt": "isometric view of realistic terrain tile with The forest contains an equal mix of deciduous and coniferous trees. The ground shows the first signs of slope with exposed roots occasionally forming natural steps. Small rocks protrude from the soil., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-SLI|X-SPR|W-STR), east: unknown terrain (F-THN|E-MOD|X-RCK|W-STR), north: unknown terrain (F-MIX|E-SLI|X-SPR|X-RCK), south: unknown terrain (F-MIX|E-MOD|X-RCK|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:06:23.379125+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The forest contains an equal mix of deciduous and coniferous trees. The ground shows the first signs of slope with exposed roots occasionally forming natural steps. Small rocks protrude from the soil., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-SLI|X-SPR|W-STR), east: unknown terrain (F-THN|E-MOD|X-RCK|W-STR), north: unknown terrain (F-MIX|E-SLI|X-SPR|X-RCK), south: unknown terrain (F-MIX|E-MOD|X-RCK|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 1854269628,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/Fro9-BiDTuO70hw3RlWvtw.png?exp=1745456788&sig=22c9799f19c7dae2a5c9ac2c121014cbfa364fe3c1c8ab70a7fa07abd0c11645"
+      }
+    ]
+  }
+}

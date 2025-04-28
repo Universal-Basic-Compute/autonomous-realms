@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 13,
+    "y": 5
+  },
+  "description": "High desert plateau dissected by a deep canyon. The flat surface above contrasts with the vertical walls below. The canyon floor shows evidence of occasional water flow after rare storms.",
+  "terrainCode": "D-PLT|E-MOD|D-CYN|H-ARD",
+  "generatedPrompt": "isometric view of realistic terrain tile with High desert plateau dissected by a deep canyon. The flat surface above contrasts with the vertical walls below. The canyon floor shows evidence of occasional water flow after rare storms., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-BDL|E-MOD|X-CFM|H-ARD), east: low mountains (M-LOW|E-HIG|F-PIN|W-WAT), north: unknown terrain (D-PLT|E-MOD|X-CLF|H-ARD), south: unknown terrain (D-CYN|E-HIG|X-BLD|H-ARD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:27:51.420201+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with High desert plateau dissected by a deep canyon. The flat surface above contrasts with the vertical walls below. The canyon floor shows evidence of occasional water flow after rare storms., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-BDL|E-MOD|X-CFM|H-ARD), east: low mountains (M-LOW|E-HIG|F-PIN|W-WAT), north: unknown terrain (D-PLT|E-MOD|X-CLF|H-ARD), south: unknown terrain (D-CYN|E-HIG|X-BLD|H-ARD)",
+        "resolution": "1024x1024",
+        "seed": 941653085,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/Sy1EFnXaQAy_ttV8jVEEEA.png?exp=1745458076&sig=4d1297f1a83e005719f2c87c44f46210093c156f89c1940ee23f782082a839b8"
+      }
+    ]
+  }
+}

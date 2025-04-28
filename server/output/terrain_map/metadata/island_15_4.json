@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 15,
+    "y": 4
+  },
+  "description": "Steep mountainside with patches of forest separated by rocky clearings. Large boulders create microhabitats for specialized plants. The stream forms small waterfalls as it descends.",
+  "terrainCode": "M-LOW|E-HIG|F-PIN|W-WAT",
+  "generatedPrompt": "isometric view of realistic terrain tile with Steep mountainside with patches of forest separated by rocky clearings. Large boulders create microhabitats for specialized plants. The stream forms small waterfalls as it descends., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|F-PIN|W-STR), north: low mountains (M-LOW|E-HIG|F-PIN|W-STR), south: low mountains (M-LOW|E-HIG|X-CLF|W-WAT)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:34:08.027121+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Steep mountainside with patches of forest separated by rocky clearings. Large boulders create microhabitats for specialized plants. The stream forms small waterfalls as it descends., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|F-PIN|W-STR), north: low mountains (M-LOW|E-HIG|F-PIN|W-STR), south: low mountains (M-LOW|E-HIG|X-CLF|W-WAT)",
+        "resolution": "1024x1024",
+        "seed": 40363906,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/VRb-hOitQcaFuXjIFPHE1g.png?exp=1745458453&sig=1e4d11dd05c82a2073b109c0e5015defdf930ecf7cb1fc1e1ff4d9d2ae034d2d"
+      }
+    ]
+  }
+}

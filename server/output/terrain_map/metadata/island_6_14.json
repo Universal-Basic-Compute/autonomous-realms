@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 6,
+    "y": 14
+  },
+  "description": "Steep rocky terrain with thin soil supporting hardy vegetation. Exposed rock faces show weathering patterns. The stream becomes a series of cascades as it navigates the elevation change.",
+  "terrainCode": "M-LOW|E-HIG|X-CLF|W-WAT",
+  "generatedPrompt": "isometric view of realistic terrain tile with Steep rocky terrain with thin soil supporting hardy vegetation. Exposed rock faces show weathering patterns. The stream becomes a series of cascades as it navigates the elevation change., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-HIG|X-BSH|W-STR), east: low mountains (M-LOW|E-HIG|X-CLF|W-WAT), north: unknown terrain (M-FOO|E-HIG|F-PIN|X-BLD), south: low mountains (M-LOW|E-HIG|X-CFM|W-WAT)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:07:11.061180+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Steep rocky terrain with thin soil supporting hardy vegetation. Exposed rock faces show weathering patterns. The stream becomes a series of cascades as it navigates the elevation change., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-HIG|X-BSH|W-STR), east: low mountains (M-LOW|E-HIG|X-CLF|W-WAT), north: unknown terrain (M-FOO|E-HIG|F-PIN|X-BLD), south: low mountains (M-LOW|E-HIG|X-CFM|W-WAT)",
+        "resolution": "1024x1024",
+        "seed": 1625698550,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/281-21hjTPSBL7YhkUKvSw.png?exp=1745456836&sig=2be5945d7a3b7f6debd3a476af380dc016b7f85eaa46ba8a8ea7e646fb086611"
+      }
+    ]
+  }
+}

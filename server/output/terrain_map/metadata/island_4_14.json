@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 4,
+    "y": 14
+  },
+  "description": "Steeper terrain with exposed rock faces and scree slopes. Vegetation clings to soil pockets between rocks. The stream forms multiple small waterfalls as it descends the increasingly steep gradient.",
+  "terrainCode": "M-FOO|E-HIG|R-SCR|W-WAT",
+  "generatedPrompt": "isometric view of realistic terrain tile with Steeper terrain with exposed rock faces and scree slopes. Vegetation clings to soil pockets between rocks. The stream forms multiple small waterfalls as it descends the increasingly steep gradient., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-WAT|E-HIG|X-CLF|X-BLD), east: unknown terrain (M-FOO|E-HIG|X-BSH|W-STR), north: unknown terrain (M-FOO|E-MOD|F-THN|W-STR), south: unknown terrain (M-FOO|E-HIG|X-CLF|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:00:47.530039+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Steeper terrain with exposed rock faces and scree slopes. Vegetation clings to soil pockets between rocks. The stream forms multiple small waterfalls as it descends the increasingly steep gradient., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-WAT|E-HIG|X-CLF|X-BLD), east: unknown terrain (M-FOO|E-HIG|X-BSH|W-STR), north: unknown terrain (M-FOO|E-MOD|F-THN|W-STR), south: unknown terrain (M-FOO|E-HIG|X-CLF|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 1462869863,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/LV53TkpJTeKsx--X4S_19g.png?exp=1745456452&sig=dee2e4e7a917afcb3c7ddb60783e3197c9b13e07c48381aba7eb94ff63335b02"
+      }
+    ]
+  }
+}

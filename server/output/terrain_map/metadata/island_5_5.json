@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 5,
+    "y": 5
+  },
+  "description": "Areas of the swamp begin to dry slightly, creating more solid ground between water channels. Understory vegetation becomes more diverse with ferns and shrubs finding footholds.",
+  "terrainCode": "W-SWP|E-FLT|H-WET|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with Areas of the swamp begin to dry slightly, creating more solid ground between water channels. Understory vegetation becomes more diverse with ferns and shrubs finding footholds., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-SWP|E-FLT|X-TRE|W-RIV), east: unknown terrain (F-MIX|E-FLT|W-STR|X-BSH), north: unknown terrain (W-SWP|E-FLT|H-SAT|A-TUR), south: unknown terrain (F-MIX|E-FLT|H-WET|A-DEE)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:02:12.906333+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Areas of the swamp begin to dry slightly, creating more solid ground between water channels. Understory vegetation becomes more diverse with ferns and shrubs finding footholds., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-SWP|E-FLT|X-TRE|W-RIV), east: unknown terrain (F-MIX|E-FLT|W-STR|X-BSH), north: unknown terrain (W-SWP|E-FLT|H-SAT|A-TUR), south: unknown terrain (F-MIX|E-FLT|H-WET|A-DEE)",
+        "resolution": "1024x1024",
+        "seed": 1092431524,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/Bc-F8VAxTniMpkE_E0y0gQ.png?exp=1745456537&sig=11963ec79fc6438be7a5b1500a2c6d6e4ab456fa4fea187f1de1a514ffe37387"
+      }
+    ]
+  }
+}

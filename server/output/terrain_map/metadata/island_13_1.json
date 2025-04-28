@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 13,
+    "y": 1
+  },
+  "description": "The rocky desert continues with occasional low ridges of exposed bedrock. Wind has polished many of the stones to a high sheen. Drought-adapted plants find footholds in rock crevices.",
+  "terrainCode": "D-ROC|E-SLI|X-RCK|H-ARD",
+  "generatedPrompt": "isometric view of realistic terrain tile with The rocky desert continues with occasional low ridges of exposed bedrock. Wind has polished many of the stones to a high sheen. Drought-adapted plants find footholds in rock crevices., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: sandy desert (D-SND|E-FLT|H-ARD|X-BSH), east: unknown terrain (M-FOO|E-MOD|X-TRE|H-DRY), north: unknown terrain (D-ROC|E-FLT|H-ARD|X-RCK), south: unknown terrain (D-MSA|E-SLI|X-CFM|H-ARD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:27:03.489328+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The rocky desert continues with occasional low ridges of exposed bedrock. Wind has polished many of the stones to a high sheen. Drought-adapted plants find footholds in rock crevices., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: sandy desert (D-SND|E-FLT|H-ARD|X-BSH), east: unknown terrain (M-FOO|E-MOD|X-TRE|H-DRY), north: unknown terrain (D-ROC|E-FLT|H-ARD|X-RCK), south: unknown terrain (D-MSA|E-SLI|X-CFM|H-ARD)",
+        "resolution": "1024x1024",
+        "seed": 762660307,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/7OximknURVy3hbRoascmQg.png?exp=1745458028&sig=de8b93d16b233900a778d2fe142b9236a4211a285bd0185b3c0f785c8e576c7a"
+      }
+    ]
+  }
+}

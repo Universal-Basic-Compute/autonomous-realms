@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 4,
+    "y": 12
+  },
+  "description": "The forest begins to blend with foothill vegetation. Oaks become smaller and pines begin to appear. The stream descends more rapidly, creating small cascades over rock shelves.",
+  "terrainCode": "F-MIX|E-MOD|X-RCK|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with The forest begins to blend with foothill vegetation. Oaks become smaller and pines begin to appear. The stream descends more rapidly, creating small cascades over rock shelves., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: river (W-RIV|E-MOD|R-SND|W-RPD), east: unknown terrain (M-FOO|E-MOD|F-THN|W-STR), north: unknown terrain (F-MIX|E-MOD|X-BLD|W-STR), south: unknown terrain (M-FOO|E-MOD|F-THN|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:00:23.147556+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The forest begins to blend with foothill vegetation. Oaks become smaller and pines begin to appear. The stream descends more rapidly, creating small cascades over rock shelves., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: river (W-RIV|E-MOD|R-SND|W-RPD), east: unknown terrain (M-FOO|E-MOD|F-THN|W-STR), north: unknown terrain (F-MIX|E-MOD|X-BLD|W-STR), south: unknown terrain (M-FOO|E-MOD|F-THN|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 1214108809,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/4MXhW7QdSBea9OZRFAJL_Q.png?exp=1745456428&sig=fc4a85d66bf66d52bb22899e08e81e30fe9d34601ce50410feb3716bdd821363"
+      }
+    ]
+  }
+}

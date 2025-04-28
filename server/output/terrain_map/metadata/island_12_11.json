@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 12,
+    "y": 11
+  },
+  "description": "The foothills become steeper with increasing pine forest. The trees grow wherever soil has accumulated between rocks. The stream forms small waterfalls as it navigates the rocky terrain.",
+  "terrainCode": "M-FOO|E-HIG|F-PIN|W-WAT",
+  "generatedPrompt": "isometric view of realistic terrain tile with The foothills become steeper with increasing pine forest. The trees grow wherever soil has accumulated between rocks. The stream forms small waterfalls as it navigates the rocky terrain., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-HIG|F-PIN|W-RPD), east: unknown terrain (M-FOO|E-HIG|F-PIN|W-WAT), north: unknown terrain (M-FOO|E-MOD|X-BLD|W-STR), south: low mountains (M-LOW|E-HIG|F-PIN|W-WAT)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:25:50.565006+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The foothills become steeper with increasing pine forest. The trees grow wherever soil has accumulated between rocks. The stream forms small waterfalls as it navigates the rocky terrain., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-HIG|F-PIN|W-RPD), east: unknown terrain (M-FOO|E-HIG|F-PIN|W-WAT), north: unknown terrain (M-FOO|E-MOD|X-BLD|W-STR), south: low mountains (M-LOW|E-HIG|F-PIN|W-WAT)",
+        "resolution": "1024x1024",
+        "seed": 1787437646,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/s-5Uo0f0Tgen8ufvpEL_4g.png?exp=1745457955&sig=f3a64c5c7331acdb2e53d455a6c73bc045ea920e66175ad0cca5fce1d4ac2d57"
+      }
+    ]
+  }
+}

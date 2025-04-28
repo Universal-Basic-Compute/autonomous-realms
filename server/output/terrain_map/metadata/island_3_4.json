@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 3,
+    "y": 4
+  },
+  "description": "The river continues with a gentle current. The banks are lush with vegetation and occasionally steep where the water has carved into the soil. Small fish are visible in the clear water.",
+  "terrainCode": "W-RIV|E-FLT|H-WET|A-FIS",
+  "generatedPrompt": "isometric view of realistic terrain tile with The river continues with a gentle current. The banks are lush with vegetation and occasionally steep where the water has carved into the soil. Small fish are visible in the clear water., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-MRS|E-FLT|H-WET|A-BIR), east: unknown terrain (W-SWP|E-FLT|H-SAT|A-TUR), north: river (W-RIV|E-FLT|H-WET|X-TRE), south: river (W-RIV|E-FLT|H-WET|X-TRE)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:55:37.386299+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The river continues with a gentle current. The banks are lush with vegetation and occasionally steep where the water has carved into the soil. Small fish are visible in the clear water., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-MRS|E-FLT|H-WET|A-BIR), east: unknown terrain (W-SWP|E-FLT|H-SAT|A-TUR), north: river (W-RIV|E-FLT|H-WET|X-TRE), south: river (W-RIV|E-FLT|H-WET|X-TRE)",
+        "resolution": "1024x1024",
+        "seed": 1831175366,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/stZXRq4NQGOfTcN9reu2Ig.png?exp=1745456142&sig=1659ccf0985f518f7b272ac5ed888a6a80d014e2909932e9f485263327ec9c1e"
+      }
+    ]
+  }
+}

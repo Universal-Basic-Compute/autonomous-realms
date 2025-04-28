@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 12,
+    "y": 5
+  },
+  "description": "Dramatic badlands with deep erosion gullies cutting through colorful rock layers. The terrain is challenging to traverse with steep sideslopes and narrow ridges. Vegetation is extremely limited.",
+  "terrainCode": "D-BDL|E-MOD|X-CFM|H-ARD",
+  "generatedPrompt": "isometric view of realistic terrain tile with Dramatic badlands with deep erosion gullies cutting through colorful rock layers. The terrain is challenging to traverse with steep sideslopes and narrow ridges. Vegetation is extremely limited., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-CYN|E-MOD|R-SND|H-ARD), east: unknown terrain (D-PLT|E-MOD|D-CYN|H-ARD), north: unknown terrain (D-BDL|E-MOD|X-CFM|H-ARD), south: unknown terrain (D-CYN|E-MOD|X-CLF|H-ARD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:24:40.355839+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Dramatic badlands with deep erosion gullies cutting through colorful rock layers. The terrain is challenging to traverse with steep sideslopes and narrow ridges. Vegetation is extremely limited., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-CYN|E-MOD|R-SND|H-ARD), east: unknown terrain (D-PLT|E-MOD|D-CYN|H-ARD), north: unknown terrain (D-BDL|E-MOD|X-CFM|H-ARD), south: unknown terrain (D-CYN|E-MOD|X-CLF|H-ARD)",
+        "resolution": "1024x1024",
+        "seed": 351691752,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/azTTge4-RZ-uYiz4v1rcXg.png?exp=1745457885&sig=1b0d3a588cc60d6f24b27e5de29d44f6a6cbaffb9630bd1333bb4d10a651905a"
+      }
+    ]
+  }
+}

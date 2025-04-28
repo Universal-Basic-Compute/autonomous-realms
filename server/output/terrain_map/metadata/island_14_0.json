@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 14,
+    "y": 0
+  },
+  "description": "Rocky mountain foothills emerging from the desert. The terrain rises gradually with scattered boulders and rock formations. Vegetation increases slightly with diverse drought-adapted species.",
+  "terrainCode": "M-FOO|E-SLI|X-BLD|H-DRY",
+  "generatedPrompt": "isometric view of realistic terrain tile with Rocky mountain foothills emerging from the desert. The terrain rises gradually with scattered boulders and rock formations. Vegetation increases slightly with diverse drought-adapted species., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-ROC|E-FLT|H-ARD|X-RCK), east: unknown terrain (M-FOO|E-MOD|X-BLD|H-DRY), south: unknown terrain (M-FOO|E-MOD|X-TRE|H-DRY)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:30:05.117727+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Rocky mountain foothills emerging from the desert. The terrain rises gradually with scattered boulders and rock formations. Vegetation increases slightly with diverse drought-adapted species., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-ROC|E-FLT|H-ARD|X-RCK), east: unknown terrain (M-FOO|E-MOD|X-BLD|H-DRY), south: unknown terrain (M-FOO|E-MOD|X-TRE|H-DRY)",
+        "resolution": "1024x1024",
+        "seed": 82780728,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/MstXEOUWST24ZQzAWNnnMg.png?exp=1745458210&sig=c3ba6b08c76cd9d45908736d59ec27c50338ca75225ed22860ec648deb06d429"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 14,
+    "y": 12
+  },
+  "description": "Alpine terrain above the tree line. Low-growing vegetation forms a thick mat where soil has accumulated. Rocky outcrops create distinctive formations. Mountain goats navigate the steep terrain.",
+  "terrainCode": "M-HIG|E-VRY|P-FLW|A-GOA",
+  "generatedPrompt": "isometric view of realistic terrain tile with Alpine terrain above the tree line. Low-growing vegetation forms a thick mat where soil has accumulated. Rocky outcrops create distinctive formations. Mountain goats navigate the steep terrain., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|F-PIN|W-WAT), east: high mountains (M-HIG|E-EXT|T-ROC|A-GOA), north: high mountains (M-HIG|E-VRY|P-FLW|W-STR), south: high mountains (M-HIG|E-VRY|T-ROC|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:32:29.130070+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Alpine terrain above the tree line. Low-growing vegetation forms a thick mat where soil has accumulated. Rocky outcrops create distinctive formations. Mountain goats navigate the steep terrain., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|F-PIN|W-WAT), east: high mountains (M-HIG|E-EXT|T-ROC|A-GOA), north: high mountains (M-HIG|E-VRY|P-FLW|W-STR), south: high mountains (M-HIG|E-VRY|T-ROC|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 1201887589,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/qbeqmsQPQiqYED2osNlMgg.png?exp=1745458354&sig=0f6479156cddb84c30babff96ad6065e99f707b370b39824047e939aee756dd6"
+      }
+    ]
+  }
+}

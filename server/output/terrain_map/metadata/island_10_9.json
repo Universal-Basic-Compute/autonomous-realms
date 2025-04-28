@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 10,
+    "y": 9
+  },
+  "description": "The landscape transitions from desert mesas to rocky foothills. Juniper trees begin to appear, first in protective locations and then more widely. The stream flows more consistently.",
+  "terrainCode": "M-FOO|E-MOD|X-TRE|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with The landscape transitions from desert mesas to rocky foothills. Juniper trees begin to appear, first in protective locations and then more widely. The stream flows more consistently., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: pine forest (F-PIN|E-MOD|W-STR|R-SND), east: unknown terrain (M-FOO|E-MOD|X-TRE|W-STR), north: unknown terrain (D-MSA|E-MOD|W-STR|X-CFM), south: unknown terrain (M-FOO|E-MOD|F-PIN|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:19:05.885190+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The landscape transitions from desert mesas to rocky foothills. Juniper trees begin to appear, first in protective locations and then more widely. The stream flows more consistently., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: pine forest (F-PIN|E-MOD|W-STR|R-SND), east: unknown terrain (M-FOO|E-MOD|X-TRE|W-STR), north: unknown terrain (D-MSA|E-MOD|W-STR|X-CFM), south: unknown terrain (M-FOO|E-MOD|F-PIN|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 1205932127,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/a37_6Q_2SCWs9481JT8jBQ.png?exp=1745457551&sig=999730dde51d55d8a1c934607c21ad3a56ab707eccd0e03e0528631d25d9a583"
+      }
+    ]
+  }
+}

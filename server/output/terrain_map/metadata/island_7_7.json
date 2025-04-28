@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 7,
+    "y": 7
+  },
+  "description": "The creek joins a larger stream, creating a wider water channel with more substantial flow. The forest remains dense with a high canopy filtering the sunlight to a green-tinted glow.",
+  "terrainCode": "F-MIX|E-FLT|W-STR|F-RIC",
+  "generatedPrompt": "isometric view of realistic terrain tile with The creek joins a larger stream, creating a wider water channel with more substantial flow. The forest remains dense with a high canopy filtering the sunlight to a green-tinted glow., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: oak forest (F-OAK|E-FLT|F-RIC|A-BIR), east: unknown terrain (F-MIX|E-FLT|W-STR|X-BSH), north: unknown terrain (F-MIX|E-FLT|W-STR|X-RCK), south: oak forest (F-OAK|E-SLI|W-STR|X-BSH)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:09:00.511829+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The creek joins a larger stream, creating a wider water channel with more substantial flow. The forest remains dense with a high canopy filtering the sunlight to a green-tinted glow., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: oak forest (F-OAK|E-FLT|F-RIC|A-BIR), east: unknown terrain (F-MIX|E-FLT|W-STR|X-BSH), north: unknown terrain (F-MIX|E-FLT|W-STR|X-RCK), south: oak forest (F-OAK|E-SLI|W-STR|X-BSH)",
+        "resolution": "1024x1024",
+        "seed": 2015691435,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/JZnfiyN7SLaJ8esHpx77iQ.png?exp=1745456945&sig=24d813a763cf5b8dfd4b0590a73bd77452bff496cb5d95caa576d1544f810ee2"
+      }
+    ]
+  }
+}

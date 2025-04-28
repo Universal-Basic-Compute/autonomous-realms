@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 1,
+    "y": 11
+  },
+  "description": "Mixed forest of pine and oak with increasing biodiversity. The canopy creates alternating sun and shade patterns. A small stream cuts through, bordered by ferns and moisture-loving plants.",
+  "terrainCode": "F-MIX|E-FLT|F-GOO|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with Mixed forest of pine and oak with increasing biodiversity. The canopy creates alternating sun and shade patterns. A small stream cuts through, bordered by ferns and moisture-loving plants., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|F-AVG|X-BSH), east: unknown terrain (F-THN|E-FLT|W-STR|A-DEE), north: unknown terrain (F-MIX|E-FLT|F-AVG|W-STR), south: unknown terrain (F-MIX|E-FLT|F-RIC|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:50:40.472862+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Mixed forest of pine and oak with increasing biodiversity. The canopy creates alternating sun and shade patterns. A small stream cuts through, bordered by ferns and moisture-loving plants., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|F-AVG|X-BSH), east: unknown terrain (F-THN|E-FLT|W-STR|A-DEE), north: unknown terrain (F-MIX|E-FLT|F-AVG|W-STR), south: unknown terrain (F-MIX|E-FLT|F-RIC|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 681123344,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/vspUmxMnTO2BVtPOnJZkqw.png?exp=1745455845&sig=d53c4aa12b890e2bdb9ff8ee65fc70feb84d35ba22ef6892db43d1b26bcb374f"
+      }
+    ]
+  }
+}

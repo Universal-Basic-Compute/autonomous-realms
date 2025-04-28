@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 2,
+    "y": 11
+  },
+  "description": "Open woodland with widely spaced trees and grassy clearings. The stream widens slightly and moves more slowly. Deer tracks can be found along the soft banks of the waterway.",
+  "terrainCode": "F-THN|E-FLT|W-STR|A-DEE",
+  "generatedPrompt": "isometric view of realistic terrain tile with Open woodland with widely spaced trees and grassy clearings. The stream widens slightly and moves more slowly. Deer tracks can be found along the soft banks of the waterway., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|F-GOO|W-STR), east: river (W-RIV|E-MOD|X-RCK|W-RPD), north: lush grassland (P-LUS|E-FLT|X-TRE|W-STR), south: oak forest (F-OAK|E-SLI|W-STR|X-RCK)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:53:50.325775+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Open woodland with widely spaced trees and grassy clearings. The stream widens slightly and moves more slowly. Deer tracks can be found along the soft banks of the waterway., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|F-GOO|W-STR), east: river (W-RIV|E-MOD|X-RCK|W-RPD), north: lush grassland (P-LUS|E-FLT|X-TRE|W-STR), south: oak forest (F-OAK|E-SLI|W-STR|X-RCK)",
+        "resolution": "1024x1024",
+        "seed": 977870073,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/x_HWVwVTQjGjxNKOutt9SA.png?exp=1745456035&sig=2a29ffaffab7d1b46026e50eea3a6bc8ba4fb78d54636e0f43d87ad2c6ab1b1e"
+      }
+    ]
+  }
+}

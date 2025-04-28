@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 14,
+    "y": 13
+  },
+  "description": "High alpine zone with rocky terrain and patches of alpine meadow vegetation. Streams from snowmelt create small wetland areas in depressions. Marmots sun themselves on warm rocks.",
+  "terrainCode": "M-HIG|E-VRY|T-ROC|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with High alpine zone with rocky terrain and patches of alpine meadow vegetation. Streams from snowmelt create small wetland areas in depressions. Marmots sun themselves on warm rocks., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|F-PIN|A-GOA), east: unknown terrain (M-PEA|E-EXT|T-SNO|X-RCK), north: high mountains (M-HIG|E-VRY|P-FLW|A-GOA), south: high mountains (M-HIG|E-EXT|T-SNO|X-RCK)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:32:41.059816+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with High alpine zone with rocky terrain and patches of alpine meadow vegetation. Streams from snowmelt create small wetland areas in depressions. Marmots sun themselves on warm rocks., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|F-PIN|A-GOA), east: unknown terrain (M-PEA|E-EXT|T-SNO|X-RCK), north: high mountains (M-HIG|E-VRY|P-FLW|A-GOA), south: high mountains (M-HIG|E-EXT|T-SNO|X-RCK)",
+        "resolution": "1024x1024",
+        "seed": 691744213,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/DaNXsZJDTzuYy2BqPl6cJQ.png?exp=1745458366&sig=a90151179514232e89cfbfb245a3f93725dcd639dfc9fe3a02999336994c0ab6"
+      }
+    ]
+  }
+}

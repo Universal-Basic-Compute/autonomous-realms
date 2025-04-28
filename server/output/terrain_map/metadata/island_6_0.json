@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 6,
+    "y": 0
+  },
+  "description": "Open freshwater marsh with channels winding through tall reeds and grasses. Small islands of slightly higher ground support shrubs and small trees. Wading birds hunt in the shallows.",
+  "terrainCode": "W-MRS|E-FLT|H-SAT|A-BIR",
+  "generatedPrompt": "isometric view of realistic terrain tile with Open freshwater marsh with channels winding through tall reeds and grasses. Small islands of slightly higher ground support shrubs and small trees. Wading birds hunt in the shallows., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-MRS|E-FLT|H-SAT|A-BIR), east: lush grassland (P-LUS|E-FLT|F-RIC|W-STR), south: lush grassland (P-LUS|E-FLT|H-WET|A-BUT)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:04:25.246220+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Open freshwater marsh with channels winding through tall reeds and grasses. Small islands of slightly higher ground support shrubs and small trees. Wading birds hunt in the shallows., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-MRS|E-FLT|H-SAT|A-BIR), east: lush grassland (P-LUS|E-FLT|F-RIC|W-STR), south: lush grassland (P-LUS|E-FLT|H-WET|A-BUT)",
+        "resolution": "1024x1024",
+        "seed": 27401543,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/4vTfj15dSTScusLk0Gg7UQ.png?exp=1745456670&sig=ac5c399f000ac84fe58a0849fc391ed26ef0b30a8ebd7beb6c56462a57f3e75a"
+      }
+    ]
+  }
+}

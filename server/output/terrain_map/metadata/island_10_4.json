@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 10,
+    "y": 4
+  },
+  "description": "Rocky desert with dramatic erosion features. Wind and rare water have carved the soft stone into rounded shapes. Sparse vegetation clings to any available moisture pocket.",
+  "terrainCode": "D-ROC|E-SLI|H-ARD|X-CFM",
+  "generatedPrompt": "isometric view of realistic terrain tile with Rocky desert with dramatic erosion features. Wind and rare water have carved the soft stone into rounded shapes. Sparse vegetation clings to any available moisture pocket., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (P-SCR|E-FLT|X-RCK|H-ARD), east: unknown terrain (D-ROC|E-SLI|X-CFM|H-ARD), north: unknown terrain (D-ROC|E-FLT|H-ARD|X-RCK), south: unknown terrain (D-BDL|E-SLI|X-CFM|H-ARD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:18:04.874249+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Rocky desert with dramatic erosion features. Wind and rare water have carved the soft stone into rounded shapes. Sparse vegetation clings to any available moisture pocket., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (P-SCR|E-FLT|X-RCK|H-ARD), east: unknown terrain (D-ROC|E-SLI|X-CFM|H-ARD), north: unknown terrain (D-ROC|E-FLT|H-ARD|X-RCK), south: unknown terrain (D-BDL|E-SLI|X-CFM|H-ARD)",
+        "resolution": "1024x1024",
+        "seed": 178350437,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/Sk_p4WRjRw2YRFhmHXXycg.png?exp=1745457490&sig=6a19b6897e505e0e4dac1ff77bbf3e248307cc8ec47243d354488d795259354f"
+      }
+    ]
+  }
+}

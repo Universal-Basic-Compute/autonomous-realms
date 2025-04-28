@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 5,
+    "y": 7
+  },
+  "description": "Bottomland forest with rich soil from periodic flooding. Massive hardwood trees form a high canopy. The forest floor is relatively open with flood-tolerant understory plants.",
+  "terrainCode": "F-MIX|E-FLT|F-RIC|H-FLD",
+  "generatedPrompt": "isometric view of realistic terrain tile with Bottomland forest with rich soil from periodic flooding. Massive hardwood trees form a high canopy. The forest floor is relatively open with flood-tolerant understory plants., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|F-RIC|A-DEE), east: oak forest (F-OAK|E-FLT|F-RIC|A-BIR), north: unknown terrain (F-MIX|E-FLT|H-WET|A-DEE), south: unknown terrain (F-MIX|E-SLI|F-RIC|X-BSH)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:02:37.896900+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Bottomland forest with rich soil from periodic flooding. Massive hardwood trees form a high canopy. The forest floor is relatively open with flood-tolerant understory plants., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|F-RIC|A-DEE), east: oak forest (F-OAK|E-FLT|F-RIC|A-BIR), north: unknown terrain (F-MIX|E-FLT|H-WET|A-DEE), south: unknown terrain (F-MIX|E-SLI|F-RIC|X-BSH)",
+        "resolution": "1024x1024",
+        "seed": 943724826,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/g6A4RHPoSm6OzB03VMGKPQ.png?exp=1745456562&sig=b502f5962efba7a93e034f4199ab91f61d78cdae09cf22d5a759b0202a3d4f4c"
+      }
+    ]
+  }
+}

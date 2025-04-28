@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 10,
+    "y": 15
+  },
+  "description": "High mountain terrain with steep rocky slopes. The tree line begins to approach with stunted conifers showing the effects of harsh conditions. The air is thin and clear at this elevation.",
+  "terrainCode": "M-HIG|E-VRY|X-CLF|F-PIN",
+  "generatedPrompt": "isometric view of realistic terrain tile with High mountain terrain with steep rocky slopes. The tree line begins to approach with stunted conifers showing the effects of harsh conditions. The air is thin and clear at this elevation., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|X-CLF|F-PIN), east: high mountains (M-HIG|E-VRY|P-FLW|F-PIN), north: low mountains (M-LOW|E-HIG|F-PIN|W-WAT)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:20:16.966928+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with High mountain terrain with steep rocky slopes. The tree line begins to approach with stunted conifers showing the effects of harsh conditions. The air is thin and clear at this elevation., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|X-CLF|F-PIN), east: high mountains (M-HIG|E-VRY|P-FLW|F-PIN), north: low mountains (M-LOW|E-HIG|F-PIN|W-WAT)",
+        "resolution": "1024x1024",
+        "seed": 1521581647,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/MDk0i2ipRry-e5Y2lHLA9Q.png?exp=1745457622&sig=da546d2c1baafa49c594c14c927c67d7e327128868bd7839fb9378e8e8a9a90d"
+      }
+    ]
+  }
+}

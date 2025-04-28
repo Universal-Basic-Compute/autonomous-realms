@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 10,
+    "y": 1
+  },
+  "description": "The arid landscape transitions to true desert conditions. Vegetation becomes extremely sparse with large areas of exposed sandy soil. Occasional cacti and yucca plants create vertical elements.",
+  "terrainCode": "D-SND|E-FLT|H-ARD|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with The arid landscape transitions to true desert conditions. Vegetation becomes extremely sparse with large areas of exposed sandy soil. Occasional cacti and yucca plants create vertical elements., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (P-DRY|E-FLT|H-DRY|X-BSH), east: unknown terrain (D-DUN|E-FLT|H-ARD|W-WIN), north: unknown terrain (P-DRY|E-FLT|H-ARD|A-LIZ), south: sandy desert (D-SND|E-FLT|H-ARD|W-WIN)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:17:28.670383+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The arid landscape transitions to true desert conditions. Vegetation becomes extremely sparse with large areas of exposed sandy soil. Occasional cacti and yucca plants create vertical elements., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (P-DRY|E-FLT|H-DRY|X-BSH), east: unknown terrain (D-DUN|E-FLT|H-ARD|W-WIN), north: unknown terrain (P-DRY|E-FLT|H-ARD|A-LIZ), south: sandy desert (D-SND|E-FLT|H-ARD|W-WIN)",
+        "resolution": "1024x1024",
+        "seed": 217053096,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/5JKeU98-RPepnjkMHsu6Nw.png?exp=1745457453&sig=4cf36c7c57bfc4dc3e3946f3c893da9453fe7adb120d80b0d35db252102bce34"
+      }
+    ]
+  }
+}

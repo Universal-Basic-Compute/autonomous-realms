@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 1,
+    "y": 10
+  },
+  "description": "The pine barrens begin to transition as soil improves. Oak saplings appear among the pines, and the understory becomes more diverse. Small seasonal streams create slightly richer soil in channels.",
+  "terrainCode": "F-MIX|E-FLT|F-AVG|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with The pine barrens begin to transition as soil improves. Oak saplings appear among the pines, and the understory becomes more diverse. Small seasonal streams create slightly richer soil in channels., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: pine forest (F-PIN|E-SLI|F-AVG|A-SQU), east: lush grassland (P-LUS|E-FLT|X-TRE|W-STR), north: pine forest (F-PIN|E-FLT|F-POO|X-RCK), south: unknown terrain (F-MIX|E-FLT|F-GOO|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:50:28.642450+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The pine barrens begin to transition as soil improves. Oak saplings appear among the pines, and the understory becomes more diverse. Small seasonal streams create slightly richer soil in channels., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: pine forest (F-PIN|E-SLI|F-AVG|A-SQU), east: lush grassland (P-LUS|E-FLT|X-TRE|W-STR), north: pine forest (F-PIN|E-FLT|F-POO|X-RCK), south: unknown terrain (F-MIX|E-FLT|F-GOO|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 289967643,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/9n7mqCCbT4azLLnQEOJVKA.png?exp=1745455833&sig=955b3dc3a5e0b8096708b548187153e85036408f6db7b2fbebab40ed5f7d6539"
+      }
+    ]
+  }
+}

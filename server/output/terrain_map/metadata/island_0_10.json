@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 0,
+    "y": 10
+  },
+  "description": "The pine forest matures with taller trees and a denser canopy. Understory vegetation is sparse due to the needle cover. Squirrels dart between trees, gathering fallen pine cones.",
+  "terrainCode": "F-PIN|E-SLI|F-AVG|A-SQU",
+  "generatedPrompt": "isometric view of realistic terrain tile with The pine forest matures with taller trees and a denser canopy. Understory vegetation is sparse due to the needle cover. Squirrels dart between trees, gathering fallen pine cones., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: unknown terrain (F-MIX|E-FLT|F-AVG|W-STR), north: pine forest (F-PIN|E-SLI|W-WIN|A-BIR), south: unknown terrain (F-MIX|E-FLT|F-AVG|X-BSH)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:47:15.030412+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The pine forest matures with taller trees and a denser canopy. Understory vegetation is sparse due to the needle cover. Squirrels dart between trees, gathering fallen pine cones., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: unknown terrain (F-MIX|E-FLT|F-AVG|W-STR), north: pine forest (F-PIN|E-SLI|W-WIN|A-BIR), south: unknown terrain (F-MIX|E-FLT|F-AVG|X-BSH)",
+        "resolution": "1024x1024",
+        "seed": 1758268070,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/RfsLWWt4S1OcyOYxoG4SPA.png?exp=1745455641&sig=95a3ae2e4cad9496df027475250c24df43038680835f3903782188729e42a2ad"
+      }
+    ]
+  }
+}

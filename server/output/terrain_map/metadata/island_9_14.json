@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 9,
+    "y": 14
+  },
+  "description": "Lower mountain slopes with dramatic sandstone and limestone formations. Vegetation clings to soil pockets between rocks. The stream emerges from under boulders to form a dramatic waterfall.",
+  "terrainCode": "M-LOW|E-HIG|R-LST|W-WAT",
+  "generatedPrompt": "isometric view of realistic terrain tile with Lower mountain slopes with dramatic sandstone and limestone formations. Vegetation clings to soil pockets between rocks. The stream emerges from under boulders to form a dramatic waterfall., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|F-PIN|W-WAT), east: low mountains (M-LOW|E-HIG|F-PIN|W-WAT), north: unknown terrain (M-FOO|E-HIG|F-PIN|X-BLD), south: low mountains (M-LOW|E-HIG|X-CLF|F-PIN)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:16:52.966712+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Lower mountain slopes with dramatic sandstone and limestone formations. Vegetation clings to soil pockets between rocks. The stream emerges from under boulders to form a dramatic waterfall., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|F-PIN|W-WAT), east: low mountains (M-LOW|E-HIG|F-PIN|W-WAT), north: unknown terrain (M-FOO|E-HIG|F-PIN|X-BLD), south: low mountains (M-LOW|E-HIG|X-CLF|F-PIN)",
+        "resolution": "1024x1024",
+        "seed": 534027670,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/gbmEkmNPSKyb78oEM3sGFg.png?exp=1745457418&sig=db04756d623275bbac4faeef0e926520edffadbd79b544041a0b7c253251174c"
+      }
+    ]
+  }
+}

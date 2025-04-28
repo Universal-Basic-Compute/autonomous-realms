@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 1,
+    "y": 4
+  },
+  "description": "A broad sandy beach with occasional tide pools. The fine sand is dotted with shells and smooth stones. Behind the beach, small dunes begin to form with sporadic clusters of beach grass.",
+  "terrainCode": "W-SEA|E-FLT|X-RCK|A-SEA",
+  "generatedPrompt": "isometric view of realistic terrain tile with A broad sandy beach with occasional tide pools. The fine sand is dotted with shells and smooth stones. Behind the beach, small dunes begin to form with sporadic clusters of beach grass., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: sea (W-SEA|E-FLT|H-WET|A-SEA), east: unknown terrain (W-MRS|E-FLT|H-WET|A-BIR), north: unknown terrain (W-SHL|E-FLT|H-WET|A-FIS), south: unknown terrain (D-DUN|E-MOD|X-BSH|X-HOL)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:49:16.075452+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with A broad sandy beach with occasional tide pools. The fine sand is dotted with shells and smooth stones. Behind the beach, small dunes begin to form with sporadic clusters of beach grass., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: sea (W-SEA|E-FLT|H-WET|A-SEA), east: unknown terrain (W-MRS|E-FLT|H-WET|A-BIR), north: unknown terrain (W-SHL|E-FLT|H-WET|A-FIS), south: unknown terrain (D-DUN|E-MOD|X-BSH|X-HOL)",
+        "resolution": "1024x1024",
+        "seed": 699456135,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/HZ945LV2RKq6HArh72AJMA.png?exp=1745455761&sig=1815750fb820024570584f93873bb02e8e8dec700b4f0fb53fb365a9f0eab781"
+      }
+    ]
+  }
+}

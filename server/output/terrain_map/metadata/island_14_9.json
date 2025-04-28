@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 14,
+    "y": 9
+  },
+  "description": "Mountain terrain becomes increasingly rocky with steeper slopes. The forest thins with trees growing primarily in protected locations. Small avalanche chutes cut through the vegetation.",
+  "terrainCode": "M-LOW|E-VRY|F-PIN|R-SCR",
+  "generatedPrompt": "isometric view of realistic terrain tile with Mountain terrain becomes increasingly rocky with steeper slopes. The forest thins with trees growing primarily in protected locations. Small avalanche chutes cut through the vegetation., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-CYN|E-MOD|W-STR|X-BSH), east: high mountains (M-HIG|E-VRY|F-THN|R-SCR), north: unknown terrain (M-VAL|E-HIG|F-PIN|W-RPD), south: high mountains (M-HIG|E-VRY|P-FLW|X-HOL)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:31:53.013897+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Mountain terrain becomes increasingly rocky with steeper slopes. The forest thins with trees growing primarily in protected locations. Small avalanche chutes cut through the vegetation., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-CYN|E-MOD|W-STR|X-BSH), east: high mountains (M-HIG|E-VRY|F-THN|R-SCR), north: unknown terrain (M-VAL|E-HIG|F-PIN|W-RPD), south: high mountains (M-HIG|E-VRY|P-FLW|X-HOL)",
+        "resolution": "1024x1024",
+        "seed": 1072726354,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/51pBhqwIR-SMIkp-2R0_0g.png?exp=1745458318&sig=976e3a3e611a048f488e455b8a9d1925fc3070926dfdb558eb669aedbbca375b"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 11,
+    "y": 12
+  },
+  "description": "Lower mountain slopes with mixed coniferous forest. The trees grow wherever soil has accumulated between rocks. The stream descends dramatically, forming a series of cascades.",
+  "terrainCode": "M-LOW|E-HIG|F-PIN|W-RPD",
+  "generatedPrompt": "isometric view of realistic terrain tile with Lower mountain slopes with mixed coniferous forest. The trees grow wherever soil has accumulated between rocks. The stream descends dramatically, forming a series of cascades., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-HIG|F-PIN|W-RPD), east: low mountains (M-LOW|E-HIG|F-PIN|W-WAT), north: unknown terrain (M-FOO|E-HIG|F-PIN|W-RPD), south: low mountains (M-LOW|E-HIG|F-PIN|X-CLF)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:22:54.522769+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Lower mountain slopes with mixed coniferous forest. The trees grow wherever soil has accumulated between rocks. The stream descends dramatically, forming a series of cascades., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-HIG|F-PIN|W-RPD), east: low mountains (M-LOW|E-HIG|F-PIN|W-WAT), north: unknown terrain (M-FOO|E-HIG|F-PIN|W-RPD), south: low mountains (M-LOW|E-HIG|F-PIN|X-CLF)",
+        "resolution": "1024x1024",
+        "seed": 99608656,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/WtjOe5s4T72NRnfrkfvUVQ.png?exp=1745457779&sig=fc6e4a8b337f49f2d047f8f7c7eea11602e74745e7d90334dd56c4cba6fee2ee"
+      }
+    ]
+  }
+}

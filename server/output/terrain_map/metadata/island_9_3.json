@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 9,
+    "y": 3
+  },
+  "description": "Scrubland with increasing rocky terrain. Low shrubs dominate with occasional juniper trees. Small lizards bask on sun-warmed stones and dart quickly between patches of cover.",
+  "terrainCode": "P-SCR|E-FLT|X-RCK|A-LIZ",
+  "generatedPrompt": "isometric view of realistic terrain tile with Scrubland with increasing rocky terrain. Low shrubs dominate with occasional juniper trees. Small lizards bask on sun-warmed stones and dart quickly between patches of cover., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: lush grassland (P-LUS|E-FLT|X-TRE|H-DRY), east: unknown terrain (D-ROC|E-FLT|H-ARD|X-RCK), north: unknown terrain (P-SCR|E-FLT|H-DRY|X-BSH), south: unknown terrain (P-SCR|E-FLT|X-RCK|H-ARD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:14:40.784396+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Scrubland with increasing rocky terrain. Low shrubs dominate with occasional juniper trees. Small lizards bask on sun-warmed stones and dart quickly between patches of cover., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: lush grassland (P-LUS|E-FLT|X-TRE|H-DRY), east: unknown terrain (D-ROC|E-FLT|H-ARD|X-RCK), north: unknown terrain (P-SCR|E-FLT|H-DRY|X-BSH), south: unknown terrain (P-SCR|E-FLT|X-RCK|H-ARD)",
+        "resolution": "1024x1024",
+        "seed": 1849943303,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/eaIHNWdDRWyJ7vpltG_aQQ.png?exp=1745457286&sig=944f62636c8ab484f7a595eb0f30a0dacf4828e8df54cba4c5112a6214043454"
+      }
+    ]
+  }
+}

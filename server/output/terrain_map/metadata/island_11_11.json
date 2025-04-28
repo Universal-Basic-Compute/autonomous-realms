@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 11,
+    "y": 11
+  },
+  "description": "The foothills become steeper with more extensive pine forest. Large boulders create distinctive landmarks and small caves. The stream forms rapids as it navigates the rocky terrain.",
+  "terrainCode": "M-FOO|E-HIG|F-PIN|W-RPD",
+  "generatedPrompt": "isometric view of realistic terrain tile with The foothills become steeper with more extensive pine forest. Large boulders create distinctive landmarks and small caves. The stream forms rapids as it navigates the rocky terrain., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|F-PIN|X-BLD), east: unknown terrain (M-FOO|E-HIG|F-PIN|W-WAT), north: unknown terrain (M-FOO|E-MOD|F-PIN|W-STR), south: low mountains (M-LOW|E-HIG|F-PIN|W-RPD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:22:42.697311+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The foothills become steeper with more extensive pine forest. Large boulders create distinctive landmarks and small caves. The stream forms rapids as it navigates the rocky terrain., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|F-PIN|X-BLD), east: unknown terrain (M-FOO|E-HIG|F-PIN|W-WAT), north: unknown terrain (M-FOO|E-MOD|F-PIN|W-STR), south: low mountains (M-LOW|E-HIG|F-PIN|W-RPD)",
+        "resolution": "1024x1024",
+        "seed": 297133005,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/tICZHlCDTeGl4KqWxM2Isw.png?exp=1745457767&sig=11c22fa164bda6775577a27d0a43c79a0e16bda6193adffcfbe5a1535b1e0ad4"
+      }
+    ]
+  }
+}

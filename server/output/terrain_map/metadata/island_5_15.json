@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 5,
+    "y": 15
+  },
+  "description": "High rocky terrain with steep slopes. Vegetation is sparse and consists mainly of hardy shrubs and grasses. The stream becomes a cascade of small waterfalls as it descends over rock ledges.",
+  "terrainCode": "M-LOW|E-HIG|X-CLF|W-WAT",
+  "generatedPrompt": "isometric view of realistic terrain tile with High rocky terrain with steep slopes. Vegetation is sparse and consists mainly of hardy shrubs and grasses. The stream becomes a cascade of small waterfalls as it descends over rock ledges., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-HIG|X-CLF|W-STR), east: low mountains (M-LOW|E-HIG|X-CFM|W-WAT), north: unknown terrain (M-FOO|E-HIG|X-BSH|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:04:13.565281+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with High rocky terrain with steep slopes. Vegetation is sparse and consists mainly of hardy shrubs and grasses. The stream becomes a cascade of small waterfalls as it descends over rock ledges., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-HIG|X-CLF|W-STR), east: low mountains (M-LOW|E-HIG|X-CFM|W-WAT), north: unknown terrain (M-FOO|E-HIG|X-BSH|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 1637330397,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/2kYb9x-2TGufxpWel8aGCw.png?exp=1745456658&sig=c605d1ed11b569bc9671ae081baacd4ef5dc137e9e3b8a96f8b427845ca5d922"
+      }
+    ]
+  }
+}

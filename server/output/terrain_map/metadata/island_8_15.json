@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 8,
+    "y": 15
+  },
+  "description": "Rocky mountain terrain with steep slopes and cliff faces. Hardy pines cling to crevices in the rock. The stream originates from a mountain spring higher up, flowing cold and clear over stones.",
+  "terrainCode": "M-LOW|E-HIG|X-CLF|X-SPR",
+  "generatedPrompt": "isometric view of realistic terrain tile with Rocky mountain terrain with steep slopes and cliff faces. Hardy pines cling to crevices in the rock. The stream originates from a mountain spring higher up, flowing cold and clear over stones., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|R-SCR|F-PIN), east: low mountains (M-LOW|E-HIG|X-CLF|F-PIN), north: low mountains (M-LOW|E-HIG|F-PIN|W-WAT)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:13:51.896458+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Rocky mountain terrain with steep slopes and cliff faces. Hardy pines cling to crevices in the rock. The stream originates from a mountain spring higher up, flowing cold and clear over stones., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|R-SCR|F-PIN), east: low mountains (M-LOW|E-HIG|X-CLF|F-PIN), north: low mountains (M-LOW|E-HIG|F-PIN|W-WAT)",
+        "resolution": "1024x1024",
+        "seed": 1256613395,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/_aQQ-hInTz2XSl_fRsGSUg.png?exp=1745457237&sig=277c6fe39300ee05ca9907d7e77bcc791c8a0eacf6335633b3a92d80f91d10b8"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 12,
+    "y": 3
+  },
+  "description": "Desert terrain with dramatic rock formations. Wind erosion has created fantastic shapes in the soft stone. A dry wash cuts through the landscape, showing evidence of rare flash floods.",
+  "terrainCode": "D-ROC|E-SLI|X-CFM|H-ARD",
+  "generatedPrompt": "isometric view of realistic terrain tile with Desert terrain with dramatic rock formations. Wind erosion has created fantastic shapes in the soft stone. A dry wash cuts through the landscape, showing evidence of rare flash floods., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: sandy desert (D-SND|E-FLT|X-RCK|H-ARD), east: unknown terrain (D-MSA|E-MOD|X-CLF|H-ARD), north: unknown terrain (D-ROC|E-SLI|R-SND|H-ARD), south: unknown terrain (D-BDL|E-MOD|X-CFM|H-ARD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:24:16.618735+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Desert terrain with dramatic rock formations. Wind erosion has created fantastic shapes in the soft stone. A dry wash cuts through the landscape, showing evidence of rare flash floods., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: sandy desert (D-SND|E-FLT|X-RCK|H-ARD), east: unknown terrain (D-MSA|E-MOD|X-CLF|H-ARD), north: unknown terrain (D-ROC|E-SLI|R-SND|H-ARD), south: unknown terrain (D-BDL|E-MOD|X-CFM|H-ARD)",
+        "resolution": "1024x1024",
+        "seed": 51021636,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/U_MRvAltQGmsnj3LzZsS-A.png?exp=1745457861&sig=63a1399e383379c89396d9a72f5f3eac9c9dcbd12798c382ebe514c1bf85af19"
+      }
+    ]
+  }
+}

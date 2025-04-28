@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 7,
+    "y": 11
+  },
+  "description": "Foothill terrain with patchy forest and extensive rock outcroppings. The slope increases noticeably, requiring effort to climb. The stream has carved a small gorge through softer rock layers.",
+  "terrainCode": "M-FOO|E-MOD|F-THN|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with Foothill terrain with patchy forest and extensive rock outcroppings. The slope increases noticeably, requiring effort to climb. The stream has carved a small gorge through softer rock layers., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-MOD|X-RCK|W-STR), east: unknown terrain (F-THN|E-MOD|X-RCK|W-STR), north: unknown terrain (F-THN|E-MOD|X-RCK|W-STR), south: unknown terrain (M-FOO|E-HIG|X-BLD|W-RPD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:09:47.889252+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Foothill terrain with patchy forest and extensive rock outcroppings. The slope increases noticeably, requiring effort to climb. The stream has carved a small gorge through softer rock layers., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-MOD|X-RCK|W-STR), east: unknown terrain (F-THN|E-MOD|X-RCK|W-STR), north: unknown terrain (F-THN|E-MOD|X-RCK|W-STR), south: unknown terrain (M-FOO|E-HIG|X-BLD|W-RPD)",
+        "resolution": "1024x1024",
+        "seed": 344388211,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/PmjYxa8lR6qtQ489XHPJXQ.png?exp=1745456993&sig=6c7a13532119f3f980a019732400368cc186a6cdadc01beec0438a363a75f047"
+      }
+    ]
+  }
+}

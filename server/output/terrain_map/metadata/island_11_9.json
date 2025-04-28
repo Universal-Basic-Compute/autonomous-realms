@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 11,
+    "y": 9
+  },
+  "description": "The mesas transition to rocky foothills with increasing vegetation. Juniper and pinyon pine appear first in sheltered locations. The stream gains volume and cuts more deeply into the rocky ground.",
+  "terrainCode": "M-FOO|E-MOD|X-TRE|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with The mesas transition to rocky foothills with increasing vegetation. Juniper and pinyon pine appear first in sheltered locations. The stream gains volume and cuts more deeply into the rocky ground., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|X-TRE|W-STR), east: unknown terrain (M-FOO|E-MOD|W-STR|X-RCK), north: unknown terrain (D-MSA|E-MOD|W-STR|X-BSH), south: unknown terrain (M-FOO|E-MOD|F-PIN|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:22:18.399225+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The mesas transition to rocky foothills with increasing vegetation. Juniper and pinyon pine appear first in sheltered locations. The stream gains volume and cuts more deeply into the rocky ground., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|X-TRE|W-STR), east: unknown terrain (M-FOO|E-MOD|W-STR|X-RCK), north: unknown terrain (D-MSA|E-MOD|W-STR|X-BSH), south: unknown terrain (M-FOO|E-MOD|F-PIN|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 1281056535,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/Y4cuoq9LT66-SbVqRYuhpg.png?exp=1745457743&sig=a1f8ee0df167b9abc683f9e94d6c1e7edd9cecf12c042b70bce31b9df7131c37"
+      }
+    ]
+  }
+}

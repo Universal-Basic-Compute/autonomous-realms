@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 9,
+    "y": 0
+  },
+  "description": "Open prairie gradually transitions to drier conditions. The grasses are slightly shorter with more drought-resistant species. The terrain remains flat with occasional gentle swales.",
+  "terrainCode": "P-DRY|E-FLT|F-AVG|H-DRY",
+  "generatedPrompt": "isometric view of realistic terrain tile with Open prairie gradually transitions to drier conditions. The grasses are slightly shorter with more drought-resistant species. The terrain remains flat with occasional gentle swales., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (P-TAL|E-FLT|F-RIC|W-WIN), east: unknown terrain (P-DRY|E-FLT|H-ARD|A-LIZ), south: unknown terrain (P-DRY|E-FLT|H-DRY|X-BSH)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:14:04.232619+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Open prairie gradually transitions to drier conditions. The grasses are slightly shorter with more drought-resistant species. The terrain remains flat with occasional gentle swales., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (P-TAL|E-FLT|F-RIC|W-WIN), east: unknown terrain (P-DRY|E-FLT|H-ARD|A-LIZ), south: unknown terrain (P-DRY|E-FLT|H-DRY|X-BSH)",
+        "resolution": "1024x1024",
+        "seed": 1238165110,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/oBNNSlkDTiWs8um5HCAEfw.png?exp=1745457249&sig=257d418567a8bf1bb5d4f8611b73a785726c04052498b0b803af8e030aa2f221"
+      }
+    ]
+  }
+}

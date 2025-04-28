@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 7,
+    "y": 4
+  },
+  "description": "A creek winds through the open woodland, creating a ribbon of denser vegetation along its banks. The water is clear and shallow, flowing over a bed of small stones and sand.",
+  "terrainCode": "F-THN|E-FLT|W-STR|X-TRE",
+  "generatedPrompt": "isometric view of realistic terrain tile with A creek winds through the open woodland, creating a ribbon of denser vegetation along its banks. The water is clear and shallow, flowing over a bed of small stones and sand., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-THN|E-FLT|W-STR|A-FIS), east: lush grassland (P-LUS|E-FLT|X-TRE|W-STR), north: unknown terrain (F-THN|E-FLT|F-GOO|A-RAB), south: unknown terrain (F-MIX|E-FLT|W-STR|X-BSH)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:08:25.349695+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with A creek winds through the open woodland, creating a ribbon of denser vegetation along its banks. The water is clear and shallow, flowing over a bed of small stones and sand., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-THN|E-FLT|W-STR|A-FIS), east: lush grassland (P-LUS|E-FLT|X-TRE|W-STR), north: unknown terrain (F-THN|E-FLT|F-GOO|A-RAB), south: unknown terrain (F-MIX|E-FLT|W-STR|X-BSH)",
+        "resolution": "1024x1024",
+        "seed": 108860270,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/iMow50A9RzmBGw1QJNG2HA.png?exp=1745456910&sig=867df10e3c049ad5e8421770eff8569ac886303ec8d012d6723a5ead02652c4f"
+      }
+    ]
+  }
+}

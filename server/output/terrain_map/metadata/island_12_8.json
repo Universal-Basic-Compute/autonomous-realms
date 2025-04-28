@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 12,
+    "y": 8
+  },
+  "description": "The canyon begins to widen and open as it approaches its mouth. The walls lower gradually. The small stream from the spring flows more confidently, creating a ribbon of green vegetation.",
+  "terrainCode": "D-CYN|E-MOD|W-STR|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with The canyon begins to widen and open as it approaches its mouth. The walls lower gradually. The small stream from the spring flows more confidently, creating a ribbon of green vegetation., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-MSA|E-MOD|W-STR|X-BSH), east: unknown terrain (D-OAS|E-MOD|W-STR|X-TRE), north: unknown terrain (D-CYN|E-HIG|X-SPR|R-SND), south: unknown terrain (M-FOO|E-MOD|W-STR|X-RCK)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:25:15.834217+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The canyon begins to widen and open as it approaches its mouth. The walls lower gradually. The small stream from the spring flows more confidently, creating a ribbon of green vegetation., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-MSA|E-MOD|W-STR|X-BSH), east: unknown terrain (D-OAS|E-MOD|W-STR|X-TRE), north: unknown terrain (D-CYN|E-HIG|X-SPR|R-SND), south: unknown terrain (M-FOO|E-MOD|W-STR|X-RCK)",
+        "resolution": "1024x1024",
+        "seed": 2006773059,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/USJanUnRQFWKH5JDc061Xg.png?exp=1745457921&sig=62608c8d138dd455369a2740fc7f4f54fc9debe6521311c5c9692b898d64ac6b"
+      }
+    ]
+  }
+}

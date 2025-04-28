@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 6,
+    "y": 4
+  },
+  "description": "A small stream forms from the wetland drainage, creating a defined channel through the emerging woodland. The banks are soft and densely vegetated. Fish dart in the clear shallow water.",
+  "terrainCode": "F-THN|E-FLT|W-STR|A-FIS",
+  "generatedPrompt": "isometric view of realistic terrain tile with A small stream forms from the wetland drainage, creating a defined channel through the emerging woodland. The banks are soft and densely vegetated. Fish dart in the clear shallow water., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-SWP|E-FLT|H-SAT|A-TUR), east: unknown terrain (F-THN|E-FLT|W-STR|X-TRE), north: unknown terrain (F-THN|E-FLT|H-WET|X-BSH), south: unknown terrain (F-MIX|E-FLT|W-STR|X-BSH)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:05:12.085918+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with A small stream forms from the wetland drainage, creating a defined channel through the emerging woodland. The banks are soft and densely vegetated. Fish dart in the clear shallow water., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-SWP|E-FLT|H-SAT|A-TUR), east: unknown terrain (F-THN|E-FLT|W-STR|X-TRE), north: unknown terrain (F-THN|E-FLT|H-WET|X-BSH), south: unknown terrain (F-MIX|E-FLT|W-STR|X-BSH)",
+        "resolution": "1024x1024",
+        "seed": 1868579266,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/jzxw1_4PQ5qWTYpwJWe4vQ.png?exp=1745456717&sig=0bbffcac5df194dfb64ce3ff1421d0acf7a683c27d66f46352bd770ddea74565"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 14,
+    "y": 5
+  },
+  "description": "The mountain slopes become steeper with mixed coniferous forest. Trees grow wherever soil has accumulated between rocks. The stream descends rapidly, creating small waterfalls.",
+  "terrainCode": "M-LOW|E-HIG|F-PIN|W-WAT",
+  "generatedPrompt": "isometric view of realistic terrain tile with The mountain slopes become steeper with mixed coniferous forest. Trees grow wherever soil has accumulated between rocks. The stream descends rapidly, creating small waterfalls., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:35:04.071443+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The mountain slopes become steeper with mixed coniferous forest. Trees grow wherever soil has accumulated between rocks. The stream descends rapidly, creating small waterfalls., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+        "resolution": "1024x1024",
+        "seed": 744877559,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/NWGs0FxfSzqADYqC3YFKEw.png?exp=1745458509&sig=aecb6632e758b4d7cbcd6825a6621e7cf5ec03ff96f43990cee589c7a4bca98f"
+      }
+    ]
+  }
+}

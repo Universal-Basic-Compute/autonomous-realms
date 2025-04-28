@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 9,
+    "y": 15
+  },
+  "description": "Rocky mountain terrain with steep slopes and cliff faces. Trees are predominantly pine with gnarled forms from constant wind exposure. The air is noticeably thinner at this elevation.",
+  "terrainCode": "M-LOW|E-HIG|X-CLF|F-PIN",
+  "generatedPrompt": "isometric view of realistic terrain tile with Rocky mountain terrain with steep slopes and cliff faces. Trees are predominantly pine with gnarled forms from constant wind exposure. The air is noticeably thinner at this elevation., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|X-CLF|X-SPR), east: high mountains (M-HIG|E-VRY|X-CLF|F-PIN), north: low mountains (M-LOW|E-HIG|R-LST|W-WAT)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:17:04.899091+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Rocky mountain terrain with steep slopes and cliff faces. Trees are predominantly pine with gnarled forms from constant wind exposure. The air is noticeably thinner at this elevation., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|X-CLF|X-SPR), east: high mountains (M-HIG|E-VRY|X-CLF|F-PIN), north: low mountains (M-LOW|E-HIG|R-LST|W-WAT)",
+        "resolution": "1024x1024",
+        "seed": 765424898,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/R4N2F-WNSDmmA2G2uxZ2MA.png?exp=1745457430&sig=de4df702ee70ec7e7fc82ba0bda620d0eaab19a4baf7f23bc5d65f1fc587d808"
+      }
+    ]
+  }
+}

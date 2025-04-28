@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 15,
+    "y": 10
+  },
+  "description": "Near the tree line, the forest gives way to alpine meadow. Stunted, gnarled trees mark the transition zone. Small streams form from snowmelt, joining to create larger flows.",
+  "terrainCode": "M-HIG|E-VRY|P-FLW|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with Near the tree line, the forest gives way to alpine meadow. Stunted, gnarled trees mark the transition zone. Small streams form from snowmelt, joining to create larger flows., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: high mountains (M-HIG|E-VRY|P-FLW|X-HOL), north: high mountains (M-HIG|E-VRY|F-THN|R-SCR), south: high mountains (M-HIG|E-VRY|P-FLW|A-EAG)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:35:20.918064+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Near the tree line, the forest gives way to alpine meadow. Stunted, gnarled trees mark the transition zone. Small streams form from snowmelt, joining to create larger flows., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: high mountains (M-HIG|E-VRY|P-FLW|X-HOL), north: high mountains (M-HIG|E-VRY|F-THN|R-SCR), south: high mountains (M-HIG|E-VRY|P-FLW|A-EAG)",
+        "resolution": "1024x1024",
+        "seed": 2072005483,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/1ZhDiTgbReaYZ6171L6HVg.png?exp=1745458526&sig=352faa57a9ebe5beb305f710f7a4df0d69c0ba3cf7bb669ec4b9fe2c4e8bf47a"
+      }
+    ]
+  }
+}

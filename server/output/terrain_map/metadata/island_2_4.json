@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 2,
+    "y": 4
+  },
+  "description": "The protected lagoon begins to transition to a salt marsh. Water channels wind through emerging cordgrass. The water is brackish, supporting specialized vegetation and wildlife.",
+  "terrainCode": "W-MRS|E-FLT|H-WET|A-BIR",
+  "generatedPrompt": "isometric view of realistic terrain tile with The protected lagoon begins to transition to a salt marsh. Water channels wind through emerging cordgrass. The water is brackish, supporting specialized vegetation and wildlife., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: sea (W-SEA|E-FLT|X-RCK|A-SEA), east: river (W-RIV|E-FLT|H-WET|A-FIS), north: unknown terrain (W-LAG|E-FLT|W-SHL|A-FIS), south: unknown terrain (W-MRS|E-FLT|H-SAT|A-BIR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:52:29.035507+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The protected lagoon begins to transition to a salt marsh. Water channels wind through emerging cordgrass. The water is brackish, supporting specialized vegetation and wildlife., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: sea (W-SEA|E-FLT|X-RCK|A-SEA), east: river (W-RIV|E-FLT|H-WET|A-FIS), north: unknown terrain (W-LAG|E-FLT|W-SHL|A-FIS), south: unknown terrain (W-MRS|E-FLT|H-SAT|A-BIR)",
+        "resolution": "1024x1024",
+        "seed": 665089688,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/68-eGDhDS3--8zDQFE7-OQ.png?exp=1745455954&sig=bbf15469d88e79b7334741fe0497a0581d0bd6caf9cd8c3de5c3562d843601a5"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 4,
+    "y": 8
+  },
+  "description": "The forest continues with massive oak and hickory trees. The canopy is complete with little direct sunlight reaching the forest floor. Evidence of wildlife is abundant including tracks and burrows.",
+  "terrainCode": "F-OAK|E-FLT|F-RIC|A-FOX",
+  "generatedPrompt": "isometric view of realistic terrain tile with The forest continues with massive oak and hickory trees. The canopy is complete with little direct sunlight reaching the forest floor. Evidence of wildlife is abundant including tracks and burrows., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: river (W-RIV|E-FLT|H-WET|A-FIS), east: unknown terrain (F-MIX|E-SLI|F-RIC|X-BSH), north: unknown terrain (F-MIX|E-FLT|F-RIC|A-DEE), south: oak forest (F-OAK|E-SLI|F-GOO|X-BSH)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:59:35.529179+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The forest continues with massive oak and hickory trees. The canopy is complete with little direct sunlight reaching the forest floor. Evidence of wildlife is abundant including tracks and burrows., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: river (W-RIV|E-FLT|H-WET|A-FIS), east: unknown terrain (F-MIX|E-SLI|F-RIC|X-BSH), north: unknown terrain (F-MIX|E-FLT|F-RIC|A-DEE), south: oak forest (F-OAK|E-SLI|F-GOO|X-BSH)",
+        "resolution": "1024x1024",
+        "seed": 914528383,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/6vW8D6c-SM2aNDfc70vukw.png?exp=1745456380&sig=a11b44d3a930c4b113458df04541dd63748b05d32faa8b266534968216d1b6e2"
+      }
+    ]
+  }
+}

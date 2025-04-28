@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 1,
+    "y": 3
+  },
+  "description": "The beach transitions from pebbles to sand as the cove curves. Crystal clear water laps gently at the shore. Small patches of seagrass grow in the shallows, swaying with the water's motion.",
+  "terrainCode": "W-SHL|E-FLT|H-WET|A-FIS",
+  "generatedPrompt": "isometric view of realistic terrain tile with The beach transitions from pebbles to sand as the cove curves. Crystal clear water laps gently at the shore. Small patches of seagrass grow in the shallows, swaying with the water's motion., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: sea (W-SEA|E-FLT|X-RCK|W-WIN), east: unknown terrain (W-LAG|E-FLT|W-SHL|A-FIS), north: unknown terrain (W-BAY|E-SLI|W-SHL|A-FIS), south: sea (W-SEA|E-FLT|X-RCK|A-SEA)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:49:03.987522+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The beach transitions from pebbles to sand as the cove curves. Crystal clear water laps gently at the shore. Small patches of seagrass grow in the shallows, swaying with the water's motion., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: sea (W-SEA|E-FLT|X-RCK|W-WIN), east: unknown terrain (W-LAG|E-FLT|W-SHL|A-FIS), north: unknown terrain (W-BAY|E-SLI|W-SHL|A-FIS), south: sea (W-SEA|E-FLT|X-RCK|A-SEA)",
+        "resolution": "1024x1024",
+        "seed": 1957043437,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/_0QUIT_3QEaDs9lcaG5sKg.png?exp=1745455749&sig=f8cf591b7772eaee185d0ba4e0d8342a91c0821c33a9e472167d0441412e2a7e"
+      }
+    ]
+  }
+}

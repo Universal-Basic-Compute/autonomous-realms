@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 11,
+    "y": 13
+  },
+  "description": "Mountain terrain with steep rocky slopes and dramatic cliff faces. The forest is predominantly pine and fir with trees growing at angles from the sloping ground.",
+  "terrainCode": "M-LOW|E-HIG|F-PIN|X-CLF",
+  "generatedPrompt": "isometric view of realistic terrain tile with Mountain terrain with steep rocky slopes and dramatic cliff faces. The forest is predominantly pine and fir with trees growing at angles from the sloping ground., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|F-PIN|X-CLF), east: low mountains (M-LOW|E-HIG|F-PIN|A-HAW), north: low mountains (M-LOW|E-HIG|F-PIN|W-RPD), south: high mountains (M-HIG|E-VRY|P-FLW|F-PIN)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:23:06.849989+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Mountain terrain with steep rocky slopes and dramatic cliff faces. The forest is predominantly pine and fir with trees growing at angles from the sloping ground., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|F-PIN|X-CLF), east: low mountains (M-LOW|E-HIG|F-PIN|A-HAW), north: low mountains (M-LOW|E-HIG|F-PIN|W-RPD), south: high mountains (M-HIG|E-VRY|P-FLW|F-PIN)",
+        "resolution": "1024x1024",
+        "seed": 1265062792,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/cxgGvBKQRiWGOddbpaE2Lw.png?exp=1745457791&sig=fee7dcbe7ec48bbbce4792aa4b3442cdcfc229b49ea5fcc74f532e4a679296c3"
+      }
+    ]
+  }
+}

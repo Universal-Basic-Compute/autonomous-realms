@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 2,
+    "y": 12
+  },
+  "description": "The woodland becomes denser as the terrain begins to rise gently. The stream flows more rapidly over small rocky sections. Oak and maple trees form a partial canopy overhead.",
+  "terrainCode": "F-OAK|E-SLI|W-STR|X-RCK",
+  "generatedPrompt": "isometric view of realistic terrain tile with The woodland becomes denser as the terrain begins to rise gently. The stream flows more rapidly over small rocky sections. Oak and maple trees form a partial canopy overhead., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|F-RIC|W-STR), east: river (W-RIV|E-MOD|R-SND|W-RPD), north: unknown terrain (F-THN|E-FLT|W-STR|A-DEE), south: unknown terrain (F-MIX|E-MOD|W-STR|X-BLD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:54:02.219237+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The woodland becomes denser as the terrain begins to rise gently. The stream flows more rapidly over small rocky sections. Oak and maple trees form a partial canopy overhead., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|F-RIC|W-STR), east: river (W-RIV|E-MOD|R-SND|W-RPD), north: unknown terrain (F-THN|E-FLT|W-STR|A-DEE), south: unknown terrain (F-MIX|E-MOD|W-STR|X-BLD)",
+        "resolution": "1024x1024",
+        "seed": 801518978,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/8GSUrfcLS720PXUCih1tgg.png?exp=1745456047&sig=8323677ea21989830ae9a8dfba1311cc2b5fd0a99e922e400f3dad169b1bf36a"
+      }
+    ]
+  }
+}

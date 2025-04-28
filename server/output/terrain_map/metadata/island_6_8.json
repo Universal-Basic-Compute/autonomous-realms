@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 6,
+    "y": 8
+  },
+  "description": "The forest shows increasing diversity with multiple canopy layers. Understory includes dogwoods and serviceberry trees. Small woodland clearings contain lush grass and wildflowers.",
+  "terrainCode": "F-MIX|E-SLI|F-RIC|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with The forest shows increasing diversity with multiple canopy layers. Understory includes dogwoods and serviceberry trees. Small woodland clearings contain lush grass and wildflowers., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-SLI|F-RIC|X-BSH), east: oak forest (F-OAK|E-SLI|W-STR|X-BSH), north: oak forest (F-OAK|E-FLT|F-RIC|A-BIR), south: unknown terrain (F-MIX|E-SLI|X-SPR|X-RCK)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:06:00.534608+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The forest shows increasing diversity with multiple canopy layers. Understory includes dogwoods and serviceberry trees. Small woodland clearings contain lush grass and wildflowers., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-SLI|F-RIC|X-BSH), east: oak forest (F-OAK|E-SLI|W-STR|X-BSH), north: oak forest (F-OAK|E-FLT|F-RIC|A-BIR), south: unknown terrain (F-MIX|E-SLI|X-SPR|X-RCK)",
+        "resolution": "1024x1024",
+        "seed": 1950112621,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/0Gbm_P5LQBW3_YDaWyU3xg.png?exp=1745456765&sig=27848fb8b0aec4fe18aac45646e18ca1d341f03327b389f218881ec1743cd293"
+      }
+    ]
+  }
+}

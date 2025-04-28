@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 13,
+    "y": 12
+  },
+  "description": "Lower mountain slopes with increasing pine forest. Trees grow wherever soil has accumulated between rocks. The stream descends dramatically through a series of cascades and pools.",
+  "terrainCode": "M-LOW|E-HIG|F-PIN|W-WAT",
+  "generatedPrompt": "isometric view of realistic terrain tile with Lower mountain slopes with increasing pine forest. Trees grow wherever soil has accumulated between rocks. The stream descends dramatically through a series of cascades and pools., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|F-PIN|W-WAT), east: high mountains (M-HIG|E-VRY|P-FLW|A-GOA), north: unknown terrain (M-FOO|E-HIG|F-PIN|W-WAT), south: low mountains (M-LOW|E-HIG|F-PIN|A-GOA)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:29:16.437938+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Lower mountain slopes with increasing pine forest. Trees grow wherever soil has accumulated between rocks. The stream descends dramatically through a series of cascades and pools., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|F-PIN|W-WAT), east: high mountains (M-HIG|E-VRY|P-FLW|A-GOA), north: unknown terrain (M-FOO|E-HIG|F-PIN|W-WAT), south: low mountains (M-LOW|E-HIG|F-PIN|A-GOA)",
+        "resolution": "1024x1024",
+        "seed": 1014058334,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/TTULytlATbyGKO0ieDgb8Q.png?exp=1745458161&sig=ae67164da4efc74f81eec2337d8a1fde25d9d4e0578c323cfd06d894bc8115b6"
+      }
+    ]
+  }
+}

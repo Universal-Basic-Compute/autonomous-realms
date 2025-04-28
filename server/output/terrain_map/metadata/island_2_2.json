@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 2,
+    "y": 2
+  },
+  "description": "The bay narrows and deepens, creating a natural harbor. The water is clear and calm, revealing occasional rock formations underwater. A natural sandbar partially protects the inner shoreline.",
+  "terrainCode": "W-BAY|E-DEP|W-SHL|A-FIS",
+  "generatedPrompt": "isometric view of realistic terrain tile with The bay narrows and deepens, creating a natural harbor. The water is clear and calm, revealing occasional rock formations underwater. A natural sandbar partially protects the inner shoreline., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-BAY|E-SLI|W-SHL|A-FIS), east: unknown terrain (W-EST|E-FLT|W-RIV|X-BSH), north: unknown terrain (W-BAY|E-FLT|W-SHL|A-BIR), south: unknown terrain (W-LAG|E-FLT|W-SHL|A-FIS)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:52:05.548812+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The bay narrows and deepens, creating a natural harbor. The water is clear and calm, revealing occasional rock formations underwater. A natural sandbar partially protects the inner shoreline., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-BAY|E-SLI|W-SHL|A-FIS), east: unknown terrain (W-EST|E-FLT|W-RIV|X-BSH), north: unknown terrain (W-BAY|E-FLT|W-SHL|A-BIR), south: unknown terrain (W-LAG|E-FLT|W-SHL|A-FIS)",
+        "resolution": "1024x1024",
+        "seed": 332502057,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/fF3mOymvT6-nnMiePY6fVg.png?exp=1745455931&sig=5829b586509ce672860bfcd50f271a20f8fe0445738c377ce236d037870a5c85"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 3,
+    "y": 0
+  },
+  "description": "A wide tidal estuary where freshwater meets the sea. Mudflats extend during low tide, revealing feeding grounds for shore birds. Brackish water supports specialized vegetation.",
+  "terrainCode": "W-EST|E-FLT|H-WET|A-BIR",
+  "generatedPrompt": "isometric view of realistic terrain tile with A wide tidal estuary where freshwater meets the sea. Mudflats extend during low tide, revealing feeding grounds for shore birds. Brackish water supports specialized vegetation., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-BAY|E-SLI|W-SHL|A-FIS), east: unknown terrain (W-DEL|E-FLT|F-RIC|H-WET), south: unknown terrain (W-EST|E-FLT|H-SAT|X-BSH)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:54:50.328758+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with A wide tidal estuary where freshwater meets the sea. Mudflats extend during low tide, revealing feeding grounds for shore birds. Brackish water supports specialized vegetation., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-BAY|E-SLI|W-SHL|A-FIS), east: unknown terrain (W-DEL|E-FLT|F-RIC|H-WET), south: unknown terrain (W-EST|E-FLT|H-SAT|X-BSH)",
+        "resolution": "1024x1024",
+        "seed": 1348533959,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/Wg3OnkzlQoKcCk4suLtC5w.png?exp=1745456095&sig=fcdd7bf0db3a8d99e0967c044ffdd180b933c1ead2c18b27c63d6cf24e264457"
+      }
+    ]
+  }
+}

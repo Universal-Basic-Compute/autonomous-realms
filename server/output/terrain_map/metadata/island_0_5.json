@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 0,
+    "y": 5
+  },
+  "description": "The beach continues with fine golden sand. Small dunes begin to form with beach grasses stabilizing them. The tide reaches halfway up the beach, leaving a line of seaweed and debris.",
+  "terrainCode": "D-DUN|E-SLI|W-SEA|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with The beach continues with fine golden sand. Small dunes begin to form with beach grasses stabilizing them. The tide reaches halfway up the beach, leaving a line of seaweed and debris., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: unknown terrain (D-DUN|E-MOD|X-BSH|X-HOL), north: sea (W-SEA|E-FLT|H-WET|A-SEA), south: unknown terrain (D-DUN|E-MOD|W-WIN|A-RAB)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:46:13.693008+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The beach continues with fine golden sand. Small dunes begin to form with beach grasses stabilizing them. The tide reaches halfway up the beach, leaving a line of seaweed and debris., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: unknown terrain (D-DUN|E-MOD|X-BSH|X-HOL), north: sea (W-SEA|E-FLT|H-WET|A-SEA), south: unknown terrain (D-DUN|E-MOD|W-WIN|A-RAB)",
+        "resolution": "1024x1024",
+        "seed": 1073422204,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/82q1WuE-RgCrgtvw7p82Ng.png?exp=1745455579&sig=3f142973f6db3957e085b0578a9d4da9c1d0a81ac90c8ae60683f4ceb039e41e"
+      }
+    ]
+  }
+}

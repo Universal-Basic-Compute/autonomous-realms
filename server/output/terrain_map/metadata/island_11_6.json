@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 11,
+    "y": 6
+  },
+  "description": "Deep desert canyon with high walls striped with different colored rock layers. The canyon floor is relatively flat with occasional boulders from wall collapse. Late afternoon sun creates dramatic shadows.",
+  "terrainCode": "D-CYN|E-MOD|X-BLD|H-ARD",
+  "generatedPrompt": "isometric view of realistic terrain tile with Deep desert canyon with high walls striped with different colored rock layers. The canyon floor is relatively flat with occasional boulders from wall collapse. Late afternoon sun creates dramatic shadows., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-BDL|E-MOD|X-CFM|H-ARD), east: unknown terrain (D-CYN|E-MOD|X-CLF|H-ARD), north: unknown terrain (D-CYN|E-MOD|R-SND|H-ARD), south: unknown terrain (D-MSA|E-MOD|X-SPR|H-ARD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:21:39.844987+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Deep desert canyon with high walls striped with different colored rock layers. The canyon floor is relatively flat with occasional boulders from wall collapse. Late afternoon sun creates dramatic shadows., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-BDL|E-MOD|X-CFM|H-ARD), east: unknown terrain (D-CYN|E-MOD|X-CLF|H-ARD), north: unknown terrain (D-CYN|E-MOD|R-SND|H-ARD), south: unknown terrain (D-MSA|E-MOD|X-SPR|H-ARD)",
+        "resolution": "1024x1024",
+        "seed": 933847275,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/GlO76uIeQyy1tcoNZUK4Gw.png?exp=1745457705&sig=cf97b0175934504eee97b5670db50c1d3dc2766b0055b49e2b55ca5642feb7c0"
+      }
+    ]
+  }
+}

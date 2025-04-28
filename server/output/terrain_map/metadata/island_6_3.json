@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 6,
+    "y": 3
+  },
+  "description": "The meadow begins to transition to a wet woodland. Young willows and alders form stands in the wettest areas. The ground is spongy underfoot with thick moss carpets in shaded areas.",
+  "terrainCode": "F-THN|E-FLT|H-WET|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with The meadow begins to transition to a wet woodland. Young willows and alders form stands in the wettest areas. The ground is spongy underfoot with thick moss carpets in shaded areas., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-SWP|E-FLT|H-SAT|X-TRE), east: unknown terrain (F-THN|E-FLT|F-GOO|A-RAB), north: lush grassland (P-LUS|E-FLT|H-WET|W-PON), south: unknown terrain (F-THN|E-FLT|W-STR|A-FIS)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:05:00.152958+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The meadow begins to transition to a wet woodland. Young willows and alders form stands in the wettest areas. The ground is spongy underfoot with thick moss carpets in shaded areas., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-SWP|E-FLT|H-SAT|X-TRE), east: unknown terrain (F-THN|E-FLT|F-GOO|A-RAB), north: lush grassland (P-LUS|E-FLT|H-WET|W-PON), south: unknown terrain (F-THN|E-FLT|W-STR|A-FIS)",
+        "resolution": "1024x1024",
+        "seed": 1281722845,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/hgvOJL1ZS7ypuNCa9gsIKQ.png?exp=1745456705&sig=75804339db2477fb39df6379acacda4af0d862bf030307b97fe275e1961fc86f"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 0,
+    "y": 6
+  },
+  "description": "Coastal dunes grow taller here, covered with swaying beach grasses. The sand is finer and drier. Occasional burrows in the dune sides indicate small animal habitats.",
+  "terrainCode": "D-DUN|E-MOD|W-WIN|A-RAB",
+  "generatedPrompt": "isometric view of realistic terrain tile with Coastal dunes grow taller here, covered with swaying beach grasses. The sand is finer and drier. Occasional burrows in the dune sides indicate small animal habitats., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: unknown terrain (D-DUN|E-MOD|X-BSH|W-WIN), north: unknown terrain (D-DUN|E-SLI|W-SEA|X-BSH), south: unknown terrain (P-SCR|E-SLI|H-NRM|X-BSH)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:46:26.442841+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Coastal dunes grow taller here, covered with swaying beach grasses. The sand is finer and drier. Occasional burrows in the dune sides indicate small animal habitats., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: unknown terrain (D-DUN|E-MOD|X-BSH|W-WIN), north: unknown terrain (D-DUN|E-SLI|W-SEA|X-BSH), south: unknown terrain (P-SCR|E-SLI|H-NRM|X-BSH)",
+        "resolution": "1024x1024",
+        "seed": 892737661,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/x-bRyRiEScyiEdrblKe1Jg.png?exp=1745455592&sig=9695f69274c95cb21026bd5d8b1c374dd60d6a7bcf44103d7c6f603291b7562c"
+      }
+    ]
+  }
+}

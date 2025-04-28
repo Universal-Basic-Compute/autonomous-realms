@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 14,
+    "y": 6
+  },
+  "description": "Steep mountainside with patches of dense forest separated by rocky clearings. Large boulders create microhabitats for specialized plants. The stream forms a dramatic waterfall over a cliff.",
+  "terrainCode": "M-LOW|E-HIG|F-PIN|W-WAT",
+  "generatedPrompt": "isometric view of realistic terrain tile with Steep mountainside with patches of dense forest separated by rocky clearings. Large boulders create microhabitats for specialized plants. The stream forms a dramatic waterfall over a cliff., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-CYN|E-HIG|X-BLD|H-ARD), east: unknown terrain (M-VAL|E-HIG|F-PIN|P-FLW), north: low mountains (M-LOW|E-HIG|F-PIN|W-WAT), south: unknown terrain (M-VAL|E-HIG|F-PIN|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:31:17.763875+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Steep mountainside with patches of dense forest separated by rocky clearings. Large boulders create microhabitats for specialized plants. The stream forms a dramatic waterfall over a cliff., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-CYN|E-HIG|X-BLD|H-ARD), east: unknown terrain (M-VAL|E-HIG|F-PIN|P-FLW), north: low mountains (M-LOW|E-HIG|F-PIN|W-WAT), south: unknown terrain (M-VAL|E-HIG|F-PIN|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 1836873892,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/tVBmI2pYTv-Ul4A63LJ-8w.png?exp=1745458283&sig=8f4a11f8eff7e84968ffb6a42de1871d27c501a5f8795e97166cda7573a66198"
+      }
+    ]
+  }
+}

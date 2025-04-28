@@ -1,0 +1,2050 @@
+[
+  {
+    "coordinates": {
+      "x": 0,
+      "y": 0
+    },
+    "description": "Rocky coastal cliffs with sparse vegetation. Ocean waves crash against the weathered limestone formations. Seabirds nest in small crevices, and salt-resistant grasses cling to the thin soil above.",
+    "terrainCode": "R-LST|E-HIG|W-SEA|A-SEA"
+  },
+  {
+    "coordinates": {
+      "x": 0,
+      "y": 1
+    },
+    "description": "Jagged limestone cliffs continue with a steep drop to churning ocean waters below. Wind-stunted shrubs and hardy mosses grow in protected pockets, while exposed areas reveal bare white rock.",
+    "terrainCode": "R-LST|E-HIG|W-SEA|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 0,
+      "y": 2
+    },
+    "description": "The coastline forms a small rocky bay where the cliffs are less steep. Tide pools form among the rocks, hosting small crabs and anemones. Salt spray coats the nearby stones.",
+    "terrainCode": "W-BAY|E-MOD|R-LST|A-CRA"
+  },
+  {
+    "coordinates": {
+      "x": 0,
+      "y": 3
+    },
+    "description": "A narrow pebble beach forms at the shoreline. Ocean water laps gently here, depositing smooth stones and occasional driftwood. Sea grasses mark the high-tide line.",
+    "terrainCode": "W-SEA|E-FLT|X-RCK|W-WIN"
+  },
+  {
+    "coordinates": {
+      "x": 0,
+      "y": 4
+    },
+    "description": "Sandy beach stretches along the coastline with scattered shells and smooth pebbles. Gulls patrol the waterline hunting for small crustaceans. Salt-tolerant plants grow further inland.",
+    "terrainCode": "W-SEA|E-FLT|H-WET|A-SEA"
+  },
+  {
+    "coordinates": {
+      "x": 0,
+      "y": 5
+    },
+    "description": "The beach continues with fine golden sand. Small dunes begin to form with beach grasses stabilizing them. The tide reaches halfway up the beach, leaving a line of seaweed and debris.",
+    "terrainCode": "D-DUN|E-SLI|W-SEA|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 0,
+      "y": 6
+    },
+    "description": "Coastal dunes grow taller here, covered with swaying beach grasses. The sand is finer and drier. Occasional burrows in the dune sides indicate small animal habitats.",
+    "terrainCode": "D-DUN|E-MOD|W-WIN|A-RAB"
+  },
+  {
+    "coordinates": {
+      "x": 0,
+      "y": 7
+    },
+    "description": "The dunes transition to coastal scrubland. Salt-pruned shrubs and hardy grasses dominate. The soil is sandy but supports more vegetation including small flowering plants.",
+    "terrainCode": "P-SCR|E-SLI|H-NRM|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 0,
+      "y": 8
+    },
+    "description": "The scrubland becomes dense with more established vegetation. Low juniper bushes and coastal pines appear, their forms shaped by persistent sea winds. The ground is sandy but stable.",
+    "terrainCode": "P-SCR|E-SLI|X-BSH|X-TRE"
+  },
+  {
+    "coordinates": {
+      "x": 0,
+      "y": 9
+    },
+    "description": "A young coastal pine forest begins, with trees growing taller as they gain distance from the shore. Needle-covered ground hosts mushrooms and lichens. Bird songs echo among the branches.",
+    "terrainCode": "F-PIN|E-SLI|W-WIN|A-BIR"
+  },
+  {
+    "coordinates": {
+      "x": 0,
+      "y": 10
+    },
+    "description": "The pine forest matures with taller trees and a denser canopy. Understory vegetation is sparse due to the needle cover. Squirrels dart between trees, gathering fallen pine cones.",
+    "terrainCode": "F-PIN|E-SLI|F-AVG|A-SQU"
+  },
+  {
+    "coordinates": {
+      "x": 0,
+      "y": 11
+    },
+    "description": "Pine forest begins to mix with deciduous trees as the soil improves. Oak saplings compete for light among the dominant pines. Mushrooms and moss patches cover the forest floor.",
+    "terrainCode": "F-MIX|E-FLT|F-AVG|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 0,
+      "y": 12
+    },
+    "description": "The mixed forest continues with mature oak trees now equaling pines in number. The canopy creates a dappled light effect on the leaf-strewn forest floor. Undergrowth is moderate.",
+    "terrainCode": "F-MIX|E-FLT|F-GOO|A-DEE"
+  },
+  {
+    "coordinates": {
+      "x": 0,
+      "y": 13
+    },
+    "description": "The forest begins to thin as the elevation increases. Rocky outcrops punctuate the landscape with exposed granite. Trees grow at angles, their roots seeking purchase among the stones.",
+    "terrainCode": "F-MIX|E-SLI|R-GRN|X-RCK"
+  },
+  {
+    "coordinates": {
+      "x": 0,
+      "y": 14
+    },
+    "description": "Scattered trees among increasing rocky terrain mark the beginning of foothills. Large granite boulders create natural shelters for small animals. The thin soil supports hardy grasses.",
+    "terrainCode": "M-FOO|E-MOD|X-TRE|X-BLD"
+  },
+  {
+    "coordinates": {
+      "x": 0,
+      "y": 15
+    },
+    "description": "Rocky foothills with sparse vegetation. Exposed granite dominates the landscape with weather-worn surfaces. Mountain goats navigate the terrain with ease, grazing on tough grasses.",
+    "terrainCode": "M-FOO|E-HIG|R-GRN|A-GOA"
+  },
+  {
+    "coordinates": {
+      "x": 1,
+      "y": 0
+    },
+    "description": "Steep coastal cliffs continue with dramatic drops to the ocean. Sea spray coats the rocks with a fine salt layer. Erosion has created small caves at the waterline visible during low tide.",
+    "terrainCode": "R-LST|E-HIG|W-SEA|X-CVE"
+  },
+  {
+    "coordinates": {
+      "x": 1,
+      "y": 1
+    },
+    "description": "The limestone cliffs begin to recede, forming a natural cove. Waves break more gently here, and a narrow strip of pebble beach appears. Tide pools form in the rocky shallows.",
+    "terrainCode": "W-BAY|E-MOD|R-LST|W-SEA"
+  },
+  {
+    "coordinates": {
+      "x": 1,
+      "y": 2
+    },
+    "description": "A protected cove with a wider pebble beach. Clear shallow water reveals a sandy bottom with occasional rock formations. Small fish dart in the shallows, and crabs scuttle among the stones.",
+    "terrainCode": "W-BAY|E-SLI|W-SHL|A-FIS"
+  },
+  {
+    "coordinates": {
+      "x": 1,
+      "y": 3
+    },
+    "description": "The beach transitions from pebbles to sand as the cove curves. Crystal clear water laps gently at the shore. Small patches of seagrass grow in the shallows, swaying with the water's motion.",
+    "terrainCode": "W-SHL|E-FLT|H-WET|A-FIS"
+  },
+  {
+    "coordinates": {
+      "x": 1,
+      "y": 4
+    },
+    "description": "A broad sandy beach with occasional tide pools. The fine sand is dotted with shells and smooth stones. Behind the beach, small dunes begin to form with sporadic clusters of beach grass.",
+    "terrainCode": "W-SEA|E-FLT|X-RCK|A-SEA"
+  },
+  {
+    "coordinates": {
+      "x": 1,
+      "y": 5
+    },
+    "description": "Established sand dunes rise from the beach, anchored by networks of beach grass roots. The dunes undulate in wave-like formations, creating small sheltered hollows between peaks.",
+    "terrainCode": "D-DUN|E-MOD|X-BSH|X-HOL"
+  },
+  {
+    "coordinates": {
+      "x": 1,
+      "y": 6
+    },
+    "description": "The dunes grow taller and more stabilized with diverse vegetation. Beach plums and bayberry shrubs cluster in protected areas. Wind patterns create rippling patterns in the exposed sand.",
+    "terrainCode": "D-DUN|E-MOD|X-BSH|W-WIN"
+  },
+  {
+    "coordinates": {
+      "x": 1,
+      "y": 7
+    },
+    "description": "Dunes transition to coastal heath with dense low vegetation. Scrub pines begin to appear, twisted by constant wind. The ground is covered with coarse grasses and small flowering plants.",
+    "terrainCode": "P-SCR|E-SLI|X-BSH|A-RAB"
+  },
+  {
+    "coordinates": {
+      "x": 1,
+      "y": 8
+    },
+    "description": "Coastal heath blends into pine barrens with sandy soil supporting widely spaced pitch pines. The understory contains low blueberry bushes and patches of reindeer lichen.",
+    "terrainCode": "F-PIN|E-FLT|F-POO|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 1,
+      "y": 9
+    },
+    "description": "Pine barrens continue with mature pitch pines forming an open canopy. Sandy soil supports specialized vegetation adapted to the poor nutrients. Occasional small clearings reveal sun-baked ground.",
+    "terrainCode": "F-PIN|E-FLT|F-POO|X-RCK"
+  },
+  {
+    "coordinates": {
+      "x": 1,
+      "y": 10
+    },
+    "description": "The pine barrens begin to transition as soil improves. Oak saplings appear among the pines, and the understory becomes more diverse. Small seasonal streams create slightly richer soil in channels.",
+    "terrainCode": "F-MIX|E-FLT|F-AVG|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 1,
+      "y": 11
+    },
+    "description": "Mixed forest of pine and oak with increasing biodiversity. The canopy creates alternating sun and shade patterns. A small stream cuts through, bordered by ferns and moisture-loving plants.",
+    "terrainCode": "F-MIX|E-FLT|F-GOO|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 1,
+      "y": 12
+    },
+    "description": "The mixed forest grows more dense with mature hardwoods dominating. The stream widens slightly, creating a small floodplain with rich alluvial soil. Wildflowers bloom in small clearings.",
+    "terrainCode": "F-MIX|E-FLT|F-RIC|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 1,
+      "y": 13
+    },
+    "description": "The forest begins to thin as rocky outcrops become more prevalent. The stream runs faster over stone ledges. Exposed granite formations create natural stairs leading upward.",
+    "terrainCode": "F-THN|E-SLI|W-STR|X-RCK"
+  },
+  {
+    "coordinates": {
+      "x": 1,
+      "y": 14
+    },
+    "description": "Rocky foothills with scattered trees and exposed granite. The stream becomes a small cascade over rock shelves. Thin soil supports grasses and small shrubs that find purchase between rocks.",
+    "terrainCode": "M-FOO|E-MOD|W-STR|X-TRE"
+  },
+  {
+    "coordinates": {
+      "x": 1,
+      "y": 15
+    },
+    "description": "Higher foothills with increasing stone and less vegetation. A small waterfall forms as the stream drops over a granite ledge. Mountain juniper and hardy pines cling to protected pockets of soil.",
+    "terrainCode": "M-FOO|E-HIG|W-WAT|X-TRE"
+  },
+  {
+    "coordinates": {
+      "x": 2,
+      "y": 0
+    },
+    "description": "A coastal inlet forms here with calmer waters. The shoreline alternates between small beaches and rocky outcrops. Clear water reveals sandy bottom with scattered seaweed patches.",
+    "terrainCode": "W-BAY|E-SLI|W-SHL|A-FIS"
+  },
+  {
+    "coordinates": {
+      "x": 2,
+      "y": 1
+    },
+    "description": "Protected bay waters lap against a mixed shoreline. Small sandbars emerge at low tide. Herons stalk the shallows hunting for fish, leaving delicate footprints in the wet sand.",
+    "terrainCode": "W-BAY|E-FLT|W-SHL|A-BIR"
+  },
+  {
+    "coordinates": {
+      "x": 2,
+      "y": 2
+    },
+    "description": "The bay narrows and deepens, creating a natural harbor. The water is clear and calm, revealing occasional rock formations underwater. A natural sandbar partially protects the inner shoreline.",
+    "terrainCode": "W-BAY|E-DEP|W-SHL|A-FIS"
+  },
+  {
+    "coordinates": {
+      "x": 2,
+      "y": 3
+    },
+    "description": "The inner bay forms a lagoon-like area with extremely calm waters. The bottom is sandy with patches of seagrass. The shoreline is predominantly sandy with occasional smooth stones.",
+    "terrainCode": "W-LAG|E-FLT|W-SHL|A-FIS"
+  },
+  {
+    "coordinates": {
+      "x": 2,
+      "y": 4
+    },
+    "description": "The protected lagoon begins to transition to a salt marsh. Water channels wind through emerging cordgrass. The water is brackish, supporting specialized vegetation and wildlife.",
+    "terrainCode": "W-MRS|E-FLT|H-WET|A-BIR"
+  },
+  {
+    "coordinates": {
+      "x": 2,
+      "y": 5
+    },
+    "description": "A fully formed salt marsh with channels of brackish water cutting through dense grass. The ground is perpetually wet and spongy. Shorebirds probe the mud for small invertebrates.",
+    "terrainCode": "W-MRS|E-FLT|H-SAT|A-BIR"
+  },
+  {
+    "coordinates": {
+      "x": 2,
+      "y": 6
+    },
+    "description": "The salt marsh transitions to fresher conditions as distance from the ocean increases. The vegetation becomes more diverse with taller reeds and cattails appearing in clusters.",
+    "terrainCode": "W-MRS|E-FLT|H-SAT|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 2,
+      "y": 7
+    },
+    "description": "Wetland conditions persist but with predominantly freshwater influence. A small stream flows through creating a rich ecosystem. Frogs call from hidden locations among the dense vegetation.",
+    "terrainCode": "W-MRS|E-FLT|W-STR|A-FRO"
+  },
+  {
+    "coordinates": {
+      "x": 2,
+      "y": 8
+    },
+    "description": "The wetland begins to drain into more solid ground. Patches of drier soil support small trees and shrubs. The stream becomes more defined with clear banks and faster flow.",
+    "terrainCode": "P-BAS|E-FLT|W-STR|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 2,
+      "y": 9
+    },
+    "description": "Moist grassland with rich soil created by occasional flooding from the stream. Wildflowers grow in colorful patches. The ground is level but well-drained with dense root systems beneath.",
+    "terrainCode": "P-LUS|E-FLT|F-RIC|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 2,
+      "y": 10
+    },
+    "description": "The grassland transitions to scattered trees as the first signs of forest appear. The stream continues its course, bordered by willows and other water-loving trees.",
+    "terrainCode": "P-LUS|E-FLT|X-TRE|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 2,
+      "y": 11
+    },
+    "description": "Open woodland with widely spaced trees and grassy clearings. The stream widens slightly and moves more slowly. Deer tracks can be found along the soft banks of the waterway.",
+    "terrainCode": "F-THN|E-FLT|W-STR|A-DEE"
+  },
+  {
+    "coordinates": {
+      "x": 2,
+      "y": 12
+    },
+    "description": "The woodland becomes denser as the terrain begins to rise gently. The stream flows more rapidly over small rocky sections. Oak and maple trees form a partial canopy overhead.",
+    "terrainCode": "F-OAK|E-SLI|W-STR|X-RCK"
+  },
+  {
+    "coordinates": {
+      "x": 2,
+      "y": 13
+    },
+    "description": "Mixed deciduous forest with increasingly rocky terrain. The stream cascades over several small ledges. Mossy boulders line the water's edge, and ferns grow in the moist microclimate.",
+    "terrainCode": "F-MIX|E-MOD|W-STR|X-BLD"
+  },
+  {
+    "coordinates": {
+      "x": 2,
+      "y": 14
+    },
+    "description": "The forest thins as the foothills become more prominent. The stream forms a series of small waterfalls. Exposed rock faces show layers of ancient sediment, and hardy mountain vegetation appears.",
+    "terrainCode": "M-FOO|E-MOD|W-WAT|R-SND"
+  },
+  {
+    "coordinates": {
+      "x": 2,
+      "y": 15
+    },
+    "description": "Steep rocky terrain with a narrow mountain stream cutting through. Stunted pines cling to available soil pockets. The water is crystal clear and cold, originating from higher mountain springs.",
+    "terrainCode": "M-FOO|E-HIG|W-STR|X-TRE"
+  },
+  {
+    "coordinates": {
+      "x": 3,
+      "y": 0
+    },
+    "description": "A wide tidal estuary where freshwater meets the sea. Mudflats extend during low tide, revealing feeding grounds for shore birds. Brackish water supports specialized vegetation.",
+    "terrainCode": "W-EST|E-FLT|H-WET|A-BIR"
+  },
+  {
+    "coordinates": {
+      "x": 3,
+      "y": 1
+    },
+    "description": "The estuary narrows as it extends inland. Water channels cut through mud and sand. Salt-tolerant grasses form patches on slightly elevated areas. The air smells of salt and mud.",
+    "terrainCode": "W-EST|E-FLT|H-SAT|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 3,
+      "y": 2
+    },
+    "description": "The upper reaches of the estuary where freshwater dominance begins. The main channel is deeper with defined banks. Reeds and cattails grow densely along the edges.",
+    "terrainCode": "W-EST|E-FLT|W-RIV|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 3,
+      "y": 3
+    },
+    "description": "A river widens as it approaches the estuary. The water flows steadily between defined banks. Willows and other water-loving trees line the shores, their roots partially exposed.",
+    "terrainCode": "W-RIV|E-FLT|H-WET|X-TRE"
+  },
+  {
+    "coordinates": {
+      "x": 3,
+      "y": 4
+    },
+    "description": "The river continues with a gentle current. The banks are lush with vegetation and occasionally steep where the water has carved into the soil. Small fish are visible in the clear water.",
+    "terrainCode": "W-RIV|E-FLT|H-WET|A-FIS"
+  },
+  {
+    "coordinates": {
+      "x": 3,
+      "y": 5
+    },
+    "description": "A bend in the river creates a slower section where silt has accumulated. The outer bank is steeper and slightly eroded while the inner curve forms a small beach area.",
+    "terrainCode": "W-RIV|E-FLT|H-WET|X-TRE"
+  },
+  {
+    "coordinates": {
+      "x": 3,
+      "y": 6
+    },
+    "description": "The river narrows slightly and flows more rapidly. Rocky sections create small riffles on the surface. The banks are thick with vegetation including flowering shrubs and tall grasses.",
+    "terrainCode": "W-RIV|E-FLT|X-RCK|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 3,
+      "y": 7
+    },
+    "description": "A broader section of river with an island formed in the center. The water divides and rejoins, creating diverse flow patterns. The small island supports several trees and lush vegetation.",
+    "terrainCode": "W-RIV|E-FLT|X-TRE|F-GOO"
+  },
+  {
+    "coordinates": {
+      "x": 3,
+      "y": 8
+    },
+    "description": "The river continues through a wide valley. The current is moderate with occasional deeper pools. The banks are less steep here, allowing vegetation to grow close to the water's edge.",
+    "terrainCode": "W-RIV|E-FLT|H-WET|A-FIS"
+  },
+  {
+    "coordinates": {
+      "x": 3,
+      "y": 9
+    },
+    "description": "A tributary joins the main river, increasing water volume and creating swirling patterns at the confluence. The banks show signs of seasonal flooding with water marks on trees.",
+    "terrainCode": "W-RIV|E-FLT|H-FLD|X-TRE"
+  },
+  {
+    "coordinates": {
+      "x": 3,
+      "y": 10
+    },
+    "description": "The river begins to show more rocky features as the terrain gradually rises. Small rapids form over submerged stones. The banks rise higher with exposed soil showing river-cut profiles.",
+    "terrainCode": "W-RIV|E-SLI|X-RCK|W-RPD"
+  },
+  {
+    "coordinates": {
+      "x": 3,
+      "y": 11
+    },
+    "description": "The valley narrows and the river flows faster through a rock-strewn channel. The sound of rushing water echoes against the rising valley walls. Moss covers the rocks near the water's edge.",
+    "terrainCode": "W-RIV|E-MOD|X-RCK|W-RPD"
+  },
+  {
+    "coordinates": {
+      "x": 3,
+      "y": 12
+    },
+    "description": "A narrow gorge begins to form as the river cuts between rising terrain. The water is turbulent with white caps over submerged boulders. The walls of the gorge show stratified rock layers.",
+    "terrainCode": "W-RIV|E-MOD|R-SND|W-RPD"
+  },
+  {
+    "coordinates": {
+      "x": 3,
+      "y": 13
+    },
+    "description": "The gorge deepens with the river flowing rapidly between steep walls. A series of cascades forms as the water descends over rock ledges. Ferns and mosses grow where moisture seeps from the walls.",
+    "terrainCode": "W-RIV|E-HIG|W-RPD|X-CLF"
+  },
+  {
+    "coordinates": {
+      "x": 3,
+      "y": 14
+    },
+    "description": "A dramatic waterfall marks a significant drop in elevation. The river plunges over a resistant rock ledge into a churning pool below. Mist fills the air and rainbow effects are visible in sunlight.",
+    "terrainCode": "W-WAT|E-HIG|X-CLF|X-BLD"
+  },
+  {
+    "coordinates": {
+      "x": 3,
+      "y": 15
+    },
+    "description": "Above the waterfall, the river flows through a rocky mountain valley. The water is crystal clear and ice-cold. Sparse conifers grow along the banks where soil has accumulated.",
+    "terrainCode": "M-VAL|E-HIG|W-RIV|X-TRE"
+  },
+  {
+    "coordinates": {
+      "x": 4,
+      "y": 0
+    },
+    "description": "A massive river delta with multiple channels cutting through alluvial soil. Sandbars shift with changing currents. Rich sediment creates exceptionally fertile ground supporting dense vegetation.",
+    "terrainCode": "W-DEL|E-FLT|F-RIC|H-WET"
+  },
+  {
+    "coordinates": {
+      "x": 4,
+      "y": 1
+    },
+    "description": "Delta channels continue to branch and reconnect through marshy terrain. Areas between waterways support tall grasses and reeds. The soil is waterlogged and rich with organic matter.",
+    "terrainCode": "W-DEL|E-FLT|F-RIC|H-SAT"
+  },
+  {
+    "coordinates": {
+      "x": 4,
+      "y": 2
+    },
+    "description": "The delta transitions to more stable wetlands with main channels becoming more defined. Cypress trees begin to appear, their knees protruding from the water. Birds nest in the tall vegetation.",
+    "terrainCode": "W-SWP|E-FLT|H-SAT|X-TRE"
+  },
+  {
+    "coordinates": {
+      "x": 4,
+      "y": 3
+    },
+    "description": "A cypress swamp with trees growing directly from the shallow water. Duckweed covers still areas of water, and lily pads float in small clearings. The air is humid and rich with organic scents.",
+    "terrainCode": "W-SWP|E-FLT|H-SAT|X-TRE"
+  },
+  {
+    "coordinates": {
+      "x": 4,
+      "y": 4
+    },
+    "description": "The swamp continues with deeper water channels cutting through. Tree trunks show water marks from seasonal changes in level. Turtles sun themselves on exposed logs and stumps.",
+    "terrainCode": "W-SWP|E-FLT|H-SAT|A-TUR"
+  },
+  {
+    "coordinates": {
+      "x": 4,
+      "y": 5
+    },
+    "description": "Areas of higher ground begin to emerge from the swamp. These islands support additional tree species and drier understory vegetation. The main river channel becomes more distinct.",
+    "terrainCode": "W-SWP|E-FLT|X-TRE|W-RIV"
+  },
+  {
+    "coordinates": {
+      "x": 4,
+      "y": 6
+    },
+    "description": "The swamp transitions to a bottomland hardwood forest. The ground is still moist and shows signs of seasonal flooding, but supports consistent tree growth and understory vegetation.",
+    "terrainCode": "F-MIX|E-FLT|H-WET|F-RIC"
+  },
+  {
+    "coordinates": {
+      "x": 4,
+      "y": 7
+    },
+    "description": "Rich bottomland forest with diverse hardwood trees. The soil is dark and fertile from river sediment. The forest floor is covered with ferns, wildflowers, and mushrooms in shaded areas.",
+    "terrainCode": "F-MIX|E-FLT|F-RIC|A-DEE"
+  },
+  {
+    "coordinates": {
+      "x": 4,
+      "y": 8
+    },
+    "description": "The forest continues with massive oak and hickory trees. The canopy is complete with little direct sunlight reaching the forest floor. Evidence of wildlife is abundant including tracks and burrows.",
+    "terrainCode": "F-OAK|E-FLT|F-RIC|A-FOX"
+  },
+  {
+    "coordinates": {
+      "x": 4,
+      "y": 9
+    },
+    "description": "As the land begins to rise slightly, the forest composition shifts. Trees are still large but more widely spaced. Understory becomes thicker with more shrubs and juvenile trees.",
+    "terrainCode": "F-OAK|E-SLI|F-GOO|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 4,
+      "y": 10
+    },
+    "description": "The forest thins as rocky outcrops begin to appear. The soil becomes less rich but still supports healthy vegetation. A small stream cuts through, joining the river in the distance.",
+    "terrainCode": "F-OAK|E-SLI|X-RCK|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 4,
+      "y": 11
+    },
+    "description": "Mixed hardwood forest with increasing rocky terrain. Boulders create microhabitats for specialized plants like lichens and mosses. The stream follows a winding path between rock formations.",
+    "terrainCode": "F-MIX|E-MOD|X-BLD|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 4,
+      "y": 12
+    },
+    "description": "The forest begins to blend with foothill vegetation. Oaks become smaller and pines begin to appear. The stream descends more rapidly, creating small cascades over rock shelves.",
+    "terrainCode": "F-MIX|E-MOD|X-RCK|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 4,
+      "y": 13
+    },
+    "description": "Rocky foothills with mixed vegetation. The forest becomes patchy with open areas revealing panoramic views. The stream cuts deeply into the hillside creating a small ravine.",
+    "terrainCode": "M-FOO|E-MOD|F-THN|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 4,
+      "y": 14
+    },
+    "description": "Steeper terrain with exposed rock faces and scree slopes. Vegetation clings to soil pockets between rocks. The stream forms multiple small waterfalls as it descends the increasingly steep gradient.",
+    "terrainCode": "M-FOO|E-HIG|R-SCR|W-WAT"
+  },
+  {
+    "coordinates": {
+      "x": 4,
+      "y": 15
+    },
+    "description": "High rocky terrain forming the first true mountain slopes. Thin soil supports sparse but hardy vegetation. The stream has carved a deep channel through the rock, creating a steep-sided ravine.",
+    "terrainCode": "M-FOO|E-HIG|X-CLF|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 5,
+      "y": 0
+    },
+    "description": "Vast wetlands extend from the river delta. Terrain is a mix of shallow water, muddy islands, and floating vegetation. Birds wade through the shallows hunting small aquatic creatures.",
+    "terrainCode": "W-MRS|E-FLT|H-SAT|A-BIR"
+  },
+  {
+    "coordinates": {
+      "x": 5,
+      "y": 1
+    },
+    "description": "The wetlands continue with areas of deeper water forming small ponds. Cattails grow densely along the edges and in shallow sections. Dragonflies hover above the water's surface.",
+    "terrainCode": "W-MRS|E-FLT|W-PON|A-FRO"
+  },
+  {
+    "coordinates": {
+      "x": 5,
+      "y": 2
+    },
+    "description": "A transition zone where the marsh meets swamp forest. Water flows slowly between cypress and tupelo trees. Patches of duckweed cover still water, and moss hangs from low branches.",
+    "terrainCode": "W-SWP|E-FLT|H-SAT|X-TRE"
+  },
+  {
+    "coordinates": {
+      "x": 5,
+      "y": 3
+    },
+    "description": "Deep swamp forest with trees growing directly from dark water. The canopy creates a shadowy atmosphere below. Occasional breaks allow shafts of light to penetrate to the water surface.",
+    "terrainCode": "W-SWP|E-FLT|H-SAT|X-TRE"
+  },
+  {
+    "coordinates": {
+      "x": 5,
+      "y": 4
+    },
+    "description": "The swamp continues with a maze of water channels between tree-covered hummocks. The water is still but occasionally disturbed by fish or turtles. Frogs call constantly from hidden locations.",
+    "terrainCode": "W-SWP|E-FLT|H-SAT|A-TUR"
+  },
+  {
+    "coordinates": {
+      "x": 5,
+      "y": 5
+    },
+    "description": "Areas of the swamp begin to dry slightly, creating more solid ground between water channels. Understory vegetation becomes more diverse with ferns and shrubs finding footholds.",
+    "terrainCode": "W-SWP|E-FLT|H-WET|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 5,
+      "y": 6
+    },
+    "description": "Transitional wetland forest with occasional dry hummocks. The ground is spongy underfoot but supports weight. Numerous animal tracks reveal the rich wildlife utilizing this ecosystem.",
+    "terrainCode": "F-MIX|E-FLT|H-WET|A-DEE"
+  },
+  {
+    "coordinates": {
+      "x": 5,
+      "y": 7
+    },
+    "description": "Bottomland forest with rich soil from periodic flooding. Massive hardwood trees form a high canopy. The forest floor is relatively open with flood-tolerant understory plants.",
+    "terrainCode": "F-MIX|E-FLT|F-RIC|H-FLD"
+  },
+  {
+    "coordinates": {
+      "x": 5,
+      "y": 8
+    },
+    "description": "The forest begins to transition to slightly higher ground. Trees are diverse with multiple layers of canopy. Understory becomes thicker with shrubs and juvenile trees competing for light.",
+    "terrainCode": "F-MIX|E-SLI|F-RIC|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 5,
+      "y": 9
+    },
+    "description": "Mixed hardwood forest with mature trees spaced more widely. The forest floor receives more light, supporting thick understory growth. Occasional limestone outcrops reveal the underlying geology.",
+    "terrainCode": "F-MIX|E-SLI|R-LST|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 5,
+      "y": 10
+    },
+    "description": "The forest contains more pine trees as the soil becomes slightly less rich. A small spring emerges from between rocks, forming the beginning of a clear stream that winds through the trees.",
+    "terrainCode": "F-MIX|E-SLI|X-SPR|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 5,
+      "y": 11
+    },
+    "description": "As elevation increases, the forest composition shifts toward more drought-tolerant species. Rock outcrops become more common, creating small clearings in the forest canopy.",
+    "terrainCode": "F-MIX|E-MOD|X-RCK|F-AVG"
+  },
+  {
+    "coordinates": {
+      "x": 5,
+      "y": 12
+    },
+    "description": "The beginning of foothill terrain with increasing rock and thinner soil. Trees grow at angles on the sloping ground. The small stream cuts more deeply into the terrain, exposing layers of rock.",
+    "terrainCode": "M-FOO|E-MOD|F-THN|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 5,
+      "y": 13
+    },
+    "description": "Rocky foothills with scattered trees and shrubs. Large exposed boulders create distinctive landmarks. The stream flows rapidly, forming small waterfalls where it drops over resistant rock layers.",
+    "terrainCode": "M-FOO|E-MOD|X-BLD|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 5,
+      "y": 14
+    },
+    "description": "Steeper terrain with rock-strewn slopes and patchy vegetation. Mountain laurel and rhododendron grow in protected pockets. The stream has carved a small gorge with steep sides.",
+    "terrainCode": "M-FOO|E-HIG|X-BSH|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 5,
+      "y": 15
+    },
+    "description": "High rocky terrain with steep slopes. Vegetation is sparse and consists mainly of hardy shrubs and grasses. The stream becomes a cascade of small waterfalls as it descends over rock ledges.",
+    "terrainCode": "M-LOW|E-HIG|X-CLF|W-WAT"
+  },
+  {
+    "coordinates": {
+      "x": 6,
+      "y": 0
+    },
+    "description": "Open freshwater marsh with channels winding through tall reeds and grasses. Small islands of slightly higher ground support shrubs and small trees. Wading birds hunt in the shallows.",
+    "terrainCode": "W-MRS|E-FLT|H-SAT|A-BIR"
+  },
+  {
+    "coordinates": {
+      "x": 6,
+      "y": 1
+    },
+    "description": "The marsh transitions to wet meadowland. The ground is saturated but not flooded. Tall grasses and wildflowers create a colorful tapestry, and butterflies flit between blooms.",
+    "terrainCode": "P-LUS|E-FLT|H-WET|A-BUT"
+  },
+  {
+    "coordinates": {
+      "x": 6,
+      "y": 2
+    },
+    "description": "Wet meadow with occasional pools of standing water. Diverse plant life thrives in the moisture-rich environment. The soil is black and peaty, formed from years of accumulated organic matter.",
+    "terrainCode": "P-LUS|E-FLT|H-WET|W-PON"
+  },
+  {
+    "coordinates": {
+      "x": 6,
+      "y": 3
+    },
+    "description": "The meadow begins to transition to a wet woodland. Young willows and alders form stands in the wettest areas. The ground is spongy underfoot with thick moss carpets in shaded areas.",
+    "terrainCode": "F-THN|E-FLT|H-WET|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 6,
+      "y": 4
+    },
+    "description": "A small stream forms from the wetland drainage, creating a defined channel through the emerging woodland. The banks are soft and densely vegetated. Fish dart in the clear shallow water.",
+    "terrainCode": "F-THN|E-FLT|W-STR|A-FIS"
+  },
+  {
+    "coordinates": {
+      "x": 6,
+      "y": 5
+    },
+    "description": "The woodland becomes denser as soil conditions improve. The stream continues its meandering course, occasionally widening into small pools. Ferns carpet the forest floor in shady areas.",
+    "terrainCode": "F-MIX|E-FLT|W-STR|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 6,
+      "y": 6
+    },
+    "description": "Mature mixed forest with diverse tree species. The canopy creates dappled light patterns on the ground. The stream flows steadily over a rocky bed, creating gentle burbling sounds.",
+    "terrainCode": "F-MIX|E-FLT|W-STR|X-RCK"
+  },
+  {
+    "coordinates": {
+      "x": 6,
+      "y": 7
+    },
+    "description": "Rich deciduous forest with towering oaks and maples. The forest floor is thick with leaf litter and sprouting vegetation. Songbirds fill the canopy with constant melodies.",
+    "terrainCode": "F-OAK|E-FLT|F-RIC|A-BIR"
+  },
+  {
+    "coordinates": {
+      "x": 6,
+      "y": 8
+    },
+    "description": "The forest shows increasing diversity with multiple canopy layers. Understory includes dogwoods and serviceberry trees. Small woodland clearings contain lush grass and wildflowers.",
+    "terrainCode": "F-MIX|E-SLI|F-RIC|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 6,
+      "y": 9
+    },
+    "description": "As the land begins to rise, the forest composition shifts. Oak and hickory remain dominant but with more pine intermixed. A small spring emerges from a rock outcrop, forming a clear rivulet.",
+    "terrainCode": "F-MIX|E-SLI|X-SPR|X-RCK"
+  },
+  {
+    "coordinates": {
+      "x": 6,
+      "y": 10
+    },
+    "description": "The forest contains an equal mix of deciduous and coniferous trees. The ground shows the first signs of slope with exposed roots occasionally forming natural steps. Small rocks protrude from the soil.",
+    "terrainCode": "F-MIX|E-SLI|X-RCK|X-TRE"
+  },
+  {
+    "coordinates": {
+      "x": 6,
+      "y": 11
+    },
+    "description": "Mixed forest begins to thin as rock outcroppings become more common. Trees grow at angles on the increasingly sloped terrain. The small stream gains speed as it flows downhill.",
+    "terrainCode": "F-MIX|E-MOD|X-RCK|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 6,
+      "y": 12
+    },
+    "description": "Foothill terrain with patchy forest cover and increasing rock. Small bluffs create distinctive terracing. The stream cuts through creating a small ravine with steep sides.",
+    "terrainCode": "M-FOO|E-MOD|F-THN|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 6,
+      "y": 13
+    },
+    "description": "Rocky slopes with scattered pine trees and mountain shrubs. Large boulders create shelter for small animals. The stream forms occasional pools before continuing its descent.",
+    "terrainCode": "M-FOO|E-HIG|F-PIN|X-BLD"
+  },
+  {
+    "coordinates": {
+      "x": 6,
+      "y": 14
+    },
+    "description": "Steep rocky terrain with thin soil supporting hardy vegetation. Exposed rock faces show weathering patterns. The stream becomes a series of cascades as it navigates the elevation change.",
+    "terrainCode": "M-LOW|E-HIG|X-CLF|W-WAT"
+  },
+  {
+    "coordinates": {
+      "x": 6,
+      "y": 15
+    },
+    "description": "Lower mountain slopes with dramatic rock formations. Trees grow wherever soil has accumulated, creating uneven forest patches. The stream is now a full mountain cascade over stone steps.",
+    "terrainCode": "M-LOW|E-HIG|X-CFM|W-WAT"
+  },
+  {
+    "coordinates": {
+      "x": 7,
+      "y": 0
+    },
+    "description": "Lush grassland with extraordinarily rich soil. The flat terrain supports tall grasses that wave in the breeze. Small seasonal streams create slightly lower channels through the landscape.",
+    "terrainCode": "P-LUS|E-FLT|F-RIC|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 7,
+      "y": 1
+    },
+    "description": "The grassland continues with scattered wildflowers adding color to the sea of green. The ground is level but shows slight undulations from ancient water patterns. Butterflies are abundant.",
+    "terrainCode": "P-FLW|E-FLT|F-RIC|A-BUT"
+  },
+  {
+    "coordinates": {
+      "x": 7,
+      "y": 2
+    },
+    "description": "Prairie begins to give way to scattered trees, primarily oak, creating a savanna-like landscape. The grasses remain dominant but share space with woody plants and shrubs.",
+    "terrainCode": "P-LUS|E-FLT|X-TRE|A-DEE"
+  },
+  {
+    "coordinates": {
+      "x": 7,
+      "y": 3
+    },
+    "description": "The savanna transitions to open woodland. Trees are widely spaced allowing significant light to reach the grassy understory. Small animals scurry through the protective cover.",
+    "terrainCode": "F-THN|E-FLT|F-GOO|A-RAB"
+  },
+  {
+    "coordinates": {
+      "x": 7,
+      "y": 4
+    },
+    "description": "A creek winds through the open woodland, creating a ribbon of denser vegetation along its banks. The water is clear and shallow, flowing over a bed of small stones and sand.",
+    "terrainCode": "F-THN|E-FLT|W-STR|X-TRE"
+  },
+  {
+    "coordinates": {
+      "x": 7,
+      "y": 5
+    },
+    "description": "The woodland becomes denser as moisture availability increases near the creek. The understory includes shrubs and young trees competing for light in canopy gaps.",
+    "terrainCode": "F-MIX|E-FLT|W-STR|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 7,
+      "y": 6
+    },
+    "description": "Mature deciduous forest with diverse tree species of varying ages. The creek continues through, occasionally widening into small pools before narrowing again. Moss covers rocks near the water.",
+    "terrainCode": "F-MIX|E-FLT|W-STR|X-RCK"
+  },
+  {
+    "coordinates": {
+      "x": 7,
+      "y": 7
+    },
+    "description": "The creek joins a larger stream, creating a wider water channel with more substantial flow. The forest remains dense with a high canopy filtering the sunlight to a green-tinted glow.",
+    "terrainCode": "F-MIX|E-FLT|W-STR|F-RIC"
+  },
+  {
+    "coordinates": {
+      "x": 7,
+      "y": 8
+    },
+    "description": "As the land begins to rise slightly, the forest shifts composition. Oak and maple remain dominant but with mountain laurel appearing in the understory. The stream flows more rapidly over rocky sections.",
+    "terrainCode": "F-OAK|E-SLI|W-STR|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 7,
+      "y": 9
+    },
+    "description": "Mixed forest with increasing elevation. The ground is noticeably sloped with occasional rock outcrops breaking through the soil. The stream cuts more deeply into the land, creating steeper banks.",
+    "terrainCode": "F-MIX|E-MOD|X-RCK|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 7,
+      "y": 10
+    },
+    "description": "The forest begins to thin as rocky terrain becomes more dominant. Trees grow in uneven patterns, finding soil between rock formations. The stream descends more rapidly, creating small cascades.",
+    "terrainCode": "F-THN|E-MOD|X-RCK|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 7,
+      "y": 11
+    },
+    "description": "Foothill terrain with patchy forest and extensive rock outcroppings. The slope increases noticeably, requiring effort to climb. The stream has carved a small gorge through softer rock layers.",
+    "terrainCode": "M-FOO|E-MOD|F-THN|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 7,
+      "y": 12
+    },
+    "description": "Rocky terrain with scattered trees clinging to soil pockets. Large boulders create distinctive formations. The stream descends in a series of small waterfalls and rapids.",
+    "terrainCode": "M-FOO|E-HIG|X-BLD|W-RPD"
+  },
+  {
+    "coordinates": {
+      "x": 7,
+      "y": 13
+    },
+    "description": "Steeper slopes with thin forest cover. The trees are predominantly pine with twisted forms shaped by wind. The stream carves deeply into the mountainside, creating a ravine with steep walls.",
+    "terrainCode": "M-FOO|E-HIG|F-PIN|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 7,
+      "y": 14
+    },
+    "description": "Lower mountain terrain with abundant exposed rock. Vegetation is sparse but includes hardy mountain species. The stream forms a dramatic waterfall as it descends over a resistant rock ledge.",
+    "terrainCode": "M-LOW|E-HIG|X-CLF|W-WAT"
+  },
+  {
+    "coordinates": {
+      "x": 7,
+      "y": 15
+    },
+    "description": "Rocky mountain slopes with dramatic cliffs and ledges. Stunted pines grow at angles from available soil pockets. The terrain is difficult to traverse with loose scree on steeper sections.",
+    "terrainCode": "M-LOW|E-HIG|R-SCR|F-PIN"
+  },
+  {
+    "coordinates": {
+      "x": 8,
+      "y": 0
+    },
+    "description": "Vast prairie with tall grasses reaching waist height. The flat terrain extends to the horizon, occasionally interrupted by gentle swales. The soil is deep and rich from centuries of grass growth and decay.",
+    "terrainCode": "P-TAL|E-FLT|F-RIC|W-WIN"
+  },
+  {
+    "coordinates": {
+      "x": 8,
+      "y": 1
+    },
+    "description": "The prairie continues with more diverse vegetation including flowering plants that attract bees and butterflies. The ground is perfectly level with exceptional soil quality.",
+    "terrainCode": "P-FLW|E-FLT|F-RIC|A-BUT"
+  },
+  {
+    "coordinates": {
+      "x": 8,
+      "y": 2
+    },
+    "description": "Open grassland with the first appearance of scattered trees, primarily oak, creating an emerging savanna. The grasses remain dominant but share space with occasional woody vegetation.",
+    "terrainCode": "P-LUS|E-FLT|X-TRE|F-RIC"
+  },
+  {
+    "coordinates": {
+      "x": 8,
+      "y": 3
+    },
+    "description": "The transition to savanna continues with more trees but still predominantly open. Small water-carved gullies indicate seasonal water flow patterns during heavy rains.",
+    "terrainCode": "P-LUS|E-FLT|X-TRE|H-DRY"
+  },
+  {
+    "coordinates": {
+      "x": 8,
+      "y": 4
+    },
+    "description": "Savanna-like landscape with trees spaced widely enough to allow grasses to dominate between them. A small seasonal stream appears after heavy rains but is currently a dry bed.",
+    "terrainCode": "P-LUS|E-FLT|X-TRE|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 8,
+      "y": 5
+    },
+    "description": "The savanna begins to transition to woodland as tree density increases. The grassy understory remains but is less dominant. Small game animals utilize the mixed habitat effectively.",
+    "terrainCode": "F-THN|E-FLT|A-RAB|A-FOX"
+  },
+  {
+    "coordinates": {
+      "x": 8,
+      "y": 6
+    },
+    "description": "Open woodland with diverse tree species and grassy clearings. A small stream has formed a more permanent channel, flowing gently over smooth stones and creating small pools.",
+    "terrainCode": "F-THN|E-FLT|W-STR|F-GOO"
+  },
+  {
+    "coordinates": {
+      "x": 8,
+      "y": 7
+    },
+    "description": "The woodland becomes denser with a closed canopy in places. The stream widens slightly as it collects water from smaller tributaries. Ferns grow along the banks in the shade.",
+    "terrainCode": "F-MIX|E-FLT|W-STR|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 8,
+      "y": 8
+    },
+    "description": "Mixed deciduous forest with oak, maple, and beech trees forming a high canopy. The ground begins to show the first gentle rise in elevation. The stream cuts more deeply into the soil.",
+    "terrainCode": "F-MIX|E-SLI|W-STR|F-GOO"
+  },
+  {
+    "coordinates": {
+      "x": 8,
+      "y": 9
+    },
+    "description": "The forest continues with increasing signs of elevation change. Exposed tree roots create natural steps on the sloping ground. Small rock outcroppings begin to appear through the soil.",
+    "terrainCode": "F-MIX|E-MOD|X-RCK|A-DEE"
+  },
+  {
+    "coordinates": {
+      "x": 8,
+      "y": 10
+    },
+    "description": "As elevation increases, the forest composition shifts to include more pine trees. The stream flows faster over a rockier bed. Moss-covered boulders are scattered throughout the area.",
+    "terrainCode": "F-MIX|E-MOD|X-BLD|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 8,
+      "y": 11
+    },
+    "description": "The forest thins as rocky terrain becomes more dominant. Trees grow primarily in soil pockets between rocks. The stream cascades more dramatically over stone ledges.",
+    "terrainCode": "F-THN|E-MOD|X-RCK|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 8,
+      "y": 12
+    },
+    "description": "Rocky foothills with scattered tree cover. Large boulders create distinctive formations and occasional small caves. The stream forms a series of small waterfalls as it descends.",
+    "terrainCode": "M-FOO|E-MOD|X-BLD|W-WAT"
+  },
+  {
+    "coordinates": {
+      "x": 8,
+      "y": 13
+    },
+    "description": "Steeper terrain with thin soil and exposed rock faces. Trees grow at angles from available soil pockets. The stream has carved a deep channel through weaker rock layers.",
+    "terrainCode": "M-FOO|E-HIG|X-CLF|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 8,
+      "y": 14
+    },
+    "description": "Lower mountain slopes with dramatic rock formations. Vegetation is sparse and predominantly coniferous. A waterfall cascades over a significant drop, creating a misty microclimate.",
+    "terrainCode": "M-LOW|E-HIG|F-PIN|W-WAT"
+  },
+  {
+    "coordinates": {
+      "x": 8,
+      "y": 15
+    },
+    "description": "Rocky mountain terrain with steep slopes and cliff faces. Hardy pines cling to crevices in the rock. The stream originates from a mountain spring higher up, flowing cold and clear over stones.",
+    "terrainCode": "M-LOW|E-HIG|X-CLF|X-SPR"
+  },
+  {
+    "coordinates": {
+      "x": 9,
+      "y": 0
+    },
+    "description": "Open prairie gradually transitions to drier conditions. The grasses are slightly shorter with more drought-resistant species. The terrain remains flat with occasional gentle swales.",
+    "terrainCode": "P-DRY|E-FLT|F-AVG|H-DRY"
+  },
+  {
+    "coordinates": {
+      "x": 9,
+      "y": 1
+    },
+    "description": "The prairie becomes increasingly arid with shorter grasses and more bare soil visible between plants. Small cacti and yucca begin to appear, indicating the transition to drier conditions.",
+    "terrainCode": "P-DRY|E-FLT|H-DRY|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 9,
+      "y": 2
+    },
+    "description": "Dry grassland transitions to scrubland with scattered drought-resistant shrubs and occasional small trees. The soil is still relatively fertile but drier, supporting specialized vegetation.",
+    "terrainCode": "P-SCR|E-FLT|H-DRY|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 9,
+      "y": 3
+    },
+    "description": "Scrubland with increasing rocky terrain. Low shrubs dominate with occasional juniper trees. Small lizards bask on sun-warmed stones and dart quickly between patches of cover.",
+    "terrainCode": "P-SCR|E-FLT|X-RCK|A-LIZ"
+  },
+  {
+    "coordinates": {
+      "x": 9,
+      "y": 4
+    },
+    "description": "Rocky scrubland with thin, sandy soil. Vegetation is sparse but diverse with drought-adapted species. A dry wash indicates water flow during rare heavy rains.",
+    "terrainCode": "P-SCR|E-FLT|X-RCK|H-ARD"
+  },
+  {
+    "coordinates": {
+      "x": 9,
+      "y": 5
+    },
+    "description": "The terrain begins to rise slightly with more exposed rock. Juniper and pinyon pine appear in scattered locations. The dry wash deepens, showing erosion patterns from flash floods.",
+    "terrainCode": "P-SCR|E-SLI|X-TRE|H-ARD"
+  },
+  {
+    "coordinates": {
+      "x": 9,
+      "y": 6
+    },
+    "description": "As elevation increases, the vegetation shifts to a sparse woodland of drought-resistant trees. The landscape is dominated by rock with thin soil. A small seep creates a patch of greenery.",
+    "terrainCode": "F-THN|E-SLI|X-SPR|H-DRY"
+  },
+  {
+    "coordinates": {
+      "x": 9,
+      "y": 7
+    },
+    "description": "Open pinyon-juniper woodland with rocky ground. Trees are widely spaced with drought-adapted understory plants between them. The seep forms a small intermittent stream.",
+    "terrainCode": "F-THN|E-MOD|W-STR|H-DRY"
+  },
+  {
+    "coordinates": {
+      "x": 9,
+      "y": 8
+    },
+    "description": "The woodland continues with slightly more moisture as elevation increases. The stream becomes more consistent, cutting a deeper channel through the rocky terrain.",
+    "terrainCode": "F-THN|E-MOD|W-STR|X-RCK"
+  },
+  {
+    "coordinates": {
+      "x": 9,
+      "y": 9
+    },
+    "description": "Rocky terrain with mixed pine forest beginning to establish. The stream gathers volume from small tributaries, creating a more substantial flow. Exposed rock shows layered sandstone patterns.",
+    "terrainCode": "F-PIN|E-MOD|W-STR|R-SND"
+  },
+  {
+    "coordinates": {
+      "x": 9,
+      "y": 10
+    },
+    "description": "Pine forest becomes denser as moisture increases with elevation. The stream flows more rapidly over a rocky bed, occasionally forming small pools in deeper sections.",
+    "terrainCode": "F-PIN|E-MOD|W-STR|X-RCK"
+  },
+  {
+    "coordinates": {
+      "x": 9,
+      "y": 11
+    },
+    "description": "The forest transitions to foothill terrain with increasing rock and steeper slopes. Trees grow in uneven patterns wherever soil has accumulated. The stream cuts more deeply into the landscape.",
+    "terrainCode": "M-FOO|E-MOD|F-PIN|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 9,
+      "y": 12
+    },
+    "description": "Rocky foothills with pine and fir trees in protected pockets. Large boulders create distinctive formations. The stream descends more rapidly, forming a series of small cascades.",
+    "terrainCode": "M-FOO|E-HIG|F-PIN|W-RPD"
+  },
+  {
+    "coordinates": {
+      "x": 9,
+      "y": 13
+    },
+    "description": "Steeper terrain with exposed rock faces and thin forest cover. Pines grow at angles from the sloping ground. The stream follows a rocky course, occasionally disappearing under boulder fields.",
+    "terrainCode": "M-FOO|E-HIG|F-PIN|X-BLD"
+  },
+  {
+    "coordinates": {
+      "x": 9,
+      "y": 14
+    },
+    "description": "Lower mountain slopes with dramatic sandstone and limestone formations. Vegetation clings to soil pockets between rocks. The stream emerges from under boulders to form a dramatic waterfall.",
+    "terrainCode": "M-LOW|E-HIG|R-LST|W-WAT"
+  },
+  {
+    "coordinates": {
+      "x": 9,
+      "y": 15
+    },
+    "description": "Rocky mountain terrain with steep slopes and cliff faces. Trees are predominantly pine with gnarled forms from constant wind exposure. The air is noticeably thinner at this elevation.",
+    "terrainCode": "M-LOW|E-HIG|X-CLF|F-PIN"
+  },
+  {
+    "coordinates": {
+      "x": 10,
+      "y": 0
+    },
+    "description": "Arid plains with thin vegetation consisting primarily of bunch grasses and scattered drought-resistant shrubs. The soil is sandy with occasional rocky patches. Small lizards dart between sparse cover.",
+    "terrainCode": "P-DRY|E-FLT|H-ARD|A-LIZ"
+  },
+  {
+    "coordinates": {
+      "x": 10,
+      "y": 1
+    },
+    "description": "The arid landscape transitions to true desert conditions. Vegetation becomes extremely sparse with large areas of exposed sandy soil. Occasional cacti and yucca plants create vertical elements.",
+    "terrainCode": "D-SND|E-FLT|H-ARD|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 10,
+      "y": 2
+    },
+    "description": "Sandy desert with rippling dune formations beginning to form. Vegetation is limited to hardy species in depressions where moisture collects. Wind patterns create constantly shifting sand patterns.",
+    "terrainCode": "D-SND|E-FLT|H-ARD|W-WIN"
+  },
+  {
+    "coordinates": {
+      "x": 10,
+      "y": 3
+    },
+    "description": "Small dunes give way to a rocky desert landscape. The ground is predominantly stone and gravel with sand collected in depressions. Heat radiates from sun-baked surfaces.",
+    "terrainCode": "D-ROC|E-FLT|H-ARD|X-RCK"
+  },
+  {
+    "coordinates": {
+      "x": 10,
+      "y": 4
+    },
+    "description": "Rocky desert with dramatic erosion features. Wind and rare water have carved the soft stone into rounded shapes. Sparse vegetation clings to any available moisture pocket.",
+    "terrainCode": "D-ROC|E-SLI|H-ARD|X-CFM"
+  },
+  {
+    "coordinates": {
+      "x": 10,
+      "y": 5
+    },
+    "description": "The desert begins to rise into badland formations. Layered sedimentary rock creates striped patterns in the eroded landscape. A dry wash cuts deeply through, revealing geological history.",
+    "terrainCode": "D-BDL|E-SLI|X-CFM|H-ARD"
+  },
+  {
+    "coordinates": {
+      "x": 10,
+      "y": 6
+    },
+    "description": "Dramatic badlands with colorful stone layers exposed by erosion. The terrain is challenging to traverse with steep sideslopes and narrow ridges. Vegetation is extremely sparse.",
+    "terrainCode": "D-BDL|E-MOD|X-CFM|H-ARD"
+  },
+  {
+    "coordinates": {
+      "x": 10,
+      "y": 7
+    },
+    "description": "As elevation increases, the badlands transition to mesa formations. A small spring emerges from between rock layers, creating a shock of greenery in the otherwise barren landscape.",
+    "terrainCode": "D-MSA|E-MOD|X-SPR|X-CFM"
+  },
+  {
+    "coordinates": {
+      "x": 10,
+      "y": 8
+    },
+    "description": "Mesa landscape with flat-topped formations and steep sides. The spring has formed a small stream that follows a rocky course downward. Desert vegetation concentrates along the water.",
+    "terrainCode": "D-MSA|E-MOD|W-STR|X-CFM"
+  },
+  {
+    "coordinates": {
+      "x": 10,
+      "y": 9
+    },
+    "description": "The landscape transitions from desert mesas to rocky foothills. Juniper trees begin to appear, first in protective locations and then more widely. The stream flows more consistently.",
+    "terrainCode": "M-FOO|E-MOD|X-TRE|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 10,
+      "y": 10
+    },
+    "description": "Foothills with increasing vegetation as moisture becomes more available. Pinyon pines and junipers form an open woodland. The stream cuts through the rocky terrain, occasionally forming small pools.",
+    "terrainCode": "M-FOO|E-MOD|F-PIN|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 10,
+      "y": 11
+    },
+    "description": "Rocky terrain with pine forest establishing in protected areas. Large boulders and rock formations create distinctive landmarks. The stream descends more rapidly as elevation increases.",
+    "terrainCode": "M-FOO|E-MOD|F-PIN|X-BLD"
+  },
+  {
+    "coordinates": {
+      "x": 10,
+      "y": 12
+    },
+    "description": "Steeper foothills transitioning to mountain terrain. Pine and fir trees create patchy forest cover. The stream forms small waterfalls as it navigates the increasingly vertical landscape.",
+    "terrainCode": "M-FOO|E-HIG|F-PIN|W-RPD"
+  },
+  {
+    "coordinates": {
+      "x": 10,
+      "y": 13
+    },
+    "description": "Lower mountain slopes with dramatic rock outcroppings and cliff faces. The forest is predominantly coniferous with trees adapted to the harsh conditions. The stream carves a deep channel.",
+    "terrainCode": "M-LOW|E-HIG|F-PIN|X-CLF"
+  },
+  {
+    "coordinates": {
+      "x": 10,
+      "y": 14
+    },
+    "description": "Mountain slopes with exposed rock and patchy forest cover. Pine and fir trees grow wherever soil has accumulated. The stream forms a spectacular waterfall over a resistant rock ledge.",
+    "terrainCode": "M-LOW|E-HIG|F-PIN|W-WAT"
+  },
+  {
+    "coordinates": {
+      "x": 10,
+      "y": 15
+    },
+    "description": "High mountain terrain with steep rocky slopes. The tree line begins to approach with stunted conifers showing the effects of harsh conditions. The air is thin and clear at this elevation.",
+    "terrainCode": "M-HIG|E-VRY|X-CLF|F-PIN"
+  },
+  {
+    "coordinates": {
+      "x": 11,
+      "y": 0
+    },
+    "description": "Arid desert with sandy soil and sparse vegetation. Small dunes form and shift with the wind. Drought-adapted plants are widely spaced with extensive root systems hidden beneath the surface.",
+    "terrainCode": "D-SND|E-FLT|H-ARD|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 11,
+      "y": 1
+    },
+    "description": "The desert landscape features increasing sand accumulation. Dunes become more pronounced with rippling patterns created by wind. Vegetation is extremely sparse and specialized.",
+    "terrainCode": "D-DUN|E-FLT|H-ARD|W-WIN"
+  },
+  {
+    "coordinates": {
+      "x": 11,
+      "y": 2
+    },
+    "description": "Large sand dunes with dramatic crescent shapes. The sand is fine and constantly shifting. The occasional desert plant clings to marginal positions before being buried by the moving sand.",
+    "terrainCode": "D-DUN|E-MOD|H-ARD|W-WIN"
+  },
+  {
+    "coordinates": {
+      "x": 11,
+      "y": 3
+    },
+    "description": "The dune field transitions to more stable sandy desert with scattered rocky outcrops. The ground shows rippling patterns from wind action. Vegetation increases slightly around the rocks.",
+    "terrainCode": "D-SND|E-FLT|X-RCK|H-ARD"
+  },
+  {
+    "coordinates": {
+      "x": 11,
+      "y": 4
+    },
+    "description": "Desert terrain with increasing rock and dramatic erosion features. Wind and rare water have sculpted the soft stone into fantastic shapes. A dry wash cuts through the landscape.",
+    "terrainCode": "D-ROC|E-SLI|X-CFM|H-ARD"
+  },
+  {
+    "coordinates": {
+      "x": 11,
+      "y": 5
+    },
+    "description": "The landscape rises into dramatic canyon formations. Layered sandstone creates banded patterns in the steep walls. The canyon floor shows evidence of rare but powerful water flow.",
+    "terrainCode": "D-CYN|E-MOD|R-SND|H-ARD"
+  },
+  {
+    "coordinates": {
+      "x": 11,
+      "y": 6
+    },
+    "description": "Deep desert canyon with high walls striped with different colored rock layers. The canyon floor is relatively flat with occasional boulders from wall collapse. Late afternoon sun creates dramatic shadows.",
+    "terrainCode": "D-CYN|E-MOD|X-BLD|H-ARD"
+  },
+  {
+    "coordinates": {
+      "x": 11,
+      "y": 7
+    },
+    "description": "The canyon widens and its walls lower as it transitions to a broad mesa landscape. A small spring emerges from the rock layers, creating a shock of greenery and a small pool.",
+    "terrainCode": "D-MSA|E-MOD|X-SPR|H-ARD"
+  },
+  {
+    "coordinates": {
+      "x": 11,
+      "y": 8
+    },
+    "description": "Mesa landscape with flat-topped hills and steep sides. The spring water has formed a small stream that follows a meandering course. Vegetation concentrates along the waterway.",
+    "terrainCode": "D-MSA|E-MOD|W-STR|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 11,
+      "y": 9
+    },
+    "description": "The mesas transition to rocky foothills with increasing vegetation. Juniper and pinyon pine appear first in sheltered locations. The stream gains volume and cuts more deeply into the rocky ground.",
+    "terrainCode": "M-FOO|E-MOD|X-TRE|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 11,
+      "y": 10
+    },
+    "description": "Rocky foothills with scattered trees forming an open woodland. The terrain is uneven with numerous rock outcroppings. The stream descends more rapidly over stone ledges.",
+    "terrainCode": "M-FOO|E-MOD|F-PIN|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 11,
+      "y": 11
+    },
+    "description": "The foothills become steeper with more extensive pine forest. Large boulders create distinctive landmarks and small caves. The stream forms rapids as it navigates the rocky terrain.",
+    "terrainCode": "M-FOO|E-HIG|F-PIN|W-RPD"
+  },
+  {
+    "coordinates": {
+      "x": 11,
+      "y": 12
+    },
+    "description": "Lower mountain slopes with mixed coniferous forest. The trees grow wherever soil has accumulated between rocks. The stream descends dramatically, forming a series of cascades.",
+    "terrainCode": "M-LOW|E-HIG|F-PIN|W-RPD"
+  },
+  {
+    "coordinates": {
+      "x": 11,
+      "y": 13
+    },
+    "description": "Mountain terrain with steep rocky slopes and dramatic cliff faces. The forest is predominantly pine and fir with trees growing at angles from the sloping ground.",
+    "terrainCode": "M-LOW|E-HIG|F-PIN|X-CLF"
+  },
+  {
+    "coordinates": {
+      "x": 11,
+      "y": 14
+    },
+    "description": "Higher mountain slopes with thinning forest cover. Trees become more stunted with increasing elevation. A small alpine meadow forms in a protected hollow, filled with wildflowers.",
+    "terrainCode": "M-HIG|E-VRY|P-FLW|F-PIN"
+  },
+  {
+    "coordinates": {
+      "x": 11,
+      "y": 15
+    },
+    "description": "High mountain terrain approaching the tree line. Stunted pine and fir trees give way to alpine meadows in higher areas. The thin air carries the scent of resin and mountain wildflowers.",
+    "terrainCode": "M-HIG|E-VRY|P-FLW|F-PIN"
+  },
+  {
+    "coordinates": {
+      "x": 12,
+      "y": 0
+    },
+    "description": "Flat desert plain with compacted sandy soil. Vegetation is sparse but includes hardy succulent species adapted to extreme drought. Small lizards dart quickly between patches of shade.",
+    "terrainCode": "D-FLT|E-FLT|H-ARD|A-LIZ"
+  },
+  {
+    "coordinates": {
+      "x": 12,
+      "y": 1
+    },
+    "description": "The desert continues with slightly more varied terrain. Small dunes form around obstacles and shift with the wind. Drought-adapted shrubs are widely spaced across the landscape.",
+    "terrainCode": "D-SND|E-FLT|H-ARD|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 12,
+      "y": 2
+    },
+    "description": "The flat desert gives way to rockier terrain. Exposed sandstone creates low ridges and small plateaus. Vegetation increases slightly around the base of rock formations where moisture collects.",
+    "terrainCode": "D-ROC|E-SLI|R-SND|H-ARD"
+  },
+  {
+    "coordinates": {
+      "x": 12,
+      "y": 3
+    },
+    "description": "Desert terrain with dramatic rock formations. Wind erosion has created fantastic shapes in the soft stone. A dry wash cuts through the landscape, showing evidence of rare flash floods.",
+    "terrainCode": "D-ROC|E-SLI|X-CFM|H-ARD"
+  },
+  {
+    "coordinates": {
+      "x": 12,
+      "y": 4
+    },
+    "description": "The rocky desert transitions to badland formations. Layered sedimentary rock creates striped patterns in the eroded landscape. Sparse vegetation clings to protected pockets.",
+    "terrainCode": "D-BDL|E-MOD|X-CFM|H-ARD"
+  },
+  {
+    "coordinates": {
+      "x": 12,
+      "y": 5
+    },
+    "description": "Dramatic badlands with deep erosion gullies cutting through colorful rock layers. The terrain is challenging to traverse with steep sideslopes and narrow ridges. Vegetation is extremely limited.",
+    "terrainCode": "D-BDL|E-MOD|X-CFM|H-ARD"
+  },
+  {
+    "coordinates": {
+      "x": 12,
+      "y": 6
+    },
+    "description": "The badlands rise into the beginning of a dramatic slot canyon. Smooth walls tower overhead, carved by occasional flash floods. The canyon floor is sandy with scattered boulders.",
+    "terrainCode": "D-CYN|E-MOD|X-CLF|H-ARD"
+  },
+  {
+    "coordinates": {
+      "x": 12,
+      "y": 7
+    },
+    "description": "Deep slot canyon with high walls showing layers of ancient sedimentary rock. The narrow canyon occasionally widens into chambers with steep walls. A small trickle of water appears from the rock.",
+    "terrainCode": "D-CYN|E-HIG|X-SPR|R-SND"
+  },
+  {
+    "coordinates": {
+      "x": 12,
+      "y": 8
+    },
+    "description": "The canyon begins to widen and open as it approaches its mouth. The walls lower gradually. The small stream from the spring flows more confidently, creating a ribbon of green vegetation.",
+    "terrainCode": "D-CYN|E-MOD|W-STR|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 12,
+      "y": 9
+    },
+    "description": "Canyon mouth opens to rocky foothills. The change in terrain is dramatic with increasing vegetation. The stream continues to flow, cutting a deeper channel through the softer rock layers.",
+    "terrainCode": "M-FOO|E-MOD|W-STR|X-RCK"
+  },
+  {
+    "coordinates": {
+      "x": 12,
+      "y": 10
+    },
+    "description": "Rocky foothills with scattered juniper and pine trees. Large boulders create distinctive landmarks and small protected microclimates. The stream descends more rapidly over stone ledges.",
+    "terrainCode": "M-FOO|E-MOD|X-BLD|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 12,
+      "y": 11
+    },
+    "description": "The foothills become steeper with increasing pine forest. The trees grow wherever soil has accumulated between rocks. The stream forms small waterfalls as it navigates the rocky terrain.",
+    "terrainCode": "M-FOO|E-HIG|F-PIN|W-WAT"
+  },
+  {
+    "coordinates": {
+      "x": 12,
+      "y": 12
+    },
+    "description": "Lower mountain slopes with patchy coniferous forest. Large rock outcroppings create clearings in the tree cover. The stream descends dramatically through a series of cascades.",
+    "terrainCode": "M-LOW|E-HIG|F-PIN|W-WAT"
+  },
+  {
+    "coordinates": {
+      "x": 12,
+      "y": 13
+    },
+    "description": "Mountain terrain with steep slopes and dramatic cliff faces. The forest is predominantly pine and fir but becomes patchier with increasing elevation. Hawks soar on thermal updrafts.",
+    "terrainCode": "M-LOW|E-HIG|F-PIN|A-HAW"
+  },
+  {
+    "coordinates": {
+      "x": 12,
+      "y": 14
+    },
+    "description": "Higher mountain slopes with thinning forest. Trees become more stunted and windswept. Rocky outcrops provide habitat for small mammals that dart quickly between safe locations.",
+    "terrainCode": "M-HIG|E-VRY|F-PIN|X-RCK"
+  },
+  {
+    "coordinates": {
+      "x": 12,
+      "y": 15
+    },
+    "description": "High mountain terrain at the tree line. Stunted conifers give way to alpine meadow vegetation. Rocky peaks rise dramatically above. The air is thin and crystal clear.",
+    "terrainCode": "M-HIG|E-VRY|P-FLW|X-RCK"
+  },
+  {
+    "coordinates": {
+      "x": 13,
+      "y": 0
+    },
+    "description": "Stony desert with flat, hard-packed ground covered in small pebbles and occasional larger rocks. Vegetation is extremely sparse with only the hardiest plants surviving the harsh conditions.",
+    "terrainCode": "D-ROC|E-FLT|H-ARD|X-RCK"
+  },
+  {
+    "coordinates": {
+      "x": 13,
+      "y": 1
+    },
+    "description": "The rocky desert continues with occasional low ridges of exposed bedrock. Wind has polished many of the stones to a high sheen. Drought-adapted plants find footholds in rock crevices.",
+    "terrainCode": "D-ROC|E-SLI|X-RCK|H-ARD"
+  },
+  {
+    "coordinates": {
+      "x": 13,
+      "y": 2
+    },
+    "description": "Desert landscape transitions to more varied terrain with small mesas and buttes rising from the flat surroundings. The rock shows distinct layering in different colors and textures.",
+    "terrainCode": "D-MSA|E-SLI|X-CFM|H-ARD"
+  },
+  {
+    "coordinates": {
+      "x": 13,
+      "y": 3
+    },
+    "description": "Dramatic mesa landscape with flat-topped formations rising from the desert floor. Steep sides show exposed rock layers from ancient geological processes. Vegetation is sparse but persistent.",
+    "terrainCode": "D-MSA|E-MOD|X-CLF|H-ARD"
+  },
+  {
+    "coordinates": {
+      "x": 13,
+      "y": 4
+    },
+    "description": "The mesas grow larger and more connected, forming a complex plateau cut by deep canyons. The terrain is dramatically vertical in places with sheer cliff faces of red and orange stone.",
+    "terrainCode": "D-PLT|E-MOD|X-CLF|H-ARD"
+  },
+  {
+    "coordinates": {
+      "x": 13,
+      "y": 5
+    },
+    "description": "High desert plateau dissected by a deep canyon. The flat surface above contrasts with the vertical walls below. The canyon floor shows evidence of occasional water flow after rare storms.",
+    "terrainCode": "D-PLT|E-MOD|D-CYN|H-ARD"
+  },
+  {
+    "coordinates": {
+      "x": 13,
+      "y": 6
+    },
+    "description": "The canyon deepens with towering walls showing distinctly colored layers of ancient sedimentary rock. The floor is relatively flat with scattered boulders from occasional wall collapses.",
+    "terrainCode": "D-CYN|E-HIG|X-BLD|H-ARD"
+  },
+  {
+    "coordinates": {
+      "x": 13,
+      "y": 7
+    },
+    "description": "Deep canyon with high walls of striated rock. A permanent spring emerges from between rock layers, creating a small oasis. The sudden water creates a shock of green in the arid environment.",
+    "terrainCode": "D-CYN|E-HIG|X-SPR|D-OAS"
+  },
+  {
+    "coordinates": {
+      "x": 13,
+      "y": 8
+    },
+    "description": "Canyon oasis with permanent water source. Dense vegetation surrounds the spring and the small stream it creates. Palm trees rise above a lower layer of shrubs and water-loving plants.",
+    "terrainCode": "D-OAS|E-MOD|W-STR|X-TRE"
+  },
+  {
+    "coordinates": {
+      "x": 13,
+      "y": 9
+    },
+    "description": "The canyon widens as it approaches its mouth. The walls lower gradually but remain impressive. The stream from the oasis continues, creating a ribbon of green vegetation along its course.",
+    "terrainCode": "D-CYN|E-MOD|W-STR|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 13,
+      "y": 10
+    },
+    "description": "Canyon mouth opens to rocky foothills. The terrain rises gradually with increasing vegetation. The stream cuts a deeper channel through the softer rock layers, descending more rapidly.",
+    "terrainCode": "M-FOO|E-MOD|W-STR|X-BSH"
+  },
+  {
+    "coordinates": {
+      "x": 13,
+      "y": 11
+    },
+    "description": "Rocky foothills with scattered juniper and pine trees forming an open woodland. Large boulders create distinctive landmarks. The stream forms small waterfalls as it descends.",
+    "terrainCode": "M-FOO|E-HIG|F-PIN|W-WAT"
+  },
+  {
+    "coordinates": {
+      "x": 13,
+      "y": 12
+    },
+    "description": "Lower mountain slopes with increasing pine forest. Trees grow wherever soil has accumulated between rocks. The stream descends dramatically through a series of cascades and pools.",
+    "terrainCode": "M-LOW|E-HIG|F-PIN|W-WAT"
+  },
+  {
+    "coordinates": {
+      "x": 13,
+      "y": 13
+    },
+    "description": "Mountain terrain with steep rocky slopes. The forest is predominantly pine and fir with trees growing at angles from the sloping ground. Mountain goats navigate the steep terrain with ease.",
+    "terrainCode": "M-LOW|E-HIG|F-PIN|A-GOA"
+  },
+  {
+    "coordinates": {
+      "x": 13,
+      "y": 14
+    },
+    "description": "Higher mountain slopes with dramatic rock formations and thinning forest. Trees struggle against harsh conditions, becoming more stunted with elevation. Small streams form from snowmelt.",
+    "terrainCode": "M-HIG|E-VRY|F-PIN|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 13,
+      "y": 15
+    },
+    "description": "High mountain terrain well above the tree line. Alpine meadow vegetation gives way to rock and scree slopes. Patches of snow remain in sheltered north-facing pockets throughout the year.",
+    "terrainCode": "M-HIG|E-EXT|R-SCR|T-SNO"
+  },
+  {
+    "coordinates": {
+      "x": 14,
+      "y": 0
+    },
+    "description": "Rocky mountain foothills emerging from the desert. The terrain rises gradually with scattered boulders and rock formations. Vegetation increases slightly with diverse drought-adapted species.",
+    "terrainCode": "M-FOO|E-SLI|X-BLD|H-DRY"
+  },
+  {
+    "coordinates": {
+      "x": 14,
+      "y": 1
+    },
+    "description": "The foothills become more pronounced with increasing rock and steeper terrain. Small juniper trees appear in protected locations. A dry wash indicates seasonal water flow during rare storms.",
+    "terrainCode": "M-FOO|E-MOD|X-TRE|H-DRY"
+  },
+  {
+    "coordinates": {
+      "x": 14,
+      "y": 2
+    },
+    "description": "Rocky terrain with dramatic formations created by erosion. Vegetation increases slightly with elevation, primarily consisting of shrubs and scattered small trees. A small seep creates a patch of greenery.",
+    "terrainCode": "M-FOO|E-MOD|X-CFM|X-SPR"
+  },
+  {
+    "coordinates": {
+      "x": 14,
+      "y": 3
+    },
+    "description": "The foothills rise into more substantial mountains. Rocky outcrops and cliff faces become more common. Pinyon pine and juniper form an open woodland in areas with sufficient soil.",
+    "terrainCode": "M-FOO|E-HIG|F-PIN|X-CLF"
+  },
+  {
+    "coordinates": {
+      "x": 14,
+      "y": 4
+    },
+    "description": "Lower mountain slopes with increasing forest cover. The terrain is steep with numerous rock outcroppings. A small stream begins from several seeps, creating a more consistent water source.",
+    "terrainCode": "M-LOW|E-HIG|F-PIN|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 14,
+      "y": 5
+    },
+    "description": "The mountain slopes become steeper with mixed coniferous forest. Trees grow wherever soil has accumulated between rocks. The stream descends rapidly, creating small waterfalls.",
+    "terrainCode": "M-LOW|E-HIG|F-PIN|W-WAT"
+  },
+  {
+    "coordinates": {
+      "x": 14,
+      "y": 6
+    },
+    "description": "Steep mountainside with patches of dense forest separated by rocky clearings. Large boulders create microhabitats for specialized plants. The stream forms a dramatic waterfall over a cliff.",
+    "terrainCode": "M-LOW|E-HIG|F-PIN|W-WAT"
+  },
+  {
+    "coordinates": {
+      "x": 14,
+      "y": 7
+    },
+    "description": "Mountain terrain with a mix of forest and exposed rock. A sheltered valley creates a microclimate supporting more lush vegetation. The stream pools briefly before continuing its descent.",
+    "terrainCode": "M-VAL|E-HIG|F-PIN|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 14,
+      "y": 8
+    },
+    "description": "The protected valley narrows and begins to climb more steeply. The forest remains dense with predominantly coniferous trees. The stream becomes more rapid as it navigates the increased slope.",
+    "terrainCode": "M-VAL|E-HIG|F-PIN|W-RPD"
+  },
+  {
+    "coordinates": {
+      "x": 14,
+      "y": 9
+    },
+    "description": "Mountain terrain becomes increasingly rocky with steeper slopes. The forest thins with trees growing primarily in protected locations. Small avalanche chutes cut through the vegetation.",
+    "terrainCode": "M-LOW|E-VRY|F-PIN|R-SCR"
+  },
+  {
+    "coordinates": {
+      "x": 14,
+      "y": 10
+    },
+    "description": "Higher elevation with thinning forest and increasing rock. Trees show the effects of harsh conditions with stunted, wind-shaped forms. A small alpine meadow forms in a protected hollow.",
+    "terrainCode": "M-HIG|E-VRY|P-FLW|X-HOL"
+  },
+  {
+    "coordinates": {
+      "x": 14,
+      "y": 11
+    },
+    "description": "The tree line begins to appear with forest giving way to alpine meadow. Stunted, gnarled trees mark the transition zone. Small streams form from snowmelt, joining to create a larger flow.",
+    "terrainCode": "M-HIG|E-VRY|P-FLW|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 14,
+      "y": 12
+    },
+    "description": "Alpine terrain above the tree line. Low-growing vegetation forms a thick mat where soil has accumulated. Rocky outcrops create distinctive formations. Mountain goats navigate the steep terrain.",
+    "terrainCode": "M-HIG|E-VRY|P-FLW|A-GOA"
+  },
+  {
+    "coordinates": {
+      "x": 14,
+      "y": 13
+    },
+    "description": "High alpine zone with rocky terrain and patches of alpine meadow vegetation. Streams from snowmelt create small wetland areas in depressions. Marmots sun themselves on warm rocks.",
+    "terrainCode": "M-HIG|E-VRY|T-ROC|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 14,
+      "y": 14
+    },
+    "description": "Near the mountain summit, the landscape is predominantly rock with minimal vegetation. Patches of snow remain in sheltered locations throughout the year. The air is noticeably thin.",
+    "terrainCode": "M-HIG|E-EXT|T-SNO|X-RCK"
+  },
+  {
+    "coordinates": {
+      "x": 14,
+      "y": 15
+    },
+    "description": "Mountain peak with rocky terrain and permanent snow fields in protected north-facing slopes. Lichens are the primary vegetation, clinging to exposed rock surfaces. The view is spectacular.",
+    "terrainCode": "M-PEA|E-EXT|T-SNO|T-LCH"
+  },
+  {
+    "coordinates": {
+      "x": 15,
+      "y": 0
+    },
+    "description": "High rocky foothills forming the base of a mountain range. The terrain rises steadily with numerous boulders and rock formations. Vegetation is sparse but diverse with drought-resistant species.",
+    "terrainCode": "M-FOO|E-MOD|X-BLD|H-DRY"
+  },
+  {
+    "coordinates": {
+      "x": 15,
+      "y": 1
+    },
+    "description": "The foothills become steeper with increasing rock and less soil. Small juniper and pine trees appear in protected locations. A dry streambed indicates seasonal water flow from the mountains.",
+    "terrainCode": "M-FOO|E-HIG|F-PIN|H-DRY"
+  },
+  {
+    "coordinates": {
+      "x": 15,
+      "y": 2
+    },
+    "description": "Lower mountain slopes with scattered pine forest. The terrain is rocky with less soil for vegetation. A small spring emerges between rocks, creating a tiny stream that descends rapidly.",
+    "terrainCode": "M-LOW|E-HIG|F-PIN|X-SPR"
+  },
+  {
+    "coordinates": {
+      "x": 15,
+      "y": 3
+    },
+    "description": "Mountain slopes with mixed coniferous forest. The terrain is steep with numerous rock outcroppings. The spring-fed stream grows as it descends, cutting more deeply into the rocky ground.",
+    "terrainCode": "M-LOW|E-HIG|F-PIN|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 15,
+      "y": 4
+    },
+    "description": "Steep mountainside with patches of forest separated by rocky clearings. Large boulders create microhabitats for specialized plants. The stream forms small waterfalls as it descends.",
+    "terrainCode": "M-LOW|E-HIG|F-PIN|W-WAT"
+  },
+  {
+    "coordinates": {
+      "x": 15,
+      "y": 5
+    },
+    "description": "The mountain slope features a dramatic cliff face with a waterfall cascading over its edge. The surrounding terrain is rocky with forest growing wherever soil has accumulated.",
+    "terrainCode": "M-LOW|E-HIG|X-CLF|W-WAT"
+  },
+  {
+    "coordinates": {
+      "x": 15,
+      "y": 6
+    },
+    "description": "A protected mountain valley with denser forest and more diverse vegetation. The valley floor is relatively flat with the stream flowing more gently. Wildflowers grow in small clearings.",
+    "terrainCode": "M-VAL|E-HIG|F-PIN|P-FLW"
+  },
+  {
+    "coordinates": {
+      "x": 15,
+      "y": 7
+    },
+    "description": "The mountain valley narrows and begins to climb more steeply. The forest remains dense with predominantly pine and fir trees. The stream forms small rapids as it navigates the increased slope.",
+    "terrainCode": "M-VAL|E-HIG|F-PIN|W-RPD"
+  },
+  {
+    "coordinates": {
+      "x": 15,
+      "y": 8
+    },
+    "description": "Higher mountain slopes with thinning forest and increasing rock. Trees show the effects of harsh conditions with stunted, wind-shaped forms. The stream becomes a series of cascades.",
+    "terrainCode": "M-HIG|E-VRY|F-PIN|W-WAT"
+  },
+  {
+    "coordinates": {
+      "x": 15,
+      "y": 9
+    },
+    "description": "The mountainside becomes increasingly rocky with steeper slopes. The forest thins dramatically with trees growing only in the most protected locations. Small avalanche chutes are visible.",
+    "terrainCode": "M-HIG|E-VRY|F-THN|R-SCR"
+  },
+  {
+    "coordinates": {
+      "x": 15,
+      "y": 10
+    },
+    "description": "Near the tree line, the forest gives way to alpine meadow. Stunted, gnarled trees mark the transition zone. Small streams form from snowmelt, joining to create larger flows.",
+    "terrainCode": "M-HIG|E-VRY|P-FLW|W-STR"
+  },
+  {
+    "coordinates": {
+      "x": 15,
+      "y": 11
+    },
+    "description": "Alpine terrain above the tree line. Low-growing vegetation forms a thick mat where soil has accumulated. Rocky outcrops create distinctive formations. Eagles nest on inaccessible ledges.",
+    "terrainCode": "M-HIG|E-VRY|P-FLW|A-EAG"
+  },
+  {
+    "coordinates": {
+      "x": 15,
+      "y": 12
+    },
+    "description": "High alpine zone with rocky terrain and patches of low vegetation. The landscape is dominated by stone with plants finding footholds in protected pockets. Mountain goats traverse seemingly impossible slopes.",
+    "terrainCode": "M-HIG|E-EXT|T-ROC|A-GOA"
+  },
+  {
+    "coordinates": {
+      "x": 15,
+      "y": 13
+    },
+    "description": "Near the mountain summit, the landscape is predominantly rock with minimal vegetation. Patches of snow remain in sheltered locations. The air is thin and crystal clear at this elevation.",
+    "terrainCode": "M-PEA|E-EXT|T-SNO|X-RCK"
+  },
+  {
+    "coordinates": {
+      "x": 15,
+      "y": 14
+    },
+    "description": "High mountain terrain with permanent snow fields on north-facing slopes. The ground is mostly bare rock with lichens being the primary vegetation. Harsh winds shape the landscape.",
+    "terrainCode": "M-PEA|E-EXT|T-SNO|W-WIN"
+  },
+  {
+    "coordinates": {
+      "x": 15,
+      "y": 15
+    },
+    "description": "Mountain peak with expansive views in all directions. The terrain is predominantly rock with year-round snow in sheltered depressions. The atmosphere is thin and the sunlight intense.",
+    "terrainCode": "M-PEA|E-EXT|T-SNO|X-RCK"
+  }
+]

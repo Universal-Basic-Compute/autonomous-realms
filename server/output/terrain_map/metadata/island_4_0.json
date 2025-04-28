@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 4,
+    "y": 0
+  },
+  "description": "A massive river delta with multiple channels cutting through alluvial soil. Sandbars shift with changing currents. Rich sediment creates exceptionally fertile ground supporting dense vegetation.",
+  "terrainCode": "W-DEL|E-FLT|F-RIC|H-WET",
+  "generatedPrompt": "isometric view of realistic terrain tile with A massive river delta with multiple channels cutting through alluvial soil. Sandbars shift with changing currents. Rich sediment creates exceptionally fertile ground supporting dense vegetation., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-EST|E-FLT|H-WET|A-BIR), east: unknown terrain (W-MRS|E-FLT|H-SAT|A-BIR), south: unknown terrain (W-DEL|E-FLT|F-RIC|H-SAT)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:58:00.321879+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with A massive river delta with multiple channels cutting through alluvial soil. Sandbars shift with changing currents. Rich sediment creates exceptionally fertile ground supporting dense vegetation., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-EST|E-FLT|H-WET|A-BIR), east: unknown terrain (W-MRS|E-FLT|H-SAT|A-BIR), south: unknown terrain (W-DEL|E-FLT|F-RIC|H-SAT)",
+        "resolution": "1024x1024",
+        "seed": 828427496,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/gnU95JMtRQ-zfuPpvxUn6A.png?exp=1745456285&sig=bf326fec21a79c589b9d4754bec0e4334d2b5ce1a56a146c42f6c0dc0e08eaaa"
+      }
+    ]
+  }
+}

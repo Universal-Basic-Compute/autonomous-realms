@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 3,
+    "y": 1
+  },
+  "description": "The estuary narrows as it extends inland. Water channels cut through mud and sand. Salt-tolerant grasses form patches on slightly elevated areas. The air smells of salt and mud.",
+  "terrainCode": "W-EST|E-FLT|H-SAT|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with The estuary narrows as it extends inland. Water channels cut through mud and sand. Salt-tolerant grasses form patches on slightly elevated areas. The air smells of salt and mud., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-BAY|E-FLT|W-SHL|A-BIR), east: unknown terrain (W-DEL|E-FLT|F-RIC|H-SAT), north: unknown terrain (W-EST|E-FLT|H-WET|A-BIR), south: unknown terrain (W-EST|E-FLT|W-RIV|X-BSH)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:55:01.644216+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The estuary narrows as it extends inland. Water channels cut through mud and sand. Salt-tolerant grasses form patches on slightly elevated areas. The air smells of salt and mud., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-BAY|E-FLT|W-SHL|A-BIR), east: unknown terrain (W-DEL|E-FLT|F-RIC|H-SAT), north: unknown terrain (W-EST|E-FLT|H-WET|A-BIR), south: unknown terrain (W-EST|E-FLT|W-RIV|X-BSH)",
+        "resolution": "1024x1024",
+        "seed": 180343230,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/asTPrbYjQDuIyjVqDriycw.png?exp=1745456106&sig=67c3af6d6b0295c7a51f78e091fc5ede7797a14cc7398bbb9e61a7d578b1b849"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 3,
+    "y": 15
+  },
+  "description": "Above the waterfall, the river flows through a rocky mountain valley. The water is crystal clear and ice-cold. Sparse conifers grow along the banks where soil has accumulated.",
+  "terrainCode": "M-VAL|E-HIG|W-RIV|X-TRE",
+  "generatedPrompt": "isometric view of realistic terrain tile with Above the waterfall, the river flows through a rocky mountain valley. The water is crystal clear and ice-cold. Sparse conifers grow along the banks where soil has accumulated., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-HIG|W-STR|X-TRE), east: unknown terrain (M-FOO|E-HIG|X-CLF|W-STR), north: unknown terrain (W-WAT|E-HIG|X-CLF|X-BLD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:57:48.870193+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Above the waterfall, the river flows through a rocky mountain valley. The water is crystal clear and ice-cold. Sparse conifers grow along the banks where soil has accumulated., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-HIG|W-STR|X-TRE), east: unknown terrain (M-FOO|E-HIG|X-CLF|W-STR), north: unknown terrain (W-WAT|E-HIG|X-CLF|X-BLD)",
+        "resolution": "1024x1024",
+        "seed": 1532633543,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/40mTZ_S_TY6Jh6bPQfB_7Q.png?exp=1745456274&sig=7aedbcb402a0e35cda8064923d4a392d5b8cb5134f1ad74db41fdd0ea92a2fcd"
+      }
+    ]
+  }
+}

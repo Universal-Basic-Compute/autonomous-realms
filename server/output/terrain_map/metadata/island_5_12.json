@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 5,
+    "y": 12
+  },
+  "description": "The beginning of foothill terrain with increasing rock and thinner soil. Trees grow at angles on the sloping ground. The small stream cuts more deeply into the terrain, exposing layers of rock.",
+  "terrainCode": "M-FOO|E-MOD|F-THN|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with The beginning of foothill terrain with increasing rock and thinner soil. Trees grow at angles on the sloping ground. The small stream cuts more deeply into the terrain, exposing layers of rock., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-MOD|X-RCK|W-STR), east: unknown terrain (M-FOO|E-MOD|F-THN|W-STR), north: unknown terrain (F-MIX|E-MOD|X-RCK|F-AVG), south: unknown terrain (M-FOO|E-MOD|X-BLD|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:03:36.990122+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The beginning of foothill terrain with increasing rock and thinner soil. Trees grow at angles on the sloping ground. The small stream cuts more deeply into the terrain, exposing layers of rock., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-MOD|X-RCK|W-STR), east: unknown terrain (M-FOO|E-MOD|F-THN|W-STR), north: unknown terrain (F-MIX|E-MOD|X-RCK|F-AVG), south: unknown terrain (M-FOO|E-MOD|X-BLD|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 1979740161,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/V97LeimvQxucoXKFUNE7tg.png?exp=1745456622&sig=8020731f21ca75149b49fa3ae7daddfe0d156e1d6fc41e13d03fb435057af9b6"
+      }
+    ]
+  }
+}

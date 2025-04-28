@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 1,
+    "y": 7
+  },
+  "description": "Dunes transition to coastal heath with dense low vegetation. Scrub pines begin to appear, twisted by constant wind. The ground is covered with coarse grasses and small flowering plants.",
+  "terrainCode": "P-SCR|E-SLI|X-BSH|A-RAB",
+  "generatedPrompt": "isometric view of realistic terrain tile with Dunes transition to coastal heath with dense low vegetation. Scrub pines begin to appear, twisted by constant wind. The ground is covered with coarse grasses and small flowering plants., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (P-SCR|E-SLI|H-NRM|X-BSH), east: unknown terrain (W-MRS|E-FLT|W-STR|A-FRO), north: unknown terrain (D-DUN|E-MOD|X-BSH|W-WIN), south: pine forest (F-PIN|E-FLT|F-POO|X-BSH)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:49:51.886092+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Dunes transition to coastal heath with dense low vegetation. Scrub pines begin to appear, twisted by constant wind. The ground is covered with coarse grasses and small flowering plants., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (P-SCR|E-SLI|H-NRM|X-BSH), east: unknown terrain (W-MRS|E-FLT|W-STR|A-FRO), north: unknown terrain (D-DUN|E-MOD|X-BSH|W-WIN), south: pine forest (F-PIN|E-FLT|F-POO|X-BSH)",
+        "resolution": "1024x1024",
+        "seed": 1334211455,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/vbZVXrzySFa_P2J92OUZmQ.png?exp=1745455797&sig=296762c81bfbfbb07dc06bab84f55383437fc6055273a7caa71bb16ae5e3896b"
+      }
+    ]
+  }
+}

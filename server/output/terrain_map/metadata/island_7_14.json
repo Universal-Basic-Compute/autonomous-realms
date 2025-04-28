@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 7,
+    "y": 14
+  },
+  "description": "Lower mountain terrain with abundant exposed rock. Vegetation is sparse but includes hardy mountain species. The stream forms a dramatic waterfall as it descends over a resistant rock ledge.",
+  "terrainCode": "M-LOW|E-HIG|X-CLF|W-WAT",
+  "generatedPrompt": "isometric view of realistic terrain tile with Lower mountain terrain with abundant exposed rock. Vegetation is sparse but includes hardy mountain species. The stream forms a dramatic waterfall as it descends over a resistant rock ledge., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|X-CLF|W-WAT), east: low mountains (M-LOW|E-HIG|F-PIN|W-WAT), north: unknown terrain (M-FOO|E-HIG|F-PIN|W-STR), south: low mountains (M-LOW|E-HIG|R-SCR|F-PIN)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:10:24.022478+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Lower mountain terrain with abundant exposed rock. Vegetation is sparse but includes hardy mountain species. The stream forms a dramatic waterfall as it descends over a resistant rock ledge., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|X-CLF|W-WAT), east: low mountains (M-LOW|E-HIG|F-PIN|W-WAT), north: unknown terrain (M-FOO|E-HIG|F-PIN|W-STR), south: low mountains (M-LOW|E-HIG|R-SCR|F-PIN)",
+        "resolution": "1024x1024",
+        "seed": 277716807,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/o7jlo7vBQzGKs-Sa6nk-JA.png?exp=1745457029&sig=c69591ab17bf16ffa4f2de7fda465950ddaa333ce59c50f88d69cfc53b0b4575"
+      }
+    ]
+  }
+}

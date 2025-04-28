@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 4,
+    "y": 3
+  },
+  "description": "A cypress swamp with trees growing directly from the shallow water. Duckweed covers still areas of water, and lily pads float in small clearings. The air is humid and rich with organic scents.",
+  "terrainCode": "W-SWP|E-FLT|H-SAT|X-TRE",
+  "generatedPrompt": "isometric view of realistic terrain tile with A cypress swamp with trees growing directly from the shallow water. Duckweed covers still areas of water, and lily pads float in small clearings. The air is humid and rich with organic scents., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: river (W-RIV|E-FLT|H-WET|X-TRE), east: unknown terrain (W-SWP|E-FLT|H-SAT|X-TRE), north: unknown terrain (W-SWP|E-FLT|H-SAT|X-TRE), south: unknown terrain (W-SWP|E-FLT|H-SAT|A-TUR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:58:35.921075+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with A cypress swamp with trees growing directly from the shallow water. Duckweed covers still areas of water, and lily pads float in small clearings. The air is humid and rich with organic scents., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: river (W-RIV|E-FLT|H-WET|X-TRE), east: unknown terrain (W-SWP|E-FLT|H-SAT|X-TRE), north: unknown terrain (W-SWP|E-FLT|H-SAT|X-TRE), south: unknown terrain (W-SWP|E-FLT|H-SAT|A-TUR)",
+        "resolution": "1024x1024",
+        "seed": 335708685,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/3Tz60ANnTyWsDxdoegyz7g.png?exp=1745456321&sig=16bc1df503712f77f1febacd9d5141272769bc0c043d53fea9c98f9e5e773a58"
+      }
+    ]
+  }
+}

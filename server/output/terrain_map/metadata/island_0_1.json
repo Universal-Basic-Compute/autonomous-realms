@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 0,
+    "y": 1
+  },
+  "description": "Jagged limestone cliffs continue with a steep drop to churning ocean waters below. Wind-stunted shrubs and hardy mosses grow in protected pockets, while exposed areas reveal bare white rock.",
+  "terrainCode": "R-LST|E-HIG|W-SEA|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with Jagged limestone cliffs continue with a steep drop to churning ocean waters below. Wind-stunted shrubs and hardy mosses grow in protected pockets, while exposed areas reveal bare white rock., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: unknown terrain (W-BAY|E-MOD|R-LST|W-SEA), north: unknown terrain (R-LST|E-HIG|W-SEA|A-SEA), south: unknown terrain (W-BAY|E-MOD|R-LST|A-CRA)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:45:25.242718+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Jagged limestone cliffs continue with a steep drop to churning ocean waters below. Wind-stunted shrubs and hardy mosses grow in protected pockets, while exposed areas reveal bare white rock., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: unknown terrain (W-BAY|E-MOD|R-LST|W-SEA), north: unknown terrain (R-LST|E-HIG|W-SEA|A-SEA), south: unknown terrain (W-BAY|E-MOD|R-LST|A-CRA)",
+        "resolution": "1024x1024",
+        "seed": 310771450,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/CxEaKXfDTXeZj7tghh3CBw.png?exp=1745455530&sig=2690e37b960f80025b33b36df8978e053f491471caf791fca100fcd401941daf"
+      }
+    ]
+  }
+}

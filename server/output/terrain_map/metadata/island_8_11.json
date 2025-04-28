@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 8,
+    "y": 11
+  },
+  "description": "The forest thins as rocky terrain becomes more dominant. Trees grow primarily in soil pockets between rocks. The stream cascades more dramatically over stone ledges.",
+  "terrainCode": "F-THN|E-MOD|X-RCK|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with The forest thins as rocky terrain becomes more dominant. Trees grow primarily in soil pockets between rocks. The stream cascades more dramatically over stone ledges., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|F-THN|W-STR), east: unknown terrain (M-FOO|E-MOD|F-PIN|W-STR), north: unknown terrain (F-MIX|E-MOD|X-BLD|W-STR), south: unknown terrain (M-FOO|E-MOD|X-BLD|W-WAT)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:13:01.574191+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The forest thins as rocky terrain becomes more dominant. Trees grow primarily in soil pockets between rocks. The stream cascades more dramatically over stone ledges., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|F-THN|W-STR), east: unknown terrain (M-FOO|E-MOD|F-PIN|W-STR), north: unknown terrain (F-MIX|E-MOD|X-BLD|W-STR), south: unknown terrain (M-FOO|E-MOD|X-BLD|W-WAT)",
+        "resolution": "1024x1024",
+        "seed": 1224200024,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/_Q4gFhgJSbaXfhc3h0xTbA.png?exp=1745457186&sig=086d20461e2f2b2c54509564ce2992fc2378d96d293047ab41d8176cec450ede"
+      }
+    ]
+  }
+}

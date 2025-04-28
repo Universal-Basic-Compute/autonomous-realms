@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 0,
+    "y": 3
+  },
+  "description": "A narrow pebble beach forms at the shoreline. Ocean water laps gently here, depositing smooth stones and occasional driftwood. Sea grasses mark the high-tide line.",
+  "terrainCode": "W-SEA|E-FLT|X-RCK|W-WIN",
+  "generatedPrompt": "isometric view of realistic terrain tile with A narrow pebble beach forms at the shoreline. Ocean water laps gently here, depositing smooth stones and occasional driftwood. Sea grasses mark the high-tide line., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: unknown terrain (W-SHL|E-FLT|H-WET|A-FIS), north: unknown terrain (W-BAY|E-MOD|R-LST|A-CRA), south: sea (W-SEA|E-FLT|H-WET|A-SEA)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:45:49.565009+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with A narrow pebble beach forms at the shoreline. Ocean water laps gently here, depositing smooth stones and occasional driftwood. Sea grasses mark the high-tide line., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: unknown terrain (W-SHL|E-FLT|H-WET|A-FIS), north: unknown terrain (W-BAY|E-MOD|R-LST|A-CRA), south: sea (W-SEA|E-FLT|H-WET|A-SEA)",
+        "resolution": "1024x1024",
+        "seed": 1931142237,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/auMg8kE0T8GducM7QJ5b-Q.png?exp=1745455554&sig=7d48f4a940288f8a7c7818bfd92bc0f77e24f3c2dec2a61aa7dd2eae1e5616eb"
+      }
+    ]
+  }
+}

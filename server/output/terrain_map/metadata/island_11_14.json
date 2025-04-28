@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 11,
+    "y": 14
+  },
+  "description": "Higher mountain slopes with thinning forest cover. Trees become more stunted with increasing elevation. A small alpine meadow forms in a protected hollow, filled with wildflowers.",
+  "terrainCode": "M-HIG|E-VRY|P-FLW|F-PIN",
+  "generatedPrompt": "isometric view of realistic terrain tile with Higher mountain slopes with thinning forest cover. Trees become more stunted with increasing elevation. A small alpine meadow forms in a protected hollow, filled with wildflowers., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|F-PIN|W-WAT), east: high mountains (M-HIG|E-VRY|F-PIN|X-RCK), north: low mountains (M-LOW|E-HIG|F-PIN|X-CLF), south: high mountains (M-HIG|E-VRY|P-FLW|F-PIN)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:23:17.793385+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Higher mountain slopes with thinning forest cover. Trees become more stunted with increasing elevation. A small alpine meadow forms in a protected hollow, filled with wildflowers., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|F-PIN|W-WAT), east: high mountains (M-HIG|E-VRY|F-PIN|X-RCK), north: low mountains (M-LOW|E-HIG|F-PIN|X-CLF), south: high mountains (M-HIG|E-VRY|P-FLW|F-PIN)",
+        "resolution": "1024x1024",
+        "seed": 727595457,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/BnHu9oCbTIGOFcDMAx4u4Q.png?exp=1745457803&sig=7b897c8920d488da894640b3a9a0afad903336d04dccf3aaf408b5ef1d7c1bef"
+      }
+    ]
+  }
+}

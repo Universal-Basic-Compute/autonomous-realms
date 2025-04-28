@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 9,
+    "y": 2
+  },
+  "description": "Dry grassland transitions to scrubland with scattered drought-resistant shrubs and occasional small trees. The soil is still relatively fertile but drier, supporting specialized vegetation.",
+  "terrainCode": "P-SCR|E-FLT|H-DRY|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with Dry grassland transitions to scrubland with scattered drought-resistant shrubs and occasional small trees. The soil is still relatively fertile but drier, supporting specialized vegetation., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: lush grassland (P-LUS|E-FLT|X-TRE|F-RIC), east: sandy desert (D-SND|E-FLT|H-ARD|W-WIN), north: unknown terrain (P-DRY|E-FLT|H-DRY|X-BSH), south: unknown terrain (P-SCR|E-FLT|X-RCK|A-LIZ)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:14:28.433841+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Dry grassland transitions to scrubland with scattered drought-resistant shrubs and occasional small trees. The soil is still relatively fertile but drier, supporting specialized vegetation., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: lush grassland (P-LUS|E-FLT|X-TRE|F-RIC), east: sandy desert (D-SND|E-FLT|H-ARD|W-WIN), north: unknown terrain (P-DRY|E-FLT|H-DRY|X-BSH), south: unknown terrain (P-SCR|E-FLT|X-RCK|A-LIZ)",
+        "resolution": "1024x1024",
+        "seed": 1701498697,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/lfyRNkxwTYihLHdSeSeklA.png?exp=1745457274&sig=d423009c4ee7b31c9d8c68d19db7279c3a3a3c0d30b8dd1c1b3dde0cfbd3f830"
+      }
+    ]
+  }
+}

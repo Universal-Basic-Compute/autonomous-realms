@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 12,
+    "y": 13
+  },
+  "description": "Mountain terrain with steep slopes and dramatic cliff faces. The forest is predominantly pine and fir but becomes patchier with increasing elevation. Hawks soar on thermal updrafts.",
+  "terrainCode": "M-LOW|E-HIG|F-PIN|A-HAW",
+  "generatedPrompt": "isometric view of realistic terrain tile with Mountain terrain with steep slopes and dramatic cliff faces. The forest is predominantly pine and fir but becomes patchier with increasing elevation. Hawks soar on thermal updrafts., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|F-PIN|X-CLF), east: low mountains (M-LOW|E-HIG|F-PIN|A-GOA), north: low mountains (M-LOW|E-HIG|F-PIN|W-WAT), south: high mountains (M-HIG|E-VRY|F-PIN|X-RCK)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:26:14.052835+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Mountain terrain with steep slopes and dramatic cliff faces. The forest is predominantly pine and fir but becomes patchier with increasing elevation. Hawks soar on thermal updrafts., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|F-PIN|X-CLF), east: low mountains (M-LOW|E-HIG|F-PIN|A-GOA), north: low mountains (M-LOW|E-HIG|F-PIN|W-WAT), south: high mountains (M-HIG|E-VRY|F-PIN|X-RCK)",
+        "resolution": "1024x1024",
+        "seed": 580064258,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/FTHgAJLKQcGAAohhCH88Dw.png?exp=1745457979&sig=6f9ae84f7b7990c5284437cda08358dba245a48ae82977f6ad28e7e1e6daa4a5"
+      }
+    ]
+  }
+}

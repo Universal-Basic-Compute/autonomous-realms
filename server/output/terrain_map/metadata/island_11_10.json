@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 11,
+    "y": 10
+  },
+  "description": "Rocky foothills with scattered trees forming an open woodland. The terrain is uneven with numerous rock outcroppings. The stream descends more rapidly over stone ledges.",
+  "terrainCode": "M-FOO|E-MOD|F-PIN|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with Rocky foothills with scattered trees forming an open woodland. The terrain is uneven with numerous rock outcroppings. The stream descends more rapidly over stone ledges., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|F-PIN|W-STR), east: unknown terrain (M-FOO|E-MOD|X-BLD|W-STR), north: unknown terrain (M-FOO|E-MOD|X-TRE|W-STR), south: unknown terrain (M-FOO|E-HIG|F-PIN|W-RPD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:22:31.346793+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Rocky foothills with scattered trees forming an open woodland. The terrain is uneven with numerous rock outcroppings. The stream descends more rapidly over stone ledges., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|F-PIN|W-STR), east: unknown terrain (M-FOO|E-MOD|X-BLD|W-STR), north: unknown terrain (M-FOO|E-MOD|X-TRE|W-STR), south: unknown terrain (M-FOO|E-HIG|F-PIN|W-RPD)",
+        "resolution": "1024x1024",
+        "seed": 1342974760,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/p9iBYE4gTK6rlB8jYlXHcA.png?exp=1745457756&sig=81316a752976fb86e7f99e7926c3099e6431845ff12483a37e1b49d1f467fe1a"
+      }
+    ]
+  }
+}

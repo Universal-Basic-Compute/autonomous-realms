@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 12,
+    "y": 7
+  },
+  "description": "Deep slot canyon with high walls showing layers of ancient sedimentary rock. The narrow canyon occasionally widens into chambers with steep walls. A small trickle of water appears from the rock.",
+  "terrainCode": "D-CYN|E-HIG|X-SPR|R-SND",
+  "generatedPrompt": "isometric view of realistic terrain tile with Deep slot canyon with high walls showing layers of ancient sedimentary rock. The narrow canyon occasionally widens into chambers with steep walls. A small trickle of water appears from the rock., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-MSA|E-MOD|X-SPR|H-ARD), east: unknown terrain (D-CYN|E-HIG|X-SPR|D-OAS), north: unknown terrain (D-CYN|E-MOD|X-CLF|H-ARD), south: unknown terrain (D-CYN|E-MOD|W-STR|X-BSH)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:25:03.828364+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Deep slot canyon with high walls showing layers of ancient sedimentary rock. The narrow canyon occasionally widens into chambers with steep walls. A small trickle of water appears from the rock., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-MSA|E-MOD|X-SPR|H-ARD), east: unknown terrain (D-CYN|E-HIG|X-SPR|D-OAS), north: unknown terrain (D-CYN|E-MOD|X-CLF|H-ARD), south: unknown terrain (D-CYN|E-MOD|W-STR|X-BSH)",
+        "resolution": "1024x1024",
+        "seed": 1635733640,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/h1HltQ-sSteWBYPKPk_q9g.png?exp=1745457909&sig=72be6d68301135b72ede4bd84e2aaf5065cb19579042a8780110443a44bd6f3e"
+      }
+    ]
+  }
+}

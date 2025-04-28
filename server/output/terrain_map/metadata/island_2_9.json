@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 2,
+    "y": 9
+  },
+  "description": "Moist grassland with rich soil created by occasional flooding from the stream. Wildflowers grow in colorful patches. The ground is level but well-drained with dense root systems beneath.",
+  "terrainCode": "P-LUS|E-FLT|F-RIC|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with Moist grassland with rich soil created by occasional flooding from the stream. Wildflowers grow in colorful patches. The ground is level but well-drained with dense root systems beneath., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: pine forest (F-PIN|E-FLT|F-POO|X-RCK), east: river (W-RIV|E-FLT|H-FLD|X-TRE), north: basic grassland (P-BAS|E-FLT|W-STR|X-BSH), south: lush grassland (P-LUS|E-FLT|X-TRE|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:53:27.064613+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Moist grassland with rich soil created by occasional flooding from the stream. Wildflowers grow in colorful patches. The ground is level but well-drained with dense root systems beneath., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: pine forest (F-PIN|E-FLT|F-POO|X-RCK), east: river (W-RIV|E-FLT|H-FLD|X-TRE), north: basic grassland (P-BAS|E-FLT|W-STR|X-BSH), south: lush grassland (P-LUS|E-FLT|X-TRE|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 1974751133,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/4nc0Rz7yTPWwNbTbTAaHlQ.png?exp=1745456012&sig=d1e050f268b5f87d0bd33d95a155d2e87b8caab55acfc3ed39701c198a1c03d7"
+      }
+    ]
+  }
+}

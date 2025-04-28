@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 9,
+    "y": 8
+  },
+  "description": "The woodland continues with slightly more moisture as elevation increases. The stream becomes more consistent, cutting a deeper channel through the rocky terrain.",
+  "terrainCode": "F-THN|E-MOD|W-STR|X-RCK",
+  "generatedPrompt": "isometric view of realistic terrain tile with The woodland continues with slightly more moisture as elevation increases. The stream becomes more consistent, cutting a deeper channel through the rocky terrain., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-SLI|W-STR|F-GOO), east: unknown terrain (D-MSA|E-MOD|W-STR|X-CFM), north: unknown terrain (F-THN|E-MOD|W-STR|H-DRY), south: pine forest (F-PIN|E-MOD|W-STR|R-SND)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:15:40.625144+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The woodland continues with slightly more moisture as elevation increases. The stream becomes more consistent, cutting a deeper channel through the rocky terrain., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-SLI|W-STR|F-GOO), east: unknown terrain (D-MSA|E-MOD|W-STR|X-CFM), north: unknown terrain (F-THN|E-MOD|W-STR|H-DRY), south: pine forest (F-PIN|E-MOD|W-STR|R-SND)",
+        "resolution": "1024x1024",
+        "seed": 402005846,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/Hz3Mk3pLTR64vWW0nz4IoQ.png?exp=1745457346&sig=3428f0c14485d40808c2fa25f345ec8b362ec49c05a5e115dfdb3c6b74815f10"
+      }
+    ]
+  }
+}

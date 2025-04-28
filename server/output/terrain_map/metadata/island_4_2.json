@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 4,
+    "y": 2
+  },
+  "description": "The delta transitions to more stable wetlands with main channels becoming more defined. Cypress trees begin to appear, their knees protruding from the water. Birds nest in the tall vegetation.",
+  "terrainCode": "W-SWP|E-FLT|H-SAT|X-TRE",
+  "generatedPrompt": "isometric view of realistic terrain tile with The delta transitions to more stable wetlands with main channels becoming more defined. Cypress trees begin to appear, their knees protruding from the water. Birds nest in the tall vegetation., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-EST|E-FLT|W-RIV|X-BSH), east: unknown terrain (W-SWP|E-FLT|H-SAT|X-TRE), north: unknown terrain (W-DEL|E-FLT|F-RIC|H-SAT), south: unknown terrain (W-SWP|E-FLT|H-SAT|X-TRE)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:58:24.140514+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The delta transitions to more stable wetlands with main channels becoming more defined. Cypress trees begin to appear, their knees protruding from the water. Birds nest in the tall vegetation., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-EST|E-FLT|W-RIV|X-BSH), east: unknown terrain (W-SWP|E-FLT|H-SAT|X-TRE), north: unknown terrain (W-DEL|E-FLT|F-RIC|H-SAT), south: unknown terrain (W-SWP|E-FLT|H-SAT|X-TRE)",
+        "resolution": "1024x1024",
+        "seed": 914079445,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/uvV0yrRZSPexud5XdrlH-A.png?exp=1745456309&sig=5980336efaae20afa9dc9cf9da20f81132d58d7b09e18a784afc3819f240ac6c"
+      }
+    ]
+  }
+}

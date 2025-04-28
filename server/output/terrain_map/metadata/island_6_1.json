@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 6,
+    "y": 1
+  },
+  "description": "The marsh transitions to wet meadowland. The ground is saturated but not flooded. Tall grasses and wildflowers create a colorful tapestry, and butterflies flit between blooms.",
+  "terrainCode": "P-LUS|E-FLT|H-WET|A-BUT",
+  "generatedPrompt": "isometric view of realistic terrain tile with The marsh transitions to wet meadowland. The ground is saturated but not flooded. Tall grasses and wildflowers create a colorful tapestry, and butterflies flit between blooms., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-MRS|E-FLT|W-PON|A-FRO), east: unknown terrain (P-FLW|E-FLT|F-RIC|A-BUT), north: unknown terrain (W-MRS|E-FLT|H-SAT|A-BIR), south: lush grassland (P-LUS|E-FLT|H-WET|W-PON)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:04:37.067603+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The marsh transitions to wet meadowland. The ground is saturated but not flooded. Tall grasses and wildflowers create a colorful tapestry, and butterflies flit between blooms., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-MRS|E-FLT|W-PON|A-FRO), east: unknown terrain (P-FLW|E-FLT|F-RIC|A-BUT), north: unknown terrain (W-MRS|E-FLT|H-SAT|A-BIR), south: lush grassland (P-LUS|E-FLT|H-WET|W-PON)",
+        "resolution": "1024x1024",
+        "seed": 619385175,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/2f4IMhoVTHOCDYuqY9GDtg.png?exp=1745456682&sig=36eac900160083ef972e3a761841d5560e8ca8f49f1e88a070403205669574d7"
+      }
+    ]
+  }
+}

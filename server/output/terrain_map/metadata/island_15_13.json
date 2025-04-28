@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 15,
+    "y": 13
+  },
+  "description": "Near the mountain summit, the landscape is predominantly rock with minimal vegetation. Patches of snow remain in sheltered locations. The air is thin and crystal clear at this elevation.",
+  "terrainCode": "M-PEA|E-EXT|T-SNO|X-RCK",
+  "generatedPrompt": "isometric view of realistic terrain tile with Near the mountain summit, the landscape is predominantly rock with minimal vegetation. Patches of snow remain in sheltered locations. The air is thin and crystal clear at this elevation., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: high mountains (M-HIG|E-VRY|T-ROC|W-STR), north: high mountains (M-HIG|E-EXT|T-ROC|A-GOA), south: unknown terrain (M-PEA|E-EXT|T-SNO|W-WIN)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:35:57.239080+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Near the mountain summit, the landscape is predominantly rock with minimal vegetation. Patches of snow remain in sheltered locations. The air is thin and crystal clear at this elevation., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: high mountains (M-HIG|E-VRY|T-ROC|W-STR), north: high mountains (M-HIG|E-EXT|T-ROC|A-GOA), south: unknown terrain (M-PEA|E-EXT|T-SNO|W-WIN)",
+        "resolution": "1024x1024",
+        "seed": 1149752942,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/ecqeTlmGSiuYy2Wot5QjQw.png?exp=1745458562&sig=19bb1c400fafb48face8fc69efab08b4fe7d5c3fa493af910190c8bef07fafc3"
+      }
+    ]
+  }
+}

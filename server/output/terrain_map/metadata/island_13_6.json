@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 13,
+    "y": 6
+  },
+  "description": "The canyon deepens with towering walls showing distinctly colored layers of ancient sedimentary rock. The floor is relatively flat with scattered boulders from occasional wall collapses.",
+  "terrainCode": "D-CYN|E-HIG|X-BLD|H-ARD",
+  "generatedPrompt": "isometric view of realistic terrain tile with The canyon deepens with towering walls showing distinctly colored layers of ancient sedimentary rock. The floor is relatively flat with scattered boulders from occasional wall collapses., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:28:54.092220+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The canyon deepens with towering walls showing distinctly colored layers of ancient sedimentary rock. The floor is relatively flat with scattered boulders from occasional wall collapses., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+        "resolution": "1024x1024",
+        "seed": 534007358,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/HibIHoAoS7q_QWqWFi2wIA.png?exp=1745458139&sig=d07c4dda07db2578550ddb96587b9c0ecc975dca1c288094e9bc8158fe8687a8"
+      }
+    ]
+  }
+}

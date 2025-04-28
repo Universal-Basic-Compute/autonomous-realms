@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 12,
+    "y": 9
+  },
+  "description": "Canyon mouth opens to rocky foothills. The change in terrain is dramatic with increasing vegetation. The stream continues to flow, cutting a deeper channel through the softer rock layers.",
+  "terrainCode": "M-FOO|E-MOD|W-STR|X-RCK",
+  "generatedPrompt": "isometric view of realistic terrain tile with Canyon mouth opens to rocky foothills. The change in terrain is dramatic with increasing vegetation. The stream continues to flow, cutting a deeper channel through the softer rock layers., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|X-TRE|W-STR), east: unknown terrain (D-CYN|E-MOD|W-STR|X-BSH), north: unknown terrain (D-CYN|E-MOD|W-STR|X-BSH), south: unknown terrain (M-FOO|E-MOD|X-BLD|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:25:27.630359+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Canyon mouth opens to rocky foothills. The change in terrain is dramatic with increasing vegetation. The stream continues to flow, cutting a deeper channel through the softer rock layers., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|X-TRE|W-STR), east: unknown terrain (D-CYN|E-MOD|W-STR|X-BSH), north: unknown terrain (D-CYN|E-MOD|W-STR|X-BSH), south: unknown terrain (M-FOO|E-MOD|X-BLD|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 1828200572,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/C6hirqpJQ0KMWpvaLaLX9w.png?exp=1745457932&sig=ea03f99038da314cff26fcb13161ea2f6ff8f10fb0170ea4e74623a50998baf2"
+      }
+    ]
+  }
+}

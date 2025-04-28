@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 4,
+    "y": 4
+  },
+  "description": "The swamp continues with deeper water channels cutting through. Tree trunks show water marks from seasonal changes in level. Turtles sun themselves on exposed logs and stumps.",
+  "terrainCode": "W-SWP|E-FLT|H-SAT|A-TUR",
+  "generatedPrompt": "isometric view of realistic terrain tile with The swamp continues with deeper water channels cutting through. Tree trunks show water marks from seasonal changes in level. Turtles sun themselves on exposed logs and stumps., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: river (W-RIV|E-FLT|H-WET|A-FIS), east: unknown terrain (W-SWP|E-FLT|H-SAT|A-TUR), north: unknown terrain (W-SWP|E-FLT|H-SAT|X-TRE), south: unknown terrain (W-SWP|E-FLT|X-TRE|W-RIV)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:58:47.798346+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The swamp continues with deeper water channels cutting through. Tree trunks show water marks from seasonal changes in level. Turtles sun themselves on exposed logs and stumps., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: river (W-RIV|E-FLT|H-WET|A-FIS), east: unknown terrain (W-SWP|E-FLT|H-SAT|A-TUR), north: unknown terrain (W-SWP|E-FLT|H-SAT|X-TRE), south: unknown terrain (W-SWP|E-FLT|X-TRE|W-RIV)",
+        "resolution": "1024x1024",
+        "seed": 845160986,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/5UaNNGz6SoaYVpx6a7fNuQ.png?exp=1745456333&sig=6c771993d5d873bb89e0dbc3578da4f11f0365595e17d7c1e62f2affd5706554"
+      }
+    ]
+  }
+}

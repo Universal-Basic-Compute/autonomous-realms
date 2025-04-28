@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 8,
+    "y": 4
+  },
+  "description": "Savanna-like landscape with trees spaced widely enough to allow grasses to dominate between them. A small seasonal stream appears after heavy rains but is currently a dry bed.",
+  "terrainCode": "P-LUS|E-FLT|X-TRE|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with Savanna-like landscape with trees spaced widely enough to allow grasses to dominate between them. A small seasonal stream appears after heavy rains but is currently a dry bed., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-THN|E-FLT|W-STR|X-TRE), east: unknown terrain (P-SCR|E-FLT|X-RCK|H-ARD), north: lush grassland (P-LUS|E-FLT|X-TRE|H-DRY), south: unknown terrain (F-THN|E-FLT|A-RAB|A-FOX)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:11:33.951242+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Savanna-like landscape with trees spaced widely enough to allow grasses to dominate between them. A small seasonal stream appears after heavy rains but is currently a dry bed., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-THN|E-FLT|W-STR|X-TRE), east: unknown terrain (P-SCR|E-FLT|X-RCK|H-ARD), north: lush grassland (P-LUS|E-FLT|X-TRE|H-DRY), south: unknown terrain (F-THN|E-FLT|A-RAB|A-FOX)",
+        "resolution": "1024x1024",
+        "seed": 1176761908,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/2iIvkrb3TMKqXw98889ITg.png?exp=1745457099&sig=1e11336a16414657bfa1f72f201c61045320647f2ab50ab1d3d25306a38c7e80"
+      }
+    ]
+  }
+}

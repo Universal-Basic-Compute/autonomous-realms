@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 6,
+    "y": 7
+  },
+  "description": "Rich deciduous forest with towering oaks and maples. The forest floor is thick with leaf litter and sprouting vegetation. Songbirds fill the canopy with constant melodies.",
+  "terrainCode": "F-OAK|E-FLT|F-RIC|A-BIR",
+  "generatedPrompt": "isometric view of realistic terrain tile with Rich deciduous forest with towering oaks and maples. The forest floor is thick with leaf litter and sprouting vegetation. Songbirds fill the canopy with constant melodies., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|F-RIC|H-FLD), east: unknown terrain (F-MIX|E-FLT|W-STR|F-RIC), north: unknown terrain (F-MIX|E-FLT|W-STR|X-RCK), south: unknown terrain (F-MIX|E-SLI|F-RIC|X-BSH)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:05:48.303777+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Rich deciduous forest with towering oaks and maples. The forest floor is thick with leaf litter and sprouting vegetation. Songbirds fill the canopy with constant melodies., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|F-RIC|H-FLD), east: unknown terrain (F-MIX|E-FLT|W-STR|F-RIC), north: unknown terrain (F-MIX|E-FLT|W-STR|X-RCK), south: unknown terrain (F-MIX|E-SLI|F-RIC|X-BSH)",
+        "resolution": "1024x1024",
+        "seed": 1286926611,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/Bl8n08T7T92smH3s_4Ri1g.png?exp=1745456753&sig=ff00f00f75da526f652b7441b6ef97123496365cf728e94616dd0fe5ef936d7c"
+      }
+    ]
+  }
+}

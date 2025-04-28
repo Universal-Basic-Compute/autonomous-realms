@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 8,
+    "y": 7
+  },
+  "description": "The woodland becomes denser with a closed canopy in places. The stream widens slightly as it collects water from smaller tributaries. Ferns grow along the banks in the shade.",
+  "terrainCode": "F-MIX|E-FLT|W-STR|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with The woodland becomes denser with a closed canopy in places. The stream widens slightly as it collects water from smaller tributaries. Ferns grow along the banks in the shade., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|W-STR|F-RIC), east: unknown terrain (F-THN|E-MOD|W-STR|H-DRY), north: unknown terrain (F-THN|E-FLT|W-STR|F-GOO), south: unknown terrain (F-MIX|E-SLI|W-STR|F-GOO)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:12:12.215262+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The woodland becomes denser with a closed canopy in places. The stream widens slightly as it collects water from smaller tributaries. Ferns grow along the banks in the shade., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|W-STR|F-RIC), east: unknown terrain (F-THN|E-MOD|W-STR|H-DRY), north: unknown terrain (F-THN|E-FLT|W-STR|F-GOO), south: unknown terrain (F-MIX|E-SLI|W-STR|F-GOO)",
+        "resolution": "1024x1024",
+        "seed": 812711636,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/_sFeFrNxS8-lIgEOpTIGfg.png?exp=1745457137&sig=aa3643472cf79b48e56afd8f804ec5dde24d7089c49d384136880c97fd153b7b"
+      }
+    ]
+  }
+}

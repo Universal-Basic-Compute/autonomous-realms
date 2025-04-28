@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 5,
+    "y": 2
+  },
+  "description": "A transition zone where the marsh meets swamp forest. Water flows slowly between cypress and tupelo trees. Patches of duckweed cover still water, and moss hangs from low branches.",
+  "terrainCode": "W-SWP|E-FLT|H-SAT|X-TRE",
+  "generatedPrompt": "isometric view of realistic terrain tile with A transition zone where the marsh meets swamp forest. Water flows slowly between cypress and tupelo trees. Patches of duckweed cover still water, and moss hangs from low branches., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+  "ideogramResponse": {
+    "created": "2025-04-23T02:00:49.779404+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with A transition zone where the marsh meets swamp forest. Water flows slowly between cypress and tupelo trees. Patches of duckweed cover still water, and moss hangs from low branches., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+        "resolution": "1024x1024",
+        "seed": 647794454,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/I71YLI5OTZi7rSvzdlmZeg.png?exp=1745460055&sig=4c9a018bd38729eea66a8a7c9ab77233a9e9c0708102dad894f2789cf7a0bb4a"
+      }
+    ]
+  }
+}

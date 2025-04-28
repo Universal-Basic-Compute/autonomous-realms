@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 15,
+    "y": 1
+  },
+  "description": "The foothills become steeper with increasing rock and less soil. Small juniper and pine trees appear in protected locations. A dry streambed indicates seasonal water flow from the mountains.",
+  "terrainCode": "M-FOO|E-HIG|F-PIN|H-DRY",
+  "generatedPrompt": "isometric view of realistic terrain tile with The foothills become steeper with increasing rock and less soil. Small juniper and pine trees appear in protected locations. A dry streambed indicates seasonal water flow from the mountains., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|X-TRE|H-DRY), north: unknown terrain (M-FOO|E-MOD|X-BLD|H-DRY), south: low mountains (M-LOW|E-HIG|F-PIN|X-SPR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:33:29.649513+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The foothills become steeper with increasing rock and less soil. Small juniper and pine trees appear in protected locations. A dry streambed indicates seasonal water flow from the mountains., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|X-TRE|H-DRY), north: unknown terrain (M-FOO|E-MOD|X-BLD|H-DRY), south: low mountains (M-LOW|E-HIG|F-PIN|X-SPR)",
+        "resolution": "1024x1024",
+        "seed": 2086555519,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/JajYMaZtTIKa0hqCRiF3Fg.png?exp=1745458416&sig=f37b4647bf0b011dac3efb9f07be2db2f7ae17bcbcbe002fedbabaf7e8ea5c07"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 2,
+    "y": 3
+  },
+  "description": "The inner bay forms a lagoon-like area with extremely calm waters. The bottom is sandy with patches of seagrass. The shoreline is predominantly sandy with occasional smooth stones.",
+  "terrainCode": "W-LAG|E-FLT|W-SHL|A-FIS",
+  "generatedPrompt": "isometric view of realistic terrain tile with The inner bay forms a lagoon-like area with extremely calm waters. The bottom is sandy with patches of seagrass. The shoreline is predominantly sandy with occasional smooth stones., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-SHL|E-FLT|H-WET|A-FIS), east: river (W-RIV|E-FLT|H-WET|X-TRE), north: unknown terrain (W-BAY|E-DEP|W-SHL|A-FIS), south: unknown terrain (W-MRS|E-FLT|H-WET|A-BIR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:52:17.663544+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The inner bay forms a lagoon-like area with extremely calm waters. The bottom is sandy with patches of seagrass. The shoreline is predominantly sandy with occasional smooth stones., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-SHL|E-FLT|H-WET|A-FIS), east: river (W-RIV|E-FLT|H-WET|X-TRE), north: unknown terrain (W-BAY|E-DEP|W-SHL|A-FIS), south: unknown terrain (W-MRS|E-FLT|H-WET|A-BIR)",
+        "resolution": "1024x1024",
+        "seed": 1680732126,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/K0H1CbW0TcKGpTTELRTxig.png?exp=1745455942&sig=6b57578a6ea1da30ce83400ca93485ecc94f2127bb2b7736d48d8a436ef1f329"
+      }
+    ]
+  }
+}

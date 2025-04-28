@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 7,
+    "y": 3
+  },
+  "description": "The savanna transitions to open woodland. Trees are widely spaced allowing significant light to reach the grassy understory. Small animals scurry through the protective cover.",
+  "terrainCode": "F-THN|E-FLT|F-GOO|A-RAB",
+  "generatedPrompt": "isometric view of realistic terrain tile with The savanna transitions to open woodland. Trees are widely spaced allowing significant light to reach the grassy understory. Small animals scurry through the protective cover., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-THN|E-FLT|H-WET|X-BSH), east: lush grassland (P-LUS|E-FLT|X-TRE|H-DRY), north: lush grassland (P-LUS|E-FLT|X-TRE|A-DEE), south: unknown terrain (F-THN|E-FLT|W-STR|X-TRE)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:08:12.958973+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The savanna transitions to open woodland. Trees are widely spaced allowing significant light to reach the grassy understory. Small animals scurry through the protective cover., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-THN|E-FLT|H-WET|X-BSH), east: lush grassland (P-LUS|E-FLT|X-TRE|H-DRY), north: lush grassland (P-LUS|E-FLT|X-TRE|A-DEE), south: unknown terrain (F-THN|E-FLT|W-STR|X-TRE)",
+        "resolution": "1024x1024",
+        "seed": 262061179,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/ebN_WEjRT3G8CZyzruFIhg.png?exp=1745456898&sig=f6049b375ff6fa786fa85e564e16422139c81f62cbb523ac0cec077c14d38ba7"
+      }
+    ]
+  }
+}

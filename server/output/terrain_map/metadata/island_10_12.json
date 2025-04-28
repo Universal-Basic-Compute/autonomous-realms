@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 10,
+    "y": 12
+  },
+  "description": "Steeper foothills transitioning to mountain terrain. Pine and fir trees create patchy forest cover. The stream forms small waterfalls as it navigates the increasingly vertical landscape.",
+  "terrainCode": "M-FOO|E-HIG|F-PIN|W-RPD",
+  "generatedPrompt": "isometric view of realistic terrain tile with Steeper foothills transitioning to mountain terrain. Pine and fir trees create patchy forest cover. The stream forms small waterfalls as it navigates the increasingly vertical landscape., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-HIG|F-PIN|W-RPD), east: low mountains (M-LOW|E-HIG|F-PIN|W-RPD), north: unknown terrain (M-FOO|E-MOD|F-PIN|X-BLD), south: low mountains (M-LOW|E-HIG|F-PIN|X-CLF)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:19:42.363088+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Steeper foothills transitioning to mountain terrain. Pine and fir trees create patchy forest cover. The stream forms small waterfalls as it navigates the increasingly vertical landscape., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-HIG|F-PIN|W-RPD), east: low mountains (M-LOW|E-HIG|F-PIN|W-RPD), north: unknown terrain (M-FOO|E-MOD|F-PIN|X-BLD), south: low mountains (M-LOW|E-HIG|F-PIN|X-CLF)",
+        "resolution": "1024x1024",
+        "seed": 2000647582,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/oKIxvSaHQ0-wSgdd4PPmlw.png?exp=1745457587&sig=0f343dd7bb1ae51444b1901213f46fc427b71f7acd8413aa17bd7ab51cbad3c9"
+      }
+    ]
+  }
+}

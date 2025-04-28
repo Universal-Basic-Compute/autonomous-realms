@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 0,
+    "y": 2
+  },
+  "description": "The coastline forms a small rocky bay where the cliffs are less steep. Tide pools form among the rocks, hosting small crabs and anemones. Salt spray coats the nearby stones.",
+  "terrainCode": "W-BAY|E-MOD|R-LST|A-CRA",
+  "generatedPrompt": "isometric view of realistic terrain tile with The coastline forms a small rocky bay where the cliffs are less steep. Tide pools form among the rocks, hosting small crabs and anemones. Salt spray coats the nearby stones., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: unknown terrain (W-BAY|E-SLI|W-SHL|A-FIS), north: unknown terrain (R-LST|E-HIG|W-SEA|X-BSH), south: sea (W-SEA|E-FLT|X-RCK|W-WIN)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:45:37.238949+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The coastline forms a small rocky bay where the cliffs are less steep. Tide pools form among the rocks, hosting small crabs and anemones. Salt spray coats the nearby stones., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: unknown terrain (W-BAY|E-SLI|W-SHL|A-FIS), north: unknown terrain (R-LST|E-HIG|W-SEA|X-BSH), south: sea (W-SEA|E-FLT|X-RCK|W-WIN)",
+        "resolution": "1024x1024",
+        "seed": 1931660086,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/jFfL9gHbSk-0-XM4UolGwg.png?exp=1745455542&sig=93e251a75f5daa306e9cdf4ca5db79ea917f4b938fe8cf83bbdbd80ce90455d1"
+      }
+    ]
+  }
+}

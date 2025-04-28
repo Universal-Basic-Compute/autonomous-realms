@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 13,
+    "y": 0
+  },
+  "description": "Stony desert with flat, hard-packed ground covered in small pebbles and occasional larger rocks. Vegetation is extremely sparse with only the hardiest plants surviving the harsh conditions.",
+  "terrainCode": "D-ROC|E-FLT|H-ARD|X-RCK",
+  "generatedPrompt": "isometric view of realistic terrain tile with Stony desert with flat, hard-packed ground covered in small pebbles and occasional larger rocks. Vegetation is extremely sparse with only the hardiest plants surviving the harsh conditions., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-FLT|E-FLT|H-ARD|A-LIZ), east: unknown terrain (M-FOO|E-SLI|X-BLD|H-DRY), south: unknown terrain (D-ROC|E-SLI|X-RCK|H-ARD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:26:49.690019+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Stony desert with flat, hard-packed ground covered in small pebbles and occasional larger rocks. Vegetation is extremely sparse with only the hardiest plants surviving the harsh conditions., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-FLT|E-FLT|H-ARD|A-LIZ), east: unknown terrain (M-FOO|E-SLI|X-BLD|H-DRY), south: unknown terrain (D-ROC|E-SLI|X-RCK|H-ARD)",
+        "resolution": "1024x1024",
+        "seed": 1814342684,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/AypxyAYbSTunPudt8GEj2Q.png?exp=1745458015&sig=2590f088d4a68f15280f90900c72b6d02cdc385ceb5e3d2213dd8857c75a3288"
+      }
+    ]
+  }
+}

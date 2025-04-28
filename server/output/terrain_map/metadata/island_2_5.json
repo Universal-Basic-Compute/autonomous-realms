@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 2,
+    "y": 5
+  },
+  "description": "A fully formed salt marsh with channels of brackish water cutting through dense grass. The ground is perpetually wet and spongy. Shorebirds probe the mud for small invertebrates.",
+  "terrainCode": "W-MRS|E-FLT|H-SAT|A-BIR",
+  "generatedPrompt": "isometric view of realistic terrain tile with A fully formed salt marsh with channels of brackish water cutting through dense grass. The ground is perpetually wet and spongy. Shorebirds probe the mud for small invertebrates., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-DUN|E-MOD|X-BSH|X-HOL), east: river (W-RIV|E-FLT|H-WET|X-TRE), north: unknown terrain (W-MRS|E-FLT|H-WET|A-BIR), south: unknown terrain (W-MRS|E-FLT|H-SAT|X-BSH)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:52:40.742980+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with A fully formed salt marsh with channels of brackish water cutting through dense grass. The ground is perpetually wet and spongy. Shorebirds probe the mud for small invertebrates., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-DUN|E-MOD|X-BSH|X-HOL), east: river (W-RIV|E-FLT|H-WET|X-TRE), north: unknown terrain (W-MRS|E-FLT|H-WET|A-BIR), south: unknown terrain (W-MRS|E-FLT|H-SAT|X-BSH)",
+        "resolution": "1024x1024",
+        "seed": 667740286,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/eU0X3UzDShCTaXK5z3lNlg.png?exp=1745455966&sig=b880e04d693d8134f371314d1678577b8a50d61c8aa227bcb29eabb03b6d1896"
+      }
+    ]
+  }
+}

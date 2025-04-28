@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 2,
+    "y": 0
+  },
+  "description": "A coastal inlet forms here with calmer waters. The shoreline alternates between small beaches and rocky outcrops. Clear water reveals sandy bottom with scattered seaweed patches.",
+  "terrainCode": "W-BAY|E-SLI|W-SHL|A-FIS",
+  "generatedPrompt": "isometric view of realistic terrain tile with A coastal inlet forms here with calmer waters. The shoreline alternates between small beaches and rocky outcrops. Clear water reveals sandy bottom with scattered seaweed patches., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (R-LST|E-HIG|W-SEA|X-CVE), east: unknown terrain (W-EST|E-FLT|H-WET|A-BIR), south: unknown terrain (W-BAY|E-FLT|W-SHL|A-BIR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:51:42.323526+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with A coastal inlet forms here with calmer waters. The shoreline alternates between small beaches and rocky outcrops. Clear water reveals sandy bottom with scattered seaweed patches., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (R-LST|E-HIG|W-SEA|X-CVE), east: unknown terrain (W-EST|E-FLT|H-WET|A-BIR), south: unknown terrain (W-BAY|E-FLT|W-SHL|A-BIR)",
+        "resolution": "1024x1024",
+        "seed": 1306504094,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/F2UkmniZS3WsqOUEA5zUkw.png?exp=1745455907&sig=709d896e54a790a87b7dfbb211559457d9ef8e53535feae5cad7c90ad6ad5363"
+      }
+    ]
+  }
+}

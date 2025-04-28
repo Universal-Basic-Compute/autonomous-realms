@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 0,
+    "y": 13
+  },
+  "description": "The forest begins to thin as the elevation increases. Rocky outcrops punctuate the landscape with exposed granite. Trees grow at angles, their roots seeking purchase among the stones.",
+  "terrainCode": "F-MIX|E-SLI|R-GRN|X-RCK",
+  "generatedPrompt": "isometric view of realistic terrain tile with The forest begins to thin as the elevation increases. Rocky outcrops punctuate the landscape with exposed granite. Trees grow at angles, their roots seeking purchase among the stones., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: unknown terrain (F-THN|E-SLI|W-STR|X-RCK), north: unknown terrain (F-MIX|E-FLT|F-GOO|A-DEE), south: unknown terrain (M-FOO|E-MOD|X-TRE|X-BLD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:47:52.223969+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The forest begins to thin as the elevation increases. Rocky outcrops punctuate the landscape with exposed granite. Trees grow at angles, their roots seeking purchase among the stones., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: unknown terrain (F-THN|E-SLI|W-STR|X-RCK), north: unknown terrain (F-MIX|E-FLT|F-GOO|A-DEE), south: unknown terrain (M-FOO|E-MOD|X-TRE|X-BLD)",
+        "resolution": "1024x1024",
+        "seed": 1288651059,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/ICOd6L0VRF2sLwtMZzvDUg.png?exp=1745455677&sig=6a48cee9c1681fd03045f79b0afe45ed955ae20f67427b9d025e0b886fd8c3cd"
+      }
+    ]
+  }
+}

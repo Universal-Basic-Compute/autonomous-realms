@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 10,
+    "y": 6
+  },
+  "description": "Dramatic badlands with colorful stone layers exposed by erosion. The terrain is challenging to traverse with steep sideslopes and narrow ridges. Vegetation is extremely sparse.",
+  "terrainCode": "D-BDL|E-MOD|X-CFM|H-ARD",
+  "generatedPrompt": "isometric view of realistic terrain tile with Dramatic badlands with colorful stone layers exposed by erosion. The terrain is challenging to traverse with steep sideslopes and narrow ridges. Vegetation is extremely sparse., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-THN|E-SLI|X-SPR|H-DRY), east: unknown terrain (D-CYN|E-MOD|X-BLD|H-ARD), north: unknown terrain (D-BDL|E-SLI|X-CFM|H-ARD), south: unknown terrain (D-MSA|E-MOD|X-SPR|X-CFM)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:18:29.494440+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Dramatic badlands with colorful stone layers exposed by erosion. The terrain is challenging to traverse with steep sideslopes and narrow ridges. Vegetation is extremely sparse., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-THN|E-SLI|X-SPR|H-DRY), east: unknown terrain (D-CYN|E-MOD|X-BLD|H-ARD), north: unknown terrain (D-BDL|E-SLI|X-CFM|H-ARD), south: unknown terrain (D-MSA|E-MOD|X-SPR|X-CFM)",
+        "resolution": "1024x1024",
+        "seed": 880492543,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/pk2-Q8sTQ2-avIR9gCJmXg.png?exp=1745457514&sig=3283394858b21c306db0501c5a065a38d9a241d5574ce49875b5c28ceac79571"
+      }
+    ]
+  }
+}

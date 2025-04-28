@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 13,
+    "y": 4
+  },
+  "description": "The mesas grow larger and more connected, forming a complex plateau cut by deep canyons. The terrain is dramatically vertical in places with sheer cliff faces of red and orange stone.",
+  "terrainCode": "D-PLT|E-MOD|X-CLF|H-ARD",
+  "generatedPrompt": "isometric view of realistic terrain tile with The mesas grow larger and more connected, forming a complex plateau cut by deep canyons. The terrain is dramatically vertical in places with sheer cliff faces of red and orange stone., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:28:51.746849+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The mesas grow larger and more connected, forming a complex plateau cut by deep canyons. The terrain is dramatically vertical in places with sheer cliff faces of red and orange stone., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+        "resolution": "1024x1024",
+        "seed": 191675895,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/BzLQL6yfSuSiIIk7vigwKA.png?exp=1745458137&sig=6b0433d60b2ef1d54174fee8ab5ae04b621b04cb98b837cf696150bfdada39b0"
+      }
+    ]
+  }
+}

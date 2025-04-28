@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 8,
+    "y": 10
+  },
+  "description": "As elevation increases, the forest composition shifts to include more pine trees. The stream flows faster over a rockier bed. Moss-covered boulders are scattered throughout the area.",
+  "terrainCode": "F-MIX|E-MOD|X-BLD|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with As elevation increases, the forest composition shifts to include more pine trees. The stream flows faster over a rockier bed. Moss-covered boulders are scattered throughout the area., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-THN|E-MOD|X-RCK|W-STR), east: pine forest (F-PIN|E-MOD|W-STR|X-RCK), north: unknown terrain (F-MIX|E-MOD|X-RCK|A-DEE), south: unknown terrain (F-THN|E-MOD|X-RCK|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:12:49.013109+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with As elevation increases, the forest composition shifts to include more pine trees. The stream flows faster over a rockier bed. Moss-covered boulders are scattered throughout the area., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-THN|E-MOD|X-RCK|W-STR), east: pine forest (F-PIN|E-MOD|W-STR|X-RCK), north: unknown terrain (F-MIX|E-MOD|X-RCK|A-DEE), south: unknown terrain (F-THN|E-MOD|X-RCK|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 56352006,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/uxOPHryoSI6PZQbuYZ09IQ.png?exp=1745457175&sig=4fee217450a162f7246901b281ec501ebd083a1a78d8527272e61c4616cdf729"
+      }
+    ]
+  }
+}

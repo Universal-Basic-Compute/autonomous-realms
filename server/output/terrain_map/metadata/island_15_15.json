@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 15,
+    "y": 15
+  },
+  "description": "Mountain peak with expansive views in all directions. The terrain is predominantly rock with year-round snow in sheltered depressions. The atmosphere is thin and the sunlight intense.",
+  "terrainCode": "M-PEA|E-EXT|T-SNO|X-RCK",
+  "generatedPrompt": "isometric view of realistic terrain tile with Mountain peak with expansive views in all directions. The terrain is predominantly rock with year-round snow in sheltered depressions. The atmosphere is thin and the sunlight intense., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-PEA|E-EXT|T-SNO|T-LCH), north: unknown terrain (M-PEA|E-EXT|T-SNO|W-WIN)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:36:20.577438+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Mountain peak with expansive views in all directions. The terrain is predominantly rock with year-round snow in sheltered depressions. The atmosphere is thin and the sunlight intense., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-PEA|E-EXT|T-SNO|T-LCH), north: unknown terrain (M-PEA|E-EXT|T-SNO|W-WIN)",
+        "resolution": "1024x1024",
+        "seed": 1922577555,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/40EdZLFjTfahkV6RdpgQzg.png?exp=1745458586&sig=5dd5c3941c48342d5b106b6d5cefd33b65ec92eb2ba6df5a4daac8018bab1abb"
+      }
+    ]
+  }
+}

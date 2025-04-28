@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 8,
+    "y": 6
+  },
+  "description": "Open woodland with diverse tree species and grassy clearings. A small stream has formed a more permanent channel, flowing gently over smooth stones and creating small pools.",
+  "terrainCode": "F-THN|E-FLT|W-STR|F-GOO",
+  "generatedPrompt": "isometric view of realistic terrain tile with Open woodland with diverse tree species and grassy clearings. A small stream has formed a more permanent channel, flowing gently over smooth stones and creating small pools., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|W-STR|X-RCK), east: unknown terrain (F-THN|E-SLI|X-SPR|H-DRY), north: unknown terrain (F-THN|E-FLT|A-RAB|A-FOX), south: unknown terrain (F-MIX|E-FLT|W-STR|X-BSH)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:12:00.306989+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Open woodland with diverse tree species and grassy clearings. A small stream has formed a more permanent channel, flowing gently over smooth stones and creating small pools., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|W-STR|X-RCK), east: unknown terrain (F-THN|E-SLI|X-SPR|H-DRY), north: unknown terrain (F-THN|E-FLT|A-RAB|A-FOX), south: unknown terrain (F-MIX|E-FLT|W-STR|X-BSH)",
+        "resolution": "1024x1024",
+        "seed": 128003774,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/ZTEEz282Tbmye5OWaN7Osg.png?exp=1745457125&sig=5d15d9f4ea66622e56e84671b17438bd45233cde8b5e56d03066341e2bf7b248"
+      }
+    ]
+  }
+}

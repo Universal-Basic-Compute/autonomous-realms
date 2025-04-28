@@ -309,3 +309,5 @@
 {"level":"error","message":"KinOS API request failed with status 500: {\"error\":\"Failed to send message to kin\"}","service":"tile-generator","timestamp":"2025-04-24 16:34:54"}
 {"level":"error","message":"Error generating tile conversation: KinOS API request failed with status 500: Internal Server Error","service":"tile-generator","timestamp":"2025-04-24 16:34:54"}
 {"level":"error","message":"Error sending message to kin: request to http://localhost:5000/v2/blueprints/autonomousrealms/kins/defaultcolony/messages failed, reason: ","service":"tile-generator","timestamp":"2025-04-24 16:35:06"}
+{"level":"error","message":"Error sending message to kin: request to http://localhost:5000/v2/blueprints/autonomousrealms/kins/hopesend/messages failed, reason: ","service":"tile-generator","timestamp":"2025-04-28 02:57:37"}
+{"level":"error","message":"Error sending message to kin: request to http://localhost:5000/v2/blueprints/autonomousrealms/kins/hopesend/messages failed, reason: ","service":"tile-generator","timestamp":"2025-04-28 02:57:37"}

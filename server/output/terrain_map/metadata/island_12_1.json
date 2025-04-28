@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 12,
+    "y": 1
+  },
+  "description": "The desert continues with slightly more varied terrain. Small dunes form around obstacles and shift with the wind. Drought-adapted shrubs are widely spaced across the landscape.",
+  "terrainCode": "D-SND|E-FLT|H-ARD|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with The desert continues with slightly more varied terrain. Small dunes form around obstacles and shift with the wind. Drought-adapted shrubs are widely spaced across the landscape., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-DUN|E-FLT|H-ARD|W-WIN), east: unknown terrain (D-ROC|E-SLI|X-RCK|H-ARD), north: unknown terrain (D-FLT|E-FLT|H-ARD|A-LIZ), south: unknown terrain (D-ROC|E-SLI|R-SND|H-ARD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:23:54.284456+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The desert continues with slightly more varied terrain. Small dunes form around obstacles and shift with the wind. Drought-adapted shrubs are widely spaced across the landscape., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-DUN|E-FLT|H-ARD|W-WIN), east: unknown terrain (D-ROC|E-SLI|X-RCK|H-ARD), north: unknown terrain (D-FLT|E-FLT|H-ARD|A-LIZ), south: unknown terrain (D-ROC|E-SLI|R-SND|H-ARD)",
+        "resolution": "1024x1024",
+        "seed": 1997504219,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/uaT7sPdQTYSkZCtEhLcVWA.png?exp=1745457839&sig=58ccab5bc610e14174c661a5d3c633f8667a89167608d7fd82ceb7b159367dc8"
+      }
+    ]
+  }
+}

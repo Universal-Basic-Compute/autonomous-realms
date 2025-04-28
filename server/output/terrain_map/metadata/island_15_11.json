@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 15,
+    "y": 11
+  },
+  "description": "Alpine terrain above the tree line. Low-growing vegetation forms a thick mat where soil has accumulated. Rocky outcrops create distinctive formations. Eagles nest on inaccessible ledges.",
+  "terrainCode": "M-HIG|E-VRY|P-FLW|A-EAG",
+  "generatedPrompt": "isometric view of realistic terrain tile with Alpine terrain above the tree line. Low-growing vegetation forms a thick mat where soil has accumulated. Rocky outcrops create distinctive formations. Eagles nest on inaccessible ledges., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: high mountains (M-HIG|E-VRY|P-FLW|W-STR), north: high mountains (M-HIG|E-VRY|P-FLW|W-STR), south: high mountains (M-HIG|E-EXT|T-ROC|A-GOA)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:35:33.081593+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Alpine terrain above the tree line. Low-growing vegetation forms a thick mat where soil has accumulated. Rocky outcrops create distinctive formations. Eagles nest on inaccessible ledges., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: high mountains (M-HIG|E-VRY|P-FLW|W-STR), north: high mountains (M-HIG|E-VRY|P-FLW|W-STR), south: high mountains (M-HIG|E-EXT|T-ROC|A-GOA)",
+        "resolution": "1024x1024",
+        "seed": 1358258674,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/Qd_ySMzsSbm1cL7-iBDg4Q.png?exp=1745458538&sig=6bf5b650f04641b2d97a2f4301ec9189c9baa901f71b7d1fe15e6a9c49bf22ad"
+      }
+    ]
+  }
+}

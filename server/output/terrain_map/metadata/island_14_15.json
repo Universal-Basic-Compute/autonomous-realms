@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 14,
+    "y": 15
+  },
+  "description": "Mountain peak with rocky terrain and permanent snow fields in protected north-facing slopes. Lichens are the primary vegetation, clinging to exposed rock surfaces. The view is spectacular.",
+  "terrainCode": "M-PEA|E-EXT|T-SNO|T-LCH",
+  "generatedPrompt": "isometric view of realistic terrain tile with Mountain peak with rocky terrain and permanent snow fields in protected north-facing slopes. Lichens are the primary vegetation, clinging to exposed rock surfaces. The view is spectacular., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: high mountains (M-HIG|E-EXT|R-SCR|T-SNO), east: unknown terrain (M-PEA|E-EXT|T-SNO|X-RCK), north: high mountains (M-HIG|E-EXT|T-SNO|X-RCK)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:33:05.036096+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Mountain peak with rocky terrain and permanent snow fields in protected north-facing slopes. Lichens are the primary vegetation, clinging to exposed rock surfaces. The view is spectacular., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: high mountains (M-HIG|E-EXT|R-SCR|T-SNO), east: unknown terrain (M-PEA|E-EXT|T-SNO|X-RCK), north: high mountains (M-HIG|E-EXT|T-SNO|X-RCK)",
+        "resolution": "1024x1024",
+        "seed": 67260954,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/SkHcgShTTTmEefKkmrxQ8A.png?exp=1745458390&sig=7cfd1eb58f427de1d470438e24c8f0a057e6616db6fc55f0fb0cc7fa8f891092"
+      }
+    ]
+  }
+}

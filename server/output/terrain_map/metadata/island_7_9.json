@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 7,
+    "y": 9
+  },
+  "description": "Mixed forest with increasing elevation. The ground is noticeably sloped with occasional rock outcrops breaking through the soil. The stream cuts more deeply into the land, creating steeper banks.",
+  "terrainCode": "F-MIX|E-MOD|X-RCK|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with Mixed forest with increasing elevation. The ground is noticeably sloped with occasional rock outcrops breaking through the soil. The stream cuts more deeply into the land, creating steeper banks., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-SLI|X-SPR|X-RCK), east: unknown terrain (F-MIX|E-MOD|X-RCK|A-DEE), north: oak forest (F-OAK|E-SLI|W-STR|X-BSH), south: unknown terrain (F-THN|E-MOD|X-RCK|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:09:23.845700+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Mixed forest with increasing elevation. The ground is noticeably sloped with occasional rock outcrops breaking through the soil. The stream cuts more deeply into the land, creating steeper banks., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-SLI|X-SPR|X-RCK), east: unknown terrain (F-MIX|E-MOD|X-RCK|A-DEE), north: oak forest (F-OAK|E-SLI|W-STR|X-BSH), south: unknown terrain (F-THN|E-MOD|X-RCK|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 1412264520,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/fpnJ2H8aSJeQ_XzBKH74sg.png?exp=1745456969&sig=7dd3e77667211f022f9c25ba48356398249312c5248b0356be43187d23b6d930"
+      }
+    ]
+  }
+}

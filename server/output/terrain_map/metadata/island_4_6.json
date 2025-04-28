@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 4,
+    "y": 6
+  },
+  "description": "The swamp transitions to a bottomland hardwood forest. The ground is still moist and shows signs of seasonal flooding, but supports consistent tree growth and understory vegetation.",
+  "terrainCode": "F-MIX|E-FLT|H-WET|F-RIC",
+  "generatedPrompt": "isometric view of realistic terrain tile with The swamp transitions to a bottomland hardwood forest. The ground is still moist and shows signs of seasonal flooding, but supports consistent tree growth and understory vegetation., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: river (W-RIV|E-FLT|X-RCK|X-BSH), east: unknown terrain (F-MIX|E-FLT|H-WET|A-DEE), north: unknown terrain (W-SWP|E-FLT|X-TRE|W-RIV), south: unknown terrain (F-MIX|E-FLT|F-RIC|A-DEE)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:59:11.174380+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The swamp transitions to a bottomland hardwood forest. The ground is still moist and shows signs of seasonal flooding, but supports consistent tree growth and understory vegetation., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: river (W-RIV|E-FLT|X-RCK|X-BSH), east: unknown terrain (F-MIX|E-FLT|H-WET|A-DEE), north: unknown terrain (W-SWP|E-FLT|X-TRE|W-RIV), south: unknown terrain (F-MIX|E-FLT|F-RIC|A-DEE)",
+        "resolution": "1024x1024",
+        "seed": 1193777138,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/SDQZMG0-QFmb8uRnQNDkLQ.png?exp=1745456357&sig=e678f7d49354bcda9c6baee1992fa88f2d96e17db53e0a9255f69d8d852c50f6"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 1,
+    "y": 14
+  },
+  "description": "Rocky foothills with scattered trees and exposed granite. The stream becomes a small cascade over rock shelves. Thin soil supports grasses and small shrubs that find purchase between rocks.",
+  "terrainCode": "M-FOO|E-MOD|W-STR|X-TRE",
+  "generatedPrompt": "isometric view of realistic terrain tile with Rocky foothills with scattered trees and exposed granite. The stream becomes a small cascade over rock shelves. Thin soil supports grasses and small shrubs that find purchase between rocks., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|X-TRE|X-BLD), east: unknown terrain (M-FOO|E-MOD|W-WAT|R-SND), north: unknown terrain (F-THN|E-SLI|W-STR|X-RCK), south: unknown terrain (M-FOO|E-HIG|W-WAT|X-TRE)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:51:16.724808+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Rocky foothills with scattered trees and exposed granite. The stream becomes a small cascade over rock shelves. Thin soil supports grasses and small shrubs that find purchase between rocks., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|X-TRE|X-BLD), east: unknown terrain (M-FOO|E-MOD|W-WAT|R-SND), north: unknown terrain (F-THN|E-SLI|W-STR|X-RCK), south: unknown terrain (M-FOO|E-HIG|W-WAT|X-TRE)",
+        "resolution": "1024x1024",
+        "seed": 122617198,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/mrFsWFeNQd2SWWdg3PFKwA.png?exp=1745455884&sig=5ebea577c5ad436d0280fc936268fc391b86962a6b5d5665b8b0196529201307"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 1,
+    "y": 13
+  },
+  "description": "The forest begins to thin as rocky outcrops become more prevalent. The stream runs faster over stone ledges. Exposed granite formations create natural stairs leading upward.",
+  "terrainCode": "F-THN|E-SLI|W-STR|X-RCK",
+  "generatedPrompt": "isometric view of realistic terrain tile with The forest begins to thin as rocky outcrops become more prevalent. The stream runs faster over stone ledges. Exposed granite formations create natural stairs leading upward., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-SLI|R-GRN|X-RCK), east: unknown terrain (F-MIX|E-MOD|W-STR|X-BLD), north: unknown terrain (F-MIX|E-FLT|F-RIC|W-STR), south: unknown terrain (M-FOO|E-MOD|W-STR|X-TRE)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:51:04.092996+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The forest begins to thin as rocky outcrops become more prevalent. The stream runs faster over stone ledges. Exposed granite formations create natural stairs leading upward., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-SLI|R-GRN|X-RCK), east: unknown terrain (F-MIX|E-MOD|W-STR|X-BLD), north: unknown terrain (F-MIX|E-FLT|F-RIC|W-STR), south: unknown terrain (M-FOO|E-MOD|W-STR|X-TRE)",
+        "resolution": "1024x1024",
+        "seed": 1105058407,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/D1KQBZ9YS9eS7h_r2KXsNg.png?exp=1745455869&sig=08fb997202335b5a07eb24601a7efb22602a1a78c032f5931c1d2205bf0355d2"
+      }
+    ]
+  }
+}

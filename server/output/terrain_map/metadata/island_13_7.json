@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 13,
+    "y": 7
+  },
+  "description": "Deep canyon with high walls of striated rock. A permanent spring emerges from between rock layers, creating a small oasis. The sudden water creates a shock of green in the arid environment.",
+  "terrainCode": "D-CYN|E-HIG|X-SPR|D-OAS",
+  "generatedPrompt": "isometric view of realistic terrain tile with Deep canyon with high walls of striated rock. A permanent spring emerges from between rock layers, creating a small oasis. The sudden water creates a shock of green in the arid environment., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:28:55.369051+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Deep canyon with high walls of striated rock. A permanent spring emerges from between rock layers, creating a small oasis. The sudden water creates a shock of green in the arid environment., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+        "resolution": "1024x1024",
+        "seed": 344371831,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/7V6XH4miS-6fh282-cpfqw.png?exp=1745458140&sig=038f7cc9edb688e775d72c8035e587b000eba7cf3a875010304a90a23cc265e8"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 4,
+    "y": 1
+  },
+  "description": "Delta channels continue to branch and reconnect through marshy terrain. Areas between waterways support tall grasses and reeds. The soil is waterlogged and rich with organic matter.",
+  "terrainCode": "W-DEL|E-FLT|F-RIC|H-SAT",
+  "generatedPrompt": "isometric view of realistic terrain tile with Delta channels continue to branch and reconnect through marshy terrain. Areas between waterways support tall grasses and reeds. The soil is waterlogged and rich with organic matter., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-EST|E-FLT|H-SAT|X-BSH), east: unknown terrain (W-MRS|E-FLT|W-PON|A-FRO), north: unknown terrain (W-DEL|E-FLT|F-RIC|H-WET), south: unknown terrain (W-SWP|E-FLT|H-SAT|X-TRE)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:58:12.511085+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Delta channels continue to branch and reconnect through marshy terrain. Areas between waterways support tall grasses and reeds. The soil is waterlogged and rich with organic matter., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-EST|E-FLT|H-SAT|X-BSH), east: unknown terrain (W-MRS|E-FLT|W-PON|A-FRO), north: unknown terrain (W-DEL|E-FLT|F-RIC|H-WET), south: unknown terrain (W-SWP|E-FLT|H-SAT|X-TRE)",
+        "resolution": "1024x1024",
+        "seed": 1500322835,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/vbOtkzNoSGav5GBaOlw73w.png?exp=1745456297&sig=ba85c2851057dd79d8a5dc15e7b89e5d7dded82f6a18ae3f1c38ea7add6b6ed8"
+      }
+    ]
+  }
+}

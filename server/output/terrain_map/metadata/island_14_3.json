@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 14,
+    "y": 3
+  },
+  "description": "The foothills rise into more substantial mountains. Rocky outcrops and cliff faces become more common. Pinyon pine and juniper form an open woodland in areas with sufficient soil.",
+  "terrainCode": "M-FOO|E-HIG|F-PIN|X-CLF",
+  "generatedPrompt": "isometric view of realistic terrain tile with The foothills rise into more substantial mountains. Rocky outcrops and cliff faces become more common. Pinyon pine and juniper form an open woodland in areas with sufficient soil., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-MSA|E-MOD|X-CLF|H-ARD), east: low mountains (M-LOW|E-HIG|F-PIN|W-STR), north: unknown terrain (M-FOO|E-MOD|X-CFM|X-SPR), south: low mountains (M-LOW|E-HIG|F-PIN|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:30:41.009878+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The foothills rise into more substantial mountains. Rocky outcrops and cliff faces become more common. Pinyon pine and juniper form an open woodland in areas with sufficient soil., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-MSA|E-MOD|X-CLF|H-ARD), east: low mountains (M-LOW|E-HIG|F-PIN|W-STR), north: unknown terrain (M-FOO|E-MOD|X-CFM|X-SPR), south: low mountains (M-LOW|E-HIG|F-PIN|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 1621534813,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/LncrKopdRAWbhKalzU3CUw.png?exp=1745458246&sig=1761bc82161af4b7b901035d4c97b32087b7a3aaf0308f0f5f6208bcd20c81c2"
+      }
+    ]
+  }
+}

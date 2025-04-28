@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 3,
+    "y": 5
+  },
+  "description": "A bend in the river creates a slower section where silt has accumulated. The outer bank is steeper and slightly eroded while the inner curve forms a small beach area.",
+  "terrainCode": "W-RIV|E-FLT|H-WET|X-TRE",
+  "generatedPrompt": "isometric view of realistic terrain tile with A bend in the river creates a slower section where silt has accumulated. The outer bank is steeper and slightly eroded while the inner curve forms a small beach area., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+  "ideogramResponse": {
+    "created": "2025-04-23T07:04:03.257289+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with A bend in the river creates a slower section where silt has accumulated. The outer bank is steeper and slightly eroded while the inner curve forms a small beach area., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+        "resolution": "1024x1024",
+        "seed": 1840091484,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/-vOqVPElRmyhrOhmhpLHSA.png?exp=1745478248&sig=e972759d5743d6ddbc1e1d694cf8eade69263d673c6117146371a2f51268ad9f"
+      }
+    ]
+  }
+}

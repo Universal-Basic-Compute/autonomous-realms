@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 1,
+    "y": 15
+  },
+  "description": "Higher foothills with increasing stone and less vegetation. A small waterfall forms as the stream drops over a granite ledge. Mountain juniper and hardy pines cling to protected pockets of soil.",
+  "terrainCode": "M-FOO|E-HIG|W-WAT|X-TRE",
+  "generatedPrompt": "isometric view of realistic terrain tile with Higher foothills with increasing stone and less vegetation. A small waterfall forms as the stream drops over a granite ledge. Mountain juniper and hardy pines cling to protected pockets of soil., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-HIG|R-GRN|A-GOA), east: unknown terrain (M-FOO|E-HIG|W-STR|X-TRE), north: unknown terrain (M-FOO|E-MOD|W-STR|X-TRE)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:51:30.525999+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Higher foothills with increasing stone and less vegetation. A small waterfall forms as the stream drops over a granite ledge. Mountain juniper and hardy pines cling to protected pockets of soil., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-HIG|R-GRN|A-GOA), east: unknown terrain (M-FOO|E-HIG|W-STR|X-TRE), north: unknown terrain (M-FOO|E-MOD|W-STR|X-TRE)",
+        "resolution": "1024x1024",
+        "seed": 81386504,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/Z7Q7rJ2WSkqjo_0nyGdILA.png?exp=1745455895&sig=585449e49b6929ec5d05f671a0ae23420d6110c70d1a6b552dc21c9ec416749f"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 3,
+    "y": 8
+  },
+  "description": "The river continues through a wide valley. The current is moderate with occasional deeper pools. The banks are less steep here, allowing vegetation to grow close to the water's edge.",
+  "terrainCode": "W-RIV|E-FLT|H-WET|A-FIS",
+  "generatedPrompt": "isometric view of realistic terrain tile with The river continues through a wide valley. The current is moderate with occasional deeper pools. The banks are less steep here, allowing vegetation to grow close to the water's edge., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: basic grassland (P-BAS|E-FLT|W-STR|X-BSH), east: oak forest (F-OAK|E-FLT|F-RIC|A-FOX), north: river (W-RIV|E-FLT|X-TRE|F-GOO), south: river (W-RIV|E-FLT|H-FLD|X-TRE)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:56:25.422454+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The river continues through a wide valley. The current is moderate with occasional deeper pools. The banks are less steep here, allowing vegetation to grow close to the water's edge., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: basic grassland (P-BAS|E-FLT|W-STR|X-BSH), east: oak forest (F-OAK|E-FLT|F-RIC|A-FOX), north: river (W-RIV|E-FLT|X-TRE|F-GOO), south: river (W-RIV|E-FLT|H-FLD|X-TRE)",
+        "resolution": "1024x1024",
+        "seed": 597689923,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/HJ8ZHBfrTIq1uhBUk-HKVQ.png?exp=1745456190&sig=13a0ebf0eb236caeaf0b1cdebf8e6d3d82174ecc9b1e07b43b918b96504a9099"
+      }
+    ]
+  }
+}

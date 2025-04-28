@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 8,
+    "y": 0
+  },
+  "description": "Vast prairie with tall grasses reaching waist height. The flat terrain extends to the horizon, occasionally interrupted by gentle swales. The soil is deep and rich from centuries of grass growth and decay.",
+  "terrainCode": "P-TAL|E-FLT|F-RIC|W-WIN",
+  "generatedPrompt": "isometric view of realistic terrain tile with Vast prairie with tall grasses reaching waist height. The flat terrain extends to the horizon, occasionally interrupted by gentle swales. The soil is deep and rich from centuries of grass growth and decay., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: lush grassland (P-LUS|E-FLT|F-RIC|W-STR), east: unknown terrain (P-DRY|E-FLT|F-AVG|H-DRY), south: unknown terrain (P-FLW|E-FLT|F-RIC|A-BUT)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:10:47.797597+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Vast prairie with tall grasses reaching waist height. The flat terrain extends to the horizon, occasionally interrupted by gentle swales. The soil is deep and rich from centuries of grass growth and decay., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: lush grassland (P-LUS|E-FLT|F-RIC|W-STR), east: unknown terrain (P-DRY|E-FLT|F-AVG|H-DRY), south: unknown terrain (P-FLW|E-FLT|F-RIC|A-BUT)",
+        "resolution": "1024x1024",
+        "seed": 474262703,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/UokzvXHqR9ewSiaBLBKAiA.png?exp=1745457052&sig=0d0146868ee6920742736768a0d8a0190c24015df73b1da75b84de7bea16b653"
+      }
+    ]
+  }
+}

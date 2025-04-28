@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 2,
+    "y": 6
+  },
+  "description": "The salt marsh transitions to fresher conditions as distance from the ocean increases. The vegetation becomes more diverse with taller reeds and cattails appearing in clusters.",
+  "terrainCode": "W-MRS|E-FLT|H-SAT|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with The salt marsh transitions to fresher conditions as distance from the ocean increases. The vegetation becomes more diverse with taller reeds and cattails appearing in clusters., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-DUN|E-MOD|X-BSH|W-WIN), east: river (W-RIV|E-FLT|X-RCK|X-BSH), north: unknown terrain (W-MRS|E-FLT|H-SAT|A-BIR), south: unknown terrain (W-MRS|E-FLT|W-STR|A-FRO)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:52:52.586803+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The salt marsh transitions to fresher conditions as distance from the ocean increases. The vegetation becomes more diverse with taller reeds and cattails appearing in clusters., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-DUN|E-MOD|X-BSH|W-WIN), east: river (W-RIV|E-FLT|X-RCK|X-BSH), north: unknown terrain (W-MRS|E-FLT|H-SAT|A-BIR), south: unknown terrain (W-MRS|E-FLT|W-STR|A-FRO)",
+        "resolution": "1024x1024",
+        "seed": 1860476550,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/jPZjiqVlTX2MpUPoTxT81Q.png?exp=1745455977&sig=31519d6faa150ad0c089cf12c940c142db28ab7cb6a67ef80c69b04f953b1480"
+      }
+    ]
+  }
+}

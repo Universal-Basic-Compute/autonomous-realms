@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 14,
+    "y": 14
+  },
+  "description": "Near the mountain summit, the landscape is predominantly rock with minimal vegetation. Patches of snow remain in sheltered locations throughout the year. The air is noticeably thin.",
+  "terrainCode": "M-HIG|E-EXT|T-SNO|X-RCK",
+  "generatedPrompt": "isometric view of realistic terrain tile with Near the mountain summit, the landscape is predominantly rock with minimal vegetation. Patches of snow remain in sheltered locations throughout the year. The air is noticeably thin., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: high mountains (M-HIG|E-VRY|F-PIN|W-STR), east: unknown terrain (M-PEA|E-EXT|T-SNO|W-WIN), north: high mountains (M-HIG|E-VRY|T-ROC|W-STR), south: unknown terrain (M-PEA|E-EXT|T-SNO|T-LCH)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:32:53.566033+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Near the mountain summit, the landscape is predominantly rock with minimal vegetation. Patches of snow remain in sheltered locations throughout the year. The air is noticeably thin., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: high mountains (M-HIG|E-VRY|F-PIN|W-STR), east: unknown terrain (M-PEA|E-EXT|T-SNO|W-WIN), north: high mountains (M-HIG|E-VRY|T-ROC|W-STR), south: unknown terrain (M-PEA|E-EXT|T-SNO|T-LCH)",
+        "resolution": "1024x1024",
+        "seed": 259538362,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/1HW79G4RQeKB83lnpyrToQ.png?exp=1745458378&sig=d267daa749c26fe830dd3e87713ba38366b74dbded6967dd812abf1ce1087e9c"
+      }
+    ]
+  }
+}

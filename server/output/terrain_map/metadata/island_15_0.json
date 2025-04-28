@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 15,
+    "y": 0
+  },
+  "description": "High rocky foothills forming the base of a mountain range. The terrain rises steadily with numerous boulders and rock formations. Vegetation is sparse but diverse with drought-resistant species.",
+  "terrainCode": "M-FOO|E-MOD|X-BLD|H-DRY",
+  "generatedPrompt": "isometric view of realistic terrain tile with High rocky foothills forming the base of a mountain range. The terrain rises steadily with numerous boulders and rock formations. Vegetation is sparse but diverse with drought-resistant species., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-SLI|X-BLD|H-DRY), south: unknown terrain (M-FOO|E-HIG|F-PIN|H-DRY)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:33:17.486589+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with High rocky foothills forming the base of a mountain range. The terrain rises steadily with numerous boulders and rock formations. Vegetation is sparse but diverse with drought-resistant species., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-SLI|X-BLD|H-DRY), south: unknown terrain (M-FOO|E-HIG|F-PIN|H-DRY)",
+        "resolution": "1024x1024",
+        "seed": 89089952,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/QyFOuezBSN2pu6VCKOLBxQ.png?exp=1745458402&sig=888fede08451dbd6184969b1415e7d306158b48b36d62038232db67ef769bbd5"
+      }
+    ]
+  }
+}

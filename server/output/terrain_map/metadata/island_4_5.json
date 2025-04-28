@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 4,
+    "y": 5
+  },
+  "description": "Areas of higher ground begin to emerge from the swamp. These islands support additional tree species and drier understory vegetation. The main river channel becomes more distinct.",
+  "terrainCode": "W-SWP|E-FLT|X-TRE|W-RIV",
+  "generatedPrompt": "isometric view of realistic terrain tile with Areas of higher ground begin to emerge from the swamp. These islands support additional tree species and drier understory vegetation. The main river channel becomes more distinct., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:34:56.549233+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Areas of higher ground begin to emerge from the swamp. These islands support additional tree species and drier understory vegetation. The main river channel becomes more distinct., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+        "resolution": "1024x1024",
+        "seed": 52345764,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/QWQW9_hNSYOKRbhAsy0Kuw.png?exp=1745458502&sig=23252d6f1c3e257a86da635ba08c7d38041a831838ab879c54afec26f6b8ef42"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 2,
+    "y": 14
+  },
+  "description": "The forest thins as the foothills become more prominent. The stream forms a series of small waterfalls. Exposed rock faces show layers of ancient sediment, and hardy mountain vegetation appears.",
+  "terrainCode": "M-FOO|E-MOD|W-WAT|R-SND",
+  "generatedPrompt": "isometric view of realistic terrain tile with The forest thins as the foothills become more prominent. The stream forms a series of small waterfalls. Exposed rock faces show layers of ancient sediment, and hardy mountain vegetation appears., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|W-STR|X-TRE), east: unknown terrain (W-WAT|E-HIG|X-CLF|X-BLD), north: unknown terrain (F-MIX|E-MOD|W-STR|X-BLD), south: unknown terrain (M-FOO|E-HIG|W-STR|X-TRE)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:54:26.285445+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The forest thins as the foothills become more prominent. The stream forms a series of small waterfalls. Exposed rock faces show layers of ancient sediment, and hardy mountain vegetation appears., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|W-STR|X-TRE), east: unknown terrain (W-WAT|E-HIG|X-CLF|X-BLD), north: unknown terrain (F-MIX|E-MOD|W-STR|X-BLD), south: unknown terrain (M-FOO|E-HIG|W-STR|X-TRE)",
+        "resolution": "1024x1024",
+        "seed": 1958010158,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/UNAPHseJQy-FIUtnJbpfJQ.png?exp=1745456071&sig=bc6d9ac1dce5fcbf95f24fc25c962ba5936a4968390350c10010e5920ae5d09a"
+      }
+    ]
+  }
+}

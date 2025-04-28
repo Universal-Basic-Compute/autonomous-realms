@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 15,
+    "y": 7
+  },
+  "description": "The mountain valley narrows and begins to climb more steeply. The forest remains dense with predominantly pine and fir trees. The stream forms small rapids as it navigates the increased slope.",
+  "terrainCode": "M-VAL|E-HIG|F-PIN|W-RPD",
+  "generatedPrompt": "isometric view of realistic terrain tile with The mountain valley narrows and begins to climb more steeply. The forest remains dense with predominantly pine and fir trees. The stream forms small rapids as it navigates the increased slope., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:35:06.876009+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The mountain valley narrows and begins to climb more steeply. The forest remains dense with predominantly pine and fir trees. The stream forms small rapids as it navigates the increased slope., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+        "resolution": "1024x1024",
+        "seed": 584156115,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/XWjJExvfTca1qd0NlQhRUA.png?exp=1745458512&sig=bcb03c216f86de889718273482f73bc6008e1d7b6cd0dd5d1b320e6a6d7a1d6c"
+      }
+    ]
+  }
+}

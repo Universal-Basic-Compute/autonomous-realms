@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 1,
+    "y": 6
+  },
+  "description": "The dunes grow taller and more stabilized with diverse vegetation. Beach plums and bayberry shrubs cluster in protected areas. Wind patterns create rippling patterns in the exposed sand.",
+  "terrainCode": "D-DUN|E-MOD|X-BSH|W-WIN",
+  "generatedPrompt": "isometric view of realistic terrain tile with The dunes grow taller and more stabilized with diverse vegetation. Beach plums and bayberry shrubs cluster in protected areas. Wind patterns create rippling patterns in the exposed sand., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-DUN|E-MOD|W-WIN|A-RAB), east: unknown terrain (W-MRS|E-FLT|H-SAT|X-BSH), north: unknown terrain (D-DUN|E-MOD|X-BSH|X-HOL), south: unknown terrain (P-SCR|E-SLI|X-BSH|A-RAB)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:49:39.529379+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The dunes grow taller and more stabilized with diverse vegetation. Beach plums and bayberry shrubs cluster in protected areas. Wind patterns create rippling patterns in the exposed sand., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-DUN|E-MOD|W-WIN|A-RAB), east: unknown terrain (W-MRS|E-FLT|H-SAT|X-BSH), north: unknown terrain (D-DUN|E-MOD|X-BSH|X-HOL), south: unknown terrain (P-SCR|E-SLI|X-BSH|A-RAB)",
+        "resolution": "1024x1024",
+        "seed": 1421496913,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/gYJn11BiTT-fBtQavatyQg.png?exp=1745455785&sig=1b594d5fd5cfbdc8dbe25434d83b6149b7fb0097a8af8ffd0ccb5ee7e387a189"
+      }
+    ]
+  }
+}

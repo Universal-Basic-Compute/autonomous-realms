@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 1,
+    "y": 8
+  },
+  "description": "Coastal heath blends into pine barrens with sandy soil supporting widely spaced pitch pines. The understory contains low blueberry bushes and patches of reindeer lichen.",
+  "terrainCode": "F-PIN|E-FLT|F-POO|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with Coastal heath blends into pine barrens with sandy soil supporting widely spaced pitch pines. The understory contains low blueberry bushes and patches of reindeer lichen., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (P-SCR|E-SLI|X-BSH|X-TRE), east: basic grassland (P-BAS|E-FLT|W-STR|X-BSH), north: unknown terrain (P-SCR|E-SLI|X-BSH|A-RAB), south: pine forest (F-PIN|E-FLT|F-POO|X-RCK)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:50:04.149413+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Coastal heath blends into pine barrens with sandy soil supporting widely spaced pitch pines. The understory contains low blueberry bushes and patches of reindeer lichen., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (P-SCR|E-SLI|X-BSH|X-TRE), east: basic grassland (P-BAS|E-FLT|W-STR|X-BSH), north: unknown terrain (P-SCR|E-SLI|X-BSH|A-RAB), south: pine forest (F-PIN|E-FLT|F-POO|X-RCK)",
+        "resolution": "1024x1024",
+        "seed": 439034541,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/6KVHMavcQNiw4DluRN_yeA.png?exp=1745455810&sig=2fb11cc8d7c49eb462d044664b25f975bf38a3345af470004ceedff2e2c7ad7d"
+      }
+    ]
+  }
+}

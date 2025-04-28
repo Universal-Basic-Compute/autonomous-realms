@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 3,
+    "y": 7
+  },
+  "description": "A broader section of river with an island formed in the center. The water divides and rejoins, creating diverse flow patterns. The small island supports several trees and lush vegetation.",
+  "terrainCode": "W-RIV|E-FLT|X-TRE|F-GOO",
+  "generatedPrompt": "isometric view of realistic terrain tile with A broader section of river with an island formed in the center. The water divides and rejoins, creating diverse flow patterns. The small island supports several trees and lush vegetation., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-MRS|E-FLT|W-STR|A-FRO), east: unknown terrain (F-MIX|E-FLT|F-RIC|A-DEE), north: river (W-RIV|E-FLT|X-RCK|X-BSH), south: river (W-RIV|E-FLT|H-WET|A-FIS)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:56:13.891648+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with A broader section of river with an island formed in the center. The water divides and rejoins, creating diverse flow patterns. The small island supports several trees and lush vegetation., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-MRS|E-FLT|W-STR|A-FRO), east: unknown terrain (F-MIX|E-FLT|F-RIC|A-DEE), north: river (W-RIV|E-FLT|X-RCK|X-BSH), south: river (W-RIV|E-FLT|H-WET|A-FIS)",
+        "resolution": "1024x1024",
+        "seed": 568359863,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/akRcYEhISMOu92QVkTAHAg.png?exp=1745456178&sig=93c7c7ea6e3d1dcea14ac34cdf6c3fe5a6a059ac9730c1a9849bd66cfdf6cbfd"
+      }
+    ]
+  }
+}

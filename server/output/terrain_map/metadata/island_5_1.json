@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 5,
+    "y": 1
+  },
+  "description": "The wetlands continue with areas of deeper water forming small ponds. Cattails grow densely along the edges and in shallow sections. Dragonflies hover above the water's surface.",
+  "terrainCode": "W-MRS|E-FLT|W-PON|A-FRO",
+  "generatedPrompt": "isometric view of realistic terrain tile with The wetlands continue with areas of deeper water forming small ponds. Cattails grow densely along the edges and in shallow sections. Dragonflies hover above the water's surface., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-DEL|E-FLT|F-RIC|H-SAT), east: lush grassland (P-LUS|E-FLT|H-WET|A-BUT), north: unknown terrain (W-MRS|E-FLT|H-SAT|A-BIR), south: unknown terrain (W-SWP|E-FLT|H-SAT|X-TRE)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:01:23.525171+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The wetlands continue with areas of deeper water forming small ponds. Cattails grow densely along the edges and in shallow sections. Dragonflies hover above the water's surface., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-DEL|E-FLT|F-RIC|H-SAT), east: lush grassland (P-LUS|E-FLT|H-WET|A-BUT), north: unknown terrain (W-MRS|E-FLT|H-SAT|A-BIR), south: unknown terrain (W-SWP|E-FLT|H-SAT|X-TRE)",
+        "resolution": "1024x1024",
+        "seed": 1106842107,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/q4Yxskv6QEOpFSvlM_-tBQ.png?exp=1745456489&sig=edfe6bcca2da9c45ccdd82aa8d53338a375e5f46515719e341ec2835c69444ed"
+      }
+    ]
+  }
+}

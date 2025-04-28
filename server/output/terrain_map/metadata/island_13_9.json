@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 13,
+    "y": 9
+  },
+  "description": "The canyon widens as it approaches its mouth. The walls lower gradually but remain impressive. The stream from the oasis continues, creating a ribbon of green vegetation along its course.",
+  "terrainCode": "D-CYN|E-MOD|W-STR|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with The canyon widens as it approaches its mouth. The walls lower gradually but remain impressive. The stream from the oasis continues, creating a ribbon of green vegetation along its course., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:28:58.292926+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The canyon widens as it approaches its mouth. The walls lower gradually but remain impressive. The stream from the oasis continues, creating a ribbon of green vegetation along its course., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+        "resolution": "1024x1024",
+        "seed": 247432245,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/f9mnR68qTMKTpu6Uj4nfgg.png?exp=1745458144&sig=846c839d57c68d78c66883b661682ccc3efbdda6a02e83996bc19ea4e9c01650"
+      }
+    ]
+  }
+}

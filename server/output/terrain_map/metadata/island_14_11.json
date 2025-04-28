@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 14,
+    "y": 11
+  },
+  "description": "The tree line begins to appear with forest giving way to alpine meadow. Stunted, gnarled trees mark the transition zone. Small streams form from snowmelt, joining to create a larger flow.",
+  "terrainCode": "M-HIG|E-VRY|P-FLW|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with The tree line begins to appear with forest giving way to alpine meadow. Stunted, gnarled trees mark the transition zone. Small streams form from snowmelt, joining to create a larger flow., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-HIG|F-PIN|W-WAT), east: high mountains (M-HIG|E-VRY|P-FLW|A-EAG), north: high mountains (M-HIG|E-VRY|P-FLW|X-HOL), south: high mountains (M-HIG|E-VRY|P-FLW|A-GOA)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:32:17.175493+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The tree line begins to appear with forest giving way to alpine meadow. Stunted, gnarled trees mark the transition zone. Small streams form from snowmelt, joining to create a larger flow., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-HIG|F-PIN|W-WAT), east: high mountains (M-HIG|E-VRY|P-FLW|A-EAG), north: high mountains (M-HIG|E-VRY|P-FLW|X-HOL), south: high mountains (M-HIG|E-VRY|P-FLW|A-GOA)",
+        "resolution": "1024x1024",
+        "seed": 1640789588,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/UzK6DsTAQnaGB8on8VZw7A.png?exp=1745458342&sig=00ee028ef7580255f4c136c4e7fcb5289327ce4f19cb25a4ab364dc55d37bd03"
+      }
+    ]
+  }
+}

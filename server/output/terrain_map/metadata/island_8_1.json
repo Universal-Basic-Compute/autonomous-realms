@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 8,
+    "y": 1
+  },
+  "description": "The prairie continues with more diverse vegetation including flowering plants that attract bees and butterflies. The ground is perfectly level with exceptional soil quality.",
+  "terrainCode": "P-FLW|E-FLT|F-RIC|A-BUT",
+  "generatedPrompt": "isometric view of realistic terrain tile with The prairie continues with more diverse vegetation including flowering plants that attract bees and butterflies. The ground is perfectly level with exceptional soil quality., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (P-FLW|E-FLT|F-RIC|A-BUT), east: unknown terrain (P-DRY|E-FLT|H-DRY|X-BSH), north: unknown terrain (P-TAL|E-FLT|F-RIC|W-WIN), south: lush grassland (P-LUS|E-FLT|X-TRE|F-RIC)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:10:58.802130+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The prairie continues with more diverse vegetation including flowering plants that attract bees and butterflies. The ground is perfectly level with exceptional soil quality., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (P-FLW|E-FLT|F-RIC|A-BUT), east: unknown terrain (P-DRY|E-FLT|H-DRY|X-BSH), north: unknown terrain (P-TAL|E-FLT|F-RIC|W-WIN), south: lush grassland (P-LUS|E-FLT|X-TRE|F-RIC)",
+        "resolution": "1024x1024",
+        "seed": 1175994552,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/ae401AH6SBaNxOVPBm7AxA.png?exp=1745457063&sig=311a8096d41a58f0e46b91a590143d3ebadbbd85b9772954268645dfcb15ee78"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 0,
+    "y": 15
+  },
+  "description": "Rocky foothills with sparse vegetation. Exposed granite dominates the landscape with weather-worn surfaces. Mountain goats navigate the terrain with ease, grazing on tough grasses.",
+  "terrainCode": "M-FOO|E-HIG|R-GRN|A-GOA",
+  "generatedPrompt": "isometric view of realistic terrain tile with Rocky foothills with sparse vegetation. Exposed granite dominates the landscape with weather-worn surfaces. Mountain goats navigate the terrain with ease, grazing on tough grasses., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: unknown terrain (M-FOO|E-HIG|W-WAT|X-TRE), north: unknown terrain (M-FOO|E-MOD|X-TRE|X-BLD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:48:16.107313+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Rocky foothills with sparse vegetation. Exposed granite dominates the landscape with weather-worn surfaces. Mountain goats navigate the terrain with ease, grazing on tough grasses., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: unknown terrain (M-FOO|E-HIG|W-WAT|X-TRE), north: unknown terrain (M-FOO|E-MOD|X-TRE|X-BLD)",
+        "resolution": "1024x1024",
+        "seed": 211163698,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/pAuyPQlIT026NUEOsZQ4mQ.png?exp=1745455701&sig=087bcce06165d234a7075123d07971ac281a986fed704b4a636fa1f32555656b"
+      }
+    ]
+  }
+}

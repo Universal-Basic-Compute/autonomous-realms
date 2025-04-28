@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 7,
+    "y": 10
+  },
+  "description": "The forest begins to thin as rocky terrain becomes more dominant. Trees grow in uneven patterns, finding soil between rock formations. The stream descends more rapidly, creating small cascades.",
+  "terrainCode": "F-THN|E-MOD|X-RCK|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with The forest begins to thin as rocky terrain becomes more dominant. Trees grow in uneven patterns, finding soil between rock formations. The stream descends more rapidly, creating small cascades., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-SLI|X-RCK|X-TRE), east: unknown terrain (F-MIX|E-MOD|X-BLD|W-STR), north: unknown terrain (F-MIX|E-MOD|X-RCK|W-STR), south: unknown terrain (M-FOO|E-MOD|F-THN|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:09:36.647575+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The forest begins to thin as rocky terrain becomes more dominant. Trees grow in uneven patterns, finding soil between rock formations. The stream descends more rapidly, creating small cascades., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-SLI|X-RCK|X-TRE), east: unknown terrain (F-MIX|E-MOD|X-BLD|W-STR), north: unknown terrain (F-MIX|E-MOD|X-RCK|W-STR), south: unknown terrain (M-FOO|E-MOD|F-THN|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 233643355,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/u5kYfND9QOuWgP3wQ5dmKQ.png?exp=1745456981&sig=2bedaa3e7ac298c899ae26f27c44dd96094fed42721f9eb5c7cc6c35732b0a83"
+      }
+    ]
+  }
+}

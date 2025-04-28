@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 9,
+    "y": 13
+  },
+  "description": "Steeper terrain with exposed rock faces and thin forest cover. Pines grow at angles from the sloping ground. The stream follows a rocky course, occasionally disappearing under boulder fields.",
+  "terrainCode": "M-FOO|E-HIG|F-PIN|X-BLD",
+  "generatedPrompt": "isometric view of realistic terrain tile with Steeper terrain with exposed rock faces and thin forest cover. Pines grow at angles from the sloping ground. The stream follows a rocky course, occasionally disappearing under boulder fields., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-HIG|X-CLF|W-STR), east: low mountains (M-LOW|E-HIG|F-PIN|X-CLF), north: unknown terrain (M-FOO|E-HIG|F-PIN|W-RPD), south: low mountains (M-LOW|E-HIG|R-LST|W-WAT)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:16:40.893961+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Steeper terrain with exposed rock faces and thin forest cover. Pines grow at angles from the sloping ground. The stream follows a rocky course, occasionally disappearing under boulder fields., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-HIG|X-CLF|W-STR), east: low mountains (M-LOW|E-HIG|F-PIN|X-CLF), north: unknown terrain (M-FOO|E-HIG|F-PIN|W-RPD), south: low mountains (M-LOW|E-HIG|R-LST|W-WAT)",
+        "resolution": "1024x1024",
+        "seed": 2026569853,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/nNwE5jNpTm6nUBiB05REUw.png?exp=1745457406&sig=0b797614abf67ab8acb29d4bcc737ab31749d8116840e5e3b56f267184ec8942"
+      }
+    ]
+  }
+}

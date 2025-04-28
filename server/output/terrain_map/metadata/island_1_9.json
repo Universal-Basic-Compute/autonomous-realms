@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 1,
+    "y": 9
+  },
+  "description": "Pine barrens continue with mature pitch pines forming an open canopy. Sandy soil supports specialized vegetation adapted to the poor nutrients. Occasional small clearings reveal sun-baked ground.",
+  "terrainCode": "F-PIN|E-FLT|F-POO|X-RCK",
+  "generatedPrompt": "isometric view of realistic terrain tile with Pine barrens continue with mature pitch pines forming an open canopy. Sandy soil supports specialized vegetation adapted to the poor nutrients. Occasional small clearings reveal sun-baked ground., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: pine forest (F-PIN|E-SLI|W-WIN|A-BIR), east: lush grassland (P-LUS|E-FLT|F-RIC|W-STR), north: pine forest (F-PIN|E-FLT|F-POO|X-BSH), south: unknown terrain (F-MIX|E-FLT|F-AVG|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:50:16.887336+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Pine barrens continue with mature pitch pines forming an open canopy. Sandy soil supports specialized vegetation adapted to the poor nutrients. Occasional small clearings reveal sun-baked ground., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: pine forest (F-PIN|E-SLI|W-WIN|A-BIR), east: lush grassland (P-LUS|E-FLT|F-RIC|W-STR), north: pine forest (F-PIN|E-FLT|F-POO|X-BSH), south: unknown terrain (F-MIX|E-FLT|F-AVG|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 685285586,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/wXzClXw1RnepVQLmNkK5zA.png?exp=1745455822&sig=3de261958d6fb3d4eb135ebc7c03505ee6e44f9cdce671321bbd2d1b2e09efaf"
+      }
+    ]
+  }
+}

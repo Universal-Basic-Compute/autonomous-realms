@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 15,
+    "y": 5
+  },
+  "description": "The mountain slope features a dramatic cliff face with a waterfall cascading over its edge. The surrounding terrain is rocky with forest growing wherever soil has accumulated.",
+  "terrainCode": "M-LOW|E-HIG|X-CLF|W-WAT",
+  "generatedPrompt": "isometric view of realistic terrain tile with The mountain slope features a dramatic cliff face with a waterfall cascading over its edge. The surrounding terrain is rocky with forest growing wherever soil has accumulated., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|F-PIN|W-WAT), north: low mountains (M-LOW|E-HIG|F-PIN|W-WAT), south: unknown terrain (M-VAL|E-HIG|F-PIN|P-FLW)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:34:19.907093+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The mountain slope features a dramatic cliff face with a waterfall cascading over its edge. The surrounding terrain is rocky with forest growing wherever soil has accumulated., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|F-PIN|W-WAT), north: low mountains (M-LOW|E-HIG|F-PIN|W-WAT), south: unknown terrain (M-VAL|E-HIG|F-PIN|P-FLW)",
+        "resolution": "1024x1024",
+        "seed": 255335621,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/ncXwaFYyRM-FR6-KgOT1SQ.png?exp=1745458465&sig=8858e1fc22b282af143fdd9a0a2e43e11bd8629ceccf4088503f23b2f59307eb"
+      }
+    ]
+  }
+}

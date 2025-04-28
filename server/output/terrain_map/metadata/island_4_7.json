@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 4,
+    "y": 7
+  },
+  "description": "Rich bottomland forest with diverse hardwood trees. The soil is dark and fertile from river sediment. The forest floor is covered with ferns, wildflowers, and mushrooms in shaded areas.",
+  "terrainCode": "F-MIX|E-FLT|F-RIC|A-DEE",
+  "generatedPrompt": "isometric view of realistic terrain tile with Rich bottomland forest with diverse hardwood trees. The soil is dark and fertile from river sediment. The forest floor is covered with ferns, wildflowers, and mushrooms in shaded areas., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: river (W-RIV|E-FLT|X-TRE|F-GOO), east: unknown terrain (F-MIX|E-FLT|F-RIC|H-FLD), north: unknown terrain (F-MIX|E-FLT|H-WET|F-RIC), south: oak forest (F-OAK|E-FLT|F-RIC|A-FOX)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:59:23.212052+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Rich bottomland forest with diverse hardwood trees. The soil is dark and fertile from river sediment. The forest floor is covered with ferns, wildflowers, and mushrooms in shaded areas., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: river (W-RIV|E-FLT|X-TRE|F-GOO), east: unknown terrain (F-MIX|E-FLT|F-RIC|H-FLD), north: unknown terrain (F-MIX|E-FLT|H-WET|F-RIC), south: oak forest (F-OAK|E-FLT|F-RIC|A-FOX)",
+        "resolution": "1024x1024",
+        "seed": 234051905,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/yaF0cfN8RYup7akRAnZHSA.png?exp=1745456368&sig=ff3dc8b6499e4d5dac6ae8705b4f6d5014a2f4ceb0a4ef3ac62fea29298f7285"
+      }
+    ]
+  }
+}

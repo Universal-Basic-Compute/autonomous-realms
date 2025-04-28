@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 3,
+    "y": 11
+  },
+  "description": "The valley narrows and the river flows faster through a rock-strewn channel. The sound of rushing water echoes against the rising valley walls. Moss covers the rocks near the water's edge.",
+  "terrainCode": "W-RIV|E-MOD|X-RCK|W-RPD",
+  "generatedPrompt": "isometric view of realistic terrain tile with The valley narrows and the river flows faster through a rock-strewn channel. The sound of rushing water echoes against the rising valley walls. Moss covers the rocks near the water's edge., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:35:15.756074+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The valley narrows and the river flows faster through a rock-strewn channel. The sound of rushing water echoes against the rising valley walls. Moss covers the rocks near the water's edge., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+        "resolution": "1024x1024",
+        "seed": 2118111866,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/YQuQ5wz7SOWI3a8GpG5z-w.png?exp=1745458521&sig=9cda71c42c06779327a5da55a989a2279f6832a1d5592a0006792fa7fcdc8393"
+      }
+    ]
+  }
+}

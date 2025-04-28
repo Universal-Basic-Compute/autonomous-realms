@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 0,
+    "y": 4
+  },
+  "description": "Sandy beach stretches along the coastline with scattered shells and smooth pebbles. Gulls patrol the waterline hunting for small crustaceans. Salt-tolerant plants grow further inland.",
+  "terrainCode": "W-SEA|E-FLT|H-WET|A-SEA",
+  "generatedPrompt": "isometric view of realistic terrain tile with Sandy beach stretches along the coastline with scattered shells and smooth pebbles. Gulls patrol the waterline hunting for small crustaceans. Salt-tolerant plants grow further inland., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: sea (W-SEA|E-FLT|X-RCK|A-SEA), north: sea (W-SEA|E-FLT|X-RCK|W-WIN), south: unknown terrain (D-DUN|E-SLI|W-SEA|X-BSH)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:46:01.013987+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Sandy beach stretches along the coastline with scattered shells and smooth pebbles. Gulls patrol the waterline hunting for small crustaceans. Salt-tolerant plants grow further inland., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: sea (W-SEA|E-FLT|X-RCK|A-SEA), north: sea (W-SEA|E-FLT|X-RCK|W-WIN), south: unknown terrain (D-DUN|E-SLI|W-SEA|X-BSH)",
+        "resolution": "1024x1024",
+        "seed": 315678064,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/UHr2ot9DSDyyCZwex5a-1g.png?exp=1745455566&sig=784cdb2f35a8ba8ae00763c7fe118b0925fe36dc48a6488572dddb20f1093661"
+      }
+    ]
+  }
+}

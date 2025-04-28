@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 15,
+    "y": 6
+  },
+  "description": "A protected mountain valley with denser forest and more diverse vegetation. The valley floor is relatively flat with the stream flowing more gently. Wildflowers grow in small clearings.",
+  "terrainCode": "M-VAL|E-HIG|F-PIN|P-FLW",
+  "generatedPrompt": "isometric view of realistic terrain tile with A protected mountain valley with denser forest and more diverse vegetation. The valley floor is relatively flat with the stream flowing more gently. Wildflowers grow in small clearings., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:35:05.299511+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with A protected mountain valley with denser forest and more diverse vegetation. The valley floor is relatively flat with the stream flowing more gently. Wildflowers grow in small clearings., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+        "resolution": "1024x1024",
+        "seed": 1339237105,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/aACaU75JSfCQ4f9rh9oNdg.png?exp=1745458510&sig=50530d2039daec8d844a1ef2bcbaf4a3cfa3c85a7e7f3d8e6e539c349421a578"
+      }
+    ]
+  }
+}

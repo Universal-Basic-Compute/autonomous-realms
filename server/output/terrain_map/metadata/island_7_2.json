@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 7,
+    "y": 2
+  },
+  "description": "Prairie begins to give way to scattered trees, primarily oak, creating a savanna-like landscape. The grasses remain dominant but share space with woody plants and shrubs.",
+  "terrainCode": "P-LUS|E-FLT|X-TRE|A-DEE",
+  "generatedPrompt": "isometric view of realistic terrain tile with Prairie begins to give way to scattered trees, primarily oak, creating a savanna-like landscape. The grasses remain dominant but share space with woody plants and shrubs., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: lush grassland (P-LUS|E-FLT|H-WET|W-PON), east: lush grassland (P-LUS|E-FLT|X-TRE|F-RIC), north: unknown terrain (P-FLW|E-FLT|F-RIC|A-BUT), south: unknown terrain (F-THN|E-FLT|F-GOO|A-RAB)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:08:00.724249+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Prairie begins to give way to scattered trees, primarily oak, creating a savanna-like landscape. The grasses remain dominant but share space with woody plants and shrubs., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: lush grassland (P-LUS|E-FLT|H-WET|W-PON), east: lush grassland (P-LUS|E-FLT|X-TRE|F-RIC), north: unknown terrain (P-FLW|E-FLT|F-RIC|A-BUT), south: unknown terrain (F-THN|E-FLT|F-GOO|A-RAB)",
+        "resolution": "1024x1024",
+        "seed": 1730897467,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/EyEzcAnMRUGdXkYwlm2dDA.png?exp=1745456886&sig=5b288e818b705841b32abd8128ff4e992eadd24db7bce10266f89487540f0bca"
+      }
+    ]
+  }
+}

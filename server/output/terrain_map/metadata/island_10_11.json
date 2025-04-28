@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 10,
+    "y": 11
+  },
+  "description": "Rocky terrain with pine forest establishing in protected areas. Large boulders and rock formations create distinctive landmarks. The stream descends more rapidly as elevation increases.",
+  "terrainCode": "M-FOO|E-MOD|F-PIN|X-BLD",
+  "generatedPrompt": "isometric view of realistic terrain tile with Rocky terrain with pine forest establishing in protected areas. Large boulders and rock formations create distinctive landmarks. The stream descends more rapidly as elevation increases., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|F-PIN|W-STR), east: unknown terrain (M-FOO|E-HIG|F-PIN|W-RPD), north: unknown terrain (M-FOO|E-MOD|F-PIN|W-STR), south: unknown terrain (M-FOO|E-HIG|F-PIN|W-RPD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:19:30.275780+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Rocky terrain with pine forest establishing in protected areas. Large boulders and rock formations create distinctive landmarks. The stream descends more rapidly as elevation increases., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|F-PIN|W-STR), east: unknown terrain (M-FOO|E-HIG|F-PIN|W-RPD), north: unknown terrain (M-FOO|E-MOD|F-PIN|W-STR), south: unknown terrain (M-FOO|E-HIG|F-PIN|W-RPD)",
+        "resolution": "1024x1024",
+        "seed": 2044170508,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/6ODjEg0BTfqX8DPb6Zknzw.png?exp=1745457575&sig=e87cdab31b6a7c2d3da73f73987dad74b27eb0e7f7961980d1957b9e3f9e5327"
+      }
+    ]
+  }
+}

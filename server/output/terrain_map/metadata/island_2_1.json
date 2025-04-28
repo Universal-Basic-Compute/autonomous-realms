@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 2,
+    "y": 1
+  },
+  "description": "Protected bay waters lap against a mixed shoreline. Small sandbars emerge at low tide. Herons stalk the shallows hunting for fish, leaving delicate footprints in the wet sand.",
+  "terrainCode": "W-BAY|E-FLT|W-SHL|A-BIR",
+  "generatedPrompt": "isometric view of realistic terrain tile with Protected bay waters lap against a mixed shoreline. Small sandbars emerge at low tide. Herons stalk the shallows hunting for fish, leaving delicate footprints in the wet sand., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-BAY|E-MOD|R-LST|W-SEA), east: unknown terrain (W-EST|E-FLT|H-SAT|X-BSH), north: unknown terrain (W-BAY|E-SLI|W-SHL|A-FIS), south: unknown terrain (W-BAY|E-DEP|W-SHL|A-FIS)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:51:53.524309+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Protected bay waters lap against a mixed shoreline. Small sandbars emerge at low tide. Herons stalk the shallows hunting for fish, leaving delicate footprints in the wet sand., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-BAY|E-MOD|R-LST|W-SEA), east: unknown terrain (W-EST|E-FLT|H-SAT|X-BSH), north: unknown terrain (W-BAY|E-SLI|W-SHL|A-FIS), south: unknown terrain (W-BAY|E-DEP|W-SHL|A-FIS)",
+        "resolution": "1024x1024",
+        "seed": 774347951,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/ku4-rsN_ST2xiakRsgtbJQ.png?exp=1745455919&sig=3370b73b771e1dffe7d1e5d19189f021750e86d1b4fdcfaa5a80ed9c03d03365"
+      }
+    ]
+  }
+}

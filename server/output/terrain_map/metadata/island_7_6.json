@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 7,
+    "y": 6
+  },
+  "description": "Mature deciduous forest with diverse tree species of varying ages. The creek continues through, occasionally widening into small pools before narrowing again. Moss covers rocks near the water.",
+  "terrainCode": "F-MIX|E-FLT|W-STR|X-RCK",
+  "generatedPrompt": "isometric view of realistic terrain tile with Mature deciduous forest with diverse tree species of varying ages. The creek continues through, occasionally widening into small pools before narrowing again. Moss covers rocks near the water., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|W-STR|X-RCK), east: unknown terrain (F-THN|E-FLT|W-STR|F-GOO), north: unknown terrain (F-MIX|E-FLT|W-STR|X-BSH), south: unknown terrain (F-MIX|E-FLT|W-STR|F-RIC)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:08:48.489010+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Mature deciduous forest with diverse tree species of varying ages. The creek continues through, occasionally widening into small pools before narrowing again. Moss covers rocks near the water., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|W-STR|X-RCK), east: unknown terrain (F-THN|E-FLT|W-STR|F-GOO), north: unknown terrain (F-MIX|E-FLT|W-STR|X-BSH), south: unknown terrain (F-MIX|E-FLT|W-STR|F-RIC)",
+        "resolution": "1024x1024",
+        "seed": 556462729,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/cX0_3RvxREyUUHME-buhdw.png?exp=1745456933&sig=0e22e05ecce17dcf5e8fa95459c6e4f559dd643172ed605520960fa7d607a4ff"
+      }
+    ]
+  }
+}

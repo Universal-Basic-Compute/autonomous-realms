@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 13,
+    "y": 10
+  },
+  "description": "Canyon mouth opens to rocky foothills. The terrain rises gradually with increasing vegetation. The stream cuts a deeper channel through the softer rock layers, descending more rapidly.",
+  "terrainCode": "M-FOO|E-MOD|W-STR|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with Canyon mouth opens to rocky foothills. The terrain rises gradually with increasing vegetation. The stream cuts a deeper channel through the softer rock layers, descending more rapidly., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|X-BLD|W-STR), east: high mountains (M-HIG|E-VRY|P-FLW|X-HOL), north: unknown terrain (D-CYN|E-MOD|W-STR|X-BSH), south: unknown terrain (M-FOO|E-HIG|F-PIN|W-WAT)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:28:51.869114+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Canyon mouth opens to rocky foothills. The terrain rises gradually with increasing vegetation. The stream cuts a deeper channel through the softer rock layers, descending more rapidly., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|X-BLD|W-STR), east: high mountains (M-HIG|E-VRY|P-FLW|X-HOL), north: unknown terrain (D-CYN|E-MOD|W-STR|X-BSH), south: unknown terrain (M-FOO|E-HIG|F-PIN|W-WAT)",
+        "resolution": "1024x1024",
+        "seed": 1054937536,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/yQR1HvKDTNO1_CTZxwlowQ.png?exp=1745458137&sig=3855e475080b2e395902997675f0f6e01ec14d916011f92ce7311a30ec725c7b"
+      }
+    ]
+  }
+}

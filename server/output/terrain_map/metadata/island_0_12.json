@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 0,
+    "y": 12
+  },
+  "description": "The mixed forest continues with mature oak trees now equaling pines in number. The canopy creates a dappled light effect on the leaf-strewn forest floor. Undergrowth is moderate.",
+  "terrainCode": "F-MIX|E-FLT|F-GOO|A-DEE",
+  "generatedPrompt": "isometric view of realistic terrain tile with The mixed forest continues with mature oak trees now equaling pines in number. The canopy creates a dappled light effect on the leaf-strewn forest floor. Undergrowth is moderate., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: unknown terrain (F-MIX|E-FLT|F-RIC|W-STR), north: unknown terrain (F-MIX|E-FLT|F-AVG|X-BSH), south: unknown terrain (F-MIX|E-SLI|R-GRN|X-RCK)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:47:40.286258+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The mixed forest continues with mature oak trees now equaling pines in number. The canopy creates a dappled light effect on the leaf-strewn forest floor. Undergrowth is moderate., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: unknown terrain (F-MIX|E-FLT|F-RIC|W-STR), north: unknown terrain (F-MIX|E-FLT|F-AVG|X-BSH), south: unknown terrain (F-MIX|E-SLI|R-GRN|X-RCK)",
+        "resolution": "1024x1024",
+        "seed": 604446430,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/v2UA61qqSg26AUaxJz4XCg.png?exp=1745455665&sig=552db7e5a1727d07284e157ca7e16fa46752c9debf0b6f94a5bab30326c55206"
+      }
+    ]
+  }
+}

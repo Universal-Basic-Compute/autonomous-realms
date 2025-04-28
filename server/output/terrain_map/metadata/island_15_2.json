@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 15,
+    "y": 2
+  },
+  "description": "Lower mountain slopes with scattered pine forest. The terrain is rocky with less soil for vegetation. A small spring emerges between rocks, creating a tiny stream that descends rapidly.",
+  "terrainCode": "M-LOW|E-HIG|F-PIN|X-SPR",
+  "generatedPrompt": "isometric view of realistic terrain tile with Lower mountain slopes with scattered pine forest. The terrain is rocky with less soil for vegetation. A small spring emerges between rocks, creating a tiny stream that descends rapidly., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|X-CFM|X-SPR), north: unknown terrain (M-FOO|E-HIG|F-PIN|H-DRY), south: low mountains (M-LOW|E-HIG|F-PIN|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:33:43.000328+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Lower mountain slopes with scattered pine forest. The terrain is rocky with less soil for vegetation. A small spring emerges between rocks, creating a tiny stream that descends rapidly., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|X-CFM|X-SPR), north: unknown terrain (M-FOO|E-HIG|F-PIN|H-DRY), south: low mountains (M-LOW|E-HIG|F-PIN|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 522413131,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/R3a0cGfvThmPATlsh5vCdA.png?exp=1745458428&sig=9401296bc3cc68ba4ff2e82eed6b218e1ae5de195265a8983d5ad321668fca1c"
+      }
+    ]
+  }
+}

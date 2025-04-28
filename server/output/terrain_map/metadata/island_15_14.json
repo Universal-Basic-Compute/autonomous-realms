@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 15,
+    "y": 14
+  },
+  "description": "High mountain terrain with permanent snow fields on north-facing slopes. The ground is mostly bare rock with lichens being the primary vegetation. Harsh winds shape the landscape.",
+  "terrainCode": "M-PEA|E-EXT|T-SNO|W-WIN",
+  "generatedPrompt": "isometric view of realistic terrain tile with High mountain terrain with permanent snow fields on north-facing slopes. The ground is mostly bare rock with lichens being the primary vegetation. Harsh winds shape the landscape., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: high mountains (M-HIG|E-EXT|T-SNO|X-RCK), north: unknown terrain (M-PEA|E-EXT|T-SNO|X-RCK), south: unknown terrain (M-PEA|E-EXT|T-SNO|X-RCK)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:36:09.247151+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with High mountain terrain with permanent snow fields on north-facing slopes. The ground is mostly bare rock with lichens being the primary vegetation. Harsh winds shape the landscape., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: high mountains (M-HIG|E-EXT|T-SNO|X-RCK), north: unknown terrain (M-PEA|E-EXT|T-SNO|X-RCK), south: unknown terrain (M-PEA|E-EXT|T-SNO|X-RCK)",
+        "resolution": "1024x1024",
+        "seed": 1019829893,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/TIFHIrd4RnShP3zAiKgKRg.png?exp=1745458574&sig=9a516ebe9484eff7c64f336dbace1f9c71f13047007f6060bed6800c41cad523"
+      }
+    ]
+  }
+}

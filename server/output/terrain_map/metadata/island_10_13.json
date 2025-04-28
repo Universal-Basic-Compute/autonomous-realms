@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 10,
+    "y": 13
+  },
+  "description": "Lower mountain slopes with dramatic rock outcroppings and cliff faces. The forest is predominantly coniferous with trees adapted to the harsh conditions. The stream carves a deep channel.",
+  "terrainCode": "M-LOW|E-HIG|F-PIN|X-CLF",
+  "generatedPrompt": "isometric view of realistic terrain tile with Lower mountain slopes with dramatic rock outcroppings and cliff faces. The forest is predominantly coniferous with trees adapted to the harsh conditions. The stream carves a deep channel., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-HIG|F-PIN|X-BLD), east: low mountains (M-LOW|E-HIG|F-PIN|X-CLF), north: unknown terrain (M-FOO|E-HIG|F-PIN|W-RPD), south: low mountains (M-LOW|E-HIG|F-PIN|W-WAT)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:19:53.979139+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Lower mountain slopes with dramatic rock outcroppings and cliff faces. The forest is predominantly coniferous with trees adapted to the harsh conditions. The stream carves a deep channel., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-HIG|F-PIN|X-BLD), east: low mountains (M-LOW|E-HIG|F-PIN|X-CLF), north: unknown terrain (M-FOO|E-HIG|F-PIN|W-RPD), south: low mountains (M-LOW|E-HIG|F-PIN|W-WAT)",
+        "resolution": "1024x1024",
+        "seed": 259610026,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/8XGmsQfCQuq8pK24WunSxw.png?exp=1745457599&sig=a386aff21ea1df42f0e04efa72877d08bd50604cd0f3afd2589acee22910ad35"
+      }
+    ]
+  }
+}

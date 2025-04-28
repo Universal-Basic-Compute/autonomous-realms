@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 6,
+    "y": 13
+  },
+  "description": "Rocky slopes with scattered pine trees and mountain shrubs. Large boulders create shelter for small animals. The stream forms occasional pools before continuing its descent.",
+  "terrainCode": "M-FOO|E-HIG|F-PIN|X-BLD",
+  "generatedPrompt": "isometric view of realistic terrain tile with Rocky slopes with scattered pine trees and mountain shrubs. Large boulders create shelter for small animals. The stream forms occasional pools before continuing its descent., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|X-BLD|W-STR), east: unknown terrain (M-FOO|E-HIG|F-PIN|W-STR), north: unknown terrain (M-FOO|E-MOD|F-THN|W-STR), south: low mountains (M-LOW|E-HIG|X-CLF|W-WAT)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:06:59.622116+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Rocky slopes with scattered pine trees and mountain shrubs. Large boulders create shelter for small animals. The stream forms occasional pools before continuing its descent., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|X-BLD|W-STR), east: unknown terrain (M-FOO|E-HIG|F-PIN|W-STR), north: unknown terrain (M-FOO|E-MOD|F-THN|W-STR), south: low mountains (M-LOW|E-HIG|X-CLF|W-WAT)",
+        "resolution": "1024x1024",
+        "seed": 1544816400,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/ZDs_VoWERMKg2BHDsE0gHg.png?exp=1745456824&sig=ae915da71d7ead4949391cec23b08968295f3cbfea8b02f618905785cd7165c4"
+      }
+    ]
+  }
+}

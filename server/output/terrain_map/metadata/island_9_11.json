@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 9,
+    "y": 11
+  },
+  "description": "The forest transitions to foothill terrain with increasing rock and steeper slopes. Trees grow in uneven patterns wherever soil has accumulated. The stream cuts more deeply into the landscape.",
+  "terrainCode": "M-FOO|E-MOD|F-PIN|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with The forest transitions to foothill terrain with increasing rock and steeper slopes. Trees grow in uneven patterns wherever soil has accumulated. The stream cuts more deeply into the landscape., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-THN|E-MOD|X-RCK|W-STR), east: unknown terrain (M-FOO|E-MOD|F-PIN|X-BLD), north: pine forest (F-PIN|E-MOD|W-STR|X-RCK), south: unknown terrain (M-FOO|E-HIG|F-PIN|W-RPD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:16:16.279750+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The forest transitions to foothill terrain with increasing rock and steeper slopes. Trees grow in uneven patterns wherever soil has accumulated. The stream cuts more deeply into the landscape., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-THN|E-MOD|X-RCK|W-STR), east: unknown terrain (M-FOO|E-MOD|F-PIN|X-BLD), north: pine forest (F-PIN|E-MOD|W-STR|X-RCK), south: unknown terrain (M-FOO|E-HIG|F-PIN|W-RPD)",
+        "resolution": "1024x1024",
+        "seed": 342612871,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/_k-0dyyiRimcK873fVg8KQ.png?exp=1745457382&sig=251a6fdc04e1edc8fe52f10c3f28fbbd802051f590969887f44a14bd8b7f13a4"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 2,
+    "y": 13
+  },
+  "description": "Mixed deciduous forest with increasingly rocky terrain. The stream cascades over several small ledges. Mossy boulders line the water's edge, and ferns grow in the moist microclimate.",
+  "terrainCode": "F-MIX|E-MOD|W-STR|X-BLD",
+  "generatedPrompt": "isometric view of realistic terrain tile with Mixed deciduous forest with increasingly rocky terrain. The stream cascades over several small ledges. Mossy boulders line the water's edge, and ferns grow in the moist microclimate., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-THN|E-SLI|W-STR|X-RCK), east: river (W-RIV|E-HIG|W-RPD|X-CLF), north: oak forest (F-OAK|E-SLI|W-STR|X-RCK), south: unknown terrain (M-FOO|E-MOD|W-WAT|R-SND)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:54:14.447095+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Mixed deciduous forest with increasingly rocky terrain. The stream cascades over several small ledges. Mossy boulders line the water's edge, and ferns grow in the moist microclimate., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-THN|E-SLI|W-STR|X-RCK), east: river (W-RIV|E-HIG|W-RPD|X-CLF), north: oak forest (F-OAK|E-SLI|W-STR|X-RCK), south: unknown terrain (M-FOO|E-MOD|W-WAT|R-SND)",
+        "resolution": "1024x1024",
+        "seed": 1771820959,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/Cq7OAsaTRKCu-vycShbSkA.png?exp=1745456059&sig=9d7aae382f70f4dc759b6aed3ba1057ff53ed1c8a942f2cc462e22483616b7d1"
+      }
+    ]
+  }
+}

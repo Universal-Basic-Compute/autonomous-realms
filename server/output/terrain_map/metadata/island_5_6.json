@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 5,
+    "y": 6
+  },
+  "description": "Transitional wetland forest with occasional dry hummocks. The ground is spongy underfoot but supports weight. Numerous animal tracks reveal the rich wildlife utilizing this ecosystem.",
+  "terrainCode": "F-MIX|E-FLT|H-WET|A-DEE",
+  "generatedPrompt": "isometric view of realistic terrain tile with Transitional wetland forest with occasional dry hummocks. The ground is spongy underfoot but supports weight. Numerous animal tracks reveal the rich wildlife utilizing this ecosystem., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|H-WET|F-RIC), east: unknown terrain (F-MIX|E-FLT|W-STR|X-RCK), north: unknown terrain (W-SWP|E-FLT|H-WET|X-BSH), south: unknown terrain (F-MIX|E-FLT|F-RIC|H-FLD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:02:24.825967+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Transitional wetland forest with occasional dry hummocks. The ground is spongy underfoot but supports weight. Numerous animal tracks reveal the rich wildlife utilizing this ecosystem., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|H-WET|F-RIC), east: unknown terrain (F-MIX|E-FLT|W-STR|X-RCK), north: unknown terrain (W-SWP|E-FLT|H-WET|X-BSH), south: unknown terrain (F-MIX|E-FLT|F-RIC|H-FLD)",
+        "resolution": "1024x1024",
+        "seed": 556193217,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/NOwm5C8NQ8GIwTBn1BoupA.png?exp=1745456550&sig=3390502dddfc13439b0a44c0a298a70606cea922e3fe61645d870a24f535cdf7"
+      }
+    ]
+  }
+}

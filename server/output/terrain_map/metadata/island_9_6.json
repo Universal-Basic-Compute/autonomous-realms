@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 9,
+    "y": 6
+  },
+  "description": "As elevation increases, the vegetation shifts to a sparse woodland of drought-resistant trees. The landscape is dominated by rock with thin soil. A small seep creates a patch of greenery.",
+  "terrainCode": "F-THN|E-SLI|X-SPR|H-DRY",
+  "generatedPrompt": "isometric view of realistic terrain tile with As elevation increases, the vegetation shifts to a sparse woodland of drought-resistant trees. The landscape is dominated by rock with thin soil. A small seep creates a patch of greenery., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-THN|E-FLT|W-STR|F-GOO), east: unknown terrain (D-BDL|E-MOD|X-CFM|H-ARD), north: unknown terrain (P-SCR|E-SLI|X-TRE|H-ARD), south: unknown terrain (F-THN|E-MOD|W-STR|H-DRY)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:15:16.916392+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with As elevation increases, the vegetation shifts to a sparse woodland of drought-resistant trees. The landscape is dominated by rock with thin soil. A small seep creates a patch of greenery., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-THN|E-FLT|W-STR|F-GOO), east: unknown terrain (D-BDL|E-MOD|X-CFM|H-ARD), north: unknown terrain (P-SCR|E-SLI|X-TRE|H-ARD), south: unknown terrain (F-THN|E-MOD|W-STR|H-DRY)",
+        "resolution": "1024x1024",
+        "seed": 1692576458,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/vdd6_2DLShiq6BN69bUL-A.png?exp=1745457322&sig=fea24f479bb1a5f934e5b7c6f0f54f5bafe84e6eaa6b6fde3bd3cc0715882fcd"
+      }
+    ]
+  }
+}

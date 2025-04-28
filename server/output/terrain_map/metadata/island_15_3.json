@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 15,
+    "y": 3
+  },
+  "description": "Mountain slopes with mixed coniferous forest. The terrain is steep with numerous rock outcroppings. The spring-fed stream grows as it descends, cutting more deeply into the rocky ground.",
+  "terrainCode": "M-LOW|E-HIG|F-PIN|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with Mountain slopes with mixed coniferous forest. The terrain is steep with numerous rock outcroppings. The spring-fed stream grows as it descends, cutting more deeply into the rocky ground., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-HIG|F-PIN|X-CLF), north: low mountains (M-LOW|E-HIG|F-PIN|X-SPR), south: low mountains (M-LOW|E-HIG|F-PIN|W-WAT)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:33:55.368344+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Mountain slopes with mixed coniferous forest. The terrain is steep with numerous rock outcroppings. The spring-fed stream grows as it descends, cutting more deeply into the rocky ground., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-HIG|F-PIN|X-CLF), north: low mountains (M-LOW|E-HIG|F-PIN|X-SPR), south: low mountains (M-LOW|E-HIG|F-PIN|W-WAT)",
+        "resolution": "1024x1024",
+        "seed": 139136355,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/IwD36xy4Q3e8vZ-T7zb7jQ.png?exp=1745458441&sig=a32370a0388c7757983ec0a034598b63103520796b82fed5b6872ffc12cd8b25"
+      }
+    ]
+  }
+}

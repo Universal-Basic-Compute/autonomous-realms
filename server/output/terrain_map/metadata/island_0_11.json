@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 0,
+    "y": 11
+  },
+  "description": "Pine forest begins to mix with deciduous trees as the soil improves. Oak saplings compete for light among the dominant pines. Mushrooms and moss patches cover the forest floor.",
+  "terrainCode": "F-MIX|E-FLT|F-AVG|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with Pine forest begins to mix with deciduous trees as the soil improves. Oak saplings compete for light among the dominant pines. Mushrooms and moss patches cover the forest floor., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: unknown terrain (F-MIX|E-FLT|F-GOO|W-STR), north: pine forest (F-PIN|E-SLI|F-AVG|A-SQU), south: unknown terrain (F-MIX|E-FLT|F-GOO|A-DEE)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:47:28.046471+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Pine forest begins to mix with deciduous trees as the soil improves. Oak saplings compete for light among the dominant pines. Mushrooms and moss patches cover the forest floor., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: unknown terrain (F-MIX|E-FLT|F-GOO|W-STR), north: pine forest (F-PIN|E-SLI|F-AVG|A-SQU), south: unknown terrain (F-MIX|E-FLT|F-GOO|A-DEE)",
+        "resolution": "1024x1024",
+        "seed": 1242781062,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/CN9wYlgWTByRTDvRm1WKIg.png?exp=1745455653&sig=3ceeb12f39a751db181262394e2b0a2b6fd411d6daa70132653d4c539ea6e819"
+      }
+    ]
+  }
+}

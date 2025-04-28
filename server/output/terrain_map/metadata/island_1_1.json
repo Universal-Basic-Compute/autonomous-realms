@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 1,
+    "y": 1
+  },
+  "description": "The limestone cliffs begin to recede, forming a natural cove. Waves break more gently here, and a narrow strip of pebble beach appears. Tide pools form in the rocky shallows.",
+  "terrainCode": "W-BAY|E-MOD|R-LST|W-SEA",
+  "generatedPrompt": "isometric view of realistic terrain tile with The limestone cliffs begin to recede, forming a natural cove. Waves break more gently here, and a narrow strip of pebble beach appears. Tide pools form in the rocky shallows., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (R-LST|E-HIG|W-SEA|X-BSH), east: unknown terrain (W-BAY|E-FLT|W-SHL|A-BIR), north: unknown terrain (R-LST|E-HIG|W-SEA|X-CVE), south: unknown terrain (W-BAY|E-SLI|W-SHL|A-FIS)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:48:40.531938+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The limestone cliffs begin to recede, forming a natural cove. Waves break more gently here, and a narrow strip of pebble beach appears. Tide pools form in the rocky shallows., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (R-LST|E-HIG|W-SEA|X-BSH), east: unknown terrain (W-BAY|E-FLT|W-SHL|A-BIR), north: unknown terrain (R-LST|E-HIG|W-SEA|X-CVE), south: unknown terrain (W-BAY|E-SLI|W-SHL|A-FIS)",
+        "resolution": "1024x1024",
+        "seed": 209796411,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/GnSb0LYkRjy9YLlkkG_4mw.png?exp=1745455725&sig=08219613b1b50f968e83038e72ea8c82006e47b2a0523601f3a108e3a1c59ac6"
+      }
+    ]
+  }
+}

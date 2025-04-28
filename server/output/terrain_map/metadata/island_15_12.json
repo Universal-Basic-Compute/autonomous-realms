@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 15,
+    "y": 12
+  },
+  "description": "High alpine zone with rocky terrain and patches of low vegetation. The landscape is dominated by stone with plants finding footholds in protected pockets. Mountain goats traverse seemingly impossible slopes.",
+  "terrainCode": "M-HIG|E-EXT|T-ROC|A-GOA",
+  "generatedPrompt": "isometric view of realistic terrain tile with High alpine zone with rocky terrain and patches of low vegetation. The landscape is dominated by stone with plants finding footholds in protected pockets. Mountain goats traverse seemingly impossible slopes., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: high mountains (M-HIG|E-VRY|P-FLW|A-GOA), north: high mountains (M-HIG|E-VRY|P-FLW|A-EAG), south: unknown terrain (M-PEA|E-EXT|T-SNO|X-RCK)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:35:45.024924+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with High alpine zone with rocky terrain and patches of low vegetation. The landscape is dominated by stone with plants finding footholds in protected pockets. Mountain goats traverse seemingly impossible slopes., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: high mountains (M-HIG|E-VRY|P-FLW|A-GOA), north: high mountains (M-HIG|E-VRY|P-FLW|A-EAG), south: unknown terrain (M-PEA|E-EXT|T-SNO|X-RCK)",
+        "resolution": "1024x1024",
+        "seed": 460311890,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/gYk2rzvgQgeW8-cyUXc6Cw.png?exp=1745458550&sig=e0c0e36cf36856ffd8b679caac4e98fdeab79d0912a5d2a5eb13aece51ad22f4"
+      }
+    ]
+  }
+}

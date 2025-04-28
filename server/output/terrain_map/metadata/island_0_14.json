@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 0,
+    "y": 14
+  },
+  "description": "Scattered trees among increasing rocky terrain mark the beginning of foothills. Large granite boulders create natural shelters for small animals. The thin soil supports hardy grasses.",
+  "terrainCode": "M-FOO|E-MOD|X-TRE|X-BLD",
+  "generatedPrompt": "isometric view of realistic terrain tile with Scattered trees among increasing rocky terrain mark the beginning of foothills. Large granite boulders create natural shelters for small animals. The thin soil supports hardy grasses., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: unknown terrain (M-FOO|E-MOD|W-STR|X-TRE), north: unknown terrain (F-MIX|E-SLI|R-GRN|X-RCK), south: unknown terrain (M-FOO|E-HIG|R-GRN|A-GOA)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:48:04.683884+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Scattered trees among increasing rocky terrain mark the beginning of foothills. Large granite boulders create natural shelters for small animals. The thin soil supports hardy grasses., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: unknown terrain (M-FOO|E-MOD|W-STR|X-TRE), north: unknown terrain (F-MIX|E-SLI|R-GRN|X-RCK), south: unknown terrain (M-FOO|E-HIG|R-GRN|A-GOA)",
+        "resolution": "1024x1024",
+        "seed": 1957017340,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/kLR48DpkQe2r5dRpZOwZDw.png?exp=1745455689&sig=ba724b5c62c5385c069d68d50bc7b3474b11a7174e8506a292a25b891bb07df4"
+      }
+    ]
+  }
+}

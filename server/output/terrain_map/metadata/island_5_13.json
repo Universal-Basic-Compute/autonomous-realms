@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 5,
+    "y": 13
+  },
+  "description": "Rocky foothills with scattered trees and shrubs. Large exposed boulders create distinctive landmarks. The stream flows rapidly, forming small waterfalls where it drops over resistant rock layers.",
+  "terrainCode": "M-FOO|E-MOD|X-BLD|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with Rocky foothills with scattered trees and shrubs. Large exposed boulders create distinctive landmarks. The stream flows rapidly, forming small waterfalls where it drops over resistant rock layers., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|F-THN|W-STR), east: unknown terrain (M-FOO|E-HIG|F-PIN|X-BLD), north: unknown terrain (M-FOO|E-MOD|F-THN|W-STR), south: unknown terrain (M-FOO|E-HIG|X-BSH|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:03:49.363376+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Rocky foothills with scattered trees and shrubs. Large exposed boulders create distinctive landmarks. The stream flows rapidly, forming small waterfalls where it drops over resistant rock layers., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|F-THN|W-STR), east: unknown terrain (M-FOO|E-HIG|F-PIN|X-BLD), north: unknown terrain (M-FOO|E-MOD|F-THN|W-STR), south: unknown terrain (M-FOO|E-HIG|X-BSH|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 1798861393,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/MacFFt5vRFWnwTxgBaPVhA.png?exp=1745456634&sig=db39550690cc67e7600260c45aa3d9d455fd530ba5a46264b55f97e1bcce7ca6"
+      }
+    ]
+  }
+}

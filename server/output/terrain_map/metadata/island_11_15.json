@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 11,
+    "y": 15
+  },
+  "description": "High mountain terrain approaching the tree line. Stunted pine and fir trees give way to alpine meadows in higher areas. The thin air carries the scent of resin and mountain wildflowers.",
+  "terrainCode": "M-HIG|E-VRY|P-FLW|F-PIN",
+  "generatedPrompt": "isometric view of realistic terrain tile with High mountain terrain approaching the tree line. Stunted pine and fir trees give way to alpine meadows in higher areas. The thin air carries the scent of resin and mountain wildflowers., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: high mountains (M-HIG|E-VRY|X-CLF|F-PIN), east: high mountains (M-HIG|E-VRY|P-FLW|X-RCK), north: high mountains (M-HIG|E-VRY|P-FLW|F-PIN)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:23:30.110910+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with High mountain terrain approaching the tree line. Stunted pine and fir trees give way to alpine meadows in higher areas. The thin air carries the scent of resin and mountain wildflowers., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: high mountains (M-HIG|E-VRY|X-CLF|F-PIN), east: high mountains (M-HIG|E-VRY|P-FLW|X-RCK), north: high mountains (M-HIG|E-VRY|P-FLW|F-PIN)",
+        "resolution": "1024x1024",
+        "seed": 946418298,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/QtmOr7SVSUmJNkn9ixw0qA.png?exp=1745457815&sig=2164514425f0121d909d7ed1d29b708090599f468bb2cc10902678c98d566803"
+      }
+    ]
+  }
+}

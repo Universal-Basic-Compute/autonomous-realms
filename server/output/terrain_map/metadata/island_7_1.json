@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 7,
+    "y": 1
+  },
+  "description": "The grassland continues with scattered wildflowers adding color to the sea of green. The ground is level but shows slight undulations from ancient water patterns. Butterflies are abundant.",
+  "terrainCode": "P-FLW|E-FLT|F-RIC|A-BUT",
+  "generatedPrompt": "isometric view of realistic terrain tile with The grassland continues with scattered wildflowers adding color to the sea of green. The ground is level but shows slight undulations from ancient water patterns. Butterflies are abundant., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+  "ideogramResponse": {
+    "created": "2025-04-23T07:04:19.244728+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The grassland continues with scattered wildflowers adding color to the sea of green. The ground is level but shows slight undulations from ancient water patterns. Butterflies are abundant., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+        "resolution": "1024x1024",
+        "seed": 2137421772,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/8fI41ZKGTaGkUPbUphf3kg.png?exp=1745478264&sig=cbba8a63c0c5015c395ef81968a7e0dff634c5bc9e118742d8f9dd78daf5101f"
+      }
+    ]
+  }
+}

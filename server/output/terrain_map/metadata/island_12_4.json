@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 12,
+    "y": 4
+  },
+  "description": "The rocky desert transitions to badland formations. Layered sedimentary rock creates striped patterns in the eroded landscape. Sparse vegetation clings to protected pockets.",
+  "terrainCode": "D-BDL|E-MOD|X-CFM|H-ARD",
+  "generatedPrompt": "isometric view of realistic terrain tile with The rocky desert transitions to badland formations. Layered sedimentary rock creates striped patterns in the eroded landscape. Sparse vegetation clings to protected pockets., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-ROC|E-SLI|X-CFM|H-ARD), east: unknown terrain (D-PLT|E-MOD|X-CLF|H-ARD), north: unknown terrain (D-ROC|E-SLI|X-CFM|H-ARD), south: unknown terrain (D-BDL|E-MOD|X-CFM|H-ARD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:24:28.103701+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The rocky desert transitions to badland formations. Layered sedimentary rock creates striped patterns in the eroded landscape. Sparse vegetation clings to protected pockets., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-ROC|E-SLI|X-CFM|H-ARD), east: unknown terrain (D-PLT|E-MOD|X-CLF|H-ARD), north: unknown terrain (D-ROC|E-SLI|X-CFM|H-ARD), south: unknown terrain (D-BDL|E-MOD|X-CFM|H-ARD)",
+        "resolution": "1024x1024",
+        "seed": 1670412382,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/Vc7vfFtUT8aF1oKVketweg.png?exp=1745457873&sig=f21e6ae83e78b4d2f43383dcfd817c1ce5a6366c0e8d69775d83addd5d6f8347"
+      }
+    ]
+  }
+}

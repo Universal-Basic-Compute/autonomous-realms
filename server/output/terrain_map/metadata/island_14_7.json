@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 14,
+    "y": 7
+  },
+  "description": "Mountain terrain with a mix of forest and exposed rock. A sheltered valley creates a microclimate supporting more lush vegetation. The stream pools briefly before continuing its descent.",
+  "terrainCode": "M-VAL|E-HIG|F-PIN|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with Mountain terrain with a mix of forest and exposed rock. A sheltered valley creates a microclimate supporting more lush vegetation. The stream pools briefly before continuing its descent., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-CYN|E-HIG|X-SPR|D-OAS), east: unknown terrain (M-VAL|E-HIG|F-PIN|W-RPD), north: low mountains (M-LOW|E-HIG|F-PIN|W-WAT), south: unknown terrain (M-VAL|E-HIG|F-PIN|W-RPD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:31:29.173456+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Mountain terrain with a mix of forest and exposed rock. A sheltered valley creates a microclimate supporting more lush vegetation. The stream pools briefly before continuing its descent., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-CYN|E-HIG|X-SPR|D-OAS), east: unknown terrain (M-VAL|E-HIG|F-PIN|W-RPD), north: low mountains (M-LOW|E-HIG|F-PIN|W-WAT), south: unknown terrain (M-VAL|E-HIG|F-PIN|W-RPD)",
+        "resolution": "1024x1024",
+        "seed": 533135096,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/3iW8MlQ8RICnSGBDt41zvA.png?exp=1745458294&sig=32c61f67c2363e18b59068ddb74d6d678b9214f60a9fc6b1951ca2497bf31308"
+      }
+    ]
+  }
+}

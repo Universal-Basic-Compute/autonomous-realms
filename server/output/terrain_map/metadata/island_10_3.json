@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 10,
+    "y": 3
+  },
+  "description": "Small dunes give way to a rocky desert landscape. The ground is predominantly stone and gravel with sand collected in depressions. Heat radiates from sun-baked surfaces.",
+  "terrainCode": "D-ROC|E-FLT|H-ARD|X-RCK",
+  "generatedPrompt": "isometric view of realistic terrain tile with Small dunes give way to a rocky desert landscape. The ground is predominantly stone and gravel with sand collected in depressions. Heat radiates from sun-baked surfaces., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (P-SCR|E-FLT|X-RCK|A-LIZ), east: sandy desert (D-SND|E-FLT|X-RCK|H-ARD), north: sandy desert (D-SND|E-FLT|H-ARD|W-WIN), south: unknown terrain (D-ROC|E-SLI|H-ARD|X-CFM)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:17:52.936863+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Small dunes give way to a rocky desert landscape. The ground is predominantly stone and gravel with sand collected in depressions. Heat radiates from sun-baked surfaces., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (P-SCR|E-FLT|X-RCK|A-LIZ), east: sandy desert (D-SND|E-FLT|X-RCK|H-ARD), north: sandy desert (D-SND|E-FLT|H-ARD|W-WIN), south: unknown terrain (D-ROC|E-SLI|H-ARD|X-CFM)",
+        "resolution": "1024x1024",
+        "seed": 221251244,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/K0TzaDIfRgSIWtk1mdIqMw.png?exp=1745457478&sig=6af5dde0518fc32d59e8f2a4a1e7b0a9c942459b8dd7cd2b90402bf37b74cba1"
+      }
+    ]
+  }
+}

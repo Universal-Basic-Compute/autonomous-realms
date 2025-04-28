@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 2,
+    "y": 7
+  },
+  "description": "Wetland conditions persist but with predominantly freshwater influence. A small stream flows through creating a rich ecosystem. Frogs call from hidden locations among the dense vegetation.",
+  "terrainCode": "W-MRS|E-FLT|W-STR|A-FRO",
+  "generatedPrompt": "isometric view of realistic terrain tile with Wetland conditions persist but with predominantly freshwater influence. A small stream flows through creating a rich ecosystem. Frogs call from hidden locations among the dense vegetation., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (P-SCR|E-SLI|X-BSH|A-RAB), east: river (W-RIV|E-FLT|X-TRE|F-GOO), north: unknown terrain (W-MRS|E-FLT|H-SAT|X-BSH), south: basic grassland (P-BAS|E-FLT|W-STR|X-BSH)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:53:04.006541+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Wetland conditions persist but with predominantly freshwater influence. A small stream flows through creating a rich ecosystem. Frogs call from hidden locations among the dense vegetation., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (P-SCR|E-SLI|X-BSH|A-RAB), east: river (W-RIV|E-FLT|X-TRE|F-GOO), north: unknown terrain (W-MRS|E-FLT|H-SAT|X-BSH), south: basic grassland (P-BAS|E-FLT|W-STR|X-BSH)",
+        "resolution": "1024x1024",
+        "seed": 2013626883,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/jadNydvmQKGF9TVYVRyEbg.png?exp=1745455989&sig=b9242dbbcbcc697e380fe07bcf72a4e3c6891f6b0aefd698310e8cec87aa583f"
+      }
+    ]
+  }
+}

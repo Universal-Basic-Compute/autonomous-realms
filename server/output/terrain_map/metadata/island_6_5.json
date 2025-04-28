@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 6,
+    "y": 5
+  },
+  "description": "The woodland becomes denser as soil conditions improve. The stream continues its meandering course, occasionally widening into small pools. Ferns carpet the forest floor in shady areas.",
+  "terrainCode": "F-MIX|E-FLT|W-STR|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with The woodland becomes denser as soil conditions improve. The stream continues its meandering course, occasionally widening into small pools. Ferns carpet the forest floor in shady areas., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-SWP|E-FLT|H-WET|X-BSH), east: unknown terrain (F-MIX|E-FLT|W-STR|X-BSH), north: unknown terrain (F-THN|E-FLT|W-STR|A-FIS), south: unknown terrain (F-MIX|E-FLT|W-STR|X-RCK)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:05:23.817473+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The woodland becomes denser as soil conditions improve. The stream continues its meandering course, occasionally widening into small pools. Ferns carpet the forest floor in shady areas., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-SWP|E-FLT|H-WET|X-BSH), east: unknown terrain (F-MIX|E-FLT|W-STR|X-BSH), north: unknown terrain (F-THN|E-FLT|W-STR|A-FIS), south: unknown terrain (F-MIX|E-FLT|W-STR|X-RCK)",
+        "resolution": "1024x1024",
+        "seed": 1462783728,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/E1un9B2QQdi3vUZRP8Zzrw.png?exp=1745456728&sig=7472031e3b821662d0f0c92696e6657c70b4bf0e37cd54809a83edae4463dd73"
+      }
+    ]
+  }
+}

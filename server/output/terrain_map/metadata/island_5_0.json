@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 5,
+    "y": 0
+  },
+  "description": "Vast wetlands extend from the river delta. Terrain is a mix of shallow water, muddy islands, and floating vegetation. Birds wade through the shallows hunting small aquatic creatures.",
+  "terrainCode": "W-MRS|E-FLT|H-SAT|A-BIR",
+  "generatedPrompt": "isometric view of realistic terrain tile with Vast wetlands extend from the river delta. Terrain is a mix of shallow water, muddy islands, and floating vegetation. Birds wade through the shallows hunting small aquatic creatures., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-DEL|E-FLT|F-RIC|H-WET), east: unknown terrain (W-MRS|E-FLT|H-SAT|A-BIR), south: unknown terrain (W-MRS|E-FLT|W-PON|A-FRO)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:01:11.490153+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Vast wetlands extend from the river delta. Terrain is a mix of shallow water, muddy islands, and floating vegetation. Birds wade through the shallows hunting small aquatic creatures., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-DEL|E-FLT|F-RIC|H-WET), east: unknown terrain (W-MRS|E-FLT|H-SAT|A-BIR), south: unknown terrain (W-MRS|E-FLT|W-PON|A-FRO)",
+        "resolution": "1024x1024",
+        "seed": 105774333,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/DnPHQ-9GQpqYVpARfIi7ng.png?exp=1745456476&sig=60387f5b37bd5c79dd7860f2c169524d9625f7566181af76ab1ea89a3aa0d869"
+      }
+    ]
+  }
+}

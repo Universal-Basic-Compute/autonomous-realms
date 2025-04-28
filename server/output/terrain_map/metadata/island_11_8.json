@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 11,
+    "y": 8
+  },
+  "description": "Mesa landscape with flat-topped hills and steep sides. The spring water has formed a small stream that follows a meandering course. Vegetation concentrates along the waterway.",
+  "terrainCode": "D-MSA|E-MOD|W-STR|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with Mesa landscape with flat-topped hills and steep sides. The spring water has formed a small stream that follows a meandering course. Vegetation concentrates along the waterway., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-MSA|E-MOD|W-STR|X-CFM), east: unknown terrain (D-CYN|E-MOD|W-STR|X-BSH), north: unknown terrain (D-MSA|E-MOD|X-SPR|H-ARD), south: unknown terrain (M-FOO|E-MOD|X-TRE|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:22:06.747204+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Mesa landscape with flat-topped hills and steep sides. The spring water has formed a small stream that follows a meandering course. Vegetation concentrates along the waterway., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-MSA|E-MOD|W-STR|X-CFM), east: unknown terrain (D-CYN|E-MOD|W-STR|X-BSH), north: unknown terrain (D-MSA|E-MOD|X-SPR|H-ARD), south: unknown terrain (M-FOO|E-MOD|X-TRE|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 1209613640,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/oHrnJRfmSrO_QX9_dsk9Mg.png?exp=1745457732&sig=09739ad40a3aad6286ed7761eca37305a9665ef7465980ec5e7ab79ec046cb59"
+      }
+    ]
+  }
+}

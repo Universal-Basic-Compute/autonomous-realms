@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 9,
+    "y": 7
+  },
+  "description": "Open pinyon-juniper woodland with rocky ground. Trees are widely spaced with drought-adapted understory plants between them. The seep forms a small intermittent stream.",
+  "terrainCode": "F-THN|E-MOD|W-STR|H-DRY",
+  "generatedPrompt": "isometric view of realistic terrain tile with Open pinyon-juniper woodland with rocky ground. Trees are widely spaced with drought-adapted understory plants between them. The seep forms a small intermittent stream., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|W-STR|X-BSH), east: unknown terrain (D-MSA|E-MOD|X-SPR|X-CFM), north: unknown terrain (F-THN|E-SLI|X-SPR|H-DRY), south: unknown terrain (F-THN|E-MOD|W-STR|X-RCK)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:15:29.246324+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Open pinyon-juniper woodland with rocky ground. Trees are widely spaced with drought-adapted understory plants between them. The seep forms a small intermittent stream., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|W-STR|X-BSH), east: unknown terrain (D-MSA|E-MOD|X-SPR|X-CFM), north: unknown terrain (F-THN|E-SLI|X-SPR|H-DRY), south: unknown terrain (F-THN|E-MOD|W-STR|X-RCK)",
+        "resolution": "1024x1024",
+        "seed": 2091830345,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/1Ewb76QVRoKzP46-SiScQg.png?exp=1745457334&sig=32228c003dc4ce0673c1f10275d0a378b4868cb44865720127a64b97254bf232"
+      }
+    ]
+  }
+}

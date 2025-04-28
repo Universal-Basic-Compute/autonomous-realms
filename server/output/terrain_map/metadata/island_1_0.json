@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 1,
+    "y": 0
+  },
+  "description": "Steep coastal cliffs continue with dramatic drops to the ocean. Sea spray coats the rocks with a fine salt layer. Erosion has created small caves at the waterline visible during low tide.",
+  "terrainCode": "R-LST|E-HIG|W-SEA|X-CVE",
+  "generatedPrompt": "isometric view of realistic terrain tile with Steep coastal cliffs continue with dramatic drops to the ocean. Sea spray coats the rocks with a fine salt layer. Erosion has created small caves at the waterline visible during low tide., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (R-LST|E-HIG|W-SEA|A-SEA), east: unknown terrain (W-BAY|E-SLI|W-SHL|A-FIS), south: unknown terrain (W-BAY|E-MOD|R-LST|W-SEA)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:48:28.476347+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Steep coastal cliffs continue with dramatic drops to the ocean. Sea spray coats the rocks with a fine salt layer. Erosion has created small caves at the waterline visible during low tide., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (R-LST|E-HIG|W-SEA|A-SEA), east: unknown terrain (W-BAY|E-SLI|W-SHL|A-FIS), south: unknown terrain (W-BAY|E-MOD|R-LST|W-SEA)",
+        "resolution": "1024x1024",
+        "seed": 1697013433,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/FPAwU_aRTt-LRq3EmYJmXw.png?exp=1745455713&sig=88cf2aa3c14d2814a383cc93978b3ef2a4b5a18efa6a2877d3f2625077103485"
+      }
+    ]
+  }
+}

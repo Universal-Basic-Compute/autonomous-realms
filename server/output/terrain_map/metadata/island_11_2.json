@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 11,
+    "y": 2
+  },
+  "description": "Large sand dunes with dramatic crescent shapes. The sand is fine and constantly shifting. The occasional desert plant clings to marginal positions before being buried by the moving sand.",
+  "terrainCode": "D-DUN|E-MOD|H-ARD|W-WIN",
+  "generatedPrompt": "isometric view of realistic terrain tile with Large sand dunes with dramatic crescent shapes. The sand is fine and constantly shifting. The occasional desert plant clings to marginal positions before being buried by the moving sand., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: sandy desert (D-SND|E-FLT|H-ARD|W-WIN), east: unknown terrain (D-ROC|E-SLI|R-SND|H-ARD), north: unknown terrain (D-DUN|E-FLT|H-ARD|W-WIN), south: sandy desert (D-SND|E-FLT|X-RCK|H-ARD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:20:51.968073+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Large sand dunes with dramatic crescent shapes. The sand is fine and constantly shifting. The occasional desert plant clings to marginal positions before being buried by the moving sand., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: sandy desert (D-SND|E-FLT|H-ARD|W-WIN), east: unknown terrain (D-ROC|E-SLI|R-SND|H-ARD), north: unknown terrain (D-DUN|E-FLT|H-ARD|W-WIN), south: sandy desert (D-SND|E-FLT|X-RCK|H-ARD)",
+        "resolution": "1024x1024",
+        "seed": 600017192,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/e296dMv6Sqa6OKUUEqSmag.png?exp=1745457657&sig=4c93b6b8b43527a90c2cfb19d13863dc7a3fbfec4ca5dadbc02312b7ca7559ea"
+      }
+    ]
+  }
+}

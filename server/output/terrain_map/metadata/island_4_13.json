@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 4,
+    "y": 13
+  },
+  "description": "Rocky foothills with mixed vegetation. The forest becomes patchy with open areas revealing panoramic views. The stream cuts deeply into the hillside creating a small ravine.",
+  "terrainCode": "M-FOO|E-MOD|F-THN|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with Rocky foothills with mixed vegetation. The forest becomes patchy with open areas revealing panoramic views. The stream cuts deeply into the hillside creating a small ravine., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: river (W-RIV|E-HIG|W-RPD|X-CLF), east: unknown terrain (M-FOO|E-MOD|X-BLD|W-STR), north: unknown terrain (F-MIX|E-MOD|X-RCK|W-STR), south: unknown terrain (M-FOO|E-HIG|R-SCR|W-WAT)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:00:35.753941+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Rocky foothills with mixed vegetation. The forest becomes patchy with open areas revealing panoramic views. The stream cuts deeply into the hillside creating a small ravine., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: river (W-RIV|E-HIG|W-RPD|X-CLF), east: unknown terrain (M-FOO|E-MOD|X-BLD|W-STR), north: unknown terrain (F-MIX|E-MOD|X-RCK|W-STR), south: unknown terrain (M-FOO|E-HIG|R-SCR|W-WAT)",
+        "resolution": "1024x1024",
+        "seed": 1179115340,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/9ZerxV08Tmedz9irxxoSNw.png?exp=1745456440&sig=16b2a3d8bd565095fa68428bafa656713e77e432736d97aa775171b67b21a711"
+      }
+    ]
+  }
+}

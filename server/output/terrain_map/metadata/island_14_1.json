@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 14,
+    "y": 1
+  },
+  "description": "The foothills become more pronounced with increasing rock and steeper terrain. Small juniper trees appear in protected locations. A dry wash indicates seasonal water flow during rare storms.",
+  "terrainCode": "M-FOO|E-MOD|X-TRE|H-DRY",
+  "generatedPrompt": "isometric view of realistic terrain tile with The foothills become more pronounced with increasing rock and steeper terrain. Small juniper trees appear in protected locations. A dry wash indicates seasonal water flow during rare storms., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-ROC|E-SLI|X-RCK|H-ARD), east: unknown terrain (M-FOO|E-HIG|F-PIN|H-DRY), north: unknown terrain (M-FOO|E-SLI|X-BLD|H-DRY), south: unknown terrain (M-FOO|E-MOD|X-CFM|X-SPR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:30:16.682722+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The foothills become more pronounced with increasing rock and steeper terrain. Small juniper trees appear in protected locations. A dry wash indicates seasonal water flow during rare storms., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-ROC|E-SLI|X-RCK|H-ARD), east: unknown terrain (M-FOO|E-HIG|F-PIN|H-DRY), north: unknown terrain (M-FOO|E-SLI|X-BLD|H-DRY), south: unknown terrain (M-FOO|E-MOD|X-CFM|X-SPR)",
+        "resolution": "1024x1024",
+        "seed": 1280614122,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/ULnEVTDoRvSq67uOTYXreA.png?exp=1745458223&sig=1d5d063d383c4f8ce484c05fba413c7a81942bf98d989e386d208651fd3eea38"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 3,
+    "y": 12
+  },
+  "description": "A narrow gorge begins to form as the river cuts between rising terrain. The water is turbulent with white caps over submerged boulders. The walls of the gorge show stratified rock layers.",
+  "terrainCode": "W-RIV|E-MOD|R-SND|W-RPD",
+  "generatedPrompt": "isometric view of realistic terrain tile with A narrow gorge begins to form as the river cuts between rising terrain. The water is turbulent with white caps over submerged boulders. The walls of the gorge show stratified rock layers., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: oak forest (F-OAK|E-SLI|W-STR|X-RCK), east: unknown terrain (F-MIX|E-MOD|X-RCK|W-STR), north: river (W-RIV|E-MOD|X-RCK|W-RPD), south: river (W-RIV|E-HIG|W-RPD|X-CLF)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:57:13.470687+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with A narrow gorge begins to form as the river cuts between rising terrain. The water is turbulent with white caps over submerged boulders. The walls of the gorge show stratified rock layers., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: oak forest (F-OAK|E-SLI|W-STR|X-RCK), east: unknown terrain (F-MIX|E-MOD|X-RCK|W-STR), north: river (W-RIV|E-MOD|X-RCK|W-RPD), south: river (W-RIV|E-HIG|W-RPD|X-CLF)",
+        "resolution": "1024x1024",
+        "seed": 1172892101,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/6R3uPRfbSBO76MxxfcJ8oA.png?exp=1745456239&sig=1da3b0979e0abfa2cbb2fba23ebfe1c37776de1a3b34aac77b6bcf47a096ec81"
+      }
+    ]
+  }
+}

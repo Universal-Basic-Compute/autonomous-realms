@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 6,
+    "y": 15
+  },
+  "description": "Lower mountain slopes with dramatic rock formations. Trees grow wherever soil has accumulated, creating uneven forest patches. The stream is now a full mountain cascade over stone steps.",
+  "terrainCode": "M-LOW|E-HIG|X-CFM|W-WAT",
+  "generatedPrompt": "isometric view of realistic terrain tile with Lower mountain slopes with dramatic rock formations. Trees grow wherever soil has accumulated, creating uneven forest patches. The stream is now a full mountain cascade over stone steps., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|X-CLF|W-WAT), east: low mountains (M-LOW|E-HIG|R-SCR|F-PIN), north: low mountains (M-LOW|E-HIG|X-CLF|W-WAT)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:07:23.460399+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Lower mountain slopes with dramatic rock formations. Trees grow wherever soil has accumulated, creating uneven forest patches. The stream is now a full mountain cascade over stone steps., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|X-CLF|W-WAT), east: low mountains (M-LOW|E-HIG|R-SCR|F-PIN), north: low mountains (M-LOW|E-HIG|X-CLF|W-WAT)",
+        "resolution": "1024x1024",
+        "seed": 1942668058,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/vtOMV7CYSXqXGx6UTInqRQ.png?exp=1745456848&sig=028c106eb73d92d4760ec6fbbcfee9733e9cfcf1be1f92fb665d88120f664df6"
+      }
+    ]
+  }
+}

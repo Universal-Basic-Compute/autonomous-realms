@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 8,
+    "y": 8
+  },
+  "description": "Mixed deciduous forest with oak, maple, and beech trees forming a high canopy. The ground begins to show the first gentle rise in elevation. The stream cuts more deeply into the soil.",
+  "terrainCode": "F-MIX|E-SLI|W-STR|F-GOO",
+  "generatedPrompt": "isometric view of realistic terrain tile with Mixed deciduous forest with oak, maple, and beech trees forming a high canopy. The ground begins to show the first gentle rise in elevation. The stream cuts more deeply into the soil., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: oak forest (F-OAK|E-SLI|W-STR|X-BSH), east: unknown terrain (F-THN|E-MOD|W-STR|X-RCK), north: unknown terrain (F-MIX|E-FLT|W-STR|X-BSH), south: unknown terrain (F-MIX|E-MOD|X-RCK|A-DEE)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:12:24.392804+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Mixed deciduous forest with oak, maple, and beech trees forming a high canopy. The ground begins to show the first gentle rise in elevation. The stream cuts more deeply into the soil., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: oak forest (F-OAK|E-SLI|W-STR|X-BSH), east: unknown terrain (F-THN|E-MOD|W-STR|X-RCK), north: unknown terrain (F-MIX|E-FLT|W-STR|X-BSH), south: unknown terrain (F-MIX|E-MOD|X-RCK|A-DEE)",
+        "resolution": "1024x1024",
+        "seed": 506646702,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/WwosybRBSqmcHBSiWVfzFA.png?exp=1745457149&sig=53de580de70118170e477eae8f4230ab262afb7645a359187fee3991fa3593ce"
+      }
+    ]
+  }
+}

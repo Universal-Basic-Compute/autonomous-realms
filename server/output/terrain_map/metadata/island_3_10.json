@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 3,
+    "y": 10
+  },
+  "description": "The river begins to show more rocky features as the terrain gradually rises. Small rapids form over submerged stones. The banks rise higher with exposed soil showing river-cut profiles.",
+  "terrainCode": "W-RIV|E-SLI|X-RCK|W-RPD",
+  "generatedPrompt": "isometric view of realistic terrain tile with The river begins to show more rocky features as the terrain gradually rises. Small rapids form over submerged stones. The banks rise higher with exposed soil showing river-cut profiles., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: lush grassland (P-LUS|E-FLT|X-TRE|W-STR), east: oak forest (F-OAK|E-SLI|X-RCK|W-STR), north: river (W-RIV|E-FLT|H-FLD|X-TRE), south: river (W-RIV|E-MOD|X-RCK|W-RPD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:56:48.652001+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The river begins to show more rocky features as the terrain gradually rises. Small rapids form over submerged stones. The banks rise higher with exposed soil showing river-cut profiles., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: lush grassland (P-LUS|E-FLT|X-TRE|W-STR), east: oak forest (F-OAK|E-SLI|X-RCK|W-STR), north: river (W-RIV|E-FLT|H-FLD|X-TRE), south: river (W-RIV|E-MOD|X-RCK|W-RPD)",
+        "resolution": "1024x1024",
+        "seed": 1917597507,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/uLElhOXlQNmvYjgXeRzSTg.png?exp=1745456214&sig=eab70402750382df18db8d0bb76dfe99fc70e8d301b238547af878b47ab7c221"
+      }
+    ]
+  }
+}

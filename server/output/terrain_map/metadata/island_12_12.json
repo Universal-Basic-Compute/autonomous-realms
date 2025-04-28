@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 12,
+    "y": 12
+  },
+  "description": "Lower mountain slopes with patchy coniferous forest. Large rock outcroppings create clearings in the tree cover. The stream descends dramatically through a series of cascades.",
+  "terrainCode": "M-LOW|E-HIG|F-PIN|W-WAT",
+  "generatedPrompt": "isometric view of realistic terrain tile with Lower mountain slopes with patchy coniferous forest. Large rock outcroppings create clearings in the tree cover. The stream descends dramatically through a series of cascades., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|F-PIN|W-RPD), east: low mountains (M-LOW|E-HIG|F-PIN|W-WAT), north: unknown terrain (M-FOO|E-HIG|F-PIN|W-WAT), south: low mountains (M-LOW|E-HIG|F-PIN|A-HAW)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:26:02.736051+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Lower mountain slopes with patchy coniferous forest. Large rock outcroppings create clearings in the tree cover. The stream descends dramatically through a series of cascades., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-HIG|F-PIN|W-RPD), east: low mountains (M-LOW|E-HIG|F-PIN|W-WAT), north: unknown terrain (M-FOO|E-HIG|F-PIN|W-WAT), south: low mountains (M-LOW|E-HIG|F-PIN|A-HAW)",
+        "resolution": "1024x1024",
+        "seed": 1306563551,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/M-pBx8m_Qxm600KtGNIkxA.png?exp=1745457968&sig=25696a74c83ac23de829993b36812f34f762477799d6932d0729fd3730bc0db6"
+      }
+    ]
+  }
+}

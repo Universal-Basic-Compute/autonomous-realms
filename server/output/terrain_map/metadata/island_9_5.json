@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 9,
+    "y": 5
+  },
+  "description": "The terrain begins to rise slightly with more exposed rock. Juniper and pinyon pine appear in scattered locations. The dry wash deepens, showing erosion patterns from flash floods.",
+  "terrainCode": "P-SCR|E-SLI|X-TRE|H-ARD",
+  "generatedPrompt": "isometric view of realistic terrain tile with The terrain begins to rise slightly with more exposed rock. Juniper and pinyon pine appear in scattered locations. The dry wash deepens, showing erosion patterns from flash floods., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-THN|E-FLT|A-RAB|A-FOX), east: unknown terrain (D-BDL|E-SLI|X-CFM|H-ARD), north: unknown terrain (P-SCR|E-FLT|X-RCK|H-ARD), south: unknown terrain (F-THN|E-SLI|X-SPR|H-DRY)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:15:04.518849+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The terrain begins to rise slightly with more exposed rock. Juniper and pinyon pine appear in scattered locations. The dry wash deepens, showing erosion patterns from flash floods., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-THN|E-FLT|A-RAB|A-FOX), east: unknown terrain (D-BDL|E-SLI|X-CFM|H-ARD), north: unknown terrain (P-SCR|E-FLT|X-RCK|H-ARD), south: unknown terrain (F-THN|E-SLI|X-SPR|H-DRY)",
+        "resolution": "1024x1024",
+        "seed": 611012322,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/blHZ7wtgRb23zC8CmgxhqQ.png?exp=1745457309&sig=26db29582630bccc3d7c220dc6042f52070d7050be3cc1307b4a0aa113f23146"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 5,
+    "y": 11
+  },
+  "description": "As elevation increases, the forest composition shifts toward more drought-tolerant species. Rock outcrops become more common, creating small clearings in the forest canopy.",
+  "terrainCode": "F-MIX|E-MOD|X-RCK|F-AVG",
+  "generatedPrompt": "isometric view of realistic terrain tile with As elevation increases, the forest composition shifts toward more drought-tolerant species. Rock outcrops become more common, creating small clearings in the forest canopy., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-MOD|X-BLD|W-STR), east: unknown terrain (F-MIX|E-MOD|X-RCK|W-STR), north: unknown terrain (F-MIX|E-SLI|X-SPR|W-STR), south: unknown terrain (M-FOO|E-MOD|F-THN|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:03:24.244529+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with As elevation increases, the forest composition shifts toward more drought-tolerant species. Rock outcrops become more common, creating small clearings in the forest canopy., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-MOD|X-BLD|W-STR), east: unknown terrain (F-MIX|E-MOD|X-RCK|W-STR), north: unknown terrain (F-MIX|E-SLI|X-SPR|W-STR), south: unknown terrain (M-FOO|E-MOD|F-THN|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 2067992203,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/BFt3AHYKRbKzgGhJU6QEag.png?exp=1745456609&sig=6a343ad44b240574887794883895f7ee21a8ccc38a33fee1f0aca115f87c8928"
+      }
+    ]
+  }
+}

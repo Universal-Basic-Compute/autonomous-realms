@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 10,
+    "y": 0
+  },
+  "description": "Arid plains with thin vegetation consisting primarily of bunch grasses and scattered drought-resistant shrubs. The soil is sandy with occasional rocky patches. Small lizards dart between sparse cover.",
+  "terrainCode": "P-DRY|E-FLT|H-ARD|A-LIZ",
+  "generatedPrompt": "isometric view of realistic terrain tile with Arid plains with thin vegetation consisting primarily of bunch grasses and scattered drought-resistant shrubs. The soil is sandy with occasional rocky patches. Small lizards dart between sparse cover., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (P-DRY|E-FLT|F-AVG|H-DRY), east: sandy desert (D-SND|E-FLT|H-ARD|X-BSH), south: sandy desert (D-SND|E-FLT|H-ARD|X-BSH)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:17:16.855993+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Arid plains with thin vegetation consisting primarily of bunch grasses and scattered drought-resistant shrubs. The soil is sandy with occasional rocky patches. Small lizards dart between sparse cover., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (P-DRY|E-FLT|F-AVG|H-DRY), east: sandy desert (D-SND|E-FLT|H-ARD|X-BSH), south: sandy desert (D-SND|E-FLT|H-ARD|X-BSH)",
+        "resolution": "1024x1024",
+        "seed": 1066074258,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/ddVvlBbMQ0eSzVP456Yz8Q.png?exp=1745457442&sig=73e781d269620acd748b001c3fc41bd0f1e6ec9221ebfe85e429eb91ad22faa1"
+      }
+    ]
+  }
+}

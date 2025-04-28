@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 10,
+    "y": 10
+  },
+  "description": "Foothills with increasing vegetation as moisture becomes more available. Pinyon pines and junipers form an open woodland. The stream cuts through the rocky terrain, occasionally forming small pools.",
+  "terrainCode": "M-FOO|E-MOD|F-PIN|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with Foothills with increasing vegetation as moisture becomes more available. Pinyon pines and junipers form an open woodland. The stream cuts through the rocky terrain, occasionally forming small pools., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: pine forest (F-PIN|E-MOD|W-STR|X-RCK), east: unknown terrain (M-FOO|E-MOD|F-PIN|W-STR), north: unknown terrain (M-FOO|E-MOD|X-TRE|W-STR), south: unknown terrain (M-FOO|E-MOD|F-PIN|X-BLD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:19:18.192248+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Foothills with increasing vegetation as moisture becomes more available. Pinyon pines and junipers form an open woodland. The stream cuts through the rocky terrain, occasionally forming small pools., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: pine forest (F-PIN|E-MOD|W-STR|X-RCK), east: unknown terrain (M-FOO|E-MOD|F-PIN|W-STR), north: unknown terrain (M-FOO|E-MOD|X-TRE|W-STR), south: unknown terrain (M-FOO|E-MOD|F-PIN|X-BLD)",
+        "resolution": "1024x1024",
+        "seed": 426613354,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/z5dzq9W8RGOm2yGaFDRgqw.png?exp=1745457563&sig=a116beab2f9ddaa7c46d56701fb506841f58e64788eb932ef34559fc9f312fef"
+      }
+    ]
+  }
+}

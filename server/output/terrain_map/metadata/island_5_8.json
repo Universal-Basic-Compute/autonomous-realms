@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 5,
+    "y": 8
+  },
+  "description": "The forest begins to transition to slightly higher ground. Trees are diverse with multiple layers of canopy. Understory becomes thicker with shrubs and juvenile trees competing for light.",
+  "terrainCode": "F-MIX|E-SLI|F-RIC|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with The forest begins to transition to slightly higher ground. Trees are diverse with multiple layers of canopy. Understory becomes thicker with shrubs and juvenile trees competing for light., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: oak forest (F-OAK|E-FLT|F-RIC|A-FOX), east: unknown terrain (F-MIX|E-SLI|F-RIC|X-BSH), north: unknown terrain (F-MIX|E-FLT|F-RIC|H-FLD), south: unknown terrain (F-MIX|E-SLI|R-LST|X-BSH)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:02:49.735362+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The forest begins to transition to slightly higher ground. Trees are diverse with multiple layers of canopy. Understory becomes thicker with shrubs and juvenile trees competing for light., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: oak forest (F-OAK|E-FLT|F-RIC|A-FOX), east: unknown terrain (F-MIX|E-SLI|F-RIC|X-BSH), north: unknown terrain (F-MIX|E-FLT|F-RIC|H-FLD), south: unknown terrain (F-MIX|E-SLI|R-LST|X-BSH)",
+        "resolution": "1024x1024",
+        "seed": 1568145031,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/Usd0XKVmTaaaTvdQJogVAA.png?exp=1745456574&sig=7104847570491991fdd899f282f292aa85b3914411a1a6825041a81c9f1e67b1"
+      }
+    ]
+  }
+}

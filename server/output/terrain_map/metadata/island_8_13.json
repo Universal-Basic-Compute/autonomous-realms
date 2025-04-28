@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 8,
+    "y": 13
+  },
+  "description": "Steeper terrain with thin soil and exposed rock faces. Trees grow at angles from available soil pockets. The stream has carved a deep channel through weaker rock layers.",
+  "terrainCode": "M-FOO|E-HIG|X-CLF|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with Steeper terrain with thin soil and exposed rock faces. Trees grow at angles from available soil pockets. The stream has carved a deep channel through weaker rock layers., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-HIG|F-PIN|W-STR), east: unknown terrain (M-FOO|E-HIG|F-PIN|X-BLD), north: unknown terrain (M-FOO|E-MOD|X-BLD|W-WAT), south: low mountains (M-LOW|E-HIG|F-PIN|W-WAT)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:13:27.926236+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Steeper terrain with thin soil and exposed rock faces. Trees grow at angles from available soil pockets. The stream has carved a deep channel through weaker rock layers., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-HIG|F-PIN|W-STR), east: unknown terrain (M-FOO|E-HIG|F-PIN|X-BLD), north: unknown terrain (M-FOO|E-MOD|X-BLD|W-WAT), south: low mountains (M-LOW|E-HIG|F-PIN|W-WAT)",
+        "resolution": "1024x1024",
+        "seed": 844064188,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/MtA-SoFcQa2FL57-zhxbBQ.png?exp=1745457213&sig=c5c856fcf3cb3eab50bc5ecd363202cb49b002c4eebfe14b195612934b2c7037"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 12,
+    "y": 6
+  },
+  "description": "The badlands rise into the beginning of a dramatic slot canyon. Smooth walls tower overhead, carved by occasional flash floods. The canyon floor is sandy with scattered boulders.",
+  "terrainCode": "D-CYN|E-MOD|X-CLF|H-ARD",
+  "generatedPrompt": "isometric view of realistic terrain tile with The badlands rise into the beginning of a dramatic slot canyon. Smooth walls tower overhead, carved by occasional flash floods. The canyon floor is sandy with scattered boulders., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-CYN|E-MOD|X-BLD|H-ARD), east: unknown terrain (D-CYN|E-HIG|X-BLD|H-ARD), north: unknown terrain (D-BDL|E-MOD|X-CFM|H-ARD), south: unknown terrain (D-CYN|E-HIG|X-SPR|R-SND)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:24:51.799096+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The badlands rise into the beginning of a dramatic slot canyon. Smooth walls tower overhead, carved by occasional flash floods. The canyon floor is sandy with scattered boulders., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-CYN|E-MOD|X-BLD|H-ARD), east: unknown terrain (D-CYN|E-HIG|X-BLD|H-ARD), north: unknown terrain (D-BDL|E-MOD|X-CFM|H-ARD), south: unknown terrain (D-CYN|E-HIG|X-SPR|R-SND)",
+        "resolution": "1024x1024",
+        "seed": 237366028,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/PEjo0OvnT46mYKuHm0JESQ.png?exp=1745457897&sig=130b43af02e2e3c0617c4ed6ae77305b8ef28fa0a779f05b12b61a15fc1f2680"
+      }
+    ]
+  }
+}

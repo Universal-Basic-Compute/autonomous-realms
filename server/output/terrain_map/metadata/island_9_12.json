@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 9,
+    "y": 12
+  },
+  "description": "Rocky foothills with pine and fir trees in protected pockets. Large boulders create distinctive formations. The stream descends more rapidly, forming a series of small cascades.",
+  "terrainCode": "M-FOO|E-HIG|F-PIN|W-RPD",
+  "generatedPrompt": "isometric view of realistic terrain tile with Rocky foothills with pine and fir trees in protected pockets. Large boulders create distinctive formations. The stream descends more rapidly, forming a series of small cascades., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|X-BLD|W-WAT), east: unknown terrain (M-FOO|E-HIG|F-PIN|W-RPD), north: unknown terrain (M-FOO|E-MOD|F-PIN|W-STR), south: unknown terrain (M-FOO|E-HIG|F-PIN|X-BLD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:16:28.779509+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Rocky foothills with pine and fir trees in protected pockets. Large boulders create distinctive formations. The stream descends more rapidly, forming a series of small cascades., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|X-BLD|W-WAT), east: unknown terrain (M-FOO|E-HIG|F-PIN|W-RPD), north: unknown terrain (M-FOO|E-MOD|F-PIN|W-STR), south: unknown terrain (M-FOO|E-HIG|F-PIN|X-BLD)",
+        "resolution": "1024x1024",
+        "seed": 1909932350,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/9lz1-LP9R3GpOf3uvlQiZA.png?exp=1745457394&sig=503e2b8a7280f3137a082f0e08a8cc2dc41b9884aeb8c908eda92fb9f75cdf9d"
+      }
+    ]
+  }
+}

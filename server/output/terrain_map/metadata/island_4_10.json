@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 4,
+    "y": 10
+  },
+  "description": "The forest thins as rocky outcrops begin to appear. The soil becomes less rich but still supports healthy vegetation. A small stream cuts through, joining the river in the distance.",
+  "terrainCode": "F-OAK|E-SLI|X-RCK|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with The forest thins as rocky outcrops begin to appear. The soil becomes less rich but still supports healthy vegetation. A small stream cuts through, joining the river in the distance., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: river (W-RIV|E-SLI|X-RCK|W-RPD), east: unknown terrain (F-MIX|E-SLI|X-SPR|W-STR), north: oak forest (F-OAK|E-SLI|F-GOO|X-BSH), south: unknown terrain (F-MIX|E-MOD|X-BLD|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:59:58.866363+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The forest thins as rocky outcrops begin to appear. The soil becomes less rich but still supports healthy vegetation. A small stream cuts through, joining the river in the distance., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: river (W-RIV|E-SLI|X-RCK|W-RPD), east: unknown terrain (F-MIX|E-SLI|X-SPR|W-STR), north: oak forest (F-OAK|E-SLI|F-GOO|X-BSH), south: unknown terrain (F-MIX|E-MOD|X-BLD|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 1028491597,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/ebyThhEfTpK7l2ZCAJHruA.png?exp=1745456404&sig=9cad090c1ccdc581dc99f029d8d6bafdeb16687798562a6aa3799d2bdc7f06d8"
+      }
+    ]
+  }
+}

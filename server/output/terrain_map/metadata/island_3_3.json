@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 3,
+    "y": 3
+  },
+  "description": "A river widens as it approaches the estuary. The water flows steadily between defined banks. Willows and other water-loving trees line the shores, their roots partially exposed.",
+  "terrainCode": "W-RIV|E-FLT|H-WET|X-TRE",
+  "generatedPrompt": "isometric view of realistic terrain tile with A river widens as it approaches the estuary. The water flows steadily between defined banks. Willows and other water-loving trees line the shores, their roots partially exposed., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-LAG|E-FLT|W-SHL|A-FIS), east: unknown terrain (W-SWP|E-FLT|H-SAT|X-TRE), north: unknown terrain (W-EST|E-FLT|W-RIV|X-BSH), south: river (W-RIV|E-FLT|H-WET|A-FIS)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:55:26.381223+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with A river widens as it approaches the estuary. The water flows steadily between defined banks. Willows and other water-loving trees line the shores, their roots partially exposed., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-LAG|E-FLT|W-SHL|A-FIS), east: unknown terrain (W-SWP|E-FLT|H-SAT|X-TRE), north: unknown terrain (W-EST|E-FLT|W-RIV|X-BSH), south: river (W-RIV|E-FLT|H-WET|A-FIS)",
+        "resolution": "1024x1024",
+        "seed": 548360884,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/C_Hpzt56RWOghPMZFilW1g.png?exp=1745456131&sig=cade8ed1810362c97abff0c7855c597e3783afeec97fc7b125c1cc64fbe486e2"
+      }
+    ]
+  }
+}

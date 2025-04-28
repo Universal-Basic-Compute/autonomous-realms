@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 8,
+    "y": 5
+  },
+  "description": "The savanna begins to transition to woodland as tree density increases. The grassy understory remains but is less dominant. Small game animals utilize the mixed habitat effectively.",
+  "terrainCode": "F-THN|E-FLT|A-RAB|A-FOX",
+  "generatedPrompt": "isometric view of realistic terrain tile with The savanna begins to transition to woodland as tree density increases. The grassy understory remains but is less dominant. Small game animals utilize the mixed habitat effectively., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|W-STR|X-BSH), east: unknown terrain (P-SCR|E-SLI|X-TRE|H-ARD), north: lush grassland (P-LUS|E-FLT|X-TRE|W-STR), south: unknown terrain (F-THN|E-FLT|W-STR|F-GOO)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:11:46.636751+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The savanna begins to transition to woodland as tree density increases. The grassy understory remains but is less dominant. Small game animals utilize the mixed habitat effectively., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|W-STR|X-BSH), east: unknown terrain (P-SCR|E-SLI|X-TRE|H-ARD), north: lush grassland (P-LUS|E-FLT|X-TRE|W-STR), south: unknown terrain (F-THN|E-FLT|W-STR|F-GOO)",
+        "resolution": "1024x1024",
+        "seed": 1023365605,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/jtMo0lLqRQaspClmegO0eg.png?exp=1745457112&sig=32d7efe36c5d4f302cc9dd84fcafc84bc9b61da4ed029e0184effd068e286773"
+      }
+    ]
+  }
+}

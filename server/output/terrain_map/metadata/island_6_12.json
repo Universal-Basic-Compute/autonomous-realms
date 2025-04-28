@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 6,
+    "y": 12
+  },
+  "description": "Foothill terrain with patchy forest cover and increasing rock. Small bluffs create distinctive terracing. The stream cuts through creating a small ravine with steep sides.",
+  "terrainCode": "M-FOO|E-MOD|F-THN|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with Foothill terrain with patchy forest cover and increasing rock. Small bluffs create distinctive terracing. The stream cuts through creating a small ravine with steep sides., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|F-THN|W-STR), east: unknown terrain (M-FOO|E-HIG|X-BLD|W-RPD), north: unknown terrain (F-MIX|E-MOD|X-RCK|W-STR), south: unknown terrain (M-FOO|E-HIG|F-PIN|X-BLD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:06:47.148637+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Foothill terrain with patchy forest cover and increasing rock. Small bluffs create distinctive terracing. The stream cuts through creating a small ravine with steep sides., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|F-THN|W-STR), east: unknown terrain (M-FOO|E-HIG|X-BLD|W-RPD), north: unknown terrain (F-MIX|E-MOD|X-RCK|W-STR), south: unknown terrain (M-FOO|E-HIG|F-PIN|X-BLD)",
+        "resolution": "1024x1024",
+        "seed": 2086760590,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/7PkTSGfiR5mP8wcl-Ew5MA.png?exp=1745456812&sig=513beebb9adcf017df6d7fb68aa1ed43ab777fc816c8c6e31b4fadc00fe96e7b"
+      }
+    ]
+  }
+}

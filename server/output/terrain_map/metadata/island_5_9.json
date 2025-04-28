@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 5,
+    "y": 9
+  },
+  "description": "Mixed hardwood forest with mature trees spaced more widely. The forest floor receives more light, supporting thick understory growth. Occasional limestone outcrops reveal the underlying geology.",
+  "terrainCode": "F-MIX|E-SLI|R-LST|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with Mixed hardwood forest with mature trees spaced more widely. The forest floor receives more light, supporting thick understory growth. Occasional limestone outcrops reveal the underlying geology., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: oak forest (F-OAK|E-SLI|F-GOO|X-BSH), east: unknown terrain (F-MIX|E-SLI|X-SPR|X-RCK), north: unknown terrain (F-MIX|E-SLI|F-RIC|X-BSH), south: unknown terrain (F-MIX|E-SLI|X-SPR|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:03:00.559692+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Mixed hardwood forest with mature trees spaced more widely. The forest floor receives more light, supporting thick understory growth. Occasional limestone outcrops reveal the underlying geology., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: oak forest (F-OAK|E-SLI|F-GOO|X-BSH), east: unknown terrain (F-MIX|E-SLI|X-SPR|X-RCK), north: unknown terrain (F-MIX|E-SLI|F-RIC|X-BSH), south: unknown terrain (F-MIX|E-SLI|X-SPR|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 935223883,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/ZatLF4RVRmyUwQkiTTu63A.png?exp=1745456585&sig=aa06365ce35996df62b0efe991555b66d4f17ae8f564684682c25ab1d13a92c2"
+      }
+    ]
+  }
+}

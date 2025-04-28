@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 14,
+    "y": 10
+  },
+  "description": "Higher elevation with thinning forest and increasing rock. Trees show the effects of harsh conditions with stunted, wind-shaped forms. A small alpine meadow forms in a protected hollow.",
+  "terrainCode": "M-HIG|E-VRY|P-FLW|X-HOL",
+  "generatedPrompt": "isometric view of realistic terrain tile with Higher elevation with thinning forest and increasing rock. Trees show the effects of harsh conditions with stunted, wind-shaped forms. A small alpine meadow forms in a protected hollow., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|W-STR|X-BSH), east: high mountains (M-HIG|E-VRY|P-FLW|W-STR), north: low mountains (M-LOW|E-VRY|F-PIN|R-SCR), south: high mountains (M-HIG|E-VRY|P-FLW|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:32:05.269672+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Higher elevation with thinning forest and increasing rock. Trees show the effects of harsh conditions with stunted, wind-shaped forms. A small alpine meadow forms in a protected hollow., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|W-STR|X-BSH), east: high mountains (M-HIG|E-VRY|P-FLW|W-STR), north: low mountains (M-LOW|E-VRY|F-PIN|R-SCR), south: high mountains (M-HIG|E-VRY|P-FLW|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 1243472867,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/RIycXnKRTr2_QQ9kX62qew.png?exp=1745458330&sig=684497d1e36fe4a1d7fa0f387ed39d511a0602ddfc7b11234ca9ae1cbf5ef79d"
+      }
+    ]
+  }
+}

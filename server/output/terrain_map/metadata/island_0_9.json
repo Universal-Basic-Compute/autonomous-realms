@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 0,
+    "y": 9
+  },
+  "description": "A young coastal pine forest begins, with trees growing taller as they gain distance from the shore. Needle-covered ground hosts mushrooms and lichens. Bird songs echo among the branches.",
+  "terrainCode": "F-PIN|E-SLI|W-WIN|A-BIR",
+  "generatedPrompt": "isometric view of realistic terrain tile with A young coastal pine forest begins, with trees growing taller as they gain distance from the shore. Needle-covered ground hosts mushrooms and lichens. Bird songs echo among the branches., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: pine forest (F-PIN|E-FLT|F-POO|X-RCK), north: unknown terrain (P-SCR|E-SLI|X-BSH|X-TRE), south: pine forest (F-PIN|E-SLI|F-AVG|A-SQU)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:47:02.885965+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with A young coastal pine forest begins, with trees growing taller as they gain distance from the shore. Needle-covered ground hosts mushrooms and lichens. Bird songs echo among the branches., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: pine forest (F-PIN|E-FLT|F-POO|X-RCK), north: unknown terrain (P-SCR|E-SLI|X-BSH|X-TRE), south: pine forest (F-PIN|E-SLI|F-AVG|A-SQU)",
+        "resolution": "1024x1024",
+        "seed": 1480362551,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/9AVDyxy8TxSh8gKR6yntjw.png?exp=1745455628&sig=cca43d1bd898b3f12d72ba8725588e4a89b3e3f83fe5655b903f4d4c8ed13a69"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 13,
+    "y": 14
+  },
+  "description": "Higher mountain slopes with dramatic rock formations and thinning forest. Trees struggle against harsh conditions, becoming more stunted with elevation. Small streams form from snowmelt.",
+  "terrainCode": "M-HIG|E-VRY|F-PIN|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with Higher mountain slopes with dramatic rock formations and thinning forest. Trees struggle against harsh conditions, becoming more stunted with elevation. Small streams form from snowmelt., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: high mountains (M-HIG|E-VRY|F-PIN|X-RCK), east: high mountains (M-HIG|E-EXT|T-SNO|X-RCK), north: low mountains (M-LOW|E-HIG|F-PIN|A-GOA), south: high mountains (M-HIG|E-EXT|R-SCR|T-SNO)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:29:40.881202+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Higher mountain slopes with dramatic rock formations and thinning forest. Trees struggle against harsh conditions, becoming more stunted with elevation. Small streams form from snowmelt., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: high mountains (M-HIG|E-VRY|F-PIN|X-RCK), east: high mountains (M-HIG|E-EXT|T-SNO|X-RCK), north: low mountains (M-LOW|E-HIG|F-PIN|A-GOA), south: high mountains (M-HIG|E-EXT|R-SCR|T-SNO)",
+        "resolution": "1024x1024",
+        "seed": 1608572126,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/nSPkMys7Tdq77iNMuw-2KQ.png?exp=1745458186&sig=316c004565cf0b6f563f33ab9a7c6f6248d8bbfb46f3444d7987649ff563ad15"
+      }
+    ]
+  }
+}

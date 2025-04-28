@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 5,
+    "y": 3
+  },
+  "description": "Deep swamp forest with trees growing directly from dark water. The canopy creates a shadowy atmosphere below. Occasional breaks allow shafts of light to penetrate to the water surface.",
+  "terrainCode": "W-SWP|E-FLT|H-SAT|X-TRE",
+  "generatedPrompt": "isometric view of realistic terrain tile with Deep swamp forest with trees growing directly from dark water. The canopy creates a shadowy atmosphere below. Occasional breaks allow shafts of light to penetrate to the water surface., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-SWP|E-FLT|H-SAT|X-TRE), east: unknown terrain (F-THN|E-FLT|H-WET|X-BSH), north: unknown terrain (W-SWP|E-FLT|H-SAT|X-TRE), south: unknown terrain (W-SWP|E-FLT|H-SAT|A-TUR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:01:48.081541+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Deep swamp forest with trees growing directly from dark water. The canopy creates a shadowy atmosphere below. Occasional breaks allow shafts of light to penetrate to the water surface., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-SWP|E-FLT|H-SAT|X-TRE), east: unknown terrain (F-THN|E-FLT|H-WET|X-BSH), north: unknown terrain (W-SWP|E-FLT|H-SAT|X-TRE), south: unknown terrain (W-SWP|E-FLT|H-SAT|A-TUR)",
+        "resolution": "1024x1024",
+        "seed": 1302028364,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/aI0sxCggRFGMiUiZW51Y4w.png?exp=1745456514&sig=caa7cea11107f38316ab14752fb2d6777ec499328f485e6f9fc6b98628c9f675"
+      }
+    ]
+  }
+}

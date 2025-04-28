@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 15,
+    "y": 9
+  },
+  "description": "The mountainside becomes increasingly rocky with steeper slopes. The forest thins dramatically with trees growing only in the most protected locations. Small avalanche chutes are visible.",
+  "terrainCode": "M-HIG|E-VRY|F-THN|R-SCR",
+  "generatedPrompt": "isometric view of realistic terrain tile with The mountainside becomes increasingly rocky with steeper slopes. The forest thins dramatically with trees growing only in the most protected locations. Small avalanche chutes are visible., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-VRY|F-PIN|R-SCR), north: high mountains (M-HIG|E-VRY|F-PIN|W-WAT), south: high mountains (M-HIG|E-VRY|P-FLW|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:35:09.216961+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The mountainside becomes increasingly rocky with steeper slopes. The forest thins dramatically with trees growing only in the most protected locations. Small avalanche chutes are visible., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: low mountains (M-LOW|E-VRY|F-PIN|R-SCR), north: high mountains (M-HIG|E-VRY|F-PIN|W-WAT), south: high mountains (M-HIG|E-VRY|P-FLW|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 1953885703,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/mMixL9_lTSO2HakvM6u_yw.png?exp=1745458514&sig=d6aa4d44883466a000175dfb6146802e09b8144b535e2533ff7e3e37e61e21ce"
+      }
+    ]
+  }
+}

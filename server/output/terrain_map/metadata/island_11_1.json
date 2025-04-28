@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 11,
+    "y": 1
+  },
+  "description": "The desert landscape features increasing sand accumulation. Dunes become more pronounced with rippling patterns created by wind. Vegetation is extremely sparse and specialized.",
+  "terrainCode": "D-DUN|E-FLT|H-ARD|W-WIN",
+  "generatedPrompt": "isometric view of realistic terrain tile with The desert landscape features increasing sand accumulation. Dunes become more pronounced with rippling patterns created by wind. Vegetation is extremely sparse and specialized., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: sandy desert (D-SND|E-FLT|H-ARD|X-BSH), east: sandy desert (D-SND|E-FLT|H-ARD|X-BSH), north: sandy desert (D-SND|E-FLT|H-ARD|X-BSH), south: unknown terrain (D-DUN|E-MOD|H-ARD|W-WIN)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:20:40.734261+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The desert landscape features increasing sand accumulation. Dunes become more pronounced with rippling patterns created by wind. Vegetation is extremely sparse and specialized., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: sandy desert (D-SND|E-FLT|H-ARD|X-BSH), east: sandy desert (D-SND|E-FLT|H-ARD|X-BSH), north: sandy desert (D-SND|E-FLT|H-ARD|X-BSH), south: unknown terrain (D-DUN|E-MOD|H-ARD|W-WIN)",
+        "resolution": "1024x1024",
+        "seed": 230081787,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/WY-6mlUkR66TdTEPqzxHjw.png?exp=1745457645&sig=8f911b220d9e4af2e8dae74cd351bd847d0eb89778825525507b0f8d36b0e3aa"
+      }
+    ]
+  }
+}

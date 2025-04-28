@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 10,
+    "y": 5
+  },
+  "description": "The desert begins to rise into badland formations. Layered sedimentary rock creates striped patterns in the eroded landscape. A dry wash cuts deeply through, revealing geological history.",
+  "terrainCode": "D-BDL|E-SLI|X-CFM|H-ARD",
+  "generatedPrompt": "isometric view of realistic terrain tile with The desert begins to rise into badland formations. Layered sedimentary rock creates striped patterns in the eroded landscape. A dry wash cuts deeply through, revealing geological history., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (P-SCR|E-SLI|X-TRE|H-ARD), east: unknown terrain (D-CYN|E-MOD|R-SND|H-ARD), north: unknown terrain (D-ROC|E-SLI|H-ARD|X-CFM), south: unknown terrain (D-BDL|E-MOD|X-CFM|H-ARD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:18:16.217078+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The desert begins to rise into badland formations. Layered sedimentary rock creates striped patterns in the eroded landscape. A dry wash cuts deeply through, revealing geological history., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (P-SCR|E-SLI|X-TRE|H-ARD), east: unknown terrain (D-CYN|E-MOD|R-SND|H-ARD), north: unknown terrain (D-ROC|E-SLI|H-ARD|X-CFM), south: unknown terrain (D-BDL|E-MOD|X-CFM|H-ARD)",
+        "resolution": "1024x1024",
+        "seed": 994807389,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/AJ9E3SaeTiO19blFr-z6Vw.png?exp=1745457501&sig=72429fea6fd2221f5d54165262b570637191b2199876c32b7d790c97998a98e6"
+      }
+    ]
+  }
+}

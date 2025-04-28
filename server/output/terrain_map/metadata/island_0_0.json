@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 0,
+    "y": 0
+  },
+  "description": "Rocky coastal cliffs with sparse vegetation. Ocean waves crash against the weathered limestone formations. Seabirds nest in small crevices, and salt-resistant grasses cling to the thin soil above.",
+  "terrainCode": "R-LST|E-HIG|W-SEA|A-SEA",
+  "generatedPrompt": "isometric view of realistic terrain tile with Rocky coastal cliffs with sparse vegetation. Ocean waves crash against the weathered limestone formations. Seabirds nest in small crevices, and salt-resistant grasses cling to the thin soil above., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: unknown terrain (R-LST|E-HIG|W-SEA|X-CVE), south: unknown terrain (R-LST|E-HIG|W-SEA|X-BSH)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:45:13.445631+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Rocky coastal cliffs with sparse vegetation. Ocean waves crash against the weathered limestone formations. Seabirds nest in small crevices, and salt-resistant grasses cling to the thin soil above., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: unknown terrain (R-LST|E-HIG|W-SEA|X-CVE), south: unknown terrain (R-LST|E-HIG|W-SEA|X-BSH)",
+        "resolution": "1024x1024",
+        "seed": 1430382757,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/IxS4KTf7SySbpV4XpkRoiA.png?exp=1745455518&sig=fcf8555030342521b17e4155bad9e1ef13e89e3c8fc9bf23c8366a3804441689"
+      }
+    ]
+  }
+}

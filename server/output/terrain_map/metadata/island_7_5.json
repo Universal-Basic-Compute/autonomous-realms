@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 7,
+    "y": 5
+  },
+  "description": "The woodland becomes denser as moisture availability increases near the creek. The understory includes shrubs and young trees competing for light in canopy gaps.",
+  "terrainCode": "F-MIX|E-FLT|W-STR|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with The woodland becomes denser as moisture availability increases near the creek. The understory includes shrubs and young trees competing for light in canopy gaps., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|W-STR|X-BSH), east: unknown terrain (F-THN|E-FLT|A-RAB|A-FOX), north: unknown terrain (F-THN|E-FLT|W-STR|X-TRE), south: unknown terrain (F-MIX|E-FLT|W-STR|X-RCK)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:08:36.428630+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The woodland becomes denser as moisture availability increases near the creek. The understory includes shrubs and young trees competing for light in canopy gaps., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|W-STR|X-BSH), east: unknown terrain (F-THN|E-FLT|A-RAB|A-FOX), north: unknown terrain (F-THN|E-FLT|W-STR|X-TRE), south: unknown terrain (F-MIX|E-FLT|W-STR|X-RCK)",
+        "resolution": "1024x1024",
+        "seed": 802462342,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/vwGU83OQTneDF2IehgPeYQ.png?exp=1745456921&sig=1f38893a78c1a5d8664a8853f8c0f565de046e8a25f8ae904431db2b412a91d7"
+      }
+    ]
+  }
+}

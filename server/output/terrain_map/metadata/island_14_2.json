@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 14,
+    "y": 2
+  },
+  "description": "Rocky terrain with dramatic formations created by erosion. Vegetation increases slightly with elevation, primarily consisting of shrubs and scattered small trees. A small seep creates a patch of greenery.",
+  "terrainCode": "M-FOO|E-MOD|X-CFM|X-SPR",
+  "generatedPrompt": "isometric view of realistic terrain tile with Rocky terrain with dramatic formations created by erosion. Vegetation increases slightly with elevation, primarily consisting of shrubs and scattered small trees. A small seep creates a patch of greenery., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-MSA|E-SLI|X-CFM|H-ARD), east: low mountains (M-LOW|E-HIG|F-PIN|X-SPR), north: unknown terrain (M-FOO|E-MOD|X-TRE|H-DRY), south: unknown terrain (M-FOO|E-HIG|F-PIN|X-CLF)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:30:29.595910+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Rocky terrain with dramatic formations created by erosion. Vegetation increases slightly with elevation, primarily consisting of shrubs and scattered small trees. A small seep creates a patch of greenery., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-MSA|E-SLI|X-CFM|H-ARD), east: low mountains (M-LOW|E-HIG|F-PIN|X-SPR), north: unknown terrain (M-FOO|E-MOD|X-TRE|H-DRY), south: unknown terrain (M-FOO|E-HIG|F-PIN|X-CLF)",
+        "resolution": "1024x1024",
+        "seed": 1033768960,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/GciMJcrfS3aSfI9f1hSgmw.png?exp=1745458234&sig=a28129ec3bc99cb490bbf23c2fd9b41b84ff7ccf67bfd29d43aae56d83c4adcb"
+      }
+    ]
+  }
+}

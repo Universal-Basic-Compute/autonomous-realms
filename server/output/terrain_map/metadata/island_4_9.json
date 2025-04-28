@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 4,
+    "y": 9
+  },
+  "description": "As the land begins to rise slightly, the forest composition shifts. Trees are still large but more widely spaced. Understory becomes thicker with more shrubs and juvenile trees.",
+  "terrainCode": "F-OAK|E-SLI|F-GOO|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with As the land begins to rise slightly, the forest composition shifts. Trees are still large but more widely spaced. Understory becomes thicker with more shrubs and juvenile trees., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: river (W-RIV|E-FLT|H-FLD|X-TRE), east: unknown terrain (F-MIX|E-SLI|R-LST|X-BSH), north: oak forest (F-OAK|E-FLT|F-RIC|A-FOX), south: oak forest (F-OAK|E-SLI|X-RCK|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:59:46.631113+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with As the land begins to rise slightly, the forest composition shifts. Trees are still large but more widely spaced. Understory becomes thicker with more shrubs and juvenile trees., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: river (W-RIV|E-FLT|H-FLD|X-TRE), east: unknown terrain (F-MIX|E-SLI|R-LST|X-BSH), north: oak forest (F-OAK|E-FLT|F-RIC|A-FOX), south: oak forest (F-OAK|E-SLI|X-RCK|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 922049088,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/etN7mA5tTV6601zlU7gK7Q.png?exp=1745456391&sig=6e7284ad23eb4723926b5648bbd49e534f811acd2fab67b3840b9dae15cc9df6"
+      }
+    ]
+  }
+}

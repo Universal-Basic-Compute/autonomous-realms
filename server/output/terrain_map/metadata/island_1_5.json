@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 1,
+    "y": 5
+  },
+  "description": "Established sand dunes rise from the beach, anchored by networks of beach grass roots. The dunes undulate in wave-like formations, creating small sheltered hollows between peaks.",
+  "terrainCode": "D-DUN|E-MOD|X-BSH|X-HOL",
+  "generatedPrompt": "isometric view of realistic terrain tile with Established sand dunes rise from the beach, anchored by networks of beach grass roots. The dunes undulate in wave-like formations, creating small sheltered hollows between peaks., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-DUN|E-SLI|W-SEA|X-BSH), east: unknown terrain (W-MRS|E-FLT|H-SAT|A-BIR), north: sea (W-SEA|E-FLT|X-RCK|A-SEA), south: unknown terrain (D-DUN|E-MOD|X-BSH|W-WIN)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:49:27.888555+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Established sand dunes rise from the beach, anchored by networks of beach grass roots. The dunes undulate in wave-like formations, creating small sheltered hollows between peaks., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-DUN|E-SLI|W-SEA|X-BSH), east: unknown terrain (W-MRS|E-FLT|H-SAT|A-BIR), north: sea (W-SEA|E-FLT|X-RCK|A-SEA), south: unknown terrain (D-DUN|E-MOD|X-BSH|W-WIN)",
+        "resolution": "1024x1024",
+        "seed": 237771486,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/6vK9GecqSc6fhPlCXDYvJQ.png?exp=1745455773&sig=f1d13e7ab9cb1cd8cd07a0169dbf5b06d537a0905551d8ddd2f462e8b75f262f"
+      }
+    ]
+  }
+}

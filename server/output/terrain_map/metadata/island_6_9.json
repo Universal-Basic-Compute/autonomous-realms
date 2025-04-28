@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 6,
+    "y": 9
+  },
+  "description": "As the land begins to rise, the forest composition shifts. Oak and hickory remain dominant but with more pine intermixed. A small spring emerges from a rock outcrop, forming a clear rivulet.",
+  "terrainCode": "F-MIX|E-SLI|X-SPR|X-RCK",
+  "generatedPrompt": "isometric view of realistic terrain tile with As the land begins to rise, the forest composition shifts. Oak and hickory remain dominant but with more pine intermixed. A small spring emerges from a rock outcrop, forming a clear rivulet., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-SLI|R-LST|X-BSH), east: unknown terrain (F-MIX|E-MOD|X-RCK|W-STR), north: unknown terrain (F-MIX|E-SLI|F-RIC|X-BSH), south: unknown terrain (F-MIX|E-SLI|X-RCK|X-TRE)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:06:11.603063+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with As the land begins to rise, the forest composition shifts. Oak and hickory remain dominant but with more pine intermixed. A small spring emerges from a rock outcrop, forming a clear rivulet., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-SLI|R-LST|X-BSH), east: unknown terrain (F-MIX|E-MOD|X-RCK|W-STR), north: unknown terrain (F-MIX|E-SLI|F-RIC|X-BSH), south: unknown terrain (F-MIX|E-SLI|X-RCK|X-TRE)",
+        "resolution": "1024x1024",
+        "seed": 109438258,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/beMl9LGwQcGE8BPESwJHVA.png?exp=1745456776&sig=e68b7d3e0b324e10a962769c3e230670ee673da279e31fc200bc675bdd0bce9f"
+      }
+    ]
+  }
+}

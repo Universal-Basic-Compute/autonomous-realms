@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 5,
+    "y": 14
+  },
+  "description": "Steeper terrain with rock-strewn slopes and patchy vegetation. Mountain laurel and rhododendron grow in protected pockets. The stream has carved a small gorge with steep sides.",
+  "terrainCode": "M-FOO|E-HIG|X-BSH|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with Steeper terrain with rock-strewn slopes and patchy vegetation. Mountain laurel and rhododendron grow in protected pockets. The stream has carved a small gorge with steep sides., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-HIG|R-SCR|W-WAT), east: low mountains (M-LOW|E-HIG|X-CLF|W-WAT), north: unknown terrain (M-FOO|E-MOD|X-BLD|W-STR), south: low mountains (M-LOW|E-HIG|X-CLF|W-WAT)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:04:01.364207+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Steeper terrain with rock-strewn slopes and patchy vegetation. Mountain laurel and rhododendron grow in protected pockets. The stream has carved a small gorge with steep sides., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-HIG|R-SCR|W-WAT), east: low mountains (M-LOW|E-HIG|X-CLF|W-WAT), north: unknown terrain (M-FOO|E-MOD|X-BLD|W-STR), south: low mountains (M-LOW|E-HIG|X-CLF|W-WAT)",
+        "resolution": "1024x1024",
+        "seed": 1392177698,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/K2gdRa39Ss6y5jcQjazc6w.png?exp=1745456646&sig=214da7b535c1783bd4985621c24090c783afa34a4c01b6ee44470930c2094333"
+      }
+    ]
+  }
+}

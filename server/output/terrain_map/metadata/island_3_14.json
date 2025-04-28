@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 3,
+    "y": 14
+  },
+  "description": "A dramatic waterfall marks a significant drop in elevation. The river plunges over a resistant rock ledge into a churning pool below. Mist fills the air and rainbow effects are visible in sunlight.",
+  "terrainCode": "W-WAT|E-HIG|X-CLF|X-BLD",
+  "generatedPrompt": "isometric view of realistic terrain tile with A dramatic waterfall marks a significant drop in elevation. The river plunges over a resistant rock ledge into a churning pool below. Mist fills the air and rainbow effects are visible in sunlight., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|W-WAT|R-SND), east: unknown terrain (M-FOO|E-HIG|R-SCR|W-WAT), north: river (W-RIV|E-HIG|W-RPD|X-CLF), south: unknown terrain (M-VAL|E-HIG|W-RIV|X-TRE)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:57:36.936124+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with A dramatic waterfall marks a significant drop in elevation. The river plunges over a resistant rock ledge into a churning pool below. Mist fills the air and rainbow effects are visible in sunlight., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|W-WAT|R-SND), east: unknown terrain (M-FOO|E-HIG|R-SCR|W-WAT), north: river (W-RIV|E-HIG|W-RPD|X-CLF), south: unknown terrain (M-VAL|E-HIG|W-RIV|X-TRE)",
+        "resolution": "1024x1024",
+        "seed": 594191354,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/EYQUaRBxRC6uoMNoFoLUuw.png?exp=1745456262&sig=2167c8f63bb69b0898225d19d115b7fa5813f5ea12389e75006acd1f87e32701"
+      }
+    ]
+  }
+}

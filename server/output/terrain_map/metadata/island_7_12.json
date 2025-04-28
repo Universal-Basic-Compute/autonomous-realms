@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 7,
+    "y": 12
+  },
+  "description": "Rocky terrain with scattered trees clinging to soil pockets. Large boulders create distinctive formations. The stream descends in a series of small waterfalls and rapids.",
+  "terrainCode": "M-FOO|E-HIG|X-BLD|W-RPD",
+  "generatedPrompt": "isometric view of realistic terrain tile with Rocky terrain with scattered trees clinging to soil pockets. Large boulders create distinctive formations. The stream descends in a series of small waterfalls and rapids., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|F-THN|W-STR), east: unknown terrain (M-FOO|E-MOD|X-BLD|W-WAT), north: unknown terrain (M-FOO|E-MOD|F-THN|W-STR), south: unknown terrain (M-FOO|E-HIG|F-PIN|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:10:00.111646+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Rocky terrain with scattered trees clinging to soil pockets. Large boulders create distinctive formations. The stream descends in a series of small waterfalls and rapids., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-MOD|F-THN|W-STR), east: unknown terrain (M-FOO|E-MOD|X-BLD|W-WAT), north: unknown terrain (M-FOO|E-MOD|F-THN|W-STR), south: unknown terrain (M-FOO|E-HIG|F-PIN|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 1883861158,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/F6xHJE-QQnGyaUwM6Cvr8w.png?exp=1745457005&sig=35067ae0cb6fcc0deb074cda384b16161722fd3c5ad1451f9eb357141cd191c3"
+      }
+    ]
+  }
+}

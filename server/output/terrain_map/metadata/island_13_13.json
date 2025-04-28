@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 13,
+    "y": 13
+  },
+  "description": "Mountain terrain with steep rocky slopes. The forest is predominantly pine and fir with trees growing at angles from the sloping ground. Mountain goats navigate the steep terrain with ease.",
+  "terrainCode": "M-LOW|E-HIG|F-PIN|A-GOA",
+  "generatedPrompt": "isometric view of realistic terrain tile with Mountain terrain with steep rocky slopes. The forest is predominantly pine and fir with trees growing at angles from the sloping ground. Mountain goats navigate the steep terrain with ease., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:35:12.153082+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Mountain terrain with steep rocky slopes. The forest is predominantly pine and fir with trees growing at angles from the sloping ground. Mountain goats navigate the steep terrain with ease., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+        "resolution": "1024x1024",
+        "seed": 1476837921,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/-KFkGGAkTbCNyTUabA8SOQ.png?exp=1745458517&sig=29fef58c9580fa7426c1341f0617ee6492464691e54dfaa56bf7902352bc98c7"
+      }
+    ]
+  }
+}

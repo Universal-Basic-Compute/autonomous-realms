@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 14,
+    "y": 8
+  },
+  "description": "The protected valley narrows and begins to climb more steeply. The forest remains dense with predominantly coniferous trees. The stream becomes more rapid as it navigates the increased slope.",
+  "terrainCode": "M-VAL|E-HIG|F-PIN|W-RPD",
+  "generatedPrompt": "isometric view of realistic terrain tile with The protected valley narrows and begins to climb more steeply. The forest remains dense with predominantly coniferous trees. The stream becomes more rapid as it navigates the increased slope., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-OAS|E-MOD|W-STR|X-TRE), east: high mountains (M-HIG|E-VRY|F-PIN|W-WAT), north: unknown terrain (M-VAL|E-HIG|F-PIN|W-STR), south: low mountains (M-LOW|E-VRY|F-PIN|R-SCR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:31:40.987668+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The protected valley narrows and begins to climb more steeply. The forest remains dense with predominantly coniferous trees. The stream becomes more rapid as it navigates the increased slope., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (D-OAS|E-MOD|W-STR|X-TRE), east: high mountains (M-HIG|E-VRY|F-PIN|W-WAT), north: unknown terrain (M-VAL|E-HIG|F-PIN|W-STR), south: low mountains (M-LOW|E-VRY|F-PIN|R-SCR)",
+        "resolution": "1024x1024",
+        "seed": 1811913943,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/kQQlWvoVSTm1MPBcmH8j1Q.png?exp=1745458306&sig=4f67a4bb74c83a173188f93b76727c2e2a1b3293e521d9985759fef1f5af7515"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 10,
+    "y": 2
+  },
+  "description": "Sandy desert with rippling dune formations beginning to form. Vegetation is limited to hardy species in depressions where moisture collects. Wind patterns create constantly shifting sand patterns.",
+  "terrainCode": "D-SND|E-FLT|H-ARD|W-WIN",
+  "generatedPrompt": "isometric view of realistic terrain tile with Sandy desert with rippling dune formations beginning to form. Vegetation is limited to hardy species in depressions where moisture collects. Wind patterns create constantly shifting sand patterns., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (P-SCR|E-FLT|H-DRY|X-BSH), east: unknown terrain (D-DUN|E-MOD|H-ARD|W-WIN), north: sandy desert (D-SND|E-FLT|H-ARD|X-BSH), south: unknown terrain (D-ROC|E-FLT|H-ARD|X-RCK)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:17:40.884635+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Sandy desert with rippling dune formations beginning to form. Vegetation is limited to hardy species in depressions where moisture collects. Wind patterns create constantly shifting sand patterns., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (P-SCR|E-FLT|H-DRY|X-BSH), east: unknown terrain (D-DUN|E-MOD|H-ARD|W-WIN), north: sandy desert (D-SND|E-FLT|H-ARD|X-BSH), south: unknown terrain (D-ROC|E-FLT|H-ARD|X-RCK)",
+        "resolution": "1024x1024",
+        "seed": 374691579,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/osMbOdV2SX-vAPZqgtXJGA.png?exp=1745457466&sig=7a1fdcca1a048e9caa0cba1dc0d3a30099dc25d3561d3e25339a03a3c09a56de"
+      }
+    ]
+  }
+}

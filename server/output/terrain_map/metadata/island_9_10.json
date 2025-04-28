@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 9,
+    "y": 10
+  },
+  "description": "Pine forest becomes denser as moisture increases with elevation. The stream flows more rapidly over a rocky bed, occasionally forming small pools in deeper sections.",
+  "terrainCode": "F-PIN|E-MOD|W-STR|X-RCK",
+  "generatedPrompt": "isometric view of realistic terrain tile with Pine forest becomes denser as moisture increases with elevation. The stream flows more rapidly over a rocky bed, occasionally forming small pools in deeper sections., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-MOD|X-BLD|W-STR), east: unknown terrain (M-FOO|E-MOD|F-PIN|W-STR), north: pine forest (F-PIN|E-MOD|W-STR|R-SND), south: unknown terrain (M-FOO|E-MOD|F-PIN|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:16:04.414963+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Pine forest becomes denser as moisture increases with elevation. The stream flows more rapidly over a rocky bed, occasionally forming small pools in deeper sections., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-MOD|X-BLD|W-STR), east: unknown terrain (M-FOO|E-MOD|F-PIN|W-STR), north: pine forest (F-PIN|E-MOD|W-STR|R-SND), south: unknown terrain (M-FOO|E-MOD|F-PIN|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 1360121487,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/jSdBhp_bTO2m8PFd2CBjqA.png?exp=1745457369&sig=fe8ea99ca0a8fbcc3804d4f7acd4e8eb14ea2c12a606d97408dd57a18d489585"
+      }
+    ]
+  }
+}

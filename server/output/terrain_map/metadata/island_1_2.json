@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 1,
+    "y": 2
+  },
+  "description": "A protected cove with a wider pebble beach. Clear shallow water reveals a sandy bottom with occasional rock formations. Small fish dart in the shallows, and crabs scuttle among the stones.",
+  "terrainCode": "W-BAY|E-SLI|W-SHL|A-FIS",
+  "generatedPrompt": "isometric view of realistic terrain tile with A protected cove with a wider pebble beach. Clear shallow water reveals a sandy bottom with occasional rock formations. Small fish dart in the shallows, and crabs scuttle among the stones., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-BAY|E-MOD|R-LST|A-CRA), east: unknown terrain (W-BAY|E-DEP|W-SHL|A-FIS), north: unknown terrain (W-BAY|E-MOD|R-LST|W-SEA), south: unknown terrain (W-SHL|E-FLT|H-WET|A-FIS)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:48:51.759754+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with A protected cove with a wider pebble beach. Clear shallow water reveals a sandy bottom with occasional rock formations. Small fish dart in the shallows, and crabs scuttle among the stones., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (W-BAY|E-MOD|R-LST|A-CRA), east: unknown terrain (W-BAY|E-DEP|W-SHL|A-FIS), north: unknown terrain (W-BAY|E-MOD|R-LST|W-SEA), south: unknown terrain (W-SHL|E-FLT|H-WET|A-FIS)",
+        "resolution": "1024x1024",
+        "seed": 1669290973,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/oDdxhMpSR92ogBgZpsPgrw.png?exp=1745455737&sig=c048fd433c4a24097d4c9f3610c46a84cf1d617a7d3adce7af33a431625baf28"
+      }
+    ]
+  }
+}

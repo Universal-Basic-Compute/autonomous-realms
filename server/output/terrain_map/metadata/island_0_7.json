@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 0,
+    "y": 7
+  },
+  "description": "The dunes transition to coastal scrubland. Salt-pruned shrubs and hardy grasses dominate. The soil is sandy but supports more vegetation including small flowering plants.",
+  "terrainCode": "P-SCR|E-SLI|H-NRM|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with The dunes transition to coastal scrubland. Salt-pruned shrubs and hardy grasses dominate. The soil is sandy but supports more vegetation including small flowering plants., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: unknown terrain (P-SCR|E-SLI|X-BSH|A-RAB), north: unknown terrain (D-DUN|E-MOD|W-WIN|A-RAB), south: unknown terrain (P-SCR|E-SLI|X-BSH|X-TRE)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:46:39.026390+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The dunes transition to coastal scrubland. Salt-pruned shrubs and hardy grasses dominate. The soil is sandy but supports more vegetation including small flowering plants., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: unknown terrain (P-SCR|E-SLI|X-BSH|A-RAB), north: unknown terrain (D-DUN|E-MOD|W-WIN|A-RAB), south: unknown terrain (P-SCR|E-SLI|X-BSH|X-TRE)",
+        "resolution": "1024x1024",
+        "seed": 1519913471,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/soHb9j4ySyqyW0qN8xW_vg.png?exp=1745455604&sig=0848d764627ded2f8387b4e7f5b498cbdaa6fffbb1edafe46061ab4f4a8910ab"
+      }
+    ]
+  }
+}

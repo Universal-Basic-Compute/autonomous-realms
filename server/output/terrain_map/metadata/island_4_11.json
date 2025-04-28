@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 4,
+    "y": 11
+  },
+  "description": "Mixed hardwood forest with increasing rocky terrain. Boulders create microhabitats for specialized plants like lichens and mosses. The stream follows a winding path between rock formations.",
+  "terrainCode": "F-MIX|E-MOD|X-BLD|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with Mixed hardwood forest with increasing rocky terrain. Boulders create microhabitats for specialized plants like lichens and mosses. The stream follows a winding path between rock formations., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: river (W-RIV|E-MOD|X-RCK|W-RPD), east: unknown terrain (F-MIX|E-MOD|X-RCK|F-AVG), north: oak forest (F-OAK|E-SLI|X-RCK|W-STR), south: unknown terrain (F-MIX|E-MOD|X-RCK|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:00:11.396930+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Mixed hardwood forest with increasing rocky terrain. Boulders create microhabitats for specialized plants like lichens and mosses. The stream follows a winding path between rock formations., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: river (W-RIV|E-MOD|X-RCK|W-RPD), east: unknown terrain (F-MIX|E-MOD|X-RCK|F-AVG), north: oak forest (F-OAK|E-SLI|X-RCK|W-STR), south: unknown terrain (F-MIX|E-MOD|X-RCK|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 87920916,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/SK5RkqD5QnCeaIDkGCpi0g.png?exp=1745456416&sig=de6bc6d12635dfe82ba85d1c0143987239cbb062cdffaf8a2052255cac77f928"
+      }
+    ]
+  }
+}

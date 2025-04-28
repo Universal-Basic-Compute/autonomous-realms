@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 2,
+    "y": 10
+  },
+  "description": "The grassland transitions to scattered trees as the first signs of forest appear. The stream continues its course, bordered by willows and other water-loving trees.",
+  "terrainCode": "P-LUS|E-FLT|X-TRE|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with The grassland transitions to scattered trees as the first signs of forest appear. The stream continues its course, bordered by willows and other water-loving trees., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|F-AVG|W-STR), east: river (W-RIV|E-SLI|X-RCK|W-RPD), north: lush grassland (P-LUS|E-FLT|F-RIC|W-STR), south: unknown terrain (F-THN|E-FLT|W-STR|A-DEE)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:53:38.612055+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The grassland transitions to scattered trees as the first signs of forest appear. The stream continues its course, bordered by willows and other water-loving trees., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|F-AVG|W-STR), east: river (W-RIV|E-SLI|X-RCK|W-RPD), north: lush grassland (P-LUS|E-FLT|F-RIC|W-STR), south: unknown terrain (F-THN|E-FLT|W-STR|A-DEE)",
+        "resolution": "1024x1024",
+        "seed": 1596309138,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/UbBQMe3ZS6Gl7ya3pZ0bLA.png?exp=1745456023&sig=5f04e7d93f9ecd320affdadf2d4a7046060c0441e79c69051afcfd9569a9d5a0"
+      }
+    ]
+  }
+}

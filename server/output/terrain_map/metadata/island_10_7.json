@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 10,
+    "y": 7
+  },
+  "description": "As elevation increases, the badlands transition to mesa formations. A small spring emerges from between rock layers, creating a shock of greenery in the otherwise barren landscape.",
+  "terrainCode": "D-MSA|E-MOD|X-SPR|X-CFM",
+  "generatedPrompt": "isometric view of realistic terrain tile with As elevation increases, the badlands transition to mesa formations. A small spring emerges from between rock layers, creating a shock of greenery in the otherwise barren landscape., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-THN|E-MOD|W-STR|H-DRY), east: unknown terrain (D-MSA|E-MOD|X-SPR|H-ARD), north: unknown terrain (D-BDL|E-MOD|X-CFM|H-ARD), south: unknown terrain (D-MSA|E-MOD|W-STR|X-CFM)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:18:41.630215+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with As elevation increases, the badlands transition to mesa formations. A small spring emerges from between rock layers, creating a shock of greenery in the otherwise barren landscape., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-THN|E-MOD|W-STR|H-DRY), east: unknown terrain (D-MSA|E-MOD|X-SPR|H-ARD), north: unknown terrain (D-BDL|E-MOD|X-CFM|H-ARD), south: unknown terrain (D-MSA|E-MOD|W-STR|X-CFM)",
+        "resolution": "1024x1024",
+        "seed": 778333204,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/Jhpo_vU8TkaXC11NuSzJ_w.png?exp=1745457526&sig=c7b001f5ac3770f38bea4dfa4e6b652159f127dc73f29531a5d25053cc920a4e"
+      }
+    ]
+  }
+}

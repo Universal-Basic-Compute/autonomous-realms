@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 0,
+    "y": 8
+  },
+  "description": "The scrubland becomes dense with more established vegetation. Low juniper bushes and coastal pines appear, their forms shaped by persistent sea winds. The ground is sandy but stable.",
+  "terrainCode": "P-SCR|E-SLI|X-BSH|X-TRE",
+  "generatedPrompt": "isometric view of realistic terrain tile with The scrubland becomes dense with more established vegetation. Low juniper bushes and coastal pines appear, their forms shaped by persistent sea winds. The ground is sandy but stable., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: pine forest (F-PIN|E-FLT|F-POO|X-BSH), north: unknown terrain (P-SCR|E-SLI|H-NRM|X-BSH), south: pine forest (F-PIN|E-SLI|W-WIN|A-BIR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:46:51.229335+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The scrubland becomes dense with more established vegetation. Low juniper bushes and coastal pines appear, their forms shaped by persistent sea winds. The ground is sandy but stable., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: east: pine forest (F-PIN|E-FLT|F-POO|X-BSH), north: unknown terrain (P-SCR|E-SLI|H-NRM|X-BSH), south: pine forest (F-PIN|E-SLI|W-WIN|A-BIR)",
+        "resolution": "1024x1024",
+        "seed": 1860433184,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/n6H5I_wDRxisDI1X-RmATQ.png?exp=1745455616&sig=87d9bce4c1afc1afe2f26c933f6774e72a20f324ad7fecbc60fb520838da5a32"
+      }
+    ]
+  }
+}

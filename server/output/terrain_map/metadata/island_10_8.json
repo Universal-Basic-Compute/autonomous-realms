@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 10,
+    "y": 8
+  },
+  "description": "Mesa landscape with flat-topped formations and steep sides. The spring has formed a small stream that follows a rocky course downward. Desert vegetation concentrates along the water.",
+  "terrainCode": "D-MSA|E-MOD|W-STR|X-CFM",
+  "generatedPrompt": "isometric view of realistic terrain tile with Mesa landscape with flat-topped formations and steep sides. The spring has formed a small stream that follows a rocky course downward. Desert vegetation concentrates along the water., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-THN|E-MOD|W-STR|X-RCK), east: unknown terrain (D-MSA|E-MOD|W-STR|X-BSH), north: unknown terrain (D-MSA|E-MOD|X-SPR|X-CFM), south: unknown terrain (M-FOO|E-MOD|X-TRE|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:18:53.437380+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Mesa landscape with flat-topped formations and steep sides. The spring has formed a small stream that follows a rocky course downward. Desert vegetation concentrates along the water., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-THN|E-MOD|W-STR|X-RCK), east: unknown terrain (D-MSA|E-MOD|W-STR|X-BSH), north: unknown terrain (D-MSA|E-MOD|X-SPR|X-CFM), south: unknown terrain (M-FOO|E-MOD|X-TRE|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 2107421418,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/y7V9kYY6SYSDHenW8e-W7w.png?exp=1745457538&sig=8f98643b98397f01e568e5a3f43399ed2f699e31e0946bb70ff9690daac994f6"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 2,
+    "y": 15
+  },
+  "description": "Steep rocky terrain with a narrow mountain stream cutting through. Stunted pines cling to available soil pockets. The water is crystal clear and cold, originating from higher mountain springs.",
+  "terrainCode": "M-FOO|E-HIG|W-STR|X-TRE",
+  "generatedPrompt": "isometric view of realistic terrain tile with Steep rocky terrain with a narrow mountain stream cutting through. Stunted pines cling to available soil pockets. The water is crystal clear and cold, originating from higher mountain springs., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-HIG|W-WAT|X-TRE), east: unknown terrain (M-VAL|E-HIG|W-RIV|X-TRE), north: unknown terrain (M-FOO|E-MOD|W-WAT|R-SND)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:54:38.034523+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Steep rocky terrain with a narrow mountain stream cutting through. Stunted pines cling to available soil pockets. The water is crystal clear and cold, originating from higher mountain springs., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-FOO|E-HIG|W-WAT|X-TRE), east: unknown terrain (M-VAL|E-HIG|W-RIV|X-TRE), north: unknown terrain (M-FOO|E-MOD|W-WAT|R-SND)",
+        "resolution": "1024x1024",
+        "seed": 106305707,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/U49I4qziREyERZqEis5aEw.png?exp=1745456083&sig=bb0c8e41872e98e374aadc7c3e902e4115ae9e1351cd2036fadc42f9df120bd5"
+      }
+    ]
+  }
+}

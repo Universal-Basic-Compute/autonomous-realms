@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 8,
+    "y": 3
+  },
+  "description": "The transition to savanna continues with more trees but still predominantly open. Small water-carved gullies indicate seasonal water flow patterns during heavy rains.",
+  "terrainCode": "P-LUS|E-FLT|X-TRE|H-DRY",
+  "generatedPrompt": "isometric view of realistic terrain tile with The transition to savanna continues with more trees but still predominantly open. Small water-carved gullies indicate seasonal water flow patterns during heavy rains., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-THN|E-FLT|F-GOO|A-RAB), east: unknown terrain (P-SCR|E-FLT|X-RCK|A-LIZ), north: lush grassland (P-LUS|E-FLT|X-TRE|F-RIC), south: lush grassland (P-LUS|E-FLT|X-TRE|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:11:22.294773+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The transition to savanna continues with more trees but still predominantly open. Small water-carved gullies indicate seasonal water flow patterns during heavy rains., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-THN|E-FLT|F-GOO|A-RAB), east: unknown terrain (P-SCR|E-FLT|X-RCK|A-LIZ), north: lush grassland (P-LUS|E-FLT|X-TRE|F-RIC), south: lush grassland (P-LUS|E-FLT|X-TRE|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 1681997737,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/Q3Qpc-HDSDKe8vmKu5RHPQ.png?exp=1745457087&sig=0a1ddb10a444b751491c3fe941cc567468a15b628145fe5d9fec5237e35a68a1"
+      }
+    ]
+  }
+}

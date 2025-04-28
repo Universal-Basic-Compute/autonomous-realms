@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 13,
+    "y": 3
+  },
+  "description": "Dramatic mesa landscape with flat-topped formations rising from the desert floor. Steep sides show exposed rock layers from ancient geological processes. Vegetation is sparse but persistent.",
+  "terrainCode": "D-MSA|E-MOD|X-CLF|H-ARD",
+  "generatedPrompt": "isometric view of realistic terrain tile with Dramatic mesa landscape with flat-topped formations rising from the desert floor. Steep sides show exposed rock layers from ancient geological processes. Vegetation is sparse but persistent., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:28:35.369668+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Dramatic mesa landscape with flat-topped formations rising from the desert floor. Steep sides show exposed rock layers from ancient geological processes. Vegetation is sparse but persistent., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: no adjacent tiles available",
+        "resolution": "1024x1024",
+        "seed": 1600859534,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/-RYSiq2-RuyvFg8Z8dIgMQ.png?exp=1745458120&sig=bb2658df482dcffb13aa2e9a1a66b175dc9c36151d438558217fe79f45152c95"
+      }
+    ]
+  }
+}

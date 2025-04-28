@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 9,
+    "y": 4
+  },
+  "description": "Rocky scrubland with thin, sandy soil. Vegetation is sparse but diverse with drought-adapted species. A dry wash indicates water flow during rare heavy rains.",
+  "terrainCode": "P-SCR|E-FLT|X-RCK|H-ARD",
+  "generatedPrompt": "isometric view of realistic terrain tile with Rocky scrubland with thin, sandy soil. Vegetation is sparse but diverse with drought-adapted species. A dry wash indicates water flow during rare heavy rains., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: lush grassland (P-LUS|E-FLT|X-TRE|W-STR), east: unknown terrain (D-ROC|E-SLI|H-ARD|X-CFM), north: unknown terrain (P-SCR|E-FLT|X-RCK|A-LIZ), south: unknown terrain (P-SCR|E-SLI|X-TRE|H-ARD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:14:52.911621+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Rocky scrubland with thin, sandy soil. Vegetation is sparse but diverse with drought-adapted species. A dry wash indicates water flow during rare heavy rains., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: lush grassland (P-LUS|E-FLT|X-TRE|W-STR), east: unknown terrain (D-ROC|E-SLI|H-ARD|X-CFM), north: unknown terrain (P-SCR|E-FLT|X-RCK|A-LIZ), south: unknown terrain (P-SCR|E-SLI|X-TRE|H-ARD)",
+        "resolution": "1024x1024",
+        "seed": 855260480,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/GhSWPf1sQJOaQ0yzeoJJBQ.png?exp=1745457298&sig=7c0339f1aa1077d50a4b19120ed46492b8a38e6474ccb3c99545cc540a181bb8"
+      }
+    ]
+  }
+}

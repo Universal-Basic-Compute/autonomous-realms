@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 6,
+    "y": 6
+  },
+  "description": "Mature mixed forest with diverse tree species. The canopy creates dappled light patterns on the ground. The stream flows steadily over a rocky bed, creating gentle burbling sounds.",
+  "terrainCode": "F-MIX|E-FLT|W-STR|X-RCK",
+  "generatedPrompt": "isometric view of realistic terrain tile with Mature mixed forest with diverse tree species. The canopy creates dappled light patterns on the ground. The stream flows steadily over a rocky bed, creating gentle burbling sounds., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|H-WET|A-DEE), east: unknown terrain (F-MIX|E-FLT|W-STR|X-RCK), north: unknown terrain (F-MIX|E-FLT|W-STR|X-BSH), south: oak forest (F-OAK|E-FLT|F-RIC|A-BIR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:05:35.930062+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with Mature mixed forest with diverse tree species. The canopy creates dappled light patterns on the ground. The stream flows steadily over a rocky bed, creating gentle burbling sounds., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-FLT|H-WET|A-DEE), east: unknown terrain (F-MIX|E-FLT|W-STR|X-RCK), north: unknown terrain (F-MIX|E-FLT|W-STR|X-BSH), south: oak forest (F-OAK|E-FLT|F-RIC|A-BIR)",
+        "resolution": "1024x1024",
+        "seed": 1969650582,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/3xX-TtZGSz2Dsa9m5p-Yzw.png?exp=1745456741&sig=8449c7b03464643775dad78559797123186160a4dad1f7283cb83fc8c2e17734"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 4,
+    "y": 15
+  },
+  "description": "High rocky terrain forming the first true mountain slopes. Thin soil supports sparse but hardy vegetation. The stream has carved a deep channel through the rock, creating a steep-sided ravine.",
+  "terrainCode": "M-FOO|E-HIG|X-CLF|W-STR",
+  "generatedPrompt": "isometric view of realistic terrain tile with High rocky terrain forming the first true mountain slopes. Thin soil supports sparse but hardy vegetation. The stream has carved a deep channel through the rock, creating a steep-sided ravine., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-VAL|E-HIG|W-RIV|X-TRE), east: low mountains (M-LOW|E-HIG|X-CLF|W-WAT), north: unknown terrain (M-FOO|E-HIG|R-SCR|W-WAT)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:00:59.105306+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with High rocky terrain forming the first true mountain slopes. Thin soil supports sparse but hardy vegetation. The stream has carved a deep channel through the rock, creating a steep-sided ravine., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (M-VAL|E-HIG|W-RIV|X-TRE), east: low mountains (M-LOW|E-HIG|X-CLF|W-WAT), north: unknown terrain (M-FOO|E-HIG|R-SCR|W-WAT)",
+        "resolution": "1024x1024",
+        "seed": 704440723,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/MOs23cK1SLq-PaPjxbWDGw.png?exp=1745456464&sig=c89d7db3180b75adba9aaa446799655a2135324cae84e96a19861fc3262fbdd3"
+      }
+    ]
+  }
+}

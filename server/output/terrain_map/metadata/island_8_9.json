@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 8,
+    "y": 9
+  },
+  "description": "The forest continues with increasing signs of elevation change. Exposed tree roots create natural steps on the sloping ground. Small rock outcroppings begin to appear through the soil.",
+  "terrainCode": "F-MIX|E-MOD|X-RCK|A-DEE",
+  "generatedPrompt": "isometric view of realistic terrain tile with The forest continues with increasing signs of elevation change. Exposed tree roots create natural steps on the sloping ground. Small rock outcroppings begin to appear through the soil., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-MOD|X-RCK|W-STR), east: pine forest (F-PIN|E-MOD|W-STR|R-SND), north: unknown terrain (F-MIX|E-SLI|W-STR|F-GOO), south: unknown terrain (F-MIX|E-MOD|X-BLD|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:12:37.124719+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The forest continues with increasing signs of elevation change. Exposed tree roots create natural steps on the sloping ground. Small rock outcroppings begin to appear through the soil., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-MOD|X-RCK|W-STR), east: pine forest (F-PIN|E-MOD|W-STR|R-SND), north: unknown terrain (F-MIX|E-SLI|W-STR|F-GOO), south: unknown terrain (F-MIX|E-MOD|X-BLD|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 1488311088,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/fYEgtg66RbCY9rNs4f4fOw.png?exp=1745457162&sig=3a43ccecb9037ebffa1a56dd153d3e4e81646561a2b870af0089472a561f4c8a"
+      }
+    ]
+  }
+}

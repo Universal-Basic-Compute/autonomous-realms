@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 3,
+    "y": 13
+  },
+  "description": "The gorge deepens with the river flowing rapidly between steep walls. A series of cascades forms as the water descends over rock ledges. Ferns and mosses grow where moisture seeps from the walls.",
+  "terrainCode": "W-RIV|E-HIG|W-RPD|X-CLF",
+  "generatedPrompt": "isometric view of realistic terrain tile with The gorge deepens with the river flowing rapidly between steep walls. A series of cascades forms as the water descends over rock ledges. Ferns and mosses grow where moisture seeps from the walls., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-MOD|W-STR|X-BLD), east: unknown terrain (M-FOO|E-MOD|F-THN|W-STR), north: river (W-RIV|E-MOD|R-SND|W-RPD), south: unknown terrain (W-WAT|E-HIG|X-CLF|X-BLD)",
+  "ideogramResponse": {
+    "created": "2025-04-23T00:57:25.422259+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with The gorge deepens with the river flowing rapidly between steep walls. A series of cascades forms as the water descends over rock ledges. Ferns and mosses grow where moisture seeps from the walls., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-MOD|W-STR|X-BLD), east: unknown terrain (M-FOO|E-MOD|F-THN|W-STR), north: river (W-RIV|E-MOD|R-SND|W-RPD), south: unknown terrain (W-WAT|E-HIG|X-CLF|X-BLD)",
+        "resolution": "1024x1024",
+        "seed": 1883644088,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/UxHN8A2qSRudlwdGqy_btg.png?exp=1745456250&sig=314f7ba4718571533d095677c064d4e35c067a70d4c158413f6ba4afa06a4bd7"
+      }
+    ]
+  }
+}

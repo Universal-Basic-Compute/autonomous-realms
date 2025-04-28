@@ -1,0 +1,22 @@
+{
+  "coordinates": {
+    "x": 7,
+    "y": 8
+  },
+  "description": "As the land begins to rise slightly, the forest shifts composition. Oak and maple remain dominant but with mountain laurel appearing in the understory. The stream flows more rapidly over rocky sections.",
+  "terrainCode": "F-OAK|E-SLI|W-STR|X-BSH",
+  "generatedPrompt": "isometric view of realistic terrain tile with As the land begins to rise slightly, the forest shifts composition. Oak and maple remain dominant but with mountain laurel appearing in the understory. The stream flows more rapidly over rocky sections., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n    \n    IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-SLI|F-RIC|X-BSH), east: unknown terrain (F-MIX|E-SLI|W-STR|F-GOO), north: unknown terrain (F-MIX|E-FLT|W-STR|F-RIC), south: unknown terrain (F-MIX|E-MOD|X-RCK|W-STR)",
+  "ideogramResponse": {
+    "created": "2025-04-23T01:09:12.621590+00:00",
+    "data": [
+      {
+        "is_image_safe": true,
+        "prompt": "isometric view of realistic terrain tile with As the land begins to rise slightly, the forest shifts composition. Oak and maple remain dominant but with mountain laurel appearing in the understory. The stream flows more rapidly over rocky sections., white background, clearly defined edges, photorealistic style, detailed textures, natural lighting, high quality game asset, no shadows, isolated game tile, top-down isometric perspective, pure white background. \n \n IMPORTANT: This tile should connect seamlessly with adjacent terrain: west: unknown terrain (F-MIX|E-SLI|F-RIC|X-BSH), east: unknown terrain (F-MIX|E-SLI|W-STR|F-GOO), north: unknown terrain (F-MIX|E-FLT|W-STR|F-RIC), south: unknown terrain (F-MIX|E-MOD|X-RCK|W-STR)",
+        "resolution": "1024x1024",
+        "seed": 1627339503,
+        "style_type": "REALISTIC",
+        "url": "https://ideogram.ai/api/images/ephemeral/3OrxblkQTeeKE4FQvCM46g.png?exp=1745456957&sig=6451663835a21e38ab70afb80d6f59a8d1a18c3cedb982e9ac63b801d320781a"
+      }
+    ]
+  }
+}

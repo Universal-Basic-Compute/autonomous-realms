@@ -1,4 +1,5 @@
 import resourceManager from './resourceManager.js';
+import { getServerUrl } from './utils/serverUrl.js';
 
 class CraftingView {
   constructor() {
@@ -429,7 +430,7 @@ Example response:
 
       // Make request to KinOS
       console.log('Sending crafting request to KinOS');
-      const serverUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+      const serverUrl = getServerUrl();
       const response = await fetch(`${serverUrl}/api/kinos/kins/${kinName}/messages`, {
         method: 'POST',
         headers: {

@@ -1,3 +1,5 @@
+import { getServerUrl } from './utils/serverUrl.js';
+
 class AudioPlayer {
   constructor() {
     this.audioElement = null;
@@ -51,9 +53,7 @@ class AudioPlayer {
 
   async fetchMusicList() {
     try {
-      // Use the current origin in production, or localhost in development
-      const serverUrl = import.meta.env.VITE_API_URL || 
-                        (window.location.hostname !== 'localhost' ? window.location.origin : 'http://localhost:3000');
+      const serverUrl = getServerUrl();
       console.log('Fetching music list from server...');
       const response = await fetch(`${serverUrl}/api/data/music/list`);
       if (!response.ok) {
@@ -103,9 +103,7 @@ class AudioPlayer {
     this.currentTrack = track;
     
     // Set the audio source and play
-    // Use the current origin in production, or localhost in development
-    const serverUrl = import.meta.env.VITE_API_URL || 
-                      (window.location.hostname !== 'localhost' ? window.location.origin : 'http://localhost:3000');
+    const serverUrl = getServerUrl();
     const audioUrl = `${serverUrl}/api/data/music/play/${track}`;
     console.log(`Setting audio source to: ${audioUrl}`);
     

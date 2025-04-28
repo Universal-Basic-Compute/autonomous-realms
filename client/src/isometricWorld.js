@@ -4,6 +4,7 @@ import resourceManager from './resourceManager.js';
 import './resourceDisplay.js'; // This will initialize the resource display
 import './craftingView.js'; // Import the crafting view
 import ContextMenu from './contextMenu.js';
+import { getServerUrl, getKinosApiBaseUrl } from './utils/serverUrl.js';
 
 // Language caching variables
 let languageCache = null;
@@ -54,7 +55,7 @@ const config = {
     minZoom: 0.2,
     maxZoom: 2.0,
     zoomStep: 0.1,
-    serverUrl: import.meta.env.VITE_API_URL || 'http://localhost:3000',
+    serverUrl: getServerUrl(),
     gridSize: 16, // Size of the terrain map (16x16)
     visibleRadius: 5, // How many tiles to load around the center
     isometricAngle: 30, // Degrees for isometric projection
@@ -923,7 +924,7 @@ Example format:
 `;
 
     // Make request to KinOS
-    const response = await fetch(`http://localhost:3000/api/kinos/kins/${kinName}/messages`, {
+    const response = await fetch(`${getServerUrl()}/api/kinos/kins/${kinName}/messages`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -1216,7 +1217,7 @@ Return your response as a JSON object with these properties:
 `;
 
     // Make request to KinOS
-    const response = await fetch(`http://localhost:3000/api/kinos/kins/${kinName}/messages`, {
+    const response = await fetch(`${getServerUrl()}/api/kinos/kins/${kinName}/messages`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -1558,7 +1559,7 @@ Please include at least 3 example conversations or common phrases that demonstra
 `;
 
     // Make request to KinOS
-    const response = await fetch(`http://localhost:3000/api/kinos/kins/${kinName}/messages`, {
+    const response = await fetch(`${getServerUrl()}/api/kinos/kins/${kinName}/messages`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -1644,7 +1645,7 @@ Example format:
 `;
 
     // Make request to KinOS
-    const response = await fetch(`http://localhost:3000/api/kinos/kins/${kinName}/messages`, {
+    const response = await fetch(`${getServerUrl()}/api/kinos/kins/${kinName}/messages`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -2314,7 +2315,7 @@ Make sure the progress values increase appropriately and new nextSteps are provi
 `;
 
     // Make request to KinOS
-    const response = await fetch(`http://localhost:3000/api/kinos/kins/${kinName}/messages`, {
+    const response = await fetch(`${getServerUrl()}/api/kinos/kins/${kinName}/messages`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

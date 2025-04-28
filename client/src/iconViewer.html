@@ -79,7 +79,12 @@
         // Fetch terrain icons from the API
         async function fetchTerrainIcons() {
             try {
-                const serverUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+                const serverUrl = (function() {
+                  if (import.meta.env.VITE_API_URL) {
+                    return import.meta.env.VITE_API_URL;
+                  }
+                  return window.location.hostname !== 'localhost' ? window.location.origin : 'http://localhost:3000';
+                })();
                 const response = await fetch(`${serverUrl}/api/icons/terrain`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch icons');

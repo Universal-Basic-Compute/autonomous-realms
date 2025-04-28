@@ -1,4 +1,5 @@
 // closeMapView.js - Handles the close-up map view when settling on a tile
+import { getServerUrl } from './utils/serverUrl.js';
 
 class CloseMapView {
   constructor() {
@@ -342,7 +343,7 @@ class CloseMapView {
       const userId = localStorage.getItem('userId');
       
       // Request close map generation from the server
-      const serverUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+      const serverUrl = getServerUrl();
       const response = await fetch(`${serverUrl}/api/tiles/close-map/generate`, {
         method: 'POST',
         headers: {
@@ -448,7 +449,7 @@ class CloseMapView {
   
   async loadCloseMapMetadata(regionX, regionY, tileX, tileY) {
     try {
-      const serverUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+      const serverUrl = getServerUrl();
       // Fetch the metadata for this close map
       const response = await fetch(`${serverUrl}/api/tiles/close-map/${regionX}/${regionY}/${tileX}/${tileY}/metadata`);
       
@@ -489,7 +490,7 @@ class CloseMapView {
         tileElement.dataset.y = y;
         tileElement.dataset.description = description;
         
-        const serverUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+        const serverUrl = getServerUrl();
         // Set the background image
         tileElement.style.backgroundImage = `url(${serverUrl}/api/tiles/close-map/${regionX}/${regionY}/${tileX}/${tileY}/${x}/${y})`;
         

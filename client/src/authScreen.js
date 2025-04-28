@@ -1,4 +1,5 @@
 import { createWelcomeScreen } from './welcomeScreen.js';
+import { getServerUrl } from './utils/serverUrl.js';
 
 // Function to remove any existing auth screen
 function removeExistingAuthScreen() {
@@ -143,7 +144,7 @@ function createAuthScreen() {
     submitButton.textContent = 'Logging in...';
     
     try {
-      const serverUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+      const serverUrl = getServerUrl();
       const response = await fetch(`${serverUrl}/api/auth/login`, {
         method: 'POST',
         headers: {
@@ -207,7 +208,7 @@ function createAuthScreen() {
     submitButton.textContent = 'Registering...';
     
     try {
-      const serverUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+      const serverUrl = getServerUrl();
       const response = await fetch(`${serverUrl}/api/auth/register`, {
         method: 'POST',
         headers: {

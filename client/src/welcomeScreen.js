@@ -1,7 +1,8 @@
 import { initWorld } from './isometricWorld.js';
+import { getServerUrl, getKinosApiBaseUrl } from './utils/serverUrl.js';
 
-// Get server URL from environment variable or default to localhost
-const serverUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+// Get server URL
+const serverUrl = getServerUrl();
 
 // Function to check if Phantom wallet is installed
 function getProvider() {

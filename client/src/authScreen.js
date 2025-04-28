@@ -1,7 +1,18 @@
 import { createWelcomeScreen } from './welcomeScreen.js';
 
+// Function to remove any existing auth screen
+function removeExistingAuthScreen() {
+  const existingScreen = document.getElementById('auth-screen');
+  if (existingScreen) {
+    existingScreen.remove();
+  }
+}
+
 // Create the authentication screen
 function createAuthScreen() {
+  // Remove any existing auth screen first
+  removeExistingAuthScreen();
+  
   // Create container
   const authContainer = document.createElement('div');
   authContainer.id = 'auth-screen';

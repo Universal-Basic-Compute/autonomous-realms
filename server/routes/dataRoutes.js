@@ -1252,4 +1252,27 @@ router.get('/music/list', async (req, res) => {
   }
 });
 
+// Add this route to play music files
+router.get('/music/play/:filename', async (req, res) => {
+  try {
+    const { filename } = req.params;
+    const musicDir = path.join(__dirname, '../data/music');
+    const filePath = path.join(musicDir, filename);
+    
+    // Check if file exists
+    try {
+      await fs.access(filePath);
+      // File exists, stream it
+      res.sendFile(filePath);
+    } catch (err) {
+      // File doesn't exist
+      logger.error(`Music file not found: ${filePath}`);
+      res.status(404).json({ error: 'Music file not found' });
+    }
+  } catch (error) {
+    logger.error(`Error playing music file: ${error.message}`);
+    res.status(500).json({ error: 'Failed to play music file' });
+  }
+});
+
 module.exports = router;

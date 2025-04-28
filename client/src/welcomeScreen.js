@@ -524,11 +524,16 @@ function createColonyNamingScreen() {
   namingContainer.id = 'naming-screen';
   namingContainer.className = 'fullscreen-overlay';
   
+  // Create a wrapper for all naming content
+  const contentWrapper = document.createElement('div');
+  contentWrapper.className = 'naming-content-wrapper';
+  namingContainer.appendChild(contentWrapper);
+  
   // Add title
   const title = document.createElement('h2');
   title.textContent = 'Name Your Colony';
   title.className = 'naming-title';
-  namingContainer.appendChild(title);
+  contentWrapper.appendChild(title);
   
   // Create form
   const form = document.createElement('div');
@@ -610,7 +615,7 @@ function createColonyNamingScreen() {
   const emptyCell2 = document.createElement('div');
   form.appendChild(emptyCell2);
   
-  namingContainer.appendChild(form);
+  contentWrapper.appendChild(form);
   
   // Add buttons
   const buttonContainer = document.createElement('div');
@@ -695,7 +700,7 @@ function createColonyNamingScreen() {
   });
   buttonContainer.appendChild(startButton);
   
-  namingContainer.appendChild(buttonContainer);
+  contentWrapper.appendChild(buttonContainer);
   
   document.body.appendChild(namingContainer);
   

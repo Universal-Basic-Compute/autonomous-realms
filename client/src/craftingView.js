@@ -367,10 +367,6 @@ class CraftingView {
     }, 1000); // 1 second per moment
     
     try {
-      // Get the colony name and kin name from localStorage
-      const colonyName = localStorage.getItem('colonyName') || 'Your Colony';
-      const kinName = localStorage.getItem('kinName') || 'defaultcolony';
-      
       // Prepare the resources for the API call
       const resourcesInput = this.selectedResources.map(r => {
         const resource = resourceManager.getResource(r.name);

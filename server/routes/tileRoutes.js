@@ -284,9 +284,10 @@ router.get('/close-map/:regionX/:regionY/:tileX/:tileY/metadata', async (req, re
   }
 });
 
-// Add this route to list music files
+// Add this route to list music files (legacy endpoint - will be deprecated)
 router.get('/audio/music/list', async (req, res) => {
   try {
+    logger.warn('Deprecated endpoint /api/tiles/audio/music/list used, please update to /api/data/music/list');
     const musicDir = path.join(__dirname, '../assets/audio/music');
     
     // Read the directory
